@@ -1,0 +1,694 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>MOTOR VEHICLES (COMPULSORY INSURANCE) ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Motor Vehicles (Compulsory Insurance) Act 2022,
+                     which received Royal Assent on 28 April 2022 (c. 25).</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been provided by the Department for Transport, with the
+                     consent of Lord Robathan, the member in charge of the Act, in order to assist the
+                     reader of the Act and to help inform debate on it. They do not form part of the Act
+                     and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Government has been clear since the 2014 decision of the Court of Justice of the
+                     European Union (CJEU) in the case of <i>Vnuk</i> (Case C-162/13) <i>ECLI:EU:C:2014:2146</i><a class="fn" id="fnref-1" href="#fn-1">1</a>, that it does not support the extension of the requirement for compulsory motor insurance
+                     to private land, and to a greater range of vehicles not constructed for road use.
+                     The <i>Vnuk</i> decision extends the requirement for compulsory third-party motor insurance under
+                     Directive 2009/103/EC beyond that in the law of Great Britain as set out in the Road
+                     Traffic Act 1988 (RTA). The requirement in the RTA only applies to vehicles used on
+                     roads and other public places and to motor vehicles, defined as “a mechanically propelled
+                     vehicle intended or adapted for use on roads”.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>In February 2021, the Government announced its intention to remove the <i>Vnuk</i> decision from the law of England and Wales and the law of Scotland, and reiterated
+                     this in a <a href="https://hansard.parliament.uk/commons/2021-06-29/debates/086baa51-9e81-4156-97e3-68ce278593c5/WrittenStatements"><u>Written Ministerial Statement</u></a> on 29 June 2021<a class="fn" id="fnref-2" href="#fn-2">2</a>. This Act contains measures to support this commitment. The purpose of this Act is
+                     to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>End the effect of the <i>Vnuk</i> decision in retained EU law, and that of related retained case law; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>End any associated liability for insurance claims against the Motor Insurers’ Bureau
+                        (MIB) in respect of accidents on private land and for vehicles not constructed for
+                        road use.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>In 2014 the CJEU found in the <i>Vnuk</i> case that the obligation of compulsory motor insurance contained in<i></i>Articles 3 and 10 of the EU Motor Insurance Directive (Directive 2009/103/EC) (“the
+                     2009 Directive”),<i></i>extends to the use of vehicles on private land. Its effect could also apply the 2009
+                     Directive to vehicles not constructed for road use.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>This interpretation is wider than the compulsory third-party motor insurance obligation
+                     in the law of England and Wales and the law of Scotland as set out in Part VI of the
+                     RTA. The provisions of Part VI only require drivers of vehicles on roads or other
+                     public places to have compulsory third-party motor insurance (‘road’ is defined in
+                     section 192 of the RTA as “any highway and any other road to which the public has
+                     access”). Further, the definition of ‘motor vehicle’ in section 185 of the RTA only
+                     applies to a “mechanically propelled vehicle intended or adapted for use on roads”.
+                     Driving without such insurance is a criminal offence. See section 143 of the RTA for
+                     the criminal offence provisions, and section 145 for the requirements of a policy
+                     of insurance.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Government has consistently voiced its disagreement with the broad interpretation
+                     of the scope of the 2009 Directive in <i>Vnuk</i>, and there appears to be very little appetite among stakeholders for its implementation
+                     into domestic law. In light of the judgement, the Department for Transport conducted
+                     a <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/602216/motor-insurance-vnuk-v-triglav.pdf"><u>consultation</u></a><a class="fn" id="fnref-3" href="#fn-3">3</a> exercise that sought the views of the public and industry on the options for amending
+                     UK domestic law from December 2016 to April 2017. The consultation attracted 902 responses
+                     with around 94% responding that the <i>Vnuk </i>judgement would be worse than the current position on motor insurance in the UK. <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/630069/summary-of-vnuk-public-consultation-responses.pdf"><u>A summary of consultation responses</u></a><a class="fn" id="fnref-4" href="#fn-4">4</a> was published in July 2017.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Department also worked with the Government Actuary’s Department (GAD) between
+                     2017 and 2019 to investigate the potential impact in the UK of the <i>Vnuk</i> judgement. The GAD’s <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/965738/vnuk-impact-analysis-combined-report.pdf.pdf"><u>Report</u></a><a class="fn" id="fnref-5" href="#fn-5">5</a> was published in February 2021, and identified significant potential increases in
+                     motor insurance premiums associated with the <i>Vnuk</i> judgement and potential issues with police enforcement on private land. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In 2018, the case of <i>Lewis v Tindale</i> [2018] EWHC 2376 (QB), upheld in <i>Motor Insurers’ Bureau v Lewis</i> [2019] [2019] EWCA Civ 909 (“Lewis”), found that the interpretation of the 2009 Directive
+                     in the <i>Vnuk</i> judgement was sufficiently clear and precise to have direct effect and could therefore
+                     be enforced directly against the  MIB, as an emanation of the state and the body responsible
+                     for compensating victims of uninsured and untraced drivers under Article 10 of the
+                     2009 Directive. The <i>Lewis</i> case found that the MIB was an emanation of the State for this purpose essentially
+                     because similar bodies, like the Motor Insurance Bureau of Ireland, had previously
+                     been held by the CJEU to be emanations of the state,&nbsp;on the basis that those bodies'
+                     functions mean they were tasked with&nbsp;meeting the State’s unimplemented obligation
+                     to pay compensation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>As the scope of the compulsory third-party motor insurance obligation in GB only extends
+                     to motor vehicles and to roads and other public places, the <i>Lewis</i> decision meant that the MIB’s liability for insurance claims extended beyond this,
+                     and applied to accidents on private land and potentially to a greater range of vehicles
+                     not constructed for road use. The direct effect rights to claim compensation from
+                     the MIB created by <i>Lewis</i> were preserved in domestic law following the end of the EU Exit Transition Period
+                     (TP) under section 4 of the European Union (Withdrawal) Act 2018 (EUWA), and are referred
+                     to in this note as “section 4 rights”. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act meets the Government’s public commitment, as announced via a Written Ministerial
+                     Statement on 29 June 2021, to remove <i>Vnuk</i> from the law of England and Wales and the law of Scotland. It will do this by removing
+                     the section 4 rights against the MIB created by <i>Lewis</i>, and making it clear that compulsory third-party motor insurance is only required
+                     “on a road or other public place” and for “motor vehicles” as set out and defined
+                     in the RTA. The Act also clarifies that the case of <i>Vnuk </i>and any other case that followed the <i>Vnuk</i> interpretation in respect of Articles 3 and 10 of the 2009 Directive are removed
+                     from retained case law within the meaning of section 6 of the EUWA. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act amends Part VI of the RTA, which contains the provisions on compulsory motor
+                     insurance in Great Britain explained in the ‘policy background’ section of this note,
+                     by inserting a new section 156A. The effect of the new section is explained in the
+                     ‘commentary on provisions of Act’ section below. No other amendments to the RTA, or
+                     any other legislation, are made.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 2 sets out the territorial extent of the Act, that is the jurisdictions which
+                     the Act forms part of the law of. The extent of an Act can be different from its application.
+                     Application is about where an Act produces a practical effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The provisions in the Act extend and apply to England, Wales and Scotland only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Retained EU law relating to compulsory insurance for motor vehicles</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Section 1 inserts a new section 156A into the RTA entitled “Retained EU law relating
+                        to compulsory insurance”.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Subsection (1) makes provision to clarify how the compulsory insurance obligation
+                        in Article 3 of the 2009 Directive is to be read in case that Article were considered
+                        to be relevant to understanding the meaning of any provision in Part VI of the RTA.
+                        The effect of this provision is to make clear that the interpretation of the Article
+                        3 insurance obligation as extending to private land and to vehicles not constructed
+                        for road use, in the light of the <i>Vnuk </i>judgment, is not applicable when interpreting the compulsory insurance requirements
+                        in the RTA. This is subject to subsection (2).  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Subsection (2) provides that subsection (1) does not apply in relation to any question
+                        as to the interpretation or effect of the law of an EU member state or Northern Ireland
+                        for the purposes of section 145(3) (aa) or (b) of the RTA. Those provisions require
+                        policies of insurance to include the cover required by the law applicable in the territory
+                        where the vehicle is used, or the law applicable where it is normally based, when
+                        that cover is higher. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Subsection (3) concerns the removal of section 4 rights created by the <i>Lewis</i> case. The subsection achieves this by bringing to an end “relevant section 4 rights”
+                        (as defined in subsection (5)) to compensation from the MIB. Those rights are brought
+                        to an end in all cases apart from in connection with the use of motor vehicles on
+                        roads or other public places (as defined in the RTA).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Subsection (4) provides that retained EU case law that is inconsistent with the position
+                        set out in subsections (1) or (3) ceases to have effect.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Subsection (5) defines various expressions as used in the Section. It is self-explanatory.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Subsection (6) further provides that the Section does not have retrospective effect,
+                        and so will not apply to the interpretation of Part VI of the RTA in relation to,
+                        or to section 4 rights in connection with, the use of a vehicle prior to the day on
+                        which it comes into force.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.3in">
+                        <col style="width:0.95in">
+                        <col style="width:0.95in">
+                        <col style="width:0.95in">
+                        <col style="width:0.95in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>England</b>
+                              </p>
+                           <p>
+                              <b>Wales</b>
+                              </p>
+                           <p>
+                              <b>Scotland</b>
+                              </p>
+                           <p>
+                              <b>Northern Ireland</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p></p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p></p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>(Retained EU law relating to compulsory insurance for motor vehicles)</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                              <p>(Commencement, extent and short title)</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.1in">
+                        <col style="width:2.1in">
+                        <col style="width:2.1in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>Stage</p>
+                           </td>
+                           <td>
+                              <p>Date</p>
+                           </td>
+                           <td>
+                              <p>Hansard Reference</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>21 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0083/210083.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 October 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-10-29/debates/F7E45F18-8C15-44D8-81E3-A3D68250B701/BusinessWithoutDebate">
+                                    <u>Vol. 720 col. 590</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>5 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-05/debates/0fca955b-a8d7-45fa-aeca-c1215e7e6884/MotorVehicles(CompulsoryInsurance)Bill">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>28 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-28/debates/CB05F3BE-B0A9-4A1E-9222-F6571826A068/MotorVehicles(CompulsoryInsurance)Bill">
+                                    <u>Vol. 707 col. 1207</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>31 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/45002/documents/1330">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-01-31/debates/0A504BEB-9EBE-4448-BF00-0F6F310A9615/MotorVehicles(CompulsoryInsurance)Bill">
+                                    <u>Vol. 818 col. 624</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-18/debates/8ACA5C1A-A614-4ADA-8325-38CCA17954F5/MotorVehicles(CompulsoryInsurance)Bill">
+                                    <u>Vol. 820 col. 619</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment discharged</p>
+                           </td>
+                           <td>
+                              <p>6 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-04-06/debates/7C0EB940-3B34-4BB7-94A8-B7CF7E99AAD6/MotorVehicles(CompulsoryInsurance)Bill">
+                                    <u>Vol. 820 col. 2087</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>25 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-04-25/debates/064D0535-0158-4DA5-A0DA-DB337E779A16/MotorVehicles(CompulsoryInsurance)Bill">
+                                    <u>Vol. 821 col. 22</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>28 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-28/debates/D11DF494-0AB3-4302-AB2D-C113849A137D/Debate">
+                                    <u>Vol. 821 col. 382</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Damijan Vnuk is the name of an individual, a Slovenian farm worker, who was knocked
+                  off his ladder by a reversing tractor trailer. The incident took place on private
+                  land on a farm in Slovenia in 2007.  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The Secretary of State for Transport, Written Ministerial Statement, European Motor
+                  Insurance Directive (Removal of Vnuk from UK law), Statement made on 29 June 2021,
+                  Available at: <a href="https://questions-statements.parliament.uk/written-statements/detail/2021-06-29/hcws131"><u>Written statements - Written questions, answers and statements - UK Parliament</u></a>. </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Department for Transport, Technical consultation on motor insurance: Consideration
+                  of the European Court of Justice ruling in the case of Damijan Vnuk v Zavarovalnica
+                  Triglav d.d. (C-162/13), published December 2016, Available at: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/602216/motor-insurance-vnuk-v-triglav.pdf"><u>Technical consultation on motor insurance: consideration of the European Court of
+                        Justice ruling in the case of Damijan Vnuk v Zavarovalnica Triglav d.d (C-162/13)
+                        (publishing.service.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Department for Transport, Technical consultation on motor insurance: Consideration
+                  of the European Court of Justice ruling in the case of Damijan Vnuk v Zavarovalinca
+                  Triglav d.d. (C-162/13) Summary of responses, published July 2017, Available at: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/630069/summary-of-vnuk-public-consultation-responses.pdf"><u>Technical consultation on motor insurance (publishing.service.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Government Actuary’s Department, Vnuk Impact Analysis Combined Report, published
+                  February 2021, Available at: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/965738/vnuk-impact-analysis-combined-report.pdf.pdf"><u>Vnuk Impact Analysis - Combined Report (publishing.service.gov.uk)</u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

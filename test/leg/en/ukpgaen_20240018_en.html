@@ -1,0 +1,809 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>BUILDING SOCIETIES ACT 1986 (AMENDMENT) ACT 2024</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Building Societies Act 1986 (Amendment) Act
+                     2024 which received Royal Assent on 24 May 2024 (c. 18).</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by HM Treasury in order to assist the reader
+                     of the Act. They do not form part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act means in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act affects existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.</span></h2>
+                  <p>This Act is about putting building societies on a more level playing field with other
+                     retail deposit-takers (i.e. banks) in relation to their capital raising and corporate
+                     governance requirements, so that they can compete more effectively in the financial
+                     services sector and better support their members. This Act helps to deliver key asks
+                     from the building society sector. This Act thus amends the Building Societies Act
+                     1986 (“the 1986 Act”) and also provides HM Treasury with the powers to make specific
+                     secondary legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.</span></h2>
+                  <p>To enable this, the Act makes provisions in three areas:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Funds that can be disregarded by a building society for the purpose of calculating
+                        its wholesale funding limit;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Real-time virtual member participation in building society meetings; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The execution of deeds and other documents.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.</span></h2>
+                  <p>The aim is to support building societies to grow, scale and compete with retail banks,
+                     creating competition in the UK financial services sector.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Introduction to building societies and the existing legislation</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.</span></h2>
+                  <p>Building societies are providers of mortgage and savings products, mutually owned
+                     by their members (the depositors/borrowers). The 42 building societies in the UK make
+                     a valuable contribution to the UK financial services industry. According to the latest
+                     Building Societies Association (BSA) data, building societies collectively serve over
+                     25.8 million members and hold over £352 Action of mortgage assets and £313 Action
+                     of savings from individuals<a class="fn" id="fnref-1" href="#fn-1">1</a>. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5.</span></h2>
+                  <p>The Building Societies Act 1986 sets out building societies’ distinctive model and
+                     other legal requirements. Under this Act, building societies are required to obtain
+                     at least 50% of their funding from individual retail (member) deposits, ensuring the
+                     members are the primary owners (“the funding limit calculation”). This is a key feature
+                     of the building society’s unique ownership model. Whilst the 1986 Act broadly remains
+                     fit for purpose, there is interest and rationale in making further updates to the
+                     1986 Act to allow building societies to compete on a more level playing field with
+                     banks operating as Companies Act 2006 companies, promoting competition within the
+                     financial services sector. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.</span></h2>
+                  <p>Additionally, the separate legal frameworks for companies and building societies have
+                     not always been updated at the same time. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.</span></h2>
+                  <p>The policy aim is therefore to modernise the legislation to better align with the
+                     framework under which companies operate, while still maintaining the building society
+                     mutual ownership model.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Government consultation</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8.</span></h2>
+                  <p>Following from engagement with the building society sector, the Prudential Regulatory
+                     Authority (PRA) and the Financial Conduct Authority (FCA), on 6 December 2021, the
+                     government launched a consultation on several amendments to the 1986 Act<a class="fn" id="fnref-2" href="#fn-2">2</a>. The consultation proposed excluding some sources of funding from the building societies
+                     wholesale funding limit calculation and updating building society constitutional and
+                     corporate governance requirements in line with modernisations made to company law
+                     by the Companies Act 2006. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9.</span></h2>
+                  <p>The Government published a response to this consultation as part of the Edinburgh
+                     Reforms in December 2022<a class="fn" id="fnref-3" href="#fn-3">3</a>. All respondents supported the range of proposals outlined in the consultation<a class="fn" id="fnref-4" href="#fn-4">4</a>. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Policy objective</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.</span></h2>
+                  <p>This Act amends the 1986 Act and also provide HM Treasury with the powers to make
+                     specific secondary legislation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11.</span></h2>
+                  <p>It amends section 7 of the 1986 Act to enable the exclusion of the following sources
+                     of funding (as further specified by the Treasury in regulations) from the building
+                     society wholesale funding limit calculation: Bank of England liquidity insurance facilities,
+                     debt instruments raised to meet MREL requirements, and sums received under a repurchase
+                     agreement with a view to complying with a specified PRA rule. Without reducing financial
+                     stability or diluting the unique ownership model of building societies, this Act enables
+                     building societies to raise additional wholesale capital, which they can use to grow
+                     and compete with retail banks on a level footing, and which societies may then put
+                     towards supporting their members. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.</span></h2>
+                  <p>The Act also amends the 1986 Act to explicitly allow the option of real-time virtual
+                     member participation in building societies’ meetings, and provides HM Treasury with
+                     the powers to make secondary legislation to further align the constitutional provisions
+                     in Part 2 of the 1986 Act concerning common seals and the execution of documents with
+                     modifications to company law. Both of these changes help modernise the 1986 Act, providing
+                     building societies with the same modern governance flexibilities as companies and
+                     help to reduce some burdens on the sector should they choose to adopt these changes.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.</span></h2>
+                  <p>The principal legal framework for building societies is the Building Societies Act
+                     1986. It has been amended on numerous occasions and was substantively revised by the
+                     Building Societies Act 1997, by the Financial Services and Markets Act 2000 and by
+                     the Financial Services Act 2012 (which also amended the 2000 Act).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.</span></h2>
+                  <p>The Building Societies Act 1986 continues to be the main Act governing building societies,
+                     and this Act inserts new provisions into the 1986 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.</span></h2>
+                  <p>It amends section 7(3) of the 1986 Act and provides HM Treasury with a power to make
+                     secondary legislation subject to the affirmative resolution procedure to enable the
+                     wholesale funding limit to be disapplied to certain descriptions of funds to be held
+                     for prudential purposes as specified by the Treasury. The Act amends section 104(2)
+                     of the 1986 Act to extend the current power to amend certain Parts of the 1986 Act
+                     by order made by affirmative resolution statutory instrument to assimilate it to modifications
+                     to company law to include the power to amend the constitutional provisions in Part
+                     2 of the 1986 Act concerning common seals and the execution of documents. The Act
+                     amends paragraph 34 of Schedule 2 to the 1986 Act to explicitly allow real-time virtual
+                     member participation in building societies’ meetings.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16.</span></h2>
+                  <p>This Act extends and applies to England, Scotland, Wales, and Northern Ireland. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: The funding limit: funds to be disregarded</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17.</span></h2>
+                  <p>This section amends section 7(3) of the 1986 Act to add further sources of funds that
+                     a building society can disregard for the purpose of calculating its wholesale funding
+                     limit.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18.</span></h2>
+                  <p>It describes the types of funds to be exempted from the building society wholesale
+                     funding limit calculation: Bank of England liquidity insurance facilities, debt instruments
+                     raised to meet the minimum requirement for own funds and eligible liabilities (MREL)
+                     requirements, and sums received under a repurchase agreement with a view to complying
+                     with a specified Prudential Regulation Authority (PRA) rule. It also inserts a new
+                     subsection (9A) into section 7 of the Act which defines some of the key expressions
+                     contained in the new sources of funding added to section 7(3).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19.</span></h2>
+                  <p>This section also adds three new subsections (9B), (9C) and 9(D) to section 7 of the
+                     1986 Act, which give HM Treasury the power to specify named funds, or descriptions
+                     of funds, and PRA rules (including by means of ambulatory references) through secondary
+                     legislation subject to the affirmative resolution procedure. The Government set out
+                     further detail in the Edinburgh Reforms on the funds that will be specified in regulations<a class="fn" id="fnref-5" href="#fn-5">5</a>. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Attendance at meetings by electronic means</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20.</span></h2>
+                  <p>This section amends the 1986 Act to explicitly allow the option for building societies
+                     to hold meetings and votes so as to enable virtual attendance and voting resulting
+                     in hybrid in person/online meetings. Subsection (1) confirms that nothing in Part
+                     III of Schedule 2 to the 1986 Act precludes the holding and conducting of building
+                     society meetings in a way which allows people who are not present together in the
+                     same place to attend, speak and vote by electronic means. The provision is the same
+                     as that set out for companies in the Companies Act 2006.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21.</span></h2>
+                  <p>Subsection (2) makes provision to limit requirements and restrictions on electronic
+                     participation in meetings to those which are necessary and proportionate to ensure
+                     identification of those attending or to ensure that the electronic communication is
+                     secure. The purpose of subsection (2) is to ensure the use of electronic means is
+                     only subject to necessary and proportionate requirements to ensure the identification
+                     of those attending the meeting and the security of electronic communication. This
+                     is the same position as for companies in the Companies Act 2006. </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Power to assimilate with company law: common seals and execution of documents</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22.</span></h2>
+                  <p>This section extends the power in section 104(1) of the 1986 Act which enables HM
+                     Treasury to modify certain parts of the 1986 Act for the purpose of assimilating company
+                     law by making regulations subject to the affirmative resolution procedure. The section
+                     inserts a new paragraph (aa) into section 104(2) to bring Part 2 of the Act into the
+                     scope of the power, but the insertion of a new subsection (3A) ensures that the new
+                     power is only exercisable in so far as it relates to the assimilation of company law
+                     in relation to common seals and the execution of documents.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Extent, commencement, transitional provision and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23.</span></h2>
+                  <p>This Act extends to England, Wales, Scotland and Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24.</span></h2>
+                  <p>Section 4(2) provides that the Act comes into force at the end of the period of two
+                     months from the date on which it was passed. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25.</span></h2>
+                  <p>Section 4(3) is a transitional provision so that when HM Treasury exercises the power
+                     in section 104 of the 1986 Act for the purpose of assimilating to companies law for
+                     the use of common seals and the execution of documents, it may do so to assimilate
+                     modifications to companies law statutory provisions in force in Great Britain and
+                     Northern Ireland whether made before or after the coming into force of the Act. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">26.</span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>BSA latest stats and figures: <a href="https://www.bsa.org.uk/statistics/sector-info-performance/sector-information"><u>https://www.bsa.org.uk/statistics/sector-info-performance/sector-information</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Amendments to the Building Societies Act 1986 - Consultation: <a href="https://assets.publishing.service.gov.uk/media/61ade3f8d3bf7f05539de5b4/Consultation_-_Amendments_to_the_Building_Societies_Act_1986_.pdf"><u>https://assets.publishing.service.gov.uk/media/61ade3f8d3bf7f05539de5b4/Consultation_-_Amendments_to_the_Building_Societies_Act_1986_.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Consultation: Amendments to the Building Societies Act 1986 Call for Evidence – Response:
+                        <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1122465/Sensitive_091222_FINAL_Response_to_Consultation_-_Amendments_to_Building_Societies_Act_1986__final_.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1122465/Sensitive_091222_FINAL_Response_to_Consultation_-_Amendments_to_Building_Societies_Act_1986__final_.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Financial Services: The Edinburgh Reforms: <a href="https://www.gov.uk/government/collections/financial-services-the-edinburgh-reforms"><u>https://www.gov.uk/government/collections/financial-services-the-edinburgh-reforms</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:0.87in">
+                        <col style="width:0.71in">
+                        <col style="width:0.01in">
+                        <col style="width:0.89in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>England</b>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Wales</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Scotland</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Northern Ireland</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p>Section 3</p>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard references</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">27.</span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>06 December 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-04/0018/230018v2.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-12-06/debates/722E4420-59F4-4E6B-88AD-4E32399DE8D5/PersonalStatement">
+                                    <u>Vol. 742 Col. 380</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 January 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-01-19/debates/617C5FE1-89E4-4F4B-BD7B-82B86BB3CB62/BuildingSocietiesAct1986(Amendment)Bill">
+                                    <u>Vol. 743 Col. 1132</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>7 February 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/55101/documents/4716">
+                                    <u>Vol. 748 Col. 576</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>19 April 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-04-19/debates/43169041-4D10-4C7A-8ED3-7BDE05FC3AEF/BuildingSocietiesAct1986(Amendment)Bill">
+                                    <u>Vol. 748 Col. 576</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>22 April 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/55101/documents/4716">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-04-22/debates/5C419466-1940-47E4-9531-F289C4D08534/BuildingSocietiesAct1986(Amendment)Bill">
+                                    <u>Vol. 837</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>10 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-10/debates/AEE3122D-DC4C-482B-B7F3-5DC0994FD74B/BuildingSocietiesAct1986(Amendment)Bill">
+                                    <u>Vol. 838 Col. 366</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment Discharged</p>
+                           </td>
+                           <td>
+                              <p>24 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-24/debates/5BF08193-ACD5-4D0C-8A40-E25686EF32A8/BuildingSocietiesAct1986(Amendment)Bill">
+                                    <u>Vol. 838 Col. 1274</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading </p>
+                           </td>
+                           <td>
+                              <p>24 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-24/debates/D855CE1C-22AC-4CA5-BC27-277EB89DEBB7/BuildingSocietiesAct1986(Amendment)Bill">
+                                    <u>Vol. 838 Col. 1274</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>24 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://gbr01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fhansard.parliament.uk%2FCommons%2F2024-05-24%2Fdebates%2F35765685-8E64-4885-B31D-9B4460A907E2%2FLeaseholdAndFreeholdReformBill%23contribution-367AAB90-5F26-4CF7-A203-551A59742D9B&amp;data=05%7C02%7CLogan.Cuthbert%40hmtreasury.gov.uk%7Ccb2ae8b1cb39477bf75708dc7f17551f%7Ced1644c505e049e6bc39fcf7ac51c18c%7C0%7C0%7C638524985393741839%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&amp;sdata=igQNbeGbgyq9SKKcE%2Bti94cHYyRGGS5yoPifPGRbex4%3D&amp;reserved=0">
+                                    <u>House of Commons Vol. 750 Col. 1274</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-24/debates/CD3DAA19-3D6D-464F-B60D-9F29033844B3/RoyalAssent">
+                                    <u>House of Lords Vol. 838 Col. 1375</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  BSA latest stats and figures <a href="https://www.bsa.org.uk/statistics/sector-info-performance/sector-information"><u>Sector information (bsa.org.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Amendments to the Building Societies Act 1986- Consultation <a href="https://assets.publishing.service.gov.uk/media/61ade3f8d3bf7f05539de5b4/Consultation_-_Amendments_to_the_Building_Societies_Act_1986_.pdf"><u>Consultation_-_Amendments_to_the_Building_Societies_Act_1986_.pdf (publishing.service.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Financial Services: The Edinburgh Reforms <a href="https://www.gov.uk/government/collections/financial-services-the-edinburgh-reforms"><u>Financial Services: The Edinburgh Reforms - GOV.UK (www.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Consultation: Amendments to the Building Societies Act 1986: Call for Evidence- Response
+                  <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1122465/Sensitive_091222_FINAL_Response_to_Consultation_-_Amendments_to_Building_Societies_Act_1986__final_.pdf"><u>Sensitive_091222_FINAL_Response_to_Consultation_-_Amendments_to_Building_Societies_Act_1986__final_.pdf
+                        (publishing.service.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Consultation: Amendments to the Building Societies Act 1986 Call for Evidence- Response
+                  <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1122465/Sensitive_091222_FINAL_Response_to_Consultation_-_Amendments_to_Building_Societies_Act_1986__final_.pdf"><u>Sensitive_091222_FINAL_Response_to_Consultation_-_Amendments_to_Building_Societies_Act_1986__final_.pdf
+                        (publishing.service.gov.uk)</u></a></p>
+               <p></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

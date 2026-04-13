@@ -1,0 +1,2829 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NUCLEAR ENERGY (FINANCING)</b>
+               <b>
+                  </b>
+               <b>ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Nuclear Energy (Financing) Act 2022 which received
+                  Royal Assent on 31 March 2022 (c. 15). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business, Energy
+                  and Industrial Strategy in order to assist the reader in understanding the Act. They
+                  do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Act is to facilitate investment in new nuclear power stations,
+                     supporting the Government’s delivery on the commitments made in the 2020 Energy White
+                     Paper and the Prime Minister’s Ten Point Plan and contributing to the Government meeting
+                     its legally binding obligations to achieve net zero carbon emissions by 2050.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Government has made important commitments to eliminate its contribution to greenhouse
+                     gas emissions. This includes the passage of legislation that requires the UK to bring
+                     all greenhouse gas emissions to net zero by 2050, as well as subsequent commitments
+                     to reduce carbon emissions by 78% and to decarbonise the electricity system by 2035.
+                     This will require rapid, significant changes in the energy sector: it is expected
+                     that total UK electricity supply will need to double by 2050 and electricity from
+                     low-carbon sources will need to quadruple, in order to deliver the UK’s commitment
+                     to become a Net Zero emissions economy by that year.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>A key part of this will be to secure the transition to a clean electricity system
+                     that is reliable and affordable for energy consumers. This will require a substantial
+                     deployment of renewable technologies, alongside technologies such as nuclear which
+                     can provide energy to consumers when the wind is not blowing, or the sun does not
+                     shine. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Large scale nuclear power plants are the only proven technology available today to
+                     provide continuous, reliable and low carbon electricity. However, the UK’s existing
+                     nuclear fleet will be almost completely retired by 2030, and the Government’s analysis
+                     shows that the UK is likely to need nuclear generation beyond the new plant being
+                     constructed at Hinkley Point C. To meet the challenge of net zero, the Government
+                     is working to bring at least one more new large-scale project to final investment
+                     decision in this Parliament subject to all relevant approvals, whilst rapidly exploring
+                     the development of new nuclear technologies beyond conventional large-scale plants.
+                     These goals were set in the 2020 Energy White Paper. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>To support this goal, the Government has considered a range of approaches to securing
+                     private finance in the design, construction, commissioning and operation of nuclear
+                     assets, to complement the Contracts for Difference (CfD) model that has been used
+                     to finance construction and operation of the Hinkley Point C nuclear plant. Regardless
+                     of the funding model, the Government’s aim is to agree an approach to financing the
+                     design, construction, commissioning and operation of new nuclear projects that can
+                     deliver value for money for electricity consumers, whilst achieving a fair and appropriate
+                     allocation of risks between investors, consumers and taxpayers.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Government consulted on a Regulated Asset Base (RAB) model for new nuclear projects
+                     in July 2019. A response to this consultation was published in December 2020 and confirmed
+                     the Government’s assessment that the model is a credible basis for financing large-scale
+                     nuclear projects. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The RAB model is a well understood financing model that has received significant quantities
+                     of investment from the private sector over the last 30 years in industries including
+                     water and energy. In 2016 the RAB model was successfully modified and applied for
+                     the first time to a single asset construction project – the £4.2 billion Thames Tideway
+                     Tunnel project. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Under the RAB model introduced by this legislation, an eligible nuclear company would
+                     receive payments in relation to the design, construction, commissioning and operation
+                     of a new nuclear energy generation project from electricity suppliers (who would be
+                     expected to pass these costs onto consumers through their electricity bills). The
+                     Secretary of State will modify a designated nuclear company’s electricity generation
+                     licence to insert new licence conditions, giving them a right to receive a regulated
+                     revenue in relation to the provision of the infrastructure in question. In so doing
+                     it could bring significant amounts of private investment into nuclear projects at
+                     relatively low cost. Given that the cost of finance is the main driver of overall
+                     project costs, this should lead to better value for money for consumers over the life
+                     of a nuclear RAB Project. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>It is the Government’s intention that in the first instance the model would be used
+                     to support investment in the design, construction, commissioning and operation of
+                     large-scale nuclear, however it remains open as a means to support the financing of
+                     emerging nuclear technologies. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>To support the RAB model, and to protect the interests of consumers, the legislation
+                     introduces the Special Administration Regime (SAR) to apply to nuclear RAB projects.
+                     In the very unlikely event of a company’s insolvency, the Secretary of State, or the
+                     Gas and Electricity Markets Authority (the governing body of Ofgem, and for purposes
+                     of these notes, referred to as ‘the Authority’) with the Secretary of State’s permission,
+                     would be able to apply to the courts for the appointment of a special administrator
+                     whose objective would be to secure that electricity generation commences, or continues
+                     until it is no longer necessary for the order to remain in force. The SAR does not
+                     change the position that the company must continue to comply with all of its regulatory
+                     and legal duties and responsibilities, including compliance with safety, security
+                     and environmental provisions related to the power plant and the site on which it is
+                     located.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Implementing a SAR is intended to reduce the risks of consumers being deprived of
+                     the intended benefits from contributing to funding the building of a nuclear power
+                     plant using a RAB model should a relevant company become insolvent. It also reduces
+                     the risk of requiring a replacement source of electricity generation, which would
+                     further increase the cost of electricity to consumers.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The Act also contains a further measure to help facilitate private financing in nuclear
+                     projects, specifically to amend the Energy Act 2008 to make technical changes to the
+                     regime of Funded Decommissioning Programmes (FDP). All nuclear power stations have
+                     a finite life, beyond which it is not safe or economically feasible for them to continue
+                     to operate. After this period, the power station must be decommissioned. Prospective
+                     operators of nuclear power stations are obliged to submit an FDP to the Secretary
+                     of State. The FDP must set out the site operator’s costed plans for dealing with its
+                     future decommissioning and waste management liabilities. It is a criminal offence
+                     for a new nuclear developer to start construction work on any buildings with nuclear
+                     safety significance without an approved FDP in place.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Currently, the Secretary of State has the power to unilaterally modify an FDP to impose
+                     obligations on bodies corporate which are ’associated’ with the site operator. It
+                     is possible that the existing legislation could potentially be interpreted in such
+                     a way that security trustees and secured creditors could be at risk of falling within
+                     the scope of this power, making it less likely that a nuclear project will attract
+                     debt investment. The legislation therefore clarifies that the activities of these
+                     entities are not caught by the definition of being ‘associated’ with a site operator
+                     to the extent that they relate to the management and enforcement of security interests
+                     relating to the project, as they do not hold significant influence over its day-to-day
+                     decision making. This will facilitate the ability of projects to raise debt investment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The legislation is made up of the elements set out below. </p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Nuclear Energy Generation Projects: Regulated Asset Base Model</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>The RAB model for nuclear energy generation projects would give an eligible nuclear
+                        company the right to a regulated revenue stream throughout the design, construction,
+                        commissioning and operations phase of a new nuclear project. This will be funded by
+                        a charge placed on electricity suppliers, with the expectation that this will ultimately
+                        come from consumers through their electricity bills. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>The Act allows for the Secretary of State to designate a nuclear company that is eligible
+                        to receive the benefit of the RAB special licence conditions. They can do so only
+                        if the company meets the criteria for designation and having undertaken consultation
+                        with named persons. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Once the Secretary of State has served and published a notice to designate a nuclear
+                        company, they have the power to amend that company’s existing electricity generation
+                        licence accordingly. This allows the Secretary of State to insert the special conditions
+                        to implement the RAB model for the company and set out how the Project will be regulated
+                        and its allowed revenue calculated. Amendments may also be made to the licence terms.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>The designation of a nuclear company ceases to have effect either when the company
+                        enters into a revenue collection contract to receive payments in relation to its allowed
+                        revenue (provided this occurs before the expiry date), 5 years from the date of the
+                        designation notice (subject to any extensions by the Secretary of State), or if the
+                        designation notice is revoked or lapses in accordance with conditions attached to
+                        it. The Secretary of State is required to consult named persons before making modifications
+                        to a nuclear company’s licence whilst the designation is in effect. Once a company
+                        has its licence modified to provide for the RAB model, and it has entered into a revenue
+                        collection contract, the Secretary of State is only able to modify its licence in
+                        very limited, specific circumstances. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>As the current electricity regulator for Great Britain, the Authority will regulate
+                        the nuclear company in accordance with the terms and conditions of its modified licence.
+                        The Authority will do so in keeping with its existing statutory duties including its
+                        principal objective of protecting the interests of existing and future electricity
+                        consumers. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>The Secretary of State can use their power to designate and then modify the licences
+                        of multiple nuclear companies to benefit from a nuclear RAB model, provided that in
+                        each case the designation criteria and procedural requirements are met. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Revenue Collection Contracts</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>It is important that legislation allows for a stable flow of funding between consumers
+                        (through their suppliers) and a nuclear company which holds a generation licence which
+                        has had RAB licence conditions incorporated into it (a ‘RAB licence’). The Act allows
+                        the Secretary of State to give effect to a revenue channel necessary for the nuclear
+                        RAB model to function. This includes a power for the Secretary of State to designate
+                        a revenue collection counterparty and direct it to enter into a revenue collection
+                        contract with a nuclear company that has been designated by the Secretary of State
+                        for the purposes of the RAB model. The Act also allows for the Secretary of State
+                        to make regulations to implement the mechanics of the revenue stream, including placing
+                        obligations on electricity suppliers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>For the purposes of the revenue stream, it is intended that the payments made to the
+                        nuclear company under a RAB model would be calculated by reference to a ‘forecast
+                        allowed revenue’ determined by the Authority at the start of a charging period, in
+                        accordance with the RAB licence. It would be within the power of the Authority to
+                        determine the allowed revenue forecast under the terms of the RAB licence. The Authority
+                        would calculate the Allowed Revenue throughout the lifetime of the project in accordance
+                        with the licence. The legislation allows the company to appeal to the Competition
+                        and Markets Authority (CMA) any decision made by the Authority which, in the opinion
+                        of the CMA, relates to the allowed revenue of the company, as long as the right to
+                        appeal is set out in the initial licence modifications made by the Secretary of State.
+                        Under existing legislation, the nuclear company would also have the right to bring
+                        an appeal against any decision of the Authority to modify its licence (see section
+                        11C of the Electricity Act 1989). At the end of the charging period, the Authority
+                        would conduct any reconciliations to reflect any outstanding amounts due to the nuclear
+                        company for that period, in accordance with the RAB licence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>During the construction phase, it is expected that the nuclear company would receive
+                        an amount equal to the full forecast allowed revenue, as it would not yet be generating
+                        and selling power. Where the nuclear power station is operational (including in the
+                        commissioning phase), for the purposes of forecasting revenue, the Authority would
+                        determine a market revenue, in accordance with the RAB licence conditions. It is intended
+                        that the Authority would then deduct this amount from the forecast allowed revenue
+                        that the nuclear company is entitled to receive over the course of the charging period.
+                        Reconciliation would take place to address any discrepancies between forecast and
+                        actual amounts.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Following this, the Authority would inform the revenue collection counterparty how
+                        much it needs to collect over that charging period from electricity suppliers, in
+                        order for the nuclear company to receive its forecast allowed revenue. Once collected,
+                        the revenue collection counterparty would then pay the nuclear company. The combination
+                        of market revenues and the additional amount collected from suppliers would aim to
+                        ensure that the nuclear company received its forecast allowed revenue in each period.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Where the market revenue is greater than the forecast allowed revenue, then payment
+                        equal to the difference, as determined by the Authority, would be made by the nuclear
+                        company to the revenue collection counterparty. This would ensure the company only
+                        receives the revenue necessary to meet its costs and expenditure incurred in the course
+                        of performing its activities in relation to the design, construction, commissioning
+                        and operation of the nuclear project.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>The cost to the revenue collection counterparty of its payment obligations to a nuclear
+                        generation company, as well as the operational costs of the revenue collection counterparty,
+                        will be met by licensed electricity suppliers in Great Britain (subject to any relevant
+                        exemptions), who may share this with electricity consumers. Suppliers will be charged
+                        by reference to their share of the Great Britain (GB) electricity market. Where the
+                        revenue collection counterparty receives payments back from nuclear companies under
+                        revenue collection contracts, these will be passed back to suppliers according to
+                        their market share. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Aspects of the operation of the revenue collection counterparty will be subject to
+                        controls by the Secretary of State. This is designed to ensure the protection of suppliers
+                        and ultimately consumers.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Special Administration Regime</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>The RAB model requires suppliers to contribute to the funding of new nuclear projects
+                        from the start of construction and likely through to most of operational life, thus
+                        reducing the project’s cost of capital. It is expected that these costs will be passed
+                        on to consumers. To protect the interests of consumers, the legislation introduces
+                        a Special Administration Regime to apply to these projects. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>This provides the Secretary of State, or the Authority, with the Secretary of State’s
+                        permission, with a power to apply to the courts for the appointment of a special administrator
+                        (a ‘nuclear administrator’) in certain circumstances, including the very unlikely
+                        scenario of an economically regulated nuclear company’s (a ‘relevant licensee nuclear
+                        company’) insolvency. The objective of a special administration order (a ‘RLNC administration
+                        order’) would be to complete construction and/or keep the plant running, until it
+                        is no longer necessary for the order to remain in force. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Implementing special administration is intended to reduce the risks of consumers being
+                        deprived of the intended benefits from funding the building of a nuclear power plant
+                        using a RAB model should a relevant licensee nuclear company become insolvent. It
+                        also reduces the risk of requiring a replacement source of electricity generation,
+                        which could further increase the cost of electricity to consumers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Where rescue cannot be achieved and it is unnecessary for the RLNC administration
+                        order to remain in place, the Secretary of State, the Authority or the nuclear administrator
+                        with the consent of the Secretary of State, may apply to the courts to bring the RLNC
+                        administration to an end. The circumstances where those persons may apply to end the
+                        appointment of the administrator include where the objective of the RLNC administration
+                        cannot be met. It is considered that once the administration has ended, the Secretary
+                        of State may prepare a Nuclear Transfer Scheme where the nuclear installation and/or
+                        site is to be decommissioned or cleaned up. This would bring the plant under the control
+                        of a public body, or to the Nuclear Decommissioning Authority (NDA) or a publicly
+                        owned company who would be responsible for decommissioning the plant. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>The Secretary of State can provide financial assistance in connection with a RLNC
+                        administration order for the purposes of achieving the objective of the RLNC administration
+                        order. It is expected that the Secretary of State would make provision in the licence
+                        of a relevant licensee nuclear company for the purposes of raising the funds to cover
+                        costs which would arise in connection with a RLNC administration order. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Funded Decommissioning</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>All nuclear power stations have a finite life beyond which it is not safe or economically
+                        feasible for them to continue to operate. After this period, the power station must
+                        be decommissioned. Prospective operators of nuclear power stations are obliged to
+                        submit a funded decommissioning programme to the Secretary of State. This must set
+                        out the site operator’s costed plans for dealing with its future liabilities in relation
+                        to decommissioning, waste management and waste disposal, and how the operator will
+                        make financial provision to meet those liabilities. The programme must be approved
+                        by the Secretary of State before construction on the power station can start. The
+                        policy was legislated for in the 2008 Energy Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Sections 46 and 48 of the 2008 Energy Act give the Secretary of State the power to
+                        unilaterally modify an FDP, both at the time of its original approval and at any point
+                        thereafter.  In particular, the Secretary of State has the power to make modifications
+                        to an FDP to impose obligations on bodies corporate which are “associated” with the
+                        site operator.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>The Government considers that the original intention behind these provisions was to
+                        provide the Secretary of State with flexibility to impose FDP obligations, where necessary,
+                        on entities who would be expected to have a substantial degree of influence over the
+                        operator’s normal activities, for example the operator’s group companies and substantial
+                        equity investors. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>However, it is possible that the legislation could potentially be interpreted in such
+                        a way that other participants in the financing for a new nuclear project, such as
+                        security trustees and secured creditors, could be at risk of falling within the scope
+                        of the definition of bodies corporate ‘associated’ with the site operator due to the
+                        action they take, or are entitled to take, with regard to the management and enforcement
+                        of security. Neither of these types of entities would have a substantial degree of
+                        control over the operator’s normal activities. Given the potentially large costs that
+                        could be imposed through this power, their potential inclusion within the scope of
+                        Section 67 has made it much less likely that bodies of this type will become involved
+                        in the financing of new nuclear projects. The Act therefore clarifies that entities
+                        like secured creditors and security trustees will not be classed as being ‘associated’
+                        with a site operator simply by virtue of rights, powers or shares that they hold in
+                        connection with the management and enforcement of security interests relating to a
+                        project. This will facilitate the ability of projects to raise senior debt.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>The relevant legal background is explained in the policy background of these notes.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>The extent of an Act can be different from its application. Extent is about the legal
+                     jurisdictions of which the provisions in the Act are intended to form part of the
+                     law. Application is about where an Act produces a practical effect. The territorial
+                     extent and application vary across the different measures included in the Act. A full
+                     overview is included in Annex A: </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>For the RAB model and revenue stream measures in Parts 1 and 2, these extend and apply
+                     to England and Wales and Scotland only. This is because the unique energy position
+                     of Northern Ireland means Northern Ireland consumers would not benefit from energy
+                     produced by nuclear energy generation projects under a RAB model in Great Britain,
+                     and so should not be obliged to pay.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>For the changes to the Funded Decommissioning Programme in section 40, these extend
+                     and apply to England and Wales and Northern Ireland only. This is in line with the
+                     extent of Chapter 1 of Part 3 of the Energy Act 2008. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>For the Special Administration Regime, the legislation extends and applies to England
+                     and Wales and Scotland only. This is because it is linked to the RAB measures in Part
+                     1 of the Act, which extend and apply to England and Wales and Scotland only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>The UK Parliament does not normally legislate with regard to matters that are within
+                     the legislative competence of the Scottish Parliament, Senedd Cymru or the Northern
+                     Ireland Assembly without the consent of the legislature concerned. It is also the
+                     practice of the Government to seek the consent of the devolved legislatures for provisions
+                     that would alter the competence of those legislatures or the devolved administrations
+                     in Scotland, Wales and Northern Ireland. The matters to which the provisions of the
+                     Act relate are not within the legislative competence of any of the devolved legislatures,
+                     nor do they alter the competence of those legislatures or the devolved administrations.
+                     No legislative consent motion has therefore been sought in relation to any provision
+                     of the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Where the provisions of the Act extend or apply within the territory of the devolved
+                     administrations, this is done on the basis that these relate to reserved matters under
+                     Head C and D of Schedule 5 to the Scotland Act 1998 and Head C and D of Schedule 7A
+                     to the Government of Wales Act 2006, or dealing with excepted matters under paragraph
+                     18 of Schedule 2 to the Northern Ireland Act 1998. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: Nuclear Energy Generation Projects: Regulated Asset Base Model</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Key definitions for Part 1</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>This section seeks to define the key terms for this Part with reference to a company
+                        that is potentially to benefit from a RAB model. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Subsection (1) clarifies that the definitions apply throughout this Part. Subsection
+                        (2) identifies a ‘nuclear company’ as one that has an electricity generation licence
+                        from the Authority with respect to a prospective nuclear energy generation project.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Subsection (3) says that once a nuclear company has been designated by the Secretary
+                        of State, it may be referred to as a ‘designated nuclear company’ for as long as the
+                        designation has effect.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Subsection (4) defines a “relevant licensee nuclear company” as one which has had
+                        its licence modified by the Secretary of State under section 6(1) whilst a designation
+                        is in effect, and that is also party to a revenue collection contract. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Subsection (5) defines the term electricity generation licence for purposes of this
+                        Part.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Designation of nuclear company</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>This section provides the power for the Secretary of State to designate a nuclear
+                        company to potentially benefit from the nuclear RAB model.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Subsection (1) provides the power for the Secretary of State to designate a nuclear
+                        company in relation to a nuclear energy generation project in respect of which it
+                        holds an electricity generation licence (“the nuclear project”) by providing the company
+                        with a designation notice. The principal effect of this is to trigger the Secretary
+                        of State’s power to modify the electricity generation licence of a designated nuclear
+                        company under section 6 to apply a nuclear RAB model. The designation power can only
+                        be exercised if certain criteria are satisfied and the designation notice may have
+                        certain conditions attached. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Subsection (2) determines that a nuclear company may only be designated by the Secretary
+                        of State if it meets certain criteria. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Subsection (3) sets out the criteria that must be met in relation to a nuclear company
+                        in order for the Secretary of State to be able to designate them. These conditions
+                        are:</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>that the Secretary of State is of the opinion that the development of the nuclear
+                        project is sufficiently advanced to justify the designation; and</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>that the Secretary of State is of the opinion that designating the company is likely
+                        to result in value for money. </p>
+                  </section>
+                  <section class="level">
+                     <p>The statement published by the Secretary of State pursuant to section 3(1) will provide
+                        generic guidance for prospective nuclear companies by establishing a level of expectation
+                        regarding project maturity and value for money for different projects, including some
+                        of the factors the Secretary of State is likely to take into account when assessing
+                        the criteria in section 2(3). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (4) clarifies that for this Part of the legislation a designation notice
+                        refers to a notice issued pursuant to the Secretary of State’s power under subsection
+                        (1). </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Designation: procedure</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>This section sets out the procedure that the Secretary of State must follow to designate
+                        a nuclear company for the purposes of the nuclear RAB model. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Subsection (1) requires the Secretary of State to publish a statement, setting out
+                        the procedure they expect to follow when considering whether to designate a nuclear
+                        company and how they will judge whether the criteria set out in section 2 subsection
+                        (3) have been met. The purpose of this is to provide transparency and build confidence
+                        in the decision-making process that the Secretary of State will take when designating
+                        a nuclear company. Whilst the Government does not anticipate that the Secretary of
+                        State will produce a new statement for every prospective project, they will keep its
+                        relevance and effectiveness under review and amend the statement where this is considered
+                        appropriate. By virtue of subsection (4), a statement may be published before or after
+                        the passage of the legislation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Subsection (2) requires the Secretary of State, prior to issuing a designation notice,
+                        to prepare draft reasons for the designation and consult with the persons listed in
+                        subsection (3), including on the draft reasons. A designation notice must include
+                        the publication of final reasons which incorporate any changes to the draft reasons
+                        that appear to the Secretary of State to be appropriate in view of the responses to
+                        the consultation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>This provides opportunity for those directly affected by the potential designation,
+                        or have special expertise relevant to the decision, to provide their views on the
+                        matter.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Subsection (4) states that this obligation could be met through a consultation before
+                        or after the passage of the legislation.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Subsection (5) obliges the Secretary of State, when giving notice of the designation,
+                        to include a description of the nuclear project in relation to which the nuclear company
+                        is being designated; their final reasons for issuing the designation; any conditions
+                        that they are attaching to the designation as well as what will happen in the event
+                        that the conditions are not met; and the date of the notice. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Subsection (6) requires the Secretary of State to publish a designation notice and
+                        to share the designation notice with the nuclear company being designated, as well
+                        as all persons consulted by virtue of subsection (2)(b). </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Expiry of designation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>This section sets out the circumstances in which a nuclear company’s designation for
+                        the purposes of the nuclear RAB model would expire.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Subsection (1) provides that a designation would end either on its expiry date or
+                        at the point where the nuclear company has entered into a revenue collection contract
+                        with a revenue collection counterparty (as defined in Part 2), where this occurs before
+                        the expiry date. A designation could also end sooner, as set out in section 5. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Subsection (2) defines the expiry date as being 5 years from the date of the designation
+                        notice, or, if the expiry date has been extended under subsection (3), the expiry
+                        date specified in the most recent extension notice. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Subsection (3) gives the Secretary of State the ability to extend the expiry date
+                        for the designation of a nuclear company beyond its current expiry date by giving
+                        a notice to the company. This can be done as long as the existing expiry period has
+                        not yet expired and the new expiry period is not more than 5 years from the date of
+                        the extension notice.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Subsection (4) requires the Secretary of State to consult on an extension to the expiry
+                        period with listed entities, and any other persons they consider appropriate. This
+                        provides opportunity for those directly affected by the extension, or who have special
+                        expertise relevant to the decision, to provide their views on the matter. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Subsection (5) states that when the designation ceases to have effect by virtue of
+                        subsection (1), the Secretary of State must publicise this fact.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Revocation or lapse of designation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>This section sets out the circumstances in which a nuclear company’s designation could
+                        lapse, or the Secretary of State could revoke its designation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Subsection (1) allows for the Secretary of State to revoke a nuclear company’s designation
+                        either where it no longer has a generation licence with respect to the nuclear project
+                        in relation to which it was designated, or either of the criteria set out in section
+                        2(3) is no longer met. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Subsection (2) provides that the Secretary of State must follow, with modifications
+                        where required, the same process as was followed during the designation of the nuclear
+                        company. This requires the Secretary of State to prepare draft reasons for revocation,
+                        consult named persons (including on the draft reasons) and to publish the revocation
+                        notice. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Subsection (3) provides that the nuclear company’s designation may cease to have effect
+                        if the company does not comply with a particular condition attached to the designation.
+                        This is the case only if, when the Secretary of State issued the designation notice
+                        subject to a particular condition, it was made clear that non-compliance with that
+                        condition would result in the end of designation, and that the Secretary of State
+                        has given notice to the nuclear company that they have failed to comply with the condition.
+                        For example, a condition which may be included by the Secretary of State at the point
+                        of designation could be that the nuclear company must conduct a successful capital
+                        raise or that the project receives its Development Consent Order (DCO) by a certain
+                        date. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Subsection (4) means that if a nuclear company loses its designation through failure
+                        to meet a condition of designation as under subsection (3), ceasing to hold an electricity
+                        generation licence under subsection (1)(a), or by no longer satisfying the designation
+                        criteria as under subsection (1)(b), then its designation will cease to have effect
+                        at the end of the day on which the Secretary of State sends it the relevant notice.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Subsection (5) obliges the Secretary of State to publish any notice given under subsection
+                        (3).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Licence modifications: designated nuclear companies</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>This section provides the Secretary of State with the power to make licence modifications
+                        for the purposes of applying the nuclear RAB model to a designated nuclear company.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Subsection (1) gives powers to the Secretary of State to modify any condition or term
+                        of a designated company’s electricity generation licence. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>Subsection (2) makes clear that this power can only be used for the purposes of facilitating
+                        investment in the design, construction, commissioning and operation of nuclear energy
+                        generation projects. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>Subsection (3) confirms that this power of modification may only be exercised in relation
+                        to a nuclear company while a designation under section 2(1) has effect in relation
+                        to that company. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Subsection (4) places an obligation on the Secretary of State to have regard to certain
+                        matters when making modifications under subsection (1). These considerations include:</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The duties the Secretary of State has regarding the reduction of carbon emissions,
+                        specifically targets and budgets, under the Climate Change Act 2008; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>the interests of existing and future electricity consumers, including in relation
+                        to the cost of electricity and the security of electricity supply; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>the costs, expenditure and liabilities that the nuclear company could reasonably be
+                        expected to incur in carrying out its activities in relation to the nuclear project;
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>the need for the nuclear company to be able to finance its activities; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>the need to ensure that the nuclear company has appropriate incentives when carrying
+                        out its activities; and</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>any other matters the Secretary of State considers appropriate.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>Subsection (5) provides examples of the types of modifications to the conditions of
+                        a designated nuclear company’s licence that could be made by the Secretary of State.
+                        This includes provision relating to (among other things): the calculation of the allowed
+                        revenue; payments under a revenue collection contract (as defined in Part 2); the
+                        company’s activities; the Authority’s functions in relation to the regulation of the
+                        designated nuclear company under a RAB model; decisions of the Authority that the
+                        nuclear company could refer to the Competition and Markets Authority under section
+                        10; and relevant licensee nuclear company administration orders (as defined in section
+                        31). These examples are illustrative and so this provision does not restrict the scope
+                        of the power set out in subsection (1)(a).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>Subsection (6) clarifies that in exercising their power to modify the terms of a designated
+                        nuclear company’s licence, the Secretary of State could, for example, make provision
+                        in relation to the circumstances in which the company could have its generation licence
+                        revoked.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">77 </span></h2>
+                     <p>Subsection (7) gives the power to the Secretary of State to modify the standard conditions
+                        of generation, transmission, distribution and supply licences (and associated documents
+                        and agreements, such as industry codes). Subsection (8) is clear that the Secretary
+                        of State can only make these modifications if they consider it appropriate for consequential,
+                        supplementary or incidental purposes. This allows the Secretary of State to ensure
+                        the effective implementation of the RAB model for a designated nuclear company. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">78 </span></h2>
+                     <p>Subsection (9) states that modifications made under subsections (1) or (7) only come
+                        into effect where the nuclear company enters into a revenue collection contract. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">79 </span></h2>
+                     <p>Subsection (10) makes it clear that reference within this section to the activities
+                        of the nuclear company are to the company’s activities in relation to the design,
+                        construction, commissioning and operation of the relevant nuclear project, and include
+                        its activities in complying with obligations under an approved FDP under the Energy
+                        Act 2008. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Licence modifications: relevant licensee nuclear companies</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">80 </span></h2>
+                     <p>This section makes provision to allow the Secretary of State to modify a relevant
+                        licensee nuclear company’s generation licence in the period up to the completion of
+                        construction. This power can only be exercised in limited circumstances where the
+                        expected expenditure to complete construction is likely to exceed a cap under the
+                        licence. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">81 </span></h2>
+                     <p>Subsection (1) allows for the Secretary of State to make modifications to the conditions
+                        of a relevant licensee nuclear company’s generation licence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">82 </span></h2>
+                     <p>Subsection (2) specifies that the power under subsection (1) can only be exercised
+                        if the Secretary of State considers that it is likely that the company’s project will
+                        not be able to complete construction without the total expected expenditure exceeding
+                        a spending limit set out in its current licence; and that an adjustment to the calculation
+                        of the nuclear company’s allowed revenue is therefore necessary.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">83 </span></h2>
+                     <p>Subsection (3) requires the Secretary of State to have regard to the same matters
+                        when exercising this power, as when making initial licence modifications under section
+                        6(1). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">84 </span></h2>
+                     <p>Subsection (4) limits this power to being used before the completion of construction.
+                        Subsection (5) defines this point as being when the nuclear plant has completed the
+                        relevant procedures and tests to demonstrate that it is ready to enter commercial
+                        operations. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">85 </span></h2>
+                     <p>Subsection (6) obligates the Secretary of State to publish a statement that outlines
+                        the process they foresee following in relation to the exercise of the power included
+                        in subsection (1). </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 8: Procedure etc relating to modifications under section 6 or 7</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">86 </span></h2>
+                     <p>This section sets out the procedure the Secretary of State must follow when making
+                        licence modifications under sections 6(1) or (7) or 7(1) (defined as a ‘relevant power’).
+                        It also provides further details on the types of modification that may be made. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">87 </span></h2>
+                     <p>Subsection (1) obliges the Secretary of State to consult a list of named persons before
+                        making any modifications under a relevant power, as well any other person they consider
+                        appropriate. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">88 </span></h2>
+                     <p>Subsection (2) clarifies that, in the case of the power under subsection 6(1) and
+                        (7), this consultation can be undertaken before or after the passage of this legislation.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">89 </span></h2>
+                     <p>Subsection (3) and subsection (4) provide further information regarding how a relevant
+                        power may be exercised and the types of modifications that the Secretary of State
+                        may make. Subsection (3) allows the Secretary of State to use the licence modification
+                        powers to make modifications which are general or specific or subject to exceptions.
+                        It also allows the Secretary of State to exercise the powers differently for different
+                        purposes and to make incidental, supplemental, consequential or transitional modifications.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">90 </span></h2>
+                     <p>Subsection (4) enables provisions included in a licence or associated document or
+                        agreement (such as an industry code) by a modification under these powers to make
+                        different provision for different purposes. It also makes clear that any provision
+                        included in a licence by such a modification need not relate to the activities that
+                        the licence authorises. Subsection (4)(c) provides that a provision included in a
+                        licence by virtue of a relevant power may do anything which is authorised for licences
+                        of that type by section 7(4), (5)(a) or (6A) of the Electricity Act 1989. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">91 </span></h2>
+                     <p>Subsection (5) obligates the Secretary of State to publish the details of any modification
+                        as soon as reasonably possible after it takes place. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">92 </span></h2>
+                     <p>Subsection (6) requires the Authority, where the Secretary of States makes a modification
+                        to standard licence conditions, to reflect this change when granting licences of that
+                        type in the future. They must also publish the modification. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">93 </span></h2>
+                     <p>Subsection (7) makes clear that any modification of part of a standard condition does
+                        not change the status of other parts of that condition for the purposes of the Electricity
+                        Act 1989. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">94 </span></h2>
+                     <p>Subsection (8) clarifies that in ‘modifying’ a licence condition, licence term, document
+                        or agreement under a relevant power, the Secretary of State may be amending, removing
+                        or adding to it. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 9: Expiry of modifications made under section 6.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">95 </span></h2>
+                     <p>This section sets out the consequences for licence modifications made under section
+                        6 in the event the designation of the nuclear company in question expires, or if its
+                        designation lapses or is revoked. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">96 </span></h2>
+                     <p>Subsection (1) states that this section is only applicable if the designation of a
+                        nuclear company ceases to have effect because the designation has expired, lapsed
+                        or been revoked. In other words, it does not apply where a nuclear company’s designation
+                        ceases to have effect in accordance with section 4(1)(b) because it has entered into
+                        a revenue collection contract with a revenue collection counterparty. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">97 </span></h2>
+                     <p>Subsection (2) provides that if a nuclear company’s designation has ceased to have
+                        effect in accordance with the provisions set out in subsection (1), any modification
+                        which was made by the Secretary of State to the terms and conditions of the nuclear
+                        company’s electricity generation licence, under the power in section 6(1), will be
+                        treated, from the ‘relevant time’ as never having been made. Under subsection (3),
+                        the same applies to any modifications made under section 6(7) in consequence of, or
+                        for purposes incidental or supplementary to, the relevant modifications under section
+                        6(1). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">98 </span></h2>
+                     <p>Subsection (4) defines “relevant time” for the purpose of subsections (2) to (3).
+                        It means the time when the designation of the relevant nuclear company ceases to have
+                        effect. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">99 </span></h2>
+                     <p>Subsection (5) obliges the Secretary of State to publish details of the fact that
+                        modifications are to be treated as not having been made under subsection (2) or (3).
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 10: Decisions relating to allowed revenue of relevant licensee nuclear company:
+                        appeals to CMA</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">100 </span></h2>
+                     <p>This section sets out the circumstances under which a relevant licensee nuclear company
+                        can make a reference to the Competition and Markets Authority to appeal certain decisions
+                        made by the Authority relating to its allowed revenue.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">101 </span></h2>
+                     <p>Subsection (1) makes clear that this section only applies where a relevant licensee
+                        nuclear company’s electricity generation licence contains explicit provision, by virtue
+                        of section 6(5)(g), enabling the company to refer decisions of the Authority falling
+                        within section 10(3) to the CMA. For the purposes of such appeals, subsection (2)
+                        applies the existing framework in the Electricity Act 1989 applicable to appeals to
+                        the CMA brought against decisions of the Authority to proceed with the modification
+                        of a condition of a licence under section 11A of that Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">102 </span></h2>
+                     <p>Subsection (3) sets out the types of decisions that fall within this section. More
+                        specifically, these are decisions made by the Authority during the course of its regulation
+                        of the relevant licensee nuclear company, which in the CMA’s opinion relate to the
+                        allowed revenue that the company may receive, and which the company would not be able
+                        to refer to the CMA under the existing appeal process provided by section 11C of the
+                        Electricity Act 1989. This enables a relevant licensee nuclear company to, for example,
+                        appeal a decision of the Authority which relates to the company’s allowed revenue
+                        where this has not immediately resulted in a modification to the company’s licence.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">103 </span></h2>
+                     <p>Solely for the purposes of their application to the decisions in subsection (3), subsection
+                        (4) “amends” the relevant provisions of the Electricity Act 1989 where this is required
+                        to tailor the existing appeals processes for the purposes for the new appeal route
+                        established by section 10. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 11: Provision of information to the Secretary of State</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">104 </span></h2>
+                     <p>Subsection (1) of this section provides the Secretary of State with the power, by
+                        notice, to require a nuclear company to provide them with such information as they
+                        reasonably require in connection with carrying out their functions under this Part.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">105 </span></h2>
+                     <p>Subsection (2) builds on this by stating that this information must be provided at
+                        any time and place, and in whatever manner or form, the Secretary of State specifies
+                        in the notice. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">106 </span></h2>
+                     <p>Subsection (3) clarifies that no information which would be protected on grounds of
+                        legal professional privilege (or, in Scotland, confidentiality of communications)
+                        is obliged to be submitted to the Secretary of State. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">107 </span></h2>
+                     <p>Subsections (4) states that sharing information under this section does not contravene
+                        any obligation of confidence, or other limitation on how information can be shared.
+                        However, this is subject to subsection (5) which provides that this section does not
+                        authorise or require a disclosure if it would contravene data protection legislation.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 12: Provision of Information to or by the Authority</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">108 </span></h2>
+                     <p>This section deals with the powers of the Authority in relation to the sharing and
+                        receiving of information necessary to effectively regulate a relevant licensee nuclear
+                        company under a RAB model. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">109 </span></h2>
+                     <p>Subsection (1) states that the Authority may provide any information to the list of
+                        persons included in subsection (2) which it thinks is necessary in connection with
+                        the exercise of its functions relating to regulating the relevant licensee nuclear
+                        company. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">110 </span></h2>
+                     <p>Subsection (2) provides the list of persons that the Authority can share information
+                        with. Subsection (3) states that the Authority can also request information from the
+                        same named persons, if it considers this necessary in connection with its role as
+                        regulator of a relevant licensee nuclear company.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">111 </span></h2>
+                     <p>Subsection (4) obliges that any requests for information must as far as reasonably
+                        possible be complied with within a timescale (and in a form and manner) set by the
+                        Authority in the request notice.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">112 </span></h2>
+                     <p>Subsection (5) requires the Authority to reimburse the reasonably incurred costs of
+                        any person that the Authority requires to provide it with information under subsection
+                        (3). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">113 </span></h2>
+                     <p>Subsection (6) states that sharing information under this section does not contravene
+                        any obligation of confidence, or other limitation on how information can be shared.
+                        However, this is subject to subsection (7) which provides that this section does not
+                        authorise or require a disclosure if it would contravene data protection legislation.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">114 </span></h2>
+                     <p>Subsection (8) defines certain terms used in this section. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 13: Sensitive material</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">115 </span></h2>
+                     <p>Subsections (1) to (2) allow the Secretary of State to exclude certain material from
+                        draft reasons to be consulted on under section 3(2)(b) (including insofar as that
+                        provision is applied for the purposes of revocation under section 5(2)) or anything
+                        required to be published under this Part, where the Secretary of State considers that
+                        publication or disclosure would be likely to prejudice the commercial interests of
+                        any person or would be contrary to the interests of national security. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 14: Interpretation of Part 1</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">116 </span></h2>
+                     <p>This section brings together a number of definitions for terms included in this Part.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 2: Revenue collection contracts</b>
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 15: Regulations about revenue collection contracts</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">117 </span></h2>
+                     <p>This section sets out the Secretary of State’s power to make regulations relating
+                        to revenue collection contracts between a revenue collection counterparty and a nuclear
+                        company, and the required parliamentary process for making those regulations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">118 </span></h2>
+                     <p>Subsection (1) sets out the Secretary of State’s power to make regulations about revenue
+                        collection contracts (‘revenue regulations’). The terms of a revenue collection contract
+                        would be bilaterally negotiated between the Secretary of State and an eligible nuclear
+                        company designated under Part 1. There are a number of sections in this Part which
+                        set out the types of provision that may be included in revenue regulations, in particular
+                        within sections 16 to 24 inclusive of this Part.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">119 </span></h2>
+                     <p>Subsection (2) defines a revenue collection contract as a contract:</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>between a revenue collection counterparty and a nuclear company for which a designation
+                        was in effect (under section 2(1)) immediately before the contract was entered into;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>under which certain payments are to be funded by electricity suppliers;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>those payments may be made both before and after the start of generation of electricity
+                        by the relevant nuclear project; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>and is entered into by the revenue collection counterparty pursuant to a direction
+                        from the Secretary of State in accordance with section 18 of this Part. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">120 </span></h2>
+                     <p>Subsection (3) defines further key terms of this part. Subsection (4) makes clear
+                        that the provision made by this Part is without prejudice to the generality of the
+                        regulation-making power in subsection (1).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">121 </span></h2>
+                     <p>Subsection (5) clarifies certain points relating to the scope of the Secretary of
+                        State’s powers to make revenue regulations, such as that regulations can include incidental,
+                        supplementary or consequential provision, and can make different provision for different
+                        purposes. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">122 </span></h2>
+                     <p>Subsections (6) to (8) provide that revenue regulations must be made by statutory
+                        instrument and that:</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>the first regulations that are made relating to:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>Information and advice (section 23) </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">ii.</span></h2>
+                        <p>Functions of the Authority (section 24) </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>And any regulations relating to:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>Designation of a revenue collection counterparty (section 16) </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">ii.</span></h2>
+                        <p>Duties of a revenue collection counterparty (section 17) </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">iii.</span></h2>
+                        <p>Direction to offer to contract (section 18) </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">iv.</span></h2>
+                        <p>Supplier Obligation (section 19) </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">v.</span></h2>
+                        <p>Payments to electricity suppliers (section 20)</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">vi.</span></h2>
+                        <p>Application of sums held by a revenue collection counterparty (section 21) </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">vii.</span></h2>
+                        <p>Enforcement (section 22)</p>
+                     </section>
+                  </section>
+                  <section class="level">
+                     <p>must follow the affirmative resolution procedure.  Any other regulations must follow
+                        the negative resolution procedure.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">123 </span></h2>
+                     <p>Subsection (9) provides that revenue regulations should not be treated as a hybrid
+                        instrument. The regulations are expected to confer functions and obligations on a
+                        revenue collection counterparty and on electricity suppliers, in a way which could
+                        be regarded as adversely affecting their private interests, raising a possibility
+                        that revenue regulations may be a hybrid instrument. However, this subsection clarifies
+                        that it is not considered necessary for the regulations to be treated as hybrid because
+                        the duty to consult before making regulations in section 25 will provide adequate
+                        protection that private interests will be fully considered.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 16: Designation of a revenue collection counterparty</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">124 </span></h2>
+                     <p>This section allows the Secretary of State to designate a company registered in England
+                        and Wales or Scotland or a public authority, with the consent of that person, to act
+                        as the counterparty to revenue collection contracts. The revenue collection counterparty
+                        will enter into and manage revenue collection contracts with relevant licensee nuclear
+                        companies and will act as the interface between those companies and suppliers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">125 </span></h2>
+                     <p>Subsection (1) allows the Secretary of State by notice to designate an eligible person
+                        to be the counterparty for revenue collection contracts. Subsection (2) clarifies
+                        that a person designated under subsection (1) is referred to in this Part as the revenue
+                        collection counterparty.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">126 </span></h2>
+                     <p>Subsection (3)<b><i></i></b>allows the counterparty to be a company registered in England and Wales or Scotland
+                        or a public authority. Whilst it is expected that the counterparty will be owned by
+                        Government, any designated counterparty would be bound by the same duties under the
+                        legislation, regardless of whether it was a company owned by Government, a public
+                        authority, or a private company. Subsection (4) states that a person can only be designated
+                        with their consent. Subsection (5) gives the Secretary of State the power to designate
+                        more than one revenue collection counterparty. This can only take place if the Secretary
+                        of State considers that it is necessary for one of the reasons set out in subparagraphs
+                        (a) to (c), for example to ensure that liabilities under revenue collection contracts
+                        can continue to be met. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">127 </span></h2>
+                     <p>Under subsection (6) the designation of a company as the revenue collection counterparty
+                        can be revoked by the Secretary of State. Designation will also cease if the revenue
+                        collection counterparty elects to withdraw its consent and gives 3 months notice to
+                        the Secretary of State of that withdrawal.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">128 </span></h2>
+                     <p>Subsection (8) makes clear that the Secretary of State must publish the notice of
+                        the designation that took place under subsection (1) (or a revocation under subsection
+                        (6)(a)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">129 </span></h2>
+                     <p>Subsections (7), (9) and (10) deal with the continuity of revenue collection counterparties.
+                        If the designation of a revenue collection counterparty was to come to an end, the
+                        Secretary of State must designate another counterparty and, as soon as reasonably
+                        practicable, make a transfer scheme under section 26 of this Part, transferring all
+                        rights and liabilities under revenue collection contracts to that new counterparty.
+                        This is designed to ensure that there is always at least one revenue collection counterparty
+                        in operation, and that where a revenue collection counterparty ceases to be designated,
+                        the contracts are transferred to a new revenue collection counterparty. Subsection
+                        (10) also provides that revenue regulations may make provision about the length of
+                        time for which, and circumstances in which, a revenue collection counterparty can
+                        be treated as such, after its designation has ceased. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 17: Duties of a revenue collection counterparty</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">130 </span></h2>
+                     <p>This section sets out the duties of a revenue collection counterparty. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">131 </span></h2>
+                     <p>Subsection (1) makes it clear that it is a duty of a person who has been designated
+                        as a revenue collection counterparty to comply with the revenue regulations and any
+                        direction from the Secretary of State made under this Part. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">132 </span></h2>
+                     <p>Subsections (2) to (3) lay out examples of the duties the revenue regulations may
+                        place on the revenue collection counterparty and the powers that the Secretary of
+                        State may exercise over the counterparty, including the situations that may require
+                        consultation with, or the consent of, the Secretary of State. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">133 </span></h2>
+                     <p>Subsection (4) also places a duty on the revenue collection counterparty to exercise
+                        its functions to ensure that it can meet its liabilities under revenue collection
+                        contracts. This includes its functions relating to the recovery of sums from licensed
+                        electricity suppliers (see section 19). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">134 </span></h2>
+                     <p>Subsection (5) says that revenue regulations must make provision for what the Secretary
+                        of State thinks is necessary to ensure that the revenue collection counterparty can
+                        meet its liabilities under revenue collection contracts. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 18: Direction to offer to contract</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">135 </span></h2>
+                     <p>This section allows for the Secretary of State to direct a revenue collection counterparty
+                        to offer to enter into a revenue collection contract with a designated nuclear company.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">136 </span></h2>
+                     <p>Subsection (1) confers a power on the Secretary of State to issue a direction to the
+                        revenue collection counterparty to offer to enter into a revenue collection contract
+                        with a designated nuclear company, in accordance with terms specified in the direction.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">137 </span></h2>
+                     <p>Subsections (2) and (3) provide that revenue regulations can set out the circumstances
+                        in which such a direction can or must be made, as well as the terms that may or must
+                        be specified in a direction. This may include certain terms that are required to be
+                        part of the revenue collection contract, such as terms relating to the determinations
+                        to be made by the Authority under the nuclear company’s licence. The provisions made
+                        within revenue regulations will include calculations for where payments may be due
+                        and how these are to be determined. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">138 </span></h2>
+                     <p>Subsection (4) clarifies that references to a designated nuclear company in this section
+                        refer to a nuclear company in relation to which a designation under section 2(1) has
+                        effect. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 19: Supplier obligation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">139 </span></h2>
+                     <p>This section deals with the obligations of suppliers in relation to the functioning
+                        of the revenue stream. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">140 </span></h2>
+                     <p>Subsection (1) places an obligation on the Secretary of State, when making revenue
+                        regulations under section 15, to include provision requiring electricity suppliers
+                        in GB to make payments to the revenue collection counterparty to enable it to make
+                        payments under revenue collection contracts. Subsection (2) describes other areas
+                        where revenue regulations may place obligations on suppliers to pay the revenue collection
+                        counterparty. Suppliers may also be obliged to make payments to cover administration
+                        costs of the revenue collection counterparty for managing the revenue collection contracts.
+                        Payments may also be required in order to enable the revenue collection counterparty
+                        to hold sums in reserve (subsection 2(b)) and to mutualise costs across suppliers
+                        to cover those not made by an insolvent or defaulting supplier (subsection 2(c))<b><i>. </i></b>Subsection (3) defines ‘costs’ for the use in subsection 2(a). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">141 </span></h2>
+                     <p>Subsection (4) enables revenue regulations to require suppliers to provide financial
+                        collateral to a revenue collection counterparty.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">142 </span></h2>
+                     <p>Subsection (5) specifies that the regulations must place the revenue collection counterparty
+                        under a duty in relation to the collection of sums that are owed by suppliers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">143 </span></h2>
+                     <p>Subsections (6) to (8) provides further details of the types of provision that revenue
+                        regulations may include by virtue of this section. This includes, for example, provision
+                        enabling the supplier obligation to be varied according to the supplier or factors
+                        in relation to a supplier (such as the amount of electricity it supplies to particular
+                        groups of consumers). It also allows provision for the revenue collection counterparty
+                        to provide notices to suppliers and to enforce such notices, and for dispute resolution
+                        arrangements.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">144 </span></h2>
+                     <p>Subsection (9) clarifies that any sum which a supplier is required to pay the revenue
+                        collection counterparty by virtue of the revenue regulations, and which is not paid
+                        when it is due under the regulations, is recoverable as a civil debt.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 20: Payments to electricity suppliers</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">145 </span></h2>
+                     <p>This section deals with the process related to payments from the revenue collection
+                        counterparty to electricity suppliers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">146 </span></h2>
+                     <p>Subsection (1) enables regulations to require the revenue collection counterparty
+                        to make payments to suppliers. This is designed to enable payments to suppliers where
+                        the revenue collection counterparty has overcharged suppliers or overpaid a relevant
+                        license nuclear company. This could occur, for example, where the forecast market
+                        revenue is higher than the forecast allowed revenue over a given period. Subsection
+                        (2) highlights what the regulations enabled by subsection (1) may cover. This includes
+                        the calculations undertaken by the revenue collection counterparty where they owe
+                        funds to suppliers. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 21: Application of sums held by a revenue collection counterparty</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">147 </span></h2>
+                     <p>This section deals with situations where the funds held by the revenue collection
+                        counterparty are insufficient to meet its liabilities in relation to revenue collection
+                        contracts. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">148 </span></h2>
+                     <p>Subsections (1) to (2) enable the regulations to make provision about the allocation
+                        of sums between revenue collection contracts by the revenue collection counterparty
+                        in circumstances where the supplier obligation is not large enough to meet all of
+                        its obligations in full. It also enables revenue regulations to include provision
+                        to define what is meant by “unable to fully meet its liabilities under a revenue collection
+                        contract”. Subsection (3) states that, in making these regulations, the Secretary
+                        of State must have regard to the principle that sums should be apportioned in proportion
+                        to the amounts which are owed, such that they are pro-rated between relevant licensee
+                        nuclear companies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">149 </span></h2>
+                     <p>Subsections (4) and (5) enable the regulations to make provision about the use of
+                        sums a revenue collection counterparty holds and for the circumstances where monies
+                        received should or should not go to the Consolidated Fund. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 22: Enforcement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">150 </span></h2>
+                     <p>This section deals with the enforcement of requirements under revenue regulations.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">151 </span></h2>
+                     <p>Subsections (1) to (2) mean that revenue regulations may provide that the obligations
+                        of suppliers in regulations made under this Part are to be enforceable by the Authority
+                        in Great Britain as if they are relevant requirements under section 25 of the Electricity
+                        Act 1989. This means that a breach can be treated, in effect, as if it were a breach
+                        of a licence condition, thus allowing the Authority to make an order to secure compliance,
+                        and impose financial penalties where appropriate. It also enables requirements on
+                        the national system operator to be enforced by the Authority in this manner.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 23: Information and advice</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">152 </span></h2>
+                     <p>This section lays out how the regulations will deal with the information and advice
+                        sharing necessary for the functioning of revenue collection contracts. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">153 </span></h2>
+                     <p>Subsections (1) to (2) enable regulations to make provision to ensure that information
+                        and advice required to make the scheme work is provided from the bodies specified
+                        in regulations to the bodies requiring it at appropriate points. The bodies that may
+                        covered by these regulations include relevant licensee nuclear companies, electricity
+                        suppliers, the Authority, the national system operator, the revenue collection counterparty,
+                        the Secretary of State and, where relevant, a nuclear administrator. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">154 </span></h2>
+                     <p>An important information interface within the scheme will be between the Authority
+                        and the revenue collection counterparty, since it would be the Authority which would
+                        determine the amount of the payments which the revenue collection counterparty would
+                        need to pay to relevant licensee nuclear companies under the terms of their contract
+                        and any associated documents. This section also enables regulations to make provision
+                        governing the use and protection of information so received to ensure it is handled
+                        in an appropriate manner.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 24: Functions of the Authority</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">155 </span></h2>
+                     <p>This section deals with advice or determinations by the Authority in relation to revenue
+                        collection contracts. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">156 </span></h2>
+                     <p>This section enables the regulations to confer functions upon the Authority to provide
+                        advice to and make determinations for the parties to revenue collection contracts.
+                        This could include, for example, advising the revenue collection counterparty on which
+                        suppliers may be fully or partially exempt from the supplier obligation under provision
+                        made in regulations, and determining whether obligations have been met.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 25: Consultation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">157 </span></h2>
+                     <p>This section sets out the process the Secretary of State must take before revenue
+                        regulations may be made. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">158 </span></h2>
+                     <p>Subsection (1) requires that the Secretary of State must consult licensed suppliers
+                        in Great Britain, the national system operator, every nuclear company in relation
+                        to which as designation has effect under section 2(1), every nuclear company that
+                        is a relevant licensee nuclear company and the Authority before making or amending
+                        secondary legislation under this Part. Scottish and Welsh Ministers are also required
+                        to be consulted as well as any other persons the Secretary of State considers as appropriate.
+                        Subsection (2) provides that this consultation can occur before or after the passage
+                        of this Act. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 26: Revenue collection counterparties: transfer schemes</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">159 </span></h2>
+                     <p>This section sets out the process by which the property, rights and liabilities of
+                        the revenue collection counterparty may be transferred from one counterparty to another,
+                        should this prove necessary either because a counterparty no longer wishes to be designated,
+                        or because it has become inappropriate for a counterparty to be designated in this
+                        role. Under subsection (7), a scheme may provide for compensation to be paid by the
+                        Secretary of State to persons whose interests are adversely affected by a scheme.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">160 </span></h2>
+                     <p>Subsections (1) to (4) allow the Secretary of State to make transfer schemes for the
+                        transfer of a revenue collection counterparty’s designated property, rights or liabilities
+                        to a new body who will take on the role. This will take place on a designated transfer
+                        date. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">161 </span></h2>
+                     <p>Subsections (5) to (6) describe the types of provision that may be included in a transfer
+                        scheme, clarifying their scope and application.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">162 </span></h2>
+                     <p>Subsection (8) makes provision relating to the scope of the Secretary of State’s powers
+                        to make a transfer scheme, such as that a scheme can include incidental, supplementary
+                        or consequential provision, and can make different provision for different purposes.
+                        Subsection (9) defines the terms for this section. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 27: Modification of transfer schemes</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">163 </span></h2>
+                     <p>This section gives the Secretary of State the ability to modify transfer schemes made
+                        under section 26. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">164 </span></h2>
+                     <p>Subsection (1) enables the Secretary of State to modify transfer schemes. Subsection
+                        (2) states that any modification following the transfer taking effect can only be
+                        made with the agreement of the transferor and/or transferee affected by the modification.
+                        This narrows the scope of the power after the completion of the transfer scheme. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">165 </span></h2>
+                     <p>Subsection (3) clarifies that modifications can take effect on a date decided by the
+                        Secretary of State. This can include the date on which the original transfer scheme
+                        took effect.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 28: Shadow directors, etc</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">166 </span></h2>
+                     <p>This makes it clear that, in exercising their controls over the revenue collection
+                        counterparty, the Secretary of State could not be deemed to be in any way managing
+                        or controlling the revenue collection counterparty in such a way that would class
+                        them, for example, as a “shadow director” or a principal of a revenue collection counterparty.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 29: Licence modifications</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">167 </span></h2>
+                     <p>This sets out the Secretary of State’s power to make licence modifications in connection
+                        with the RAB revenue stream. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">168 </span></h2>
+                     <p>Subsection (1) provides the Secretary of State with the power to modify particular
+                        transmission and distribution licences, the standard conditions of such licences and
+                        documents maintained in accordance with conditions of such licences, and associated
+                        agreements (such as industry codes). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">169 </span></h2>
+                     <p>Subsection (2) sets out that these modification powers may only be used for the purpose
+                        of allowing or requiring services to be provided to the revenue collection counterparty
+                        or enforcing the obligations of a revenue collection contract. Subsection (3) clarifies
+                        that licence modifications under this section can include any provision that can be
+                        covered in revenue regulations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">170 </span></h2>
+                     <p>Subsection (4) requires that the Secretary of State must consult licensed suppliers
+                        in Great Britain, the holder of any licence being modified, and the Authority before
+                        such licence modifications. Scottish and Welsh Ministers are also required to be consulted
+                        as well as any other persons the Secretary of State considers appropriate.  Subsection
+                        (5) states that this consultation can occur before or after the passage of this legislation.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">171 </span></h2>
+                     <p>Subsection (6) allows the Secretary of State to use the licence modification powers
+                        to make modifications which are general (e.g. applicable to all licence holders) or
+                        specific (for example, to make different provision for different licensees). It also
+                        allows the Secretary of State to make modifications for different purposes and to
+                        make incidental, supplementary, consequential or transitional modifications. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">172 </span></h2>
+                     <p>Subsection (7) enables provisions included in a licence or associated document or
+                        agreement (such as an industry code) by a modification under these powers to make
+                        different provision for different purposes. It also makes clear that any provision
+                        included in a licence by such a modification need not relate to the activities that
+                        the licence authorises. Subsection (7)(c) provides that a provision included in a
+                        licence by virtue of a relevant power may do anything which is authorised for licences
+                        of that type by section 7(2A), (3), (4), (5) or (6A) of the Electricity Act 1989.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">173 </span></h2>
+                     <p>Subsection (8) requires the Secretary of State to publish the details of any modifications
+                        as soon as reasonably practicable after they are made.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">174 </span></h2>
+                     <p>Subsection (9) requires the Authority to incorporate modifications made by the Secretary
+                        of State to standard conditions into future licences, and to publish these modifications.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">175 </span></h2>
+                     <p>Subsection (10) states that a modification to a part of a standard condition of a
+                        licence, does not prevent any other part of the condition from continuing to be regarded
+                        as a standard condition for the purposes of the Electricity Act 1989.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">176 </span></h2>
+                     <p>Subsection (11) clarifies that the power to modify licences includes the power to
+                        amend, add or remove. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 30: Interpretation of Part 2</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">177 </span></h2>
+                     <p>This section defines terms used throughout this Part.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 3: Special Administration Regime</b>
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 31: Relevant licensee nuclear company administration orders</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">178 </span></h2>
+                     <p>This section defines the key terms of this Part and clarifies the scope of a relevant
+                        licensee nuclear company (RLNC) administration order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">179 </span></h2>
+                     <p>Subsection (1) defines a RLNC administration order for the purposes of this Part.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">180 </span></h2>
+                     <p>Subsection (2) provides that the person, or persons appointed by the court for purpose
+                        of managing the company’s affairs, business and property, and the exercise of the
+                        functions set out in section 32, is the ‘nuclear administrator’ in this Part.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">181 </span></h2>
+                     <p>Subsection (3) provides that the obligation of the nuclear administrator of the company
+                        to manage its affairs and act in a way that aims to achieve the objectives in section
+                        31. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">182 </span></h2>
+                     <p>Subsection (4) provides that the definitions for “relevant licence” and “relevant
+                        licensee nuclear company” are the same as those in Part 1 of the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 32: Objective of a relevant licensee nuclear company administration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">183 </span></h2>
+                     <p>This section provides the objective for a RLNC administration order and the means
+                        by which the nuclear administrator has to achieve this objective. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">184 </span></h2>
+                     <p>Subsection (1) provides the objective of the nuclear administrator. This is to commence
+                        or continue electricity generation at the nuclear installation until it becomes unnecessary,
+                        by virtue of the relevant licensee nuclear company being rescued as a going concern
+                        or a transfer of that company’s assets to one or more companies in a manner which
+                        achieves the objective, for the order to remain in force. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">185 </span></h2>
+                     <p>To achieve the objective in subsection (1), the nuclear administrator will be required
+                        to ensure that the relevant nuclear licensee company continues to fulfil all of its
+                        responsibilities, including compliance with legislation, regulations and any conditions
+                        of a nuclear site licence held, including protections related to safety, security
+                        and the environment. The nuclear industry is subject to a robust regulatory regime
+                        which is overseen by the Office for Nuclear Regulation and Environment Agency (or
+                        Natural Resources Wales if in Wales, or Scottish Environment Protection Agency if
+                        in Scotland) which is unaffected by Part 3 of the Act. Failure to comply with any
+                        regulatory or legal provision, including safety, security and environmental provisions
+                        may result in enforcement action, this could lead to the plant being shut down and
+                        the objective of the RLNC administration order not being met. In those circumstances,
+                        the Secretary of State, or the Authority or the nuclear administrator, with the Secretary
+                        of State's permission, may wish to apply to end the RLNC administration order. If
+                        the rescue of the company, or the transfer of its business cannot be achieved during
+                        a RLNC administration order, the Secretary of State may consider preparing a Nuclear
+                        Transfer Scheme after the end of the order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">186 </span></h2>
+                     <p>Subsection (2) outlines the means by which the administrator can achieve the objective
+                        of a RLNC administration order. This can be done through rescuing the company as a
+                        going concern or transferring its assets, rights and obligations to one or more companies.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">187 </span></h2>
+                     <p>Subsection (3) provides that a transfer falls within subsection (2) if the transfer
+                        of the relevant licensee nuclear company’s business as a going concern is made to
+                        one company, or different parts of the relevant licensee nuclear company’s business
+                        is transferred to two or more companies as it is appropriate to achieve the objective
+                        in subsection (1). Subsection (4) provides one example of how such transfers may take
+                        place. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">188 </span></h2>
+                     <p>Subsection (5) provides situations where a transfer scheme, rather than the recusing
+                        of the company as a going concern, may be used to achieve the objectives of the administrator.
+                        This includes where the rescue as a going concern is not practicable, or will not
+                        achieve the objectives, and where the transfer scheme would produce a better result
+                        for either the company’s creditors or members. The effect of subsection (5) is that
+                        the rescue of the relevant licensee nuclear company is preferred to transfers to one
+                        or more companies.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">189 </span></h2>
+                     <p>Subsection (6) provides that “nuclear installation” has the same meaning as in the
+                        Nuclear Installations Act 1965. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 33: Application of certain provisions of the Energy Act 2004</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">190 </span></h2>
+                     <p>This section through subsection (1) to (7) applies and modifies as necessary sections
+                        156 to 167, 171 and 196 of, and Schedules 20 and 21 to, the Energy Act 2004 to apply
+                        those provisions to the SAR for relevant licensee nuclear companies. Those provisions
+                        will apply as follows in relation to Part 3 of this Act:</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Section 156 of the Energy Act 2004, which provides that an application to the court
+                        for a RLNC administration order can only be made by the Secretary of State or by the
+                        Authority, with the consent of the Secretary of State;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Section 157 of the Energy Act 2004, which empowers the court to consider an application
+                        for a RLNC administration order. The court may make an order in the following circumstances:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>The relevant licensee nuclear company is unable to pay its debts;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">ii.</span></h2>
+                        <p>The relevant licensee nuclear company is likely to be unable to pay its debts; or</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">iii.</span></h2>
+                        <p>on petition from the Secretary of State under section 124A of the Insolvency Act 1986,
+                           the court is satisfied that it would be just and equitable (disregarding the objective
+                           in section 31(1)) to wind up the company in the public interest;</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Section 158 which provides that the nuclear administrator acts as the agent of the
+                        relevant licensee nuclear company. It further provides that the nuclear administrator
+                        must exercise management functions for the purpose of achieving the objective of RLNC
+                        administration as quickly and efficiently as is reasonably practicable. Moreover,
+                        the exercise of powers and performance of duties must be carried out in a manner which,
+                        in so far as it is consistent with the objective of the RLNC administration, best
+                        protects the interests of the creditors of the company as a whole and, subject to
+                        those interests, the interests of the members of the company as a whole;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>Section 159 which applies the rule making power in section 411 of the Insolvency Act
+                        1986 (c.45). Schedule 20 provides for certain provisions, with modifications, of Schedule
+                        B1 to the Insolvency Act 1986 (covering detailed rules relating to administration)
+                        to have effect in relation to RLNC administration orders;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>the Sections 160 to 164, which prevent the SAR being frustrated by the granting of
+                        prior orders before the Secretary of State or the Authority have been given an opportunity
+                        to apply for an RLNC administration order; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>Section 165 which enables the Secretary of State, with the consent of the Treasury,
+                        to give a grant or loan to a company in RLNC administration to achieve the objective
+                        of administration. It also enables the Secretary of State to set the terms of a grant
+                        or loan including the requirement that all or part of a grant should be repaid;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>Section 166 which enables the Secretary of State, with the consent of the Treasury,
+                        to indemnify persons in respect of liabilities incurred or loss or damage sustained
+                        in connection with the exercise of a nuclear administrator’s powers and duties and
+                        requires the Secretary of State to lay a statement of any such agreement to indemnify
+                        persons before Parliament as soon as practicable;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">h.</span></h2>
+                     <p>Section 167 which enables the Secretary of State, with the consent of the Treasury,
+                        to provide guarantees in relation to a relevant licensee nuclear company in RLNC administration
+                        and requires the Secretary of State to lay a statement of any guarantees given before
+                        Parliament as soon as practicable;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">i.</span></h2>
+                     <p>Section 171 which provides interpretations of various specific terms and Section 196
+                        which provides interpretations of various general terms.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">j.</span></h2>
+                     <p>Schedule 20 provides for certain provisions, with modifications, of Schedule B1 to
+                        the Insolvency Act 1986 (covering detailed rules relating to administration) to have
+                        effect in relation to RLNC administration. This includes the court ending a RLNC administration
+                        order on the application of the Secretary of State (or the Authority or the nuclear
+                        administrator, with the Secretary of State’s permission). This may happen in circumstances
+                        where the objective of the order has been achieved, or where the objective has not
+                        been achieved and a Nuclear Transfer Scheme may need to follow;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">k.</span></h2>
+                     <p>Schedule 21, which provides for the transfers to another company or companies as a
+                        going concern of the whole or part of a relevant licensee nuclear company’s assets
+                        to ensure that the objective of the RLNC administration is met. Such transfer schemes
+                        are to be made by the nuclear administrator with the approval of the Secretary of
+                        State, and at a time appointed by the court.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 34: Conduct of administration, transfer schemes, etc</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">191 </span></h2>
+                     <p>This section amends section 159(3) of the Energy Act 2004 to include the Nuclear Energy
+                        (Financing) Act 2022 in the list of provisions which give the Secretary of State the
+                        power to make insolvency rules under section 411 of the Insolvency Act 1986 in relation
+                        to the Act. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 35: Licence modifications: relevant licensee nuclear company administration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">192 </span></h2>
+                     <p>This section provides a power to the Secretary of State to make modifications to the
+                        conditions and terms of the relevant licensee nuclear company’s electricity licence
+                        for the purpose of furthering the objective of the licensee nuclear company administration
+                        and may only be exercised when an RLNC administration order is in force.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">193 </span></h2>
+                     <p>Subsection (1) gives the Secretary of State the power to modify the conditions and
+                        terms of the relevant licensee nuclear company’s electricity licence. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">194 </span></h2>
+                     <p>Subsection (2) clarifies that these modifications may only be made when a licensed
+                        nuclear company administration order is in force and for the purpose of furthering
+                        the objective of the RLNC administration provided for in section 32(1).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">195 </span></h2>
+                     <p>Subsection (3) requires the Secretary of State to have regard to certain matters before
+                        exercising the power in subsection (1). These considerations are:</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>the duties of the Secretary of State under sections 1 and 4(1)(b) of the Climate Change
+                        Act 2008 in relation to ‘Net Zero’ and meeting carbon budgets;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>the interests of existing and future consumers, including their interests in relation
+                        to cost and security of supply of electricity; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>the costs, expenditure or liabilities that the relevant licensee nuclear company may
+                        reasonably be expected to incur; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>the need for the company to be able to finance its activities; </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>the need to ensure that the company has appropriate incentives to carry out its activities;
+                        and</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>any other matters the Secretary of State feels are appropriate.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">196 </span></h2>
+                     <p>Subsection (4) provides examples of the type of modifications that could be made in
+                        section 1. This includes the calculation of the allowed revenue, the relevant licensee
+                        nuclear company providing assistance and information to the Authority and raising
+                        funds for the purposes of meeting the expenses of the RLNC administration order. These
+                        examples are illustrative and so this provision does not restrict the scope of this
+                        power. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">197 </span></h2>
+                     <p>Subsection (5) confers a power to the Secretary of State to modify the standard conditions
+                        of electricity generation licence (and associated documentation). Subsection (6) provides
+                        that the Secretary of State can only make these modifications if it is appropriate
+                        to do so in consequence of, or for purposes incidental or supplementary to, the making
+                        of a modification under subsection (1).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">198 </span></h2>
+                     <p>Subsection (7) provides the scope for what is meant by activities of a relevant licensee
+                        nuclear company in this Section. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 36: Procedures etc relating to modifications under section 35</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">199 </span></h2>
+                     <p>This section sets out the procedure the Secretary of State must follow when exercising
+                        the power in section 35 of the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">200 </span></h2>
+                     <p>Subsection (1) requires the Secretary of State to consult the named persons when exercising
+                        the powers under section 35, including the nuclear administrator in that role and
+                        as agent of the relevant licensee nuclear company, as well any other persons considered
+                        appropriate.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">201 </span></h2>
+                     <p>Subsection (2) provides the definition for “relevant site” in subsection (1) refers
+                        to the site for which the relevant licensee nuclear company holds a relevant licence
+                        (see the definition of relevant licence in Part 1 of the Act).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">202 </span></h2>
+                     <p>Subsection (3) provides the scope of the modification power which Secretary of State
+                        may exercise during a RLNC administration order. This includes generally in relation
+                        to specified cases or subject to exceptions providing specified conditions are satisfied.
+                        The modification power may be exercised for different purposes and allows the Secretary
+                        of State to make incidental, supplementary, consequential or transitional modifications.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">203 </span></h2>
+                     <p>Subsection (4) enables provisions included in a licence or associated document or
+                        agreement (such as an industry code) by a modification under these powers to make
+                        different provision for different purposes. It also makes clear that any provision
+                        included in a licence by such a modification need not relate to the activities that
+                        the licence authorises. Subsection (4)(c) clarifies that a provision included in a
+                        licence by virtue of a relevant power may also do anything which is authorised for
+                        licences of that type by sections 7(4), (5)(a) or (6A) of the Electricity Act 1989.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">204 </span></h2>
+                     <p>Subsection (5) places an obligation on the Secretary of State to publish the details
+                        of the modification as soon as reasonably practicable after they are made. Subsection
+                        (6) allows the Secretary of State to exclude certain pieces of information from anything
+                        required to be published under subsection (5), where these are commercially sensitive
+                        or should be excluded on national security grounds.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">205 </span></h2>
+                     <p>Subsection (7) provides that if the Secretary of State modifies the standard conditions
+                        of a licence under section 6(1)(a) of the Electricity Act 1989, the Authority must
+                        make the same modification to all licences under section 6(1)(a) of the Electricity
+                        Act 1989 granted after that point in time and are obliged to publish the modification.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">206 </span></h2>
+                     <p>Subsection (8) provides that a modification made by the Secretary of State to a standard
+                        condition does not prevent other parts of the condition from continuing to be considered
+                        a standard condition pursuant to Part 1 of the Electricity Act 1989.   </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 37: Modification under the Enterprise Act 2002</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">207 </span></h2>
+                     <p>This section provides that the power to modify or apply certain enactments.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">208 </span></h2>
+                     <p> Subsections (1) and (2) of this section provide that the power to modify or apply
+                        enactments conferred on the Secretary of State by the Enterprise Act 2002 includes
+                        a power to make consequential modifications to Part 3 of this Act and to Chapter 3
+                        of Part 3 of the Energy Act 2004, where the Secretary of State considers this appropriate.
+                        This power is designed to ensure that the current provisions do not get out of line
+                        with wider insolvency legislation where the Enterprise Act 2002 provisions are used
+                        to modify or apply enactments.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 38: Power to make further modifications of insolvency legislation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">209 </span></h2>
+                     <p>This section provides the Secretary of State with the power to apply enactments and
+                        modify make other alterations to existing insolvency legislation, including Part 3
+                        of this Act. The power is designed to enable the Secretary of State to amend the detail
+                        of the regime if experience of its application highlights any difficulties or areas
+                        of concern or respond to changes in insolvency law, especially in relation to administration.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">210 </span></h2>
+                     <p>Subsection (1) grants the Secretary of State a power to provide for insolvency legislation
+                        to apply and to make such modifications of insolvency legislation (including any applied
+                        by virtue of section 37(1)) as they consider appropriate in relation to any provision
+                        made by or under the sections in Part 3 of the Act.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">211 </span></h2>
+                     <p>Subsection (2) provides that ‘insolvency legislation’ includes, the Insolvency Act
+                        1986, and Chapter 3 of Part 3 of the Energy Act 2004, which are applied by section
+                        33 of the Act, and any other provisions that relates to insolvency or makes provisions
+                        by reference to anything that may be done under the Insolvency Act 1986. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">212 </span></h2>
+                     <p>Subsection (3) provides that the power conferred on the Secretary of State by subsection
+                        (1) includes the power to amend Part 3 of this Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">213 </span></h2>
+                     <p>Subsections (4) and (5) provide that this power is exercised by statutory instrument
+                        which is subject to the affirmative resolution procedure. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 39: Interpretation of Part 3</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">214 </span></h2>
+                     <p>This section defines the relevant terms for this part. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 4: Miscellaneous and Final Provisions</b>
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 40: Decommissioning of nuclear sites: bodies corporate not “associated”</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">215 </span></h2>
+                     <p>This section amends the Energy Act 2008 to provide clarification as to the meaning
+                        of ‘associated’ for the purposes of determining the bodies on whom the Secretary of
+                        State may potentially impose obligations under an FDP in relation to a new nuclear
+                        power station. Subsection (1) amends section 67 of the Energy Act 2008 in order to
+                        make it subject to a new section 67A.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">216 </span></h2>
+                     <p>Subsection (2) adds in a new section 67A to the Energy Act 2008, to clarify the interests,
+                        rights and powers that should not be taken into account for the purposes of determining
+                        whether one body corporate is ‘associated’ with a nuclear site operator. The section
+                        covers, for example, the activities of security trustees and secured creditors. For
+                        example, secured creditors and security trustees may carry out activities connected
+                        to the holding and enforcement of certain security rights, but they would only ever
+                        exercise these to enforce or preserve or realise the value of their security in the
+                        event of a default by the operator under the relevant financing arrangements. These
+                        rights are contingent and have nothing to do with the day-to-day management or operation
+                        of the company, and so should be disregarded when considering which bodies corporate
+                        are ‘associated’ with the operator. Subsections (1) to (3) of the new section 67A
+                        of the Energy Act 2008 make provision for this. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">217 </span></h2>
+                     <p>Subsection (4) of the new section 67A also clarifies that, where A acquires shares
+                        in B by virtue of the exercise of ‘relevant share security rights’, such shares should
+                        only be excluded from consideration for the purposes of section 67 where A retains
+                        those shares only for the purpose of preserving the value of the security interest
+                        in question or of realising that security interest. This is to avoid a circumstance
+                        where corporate bodies may attempt to use this provision to exclude their activities
+                        from consideration for the purposes of the definition of ‘associated’ inappropriately.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">218 </span></h2>
+                     <p>To ensure that the activities of security trustees are fully captured for the purposes
+                        of this provision, subsections (5)(b) and (c) of the new section 67A makes clear that
+                        this section covers rights and shares held on trust. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 41: Financial provision</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">219 </span></h2>
+                     <p>Section 41 recognises that as a matter of House of Commons procedure, a financial
+                        resolution needed to be agreed for the Bill from which the Act resulted.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">220 </span></h2>
+                     <p>Subsection (1) provides that there is to be paid out of money provided by Parliament.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>any expenditure incurred by the Secretary of State by virtue of this Act;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>any expenditure incurred by the Competition and Markets Authority by virtue of this
+                        Act;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>any expenditure incurred by the Authority by virtue of this Act;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>any increase attributable to this Act in the sums payable out of money so provided
+                        under any other Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">221 </span></h2>
+                     <p>Subsection (2) clarifies that section 40(1)(a) includes expenditure by the Secretary
+                        of State for the purposes of or in connection with: </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>the establishment of a revenue collection counterparty;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>making payments or providing financial assistance to a revenue collection counterparty;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>making payments to a nuclear RAB administrator or a relevant licensee nuclear company
+                        under or by virtue of Part 3.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">222 </span></h2>
+                     <p>Subsection (3) confirms that, in this context, financial assistance or payments may
+                        be subject to conditions, including repayment conditions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">223 </span></h2>
+                     <p>Subsection (4) defines the relevant terms for this section. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 42: Minor and consequential provision</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">224 </span></h2>
+                     <p>This clarifies the Schedule contains minor and consequential provisions. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 43: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">225 </span></h2>
+                     <p>This lays out the territorial extent of the Act. The detail of this can be seen in
+                        Annex A.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 44: Commencement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">226 </span></h2>
+                     <p>This section provides details on early commencement of a limited number of provisions,
+                        which will come into force on the day on which the Act is passed (subsection (1)).
+                        Subsection (2) sets out the provisions in the Act that will come into force two months
+                        after the Act is passed. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 45: Short Title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">227 </span></h2>
+                     <p>This section contains the short title by which the Act may be cited.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>The Schedule - Minor and Consequential Provision</b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">228 </span></h2>
+                     <p>This schedule makes a number of minor changes to existing legislation arising out
+                        of the provisions in this Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>Paragraph 1, 2 and 3</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">229 </span></h2>
+                     <p>These paragraphs amend the Electricity Act 1989, Utilities Act 2000, and Energy Act
+                        2004 to make certain consequential amendments. Paragraph 1(3) also adds a new subsection
+                        (6D) into section 6 of the Electricity Act 1989 in order to provide the Authority
+                        with a power to amend the terms of a relevant licensee nuclear company’s electricity
+                        generation licence provided that the company consents. </p>
+                  </section>
+                  <section class="level">
+                     <p>Paragraph 4</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">230 </span></h2>
+                     <p>This paragraph repeals certain provisions of the Smart Meters Act 2018, and the Domestic
+                        Gas and Electricity (Tariff Cap) Act 2018, as a corollary of the consequential amendments
+                        made to section 33 of the Utilities Act 2000 by paragraph 2(2) of the Schedule.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">231 </span></h2>
+                  <p>Section 44 makes provision for certain sections in the Act to come into force on the
+                     day of Royal Assent. The remaining provisions of this Act will come into force 2 months
+                     from the passage of this Act. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">232 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read on Gov.uk, in the
+                     House libraries, or on Parliament’s website:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>
+                     <a href="https://www.gov.uk/government/consultations/subsidy-control-designing-a-new-approach-for-the-uk">
+                        <u>Consultation – Regulated Asset Base (RAB) model for nuclear</u>
+                        </a> -  <a href="https://www.gov.uk/government/consultations/regulated-asset-base-rab-model-for-nuclear"><u>https://www.gov.uk/government/consultations/regulated-asset-base-rab-model-for-nuclear</u></a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The Government Response to the Regulated Asset Base (RAB) model for nuclear Consultation
+                     - <a href="https://www.gov.uk/government/consultations/regulated-asset-base-rab-model-for-nuclear"><u>https://www.gov.uk/government/consultations/regulated-asset-base-rab-model-for-nuclear</u></a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The Impact Assessment for the Act - <a href="https://bills.parliament.uk/bills/3057/publications"><u>https://bills.parliament.uk/bills/3057/publications</u></a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">233 </span></h2>
+                  <p>The territorial extent and application vary across the different measures included
+                     in the Act. The table below sets the position out in more detail.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.37in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Part 1: Nuclear Energy Generation Projects: Regulated Asset Base Model</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Part 2: Revenue Collection Contracts</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Part 3: Special Administration Regime </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 40: Decommissioning of nuclear sites: bodies corporate not “associated” </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 42 (including the Schedule): Minor and consequential provision</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 41 and sections 43 to 45</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">234 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.  </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.74in">
+                        <col style="width:1.47in">
+                        <col style="width:3.24in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference </b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>House of Commons </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction </p>
+                           </td>
+                           <td>
+                              <p>26 October 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-10-26/debates/4ECCAE13-A15C-47EA-B937-3028D84826B4/PointOfOrder">
+                                    <u>Vol. 702 Col. 149</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading </p>
+                           </td>
+                           <td>
+                              <p>03 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-11-03/debates/B5FFA487-74CE-4197-B8AB-3DA3803F3946/NuclearEnergy(Financing)Bill">
+                                    <u>Vol. 702 Col. 974 </u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee </p>
+                           </td>
+                           <td>
+                              <p>16 November 2021</p>
+                              <p>18 November 2021</p>
+                              <p>23 November 2021</p>
+                              <p>25 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-11-16/debates/24c2e867-fa75-47a2-af81-79d1469fe22a/NuclearEnergy(Financing)Bill(FirstSitting)">
+                                    <u>1st sitting Col. 1</u>
+                                    </a>, <a href="https://hansard.parliament.uk/commons/2021-11-16/debates/937e0791-42ee-483a-812a-82c06adfc724/NuclearEnergy(Financing)Bill(SecondSitting)"><u>2nd sitting Col. 25</u></a></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-11-18/debates/c7731d1e-3bce-4600-8727-4f874e10e6dc/NuclearEnergy(Financing)Bill(ThirdSitting)">
+                                    <u>3rd sitting Col. 71</u>
+                                    </a>, <a href="https://hansard.parliament.uk/commons/2021-11-18/debates/9b248f1d-f253-48a9-af97-9b4899c8c937/NuclearEnergy(Financing)Bill(FourthSitting)"><u>4th sitting Col. 93</u></a></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-11-18/debates/9b248f1d-f253-48a9-af97-9b4899c8c937/NuclearEnergy(Financing)Bill(FourthSitting)">
+                                    <u>5th sitting Col. 137</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-11-25/debates/6f1914b3-6672-47c8-81eb-f58024411e62/NuclearEnergy(Financing)Bill(SixthSitting)">
+                                    <u>6th sitting Col. 167</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading </p>
+                           </td>
+                           <td>
+                              <p>10 January 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-10/debates/9520D9D8-A690-47D6-BE4C-EEB6547EDF21/NuclearEnergy(Financing)Bill">
+                                    <u>Vol. 706 Col. 312</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>House of Lords </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction </p>
+                           </td>
+                           <td>
+                              <p>11 January 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-01-11/debates/698A95B6-72D5-4346-9799-1002D846FBA9/NuclearEnergy(Financing)Bill">
+                                    <u>Vol. 817</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading </p>
+                           </td>
+                           <td>
+                              <p>21 February 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-02-21/debates/C4761DCD-EEA8-4D40-A837-29E7E30458A1/NuclearEnergy(Financing)Bill">
+                                    <u>Vol. 819 Col. 16</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee </p>
+                           </td>
+                           <td>
+                              <p>08 March 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-08/debates/FD4AF77E-ECFA-4BAC-B689-4E8C60C0710C/NuclearEnergy(Financing)Bill">
+                                    <u>Vol. 819 Col. 40GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report  </p>
+                           </td>
+                           <td>
+                              <p>24 March 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-24/debates/32476486-6546-47CF-84BB-A8AD812B8F31/NuclearEnergy(Financing)Bill">
+                                    <u>Vol. 820 Col. 1146 </u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading </p>
+                           </td>
+                           <td>
+                              <p>30 March 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-30/debates/AF2D8019-BB87-4713-A51B-DCD8EF5A1541/NuclearEnergy(Financing)Bill">
+                                    <u>Vol. 820</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments </p>
+                           </td>
+                           <td>
+                              <p>NA </p>
+                           </td>
+                           <td>
+                              <p>Not applicable</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent </p>
+                           </td>
+                           <td rowspan="2">
+                              <p>31 March 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-31/debates/FD2574EE-9558-43D3-A7E1-037F2257E98E/RoyalAssent">
+                                    <u>House of Lords Vol. 820</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

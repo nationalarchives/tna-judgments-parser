@@ -1,0 +1,798 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>DISSOLUTION AND CALLING OF PARLIAMENT</b>
+               <b>
+                  </b>
+               <b>ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Dissolution and Calling of Parliament Act 2022
+                  which received Royal Assent on 24 March 2022 (c. 11). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Cabinet Office in order to assist
+                  the reader in understanding the Act. They do not form part of the Act and have not
+                  been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Dissolution and Calling of Parliament Act 2022 (“the Act”) repeals the Fixed-term
+                     Parliaments Act 2011 (“the 2011 Act”). In doing so, the Act makes express provision
+                     to make the prerogative powers to dissolve Parliament and to call a new Parliament
+                     exercisable again, as if the 2011 Act had never been enacted. As a result, Parliament
+                     can be dissolved by the Sovereign, on the request of the Prime Minister, as it was
+                     prior to the enactment of the 2011 Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>In its 2019 General Election manifesto, the Government committed to repealing the
+                     2011 Act. The Act gives effect to that commitment. By making express provision to
+                     make the prerogative power to dissolve Parliament exercisable again, Parliament can
+                     be dissolved by the Sovereign, on the request of the Prime Minister, as if the 2011
+                     Act had never been enacted. This means Governments can call a general election at
+                     the time of their choosing within the life of a Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>It is settled law that the dissolution of Parliament (and any decisions relating to
+                     the dissolution of Parliament) is not reviewable by the courts. In order to ensure
+                     that this position is preserved, and to ensure maximum certainty on the timing of
+                     a parliamentary election, the Act makes explicit provision to this effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Act also provides that Parliament shall sit for a maximum term of five years.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Joint Committee on the Fixed-term Parliaments Act conducted pre-legislative scrutiny
+                     on this legislation and reported on 24 March 2021.<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Prior to the 2011 Act, either Parliaments were dissolved when they reached the end
+                     of their five-year terms under the Septennial Act 1715 (as amended by the Parliament
+                     Act 1911) or, more usually, they were dissolved by the Sovereign under the Royal prerogative.
+                     The exercise of the prerogative was, in practice, subject to constitutional conventions.
+                     For example, the Sovereign dissolved Parliament only when requested to do so by the
+                     Prime Minister, and in certain exceptional circumstances, the Sovereign could refuse
+                     to grant a dissolution.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>A new Parliament was summoned by Proclamation issued by the Sovereign on the advice
+                     of the Privy Council. That Proclamation triggered the issuing of the writs for parliamentary
+                     elections and writs of summons to attend the House of Lords, and appointed a day and
+                     place for the meeting of the new Parliament. In practice, if the Parliament had not
+                     reached its full term, the Proclamation summoning the new Parliament also dissolved
+                     the previous Parliament. At the same time as the Proclamation, an Order in Council
+                     was made requiring the issue of these writs. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The long-standing position prior to the 2011 Act was that the exercise of the prerogative
+                     powers to dissolve one Parliament and call another was not reviewable by the courts.
+                     In <i>Council of Civil Service Unions v Minister of State for Civil Service</i> [1985] AC 374 (“the CCSU case”), Lord Roskill included the dissolution of Parliament
+                     in a list of examples of prerogative powers that in his view were not susceptible
+                     to judicial review because their nature and subject matter meant they were not amenable
+                     to the judicial process. He considered that the courts were not the place to determine
+                     whether Parliament should be dissolved on one date rather than another.<a class="fn" id="fnref-2" href="#fn-2">2</a> Following the CCSU case, in <i>R v Secretary of State for Foreign and Commonwealth Affairs, ex parte Everett</i> [1989] 1 QB 811, Lord Justice Taylor noted dissolving Parliament (among other examples)
+                     was not justiciable as it was “a matter of high policy” “at the top of the scale of
+                     executive functions” and therefore was not justiciable.<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Some prerogative powers have been held by the courts to be reviewable, both in the
+                     CCSU case and in subsequent cases.<a class="fn" id="fnref-4" href="#fn-4">4</a> It is generally accepted and understood that, before the commencement of the 2011
+                     Act, the dissolution of one Parliament and calling of another were not susceptible
+                     to judicial review: see for example the Independent Review of Administrative Law,
+                     March 2021.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The 2011 Act provided for fixed days for polls for parliamentary general elections.
+                     It provided that the polling day for parliamentary general elections would ordinarily
+                     be the first Thursday in May every five years. The 2011 Act also made provision to
+                     enable the holding of early parliamentary general elections. Under the 2011 Act the
+                     Sovereign did not retain any residual power to dissolve Parliament. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>In 2017 an early parliamentary general election was called under section 2(1) of the
+                     2011 Act. For the early parliamentary election in 2019, bespoke primary legislation
+                     - the Early Parliamentary General Election Act 2019 - was needed because the two thirds
+                     majority required by the 2011 Act could not be secured in the House of Commons.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The law governing the proceedings at a parliamentary election is set out principally
+                     in the Representation of the People Act 1983. Section 23(1) of that Act provides that
+                     such proceedings are to be conducted in accordance with Schedule 1 to the Act which
+                     sets out the Parliamentary Elections Rules. Rules 1 and 2 concern the timetable that
+                     applies leading up to polling day.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 6 sets out the territorial extent of the Act. The Act will extend and apply
+                     to the whole of the United Kingdom, including Northern Ireland. The Schedule to the
+                     Act has made a number of minor and consequential amendments to other legislation.
+                     While most of that legislation extends (and applies) to the whole of the UK, some
+                     has more limited extent (or application). Section 6(2) therefore provides that amendments,
+                     repeals and revocations made by the Schedule have the same extent as the provision
+                     amended, repealed or revoked.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, Senedd
+                     Cymru or the Northern Ireland Assembly without the consent of the legislature concerned.
+                     The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the Scottish Parliament, Senedd Cymru or the Northern Ireland Assembly.
+                     There are a few provisions in the Schedule which amend legislation relating to elections
+                     and referendums in Scotland and Wales. These amendments are purely consequential upon
+                     the provision made by the sections. Therefore, no Legislative Consent Motion was required
+                     in relation to any provision of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act </b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Repeal of the Fixed-term Parliaments Act 2011</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>
+                     <i>Section 1</i> repeals the 2011 Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Revival of prerogative powers to dissolve Parliament and to call a new
+                     Parliament</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (1) makes express provision to make the prerogative powers relating to
+                     the dissolution of Parliament and the calling of a new Parliament exercisable again,
+                     as if the 2011 Act had never been enacted. This means that, as was the case prior
+                     to the 2011 Act, Parliament can be dissolved by the Sovereign, exercising the revived
+                     prerogative power, on the request of the Prime Minister.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subsection (2) confirms that powers relating to the calling of a new Parliament include
+                     powers relating to the issue of writs of summons to the House of Lords and writs for
+                     parliamentary elections.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 2 allows for a return to the practice described in paragraph 7 whereby the
+                     Proclamation summoning the new Parliament also dissolves the previous Parliament,
+                     unless the Parliament has reached its full term (in which case Parliament will dissolve
+                     automatically under section 4).</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Non-justiciability of revived prerogative powers</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 3 confirms that the exercise (or purported exercise) of powers relating to
+                     the dissolution of Parliament, and the calling of a new Parliament, is non-justiciable
+                     and be reviewed by a court or tribunal. This reaffirms the long standing and generally
+                     accepted position that existed prior to the 2011 Act (referred to in paragraphs 8
+                     and 9 above).<a class="fn" id="fnref-5" href="#fn-5">5</a> This provision is included for the avoidance of any doubt that may arise and to preserve
+                     the long standing and generally accepted position.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 3 covers any decisions (or purported decisions) relating to the powers to
+                     dissolve one Parliament and call another. This is to ensure that any preliminary steps
+                     leading to the exercise of these powers – including any request to the Sovereign to
+                     dissolve Parliament and any related advice – are non-justiciable and cannot be reviewed
+                     by a court or tribunal.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 3 further provides that a court or tribunal cannot consider the limits or
+                     extent of those powers. This is to address the distinction drawn by the Supreme Court
+                     in Miller v The Prime Minister, Cherry and Others v The Advocate General for Scotland
+                     [2019] UKSC 41 as regards the court’s role in reviewing the scope of a prerogative
+                     power, as opposed to its exercise. It seeks to clarify that neither is justiciable
+                     in the context of decisions relating to the dissolution of one Parliament and the
+                     calling of another. </p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Automatic dissolution of Parliament after five years</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 4 provides that Parliament will automatically dissolve five years after it
+                     has first met. By making express provision for a maximum parliamentary term of five
+                     years, this is broadly a return to the position prior to the 2011 Act under the Septennial
+                     Act 1715 (as amended by the Parliament Act 1911). However, for the purposes of simplicity
+                     the start of the five-year term will now be the date on which Parliament actually
+                     first meets rather than the date on which the Parliament was summoned to meet, as
+                     it was under the 1715 Act. In practice those dates were usually the same.<a class="fn" id="fnref-6" href="#fn-6">6</a></p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Minor and consequential amendments and savings</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsection (1) introduces the Schedule to the Bill, which contains minor and consequential
+                     amendments.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (2) saves the amendments and repeals of other Acts of Parliament which
+                     were made by the Schedule to the 2011 Act and need to remain on the statute book.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (1) provides that the Act extends to England and Wales, Scotland and Northern
+                     Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (3) provides that the Act comes into force on Royal Assent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (4) establishes the short title as the Dissolution and Calling of Parliament
+                     Act 2022.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule: Minor and consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The Schedule contains minor and consequential amendments to primary and secondary
+                     legislation. These are primarily to reverse amendments made by the 2011 Act, to remove
+                     references to the 2011 Act and to ensure that after the repeal of the 2011 Act the
+                     relevant legislation still works (for example to amend provisions passed after the
+                     2011 Act which were drafted on the basis of a fixed election cycle). The key amendments
+                     are:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Rule 1 of Schedule 1 to the Representation of the People Act 1983 (which sets out
+                     the election timetable) is amended to provide that the trigger for the election process
+                     in the case of a parliamentary general election is the dissolution of Parliament (whether
+                     by exercise of the prerogative or by virtue of section 4) (<i>paragraph 8(2)(a)</i> of the Schedule). Provision is also made, in order to give additional certainty in
+                     relation to election process, so that the election writ is deemed to have been received
+                     the day after the dissolution of Parliament (or in the case of a by-election, the
+                     day after the date of the warrant for the writ) (<i>paragraph 8(2)(b) and (c)(ii)</i>). Equivalent changes are made to other provisions of the 1983 Act that depend on
+                     the date of the receipt of the writ (sections 28 and 95) (<i>paragraphs 5 and 7</i> of the Schedule).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 20 of the Representation of the People Act 1985 is amended. Previously that
+                     section provided that, in the event of the demise of the Crown during an election
+                     period (or up to 7 days beforehand), the polling day and the date set for the first
+                     meeting of Parliament were automatically postponed by 14 days. The amendments to the
+                     Representation of the People Act 1985 mean that the polling day may, by Royal Proclamation
+                     on the advice of the Privy Council, be moved by up to 7 days either side of this default
+                     14 day postponement. The date of the first meeting of the new Parliament may also
+                     be moved by Royal Proclamation on the advice of the Privy Council (<i>paragraph 9</i> of the Schedule).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 95A of the Political Parties, Elections and Referendums Act 2000 is amended
+                     to implement a maximum 365 day reporting period for third party donations where third
+                     party donations are reported quarterly, beginning four years from the first sitting
+                     of the current Parliament (<i>paragraph 15 </i>of the Schedule). This period will end on dissolution, whether by exercise of the
+                     prerogative or automatic expiry at the end of a five year term, as third-parties will
+                     begin weekly donations reporting from that point. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The Recall of MPs Act 2015 is amended to ensure that there continues to be provision
+                     to prevent or terminate recall petitions close to a general election to avoid redundant
+                     by-elections. The amendments mean there is no requirement to trigger a recall petition
+                     if the last possible polling day for a general election (based on Parliament running
+                     its full term) is less than six months away (<i>paragraph</i><i>25</i> of the Schedule) and a recall petition is to be terminated when Parliament is dissolved
+                     (<i>paragraph</i><i>26</i> of the Schedule). These amendments do not change the conditions which can trigger
+                     a recall petition, do not change how a recall petition is to be conducted and do not
+                     impact what happens in the event that a recall petition meets the signing threshold
+                     and successfully leads to a by-election.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The Act commenced on Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>The Fixed-term Parliaments Act 2011, which can be accessed at: <a href="https://www.legislation.gov.uk/ukpga/2011/14/contents"><u>https://www.legislation.gov.uk/ukpga/2011/14/contents</u></a>.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>Independent Review of Administrative Law, published in March 2021, which can be accessed
+                        at: <a href="https://www.gov.uk/government/groups/independent-review-of-administrative-law"><u>https://www.gov.uk/government/groups/independent-review-of-administrative-law</u></a>.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>Joint Committee on the Fixed-Term Parliaments Act’s Report, published in March 2021,
+                        which can be accessed at: <a href="https://committees.parliament.uk/committee/491/joint-committee-on-the-fixedterm-parliaments-act/"><u>https://committees.parliament.uk/committee/491/joint-committee-on-the-fixedterm-parliaments-act/</u></a>. The Joint Committee carried out a review of the operation of the 2011 Act, and it
+                        reported on a draft version of the Dissolution and Calling of Parliament Act.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>The draft version of the legislation, published for pre-legislative scrutiny, can
+                        be accessed at: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/940027/Draft-Fixed-term-Parliaments-Act-Repeal-Bill.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/940027/Draft-Fixed-term-Parliaments-Act-Repeal-Bill.pdf</u></a>.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>The Government’s response to the Joint Committee on the Fixed-Term Parliaments Act’s
+                        Report can be accessed at: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/984482/Government_response_to_the_Joint_Committee_on_the_Fixed-term_Parliaments_Act_Report.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/984482/Government_response_to_the_Joint_Committee_on_the_Fixed-term_Parliaments_Act_Report.pdf</u></a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard references</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.56in">
+                        <col style="width:1.08in">
+                        <col style="width:2.17in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-05-12/debates/2A647063-EC4F-48B2-8013-FA0F05482049/PointOfOrder">
+                                    <u>Vol. 695, Col. 162</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>6 July 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-07-06/debates/6FE2AA38-3302-423F-82D3-968692BA6C06/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 698, Col. 788</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House, Third Reading</p>
+                           </td>
+                           <td>
+                              <p>13 September 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-09-13/debates/F9066A76-C751-4BE9-BFAF-6A0095261AA3/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 700, Col. 718</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>14 September 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-09-14/debates/A3F63E73-606E-4184-8494-B39A4AE1B56B/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 814, Col. 1276</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-11-30/debates/14C752DA-355F-4088-ABDD-C23722474528/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 816, Col. 1277</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>25 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-01-25/debates/AEEB7DFB-3FB5-495B-B705-A28CB0602983/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 818, Col. 180</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>9 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-02-09/debates/B64A4892-4F08-4DDD-AEF9-101093D87DDB/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 818, Col. 1584</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-02-24/debates/8B480966-E985-41C9-BCEB-623FED0C0115/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 819, Col. 348</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>Final stages</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>14 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-03-14/debates/885EE1A2-32C5-44EE-B3F0-4A6F2824C743/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 710, Col. 642</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Reason</p>
+                           </td>
+                           <td>
+                              <p>22 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-22/debates/6CDD29B5-9E77-4AF5-9340-5CB015BA1C70/DissolutionAndCallingOfParliamentBill">
+                                    <u>Vol. 820, Col. 855</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>24 March 2022</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2022-03-24/debates/1C2C6F32-ED1D-4DD4-BCA7-67678B29A49D/PointsOfOrder"><u>Vol. 711 Col. 458</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2022-03-24/debates/8D38BE30-D915-4D8E-877E-799D5CBDD4A6/RoyalAssent"><u>Vol. 820 Col. 1083</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://committees.parliament.uk/publications/5190/documents/52402/default/"><u>Joint Committee on the Fixed-Term Parliaments Act Report</u></a>, 24 March 2021. The Committee scrutinised the Government’s draft version of the Bill,
+                  which was published as the Draft Fixed-term Parliaments Act 2011 (Repeal) Bill on
+                  1 December 2020: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/940027/Draft-Fixed-term-Parliaments-Act-Repeal-Bill.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/940027/Draft-Fixed-term-Parliaments-Act-Repeal-Bill.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/940027/Draft-Fixed-term-Parliaments-Act-Repeal-Bill.pdf</a></u></a>. The Government changed the name of the legislation in response to the Joint Committee’s
+                  report.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Page 418.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Page 820. See also <i>R v Secretary of State for the Home Department, ex parte Bentley </i>[1994] QB 349, page 363; <i>R (Abbasi) v Secretary of State for Foreign and Commonwealth Affairs and Secretary
+                     of State for the Home Department</i> [2002] EWCA Civ 1598, paragraphs 83 to 85 and <i>R (Bancoult) v Secretary of State for Foreign and Commonwealth Affairs (No 2) </i>[2007] EWCA Civ 498.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  For example, <i>R v Secretary of State for Foreign and Commonwealth Affairs, ex parte Everett </i>(power to grant passports) and<i> R v Secretary of State for the Home Department, ex parte Bentley </i>(power to grant pardons)<i>.</i> See also<i> R (Miller) v The Prime Minister, Cherry and Others v The Advocate General for Scotland
+                     </i>[2019] UKSC 41 (regarding the power to prorogue Parliament).</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  See the <a href="https://www.gov.uk/government/groups/independent-review-of-administrative-law"><u>Independent Review of Administrative Law</u></a>, paragraph 2.84.</p>
+               <p></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Two exceptions were in 1919 and 1924, when the date of Parliament’s first meeting
+                  was postponed by a few weeks.</p>
+               <p></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

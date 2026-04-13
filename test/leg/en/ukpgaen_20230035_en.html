@@ -1,0 +1,833 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>CHILD SUPPORT (ENFORCEMENT)</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Child Support (Enforcement) Act 2023 which received
+                  Royal Assent on 20 July 2023 (c. 35). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been provided by the Department for Work and Pensions,
+                  in order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>Section 25 of the Child Maintenance and Other Payments Act 2008 (2008 Act) makes provision
+                     for the Secretary of State (SoS) to make administrative liability orders. It replaces
+                     the existing requirement under section 33 of the Child Support Act 1991 (1991 Act)
+                     for the SoS to apply to the courts for a liability order. The 2008 Act makes significant
+                     amendments to the 1991 Act, including repealing sections 33 and 34 of the 1991 Act
+                     and inserting sections 32M and 32N into the 1991 Act. Section 25 of the 2008 Act (which
+                     inserts new sections 32M and 32N) has not yet been commenced.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>This Act amends uncommenced sections 32M and 32N of the 1991 Act to alter the basis
+                     on which an administrative liability order is made, allow regulations under section
+                     32N to make provision about variation of liability orders, and require regulations
+                     under section 32N to make provision about appeals (while repealing 2008 Act changes
+                     to the 1991 Act dealing with appeals of liability orders). It also makes some consequential
+                     amendments.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>All parents have a legal responsibility to support their children financially until
+                     they are 16 years old and, in some circumstances, until they are 20. This can be through
+                     voluntary arrangements between separated parents, arrangements made by way of a court
+                     order, or by way of child maintenance calculated and enforced under the statutory
+                     child maintenance scheme run by the Department for Work and Pensions (DWP) and administered
+                     by the Child Maintenance Service (CMS).&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The statutory child maintenance scheme was introduced by the 1991 Act and has been
+                     in operation since 1993. The current scheme was introduced in December 2012 and all
+                     applications since November 2013 have been calculated under the “2012 rules”. (The
+                     two previous schemes, the “1993 rules” and the “2003 rules” are now closed.)  Under
+                     the statutory scheme, the CMS is responsible for calculating child maintenance payments
+                     and, in some cases, collecting and enforcing them. A Parent With Care (PWC) cannot
+                     bring enforcement proceedings against the Non Resident Parent (NRP) for the child
+                     maintenance payments due. Only the CMS has legal standing to take enforcement action
+                     against the NRP.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The CMS manages cases through one of two service types: direct pay and collect and
+                     pay. In direct pay cases, the CMS calculates how much maintenance should be paid,
+                     issues a payment schedule, and the NRP pays the maintenance to the PWC. For collect
+                     and pay, CMS calculates how much maintenance should be paid, collects the money from
+                     the NRP and pays it to the PWC.&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>There are collection charges set out in regulations for the use of the collect and
+                     pay service: 20% on top of the liability for the NRP, and 4% of the maintenance received
+                     for the PWC.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>If the NRP fails to make one or more payments as instructed, arrears accrue and stand-alone
+                     administrative enforcement powers can be used to collect those arrears. These administrative
+                     enforcement powers are a Deduction from Earnings Order (DEO) or a Deduction from Bank
+                     or Building Society Accounts (DOs). Once commenced, this Act will also allow administrative
+                     liability orders to be made. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>For employed NRPs, the CMS may make a DEO instructing the NRP’s employer to make deductions
+                     directly from the NRP’s earnings and pay the CMS. For NRPs who are not in employment,
+                     CMS may make a DO requiring a Bank or Building Society to make deductions from a NRP’s
+                     Bank or Building Society Account and pay the CMS. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Under current legislation, where CMS administrative enforcement functions are inappropriate
+                     or prove ineffective in collecting the arrears, the CMS is required to apply to the
+                     Magistrates’ Court in England and Wales, or Sheriff’s Court in Scotland to obtain
+                     a LO before the use of more stringent enforcement powers such as instructing enforcement
+                     agents or other court-based enforcement actions. Once commenced, this Act will allow
+                     the CMS to make an administrative liability order without requiring application to
+                     the Magistrates’ Court in England and Wales, or Sheriff’s Court in Scotland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Under section 4 of the 1991 Act, either parent (or a child in Scotland under s.7)
+                     may apply to the CMS for a maintenance calculation to be made.&nbsp;&nbsp;Where a maintenance
+                     calculation has been made, the PWC may apply to the CMS to arrange for collection
+                     and enforcement of child maintenance.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Liability for child maintenance is calculated under section 11 and in accordance with
+                     Schedule 1 of the 1991 Act.&nbsp;&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>When the SoS (through the CMS) exercises any discretionary power in the 1991 Act,
+                     he is obliged to consider the welfare of any child affected by the decision (section
+                     2 of the 1991 Act).&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 29 of the 1991 Act permits the SoS to make arrangements to collect child support
+                     maintenance.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Sections 31 – 32K of the 1991 Act sets out the administrative enforcement measures
+                     (DEOs and DOs) that can be used to secure arrears of child support maintenance.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Under section 33 of the 1991 Act, where a NRP fails to make one or more child maintenance
+                     payments, and it appears a DEO is inappropriate or ineffective, the CMS may apply
+                     to a Magistrates court (or Sheriff’s Court in Scotland) for a LO against the NRP.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The 2008 Act was introduced to establish the Child Maintenance and Enforcement Commission
+                     CMEC (a non-departmental government body) to take on some of the functions previously
+                     undertaken by DWP under the Child Support Agency (CSA). CMEC was subsequently abolished,
+                     and the functions of the statutory child maintenance system were transferred back
+                     to the DWP. The 2008 Act made a number of amendments to the 1991 Act. Some of those
+                     amendments, such as those set out in section 25 of the 2008 Act, were not commenced
+                     at the time that Act was passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>This Act amends the uncommenced provisions in section 25 of the 2008 Act. When these
+                     provisions are commenced, it will enable the SoS to make administrative liability
+                     orders. They will have similar effect to liability orders currently issued by the
+                     courts under section 33 of the 1991 Act in that it certifies the debt that is owed
+                     by the NRP and allows the CMS to take further enforcement actions. A liability order
+                     is required before the CMS can take action to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">i.</span></h2>
+                     <p>Take control of and sell goods.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">ii.</span></h2>
+                     <p>Disqualify the NRP from driving or from holding or obtaining a UK passport.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">iii.</span></h2>
+                     <p>Imprison the NRP.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 6 of the Act sets out the extent, that is the jurisdiction in which the Act
+                     forms part of the law. The Act extends to England and Wales, and Scotland.&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>In Scotland, whilst Child Maintenance is reserved, the judicial system is devolved.
+                     As such Scottish Government is engaged on its impact in Scotland and how it will be
+                     reflected in legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Child maintenance is a transferred matter in Northern Ireland.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 1 defines “the 1991 Act” and “the 2008 Act”. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Making of liability order</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 2 amends section 32M(1) of the 1991 Act (as inserted by section 25 of the
+                     2008 Act) for the making of administrative liability orders. It provides that the
+                     SoS may make an administrative liability order where a NRP has failed to pay an amount
+                     of child maintenance due and where a DEO is inappropriate or ineffective.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Power to vary liability order</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Section 3 amends section 32N of the 1991 Act (as inserted by section 25 of the 2008
+                     Act) to expand the power to make regulations for the variation of a liability order.
+                     For example, the amount of arrears upon which the LO is based is subsequently found
+                     to have been incorrect.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Appeal of a liability order</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Section 4 amends the route of appeal to allow a right of appeal to a court and provides
+                     for consequential amendments.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (2) inserts new provisions in new section 32N of the 1991 Act which sets
+                     out regulation making powers of the SoS:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>New section 32N(3) of the 1991 Act requires the SoS to make regulations giving a NRP
+                        a right of appeal to a court against a liability order.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>New section 32N(4) of the 1991 Act provides that on an appeal the court cannot question
+                        the maintenance calculation itself (this was previously the case with liability orders
+                        issued under section 33 of the 1991 Act).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>New section 32N(5) of the 1991 Act provides that the SoS may make regulations about
+                        the period in which to exercise the right of appeal and about the powers of the court
+                        on appeal. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (3) sets out consequential amendments to section 32M(3) of the 1991 Act.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (4) amends section 52 of the 1991 Act by requiring the first regulations
+                     under the new section 32N(3) to be subject to the affirmative parliamentary procedure.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Subsection (5) amends Schedule 7 to the 2008 Act by removing paragraph 1(3) to (6),
+                     which provide for consequential amendments to section 20 of the 1991 Act relating
+                     to an appeal to the First-tier Tribunal. </p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Section 5 sets out minor and consequential amendments to section 59 of the 2008 Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsection (1) provides that this Act extends to England and Wales and Scotland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Subsection (2) provides that section 1 and section 6 come into force on the day on
+                     which the Act receives Royal Assent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection (3) provides that section 4(5) and section 5 come into force at the end
+                     of the period of two months beginning with the day on which this Act is passed. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Subsection (4)(a) provides that the rest of this Act comes into force in England and
+                     Wales, at the same time as section 25 of the 2008 Act comes into force in England
+                     and Wales. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Subsection (4)(b) provides that the rest of this Act comes into force in Scotland,
+                     at the same time as section 25 of the 2008 Act comes into force in Scotland.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsection (5) provides that this Act may be cited as the Child Support (Enforcement)
+                     Act 2023.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:1.4in">
+                        <col style="width:1.28in">
+                        <col style="width:1.48in">
+                        <col style="width:1.28in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard references</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.25in">
+                        <col style="width:1.34in">
+                        <col style="width:2.16in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>15 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0027/220027.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-06-15/debates/10ed5b44-97ae-46cb-ab4c-f87f0aa7c33c/CommonsChamber">
+                                    <u>Vol. 716 col. 315</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>09 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-12-09/debates/C787785F-B63E-422A-81BB-A3F3534B4575/ChildSupport(Enforcement)Bill">
+                                    <u>Vol. 724 col. 664</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>14 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-03-01/debates/52b49271-3a84-4cb6-9683-484548c337b6/ChildSupport(Enforcement)Bill">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>17 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-03-17/debates/4395025E-A771-48F6-95B0-255689AB260B/ChildSupport(Enforcement)Bill">
+                                    <u>Vol. 229 col. 1103</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>20 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/50388/documents/3163">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-03-20/debates/D63662B4-E788-4959-8570-518C0B675E2A/ChildSupport(Enforcement)Bill">
+                                    <u>Vol. 828 col. 1546</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 May 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-05-19/debates/7702D381-2BF2-4AD0-9410-BD33E03FCF9F/ChildSupport(Enforcement)Bill">
+                                    <u>Vol. 830 col. 560</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>19 June 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-06-19/debates/33742461-EBB8-4C52-9968-243B6E1EE389/ChildSupport(Enforcement)Bill">
+                                    <u>Vol. 831 col. 17</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>14 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-07-14/debates/E469D58C-AC45-4881-B24B-269057E6DE5F/ChildSupport(Enforcement)Bill">
+                                    <u>Vol. 831 col. 1979</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>20 July 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Commons: <a href="https://hansard.parliament.uk/commons/2023-07-20"><u>Vol. 736 col. 1073</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords: <a href="https://hansard.parliament.uk/Lords/2023-07-20/debates/B4D727F5-C825-47E0-84E6-FAD54F417244/RoyalAssent"><u>Vol. 831 col. 2498</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

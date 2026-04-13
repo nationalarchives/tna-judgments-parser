@@ -1,0 +1,1650 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>IDENTITY AND LANGUAGE (NORTHERN IRELAND) ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Identity and Language (Northern Ireland) Act
+                     2022 which received Royal Assent on 6 December 2022 (c. 45). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Northern Ireland Office in order
+                     to assist the reader in understanding the Act. They do not form part of the Act and
+                     have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act delivers on the legislative commitments on identity and language set out
+                     in New Decade, New Approach (NDNA), the document which was the basis on which the
+                     five main parties in Northern Ireland agreed to form an Executive in January 2020.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>In line with NDNA, the Act provides for a balanced package of identity and language
+                     measures that were carefully negotiated by the parties. It:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Requires specified public authorities to have due regard to certain principles (referred
+                        to in the Act as the “national and cultural identity principles”) when carrying out
+                        functions relating to Northern Ireland defined in the context of the characteristics
+                        of religious belief, political opinion and racial group; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Creates an Office of Identity and Cultural Expression which, amongst other things,
+                        promotes awareness of the national and cultural identity principles and monitors and
+                        encourages compliance by public authorities with the duty to have due regard to them;
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Provides for the official recognition of the status of the Irish language in Northern
+                        Ireland; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Makes provision for the appointment of an Irish Language Commissioner; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Makes provision for the appointment of a Commissioner for the Ulster Scots and the
+                        Ulster British Tradition; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Requires the Northern Ireland Department of Education to encourage and facilitate
+                        the use and understanding of Ulster Scots in the education system; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Repeals the Administration of Justice (Language) Act (Ireland) 1737 (which requires
+                        all Court proceedings to be in English);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Confers powers on the Secretary of State to exercise, or direct the exercise of, the
+                        powers conferred on NI Ministers or departments and to direct the three newly created
+                        authorities in the Act; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Makes provision for the establishment of the Castlereagh Foundation, either by the
+                        Office of Identity and Cultural Expression or the Secretary of State.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Northern Ireland Executive was restored on 12 January 2020 after a period of three
+                     years without NI Ministers and during which the Assembly did not sit. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Political talks took place in 2017, 2018 and 2019 with the aim of restoring the Northern
+                     Ireland Executive. The talks involved the Northern Ireland parties and the UK and
+                     Irish governments in accordance with the three stranded approach set out in the Belfast
+                     (Good Friday) Agreement. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Political talks concluded in January 2020 with the publication of NDNA by the UK and
+                     Irish governments on 9 January. On that basis, NI Ministers were appointed and the
+                     Executive was restored. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Act aims to make provision for a balanced package of language and identity measures
+                     that were committed to as part of NDNA. These aspects of the Act are within the devolved
+                     competence of the Northern Ireland Assembly and reflect the package set out in NDNA,
+                     which was the subject of talks between the Northern Ireland parties and formed part
+                     of the basis on which the Executive was restored in 2020. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Act makes provision for public authorities in Northern Ireland to have due regard
+                     to the national and cultural identity principles defined in the context of a person’s
+                     religious belief, political opinion or racial group. These principles, as defined
+                     in the legislation, assert that everybody in Northern Ireland is free to choose, affirm,
+                     maintain and develop their national and cultural identity, and express and celebrate
+                     that identity in a manner that takes account of the sensitivities of those with different
+                     national and cultural identities and respects the rule of law. The principles place
+                     a duty on public authorities to encourage and promote reconciliation, tolerance and
+                     meaningful dialogue between those with different national and cultural identities
+                     with a view to promoting parity of esteem, mutual respect and understanding, and cooperation.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act establishes a body corporate to be known as the Office of Identity and Cultural
+                     Expression. The principal aims of the Office are: to promote cultural pluralism and
+                     respect for diversity in Northern Ireland; to promote social cohesion and reconciliation
+                     between those of different national and cultural identities; to increase the capacity
+                     and resilience of people in Northern Ireland to address issues related to differences
+                     in national and cultural identity; and to support and promote the celebration of the
+                     cultural and linguistic heritage of all people living in Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act gives official recognition of the status of the Irish language in Northern
+                     Ireland. It does so by providing for the appointment of an Irish Language Commissioner;
+                     the development of standards of best practice relating to the use of the Irish language
+                     by public authorities; and a requirement on public authorities to have due regard
+                     for such standards. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Irish Language Commissioner provided for in the Act will be appointed to protect
+                     and enhance the development of the use of the Irish language by public authorities,
+                     including by providing advice and guidance, and introducing, supporting and monitoring
+                     the use of best practice language standards. The Commissioner will be appointed by
+                     the First Minister and deputy First Minister as a key element of providing, under
+                     statute, official recognition of the status of the Irish language in Northern Ireland.
+                     The main function of the Commissioner will be to protect and enhance the development
+                     of the Irish language.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Act also provides for the appointment of a Commissioner for the Ulster Scots and
+                     the Ulster British Tradition. The Commissioner will be appointed by the First Minister
+                     and deputy First Minister to enhance and develop the language, arts and literature
+                     associated with the Ulster Scots and the Ulster British Tradition in Northern Ireland
+                     (“the relevant language, arts and literature”). The Commissioner’s remit includes
+                     the areas of education, research, media, cultural activities and facilities and tourism
+                     initiatives. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Since the Act’s initial drafting, the Government recognised the Ulster Scots as a
+                     national minority under the Framework Convention for the Protection of National Minorities.
+                     The Act was amended to reflect the distinction between the Ulster Scots as a recognised
+                     National Minority and the Ulster British Tradition in the title and functions of the
+                     relevant Commissioner. The references made in the Act to Ulster Scots alone are in
+                     strictly linguistic terms, and as such remain unchanged as this provision is not intended
+                     to refer to the broader national minority.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The functions of the Commissioner are to promote awareness of Ulster Scots services
+                     provided by public authorities and provide or publish such advice, support and guidance
+                     as the Commissioner considers appropriate to public authorities in relation to developing
+                     and encouraging the language, arts and literature associated with the Ulster Scots
+                     and the Ulster British Tradition. It will promote the visibility of relevant services
+                     which are provided by public authorities in Northern Ireland. It will provide advice
+                     and guidance to public authorities, including where relevant on the effect and implementation
+                     of commitments under the European Charter for Regional and Minority Languages, the
+                     European Framework Convention for the Protection of National Minorities, and the United
+                     Nations Convention on the Rights of the Child on the relevant language, arts and literature,
+                     and investigate complaints where a public authority fails to have due regard to guidance
+                     published by the Commissioner in respect of facilitating the use of Ulster Scots in
+                     the provision of services to the public. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The Act includes a duty on the Northern Ireland Department of Education to encourage
+                     and facilitate the use and understanding of Ulster Scots in the education system.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The Act includes exceptional powers should the Secretary of State for Northern Ireland
+                     deem it necessary to intervene. The legislation gives the Secretary of State the ability
+                     to do anything that a Northern Ireland Minister or Northern Ireland department could
+                     do in exercise of an identity or language function. The Secretary of State, should
+                     they deem it necessary, could intervene, for example, to appoint either of the Commissioners
+                     or the Director and members of the Office of Identity and Cultural Expression, approve
+                     best practice standards and direct Northern Ireland Ministers and departments to support
+                     appointees and institutions to function effectively, should the First and deputy First
+                     Minister be unlikely to complete an appointment process.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Act was amended in the House of Lords to make provision for the establishment
+                     of the Castlereagh Foundation. To provide funding to establish the Castlereagh Foundation
+                     was a UK Government commitment in NDNA that formed part of the package of measures
+                     on matters of identity and language which were a matter of negotiation between the
+                     Northern Ireland parties in the talks process leading up to January 2020. The Act
+                     accordingly gives the Office of Identity and Culture Expression and the Secretary
+                     of State the power to establish a body corporate or other organisation by that name,
+                     or provide grants for the establishment of such a body. The Castlereagh Foundation
+                     must fund and support academic research into identity, including national and cultural
+                     identity and shifting patterns of identity, in Northern Ireland. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Part 1 of the Act amends the Northern Ireland Act 1998 by inserting new Parts 7A,
+                     7B and 7C and Schedules 9A, 9B and 9C to make provision in respect of the three new
+                     authorities and the duties conferred on public authorities. It repeals the Administration
+                     of Justice Act (Ireland) 1737 so as to remove the prohibition on languages other than
+                     English being used in Court proceedings in Northern Ireland. It also amends the Education
+                     (Northern Ireland) Order 1998 to insert a legal duty on the Northern Ireland Department
+                     of Education to encourage and facilitate the use and understanding of Ulster Scots
+                     in the education system.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Part 2 of the Act confers concurrent powers and powers of direction on the Secretary
+                     of State.  The Secretary of State is able to exercise the functions of NI Ministers
+                     or departments, or direct the exercise of functions by NI Ministers or departments
+                     or the three authorities created. Consistent with these provisions, Part 2 of the
+                     Act also confers on the Secretary of State the power to establish a body corporate
+                     or other organisation to be known as the Castlereagh Foundation, or to provide grants
+                     for this purpose to another person.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 11 sets out the territorial extent of the Act, that is the jurisdiction of
+                     which the Act forms part of the law. The extent of an Act can be different from its
+                     application. Application is about where an Act produces a practical effect. The Act
+                     extends and applies to Northern Ireland only. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>See the table in Annex A of this document for a summary of the position regarding
+                     territorial extent and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: National and Cultural Identity</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 1 inserts a new Part 7A (sections 78F to 78I) and Schedule 9A in the Northern
+                     Ireland Act 1998.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 78F makes provision for “national and cultural identity principles” and requires
+                     specified public authorities (see below) to have due regard to them when exercising
+                     their functions, with reference to a person’s religious belief, political opinion
+                     or racial group.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>A “public authority” is defined by reference to Schedule 3 to the Public Services
+                     Ombudsman Act (Northern Ireland) 2016 although the new Office of Identity and Cultural
+                     Expression itself (which is added to Schedule 3 by section 8) is not included in that
+                     definition.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The First Minister and deputy First Minister may by regulations (subject to the draft
+                     affirmative procedure in the Northern Ireland Assembly) add public authorities to,
+                     or remove public authorities from, that definition. They may also do this for a particular
+                     purpose or in relation to a particular function. For example, if a public authority
+                     was to be required to have regard to the national and cultural identity principles
+                     only in respect of certain functions, then provision for this can be made. The power
+                     to add authorities only applies to public authorities within the devolved competence
+                     of the Northern Ireland Assembly and is not applicable to institutions in reserved
+                     or excepted areas.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Section 78G establishes a new Office of Identity and Cultural Expression (“the Office”)
+                     and section 78H sets out the aims of the Office and confers functions on it. In particular,
+                     the Office is required to promote awareness of the national and cultural identity
+                     principles and monitor and encourage compliance with them. It will, for example, be
+                     able to publish guidance on best practice for complying with the new duty and commission
+                     research into matters relating to national and cultural identity in Northern Ireland,
+                     including at the request of either of the new Commissioners that are established by
+                     the Act. The First Minister and deputy First Minister are able to direct the Office
+                     in relation to the Commissioner’s functions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>New section 78I, as amended in the Lords, makes provision for further functions of
+                     the Office of Identity and Cultural Expression to establish the Castlereagh Foundation.
+                     The Office may establish a body corporate or other organisation to be known as the
+                     Castlereagh Foundation, or provide grants for the establishment of such a body or
+                     organisation by another person. This body will be financially and operationally independent
+                     of the Office once established.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>The principal objective of the Castlereagh Foundation will be the funding and support
+                     of academic research into identity, including national and cultural identity and shifting
+                     patterns of identity in Northern Ireland. This provision reflects the relevant NDNA
+                     commitments. Consistent with the powers provided to the Secretary of State in the
+                     Act, section 7 also makes provisions for the Secretary of State to establish the Castlereagh
+                     Foundation as set out in paragraph 58 below.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Schedule 9A makes provision in respect of the Office itself. It deals with matters
+                     such as membership (the Office is a body corporate), appointment of its Director by
+                     the First Minister and deputy First Minister, appointment of its staff and how it
+                     is to be funded.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Irish language</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Section 2 inserts a new Part 7B (sections 78J to 78Q) and Schedule 9B in the Northern
+                     Ireland Act 1998 to make provision for the Irish language, including the creation
+                     of an Irish language Commissioner and the official recognition of the status of the
+                     Irish language in Northern Ireland (see section 78J).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Section 78K establishes an Irish Language Commissioner. The Commissioner will be appointed
+                     by the First Minister and deputy first Minister and further provision in respect of
+                     their appointment is made in Schedule 9B.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Section 78L provides for the principal aim and functions of the Irish Language Commissioner.
+                     The principal aim of the Commissioner is to enhance and protect the use of the Irish
+                     language by public authorities when they are providing services to the public in Northern
+                     Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The Commissioner will be required to publish best practice standards on the use of
+                     the Irish language in the provision of services, and public authorities are required
+                     to have due regard to those best practice standards (see section 78O). The First Minister
+                     and deputy First Minister are able to direct the Commissioner in relation to the Commissioner’s
+                     functions.  For example, the First Minister and deputy First Minister may want to
+                     require the Commissioner to consider developing a particular category of best practice
+                     standards. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Sections 78M and 78N make provision for best practice standards. These are written
+                     standards about the use of the Irish language by public authorities as mentioned above.
+                     They must be prepared by the Commissioner and then submitted to the First Minister
+                     and deputy First Minister for their approval. Once approved, they must be published.
+                     Different standards may be published in respect of different public authorities and
+                     when preparing them the Commissioner must have due regard to any guidance given by
+                     the First Minister and deputy First Minister, and consult such public authorities
+                     or other persons as the Commissioner considers appropriate. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Under section 78N, the Commissioner must review any standards every five years from
+                     when they were published. They may be revised or withdrawn following such a review,
+                     or otherwise if the Commissioner considers it necessary or desirable to do so (this
+                     may be, for example, because they have been found to be unlawful in some respects).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Section 78O requires public authorities to have due regard to the published best practice
+                     standards in providing services to the public in Northern Ireland. They must also
+                     prepare and publish a plan, setting out how they propose to comply with that duty
+                     and consult the Irish Language Commissioner about it. If the best practice standards
+                     that apply to an authority are revised, it must revise and re-publish its plan.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Section 78P makes provision for a complaints procedure. The Commissioner must investigate
+                     a complaint if they receive one from a person claiming to have been directly affected
+                     by the act or omission giving rise to the complaint, the complaint is made within
+                     three months of when the complainant became aware of it, and the public authority
+                     concerned is aware of it and has been given a reasonable opportunity to consider it
+                     and respond. If the Commissioner decides not to investigate a complaint, which meets
+                     those criteria, they must provide the complainant with written reasons for why they
+                     are not doing so (see subsections (1) and (2)). The Commissioner may carry out such
+                     an investigation in private if they consider it appropriate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>If the Commissioner does investigate the complaint, then they must notify both the
+                     complainant and the public authority of that and give the public authority a reasonable
+                     opportunity to comment on the matters raised. The Commissioner must set out their
+                     findings in a report (subsection (3)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>If the Commissioner finds that a public authority did fail to comply with its obligations
+                     under 78O (viz to have due regard to best practice standards, prepare or revise a
+                     plan), their report may include recommendations as to how the public authority can
+                     remedy its failure and avoid future failures. The report must be laid before the Northern
+                     Ireland Assembly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Section 78Q, defines “public authority” for the purposes of Part 7B. It is defined
+                     as an authority listed in Schedule 3 to the Public Services Ombudsman Act (Northern
+                     Ireland) 2016 but excludes the three new authorities themselves and the North/South
+                     Language Body.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>As under Part 7A, the First Minister and deputy First Minister acting jointly may
+                     by regulations add or remove authorities to or from the definition of public authority
+                     (including for particular purposes or in relation to a particular function). The power
+                     to add authorities only applies to public authorities within the devolved competence
+                     of the Northern Ireland Assembly and is not applicable to institutions in reserved
+                     or excepted area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Section 2(2) and Schedule 2 amends the Northern Ireland Act 1998 to insert Schedule
+                     9B “The Irish Language Commissioner”. Schedule 9B makes further provision regarding
+                     the status and tenure of the Commissioner and other matters such as the appointment
+                     of staff, the exercise of the Commissioner’s functions by staff, funding of the Commissioner
+                     by the Executive Office and keeping of its accounts. Provision is also made to enable
+                     the Executive Office to provide staff, services and facilities to the Commissioner,
+                     and for the Office of Identity and Cultural Expression to provide services for the
+                     purpose of assisting the Commissioner in the exercise of its functions.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: The Ulster Scots and the Ulster British Tradition</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Section 3 inserts a new Part 7C (sections 78R to 78U) and Schedule 9C in the Northern
+                     Ireland Act to make provision for the creation of a Commissioner for the Ulster Scots
+                     and the Ulster British Tradition.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Section 78R provides for the Commissioner to be appointed by the First Minister and
+                     deputy First Minister acting jointly. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Section 78S sets out the principal aim of the Commissioner and the duties conferred
+                     on them. The Commissioner’s principal aim is to enhance and develop the language,
+                     arts and literature associated with the Ulster Scots and the Ulster British tradition
+                     in Northern Ireland (referred to in the Act as the “relevant language, arts and literature”).
+                     They must promote awareness of Ulster Scots services provided by public authorities
+                     and provide or publish such advice, support and guidance as the Commissioner considers
+                     appropriate to public authorities. They must also investigate complaints made under
+                     section 78T. The guidance they publish may include guidance on the effect and implementation
+                     of the three Treaties specified in subsection (3) in relation to the relevant language,
+                     arts and literature (see s. 78S(2)(b)(ii)). In preparing guidance for publication,
+                     the Commissioner must consult such public authorities or other persons as they consider
+                     appropriate. The First Minister and deputy First Minister can direct the Commissioner
+                     in relation to the Commissioner’s functions. For example, the First Minister and deputy
+                     First Minister may want to require the Commissioner to consult public authorities
+                     in a particular way on the production of guidance. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>“Ulster Scots services” are defined to mean services provided in Ulster Scots or likely
+                     to be of particular interest to those with an interest in the relevant language, arts
+                     and literature. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Section 78T makes provision for a complaints procedure. A complaint may be made by
+                     a person who claims that a public authority failed to have due regard to “published
+                     facilitation guidance”. Facilitation guidance is defined as being guidance published
+                     under s. 78R(2)(b)(i) so far as it relates to developing and encouraging the use of
+                     Ulster Scots in the provision of public services.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>The Commissioner must investigate a complaint if they receive one from a person claiming
+                     to have been directly affected by the failure giving rise to the complaint, the complaint
+                     is made within three months of when the complainant became aware of it, and the public
+                     authority concerned is aware of it and has been given a reasonable opportunity to
+                     consider it and respond. If the Commissioner decides not to investigate a complaint,
+                     which meets those criteria, they must provide the complainant with written reasons
+                     for why they are not doing so (see subsections (1) and (2)). The Commissioner may
+                     carry out such an investigation in private if they consider it appropriate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>If the Commissioner finds that a public authority did fail to have due regard to published
+                     facilitation guidance, their report may include recommendations as to how the public
+                     authority might have better regard to it. They may also lay their report before the
+                     Northern Ireland Assembly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>In section 78U, “public authority” is defined as an authority listed in Schedule 3
+                     to the Public Services Ombudsman Act (Northern Ireland) 2016 but as in Part 7B excludes
+                     the new authorities themselves and the North/South Language Body. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>As under Parts 7A and 7B, the First Minister and deputy First Minister acting jointly
+                     may by regulations add or remove authorities to or from the definition of public authority
+                     (including for particular purposes or in relation to a particular function). The power
+                     to add authorities only applies to public authorities within the devolved competence
+                     of the Northern Ireland Assembly and is not applicable to institutions in reserved
+                     or excepted areas. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Section 3(2) and Schedule 3 amends the Northern Ireland Act 1998 to insert Schedule
+                     9C “The Commissioner for the Ulster Scots and Ulster British Tradition”. Schedule
+                     9C makes further provision regarding the status and tenure of the Commissioner and
+                     other matters such as the exercise of the Commissioner’s functions by staff and funding
+                     of the Commissioner by the Executive Office and keeping of its accounts. Provision
+                     is also made to enable the Executive Office to provide staff, services and facilities
+                     to the Commissioner and for the Office of Identity and Cultural Expression to provide
+                     services for the purpose of assisting the Commissioner in the exercise of its functions.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Use of languages other than English in proceedings</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Section 4 repeals the Administration of Justice (Language) Act (Ireland) 1737. Facilitation
+                     of languages other than English in court proceedings is a matter for the NI Courts
+                     and Tribunals Service, which in common with courts across the UK makes provision for
+                     those who cannot speak English to be provided with interpreter and translation services
+                     at their own or the Court’s cost depending on the proceedings in hand. </p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Use of Ulster Scots in Education</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Section 5 amends the Education (Northern Ireland) Order 1998 and places a duty on
+                     the Northern Ireland Department of Education to encourage and facilitate the use and
+                     understanding of Ulster Scots in the education system. </p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Concurrent powers and powers of direction</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Section 6 confers concurrent powers and powers of direction on the Secretary of State.
+                     The concurrent powers mean that the Secretary of State may take the same actions as
+                     a Northern Ireland Minister or Northern Ireland department under Part 7A, 7B or 7C,
+                     including any action that is ancillary to that. The Secretary of State may also direct
+                     a Northern Ireland Minister, a Northern Ireland department, the Office or either of
+                     the two Commissioners to take or not to take action that could be taken under Part
+                     7A, 7B or 7C, including any action ancillary to that. The Secretary of State may also
+                     direct any of those authorities to take action (or not to take action) that they can
+                     otherwise take but only in the circumstances specified in subsection (3). For example,
+                     the Secretary of State could direct that the new authorities be provided with certain
+                     assistance by the Executive Office. If the Secretary of State gives a direction, they
+                     are required to lay a copy of the direction before Parliament and publish it.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Concurrent powers and powers of direction: supplementary provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Subsections (1) and (2) make provision in respect of the Executive Committee of the
+                     Assembly. When the Secretary of State is exercising concurrent powers or powers of
+                     direction, the fact that a matter has not been referred to, or discussed and agreed
+                     by, that Committee   will not be relevant to determining what Northern Ireland Ministers,
+                     departments or the three new authorities can or cannot do. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Subsection (4) makes provision in respect of section 44 of the Northern Ireland Act
+                     1998. That section confers powers on the Assembly to require persons to give evidence
+                     to the Assembly in relation to devolved matters. This provision will exempt UK Government
+                     Ministers and civil servants from that requirement (other than civil servants who
+                     have worked in one of the new authorities – in relation to that work only) when they
+                     have taken action in connection with either the exercise of the Secretary of State’s
+                     concurrent powers or a direction given by the Secretary of State.   </p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Castlereagh Foundation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>This new section, as amended in the Lords, makes provision for the Secretary of State
+                     to establish the Castlereagh Foundation separate to the functions conferred on the
+                     Office of Identity and Cultural Expression in section 78I, but on the same terms as
+                     referenced at paragraph 27. This provision is made so as to ensure consistency with
+                     the Secretary of State’s powers in sections 7 and 8 of the Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Section 9 makes consequential amendments to section 96 of the Northern Ireland Act
+                     1998, the Superannuation (Northern Ireland) Order 1972; the Northern Ireland Assembly
+                     Disqualification Act 1975; the Public Services Ombudsman Act (Northern Ireland) 2016
+                     and the Freedom of Information Act 2000. These amendments are necessary to reflect
+                     the establishment of the new bodies. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Section 10 provides for commencement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Parts 1 and 2 (sections 1-8) come into force on such day or days as the Secretary
+                     of State may by regulations made by statutory instrument appoint.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Part 3 (sections 9-12) comes into force on the day of Royal Assent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>The following documents are relevant to the Identity and Language (Northern Ireland)
+                     Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>New Decade, New Approach: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/856998/2020-01-08_a_new_decade__a_new_approach.pdf"><u>https://assets.publishing.service.gov.uk/government/</u></a><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/856998/2020-01-08_a_new_decade__a_new_approach.pdf"><u>uploads/system/uploads/attachment_data/file/856998/2020-01-08_a_new_decade__a_new_approach.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>Office of the Legislative Counsel draft legislation: <br><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/857001/Final_Combined_Legislation_for_publication.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/857001/Final_Combined_Legislation_for_publication.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10 </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>25 May 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3168/stages/16499">
+                                    <u>Vol. 823 </u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>7 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3168/stages/16500">
+                                    <u>Vol. 822 Col. 1096</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>22 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3168/stages/16526">
+                                    <u>Vol. 822 Col. 60GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>6 July 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3168/stages/16667">
+                                    <u>Vol. 823 Col. 1017</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>13 July 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3168/stages/16799">
+                                    <u>Vol. 823 Col. 1494</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>14 July 2022</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>12 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3168/stages/16888">
+                                    <u>Vol. 720 Col. 157</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee </p>
+                           </td>
+                           <td>
+                              <p>26 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-10-26/debates/4358CDF0-682C-4813-BCE8-A78099175E36/IdentityAndLanguage(NorthernIreland)Bill(Lords)">
+                                    <u>Vol. 721 Col. 319</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>26 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-10-26/debates/4358CDF0-682C-4813-BCE8-A78099175E36/IdentityAndLanguage(NorthernIreland)Bill(Lords)">
+                                    <u>Vol. 721 Col. 319</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-10-26/debates/4358CDF0-682C-4813-BCE8-A78099175E36/IdentityAndLanguage(NorthernIreland)Bill(Lords)">
+                                    <u>Vol. 721 Col. 370</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>6 December 2022 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-12-06/debates/E80F7266-05BE-456E-BC17-7F0FBBAB929A/RoyalAssent">
+                                    <u>House of Commons Vol 724. Col. 270</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-12-06/debates/80388821-3fdf-4ade-9106-f9dc0a084440/LordsChamber">
+                                    <u>House of Lords Vol. 826 Col. 158</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

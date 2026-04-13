@@ -1,0 +1,669 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NORTHERN IRELAND (EXECUTIVE FORMATION AND ORGAN AND TISSUE DONATION) ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Northern Ireland<b></b>(Executive Formation and Organ and Tissue Donation) Act 2023 which received Royal
+                     Assent on 28 February 2023 (c. 4).</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Northern Ireland Office in order
+                     to assist the reader of the Act and help inform debate on it. They do not form part
+                     of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act seeks to retrospectively extend the period for Executive formation in Northern
+                     Ireland by 52 weeks from 19 January 2023 to 18 January 2024.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act also includes a power for the Secretary of State to set a date for an Assembly
+                     election before the end of the Executive formation period.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act amends the procedure for making regulations defining permitted material for
+                     transplantation in Northern Ireland under section 3 of the Human Tissue Act 2004,
+                     as amended by the Organ and Tissue Donation (Deemed Consent) Act (Northern Ireland)
+                     2022. This would allow regulations to be made in the absence of devolved institutions
+                     regarding rules for organ donation. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Northern Ireland Assembly elections were held on 5 May 2022, as five years had passed
+                     since the previous Assembly was elected. Prior to the election, there was no functioning
+                     Executive due to the resignation of the First Minister on 4 February 2022. The First
+                     Minister’s resignation meant that the deputy First Minister also ceased to hold office
+                     and that there was no longer any functioning Executive Committee.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>As a result of the election on 5 May, 90 Members of the Legislative Assembly were
+                     elected, forming a new Assembly. The Northern Ireland Act 1998 requires that the Assembly
+                     first meets within 8 days of a poll, and that meeting commences the period for filling
+                     Ministerial offices.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Northern Ireland (Ministers, Elections and Petitions of Concern) Act 2022 implemented
+                     changes agreed within New Decade, New Approach (NDNA): the agreement that restored
+                     the devolved institutions in 2020. These changes include provision for a longer period
+                     of time in which to form an Executive, and now allows for an initial period of 6 weeks
+                     from the date that the Assembly first meets, followed by 3 successive periods of 6
+                     weeks (i.e. 24 weeks in total), unless the Assembly resolves (with cross-community
+                     support) that the period should not be further extended. During this time, NI Ministers
+                     who were in post before the election are allowed to remain so in a caretaker capacity.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The period for filling Ministerial offices after the Assembly election in May initially
+                     came to an end on 28 October 2022. As those offices were not filled, the Secretary
+                     of State for Northern Ireland fell under a duty to propose a date for a further Assembly
+                     election as soon as practicable to take place within 12 weeks. NI Ministers in post
+                     before the election also lost office at this stage.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Parliament subsequently passed the Northern Ireland (Executive Formation etc) Act
+                     2022 which retrospectively extended the period for Executive formation from when it
+                     ended on 27 October until 8 December 2022. It also provided a power for the Secretary
+                     of State to further extend that period until 19 January 2023 by SI. As the new deadline
+                     provided for by the Northern Ireland (Executive Formation etc) Act 2022 has now passed,
+                     without the Ministerial offices being filled, he is now under a legal duty to call
+                     a further Assembly election in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>At present, as the Assembly has been unable to elect a Presiding Officer and deputies
+                     since the May 2022 election, it is unable to conduct any other business<a class="fn" id="fnref-1" href="#fn-1">1</a>. There is therefore no present mechanism by which any draft regulations may be approved
+                     by the Assembly.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Executive formation</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>Following further consultation with the Northern Ireland political parties and the
+                        wider public, the Government has assessed that an immediate election would not support
+                        the restoration of the devolved institutions. The Act therefore seeks to further extend
+                        the period for Executive formation to 18 January 2024. The Secretary of State will
+                        still have the power to call an Assembly election before that date.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Organ and tissue donation</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>The Act amends the procedure for making regulations under section 3(9A) of the Human
+                        Tissue Act 2004, as amended by the Organ and Tissue Donation (Deemed Consent) Act
+                        (Northern Ireland) 2022, defining “permitted material” for the purpose of transplantation
+                        in Northern Ireland. This would allow regulations to be made regarding rules for organ
+                        donation in the absence of a Presiding Officer and deputies in the Assembly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>The Government took the decision to bring forward these amendments to progress this
+                        issue in the absence of properly functioning devolved institutions.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 1 extends to England and Wales, Scotland and Northern Ireland, but only applies
+                     in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 2 extends and applies in Northern Ireland only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Executive formation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>By making amendments to section 1 of the Northern Ireland (Executive Formation etc)
+                     Act 2022, these sections amend the effect of section 16A of the Northern Ireland Act
+                     1998 during the period following the 5 May 2022 elections. The legislation will extend
+                     the period for filling Ministerial offices which follows from the elections that took
+                     place on 5 May 2022 for a further 52 week period to apply retrospectively (so that
+                     it applies from 19 January 2023 until 18 January 2024). The legislation will also
+                     provide a discretionary power for the Secretary of State to propose a date for a poll
+                     at any time within the extended period for Executive formation.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Organ and tissue donation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 2 temporarily amends the procedure for making regulations under section 3(9A)
+                     of the Human Tissue Act 2004, as amended by the Organ and Tissue Donation (Deemed
+                     Consent) Act (Northern Ireland) 2022, defining “permitted material” for the purpose
+                     of transplantation in Northern Ireland. This would allow regulations to be made regarding
+                     rules for organ donation in the absence of a Presiding Officer and deputies in the
+                     Northern Ireland Assembly.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The Act came into force on the day it was passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Local elections</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Separately, the Government has brought forward the Local Elections (Northern Ireland)
+                     Order 2023, the effect of which will be to push back local elections from 4 May 2023
+                     to 18 May 2023. This is to avoid a clash with His Majesty’s Coronation.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The following documents are relevant to the Northern Ireland (Executive Formation
+                     and Organ and Tissue Donation) Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/856998/2020-01-08_a_new_decade__a_new_approach.pdf">
+                           <u>The </u>
+                           </a>
+                        <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/856998/2020-01-08_a_new_decade__a_new_approach.pdf">
+                           <u>New Decade, New Approach Deal</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/ukpga/1998/47/contents">
+                           <u>The Northern Ireland Act 1998</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://bills.parliament.uk/bills/3377">
+                           <u>The Northern Ireland (Executive Formation etc) Act 2022</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.31in">
+                        <col style="width:0.99in">
+                        <col style="width:0.99in">
+                        <col style="width:0.99in">
+                        <col style="width:0.84in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>England</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Wales</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Scotland</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Northern Ireland</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Extends to E &amp; W and applies to England?</p>
+                           </td>
+                           <td>
+                              <p>Extends to E &amp; W and applies to Wales?</p>
+                           </td>
+                           <td>
+                              <p>Extends and applies to Scotland?</p>
+                           </td>
+                           <td>
+                              <p>Extends and applies to Northern Ireland?</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Section 1</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>Extends to E &amp; W, but does not apply</p>
+                           </td>
+                           <td>
+                              <p>Extends to E &amp; W, but does not apply</p>
+                           </td>
+                           <td>
+                              <p>Extends to Scotland but does not apply</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Section 2</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Section 3</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>Extends to E &amp; W, but does not apply</p>
+                           </td>
+                           <td>
+                              <p>Extends to E &amp; W, but does not apply</p>
+                           </td>
+                           <td>
+                              <p>Extends to Scotland but does not apply</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.91in">
+                        <col style="width:1.44in">
+                        <col style="width:2.95in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <i>House of Commons</i>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Introduction</p>
+                           <p>9 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-02-09/debates/4BBA0A2E-DE0A-4D94-A09A-9D7AD22CD98E/PrivateRentedSector">
+                                 <u>Vol. 727. Col. 1057</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Second Reading</p>
+                           <p>22 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-02-22/debates/BAA684C5-431E-4B46-B6AE-F8A7A2A1399B/NorthernIreland(ExecutiveFormation)Bill">
+                                 <u>Vol. 728 Col. 233</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Committee of the Whole House</p>
+                           <p>22 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-02-22/debates/8F71335B-9C20-4745-94E4-03887859E0CF/NorthernIreland(ExecutiveFormation)Bill">
+                                 <u>Vol. 728 Col. 273</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Report</p>
+                           <p>22 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-02-22/debates/8F71335B-9C20-4745-94E4-03887859E0CF/NorthernIreland(ExecutiveFormation)Bill">
+                                 <u>Vol. 728 Col. 278</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Third Reading</p>
+                           <p>22 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-02-22/debates/8F71335B-9C20-4745-94E4-03887859E0CF/NorthernIreland(ExecutiveFormation)Bill">
+                                 <u>Vol. 728 Col. 278</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <i>House of Lords</i>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Introduction</p>
+                           <p>22 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-02-22/debates/3E392908-73BC-49D8-B1AA-7C830A4044EB/NorthernIreland(ExecutiveFormationAndOrganAndTissueDonation)Bill">
+                                 <u>Vol. 827. Col. 1667</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Second Reading</p>
+                           <p>27 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-02-27/debates/622BA21C-0CD2-4C8A-9282-39F85E15CB0D/NorthernIreland(ExecutiveFormationAndOrganAndTissueDonation)Bill">
+                                 <u>Vol. 828 Col. 21</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Third Reading</p>
+                           <p>27 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-02-27/debates/C48D33AE-69DA-431F-9C55-CDCFD25F991B/NorthernIreland(ExecutiveFormationAndOrganAndTissueDonation)Bill">
+                                 <u>Vol. 827 Col. 76</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Royal Assent</p>
+                           <p>28 February 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2023-02-28/debates/AE4D25AA-03DF-44FD-9566-D6EFD7AE78EE/NHSWorkforceExpansion">
+                                 <u>House of Commons Vol 728 Col. 700</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2023-02-28/debates/286292F7-0F80-40AE-9D90-AF7F4A870CFE/RoyalAssent">
+                                 <u>House of Lords Vol. 828 Col. 155</u>
+                                 </a>
+                              </p>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  See s.39 of the Northern Ireland Act 1998.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

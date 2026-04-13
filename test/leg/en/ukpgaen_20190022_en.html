@@ -1,0 +1,1685 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NORTHERN IRELAND (EXECUTIVE FORMATION ETC)</b>
+               <b>
+                  </b>
+               <b>ACT</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Northern Ireland (Executive Formation etc) Act
+                  2019 which received Royal Assent on 24 July 2019 (c. 22).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Northern Ireland Office in order
+                  to assist the reader in understanding the Act. They do not form part of the Act and
+                  have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Amends section 1 of the Northern Ireland (Executive Formation and Exercise of Functions)
+                        Act 2018 so as to extend the period provided in the Northern Ireland Act 1998 (“1998
+                        Act”) for Northern Ireland Ministers to be appointed until 21 October 2019 following
+                        the Assembly election held on 2 March 2017.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Confers a power on the Secretary of State exercisable by regulations to further extend
+                        the period for forming an Executive from 21 October 2019 until 13 January 2020. This
+                        may be exercised once only so as to extend the period until 13 January 2020.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Requires the Secretary of State to publish and lay before Parliament a report, on
+                        or before 4 September, on the progress that has been made towards forming an Executive
+                        in Northern Ireland (if one has not been formed) and to publish a second report on
+                        the progress made towards forming an Executive on or before 9 October 2019, and at
+                        least every fourteen calendar days thereafter until 18 December 2019 (or until an
+                        Executive is formed).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Act also requires that reports be laid before Parliament on a range of other issues
+                        relating to Northern Ireland, and obliges the Government to arrange debates on many
+                        of those reports in both Houses of Parliament.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Requires the Secretary of State to make regulations to change the law relating to
+                        marriage in Northern Ireland to provide that marriage between same-sex couples is
+                        lawful.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Requires the Secretary of State to make regulations to give effect to the recommendations
+                        of the Report of the Inquiry concerning the United Kingdom of Great Britain and Northern
+                        Ireland under article 8 of the Optional Protocol to the Convention on the Elimination
+                        of All Forms of Discrimination against Women.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Requires the Secretary of State to make regulations to establish a scheme which provides
+                        for payments to be made to, or in respect of, a person who has sustained an injury
+                        as a result of a Troubles-related incident.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>The Northern Ireland (Executive Formation and Exercise of Functions) Act 2018</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Northern Ireland (Executive Formation and Exercise of Functions) Act 2018 (“2018
+                     Act”) was passed on 1 November 2018 to facilitate an extended legal period for formation
+                     of an Executive in Northern Ireland. The Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Extended the period during which Northern Ireland Ministers could be appointed following
+                        the election of the Northern Ireland Assembly on 2 March 2017 (“the period for Executive
+                        formation”) so as to expire on 26 March 2019;<a class="fn" id="fnref-1" href="#fn-1">1</a> and </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Clarified that Northern Ireland departments are not prevented from exercising their
+                        functions in the absence of NI Ministers during the period for Executive formation,
+                        so long as they are satisfied that it is in the public interest to do so and they
+                        have regard to guidance published by the Secretary of State. </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Collapse of the Northern Ireland Executive</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>There has been no functioning Northern Ireland Executive since 9 January 2017, when
+                     the then deputy First Minister of Northern Ireland resigned, which also resulted in
+                     the First Minister ceasing to hold office. All other Northern Ireland Ministers ceased
+                     to hold office when an extraordinary Assembly election was held on 2 March 2017. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The period for the appointment of Ministers to form an Executive after that election
+                     was extended to 29 June 2017 by the Northern Ireland (Ministerial Appointments and
+                     Regional Rates) Act 2017 (“MARRA”), but no Ministers were appointed.</p>
+               </section>
+               <section class="level">
+                  <p>Talks to restore the Northern Ireland Executive</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>In February 2018, Northern Ireland’s main political parties embarked on a new phase
+                     of talks aimed at restoring the Northern Ireland Executive and Assembly. However,
+                     after 2 months of talks, the DUP and Sinn Féin (who, as the two largest parties, are
+                     entitled to the First and deputy First Minister posts respectively) were unable to
+                     reach an agreement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>On 26 April 2019, the UK Government and the Irish Government announced a fresh round
+                     of political talks. The talks between the UK Government, the Irish Government and
+                     the five Northern Ireland political parties, in accordance with the three-stranded
+                     approach set out in the Belfast/Good Friday Agreement, commenced on 7 May.<a class="fn" id="fnref-2" href="#fn-2">2</a> Following extensive discussion and negotiation, the talks have not yet been able
+                     to reach a conclusion. In light of the significant uncertainty ahead across the UK
+                     the Government believes that an extended window is needed. </p>
+               </section>
+               <section class="level">
+                  <p>Extension of Executive formation period</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Section 16A of the 1998 Act provides for a 14 day period after the first meeting of
+                     the Assembly following an election in which Northern Ireland Ministers – including
+                     the First Minister and deputy First Minister – must be appointed. If they are not,
+                     then the Secretary of State is required to propose a date for another election under
+                     section 32(3). That period initially expired on 27 March 2017 but was extended by
+                     the MARRA so as to expire on 29 June 2017. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The 2018 Act then extended the time under section 16A of the 1998 Act for Ministers
+                     to be appointed until 26 March 2019, conferring a power on the Secretary of State
+                     to further extend that period by regulations on one occasion only for up to 5 months.
+                     On 20 March 2019 the Secretary of State exercised that power and the period for Executive
+                     formation was extended so as to expire on 25 August 2019.<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>This Act extends the period again so as to expire on 21 October 2019 and enables the
+                     Secretary of State to further extend that period until 13 January 2020 (by regulations
+                     subject to the made affirmative procedure). The made affirmative procedure will enable
+                     the Secretary of State to make the regulations and extend time without the prior approval
+                     of Parliament but requires the subsequent approval of Parliament, ensuring Parliamentary
+                     scrutiny of how and why she has exercised the power. Extending the period for forming
+                     an Executive means that if agreement is reached to form an Executive after 25 August
+                     2019, Ministers can be appointed right away without the need for further legislation.
+                     This also has the effect that section 3 of the 2018 Act continues to apply and Northern
+                     Ireland departments may continue to exercise their functions in accordance with that
+                     section.<a class="fn" id="fnref-4" href="#fn-4">4</a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The relevant legal background is set out in the policy background to these notes.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 13 sets out the territorial extent of the Act that is the jurisdictions in
+                     which the Act forms part of the law. The extent of an Act can be different from its
+                     application. Application is<br>about where the Act produces a practical effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Except for section 9 which extends to Northern Ireland only, the Act extends to England
+                     and Wales, Scotland and Northern Ireland. It applies to Northern Ireland only. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. The table also summarises the position regarding
+                     legislative consent motions.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Extension of period for forming an Executive</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 1 amends section 1(1) of the 2018 Act so as to extend the period for Executive
+                     formation. It enables Northern Ireland Ministers to be appointed without the need
+                     for further legislation at any point until 21 October 2019.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Limited power to further extend period for Executive formation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 2 substitutes a new section 2 in the 2018 Act. As substituted that section
+                     will confer a power on the Secretary of State to extend the period for forming an
+                     Executive by regulations until 13 January 2020. This means that if Ministers have
+                     not been appointed, but the Secretary of State is of the view that further time is
+                     needed to enable this, they may extend the period without further primary legislation.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Secretary of State may only exercise the power on or before 21 October 2019 and
+                     if they do, may only extend the period so as to expire on 13 January 2020 (subsections
+                     (1) and (2) of new section 2). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The regulations will be subject to the made affirmative procedure in Parliament. That
+                     is to say, they may be made without the prior approval of Parliament. They must however
+                     be approved by Parliament within 28 days of having been made and if they are not will
+                     cease to have effect. The 28 days is calculated so as to exclude any days when Parliament
+                     is dissolved or prorogued or during which both Houses are adjourned for more than
+                     four days (subsections (5) and (8) of new section 2). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>If the regulations are not approved within 28 days and cease to have effect on or
+                     before 21 October 2019 then the period for forming an Executive will be treated as
+                     ending on that date (subsection (6) of new section 2). If the regulations are not
+                     approved within 28 days and cease to have effect after 21 October, then the period
+                     for forming an Executive is treated as ending when they cease to have effect (subsection
+                     (7) of new section 2). </p>
+               </section>
+               <section class="level">
+                  <p>Sections 3-7: Reports and Debates</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Sections 3-7 require regular reporting to Parliament on a range of matters relating
+                     to Northern Ireland and for debates to be arranged in relation to a number of these
+                     reports. Taken as a whole, their effect is as follows.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The Secretary of State must, on or before 4 September 2019, publish and lay before
+                     both Houses of Parliament a report which covers the following issues relating to Northern
+                     Ireland:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress towards the formation of a Northern Ireland Executive (section 3(1)),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress towards preparing legislation to provide for transparency of political donations
+                        and loans from 1 January 2014 (section 3(6)),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Improvement of higher education and the establishment of a university in Derry/Londonderry
+                        (section 3(7)),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress towards protecting veterans from repeated investigation into Troubles-related
+                        incidents by introducing a presumption of non-prosecution in the absence of compelling
+                        new evidence (section 3(8)),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress towards developing new prosecution guidance for Troubles-related cases (section
+                        3(9)),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>A review of abortion law in Northern Ireland and how that law might be amended in
+                        the absence of an Executive (section 3(10)),</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The Secretary of State must then, on or before 9 October 2019, publish and lay before
+                     both Houses of Parliament a further report on the issues listed above. This requirement
+                     then repeats every fourteen calendar days until 18 December 2019 (section 3(5)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Each time one of these reports is published, the Secretary of State must make arrangements
+                     for a neutral motion to be debated in the House of Commons; and for a ‘take note’
+                     motion to be debated in the House of Lords (subsection (2)). These debates must take
+                     place within the period of five calendar days beginning with the end of the day on
+                     which the report is laid before Parliament (section 3(3)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 3(4) provides that, if the Secretary of State cannot comply with the obligations
+                     to lay the report before Parliament and make arrangements for a motion as described
+                     above, then a proclamation under the Meeting of Parliament Act 1797 shall require
+                     Parliament to meet on a specified day within a period of five calendar days beginning
+                     with the end of the day on which the relevant report is laid before Parliament, and
+                     to meet on the five following days, excluding weekends and bank holidays.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The Secretary of State must, on or before 4 September, publish separate reports on
+                     each of the following issues:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress made in Northern Ireland on gambling issues (section 3(11));</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress on the use of discretionary powers to provide assistance and support in relation
+                        to human trafficking and exploitation and related issues (section 3(12));</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress made towards preparing legislation implementing a pension for victims seriously
+                        injured in the Troubles (section 3(13)); and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress made towards implementing the recommendations of the Inquiry into Historical
+                        Institutional Abuse in Northern Ireland between 1922 and 1995 (section 3(14)).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>The reports published under section 3(11) and (12) must be included in the first report
+                     made under section 3(1) (see paragraph 20 above) and laid before both Houses of Parliament
+                     (section 3(2)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>The reports under section 3(13) and (14) must be published before the report under
+                     section 3(1) but there is no requirement to lay these reports before Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Within two sitting days of each report under section 3(11)-(14) being published, the
+                     Secretary of State must make arrangements for a separate motion approving the contents
+                     of each report to be debated in the House of Commons; and for a ‘take note’ motion
+                     to be debated in the House of Lords. The debates must take place within seven sitting
+                     days of the report being published- – see sections 4 to 7.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Before making the report under section 3(1), the Secretary of State must publish a
+                     separate report on each of the following issues relating to Northern Ireland:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress towards preparing legislation on the Armed Forces Covenant in Northern Ireland
+                        (subsection (15)), and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Whether the definition of a victim in Northern Ireland legislation should be revised
+                        (subsection (16)).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The Secretary of State must also, on or before 21 October 2019 publish a report on
+                     each of the following issues relating to Northern Ireland:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress towards establishing a Renewable Heat Incentive Hardship Unit (subsection
+                        (17)),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress on libel legislation in Northern Ireland and on any plans to align that law
+                        with the law in Great Britain (subsection (18)),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Progress on the implementation of Project Life 2 - Strategy for Suicide Prevention
+                        in Northern Ireland (subsection (19)), and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>An assessment in relation to the demand for elective care services and how this is
+                        exceeding health service capacity for both new and existing patients across Northern
+                        Ireland; details of the current measures being taken - as well as planned - to reduce
+                        health and social care waiting times, and the impact of waiting times on children
+                        (subsection (20)).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>The Secretary of State must also, on or before 1 December 2019, publish a report on
+                     future welfare mitigation support measures relating to the period after March 2020
+                     (subsection (21)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>The requirements to publish reports under section 3 cease to apply if a First Minister,
+                     deputy First Minister and the Northern Ireland Ministers are appointed.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Same sex marriage and opposite sex civil partnerships</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Section 8 requires the Secretary of State to make regulations to change the law relating
+                     to marriage in Northern Ireland to provide that marriage between same-sex couples
+                     is lawful, and that opposite-sex civil partnerships are also lawful. The section comes
+                     into effect on 22 October 2019 if a Northern Ireland Executive is not restored by
+                     21 October 2019, and the regulations, which will be subject to the negative resolution
+                     procedure in Parliament, must be in force on or before 13 January 2020. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection (2) requires that these regulations must be in force no later than 13 January
+                     2020. However this does not limit the re-exercise of power if needed, meaning further
+                     regulations can be made under this power and following the same procedure after this
+                     date, as appropriate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Subsection (3) enables regulations to make appropriate provision to ensure that same-sex
+                     marriage and opposite-sex civil partnership in Northern Ireland are accompanied by
+                     a comprehensive regime of rights, benefits and obligations which are equivalent to
+                     those available for opposite-sex marriage and same-sex&nbsp;civil partnerships.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Subsection (4) provides in particular for the regulations under subsection (3) to
+                     deal with parenthood and parental responsibility, gender recognition, the financial
+                     consequences of marriage and civil partnership (such as pensions and social security),
+                     and for the recognition in Northern Ireland of marriages, civil partnerships and similar
+                     relationships formed in the rest of the UK and overseas.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsection (5) enables regulations to make provision for conversion from marriage
+                     to a civil partnership and vice-versa.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Subsection (6) enables the regulations to also make appropriate provision to protect
+                     the ability of individuals and organisations to act in accordance with religious or
+                     other belief or opinion in relation to marriage or civil partnership, including the
+                     conversion of marriage into civil partnership and vice versa.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Subsection (7) enables regulations made under section 8 to set fees and to confer
+                     discretion, for example on the Registrar General for Northern Ireland, who currently
+                     has power to determine the form and particulars of certain applications in connection
+                     with marriage.&nbsp;Subsection (7) also enables the regulations to sub-delegate regulation-making
+                     and fee-setting powers to ensure that, where appropriate, the relevant Northern Ireland
+                     department can make administrative provision in regulations and set fees without the
+                     need for recourse to the Assembly each time.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>By virtue of subsection (8) a reference to marriage or forming a civil partnership
+                     in Northern Ireland in section 8 includes forces and consular marriages and civil
+                     partnerships that take place outside the UK.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: International obligations in respect of CEDAW</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Section 9 requires the Secretary of State to make regulations to give effect to the
+                     recommendations of the Report of the Inquiry concerning the United Kingdom of Great
+                     Britain and Northern Ireland under article 8 of the Optional Protocol to the Convention
+                     on the Elimination of All Forms of Discrimination against Women (‘ the CEDAW Report’).
+                     This duty comes into effect on 22 October 2019 if the Northern Ireland Executive is
+                     not restored by 21 October 2019, and these regulations, which will be subject to the
+                     made affirmative resolution procedure in Parliament, will come into effect on or before
+                     31 March 2020. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Subsection (1) requires the Secretary of State to ensure that recommendations 85 and
+                     86 of the CEDAW Report are implemented.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Subsection (2) repeals sections 58 and 59 the Offences Against the Person Act 1861
+                     (“OAPA”) (attempts to procure abortion) in Northern Ireland. This is required to achieve
+                     implementation of one of the CEDAW Report recommendations. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Subsection (3) prevents any&nbsp;new investigations and criminal proceedings being commenced
+                     under those sections.&nbsp;Any existing proceedings must also be discontinued. This is
+                     required to achieve implementation of the criminal moratorium, one of the CEDAW Report
+                     recommendations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Subsection (4) requires the Secretary of State to make any other changes as may be
+                     required to give effect to the requirement in subsection (1) by regulations.&nbsp;Those
+                     regulations must, in particular, make provision for the purposes of regulating abortions
+                     in Northern Ireland and that must include the circumstances in which an abortion may
+                     take place (subsection (5)). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Subsection (6) requires regulations under subsection (4) to come into force by 31
+                     March 2020. However this does not limit the re-exercise of power if needed, meaning
+                     further regulations can be made under this power and following the same procedure
+                     after this date, as appropriate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Subsection (7) requires the Secretary of State to exercise the duties imposed on her
+                     by section 9 expeditiously&nbsp;while recognising the importance of doing so for protecting
+                     the human rights of women in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Subsection (8) enables the Secretary of State to make provision by regulations that
+                     appear to be appropriate in view of the repeal of sections 58 and 59 OAPA and the
+                     prohibition and discontinuation of investigations and criminal proceedings for offences
+                     under those sections.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>By virtue of subsection (9), regulations under section 9 (whether under subsection
+                     (4) or (8)) may make any provision that could be made by an Act of the Assembly.&nbsp;This
+                     would mean, for example, that regulations could delegate functions to Northern Ireland
+                     Departments or amend other legislation (matters which would normally require a specific
+                     power).&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Subsection (10) notes that the CEDAW Report referred to in section 9 is the Report
+                     of the Inquiry concerning the United Kingdom of Great Britain and Northern Ireland
+                     under article 8 of the Optional Protocol to the Convention on the Elimination of All
+                     Forms of Discrimination against Women published in March 2018.</p>
+               </section>
+               <section class="level">
+                  <p>Section 10: Victims payments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Section 10 requires the Secretary of State to establish, by regulations subject to
+                     the negative resolution procedure, a scheme of payments for individuals injured in
+                     the Troubles (subsection (1)). This is further to the commitment set out in paragraph
+                     28 of the 2014 Stormont House Agreement to find a way to provide a “pension” for those
+                     most seriously injured in the Troubles.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Under Subsection (2) the first such regulations must be made before the end of January
+                     2020 and come into force before the end of May 2020 - in practice this means that
+                     the scheme should be operational by that later date.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Subsection (3) provides that regulations made under subsection 1 may include specific
+                     criteria for eligibility to receive such a payment, including:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Nature or&nbsp;extent of injury (for example, setting a threshold for entry to the scheme);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>How, when, or where the injury was sustained (for example, whether the injury was
+                        sustained through the individuals own fault, or what time period the scheme covers);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Residence and nationality; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Whether or not an individual has been convicted of an offence (for example, this could
+                        be linked to how the injury was sustained to exclude individuals convicted of an offence
+                        connected with the incident in which they sustained their injury from the scheme).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Subsection (4) allows the regulations to provide for costs incurred&nbsp;during the making
+                     of an application under the scheme to be reimbursed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Subsection (5) allows the regulations to make provision: determining the size of payments
+                     under subsection (1); for payments for periods before the Act was made (for instance
+                     back payments); for when payments would need to be reduced (for example where the
+                     applicant is already in receipt of similar payments) or repaid (for example in cases
+                     of fraud); and how the payments are to be treated by other legislative schemes, such
+                     as social security benefits.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Subsection (6) requires that the regulations must provide for backdated payments to
+                     be payable to individuals who are eligible for the scheme who make an application
+                     within a period specified in the scheme (which must be at least two years).&nbsp;The payments
+                     those individuals receive are required to reflect the amount that would have been
+                     payable to them had the scheme existed since December 2014 (when the Stormont House
+                     Agreement was agreed).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Subsection (7) enables the enables the regulations to make provision for various practical
+                     matters, including administration of the scheme (including creation of its administrative
+                     body), its funding from the Northern Ireland consolidated fund; evidential matters;
+                     information sharing between public authorities (for the purpose of assessing claims);
+                     the application process, reviews and appeals of decisions; and support to be given
+                     to applicants such as information, advice and assistance.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Subsection (8) provides that the regulations can confer discretion on a person. This
+                     might, for instance, allow the scheme administrator&nbsp;to make discretionary decisions
+                     in special circumstances such as terminal illness or other special cases.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Subsection (9)(a) allows the regulations to amend legislation made by an Act of Parliament
+                     or Northern Ireland legislation. This is expected to be used to make amendments to
+                     relevant connecting legislation such as existing social security legislation or the
+                     Freedom of Information Act 2000. Subsection (9)(b) allows ancillary provision to be
+                     made in respect of Welsh and Scottish primary legislation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Subsection (10) requires the Secretary of State to have regard to advice from the
+                     Commissioner for Victims and Survivors for Northern Ireland in making the first set
+                     of regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Subsection (11) is self-explanatory.</p>
+               </section>
+               <section class="level">
+                  <p>Section 11: Regulations – supplementary</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Section 11 specifies that the power to make regulations may be used to make different
+                     provision for different purposes. This is a standard provision.</p>
+               </section>
+               <section class="level">
+                  <p>Section 12: Regulations - procedure</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Section 12 sets out the procedure applicable to the various regulation-making powers
+                     contained in the Act. Regulations made under section 9 (International obligations
+                     in respect of CEDAW) will be subject to the made affirmative procedure which requires
+                     that they must be approved by Parliament within the period of 28 days beginning with
+                     the date on which they are made. Regulations under sections 8 and 10 (same sex marriage
+                     and opposite sex civil partnership and victims’ payments) are subject to the negative
+                     procedure.</p>
+               </section>
+               <section class="level">
+                  <p>Section 13: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>This section is self-explanatory.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>The Act will come into force on the day on which it is passed (24 July 2019), except
+                     for sections 9 – 12 which come into force on 22 October 2019 unless an Executive in
+                     Northern Ireland is formed on or before 21 October 2019, in which case they do not
+                     come into force at all.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Financial implications of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>There are no direct costs arising from this Act. The Act requires the Secretary of
+                     State to make regulations in three areas as set out above. Each set of regulations
+                     will have costs associated with the delivery of these regulations which will be set
+                     out as these regulations are developed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>The following documents are relevant to the Northern Ireland (Executive Formation)
+                     Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Guidance on decision-making for Northern Ireland Departments during the temporary
+                        period for Northern Ireland Executive formation:  <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/754029/Cm9725_Guidance_on_decision-making_for_NI_Dpts.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/754029/Cm9725_Guidance_on_decision-making_for_NI_Dpts.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Historical Institutional Abuse Inquiry:<br><a href="https://www.hiainquiry.org/historical-institutional-abuse-inquiry-report-chapters"><u>https://www.hiainquiry.org/historical-institutional-abuse-inquiry-report-chapters</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Report of the Inquiry concerning the UK under article 8 of the Optional Protocol to
+                        the Convention on the Elimination of All Forms of Discrimination against Women.<br><a href="https://tbinternet.ohchr.org/Treaties/CEDAW/Shared%20Documents/GBR/INT_CEDAW_ITB_GBR_8637_E.pdf"><u>https://tbinternet.ohchr.org/Treaties/CEDAW/Shared%20Documents/GBR/INT_CEDAW_ITB_GBR_8637_E.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:0.69in">
+                        <col style="width:0.69in">
+                        <col style="width:0.69in">
+                        <col style="width:0.95in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No </p>
+                           </td>
+                           <td>
+                              <p>No </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5 </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9 </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>This Act affects matters within the devolved (transferred) competence of the Northern
+                     Ireland Assembly. The Sewel Convention sets out that the UK Parliament will not normally
+                     legislate in an area of devolved competence without the agreement of the devolved
+                     legislatures. In the absence of the Executive and a sitting Assembly, it is not possible
+                     for the Assembly to provide a Legislative Consent Motion. The Government is satisfied
+                     that the circumstances of this Act come within the exception allowed by the convention.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:3.53in">
+                        <col style="width:1.1in">
+                        <col style="width:1.64in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>4 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-07-04/debates/CE94864F-0382-45E2-909C-66E3920928FF/BusinessWithoutDebate">
+                                    <u>Vol.662 Col.1451</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>8 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-07-08/debates/A6AF2105-1AAB-4C32-8B69-6E78DE83F87C/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.663 Col.59</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>9 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-07-09/debates/87A66283-DF13-4CC8-9069-48974EA40346/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.663 Col.161</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>9 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-07-09/debates/87A66283-DF13-4CC8-9069-48974EA40346/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.663 Col.161</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>9 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-09/debates/F3E0A06C-C36B-4A60-882A-7CA690D3F0BF/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.798 Col.1794</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>10 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-10/debates/1DCF7041-4659-49A5-81E3-F7A1013661CB/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.798 Col.1824</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>15 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-15/debates/2B487CC4-0C99-444D-A23F-574AACBAFBCE/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.799 Col.13</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>17 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-17/debates/D0194A4B-4275-4E81-AB72-61237033616D/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.799 Col.244</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>17 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-17/debates/BF8BE40B-B1D6-46B9-8986-103610CFA38A/NorthernIreland(ExecutiveFormation)Bill">
+                                    <u>Vol.799 Col.357</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>18 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-18/debates/A6B61FF3-D48B-476A-BD56-4DD419BBF690/NorthernIreland(ExecutiveFormationEtc)Bill">
+                                    <u>Vol.799 Col.470</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>24 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-24/debates/6B1EE293-9CE0-4EA5-87E2-601BC0F8C9D0/RoyalAssent">
+                                    <u>Vol.799 Col.743</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C – Progress of the Act Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>This Annex shows how each section of the Act was numbered during the passage of the
+                     Bill through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.8in">
+                        <col style="width:1.32in">
+                        <col style="width:1.21in">
+                        <col style="width:1.53in">
+                        <col style="width:1.4in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Section of the Act</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as Introduced in the Commons</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as introduced in the Lords</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as amended in Committee in the Lords&nbsp;</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as amended on Report in the Lords&nbsp;</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Subsequently extended until 25 August 2019.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The 2019 talks aimed at restoring the Northern Ireland Executive have consisted of
+                  five working groups each discussing key issues central to making progress. They cover:
+                  a programme for government; transparency, accountability and the operation of the
+                  Executive; reform of the Petition of Concern; rights, language and identity issues;
+                  and improving the sustainability, stability and operation of the Belfast/Good Friday
+                  Agreement institutions as a whole.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Northern Ireland (Extension of Period for Executive Formation) Regulations 2019 (SI
+                  2019/616).</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Which provides for the exercise of NI departmental functions in the absence of Ministers.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

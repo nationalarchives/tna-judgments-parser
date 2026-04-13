@@ -1,0 +1,1154 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>STALKING PROTECTION ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Stalking Protection Act 2019 (c. 9) which received
+                  Royal Assent on 15 March 2019.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Home Office in order to assist the
+                  reader of the Act. They do not form part of the Act and have not been endorsed by
+                  Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of this Act is to create a new civil stalking protection order to protect
+                     members of the public from risks associated with stalking.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act makes provision for a new order which will:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>be available on application by the police to a magistrates’ court;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>enable the imposition of both prohibitions and requirements on the perpetrator; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>have a criminal penalty for breach.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The new order is designed for use particularly in cases where existing interventions
+                     are not always applicable, namely when:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the stalking occurs outside of a domestic abuse context, or where the perpetrator
+                        is not a current or former intimate partner of the victim (so called ‘stranger stalking’);
+                        or</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the criminal threshold has not, or has not yet, been met (such as while a criminal
+                        case is being built), or the victim does not support a prosecution.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The intention of this Act is to provide the police with an additional tool with which
+                     to protect victims of stalking and to fill a gap within the existing protective order
+                     regime.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>From 5 December 2015 – 29 February 2016 the Government ran a public consultation to
+                     explore whether it would be beneficial to introduce a new civil order to protect victims
+                     of stalking.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The consultation sought views on:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The effectiveness of existing interventions;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The challenges of identifying stalking in its early stages;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>How a stalking protection order might work in practice; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>What penalty should be imposed for breach of an order.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In particular, responses to the consultation highlighted a gap in the existing protective
+                     order regime and the need for earlier intervention in stalking cases, in order to
+                     protect victims and to address emerging patterns of behaviour in perpetrators before
+                     they become entrenched or escalate in severity.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>69% of consultation respondents did not believe that existing protective orders provide
+                     sufficient protection to victims of ‘stranger stalking’, as they apply to a domestic
+                     abuse context and require that a relationship has existed or still exists.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>In its response to the public consultation published in December 2016, the Government
+                     committed to legislate to introduce a new civil stalking protection order as soon
+                     as Parliamentary time allowed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>In 2012 the Protection from Harassment Act 1997 (“the 1997 Act”) was amended by the
+                     Protection of Freedoms Act 2012 to introduce two new stalking offences.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The offence of stalking under section 2A of the 1997 Act is a summary offence (triable
+                     in a magistrates’ court) punishable by imprisonment for a term not exceeding six months,
+                     or a fine, or both.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The offence of stalking involving fear of violence or serious alarm and distress under
+                     section 4A of the 1997 Act is an either way offence (triable in either a magistrates’
+                     court or the Crown Court) which carries a maximum penalty of ten years’ imprisonment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>In 2017 section 4A was amended by the Policing and Crime Act 2017 to increase the
+                     maximum penalty from five years’ to ten years’ imprisonment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The 1997 Act does not define stalking, but section 2A provides a (non-exhaustive)
+                     list of examples of “acts or omissions associated with stalking”. These are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>following a person,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>contacting, or attempting to contact, a person by any means,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>publishing any statement or other material—</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>relating or purporting to relate to a person, or</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">ii.</span></h2>
+                        <p>purporting to originate from a person,</p>
+                     </section>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>monitoring the use by a person of the internet, email or any other form of electronic
+                        communication,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>loitering in any place (whether public or private),</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>interfering with any property in the possession of a person,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>watching or spying on a person. </p>
+                  </section>
+                  <section class="subparagraph">
+                     <p>This is not an exhaustive list and each case should be considered on its circumstances.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The Stalking Protection Act makes provision for the Police to apply to the Magistrates’
+                     Court for a civil stalking protection order, without the requirement for a conviction,
+                     where it appears that a perpetrator has carried out acts associated with stalking,
+                     they pose a risk associated with stalking to another person and they believe the proposed
+                     order is necessary to protect another person from such a risk. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>In similar vein to the criminal stalking offences under the Protection From Harassment
+                     Act the Stalking Protection Act does not define stalking, however section 1 of the
+                     Act signposts readers to the examples of acts or omissions associated with stalking
+                     set out in section 2A of the 1997 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Secondary legislation will make provision for subjects of applications and orders
+                     to apply for criminal legal aid as well as making provision for Magistrates’ Courts
+                     for service of summonses and orders on those subject to applications.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 15(1) sets out the territorial extent of the Act, that is the jurisdiction
+                     in which the Act applies. The extent of an Act can be different from its application.
+                     Application is about where an Act produces a practical effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The provisions in this Act extend and apply to England and Wales only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, the
+                     National Assembly for Wales or the Northern Ireland Assembly without the consent of
+                     the legislature concerned.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the Scottish Parliament, the National Assembly for Wales or the Northern
+                     Ireland Assembly, and no legislative consent motion is being sought in relation to
+                     any provision of the Act. If there are amendments relating to matters within the legislative
+                     competence of the Scottish Parliament, the National Assembly for Wales or the Northern
+                     Ireland Assembly, the consent of the relevant devolved legislature(s) will be sought
+                     for the amendments.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Applications for Orders</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p> Subsection (1) sets out who may apply for an order, what a stalking protection order
+                        is, and the grounds on which an application for an order may be made.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>The order will be available on application to a magistrates’ court by a chief officer
+                        of police.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>As stipulated in subsection (3), a chief officer of police for a police area in England
+                        and Wales may make an application only in respect of someone who resides in their
+                        police area, or who they believe is in that area or is intending to come to it. This
+                        provision does not apply to the chief constables of the British Transport Police and
+                        of the Ministry of Defence Police, who may apply for an order under section 1(1) but
+                        who do not have a territorial police area.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>For the purposes of making an application, the chief officer of police must be satisfied
+                        that the defendant has carried out acts associated with stalking; that they pose a
+                        risk of stalking to another person (as defined in subsection (4)); and that the order
+                        is necessary in order to protect the other person from that risk.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (1)(c) provides that the individual to be protected by the order does not
+                        have to have been the victim of the acts associated with stalking which provide the
+                        grounds for the application. This scenario could arise if a perpetrator is stalking
+                        other people connected to that individual (such as family members, friends, or co-workers),
+                        knowing that this behaviour will impact on the individual who is the principle subject
+                        of the stalking acts. This is known as ‘stalking by proxy’.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection (2) sets out what a stalking protection order is: a preventative order
+                        which can impose both prohibitions and requirements on the perpetrator as are necessary
+                        for the purpose of preventing them from carrying out acts associated with stalking.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>An order can prohibit the defendant from doing something, as far as is necessary,
+                        to protect the other person from risk of stalking, and could for example include prohibiting
+                        the defendant from:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>entering certain locations or defined areas where the victim resides or frequently
+                           visits;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>contacting the victim by any means, including via telephone, post, email, SMS text
+                           message or social media;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>physically approaching the victim, at all or to within a specified distance.</p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>This is not an exhaustive list.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>An order can also require the defendant to do something, as far as is necessary, to
+                        protect the other person from risk of stalking. Positive requirements could include,
+                        for example, requiring the defendant to:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>attend a perpetrator intervention programme;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>attend a mental health assessment;</p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>This is not an exhaustive list. </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Subsection (5) provides that the stalking behaviour considered when determining an
+                        application for an order can have taken place in any part of the United Kingdom, or
+                        abroad. This can also include behaviour that took place prior to this Act coming into
+                        force. This Act does not define stalking. However, subsection (4) sets out what may
+                        characterise a risk associated with stalking and subsection (6) signposts readers
+                        to section 2A of the 1997 Act for examples of acts associated with stalking. The 1997
+                        Act similarly does not define stalking, but provides a (non-exhaustive) list of examples
+                        of “acts or omissions associated with stalking” – see paragraph 14 above.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Power to make Orders</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>This section sets out the powers of the magistrates’ court to make a stalking protection
+                        order, the grounds on which the court may make an order and what may be included in
+                        the terms of an order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Subsection (1) requires that a magistrates’ court must be satisfied that the defendant
+                        has carried out acts associated with stalking; that they pose a risk of stalking to
+                        another person; and that each of the prohibitions and requirements included within
+                        the terms of the order is necessary in order to protect the other person from that
+                        risk.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Subsection (3) provides that any prohibitions or requirements included within the
+                        terms of the order (if deemed necessary as defined in subsection (2)) must, so far
+                        as is practicable, avoid conflict with the defendant’s religious beliefs, or their
+                        work or educational obligations. The intention of this subsection is to ensure that
+                        the terms of the order are proportionate.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Subsection (4) provides that the defendant must comply with a prohibition or requirement
+                        in all parts of the United Kingdom, unless it is expressly limited to a particular
+                        locality.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Subsection (5) reiterates the provisions of Section 1(5) with respect to locations
+                        or times at which acts which provide the grounds for an order may have been carried
+                        out.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Subsections (6) and (7) apply when an order is being made in relation to a defendant
+                        who is already the subject of another stalking protection order. This scenario could
+                        arise, for example, in the case of a serial stalker who is stalking multiple victims.
+                        Subsection (7) provides that the terms of the different orders must not contradict
+                        each other. For example, the new order cannot require the defendant to attend a perpetrator
+                        intervention programme at a location which the earlier order prohibits them from entering.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>The making of, or the refusal to make, an order under this section can be appealed
+                        to the Crown Court. The appeals process is set out at Section 7.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 3: Duration of orders</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>This section sets out the period of time for which an order has effect.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Subsection (1) provides that an order has effect for a fixed period specified within
+                        the terms of the order, or until a further order is made. A further order could be
+                        a variation or renewal of this same order, or a different stalking protection order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Subsection (2) provides that, where a fixed period is specified for the duration of
+                        the order, this must be for at least two years beginning on the day on which the order
+                        is made.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Subsection (3) provides that different time periods may be specified in relation to
+                        different prohibitions or requirements included in the terms of the order, as is necessary
+                        to protect the other person from risk of stalking.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 4: Variations, renewals and discharges</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>This section sets out how a stalking protection order may be varied, renewed or discharged
+                        and who may apply for these measures.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>An order may be varied, renewed or discharged on application to a magistrates’ court
+                        by either the defendant who is subject to the order, or a relevant chief officer of
+                        police. The phrase ‘relevant chief officer of police’ is defined at Section 14(1).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Before making a decision to vary, renew or discharge an order, the court must hear
+                        from the defendant and any relevant chief officer of police who wants to be heard.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>The making of, or the refusal to make, an order under this section can be appealed
+                        to the Crown Court. The appeals process is set out at Section 7.</p>
+                  </section>
+                  <section class="level">
+                     <p>Variations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsection (4)(a) sets out that the court may not impose additional prohibitions or
+                        requirements on the defendant unless they are necessary in order to protect a person
+                        from the risk of stalking.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>A scenario in which the police or the defendant may apply to vary an order is if the
+                        person being protected moves house or gets a new job and therefore the terms of the
+                        order need to be amended in order to reflect the new locations or defined areas which
+                        the defendant is prohibited from entering. Another scenario could be if the defendant’s
+                        stalking behaviour changes and it becomes necessary to amend the terms of the order
+                        to continue to protect the victim from harm.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Renewals</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>A scenario in which the police may apply to renew an order is if the duration of the
+                        order is about to expire and they are satisfied that the renewal of the order is necessary
+                        to continue to protect the victim from risk of stalking.</p>
+                  </section>
+                  <section class="level">
+                     <p>Discharges</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>A scenario in which the police or the defendant may apply to discharge an order before
+                        it expires is if they are satisfied that the order is no longer necessary to protect
+                        the victim from risk of stalking.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (4)(b) sets out that the court may not discharge an order before the end
+                        of two years from the day on which the order was made<a class="fn" id="fnref-1" href="#fn-1">1</a> without the consent of the defendant and, where the application was made by the chief
+                        officer of police, by the appropriate chief officer of police. Which chief officer
+                        of police is required to give consent depends on which chief officer of police had
+                        applied for the order and, if the order was applied for by the chief officer of the
+                        British Transport Police or the chief officer of the Ministry of Defence Police and
+                        the defendant lives in England and Wales, the chief officer of police in the area
+                        in which the defendant lives.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>A scenario in which the defendant may not consent for the order to be discharged is
+                        if they still consider themselves to pose a risk of stalking to the other person.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 5: Interim stalking protection Orders</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>This section sets out the powers of a magistrates’ court to make an interim stalking
+                        protection order, who may apply for an interim order, what may be included in the
+                        terms of an interim order and the duration of an interim order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>The purpose of this provision is to protect the victim whilst the main application
+                        for the stalking protection order under Section 1 is being determined.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Subsection (2) provides that interim stalking protection orders will be available
+                        on application to a magistrates’ court by a chief officer of police, either at the
+                        same time as that officer makes the “main” application for an order under Section
+                        1, or in a separate application if the “main” application has already been made.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Subsection (3) provides that interim orders can prohibit the defendant from doing
+                        something, or require the defendant to do something, as the court deems appropriate.
+                        See paragraphs 28 and 29 above for examples of prohibitions and requirements which
+                        could be included in the terms of an interim order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Subsection (4) provides that the prohibitions and requirements included within the
+                        terms of an interim order must, so far as is practicable, avoid conflict with the
+                        defendant’s religious beliefs, or their work or educational obligations. The intention
+                        of this subsection is to ensure that the terms of the interim order are proportionate.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Subsection (5) provides that the defendant must comply with a prohibition or requirement
+                        in all parts of the United Kingdom, unless it is expressly limited to a particular
+                        locality.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Subsection (6) sets out the duration of an interim order. Interim orders have effect
+                        only for a fixed period specified in the order and cease to have effect on determination
+                        of the “main” application under Section 1.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Subsection (7) provides that the defendant may apply to a magistrates’ court for that
+                        order to be varied, renewed or discharged. The process for varying, renewing or discharging
+                        orders is set out at Section 4.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 6: Content of Orders</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>This section sets out what details must be specified within the terms of an order
+                        or an interim order.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 7: Appeals</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>This section sets out who may appeal to the Crown Court against the making of, or
+                        the refusal to make, an order or an interim order. This includes appeals against the
+                        variation, renewal or discharge of orders or interim orders, or the refusal to do
+                        so, under Section 4.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Subsection (4) gives the Crown Court powers to make an order or orders to give effect
+                        to its determination of an appeal, as appears to it to be appropriate.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 8: Offence of breaching stalking protection order etc.</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>This section provides that it is a criminal offence to breach the terms of an order
+                        or an interim order without reasonable excuse. It will be for a court to decide what
+                        constitutes a reasonable excuse in a particular case.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Subsection (2)<i></i>sets out that breach of an order or an interim order is an either way offence, meaning
+                        that it can be tried in either a magistrates’ court or a Crown Court depending on
+                        the seriousness of the offence. The penalty for breach on conviction by a magistrates’
+                        court (‘summary conviction’) is imprisonment for a term not exceeding 12 months (or,
+                        in relation to an offence committed before section 154(1) of the Criminal Justice
+                        Act 2003 comes into force, six months), or a fine, or both. The penalty for breach
+                        on conviction by a Crown Court (‘conviction on indictment’) is imprisonment for a
+                        maximum term of five years, or a fine, or both.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Subsection (4) provides that conditional discharge is not available to the courts
+                        on conviction for breach of an order or an interim order. A conditional discharge
+                        is where the court decides not to impose a punishment on the offender unless they
+                        go on to commit another crime, at which point they can be sentenced for both the earlier
+                        offence and the new one.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 9: Notification requirements</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>This section requires a defendant subject to an order or an interim order to provide
+                        certain personal details to the police before the end of three days beginning with
+                        the date of service of the order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Subsections (2) to (4) set out what personal information the defendant is required
+                        to provide to the police, and what to do if any of this personal information changes.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Subsection (5) provides that the notification requirements set out in this section
+                        do not apply to the defendant if they are already subject to notification requirements
+                        under Part 2 of the Sexual Offences Act 2003, which is commonly referred to as being
+                        on the ‘sex offenders’ register’. This means that the defendant cannot be subject
+                        to both sets of notification requirements at the same time.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Subsection (6) sets out what happens when a relevant defendant transitions between
+                        the notification requirements under Part 2 of the Sexual Offences Act 2003 (the ‘sex
+                        offenders’ register’) and the notification requirements under this Act. In these circumstances,
+                        the defendant must notify within three days of the final day that they are subject
+                        to notification requirements under Part 2 of the Sexual Offences Act 2003. This ensures
+                        that there is no gap between the two sets of notification requirements.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 10: Method of notification and related matters</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>This section sets out where and how a defendant must notify the police depending on
+                        where their home is situated, how notification must be acknowledged, and the police
+                        powers to verify the identity of the defendant when they attend at a police station
+                        to notify.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>If the defendant has a home address in England or Wales, then they must attend at
+                        a police station in their local police area to notify. The phrase ‘local police area’
+                        is defined at Section 14(1) of the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>If the defendant does not have a home address in England or Wales, then they must
+                        attend at a police station in the local police area in which the magistrates’ court
+                        which last made an order or interim order in respect of them is situated. This will
+                        be a police station in England or Wales. A scenario in which this provision may apply
+                        is if a defendant subject to an order or an interim order subsequently moves to, or
+                        moves between, Scotland and Northern Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>Subsection (3) sets out, if the defendant’s home address changes, which home address
+                        they must provide when notifying depending on whether this takes place before or after
+                        the change of address.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Subsection (4) provides that a notification must be acknowledged in writing and in
+                        such form as the Secretary of State may direct.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 11: Offences relating to notification</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>This section provides that it is a criminal offence to fail to comply with the notification
+                        requirements without reasonable excuse or knowingly to provide the police with false
+                        information. It will be for a court to decide what constitutes a reasonable excuse
+                        in a particular case.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>This is an either way offence, meaning that it can be heard in either a magistrates’
+                        court or the Crown Court depending on the seriousness of the offence. The penalty
+                        for breach on conviction by a magistrates’ court (‘summary conviction’) is imprisonment
+                        for a term not exceeding 12 months (or, in relation to an offence committed before
+                        section 154(1) of the Criminal Justice Act 2003 comes into force, six months), or
+                        a fine, or both. The penalty for breach on conviction by a Crown Court (‘conviction
+                        on indictment’) is imprisonment for a maximum term of five years, or a fine, or both.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 12: Guidance</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">77 </span></h2>
+                     <p>This section requires the Secretary of State to issue and publish guidance to the
+                        police about the exercise of their functions under this Act. The statutory guidance
+                        will provide information about the procedure for applying for a Stalking Protection
+                        Order as well as providing a practical toolkit for police to use when making applications.
+                        </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 13: Procedure</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">78 </span></h2>
+                     <p>This section sets out some procedural details on the operation of the Act in the magistrates’
+                        courts.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">79 </span></h2>
+                     <p>Subsection (1)<i></i>provides that an application to a magistrates’ court under any provision in the Act
+                        is to be made by complaint. This is the process by which civil matters are commenced
+                        in the magistrates’ court.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">80 </span></h2>
+                     <p>Subsection (2) provides that section 127 of the Magistrates’ Courts Act 1980 (time
+                        limits) does not apply to any provision in the Act. This means that there is no requirement
+                        for a magistrates’ court to hear proceedings for an order within six months from the
+                        time when the acts associated with stalking were carried out.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 14: Interpretation</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">81 </span></h2>
+                     <p>This section defines various words and phrases used within the Act.  </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 15: Extent, commencement and short title</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">82 </span></h2>
+                     <p>This section sets out the territorial extent of the Act, how and when the provisions
+                        will come into force and the short title of the Act.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>The substantive provisions in this Act will be brought into force by means of commencement
+                     regulations made by the Secretary of State.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Impact Assessment on the introduction of Stalking Protection Orders: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/575603/Stalking_Impact_Assessment.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/575603/Stalking_Impact_Assessment.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Consultation document: ‘Introducing a Stalking Protection Order – a consultation’:
+                        <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/482417/Introducing_a_Stalking_Protection_Order_-_a_consultation.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/482417/Introducing_a_Stalking_Protection_Order_-_a_consultation.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Summary of responses to the consultation, including the Government’s response: <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/575278/Stalking_Order_Consultation_Response_-_Final_to_Publish.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/575278/Stalking_Order_Consultation_Response_-_Final_to_Publish.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Delegated Powers Memorandum: <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0145/18145-DPM.pdf"><u>https://publications.parliament.uk/pa/bills/lbill/2017-2019/0145/18145-DPM.pdf</u></a>]</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>19 July 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-07-19/debates/AE667929-DA6E-4938-9928-FE573D5D0F3A/PointsOfOrder">
+                                    <u>Vol. 627 Col. 877</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 January 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-01-19/debates/5790FBB0-8E5E-4FD1-AE3C-665095381180/StalkingProtectionBill">
+                                    <u>Vol. 634 Col. 1229</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>9 July 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-07-09/debates/e048f8e0-a73d-4584-9a55-d4d325cf1bde/StalkingProtectionBill(FirstSitting)">
+                                    <u>Vol. 644 Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-11-23/debates/AB8D6204-3755-47A8-9CBD-81E56368D5E5/StalkingProtectionBill">
+                                    <u>Vol. 649 Col. 1147</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>26 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-11-26/debates/E3AC713F-5089-4FA2-96D9-08F239BE0D35/StalkingProtectionBill">
+                                    <u>Vol. 794 Col. 485</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 January 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-01-18/debates/3286DB07-65EC-44AD-9B6C-2F9A9C58C64B/StalkingProtectionBill">
+                                    <u>Vol. 795 Col. 455</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>6 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-03-06/debates/F3957F61-EA82-4A65-9D72-F8EBC822A48E/StalkingProtectionBill">
+                                    <u>Vol. 796 Col. 613</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>15 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-03-15/debates/FE8474F0-3B39-47A0-B3D3-9530C18AD1A7/Speaker%E2%80%99SStatementNewZealandTerrorAttacks">
+                                    <u>House of Commons Vol. 656 Col. 665</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-03-15/debates/F019358C-A242-4AE3-A2E7-A90D77D6C7C0/RoyalAssent">
+                                    <u>House of Lords Vol. 796 Col. 1211</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Where a fixed period is specified for the duration of an order, this must be for
+                  at least two years beginning on the day on which the order is made, as set out at
+                  section 3(2).</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

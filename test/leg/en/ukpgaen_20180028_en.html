@@ -1,0 +1,1363 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NORTHERN IRELAND (EXECUTIVE FORMATION AND EXERCISE OF FUNCTIONS)</b>
+               <b>
+                  </b>
+               <b>ACT 2018</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Northern Ireland (Executive Formation and Exercise
+                  of Functions) Act 2018 (c. 28) which received Royal Assent on 1 November 2018.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Northern Ireland Office in order
+                  to assist the reader in understanding the Act. They do not form part of the Act and
+                  have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Extends the period provided in the Northern Ireland Act 1998 for Northern Ireland
+                        Ministers to be appointed until 26 March 2019 with the possibility to extend that
+                        period for up to 5 months by statutory instrument,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Clarifies that a senior officer of a Northern Ireland department is not prevented
+                        from exercising a function of the department during the period for forming an Executive
+                        if they are satisfied that it is in the public interest to do so,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Requires the Secretary of State to provide guidance to Northern Ireland departments
+                        about the exercise of those functions,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Enables the Secretary of State and the Lord Chancellor to exercise appointment functions
+                        normally exercised by Northern Ireland Ministers in relation to specified offices,
+                        and enable by regulations further such functions to be exercised by UK Ministers,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Replaces the requirement for UK Ministers to consult, or obtain the approval of, Northern
+                        Ireland Ministers or the Executive Committee before exercising appointment functions
+                        with a requirement to consult the relevant Northern Ireland department, and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Enables the Secretary of State to exercise any appointment function of a Northern
+                        Ireland Minister that is exercisable jointly with other persons who include the Secretary
+                        of State, following consultation with the relevant Northern Ireland department.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>There has been no functioning Northern Ireland Executive since 9 January 2017, when
+                     the then deputy First Minister of Northern Ireland resigned, which also resulted in
+                     the First Minister ceasing to hold office. All other Northern Ireland Ministers ceased
+                     to hold office when an extraordinary Assembly election was held on 2 March 2017. The
+                     period for the appointment of Ministers to form an Executive after that election was
+                     extended to 29 June 2017 by the Northern Ireland (Ministerial Appointments and Regional
+                     Rates) Act 2017 (“MARRA”), but no Ministers were appointed. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Since then, Parliament has intervened when necessary to ensure the continuity of public
+                     services in Northern Ireland. Examples include providing authority for expenditure
+                     for Northern Ireland departments and other bodies through the Budget Acts for 2017-18
+                     and 2018-19, enabling the continued operation of the Renewable Heat Incentive scheme
+                     and collection of regional rates, and empowering the Secretary of State to make changes
+                     to the pay and allowances for Members of the Northern Ireland Assembly.<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The principal aim and function of this Act is to facilitate a period where the Executive
+                     can be formed and talks can take place. This Act is part of a package of measures
+                     aimed at restoring the devolved power-sharing Executive and Assembly and ensuring
+                     the continued delivery of public services in Northern Ireland. Those measures provided
+                     for in the Act are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Executive formation: provides a limited and prescribed period where Executive Ministers
+                        can be appointed and a Government can be formed at any time. During this period the
+                        Secretary of State has no legal duty to propose a date for an Assembly election. The
+                        Secretary of State will, however, have a discretionary power to call an election if
+                        she judges that it is in the public interest to do so.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Departmental decision-making: provisions to give greater clarity and certainty to
+                        enable Northern Ireland departments to continue to take decisions in Northern Ireland
+                        in the public interest to ensure the continued delivery of public services; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Public appointments: enable key public appointments to be made in the absence of Northern
+                        Ireland Ministers.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Extension of Executive formation period</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Section 16A of the Northern Ireland Act 1998 (“1998 Act”) provides for a 14 day period
+                     following an Assembly election in which Northern Ireland Ministers – including the
+                     First Minister and deputy First Minister – must be appointed. If they are not, then
+                     the Secretary of State is required to propose a date for another election under section
+                     32(3). That period initially expired on 27 March 2017 but was extended by the MARRA
+                     so as to expire on 29 June 2017. The Act extends the time under section 16A of the
+                     1998 Act for Ministers to be appointed until 26 March 2019, with the possibility to
+                     further extend that period for up to 5 months by statutory instrument.</p>
+               </section>
+               <section class="level">
+                  <p>Exercise of departmental functions during the period for Executive formation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Court held in <i>Buick</i><a class="fn" id="fnref-2" href="#fn-2">2</a> that powers exercisable by departments in the absence of Ministers are subject to
+                     limitations. In particular – and for the purposes of that appeal – that departments
+                     may not exercise functions in respect of matters that would normally be required to
+                     be referred to the Executive Committee of the Assembly because they are cross-cutting,
+                     significant or controversial. It also observed that decisions which, although conferred
+                     on departments, would normally be referred to Ministers for approval lie beyond the
+                     competence of civil servants. This ruling is significantly restricting the ability
+                     of senior officers of Northern Ireland departments to take decisions that are necessary
+                     to ensure the continued delivery of public services. The Act will clarify that a senior
+                     officer of a Northern Ireland department is not prevented from exercising functions
+                     of the department during the period for forming an Executive (i.e. the period established
+                     under section 1) where it is in the public interest to do so. “Senior officer” is
+                     given the same meaning as in the Departments (Northern Ireland) Order 1999, namely:
+                     a person who is employed in that department and is (a) a member of the Northern Ireland
+                     senior civil service; or (b) a member of the Northern Ireland civil service designated
+                     by the department as a senior officer for the purposes of that Order.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Act requires the Secretary of State to publish guidance about the exercise of
+                     departments’ functions, and departments are to have regard to that guidance. It is
+                     intended that the guidance will provide a framework to support Accounting Officers
+                     and Senior Officers when considering whether a decision should or should not be taken
+                     to exercise a departmental function in the absence of Ministers, and will provide
+                     a set of principles and factors to be taken into account when making this decision.
+                     This guidance will not identify or direct specific decisions but will set out principles
+                     to be taken into account when deciding whether or not it is in the public interest
+                     to exercise a function in the absence of Ministers.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act also makes provision in respect of the exercise of functions since 2 March
+                     2017, when Ministers ceased to be in place, to provide clarity around functions that
+                     have already been exercised.</p>
+               </section>
+               <section class="level">
+                  <p>Northern Ireland Minister appointment functions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Where appointment functions are conferred on Northern Ireland Ministers, they cannot
+                     be exercised while there are no Northern Ireland Ministers in post. The Act addresses
+                     the most urgent cases, where the making of an appointment is necessary to maintain
+                     good governance and public confidence in the institutions in Northern Ireland, particularly
+                     focussing on the sensitive area of policing and justice. Those offices are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The Northern Ireland Judicial Appointments Commission (NIJAC), which was established
+                        in 2005 under the Justice (Northern Ireland) Act 2002 to select and appoint, or recommend
+                        for appointment, in respect of all listed judicial offices up to and including High
+                        Court Judge.<a class="fn" id="fnref-3" href="#fn-3">3</a> Chaired by the Lord Chief Justice of Northern Ireland (LCJ), its full membership
+                        is five judicial members nominated by the LCJ, ‘legal professional’ members nominated
+                        by the Law Society of Northern Ireland and the General Council of the Bar of Northern
+                        Ireland, and five ‘lay’ members appointed by the First Minister and deputy First Minister
+                        acting jointly. The nominated members are also appointed by the First Minister and
+                        deputy First Minister so cannot be appointed without those ministers in place.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>The Northern Ireland Policing Board, which was established in 2001 under the Police
+                        (Northern Ireland) Act 2000 following the report of the Independent Commission on
+                        Policing for Northern Ireland (the Patten report), provides oversight for the Police
+                        Service of Northern Ireland (PSNI) and Chief Constable, including the appointment
+                        of the Chief Constable, Deputy Chief Constable and Assistant Chief Constables. The
+                        Board should consist of ten political members (nominated by Northern Ireland parties
+                        on the basis of their representation in the Assembly) and nine independent members,
+                        appointed by the Minister of Justice. In line with legislation the political members
+                        ceased to hold office after the March 2017 Assembly election; since 30 June 2018,
+                        the Board has also been without three of its nine independent members.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Appointments of senior officers in the PSNI are made by the Northern Ireland Policing
+                        Board under the Police (Northern Ireland) Act 2000, as noted above, but require ministerial
+                        approval from the Minister of Justice. These are appointments of officers above the
+                        rank of Chief Superintendent: the Chief Constable, Deputy Chief Constable, and Assistant
+                        Chief Constables (ACCs). The absence of any capacity for the Board to make these appointments
+                        has meant that two of the five ACCs are currently on temporary promotions and one
+                        of the substantive ACCs is currently covering the role of Deputy Chief Constable following
+                        the latter’s appointment to An Garda Síochána.<a class="fn" id="fnref-4" href="#fn-4">4</a> The Chief Constable raised his concerns about reliance on temporary appointments
+                        in evidence to the House of Commons Northern Ireland Affairs Committee.<a class="fn" id="fnref-5" href="#fn-5">5</a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>The Probation Board for Northern Ireland, appointed under the Probation Board (Northern
+                        Ireland) Order 1982, has the following mandatory functions: secure the maintenance
+                        of an adequate and efficient probation service; make arrangements for persons to perform
+                        work under Community Service orders; provide such probation officers and other staff
+                        as the Department of Justice considers necessary to perform social welfare duties
+                        in Prisons and Young Offenders Centres; and undertake other such duties as may be
+                        prescribed. It consists of a Chair, a Deputy Chair and not less than 10 or more than
+                        18 other members. Including the Chair and Deputy Chair there are currently 12 Board
+                        Members and one vacancy on the Board. The Chair and Board Members are appointed for
+                        a maximum of three years by the Minister of Justice. The tenure of all the current
+                        members expires on 30 November 2018.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>The Police Ombudsman for Northern Ireland is responsible for the independent and impartial
+                        investigation of complaints against the police, and for the investigation of a range
+                        of other matters referred by the Department of Justice, Policing Board and the Chief
+                        Constable, or in respect of matters considered by the Ombudsman to be in the public
+                        interest. The Ombudsman investigates complaints against&nbsp;the PSNI, the Belfast Harbour
+                        Police, the Belfast International Airport Police, National Crime Agency Officers in
+                        Northern Ireland, Ministry of Defence Police in Northern Ireland and certain complaints
+                        about Immigration Officers and Designated Customs Officials when operating in Northern
+                        Ireland. The appointment is for seven years (or up to retirement at 70 years old)
+                        and is made by Her Majesty on the recommendation of the First Minister and deputy
+                        First Minister acting jointly, under the Police (Northern Ireland) Act 1998. </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Minister of the Crown appointment functions and joint appointments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The absence of Northern Ireland Ministers also affects some appointments made by UK
+                     Ministers. Where current legislation states that, in making an appointment, Ministers
+                     must consult or obtain the agreement of Northern Ireland Ministers, this cannot be
+                     achieved in the absence of an Executive. Where appointments are made by UK Ministers
+                     jointly with Northern Ireland Ministers (and, in some cases, also with Scottish and
+                     Welsh Ministers), these appointments also cannot be made at present. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The relevant legal background is set out in the policy background to these notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 9 sets out the territorial extent of the Act, that is the jurisdictions in
+                     which the Act forms part of the law. The extent of an Act can be different from its
+                     application. Application is about where the Act produces a practical effect. The Act
+                     would extend to England and Wales, Scotland and Northern Ireland. In terms of application,
+                     sections 1 to 5 would apply to Northern Ireland only. Sections 6 to 11 would apply
+                     to England and Wales, Scotland and Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>This Act affects matters within the devolved (transferred) competence of the Northern
+                     Ireland Assembly. The Sewel Convention sets out that the UK Parliament will not normally
+                     legislate in an area of devolved competence without the agreement of the devolved
+                     legislatures. In the absence of the Executive and a sitting Assembly, it is not possible
+                     for the Assembly to provide a Legislative Consent Motion. The Government is satisfied
+                     that the circumstances of this Act come within the exception allowed by the convention.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Extension of period for Executive formation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>This section extends the statutory time limit for the appointment of Northern Ireland
+                     Ministers for a limited and prescribed period, during which time an Executive may
+                     be formed at any point without the requirement for further legislation. This will
+                     have the effect of setting aside the current legal requirement to propose a date for
+                     a further election. Section 1(1) amends section 16A(3) of the Northern Ireland Act
+                     1998 which says:</p>
+                  <p class="@name">
+                     
+                     <section class="paragraph num">
+                        <h2><span class="num">“(3)</span></h2>
+                        <p>Within a period of 14 days beginning with the first meeting of the Assembly—</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">(a)</span></h2>
+                           <p>the offices of First Minister and deputy First Minister shall be filled by applying
+                              subsections (4) to (7); and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">(b)</span></h2>
+                           <p>the Ministerial offices to be held by Northern Ireland Ministers shall be filled by
+                              applying section 18(2) to (6).”</p>
+                        </section>
+                     </section>
+                     </p>
+                  <p>Section 1 has the effect of substituting 26 March 2019 date for the “period of 14
+                     days”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 1(2) provides that change is treated as having been the case since 2 March
+                     2017, being the date of the last election to the Assembly. Section 1(4) removes the
+                     previous legal provision in the MARRA to extend the period to 29 June 2017.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 1(3) allows the Secretary of State to propose a date for an election earlier
+                     than the date on which these provisions expire.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Limited power to further extend the period for Executive formation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>This section enables the Secretary of State to make regulations to extend the time
+                     for Executive formation by one further period of up to five months. Section 2(2) provides
+                     that this power may only be exercised on or before 26 March 2019 and may only be used
+                     on one occasion.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The Secretary of State would be required either to lay the statutory instrument containing
+                     regulations before Parliament for approval, or to make the regulations before they
+                     are approved by Parliament if she considers it to be expedient for the regulations
+                     to be made without that approval. If the regulations are made without the prior approval
+                     of Parliament, then they must be approved within the period of 28 days beginning with
+                     the date on which they are made. If they are not, they cease to have effect. However,
+                     that is subject to one exception where the replacement date is earlier than the expiry
+                     of the period of 28 days. In that case, whilst the regulations must be laid, they
+                     are not subject to any Parliamentary procedure (section 2(5)). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsections (6) and (7) clarify when the period for Executive formation would end
+                     in the event that Parliament does not approve regulations extending this period within
+                     28 days. Section 2(8) provides that if Parliament is dissolved, prorogued or adjourned
+                     for more than four days then those days are not included in the calculation of the
+                     28 days. </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Exercise of departmental functions during period for Executive formation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 3 makes provision for the exercise of Northern Ireland departmental powers
+                     during the period for forming an Executive. In particular, it clarifies that the absence
+                     of Ministers does not prevent a senior officer of a Northern Ireland department from
+                     exercising a function of the department if she or he is satisfied that it is in the
+                     public interest to do so during the period for forming an Executive (section 3(1)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The Secretary of State is required to publish guidance about the exercise of departmental
+                     functions, including guidance as to the principles to be taken into account in deciding
+                     whether or not to exercise a function, and senior officers of departments are required
+                     to have regard to that guidance (subsections (2) and (3)). Before publishing this
+                     guidance, including any subsequent revisions, the Secretary of State is required to
+                     have regard to any representations made to her by Members of the Northern Ireland
+                     Assembly (subsection (9)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsections (4), (5) and (7) clarify that the absence of Ministers or the Executive
+                     Committee of the Assembly is not to be treated as having prevented departments from
+                     exercising their functions in the period since 2 March 2017. Subsection (6) preserves
+                     the rights of existing litigants to proceed with their pending claims. Such claims
+                     will not be affected by the retrospective provision. But departments will not be prevented
+                     from retaking such decisions. </p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Equal Rights for people of Northern Ireland</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>This section requires the Secretary of State to issue guidance to Northern Ireland
+                     departments on how to the exercise their functions in relation to “the incompatibility
+                     of the human rights of the people of Northern Ireland” with sections 58 and 59 of
+                     the Offences against the Person Act 1861 and Article 13(e) of the Matrimonial Causes
+                     (Northern Ireland) Order 1978. The Secretary of State must report guidance under this
+                     section on a quarterly basis to the House of Commons and set out her plans to address
+                     the impact of the absence of Northern Ireland Ministers on human rights obligations
+                     within three months of the day on which the Act is passed, that is, within three months
+                     of 1 November 2018.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Northern Ireland Ministerial appointment functions: specified offices</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>This section provides a limited power for the relevant UK Minister to exercise appointment
+                     functions, in relation to the offices specified in the section, during the current
+                     period without an Executive. Appointment functions in relation to those specified
+                     offices are currently conferred on Northern Ireland Ministers. It transfers <i>only</i> those powers that are currently conferred on Northern Ireland Ministers and makes
+                     no further changes to the appointment functions affected. The appointments will be
+                     made in accordance with the existing legislation, for a period and subject to the
+                     terms and conditions decided by the Ministers (or the full statutory term in the case
+                     of the Police Ombudsman). Section 5(8) requires the UK Minister to consult a Northern
+                     Ireland department prior to exercising these powers; this reflects the continued responsibility
+                     of the sponsor department for all matters to do with the bodies in question other
+                     than the appointment functions covered by this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>The table in section 5(2) sets out the offices over which appointment functions (as
+                     defined in section 8(1)) normally exercised by Northern Ireland Ministers will be
+                     exercised by the “relevant Minister of the Crown”, following consultation with the
+                     relevant Northern Ireland department. Unless stated otherwise below, the following
+                     appointment functions would be exercised by the Secretary of State:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Members of the Northern Ireland Judicial Appointments Commission (NIJAC) would be
+                        appointed by the Lord Chancellor. As set out above, most members are nominated by
+                        the Lord Chief Justice or professional bodies, and the Act would allow the Lord Chancellor
+                        to make the formal appointment of those members in place of the First Minister and
+                        deputy First Minister. The Lord Chancellor would also be able to appoint or reappoint
+                        lay members as necessary and to exercise other appointment functions conferred on
+                        the First Minister and deputy First Minister. The Lord Chancellor was responsible
+                        for appointment functions relating to NIJAC prior to the devolution of policing and
+                        justice in 2010.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Members of the Northern Ireland Policing Board. Similarly to NIJAC, many of these
+                        appointments would be nominees, in this case ten nominees of the political parties;
+                        to make these nominated appointments, the Secretary of State’s role would be to invite
+                        nominations from the parties and receive the required correspondence from new members.
+                        The Secretary of State would also be able to appoint independent members; when doing
+                        so, there is a requirement to ensure that the Board as a whole is representative of
+                        the community and to consult the relevant Northern Ireland department,<a class="fn" id="fnref-6" href="#fn-6">6</a> district councils and others before making the appointment. The Secretary of State
+                        would also be able to exercise the other appointment functions of the Justice Minister.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Members of the PSNI above the rank of Chief Superintendent – including the Chief Constable
+                        and Deputy Chief Constable – are appointed by the Northern Ireland Policing Board,
+                        under section 35 of the Police (Northern Ireland) Act 2000, and would continue to
+                        be under this Act. However, as the appointments require the approval of the Minister
+                        of Justice, the Act would allow the Secretary of State to exercise this appointment
+                        function and others already conferred on the Minister. This will enable the Policing
+                        Board to make these appointments as it sees fit, including those where, like the post
+                        of Deputy Chief Constable, offices are currently filled by temporary appointees.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>Members, Chair and Deputy Chair of the Probation Board for Northern Ireland. The Secretary
+                        of State would take on the Northern Ireland Minister’s appointment functions, including
+                        the appointment of members, Chair and Deputy-Chair. Members may self-nominate for
+                        the post of Deputy Chair: the successful applicant is formally appointed by the Minister.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>The Police Ombudsman for Northern Ireland. This is a non-renewable seven-year (or
+                        until retirement) appointment made by Her Majesty on the recommendation of the First
+                        Minister and deputy First Minister acting jointly; under this section, the Secretary
+                        of State would take on the First Minister and deputy First Ministers’ appointment
+                        functions including making the recommendation. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>In combination with the definition in section 8, the power to exercise appointment
+                     functions in relation to these offices will cease when there is next a Northern Ireland
+                     Executive. This means that these powers would return to Northern Ireland Ministers
+                     as soon as they are in post, and any pending appointments or other appointment functions
+                     would again fall to them to exercise.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The Secretary of State is empowered by section 5(3) to amend the list of offices in
+                     section 5(2) through a statutory instrument, transferring to the relevant UK Minister
+                     appointment functions in relation to other bodies and offices in respect of which
+                     legislation currently confers those functions on Northern Ireland Ministers. This
+                     is included to ensure that vacancies that need to be filled as a matter of urgency
+                     can be filled without the need for further primary legislation. Similarly, it would
+                     allow other appointment functions to be exercised if needed urgently – for example
+                     the removal from an office not covered in section 5 of someone who is no longer eligible
+                     to hold that office (for example following bankruptcy) but who can only be removed
+                     by a Minister. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Under section 5(4), an instrument under section 5(3) is subject to the affirmative
+                     resolution procedure. The regulations must be laid before Parliament for approval,
+                     unless the Secretary of State considers it to be expedient for the regulations to
+                     be made without that approval. If the regulations are made without the prior approval
+                     of Parliament, then they must be approved within the period of 28 days beginning with
+                     the date on which they are made. If they are not, they cease to have effect and any
+                     additions made to the table in section 5(2) under the regulations are omitted. This
+                     would not affect the result of any appointment functions already exercised under the
+                     provisions in the regulations. As with the Act itself and the offices set out in section
+                     5, the Government is clear that any further additions to the list by regulations would
+                     only be made where they were urgent and necessary for continued good governance and
+                     following discussions with the main Northern Ireland political parties.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Minister of the Crown appointment functions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>This section addresses those appointments functions already conferred on UK Ministers
+                     that cannot be exercised in the absence of Northern Ireland Ministers. Where legislation
+                     requires that UK Ministers consult or obtain the agreement of Northern Ireland Ministers
+                     or the Executive Committee before exercising an appointment function, this section
+                     replaces that with a requirement that the Northern Ireland department is consulted.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>This section does not allow UK Ministers to make additional appointments other than
+                     in the circumstances provided for by this Act: the ability to exercise appointment
+                     functions where the functions are conferred solely on Northern Ireland Ministers is
+                     within section 5; joint appointments are covered by section 7.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Joint UK appointment functions etc.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>This section addresses appointment functions exercised jointly by UK Ministers and
+                     Northern Ireland Ministers, including those made alongside Scottish and Welsh Ministers.
+                     In these cases, it enables those functions to be exercised in the absence of the Northern
+                     Ireland Minister. Instead of acting jointly with the Northern Ireland Minister, the
+                     Secretary of State is required, before exercising the appointment functions, to consult
+                     the relevant Northern Ireland department. The functions of the Scottish and Welsh
+                     Ministers are not affected, meaning that an appointment that would otherwise be made
+                     jointly by Ministers from the UK Government and the three devolved administrations
+                     would instead be made by UK, Scottish and Welsh Ministers, following consultation
+                     (by the Secretary of State) with the relevant Northern Ireland department. This does
+                     not affect appointments made by Northern Ireland Ministers alone to joint bodies;
+                     these would be within the scope of section 5.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Interpretation of sections 5 to 7</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>The key terms used in sections 5 to 7 of the Act are defined in section 8(1). Of note
+                     are the following definitions:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>“appointment function” covers the range of functions affected by the Act including
+                        making appointments, recommending a person for appointment, requesting nominations
+                        and approving the resulting nominations (as in the cases of NIJAC and the Policing
+                        Board), determining terms of office and remuneration (where that is not the responsibility
+                        of the department), and functions around resignations and removals. Section 8(3) allows
+                        the Secretary of State to amend this definition using a statutory instrument subject
+                        to the affirmative procedure (see section 8(4)).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>“Northern Ireland Minister” includes both references to the generic post, specific
+                        posts (such as the Justice Minister) or First Minister and deputy First Minister;
+                        the term includes references to “head of department” (used in legislation before 1998<a class="fn" id="fnref-7" href="#fn-7">7</a>).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>“the period while there is no Executive” is the period during which the provisions
+                        set out at sections 5 to 7 of the Act apply and it is the period beginning when the
+                        Act is passed and ending when a new Northern Ireland Executive is formed, with all
+                        Northern Ireland Minister posts filled.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>The Act will come into force on the day on which it is passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Written Ministerial Statement, 18 July 2018: <a href="https://www.parliament.uk/business/publications/written-questions-answers-statements/written-statement/Commons/2018-07-18/HCWS868/"><u>https://www.parliament.uk/business/publications/written-questions-answers-statements/written-statement/Commons/2018-07-18/HCWS868/</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Oral Statement by the Secretary of State, 6 September 2018:</p>
+                     <section class="subparagraph">
+                        <p>
+                           <a href="https://hansard.parliament.uk/Commons/2018-09-06/debates/A285188A-3A88-4413-A0EF-6665B735627F/NorthernIrelandGovernment">
+                              <u>https://hansard.parliament.uk/Commons/2018-09-06/debates/A285188A-3A88-4413-A0EF-6665B735627F/NorthernIrelandGovernment#contribution-26BB05AD-B899-477B-A5DC-43D4E5D8B3C4/</u>
+                              </a>
+                           </p>
+                     </section>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>A draft version of Guidance on decision-making for Northern Ireland Departments during
+                        the temporary period for Northern Ireland Executive formation was published during
+                        the Bill’s passage through Parliament.  This is available here: </p>
+                     <section class="subparagraph">
+                        <p>
+                           <a href="https://protect-eu.mimecast.com/s/v2GPCYW3GFN4RLgc04y9d?domain=data.parliament.uk">
+                              <u>http://data.parliament.uk/DepositedPapers/Files/DEP2018-1050/Guidance_to_NI_Departments_on_temp_period_for_Executive_formation.pdf</u>
+                              </a>
+                           </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>A final version of the Guidance will be published at <a href="http://www.gov.uk/"><u>www.gov.uk</u></a>.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.84in">
+                        <col style="width:0.79in">
+                        <col style="width:0.8in">
+                        <col style="width:0.69in">
+                        <col style="width:0.95in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Sections 1-5</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Sections 6-11</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.58in">
+                        <col style="width:1.87in">
+                        <col style="width:1.88in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>18 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-10-18/debates/767B3A70-2FC8-47E7-8D98-E81379B40D89/PointOfOrder">
+                                    <u>Vol. 647 Col. 819</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>24 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-10-24/debates/1E433C80-7AFE-439E-96E6-53891A9C7AFD/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 648 Col. 293</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>24 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-10-24/debates/D0019AE5-DF65-409D-8D9A-A0628813C65D/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 648 Col. 355</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-10-24/debates/D0019AE5-DF65-409D-8D9A-A0628813C65D/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 648 Col. 395</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>25 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-10-25/debates/7C52569B-DCAD-4B15-8346-8F303962DB3B/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 793 Col. 1021</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-10-30/debates/CE0B2C92-BA77-46CD-A007-F3A2F44566E3/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 793 Col. 1222</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>30 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-10-30/debates/900DAF34-179C-4F4B-BDF3-9A49D5E31805/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 793 Col. 1300</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>30 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-10-30/debates/4580309F-7A66-4811-8C78-E8E8CBCA31BB/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 793 Col. 1350</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>30 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-10-30/debates/54DBAA81-B66E-4FDF-878A-56D7C15B9F72/NorthernIreland(ExecutiveFormationAndExerciseOfFunctions)Bill">
+                                    <u>Vol. 793 Col. 1350</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>1 November 2018</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2018-11-01/debates/09071FCA-C979-45B7-A864-397D3F307E07/ProceedsOfCrimeAct2002"><u>Vol. 648 Col. 1055</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2018-11-01/debates/7FF01628-B4C7-4CC7-82CE-AED0B2D82E5E/RoyalAssent"><u>Vol.793 Col. 1423</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.07in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  In the Northern Ireland Budget Act 2017, Northern Ireland Budget (Anticipation and
+                  Adjustments) Act 2018, Northern Ireland Budget Act 2018, Northern Ireland (Regional
+                  Rates and Energy) Act 2018 and Northern Ireland Assembly Members (Pay) Act 2018 respectively.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Buick [2018] NICA 26.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  The ‘listed’ judicial offices are those set out in Schedule 1 of the Justice (Northern
+                  Ireland) Act 2002.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Ireland’s National Police and Security Service.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Chief Constable George Hamilton, <a href="http://data.parliament.uk/writtenevidence/committeeevidence.svc/evidencedocument/northern-ireland-affairs-committee/update-from-the-psni/oral/86175.html"><u>Evidence to the Northern Ireland Affairs Committee</u></a>, 27 June 2018, Q41.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Under the Police (Northern Ireland) Act 2000, the Justice Minister is required to
+                  consult the First Minister and deputy First Minister; under section 6 of this Act,
+                  the requirement would be to consult the relevant Northern Ireland department. The
+                  Minister is also required to consult district councils in Northern Ireland, and such
+                  other bodies as the Minister considers appropriate.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Under paragraph 11 of Schedule 12 to the Northern Ireland Act 1998, references to
+                  head of a Northern Ireland department “shall be construed as a reference to a Northern
+                  Ireland Minister”.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

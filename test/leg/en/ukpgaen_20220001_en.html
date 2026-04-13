@@ -1,0 +1,2149 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>LEASEHOLD REFORM (GROUND RENT) ACT 2022 </b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Leasehold Reform (Ground Rent) Act 2022 which
+                  received Royal Assent on 8 February 2022 (c. 1). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Levelling up, Housing
+                  and Communities in order to assist the reader in understanding the Act. They do not
+                  form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>Through this Act the Government has made leasehold ownership fairer and more affordable
+                     for leaseholders by ensuring that&nbsp;freeholders/landlords are no longer able to make
+                     financial demands for ground rent. The Act also prohibits the charging of administration
+                     charges in relation to peppercorn rents.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>This Act achieves this by restricting ground rents on regulated newly established
+                     leases of houses and flats where a premium is paid to a token one peppercorn per year,
+                     effectively restricting ground rents to zero financial value. There is no obligation
+                     on a landlord to levy a peppercorn rent and it is not envisaged that landlords will
+                     request their tenants pay a peppercorn as a rent in practice.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>A ground rent is a payment specified in the lease that the leaseholder is required
+                     to make to the landlord (directly or indirectly&nbsp;through an agent&nbsp;or representative)
+                     without&nbsp;obligation on the landlord&nbsp;(or person acting on behalf of the landlord) to
+                     provide a clear service in return&nbsp;to the leaseholder.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Act defines a peppercorn rent as an annual rent of one peppercorn.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Note: In the following sections of these Explanatory Notes, unless otherwise stated,
+                     the terms “leaseholder” and “tenant” refer to the person who currently owns the leasehold
+                     interest in the property. The term “landlord” refers to the person who is the immediate
+                     landlord of that person (either the freeholder or another leaseholder with a superior
+                     interest in the property).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Act places a duty on trading standards authorities in England and Wales to enforce
+                     the Act. District Councils that are not trading standards authorities have power under
+                     the Act to enforce in England if they choose to do so. This Act also makes provision
+                     for leaseholders to recover unlawfully charged ground rents through the appropriate
+                     tribunal.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>A breach of the ground rent restrictions is a civil offence with a financial penalty
+                     of between £500 and £30,000. Local authorities are able to retain the money raised
+                     through financial penalties with this money reserved for covering the cost of enforcement
+                     in relation to residential leasehold property.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The&nbsp;Act makes exceptions for a small number of types of leases: business leases, statutory
+                     lease extensions of houses and flats, community led housing and home finance plan
+                     leases (either a type of&nbsp;equity release&nbsp;financial&nbsp;product&nbsp;known as a Home Reversion
+                     Plan or a rent to buy arrangement). Rent may continue to be charged on the landlord’s
+                     share of shared ownership leases, and where it is agreed on leases replacing pre-commencement
+                     leases on the remaining term of the pre-commencement lease (known as voluntary lease
+                     extensions).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The leasehold housing sector is an important part of the national housing market.
+                     It houses an estimated 4.86 million households in England and Wales. Approximately
+                     two thirds of these properties are flats and one third houses. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Long leases (generally leases granted for more than 21 years) normally provide for
+                     the leaseholder to pay ground rent to their freeholder for renting the land that the
+                     leasehold property is on. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Historically, many ground rents were set at a nominal level. However, in recent years
+                     many ground rents have risen from nominal levels to more than 0.1% of the property’s
+                     value, and the practice of granting leases including terms requiring frequent rent
+                     reviews where the ground rent amount doubles has emerged. In some cases, the rights
+                     to receive ground rents from leaseholders have been bought and sold in the financial
+                     market as a long-term income stream for third party investors. Leaseholders receive
+                     no clear service in return for these ground rent payments and it is not always clear
+                     what costs leaseholders will have to pay when they purchase their home. As a result,
+                     some leaseholders may face difficulties in selling or re-mortgaging or find it costly
+                     to buy the freehold through enfranchisement. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>In July 2017 the Government consultation ‘“Tackling unfair practices in the leasehold
+                     market”‘ sought views on introducing measures to limit ground rents in new leases
+                     to start and remain at a ‘“peppercorn’” (zero financial) level. In December 2017 the
+                     Government committed to reducing ground rents on newly established leases of houses
+                     and flats to a peppercorn rent. In October 2018 a technical consultation Implementing
+                     reforms to the leasehold system in England asked for views on the detail of the implementation
+                     of these proposals, including circumstances where exemptions may be necessary. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>This Act takes forward these proposals making leasehold ownership fairer and more
+                     affordable by limiting ground rents for long residential leases to a token one peppercorn
+                     per year. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The Government is committed to promoting fairness and transparency for homeowners
+                     and ensuring that consumers are protected from abuse and poor service. This Act is
+                     the first of two-part seminal legislation to reform the leasehold system.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The main legislation relevant to the rights of residential leaseholders is:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the Leasehold Reform Act 1967; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the Landlord and Tenant Act 1987;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Schedule 2 of the Housing Act 1988; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the Local Government and Housing Act 1989;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the Leasehold Reform, Housing and Urban Development Act 1993;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the Commonhold and Leasehold Reform Act 2002.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Ground rents</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Commonhold and Leasehold Reform Act 2002 requires landlords to serve written notice
+                     before ground rent becomes payable and prevents landlords from starting forfeiture
+                     action unless they have issued a written notice and the ground rent arrears exceed
+                     a specified sum or have been in arrears for more than a specified period. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Lease extensions</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>For qualifying tenants of a long lease of a house, the Leasehold Reform Act 1967 sets
+                     out the right to the grant of a new lease for the remainder of the existing term plus
+                     a further 50 years, commonly referred to as a lease extension. No premium is payable,
+                     but the new lease can contain a modern ground rent, reviewable after 25 years. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>For qualifying tenants of flats, the Leasehold Reform, Housing and Urban Development
+                     Act 1993 sets out the right to a new lease for the remainder of the existing term
+                     plus a further 90 years, commonly referred to as a lease extension. A premium is payable,
+                     but the new lease must contain a peppercorn ground rent. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Security of tenure</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 186 and Schedule 10 of the Local Government and Housing Act 1989 provides
+                     security of tenure for long residential leases with low rent. Under that Act, when
+                     a long lease comes to an end, the tenant is likely to qualify for an assured tenancy
+                     which is afforded further protection under the Housing Act 1988.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 24 sets out the territorial extent of the Act, that is the jurisdictions in
+                     which the Act forms part of the law. The territorial extent of this Act is England
+                     and Wales. The Act applies to long residential leaseholds in England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The provisions in the Act are related to the law of property which is restricted under
+                     the Government of Wales Act 2006.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Regulated leases</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Generally, this Act applies in relation to leases of single dwellings granted on or
+                        after commencement of the relevant provision of the Act. This includes leases created
+                        by virtue of a variation of a lease which results in a deemed surrender and regrant.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>This Act does not apply to long residential leases of single dwellings where the leaseholder
+                        does not pay a premium for the granting of the lease. However, subsection (5) states
+                        that where there is a deemed surrender and regrant of either a regulated lease or
+                        a pre-commencement lease, the general provision that a regulated lease is one for
+                        which a premium has been paid does not apply. This is intended to cover circumstances
+                        such as a variation to a lease to address a drafting error, where payment of a premium
+                        may not be required. This ensures leases remain regulated by the Act after such a
+                        variation.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Additionally, where, prior to commencement, buyers and sellers have entered into a
+                        legally binding contract in relation to the grant of the lease (other than an option
+                        or right of first refusal), the provisions do not apply. The provisions will additionally
+                        not be applicable to some exceptions listed in section 2.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Excepted leases</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Section 2 sets out the types of leases that are exempt from the Act.  The exceptions
+                        are:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Business leases where:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">◦</span></h2>
+                           <p>the lease expressly permits business purposes without further consent needed of the
+                              landlord;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">◦</span></h2>
+                           <p>the nature of the permitted business purposes is such that the use of the premises
+                              as a dwelling significantly contributes to the business purposes; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">◦</span></h2>
+                           <p>the landlord and tenant exchange written notices at or before the lease is granted
+                              confirming the intention to use and continue to use the premises for the business
+                              purposes set out in the lease.</p>
+                        </section>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>The Secretary of State may make further provision about the form and content of the
+                           notices required to be exchanged in regulations, and has done so in the Leasehold
+                           Reform (Ground Rent) (Business Lease Notices) Regulations 2022 (SI 2022/578).</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Business includes a trade, profession or employment but not a home business under
+                           the Landlord and Tenant Act 1954. </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Statutory lease extensions of houses, under Part 1 of the Leasehold Reform Act 1967,
+                           or of flats, under Chapter 2 of Part 1 of the Leasehold Reform, Housing and Urban
+                           Development Act 1993.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Community housing where it is a community housing lease and where it meets any further
+                           conditions specified in regulations made by the relevant authority. A community housing
+                           lease is where the landlord is a community land trust (as defined in section 79 of
+                           the Housing and Regeneration Act 2008), or it is a dwelling in a building controlled
+                           or managed by a co-operative society (as set out in paragraph 2B of Schedule 14 to
+                           the Housing Act 2004).</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Home finance plan leases which also meet any conditions specified in regulations made
+                           by the Secretary of State. A home finance plan lease is:&nbsp;</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">◦</span></h2>
+                           <p>A&nbsp;lease&nbsp;granted in connection with a home reversion plan under Chapter 15A of Part
+                              2 of the Financial Services and Markets Act (Regulated Activities) Order 2001, or&nbsp;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">◦</span></h2>
+                           <p>A lease&nbsp;granted by a finance provider to a home buyer&nbsp;in connection with a&nbsp;”‘rent
+                              to buy’”&nbsp;arrangement. A&nbsp;’“rent to buy’”&nbsp;arrangement is where a&nbsp;person buys a freehold
+                              or leasehold interest in land (or an undivided share of such an interest) from a finance
+                              provider over a defined period by means of payment of a rent. </p>
+                        </section>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 3: Prohibited rent</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Section 3(1) prohibits any landlord (or person acting on the landlord’s behalf) of
+                        a regulated lease to require a tenant (or tenant’s guarantor) to make a payment of
+                        a prohibited rent. A prohibited rent is defined in subsection (4) as any rent that
+                        exceeds the permitted rent as defined in sections 4 to 6.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>The meaning of ‘“require a tenant to make a payment of prohibited rent”‘ is explained
+                        in subsection (2). A landlord requires a tenant to make a payment of a prohibited
+                        rent if they (or a person acting on their behalf) ask the tenant for payment or having
+                        received payment, fail to refund it within 28 days.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Those subsections taken together mean that a landlord or person acting on the landlord’s
+                        behalf is prohibited from asking the tenant for a prohibited rent and must, if they
+                        receive a prohibited rent, refund it within 28 days after its receipt. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Section 3(3) explains that in this section references to landlord includes a person
+                        who has ceased to be a landlord, and references to tenant include a person who has
+                        ceased to be a tenant, a person acting on behalf of a tenant or a tenant’s guarantor.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 4: Prohibited rent: general rule</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Generally, the permitted rent is an&nbsp;annual rent of one&nbsp;peppercorn. The&nbsp;effect of a
+                        peppercorn rent is to restrict the rent so that no money can be charged or paid as
+                        rent under this Act.&nbsp;</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 5: Prohibited rent: shared ownership leases</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Section 5 makes special provision for shared ownership leases in which the landlord
+                        retains a share. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Section 5(2) provides that for the tenant’s share in the premises, the only permitted
+                        rent is a peppercorn rent but that landlords can continue to charge any rent on their
+                        share. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Since April 2006 it has been a condition of all shared ownership schemes funded by
+                        Government that the amount of rent and any annual increases is capped. This is also
+                        usually the case for shared ownership properties delivered through agreements entered
+                        under section 106 of the 1990 Town and Country Planning Act. Providers are&nbsp;generally&nbsp;required
+                        to cap rent&nbsp;at 3%&nbsp;of the capital value of their retained equity, with an overall target
+                        of 2.75%. Rents can vary across different schemes.&nbsp;The rent on the unsold share increases
+                        over time. Annual rent increases are also limited as a condition of grant funding
+                        to the Retail Price Index (RPI) plus 0.5%. By way of example: if a tenant has a total
+                        share of 60% of the value of the premises and the landlord has a share of 40% of the
+                        value of the premises, the landlord would be permitted to charge the tenant rent on
+                        their 40% share, in line with the above rent caps.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Section 5(7) provides that where the lease does not distinguish between rent on the
+                        tenant’s share and rent on the landlord’s share, any rent payable under the lease
+                        is to be treated as payable in respect of the landlord’s share.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 6: Permitted rent: leases replacing pre-commencement leases</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Section 6 allows for rent other than a peppercorn rent in the case of non-statutory
+                        (‘“voluntary’”) lease extensions, where a tenant is granted a lease that replaces
+                        a lease that was granted prior to commencement of the applicable provision of the
+                        Act (referred to as a “pre-commencement lease” – a term defined in subsection (8)(a)).
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>The permitted rent during the period up to the expiry date specified in the pre-commencement
+                        lease is a rent not exceeding the rent that would have been payable under the pre-commencement
+                        lease in respect of that period. The permitted rent for the period of the new lease
+                        following the expiry date specified in the pre-commencement lease is to be a peppercorn
+                        rent.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Subsection (5) makes provision for a case where a lease that is itself a replacement
+                        lease is replaced by a new lease. The permitted rent for non-statutory extensions
+                        of pre-commencement leases can apply to a replacement lease which includes some premises
+                        not demised by the pre-commencement lease (i.e. where there has been a deemed surrender
+                        and regrant to increase the property demised on a lease).&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>The permitted rent for non-statutory extensions of pre-commencement leases can also
+                        apply to a replacement lease that does not extend beyond the end of the term of the
+                        pre-commencement lease. This includes a surrender and regrant of a lease where there
+                        is not a lease extension, such as to extend the extent of the demised property. Rent
+                        can continue to be charged at the existing rate on the balance of the term of the
+                        existing lease, while any extension to the lease may only charge a peppercorn rent.&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Subsections (6) and (7) makes provision for a case where the pre-commencement lease
+                        is a relevant shared ownership lease (as defined in subsection (9)). </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 7: Term reserving prohibited rent treated as reserving permitted rent</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>The effect of section 7 is that any term in a regulated lease reserving a prohibited
+                        rent is replaced by a term reserving a permitted rent, which is generally a peppercorn
+                        rent unless section 5 or 6 applies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>The table in section 7 sets out what rent is to be substituted for the prohibited
+                        rent in each case.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 8: </b>
+                        <b>Enforcement authorities</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Section 8(1) requires local weights and measures authorities (trading standards authorities)
+                        in England and Wales to enforce section 3 where a breach of that section occurs in
+                        their area and allows them to enforce section 3 elsewhere.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Subsection (2) allows a district council, which is not a trading standards authority,
+                        to enforce section 3 (both inside the council’s district and elsewhere in England).
+                        They are not however required to do so.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Subsection (3) explains that where a breach of section 3 occurs, the area in which
+                        it occurs is the area in which the premises under the lease are located. Where the
+                        premises are located on a local authority boundary, the breach is taken to have occurred
+                        in each of the areas in which the relevant premises are located.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Subsection (4) provides that the duty and powers to enforce section 3 conferred by
+                        subsections (1) and (2) are subject to section 9(8) which provides that an enforcement
+                        authority may not impose a penalty on a person if another enforcement authority has
+                        already imposed a penalty in respect of the same breach.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsection (5) defines enforcement authority, a term used throughout the Act (and
+                        the following sections of these explanatory notes) to refer to both local weights
+                        and measures authorities in England and Wales who have a duty to enforce and district
+                        councils that have a power to enforce.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 9: Financial penalties</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>This section allows the enforcement authority to impose a financial penalty on a person
+                        if the authority is satisfied beyond reasonable doubt that the person has breached
+                        section 3(1) by requiring a tenant to make a payment of a prohibited rent.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>The amount of the financial penalty is at the discretion of the enforcement authority,
+                        subject to a minimum of £500 and a maximum of £30,000 (subsection 2). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>A landlord who commits multiple breaches in relation to the same lease is generally
+                        only liable to one financial penalty. However, they will be liable for a further penalty
+                        if, having previously had a financial penalty imposed for an earlier breach, they
+                        then commit a further breach (subsection (3)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (4) clarifies that for the purpose of subsection (3) ‘“landlord’” includes
+                        a person who has ceased to be the landlord.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Subsections (5), (6) and (7) deal with multiple breaches in relation to multiple leases.
+                        Where a person has committed one or more breaches in relation to two or more leases,
+                        an enforcement authority may choose to impose a single financial penalty in respect
+                        of all those breaches. If a single penalty is imposed in respect of multiple breaches,
+                        the amount of a penalty must not be less than the total minimum amount that would
+                        have been imposed or exceed the total maximum amount that could have been imposed
+                        if each breach had been penalised separately (taking into account the effect of subsection
+                        (3)). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Subsection (8) provides that an enforcement authority may not impose a penalty on
+                        a person if another enforcement authority has already imposed a penalty on the person
+                        for the same breach. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Subsection (9) enables the relevant authority to make regulations amending the minimum
+                        and maximum penalty amounts set out in subsection (2) by way of regulations. This
+                        power may only be exercised where the relevant authority considers it expedient to
+                        do so to reflect changes in the value of money (subsection 10).</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 10: Recovery of prohibited rent by enforcement authority</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>If the enforcement authority is satisfied on the balance of probabilities that a tenant
+                        under a regulated lease has made a payment of a prohibited rent and all or part of
+                        that rent has not been refunded, the enforcement authority can order the repayment
+                        of the prohibited rent by any of the following: </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the landlord at the time the prohibited rent was paid;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the landlord at the time the enforcement authority makes the order; or</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>a person acting on behalf of one of the above where the payment was paid to that person.
+                           </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>However, the above does not apply if the tenant (or person acting on behalf of the
+                        tenant) has made an application to the appropriate tribunal to recover the prohibited
+                        rent under section 13 or an enforcement authority has previously made an order under
+                        section 10 in relation to the payment (subsection (3)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Where a tenant has made multiple payments of a prohibited rent under the same lease
+                        and these have not been refunded, the enforcement authority may make a single order
+                        for repayment for all the prohibited rent that has not been refunded (subsection (4)).
+                        </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 11: Interest on amounts ordered to be paid under section 10</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Section 11(1) provides that where an enforcement authority is imposing a penalty under
+                        section 10, they can also require interest on the outstanding amount to be paid. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Subsections (2) and (3) set out how this interest is to be calculated and subsection
+                        (4) specifies that the rate of interest is the judgment rate. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Subsection (5) caps the total amount of interest that can be charged. The total amount
+                        of interest paid must not exceed the amount of the rent order to be repaid under section
+                        10 (subsection (5)). </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 12: Enforcement authorities: supplementary</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Subsection (1) requires enforcement authorities to have regard to any guidance issued
+                        by the Secretary of State about its functions under this Act in relation to a lease
+                        of premises in England and have regard to any guidance issued by Welsh Ministers about
+                        its functions under this Act in relation to a lease of premises in Wales. A link to
+                        this guidance is provided in the ‘“Related Documents’” section of these notes.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Subsection (3) makes provision for the investigatory powers available to domestic
+                        enforcers under Schedule 5 of the Consumer Rights Act 2015 to be available to enforcement
+                        authorities enforcing section 3 of this Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Subsection (4) introduces the Schedule to the Act which sets out the procedure for
+                        imposing a financial penalty under section 9 or making an order under section 10 including
+                        the time limits, rights of appeal, recovering the financial penalty or an amount ordered
+                        to be paid and retention of sums received. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 13: Recovery of prohibited rent by tenant</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>This section allows tenants (or person acting on behalf of a tenant) under a regulated
+                        lease who have paid prohibited rent that has not been refunded to apply to the appropriate
+                        tribunal for a recovery order. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>A recovery order is an order requiring the repayment of any of the prohibited rent
+                        that has not already been refunded by any of the following:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the landlord of the lease at the time the prohibited rent was paid,</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the landlord of the lease at the time the application is made,</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>a person acting on behalf of one of the above where the payment was paid to that person.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>The prohibited rent must be repaid within 28 days after the order has been made (subsection
+                        (3)). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Subsection (5) provides that where multiple payments of prohibited rent have been
+                        made and not refunded, the enforcement authority can make a single recovery order
+                        in respect of all of those payments. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Subsection (6) means that the appropriate tribunal must not make a recovery order
+                        if an enforcement authority has already ordered the recovery of the prohibited rent
+                        under section 10. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p> Nothing in this section prevents a person recovering monies owed under contractual
+                        remedies in the general law (subsection (7)).</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 14: Interest on amount ordered to be paid under section 13</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Section 14 allows the appropriate tribunal to include in the recovery order (see section
+                        14) a requirement for interest to be paid. Interest is payable from the day on which
+                        the payment of prohibited rent was made until the day on which the amount ordered
+                        is paid. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Where the penalty relates to more than one payment of prohibited rent, interest is
+                        payable from the day on which each payment of prohibited rent was made until that
+                        part of the amount is paid. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>The rate of interest is specified in section 17 of the Judgements Act 1838. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>The total amount of interest payable must not be more than the amount ordered to be
+                        paid. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 15: Application to appropriate tribunal as to effect of section 7</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>This section allows either a tenant or landlord of a regulated lease to apply to the
+                        appropriate tribunal for a declaration as to the effect of section 7 on a term in
+                        the lease (or a contract relating to the lease). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Following such an application, if the appropriate tribunal is satisfied that the lease
+                        includes a prohibited rent, it must make a declaration as to the effect of section
+                        7 on the terms of the lease (or related contract). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>Where there are two or more regulated leases with the same landlord, a single application
+                        may be made in respect of those leases, by either the landlord or by a tenant of one
+                        of the leases with the consent of the tenant(s) of the other leases (subsection (3)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>Where the tenant is the registered proprietor of the leasehold the appropriate tribunal
+                        can also direct the landlord to apply to the Chief Land Registrar, and pay the appropriate
+                        fee, to enter the declaration in the registered title. The tenant may apply to the
+                        Chief Land Registrar, and pay the appropriate fee, for the declaration to be entered
+                        in the registered title (subsection (5)). </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 16: Assistance</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">77 </span></h2>
+                     <p>This section allows an enforcement authority to help a tenant or former tenant, a
+                        person acting on behalf of a tenant or former tenant or the guarantor of a tenant
+                        or former tenant to apply for a recovery order (section 13) and to recover an amount
+                        that the appropriate tribunal orders to be paid under a recovery order. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">78 </span></h2>
+                     <p>This section also allows an enforcement authority to help a tenant or a person acting
+                        on behalf of a tenant to apply for an order declaring the effect of section 7 on a
+                        regulated lease (section 15).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">79 </span></h2>
+                     <p>The help that an enforcement authority can provide under this section can include
+                        conducting proceedings or giving advice.  </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 17: Interpretation of enforcement provisions</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">80 </span></h2>
+                     <p>Section 17 defines “tenant”, for the purposes of sections 10, 13 and 16, to include
+                        a person acting on behalf of a tenant and (except in relation to section 16(1)(b)
+                        which relates to applications for a declaration of the effect of section 7 on the
+                        terms of a regulated lease) a former tenant or a guarantor.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">81 </span></h2>
+                     <p>This section also specifies that the “appropriate tribunal” is the First-tier Tribunal
+                        where the lease of the premises is in England and a leasehold valuation tribunal where
+                        the lease of the premises is in Wales.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 18: Administration charges for peppercorn rents</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">82 </span></h2>
+                     <p>Section 18 requires that no administration charge is payable in relation to the collection
+                        of any ground rent that is restricted to a peppercorn by this Act.  It does this by
+                        amending relevant provisions in the Commonhold and Leasehold Reform Act 2002. The
+                        tenant can apply to the First-tier Tribunal in England or in Wales to a leasehold
+                        valuation tribunal for a determination whether an administration charge is payable
+                        or for an order varying the lease on the ground that such an administration charge
+                        is not payable.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">83 </span></h2>
+                     <p>The tenant can also apply (under section 24 of the Landlord and Tenant Act 1987) to
+                        the First-tier Tribunal in England or in Wales to a leasehold valuation tribunal to
+                        request that it makes an order appointing a manager where prohibited administration
+                        charges have been made. This will enable the appropriate tribunal to take action where,
+                        for example, a landlord includes administration charges in leases on numerous occasions.
+                        </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 19: Amendments to Housing Act 1985</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">84 </span></h2>
+                     <p>Section 19 made a consequential amendment to Part 5 of the Housing Act 1985 (right
+                        to buy).</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 20: Consequential amendments</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">85 </span></h2>
+                     <p>Section 20 enabled the Secretary of State to make provision that is consequential
+                        on this Act by regulations. Such regulations may amend an Act of Parliament including
+                        an Act passed in the same session as this Act.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 21: Regulations</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">86 </span></h2>
+                     <p>Section 21(1) states that any power to make regulations under this Act includes power
+                        to make consequential, supplementary, incidental, transitional or saving provision
+                        and different provision for different purposes. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">87 </span></h2>
+                     <p>Regulations under this Act are to be made by statutory instrument and are subject
+                        to annulment by a resolution of either House of Parliament if the regulations are
+                        made by the Secretary of State, or Senedd Cymru if the regulations are made by the
+                        Welsh Ministers with the exception of:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>regulations under section 20 which amend an Act of Parliament which must made in draft
+                           and laid before and approved by a resolution of each House of Parliament;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>commencement regulations under section 25.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 22: Interpretation</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">88 </span></h2>
+                     <p>Section 22 defines various terms used throughout the Act. Subsection (1) defines a
+                        long lease as one granted for a period exceeding 21 years (whether or not it may be
+                        terminated sooner). It also includes a lease granted for a fixed term but with an
+                        obligation or covenant that means the lease will be continually renewed, other than
+                        a sub-lease of a lease which is not a long lease, or a lease that is terminated after
+                        a death, marriage or civil partnership.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">89 </span></h2>
+                     <p>Subsection (2) defines dwelling as a building or part of building that is occupied
+                        or intended to be occupied, and any land usually enjoyed around it such as a garden
+                        or outhouses. Subsection (2) also makes clear that in the Act the term lease means
+                        either an equitable or legal lease (and that references to grant of a lease are to
+                        be construed accordingly) and includes a sub-lease, but does not include a mortgage
+                        term. It defines rent as anything in the nature of rent, regardless of what it is
+                        called. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">90 </span></h2>
+                     <p>Subsection (2) also defines a premium as any ‘”pecuniary consideration’” for the grant
+                        of the lease, other than rent. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">91 </span></h2>
+                     <p>In addition, subsection (2) sets out the meaning of the “relevant authority” to mean
+                        the Secretary of State in relation to a lease of premises in England and to mean the
+                        Welsh Ministers in relation to a lease of a premises in Wales.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">92 </span></h2>
+                     <p>Subsection 3 clarifies that a sum expressed to be payable in respect of rates, council
+                        tax, services, repairs, maintenance, insurance or other ancillary matters is not rent
+                        for the purposes of this Act merely because it is reserved as rent in the lease. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 23: Crown application</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">93 </span></h2>
+                     <p>Section 23(1) provides that the Act applies to Crown land as defined in subsection
+                        (2).</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 24: Extent</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">94 </span></h2>
+                     <p>This section is explained under paragraphs 20 and 21 of these Explanatory Notes above.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 25: Commencement</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">95 </span></h2>
+                     <p>This section is explained under Commencement below.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 26: Short title</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">96 </span></h2>
+                     <p>This section is self-explanatory.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Schedule: Enforcement: procedure, appeals and recovery etc.</b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">97 </span></h2>
+                     <p>The Schedule sets out the procedure to be followed by an enforcement authority when
+                        it imposes a financial penalty and/or makes an order to recover prohibited rent. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">98 </span></h2>
+                     <p>Paragraph 2 requires that before imposing a penalty and/or making an order for repayment,
+                        the enforcement authority must serve notice of their intent. The notice of intention
+                        must set out:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the date of the notice being served</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the amount of the proposed penalty and/or terms of the order</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the reasons for imposing the penalty and/or making the order</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>information about the right to make written representations.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">99 </span></h2>
+                     <p>Paragraph 3(1) deals with timescales for issuing the notice of intent. This notice
+                        must be served within 6 years of the day of the breach and within 6 months of the
+                        enforcement authority knowing of evidence that the authority considers justifies serving
+                        the notice.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">100 </span></h2>
+                     <p>Sub-paragraph (2) sets out the days on which it is to be considered that a breach
+                        of section 3(1) has taken place, for the purposes of calculating the timescales in
+                        subparagraph (1). A breach involving a request for a prohibited rent takes place on
+                        the date of that request. Where no request for payment has been made and the landlord
+                        fails to refund prohibited rent received, a breach takes place at the end of the period
+                        of 28 days after the rent is received.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">101 </span></h2>
+                     <p>Paragraph 4 relates to written representations regarding the notice. Anyone who receives
+                        a notice of intent may make written representations about the proposal. They must
+                        make these written representations within 28 days of the notice being served.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">102 </span></h2>
+                     <p>Paragraph 5 relates to the issuing of the final notice. After the end of the 28-day
+                        period for written representations, the enforcement authority must decide whether
+                        to impose a financial penalty and/or make the order. If it decides to impose a penalty
+                        and/or make an order the authority must decide the amount of the penalty and/or the
+                        terms of the order. The enforcement authority must then issue a final notice requiring
+                        a penalty to be paid and/or the order to be complied with within 28 days of the date
+                        of the final notice. The final notice must set out:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the date the final notice is served</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>the amount of the penalty and/or terms of the order</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>the reasons for imposing the penalty and/or making the order</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>information about how to pay the penalty and/or comply with the order</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>information about rights of appeal</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">f.</span></h2>
+                        <p>the consequences of failure to comply with the notice.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">103 </span></h2>
+                     <p>Paragraph 6 deals with an enforcement authority withdrawing or amending the notice
+                        of intent or final notice. The enforcement authority is allowed, at any time, to withdraw
+                        a notice of intent or final notice, to reduce the amount specified in a notice of
+                        intent or final notice, or to remove the proposal to impose or the imposition or a
+                        penalty or the proposal to make or the making of an order to recover prohibited rent.
+                        The authority can do this by writing to the person on whom the relevant notice was
+                        served.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">104 </span></h2>
+                     <p>Paragraph 7 relates to appeals. A final notice may be appealed to the appropriate
+                        tribunal. Appeals can be against the decision to impose the penalty or make the order;
+                        the amount of the penalty; or the terms of the order. The person on whom the final
+                        notice was served must appeal within 28 days of the service of that notice. The notice
+                        will then be suspended until the appeal is finally determined, withdrawn or abandoned.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">105 </span></h2>
+                     <p>An appeal will be a re-hearing of the enforcement authority’s decision and may be
+                        determined having regard to matters that the enforcement authority was unaware of.
+                        The appropriate tribunal may quash, confirm or vary the notice. However, if varying
+                        the notice, the appropriate tribunal cannot vary a notice so as to make it impose
+                        a financial penalty of less than the minimum or more than the maximum penalty that
+                        the enforcement authority could have imposed.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">106 </span></h2>
+                     <p>Paragraphs 8 and 9 deal with recovery of the financial penalty, prohibited rent and
+                        interest. If the person fails to pay all or part of the penalty or fails to repay
+                        the prohibited rent in accordance with an order, the enforcement authority may recover
+                        the penalty or the prohibited rent on the order of the county court as if it were
+                        payable under order of that court. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">107 </span></h2>
+                     <p>Paragraph 10 gives an enforcement authority power to help a person to apply for a
+                        court order if an enforcement authority’s order to repay a prohibited rent or interest
+                        on that amount has not been complied with. For example, by helping the person conduct
+                        proceedings or by giving advice. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">108 </span></h2>
+                     <p>Paragraphs 11 and 12 set out how the enforcement authority should deal with the financial
+                        proceeds from enforcement action. The enforcement authority may retain the financial
+                        proceeds of any penalties it imposes and put it towards the costs (administrative
+                        or legal) incurred in carrying out its enforcement functions in relation to residential
+                        leasehold property. Any proceeds of a financial penalty which are not used for this
+                        purpose must be paid to the Secretary of State if the premises are in England, or
+                        to the Welsh Ministers if the premises are in Wales.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">109 </span></h2>
+                  <p>The Act came into force on 30 June 2022, the day appointed by the Secretary of State
+                     in regulations, except for the following sections which came into force on the day
+                     the Act was passed:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Sections 2 and 8 (but only for the purpose of making regulations)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Sections 20– 26</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">110 </span></h2>
+                  <p>The Act empowers the Secretary of State to appoint different days for different purposes
+                     including for different kinds of leases.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">111 </span></h2>
+                  <p>In relation to a lease of a retirement home, the regulations cannot appoint a day
+                     for commencement earlier than 1 April 2023. A lease of a retirement home is a lease
+                     relating to a dwelling that can only be occupied by people aged 55 or over.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">112 </span></h2>
+                  <p>The Act enables the Secretary of State by regulations to make transitional or saving
+                     provisions in connection with the coming into force of any provision of the Act. This
+                     includes the power to make different provisions for different purposes including for
+                     different kinds of leases. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">113 </span></h2>
+                  <p>The Secretary of State commenced section 1 to 19 of the Act in the Leasehold Reform
+                     (Ground Rent) Act 2022 (Commencement) Regulations 2022, from 30 June 2022 for non-retirement
+                     leases, and from 1 April 2023 for retirement leases. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">114 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Government commitment to reducing ground rents on future residential leases to a peppercorn,
+                        December 2017:&nbsp;<a href="https://www.gov.uk/government/news/crackdown-on-unfair-leasehold-practices--2"><u>https://www.gov.uk/government/news/crackdown-on-unfair-leasehold-practices--2</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Government technical consultation on the implementation of this policy, October 2018:&nbsp;&nbsp;<a href="https://www.gov.uk/government/consultations/implementing-reforms-to-the-leasehold-system"><u>https://www.gov.uk/government/consultations/implementing-reforms-to-the-leasehold-system</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Government response to the Housing, Communities and Local Government Committee’s report
+                        on Leasehold Reform, July 2019:&nbsp;<a href="https://www.gov.uk/government/publications/leasehold-reform-government-response-to-the-select-committee-report"><u>https://www.gov.uk/government/publications/leasehold-reform-government-response-to-the-select-committee-report</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Announcement that this Act will also apply to retirement leasehold properties, January
+                        2021: <a href="https://www.gov.uk/government/news/government-reforms-make-it-easier-and-cheaper-for-leaseholders-to-buy-their-homes"><u>https://www.gov.uk/government/news/government-reforms-make-it-easier-and-cheaper-for-leaseholders-to-buy-their-homes</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Leasehold Reform (Ground Rent) Act 2022 (Commencement) Regulations 2022:<u></u><a href="https://www.legislation.gov.uk/uksi/2022/694/contents/made"><u>https://www.legislation.gov.uk/uksi/2022/694/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Guidance on the application of the Act for enforcement authorities, tenants and landlords:
+                        <a href="https://www.gov.uk/guidance/leasehold-reform-ground-rent-act-2022"><u>https://www.gov.uk/guidance/leasehold-reform-ground-rent-act-2022</u></a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">115 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     ’Act’s passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/41495/documents/540">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-05-12/debates/E2734927-F7E4-448D-98E1-0BA2F00CE149/LeaseholdReform(GroundRent)Bill(HL)">
+                                    <u>Vol. 812</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>24 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-05-24/debates/B2F2A0CD-A62B-4194-BBDB-D05D70098500/LeaseholdReform(GroundRent)Bill(HL)">
+                                    <u>Vol. 812 Col. 827</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grant Committee</p>
+                           </td>
+                           <td>
+                              <p>9 June 2021</p>
+                              <p>14 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-06-09/debates/FE17BB13-B471-4834-8594-0CA094CB0074/LeaseholdReform(GroundRent)Bill(HL)">
+                                    <u>Vol. 812 Col. 272GC</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-06-14/debates/C29F3AD3-DAB9-4ADD-BDB8-AF81FDDF5CDF/LeaseholdReform(GroundRent)Bill(HL)">
+                                    <u>Vol. 812 Col. 344GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>20 July 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-07-20/debates/985A8C2D-9882-4CD7-A4D2-7D5DF3E61F4A/LeaseholdReform(GroundRent)Bill(HL)">
+                                    <u>Vol. 814 Col. 155</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>14 September 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-09-14/debates/8ABD0C4A-09C6-47E8-9D32-CDEBAA2879B5/LeaseholdReform(GroundRent)Bill(HL)">
+                                    <u>Vol. 814 Col. 1278</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>15 September 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0164/210164.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-11-29/debates/6ADDA17B-33E3-47D8-B984-4FF9A731D5A3/LeaseholdReform(GroundRent)Bill(Lords)">
+                                    <u>Vol. 704 Col. 703</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>7 December 2021</p>
+                              <p></p>
+                              <p>9 December 2021</p>
+                           </td>
+                           <td>
+                              <p>Morning: <a href="https://hansard.parliament.uk/commons/2021-12-07/debates/7bef18a0-0e21-45ac-8a77-140c5959721f/LeaseholdReform(GroundRent)Bill(Lords)(FirstSitting)"><u>Col. 1</u></a></p>
+                              <p>Afternoon: <a href="https://hansard.parliament.uk/commons/2021-12-07/debates/5b3f1b14-1541-4c59-9292-326fd189852d/LeaseholdReform(GroundRent)Bill(Lords)(SecondSitting)"><u>Col. 33</u></a></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-12-09/debates/cda3cb7e-b4d5-44d0-baf8-6eadb1a43cae/LeaseholdReform(GroundRent)Bill(Lords)(ThirdSitting)">
+                                    <u>Col. 57</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-24/debates/80BE8094-A532-47FC-A753-4EE5DD032A84/LeaseholdReform(GroundRent)Bill(Lords)">
+                                    <u>Vol. 707 Col. 794</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>7 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-02-07/debates/40A01A71-65C3-49A1-AC23-C4BFCACDDBDC/LeaseholdReform(GroundRent)Bill(HL)">
+                                    <u>Vol. 818 Col. 1298</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>8 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-02-08/debates/897447CA-41D6-4A94-9736-33C7D756C440/RoyalAssent">
+                                    <u>House of Lords Volume 818</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">116 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 22</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 23</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 24</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 25</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 26</p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                           <td>
+                              <p>Clause 27</p>
+                           </td>
+                           <td>
+                              <p>Clause 27</p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule </p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule </p>
+                           </td>
+                           <td>
+                              <p>Schedule </p>
+                           </td>
+                           <td>
+                              <p>Schedule </p>
+                           </td>
+                           <td>
+                              <p>Schedule </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

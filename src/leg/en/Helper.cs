@@ -65,6 +65,25 @@ class Helper : BaseHelper {
             existing.ParentNode.RemoveChild(existing);
         }
 
+        // Remove legacy Word TOC placeholder paragraphs. These arise when the source
+        // docx contains a native TOC rendered as a table: the parser strips the data
+        // rows but leaves a <paragraph> with "Table of Contents" heading and an empty
+        // table (header row only). Detect by a leading paragraph text of "Table of
+        // Contents" followed by a table child.
+        foreach (XmlNode child in mainBody.ChildNodes.Cast<XmlNode>().ToList()) {
+            if (child is not XmlElement para || para.LocalName != "paragraph") continue;
+            var contentNode = para.SelectSingleNode("akn:content", nsmgr);
+            if (contentNode == null) continue;
+            var firstP = contentNode.SelectSingleNode("akn:p", nsmgr);
+            if (firstP == null) continue;
+            string firstPText = firstP.InnerText?.Trim();
+            if (!string.Equals(firstPText, "Table of Contents", StringComparison.OrdinalIgnoreCase))
+                continue;
+            if (contentNode.SelectSingleNode("akn:table", nsmgr) == null) continue;
+            mainBody.RemoveChild(para);
+            logger.LogDebug("Removed legacy Word TOC placeholder paragraph");
+        }
+
         var expressionUri = xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRuri/@value", nsmgr)?.Value;
         if (string.IsNullOrEmpty(expressionUri)) {
             logger.LogWarning("No FRBRExpression URI found, using fragment references for TOC");

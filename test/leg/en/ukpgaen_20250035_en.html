@@ -1,0 +1,643 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>S</b>
+               <b>PACE INDUSTRY (INDEMNITIES)</b>
+               <b> ACT 2025</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Space Industry (Indemnities) Act 2025 which
+                     received Royal Assent on 18 December 2025 (c. 35).</span></h2>
+               <section class="paragraph">
+                  <p>These Explanatory Notes have been prepared by the Department for Transport in order
+                     to assist the reader in understanding the Act. They do not form part of the Act and
+                     have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph">
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph">
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act amends the Space Industry Act 2018 to provide that spaceflight operator licences
+                     must specify a limit on the amount of the licensee’s liability to indemnify the United
+                     Kingdom Government and other particular persons or bodies against any claims brought
+                     against the government, or the person or body, in respect of damage or loss arising
+                     out of or in connection with spaceflight activities authorised by the licence.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Space Industry Act 2018 (the 2018 Act) was introduced to enable spaceflight activities
+                     from the United Kingdom, such as operating a satellite in orbit and enabling launch
+                     to orbit from spaceports in the United Kingdom, for the first time. Such activities
+                     require a licence.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>International law, particularly UN space treaties, places obligations and responsibilities
+                     upon states for activities in outer space. In particular, UN space treaties make provision
+                     for the liability of states for damage or injury caused by their space activities.
+                     To mitigate against potential claims on the UK Government, section 36 of the 2018
+                     Act requires the holder of a spaceflight operator licence to indemnify the Government
+                     and a number of named public bodies. However, this is subject to any limit on the
+                     amount of the operator’s liability specified in the licence except in prescribed circumstances
+                     such as where the operator is liable in respect of gross negligence or wilful misconduct.
+                     Currently section 12(2) of the 2018 Act provides that an operator licence “may” specify
+                     a limit on the amount of a licensee’s liability to indemnify under section 36.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Through responses to a <u>consultation on spaceflight liability, insurance and charging</u><a class="fn" id="fnref-1" href="#fn-1">1</a>, the Government is aware that holding unlimited liabilities could be a barrier to
+                     conducting spaceflight activities from the United Kingdom. Other launching nations
+                     limit liabilities or provide a state guarantee for spaceflight activities conducted
+                     from their territory. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Current Government policy is that all spaceflight licences will include limits on
+                     the amount of an operator’s liability to indemnify under section 36 of the 2018 Act
+                     and the amount of insurance they are required to hold, so that no operator will face
+                     unlimited liability. This Act provides industry with legal certainty that the amount
+                     of an operator’s liability will be capped, by making it mandatory to cap the amount
+                     of liability to indemnify under section 36. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Section 36(1) of the 2018 Act requires a person carrying out spaceflight activities
+                     to indemnify the United Kingdom Government or a person or body listed in subsection
+                     (2) against any claims brought against the government, or the person or body, in respect
+                     of damage or loss arising out of or in connection with those activities. The United
+                     Kingdom could, for example, face claims where the UN Convention on International Liability
+                     for Damage caused by Space Objects applies. Section 36(3) and (4) makes further provision
+                     about the requirement to indemnify including when that requirement does not apply.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The requirement to indemnify under section 36(1) is subject to any limit specified
+                     under section 12(2) of the 2018 Act on the amount of a licensee’s liability, except
+                     in prescribed cases or circumstances.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Currently section 12(2) provides that an operator licence may specify a limit on the
+                     amount of a licensee’s liability to indemnify under section 36. This Act amends section
+                     12(2) and makes a consequential amendment to section 36(3)(a).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 2 sets out the territorial extent of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>As with sections 12(2) and 36 of the 2018 Act which this Act amends, this Act extends
+                     to England and Wales, Scotland and Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The matters to which the provisions of this Act relate are not within the legislative
+                     competence of the Scottish Parliament, Senedd Cymru or the Northern Ireland Assembly.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 71(5) of the 2018 Act provides a power to direct, by Order in Council, that
+                     any of the provisions of that Act extend (with any modifications specified in the
+                     Order) to any of the Channel Islands, the Isle of Man or any British overseas territory.
+                     Section 2(2) of this Act provides that the power under section 71(5) may be exercised
+                     so as to extend to any of the Channel Islands, the Isle of Man or any British overseas
+                     territory any amendment by this Act (with or without modifications).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Licence terms relating to indemnification of government etc </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 1(a) amends section 12(2) of the 2018 Act so that an operator licence authorising
+                     spaceflight activities must specify a limit on the amount of the licensee’s liability
+                     to indemnify the Government and other listed bodies under section 36 of that Act in
+                     respect of the activities authorised by the licence.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 1(b) makes a minor consequential amendment to section 36(3)(a) of the 2018
+                     Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>This section sets out the territorial extent, commencement and short title of the
+                     Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 2(3) provides that this Act comes into force at the end of the period of two
+                     months beginning with the day on which it is passed. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>
+                        <u>Space Industry Act 2018</u>:<br><a href="https://www.legislation.gov.uk/ukpga/2018/5/contents/enacted"><b><u>https://www.legislation.gov.uk/ukpga/2018/5/contents/enacted</u></b></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>
+                        <u>Consultation on spaceflight liability, insurance and charging</u>:<br><a href="https://www.gov.uk/government/consultations/commercial-spaceflight-insurance-and-liabilities-requirements"><b><u>https://www.gov.uk/government/consultations/commercial-spaceflight-insurance-and-liabilities-requirements</u></b></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.47in">
+                        <col style="width:1.18in">
+                        <col style="width:1.18in">
+                        <col style="width:1.18in">
+                        <col style="width:1.18in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>England</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Wales</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Scotland</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Northern Ireland</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1 (Licence terms relating to indemnification of government etc)</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2 (Extent, commencement and short title)</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Subject matter and legislative competence of devolved legislatures</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>This Act amends sections 12(2) and 36 of the 2018 Act which extend to England and
+                        Wales, Scotland and Northern Ireland. The subject matter of those provisions is not
+                        devolved to the legislatures in Scotland, Wales and Northern Ireland.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>16 October 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2024-10-16/debates/C71F944C-105D-4760-9597-2361661D1E41/BillsPresented"><u>Vol.754 Col.839</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>7 March 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2025-03-07/debates/AEBE3C88-D046-431B-9224-BA17F4D4A5BF/SpaceIndustry(Indemnities)Bill"><u>Vol.763 Col.606</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>18 June 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2025-06-18/debates/5baa1067-5eb1-4371-b3b7-2fcb6f2946f6/SpaceIndustry(Indemnities)Bill"><u>Col.1</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>4 July 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2025-07-04/debates/E890AADC-E01B-47A6-9AB0-7F1675436AB9/SpaceIndustry(Indemnities)Bill"><u>Vol.770 Col. 599</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>7 July 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-07-07/debates/CF210E83-3AF1-46FE-B63C-8AA09620EB6A/SpaceIndustry(Indemnities)Bill"><u>Vol.847 Col.1119</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>5 September 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2025-09-05/debates/08366000-2970-433C-B741-A72C561064DE/SpaceIndustry(Indemnities)Bill"><u>Vol.848 Col.1102</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment Discharged</p>
+                           </td>
+                           <td>
+                              <p>4 November 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-11-04/debates/C6EF3F17-0C26-419C-8D15-51A70FF0A864/SpaceIndustry(Indemnities)Bill"><u>Vol.849 Col.1814</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 December 2025 </p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2025-12-12/debates/1E2A1184-6803-40ED-B0CA-50BC33466FAF/SpaceIndustry(Indemnities)Bill"><u>Vol.851 Col 428</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>18 December 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2025-12-18/debates/C8344823-4747-4712-8A07-A87A55A49BB0/ProsecutionRatesBournemouthEast"><u>Vol 777 </u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-12-18/debates/463E13CB-7A08-46A6-9D8C-FA1210E78162/RoyalAssent"><u>Vol 851 Col 835</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/consultations/commercial-spaceflight-insurance-and-liabilities-requirements"><u><a href="https://www.gov.uk/government/consultations/commercial-spaceflight-insurance-and-liabilities-requirements">https://www.gov.uk/government/consultations/commercial-spaceflight-insurance-and-liabilities-requirements</a></u></a>.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

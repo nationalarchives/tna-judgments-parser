@@ -1,0 +1,739 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>STAMP DUTY LAND TAX (TEMPORARY RELIEF)</b>
+               <b>
+                  </b>
+               <b>ACT 2020</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Stamp Duty Land Tax (Temporary Relief) Act 2020
+                  (c. 15) which received Royal Assent on 22nd July 2020.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by HM Revenue &amp; Customs in order to assist
+                  the reader in understanding the Act. They do not form part of the Act and have not
+                  been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act temporarily increases the amount that a purchaser can pay for residential
+                     property before they pay Stamp Duty Land Tax (SDLT). It means that all individual
+                     purchasers of residential property who complete or substantially perform their purchase
+                     between 8 July 2020 and 31 March 2021 will pay less or no SDLT.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>As a result of the coronavirus (COVID-19) lockdown, the housing market was largely
+                     put on hold between 26 March and 13 May, and since then there has continued to be
+                     reduced activity in the UK housing market when compared with the period before lockdown.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>This measure was announced by the Chancellor on 8 July 2020.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>No consultation has been held as this is a temporary change which is wholly relieving.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The legislation relating to Stamp Duty Land Tax is set out in Part 4 of the Finance
+                     Act 2003 and came into force on 1 December 2003. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Stamp Duty Land Tax (SDLT) is a transaction tax which applies to acquisitions of an
+                     interest (usually a freehold or a leasehold interest) in land in England and Northern
+                     Ireland. The purchaser (that is, the person acquiring the interest) is liable to pay
+                     the tax.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>SDLT is charged on the “chargeable consideration” for the transaction (which is usually
+                     the purchase price for the property). Where transactions are “linked” for SDLT purposes
+                     (that is, where they form part of a scheme, arrangement or series of transactions
+                     between the same vendor and purchaser or persons connected with them) tax is charged
+                     on the aggregate consideration for the transactions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>There are separate tables of rates for acquisitions of residential and non-residential
+                     property (which includes mixed residential and non-residential property), and residential
+                     property subject to the `higher rates`.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Where payment for property takes the form of rent and a separate SDLT charge applies
+                     on the grant of a new lease, a further table taxes the net present value (NPV) of
+                     the rent payable over the term of the lease.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>An alternative 15% higher rate charge applies to certain acquisitions of dwellings
+                     for more than £500,000 by a company, a partnership including a company or a collective
+                     investment scheme.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The extent of an Act can be different from its application. Extent is about the jurisdictions
+                     in which the Act forms part of the law. Application is about where an Act produces
+                     a practical effect. The provisions in the Act extend to England and Wales (as one
+                     legal jurisdiction) and Northern Ireland. The provisions in the Act apply to England
+                     and Northern Ireland only. The National Assembly for Wales was given legislative competence
+                     to introduce its own equivalent to SDLT by the Wales Act 2014 and has enacted the
+                     Land Transaction Tax and Anti-avoidance of Devolved Taxes (Wales) Act 2017. The Scottish
+                     Parliament was given legislative competence to introduce its own equivalent to SDLT
+                     by section 80I of the Scotland Act 1998 and has enacted the Land and Building Transaction
+                     Tax (Scotland) Act 2013.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Reduced rates of SDLT on residential property for a temporary period</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 1(1) provides for modification as follows of Part 4 of the Finance Act 2003
+                     as it applies to residential land transactions with effective dates between 8 July
+                     2020 and 31 March 2021.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 1(2) substitutes the table below for the existing “Table A: Residential” mentioned
+                     in section 55(1B) of Part 4 where the purchase is not liable to the `higher rates`
+                     –</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.41in">
+                        <col style="width:3.12in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Relevant consideration</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Percentage</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>So much as does not exceed £500,000</p>
+                           </td>
+                           <td>
+                              <p>0%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>So much as exceeds £500,000 but does not exceed £925,000</p>
+                           </td>
+                           <td>
+                              <p>5%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>So much as exceeds £925,000 but does not exceed £1,500,000</p>
+                           </td>
+                           <td>
+                              <p>10%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>The remainder (if any)</p>
+                           </td>
+                           <td>
+                              <p>12%</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 1(3) substitutes the table below for the existing “Table A: Residential” mentioned
+                     in paragraph 1(2) of Schedule 4ZA in Part 4 whereby a purchase is liable to the `higher
+                     rates` –</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.34in">
+                        <col style="width:3.15in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Relevant consideration</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Percentage</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>So much as does not exceed £500,000</p>
+                           </td>
+                           <td>
+                              <p>3%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>So much as exceeds £500,000 but does not exceed £925,000</p>
+                           </td>
+                           <td>
+                              <p>8%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>So much as exceeds £925,000 but does not exceed £1,500,000</p>
+                           </td>
+                           <td>
+                              <p>13%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>The remainder (if any)</p>
+                           </td>
+                           <td>
+                              <p>15%</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 1(4) substitutes the table below for the existing “Table A: Residential” mentioned
+                     in paragraph 2(3) of Schedule 5 in Part 4 where taxable rent is given for the purchase
+                     –</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.36in">
+                        <col style="width:3.15in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Rate bands</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Percentage</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>£0 to £500,000</p>
+                           </td>
+                           <td>
+                              <p>0%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Over £500,000</p>
+                           </td>
+                           <td>
+                              <p>1%</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 1(5) makes provision to disregard section 57B and Schedule 6ZA of the Finance
+                     Act 2003 (affecting First Time Buyers) in the temporary relief period.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 1(6) amends the effect of section 44 of the Finance Act 2003 so that no additional
+                     tax will be due by virtue of section 44 when a contract is completed after the temporary
+                     relief period has ended following substantial performance within the temporary relief
+                     period provided that the only reason for additional tax becoming due is that completion
+                     has occurred after the end of the temporary relief period.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 1(7) makes provision to ensure that the terms ‘completion’, ‘contract’ and
+                     ‘conveyance’ as used in subsection (6) have the meanings given to them by section
+                     44(10) of the Finance Act 2003.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 2 provides that the Act may be cited as the Stamp Duty Land Tax (Temporary
+                     Relief) Act 2020.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The Act came into force on Royal Assent on 22 July 2020 but applies in relation to
+                     transactions with an effective date on and after 8 July 2020. As a result of the resolutions
+                     passed by the House of Commons under the Provisional Collection of Taxes Act 1968,
+                     the Act’s provisions have effectively been in force since 8 July 2020.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>HM Revenue &amp; Customs tax information and impact note <a href="https://www.gov.uk/government/publications/temporary-increase-to-stamp-duty-land-tax-nil-rate-band-for-residential-properties"><u>https://www.gov.uk/government/publications/temporary-increase-to-stamp-duty-land-tax-nil-rate-band-for-residential-properties</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Resolution under section 5 of the Provisional Collection of Taxes Act 1968</p>
+                           </td>
+                           <td>
+                              <p>8 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-07-08/debates/BE9ECA8F-A74C-4431-88C7-3CE4E524DA7E/EconomicUpdate">
+                                    <u>Vol. 678 Col 1016 - 1017</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Resolution under section 1 of the Provisional Collection of Taxes Act 1968</p>
+                           </td>
+                           <td>
+                              <p>13 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-07-13/debates/536955EC-C6B5-43B7-9B7B-5861B46527CB/PointOfOrder">
+                                    <u>Vol. 678 Col 1289 - 1290</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                              <p>
+                                 <a href="https://services.parliament.uk/Bills/2019-21/stampdutylandtaxtemporaryrelief/documents.html">
+                                    <u>Text of Bill as introduced</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>13 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-07-13/debates/536955EC-C6B5-43B7-9B7B-5861B46527CB/PointOfOrder">
+                                    <u>Vol. 678 Col. 1290</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>13 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-07-13/debates/BA45BE2B-F5B8-40A2-8996-7C0007E869D9/StampDutyLandTax(TemporaryRelief)Bill">
+                                    <u>Vol. 678 Col. 1291</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>13 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-07-13/debates/350A7EF2-2694-43C9-B380-89678C339407/StampDutyLandTax(TemporaryRelief)Bill">
+                                    <u>Vol. 678 Col. 1338</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>13 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-07-13/debates/350A7EF2-2694-43C9-B380-89678C339407/StampDutyLandTax(TemporaryRelief)Bill">
+                                    <u>Vol. 678 Col. 1342</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                              <p>
+                                 <a href="https://services.parliament.uk/Bills/2019-21/stampdutylandtaxtemporaryrelief/documents.html">
+                                    <u>Text of Bill as brought from the Commons</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>13 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-07-13/debates/9B5A7772-9BAF-4DF1-ADCD-AD6F09B4CF0E/StampDutyLandTax(TemporaryRelief)Bill">
+                                    <u>Vol. 804 Col. 1528</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>17 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-07-17/debates/6FEBE6B7-289D-48D6-9DB3-501BB05663D0/StampDutyLandTax(TemporaryRelief)Bill">
+                                    <u>Vol. 804 Col. 1916</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>17 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-07-17/debates/6FEBE6B7-289D-48D6-9DB3-501BB05663D0/StampDutyLandTax(TemporaryRelief)Bill">
+                                    <u>Vol. 804 Col. 1916</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>17 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-07-17/debates/6FEBE6B7-289D-48D6-9DB3-501BB05663D0/StampDutyLandTax(TemporaryRelief)Bill">
+                                    <u>Vol. 804 Col. 1916</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>22 July 2020</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Lords/2020-07-22/debates/4819BE33-24A9-48F8-BE5A-BB0FA4D69EB5/RoyalAssent"><u>Vol. 678 Col. 2168</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2020-07-22/debates/4819BE33-24A9-48F8-BE5A-BB0FA4D69EB5/RoyalAssent"><u>Vol. 804 Col. 2201</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

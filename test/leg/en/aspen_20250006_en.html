@@ -1,0 +1,750 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p class="center">
+               <i>These notes relate to the Welfare of Dogs (Scotland) Act 2025 (asp 6)</i>
+               <br>
+               <i> which received Royal Assent on 19 March 2025 </i>
+               </p>
+            <p class="center">
+               <b> WELFARE OF DOGS (SCOTLAND) </b>
+               <b>ACT 2025</b>
+               </p>
+            <p class="center">——————————</p>
+            <p class="center">
+               <b>EXPLANATORY NOTES</b>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>INTRODUCTION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.</span></h2>
+               <p>These Explanatory Notes have been prepared by the Scottish Parliament’s Non-Government
+                  Bills Unit on behalf of Christine Grahame MSP, the member who introduced the Bill
+                  for this Act in the Parliament, in order to assist the reader of the Welfare of Dogs
+                  (Scotland) Act. They do not form part of the Act and have not been endorsed by the
+                  Parliament. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.</span></h2>
+               <p>The Notes should be read in conjunction with the Act. They are not, and are not meant
+                  to be, a comprehensive description of the Act. So where a section, or a part of a
+                  section, does not seem to require any explanation, none is given.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>THE ACT</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.</span></h2>
+               <p>The Act requires the Scottish Ministers to make a new code of practice that should
+                  be followed by any person who is considering acquiring a dog, and by any person who
+                  is considering transferring a dog to someone else. The Act also requires Scottish
+                  Ministers to take reasonable steps to ensure public awareness and understanding of
+                  the code of practice and its content.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>SUMMARY OF AND BACKGROUND TO THE ACT</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.</span></h2>
+               <p>The Act consists of 9 sections arranged in two Parts. Part 1 requires the Scottish
+                  Ministers to make a code of practice, setting out good practice in the acquiring or
+                  transferring of puppies and dogs; and Part 2 consists of general provisions. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>The main animal welfare legislation in Scotland is the Animal Health and Welfare (Scotland)
+                  Act 2006. The Animal Welfare (Licensing of Activities Involving Animals) (Scotland)
+                  Regulations 2021 replaced previous legislation covering pet sales and dog breeding.
+                  They provide for the licensing of persons who in Scotland carry on activities of breeding
+                  dogs, cats or rabbits, selling or rehoming animals as pets or operating animal welfare
+                  establishments. The regulations lowered the threshold of the number of litters that
+                  trigger the need to become licensed from five to three. The scope was extended beyond
+                  the sale of puppies to apply when puppies are sold “or otherwise supplied.”</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>COMMENTARY ON SECTIONS</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part 1 – Promotion of good practice</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 1 - Ministers to make code of practice</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.</span></h2>
+               <p>Section 1 requires the Scottish Ministers to make and publish a code of practice setting
+                  out good practice that both a person considering acquiring a dog (“prospective acquirer”)
+                  and person who is transferring a dog (“prospective supplier”) should follow. In making
+                  the code of practice, the Scottish Ministers must have regard to the matters set out
+                  in sections 2 and 3. The code may give effect to those sections and any other matters
+                  that are considered appropriate by the Scottish Ministers, and must give effect to
+                  the material in section 4 of the Act. Ministers must consult representatives of suppliers
+                  and acquirers of dogs as well as other people they consider appropriate, and that
+                  consultation may take place before section 1 comes into force. The code must have
+                  taken effect within twelve months of the Bill receiving Royal Assent. The Scottish
+                  Ministers may by regulations modify that date and those regulations are subject to
+                  the negative procedure.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.</span></h2>
+               <p>The definition of “transferring” a dog includes selling, giving away, exchanging,
+                  bartering or arranging for the long term loan or long term fostering of a dog. This
+                  is an inclusive definition so any other arrangements which amount to transferring
+                  a dog will be caught by the code of practice.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 2 - Content of code: in relation to sale or transfer of dog of any age</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.</span></h2>
+               <p>Section 2 sets out a list of matters that a prospective acquirer of a dog of any age
+                  should consider before acquiring a dog. These relate to how the dog would fit into
+                  the prospective acquirer’s lifestyle and home environment and their ability to adequately
+                  care and provide for the dog throughout its life. Under section 2(3), the code may
+                  also stipulate that, where practical, the acquirer (or their representative) and the
+                  prospective supplier should meet in person before agreeing to the transaction.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.</span></h2>
+               <p>These matters are referred to in a certificate of compliance with the code, which
+                  the prospective acquirer is required to complete (see section 4).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 3 - Content of code: in relation to sale or transfer of young dog by first
+                     owner</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.</span></h2>
+               <p>Section 3 sets out potential content of the code in relation to the transfer of puppies
+                  – that is, a dog under the age of 12 months which has only had one owner (being the
+                  prospective supplier). This includes the requirement that only dogs aged over 8 weeks
+                  should be transferred and that, where practicable, prior to the transfer, the prospective
+                  acquirer should see the puppy with its mother unless the puppy needs to be separated
+                  from its mother for welfare reasons or the mother is deceased.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.</span></h2>
+               <p>Under section 3(5), the prospective acquirer should familiarise themselves with the
+                  circumstances in which either a breeding licence or registration is required. A licence
+                  or registration could be required under regulations made under section 27(1) or (2)
+                  of the Animal Health and Welfare (Scotland) Act 2006 (“the 2006 Act”). The Animal
+                  Welfare (Licensing of Activities Involving Animals) (Scotland) Regulations 2021, which
+                  were made under the 2006 Act lowered the threshold of the number of litters that trigger
+                  the need for a breeder to attain a licence from five to three. Essentially an acquirer
+                  should check whether the person they are getting a dog from is either a licensed breeder
+                  or, at such a time as a register of unlicensed litters is in place, has registered
+                  the litter.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.</span></h2>
+               <p>Under section 3(6), the prospective acquirer is to confirm with the prospective supplier
+                  that the dog has been microchipped. Regulation 6 of The Microchipping of Dogs (Scotland)
+                  Regulations 2016 (S.S.I. 2016/58) requires every keeper of a dog which is older than
+                  8 weeks to ensure that it is microchipped. This requirement would therefore be consistent
+                  with section 3(2).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 4 – Content of code: certificate</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.</span></h2>
+               <p>Section 4 requires the prospective acquirer to complete and sign a certificate before
+                  acquiring a dog of any age. The form of the certificate will be set out in the code,
+                  and its content is specified in subsection (4). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">14.</span></h2>
+               <p>Filling out the certificate involves the acquirer confirming that they have considered
+                  the matters set out in the code of practice. If applicable, the prospective acquirer
+                  should also confirm that they have complied with the requirements in section 3(3)
+                  and 3(5). Where applicable, the acquirer must also seek to ensure the dog is at least
+                  8 weeks old through discussion with the supplier; the prospective supplier is also
+                  required to confirm this. The prospective supplier should also sign the certificate
+                  and both supplier and acquirer must provide their full name and address. Once the
+                  transaction is complete the certificate should be kept throughout the period of the
+                  acquirer’s ownership of the dog. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">15.</span></h2>
+               <p>Subsection (6) means that under the code of practice, the acquirer is to show the
+                  certificate to a person who is exercising a relevant power under schedule 1 of the
+                  2006 Act, if the acquirer is a qualifying person and the person exercising the relevant
+                  power reasonably requires to see it. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">16.</span></h2>
+               <p>Schedule 1 deals with the investigation of potential animal welfare offences, and
+                  grants various powers to inspectors and constables. Therefore, this section will provide
+                  a link between the code of practice and the 2006 Act by expressly requiring the certificate
+                  to be shown to an inspector or constable exercising those powers. A “qualifying person”
+                  is an occupier of premises in relation to which a power is being exercised, a person
+                  who is responsible for animals at the premises, or a person who is under their direction
+                  or control. For example, if a constable exercised a power to enter premises where
+                  there were reasonable grounds for believing that dogs were being caused unnecessary
+                  suffering, the constable could ask the person responsible for the dogs to produce
+                  the certificate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">17.</span></h2>
+               <p>This requirement in the code of practice does not in itself create a criminal offence.
+                  However, paragraph 14 of schedule 1 of the 2006 Act does create offences of obstruction
+                  which could be relevant to a contravention of this provision. See also section 6 of
+                  the Act which sets out the effect of a failure to comply with the code. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">18.</span></h2>
+               <p>The Scottish Ministers may add additional content to the certificate.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 5 – Revision of code</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">19.</span></h2>
+               <p>The code may be revised from time to time.&nbsp;Other than the timescale, the requirements
+                  for the preparation of the first code of practice also apply to the preparation of
+                  any revised code. A revised code will specify on which day it will come into effect.
+                  The revised code must be published by Scottish Ministers. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 6 – Effect of code</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">20.</span></h2>
+               <p>Section 6 sets out the status of the code of practice in law. Failure by a person
+                  to comply with the code will not in itself make a person liable to civil or criminal
+                  proceedings. However, if a person is prosecuted for a “relevant offence”, evidence
+                  that the person failed to comply with the code may be relied on as tending to establish
+                  liability (that is, may be treated as evidence that the person committed the offence).
+                  Similarly, evidence that the person complied with the code may be relied on as tending
+                  to negative liability (that is, may be treated as evidence that the person did not
+                  commit the offence).&nbsp;</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">21.</span></h2>
+               <p>For the purposes of section 6, “relevant offence” is defined to include offences under
+                  Part 2 (animal welfare) of the 2006 Act (which include offences of causing unnecessary
+                  suffering, mutilation, cruel operations, administering poisons, organising animal
+                  fights and failing to ensure an animal’s welfare). It also includes any offences set
+                  out in regulations made under section 26 or 27 of the 2006 Act – namely, regulations
+                  to secure the welfare of animals for which a person is responsible, and regulations
+                  for the licensing etc of activities involving animals.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 7 – Public awareness and understanding of the code</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">22.</span></h2>
+               <p>The Scottish Ministers are required to take reasonable steps to ensure that the public
+                  are both aware of, and understand, the contents of the code and the requirements on
+                  them under it. In particular, the Scottish Ministers must take reasonable steps to
+                  ensure awareness and understanding of the code among school pupils.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">23.</span></h2>
+               <p>Before determining what steps to take to ensure public awareness and understanding,
+                  the Scottish Ministers must consult organisations with an interest in the welfare
+                  of dogs and consider how they could contribute to any steps to be taken.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part 2 – General provisions</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 8 - Commencement</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">24.</span></h2>
+               <p>Section 8 provides that the Act will come into force at the end of the period of 2
+                  months beginning with the day of Royal Assent.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 9 – Short Title</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">25.</span></h2>
+               <p>The short title of the Act is the Welfare of Dogs (Scotland) Act 2025.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PARLIAMENTARY HISTORY</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">26.</span></h2>
+               <p>The following table sets out, for each Stage of the proceedings in the Scottish Parliament
+                  on the Bill for this Act, the dates on which the proceedings at that Stage took place,
+                  and references to the Official Report of those proceedings.  It also shows the dates
+                  on which Committee reports and other papers relating to the Bill were published, and
+                  gives references to those reports and other papers.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:3.08in">
+                     <col style="width:3.29in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <p>
+                           <b>PROCEEDINGS AND REPORTS</b>
+                           </p>
+                        <p>
+                           <b>REFERENCE</b>
+                           </p>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>BEFORE INTRODUCTION</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Draft proposal – lodged 10 February 2022</p>
+                           <p>Final proposal – lodged 28 April 2022</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/proposed-members-bills/welfare-of-dogs-statement-of-reasons-final.pdf">
+                                 <u>Proposed Welfare of Dogs (Scotland) Bill</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>INTRODUCTION</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill (as introduced) – 19 June 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/welfare-of-dogs-scotland-bill/bill-as-introduced.pdf">
+                                 <u>SP Bill 32, Session 6 (2023)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>SPICe briefing on Bill (as introduced) – published 31 August 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://digitalpublications.parliament.scot/ResearchBriefings/Report/2023/8/31/1f4b4ab7-5fe5-4f3e-9911-786475bf7a5c">
+                                 <u>SPICe briefing SB 23-28</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>STAGE 1</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>(a) Lead committee – Rural Affairs and Islands Committee</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>23rd Meeting, 2023, 20 September 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15450">
+                                 <u>Columns 2 - 34</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>26th Meeting, 2023, 25 October 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15501">
+                                 <u>Columns 2 - 30</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>30th Meeting, 2023, 22 November 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15570">
+                                 <u>Columns 14 - 47</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 report – published 5 March 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://digitalpublications.parliament.scot/Committees/Report/RAI/2024/3/5/dcacf596-cad4-4f9b-af82-44cb235dfd0a">
+                                 <u>4th Report (SP 539), 2024 (Session 6)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>(b) Delegated Powers and Law Reform Committee </b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Report – published 2 November 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://digitalpublications.parliament.scot/Committees/Report/DPLR/2023/11/2/9f810f58-3f6a-4146-ab9d-aac77eb20187">
+                                 <u>65th Report (SP 462), 2023 (Session 6)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>(c) Consideration by the Parliament</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 debate – 9 May 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15845">
+                                 <u>Columns 69 - 108</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>STAGE 2</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Rural Affairs and Islands Committee  </b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 2 proceedings – 18 September 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16000">
+                                 <u>Columns 29 -76</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill (as amended at Stage 2) – 18 September 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/welfare-of-dogs-scotland-bill/stage-2/bill-as-amended.pdf">
+                                 <u>SP Bill 32A, Session 6 (year)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>STAGE 3</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Consideration by the Parliament</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 3 proceedings – 23 January 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16213">
+                                 <u>Columns 80 - 139</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill (as passed) – 24 January 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/welfare-of-dogs-scotland-bill/stage-3/bill-as-passed.pdf">
+                                 <u>SP Bill 32B, Session 6 (2025)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>ROYAL ASSENT</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>19 March 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.legislation.gov.uk/asp/2025/6/enacted">
+                                 <u>Welfare of Dogs (Scotland) Act 2025 (asp 6)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

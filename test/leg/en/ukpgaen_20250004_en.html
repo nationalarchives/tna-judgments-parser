@@ -1,0 +1,1315 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>ARBITRATION ACT 2025</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Arbitration Act 2025 which received Royal Assent
+                  on 24 February 2025 (c. 4).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Ministry of Justice in order to
+                  assist the reader in understanding the Act. They do not form part of the Act and have
+                  not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Arbitration Act 2025 (“<b>this Act</b>”) is concerned with arbitration, which is typically when disputes are resolved by
+                     an arbitrator who is privately appointed rather than by a judge sitting in court.
+                     Arbitration in England, Wales, and Northern Ireland is regulated by the Arbitration
+                     Act 1996 (“<b>the 1996 Act</b>”). This Act gives effect to the recommendations of the Law Commission of England
+                     and Wales to amend the 1996 Act.<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Arbitration happens in a wide range of settings, both domestic and international,
+                     from family law and rent reviews, through commodity trades and shipping, to international
+                     commercial contracts and investor claims against states. The Law Commission estimates
+                     that there are at least 5000 arbitrations annually in England and Wales, worth at
+                     least £2.5 billion to the economy in arbitrator and legal fees alone. Arbitration
+                     is also an important node in a mutually supporting network of business that includes
+                     legal services, banking, insurance, and trade. In a 2021 survey by Queen Mary University
+                     of London and White &amp; Case LLP, London was ranked equal first with Singapore as the
+                     world’s most preferred seat for international arbitration.<a class="fn" id="fnref-2" href="#fn-2">2</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The 1996 Act, which governs arbitration in England, Wales, and Northern Ireland, is
+                     now over 25 years old. Other countries competing for a greater share of international
+                     arbitration have enacted or revised their arbitration legislation more recently. In
+                     March 2021, the Ministry of Justice asked the Law Commission to review the 1996 Act.
+                     The Law Commission began its review in January 2022. It published its first consultation
+                     paper in September 2022, and its second consultation paper in March 2023. It published
+                     its final report, along with a draft bill, in September 2023. The final report of
+                     the Law Commission concluded that the 1996 Act generally works well, and that root
+                     and branch reform is not needed nor wanted. Nevertheless, the Law Commission made
+                     a number of recommendations for targeted reform. This Act enacts the Law Commission’s
+                     recommendations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>This Act contains the following substantial initiatives:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>clarification of the law applicable to arbitration agreements;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>codification of an arbitrator’s duty of disclosure;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>strengthening of arbitrator immunity around resignation and applications for removal;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>introduction of a power for arbitrators to dispose summarily of issues which have
+                        no real prospect of success;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>clarification of court powers in support of arbitral proceedings, and in support of
+                        emergency arbitrators; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>a revised framework for challenges under section 67 of the 1996 Act (where the challenge
+                        alleges that the arbitral tribunal lacked jurisdiction). </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>This Act contains the following minor changes to the 1996 Act:&nbsp;</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>clarifying the availability of appeals under Part I of the 1996 Act;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>simplifying preliminary applications to court on questions of jurisdiction and points
+                        of law;   </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>clarifying time limits for challenging awards; and   </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>repealing unused provisions on domestic arbitration agreements.  </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The intent of this Act is to further the principle found in section 1 of the 1996
+                     Act: to obtain the fair resolution of disputes by an impartial tribunal without unnecessary
+                     delay or expense. Thereby, the aim is to fulfil the policy objective of ensuring that
+                     the 1996 Act is fit for purpose and that it continues to promote the UK as a leading
+                     destination for arbitration. Further policy and background to the Law Commission’s
+                     recommendations is provided in its final report and the two consultation papers which
+                     preceded it.<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>An Arbitration Bill that sought to enact the Law Commission’s recommended reforms
+                     was introduced in November 2023. However, that Bill fell upon prorogation while awaiting
+                     its Report Stage in the first House after passing through a Special Public Bill Committee.
+                     This Act replicates the provisions of that previous Bill as amended at Lords Special
+                     Public Bill Committee Stage with one change to ensure Section 1 (<i>Law applicable to arbitration agreement</i>) does not apply to arbitration agreements made between investors and states, where
+                     those agreements are derived from treaties or non-UK legislation (see para. 17 below).
+                     This Act was amended in the House of Lords at Committee Stage, so the wording of Section
+                     13 (<i>Appeals to Court of Appeal from High Court decisions</i>) gives better effect to the underlying policy intention (see para. 45 below).  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The current legislation governing arbitration in England, Wales, and Northern Ireland,
+                     is primarily the 1996 Act. By section 99 of the 1996 Act, Part II of the Arbitration
+                     Act 1950 continues to apply to the enforcement of foreign arbitral awards under the
+                     Geneva Convention 1923. However, for the enforcement of foreign arbitral awards, almost
+                     all countries have signed up instead to the later New York Convention 1958. Part III
+                     of the 1996 Act gives effect to the New York Convention. Investor-state arbitrations
+                     which fall under the Convention on the Settlement of Investment Disputes between States
+                     and Nationals of Other States (the ICSID Convention) are separately governed by the
+                     Arbitration (International Investment Disputes) Act 1966. The Arbitration (Scotland)
+                     Act 2010 governs arbitration in Scotland. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 16 sets out the territorial extent of this Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The provisions of this Act extend and apply to England, Wales, and Northern Ireland.
+                     This mirrors the territorial extent and application of the 1996 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>This Act does not extend to the Channel Islands, the Isle of Man or the British Overseas
+                     Territories. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Applicable law</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 1: Law applicable to arbitration agreement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 1 replaces the common law in <i>Enka v Chubb</i> (2020)<a class="fn" id="fnref-4" href="#fn-4">4</a> with a statutory rule. By inserting section 6A(1) into the 1996 Act, the law governing
+                     the arbitration agreement is the law expressly chosen by the parties, otherwise it
+                     is the law of the seat, except in the cases where the arbitration agreement arises
+                     from a treaty (see below). This is regardless of where the arbitration is seated.
+                     For example, where the arbitration is seated in England and Wales, then the agreement
+                     to arbitrate will usually be governed by the law of England and Wales. By inserted
+                     section 6A(2), any law chosen to govern the main contract does not count as an express
+                     choice of law to govern the agreement to arbitrate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The reason for section 1 is as follows. The 1996 Act applies when the parties have
+                     agreed in writing to arbitrate their dispute. Often the agreement to arbitrate is
+                     a section in a main contract. For example, there might be a main contract to build
+                     a factory, and one of the clauses provides that any dispute will be resolved through
+                     arbitration. Although the agreement to arbitrate is a clause in a main contract, the
+                     law sometimes treats the agreement to arbitrate as a free-standing or separable agreement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>There may be an international dimension to a main contract and its agreement to arbitrate.
+                     For example, one party might be German, and the other party Chinese, with both agreeing
+                     to resolve their dispute by way of arbitration in London (as a neutral venue). In
+                     such circumstances, it is necessary to determine which country’s laws govern the agreement
+                     to arbitrate. In the present example, the agreement to arbitrate could be governed
+                     by the law of Germany, or China, or England and Wales, or another law entirely. Determining
+                     the governing law is important, as different governing laws may give different answers
+                     to important questions like who is party to the agreement (for example, whether the
+                     agreement extends to a subsidiary company), and whether this type of dispute is even
+                     capable of resolution by arbitration (as a matter of public policy, some types of
+                     dispute must be resolved by the courts rather than through arbitration).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>In its decision in <i>Enka v Chubb</i>, the Supreme Court said, broadly, as follows. The agreement to arbitrate is governed
+                     by the law chosen by the parties. This can mean that the agreement to arbitrate is
+                     governed by the law chosen to govern the main contract – unless, for example, that
+                     law would invalidate the agreement to arbitrate. Otherwise the agreement to arbitrate
+                     will be governed by the law with which it is most closely connected, which is usually
+                     the law of the seat. The seat is the place where the arbitration is deemed legally
+                     to occur (even if hearings take place elsewhere or online). In the above example,
+                     the seat of the arbitration is England and Wales (London).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>It is common for there to be an express choice of law to govern the main contract,
+                     and an express choice of seat for an arbitration, but no express choice of law to
+                     govern the agreement to arbitrate. It is therefore common for an arbitration to be
+                     seated in England and Wales but, as a result of the decision in <i>Enka v Chubb</i>, for the arbitration agreement to be governed by a foreign law (the law governing
+                     the main contract). Section 1 provides a new default rule that aligns the seat of
+                     the arbitration with the law governing the arbitration agreement. For example, where
+                     an arbitration is seated in England and Wales, then by default the agreement to arbitrate
+                     will now be governed by the law of England and Wales. This is unless the parties expressly
+                     agree a different law to govern the arbitration agreement. Where no seat has yet been
+                     agreed or designated, the courts could if necessary resolve the matter.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>However, inserted section 6A(3) and (4) provide that the section does not apply to
+                     arbitration agreements derived from standing offers to arbitrate contained in treaties
+                     or non-UK legislation. This means, for example, that non-ICSID investor-state arbitration
+                     agreements will tend not to be covered by the default rule in section 6A(1). However,
+                     investor-state agreements which arise under commercial contracts (rather than treaties
+                     or foreign legislation) will remain to be captured by the default rule in inserted
+                     section 6A(1).</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>The arbitral tribunal</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Impartiality: duty of disclosure</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The 1996 Act (section 33) imposes a duty of impartiality on arbitrators. Additionally,
+                     a duty of disclosure was recognised by the Supreme Court in its decision in <i>Halliburton v Chubb</i> (2020).<a class="fn" id="fnref-5" href="#fn-5">5</a> Section 2 of this Act codifies the general duty of disclosure as articulated in that
+                     case.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 2 of this Act requires an arbitrator to disclose circumstances that might
+                     reasonably give rise to justifiable doubts as to their impartiality. It applies prior
+                     to the arbitrator’s appointment, when they are being approached with a view to appointment.
+                     It is a continuing duty which also applies after their appointment. Where an arbitrator
+                     is appointed by someone other than the parties, the arbitrator may need to repeat
+                     their disclosure to the parties upon appointment. The duty extends to circumstances
+                     of which the arbitrator is aware, and of which they ought reasonably to be aware.
+                     Inserted section 23A is a mandatory provision (like the duty of impartiality in section
+                     33 of the 1996 Act); the parties cannot agree to dispense with the duty of disclosure.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: (Immunity of arbitrator: application for removal) and Section 4: (Immunity
+                     of arbitrator: resignation)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The 1996 Act (section 29) provides that an arbitrator is not liable for anything done
+                     in the discharge of their functions unless they acted in bad faith. Such immunity
+                     supports an arbitrator to make robust and impartial decisions without fear that a
+                     party will express their disappointment by suing the arbitrator. It also supports
+                     the finality of the dispute resolution process by preventing a party who is disappointed
+                     with losing the arbitration from bringing further proceedings against the arbitrator.
+                     Judges enjoy a similar immunity for similar reasons.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>There are still ways of dealing with a recalcitrant arbitrator. For example, the parties
+                     can revoke an arbitrator’s authority (by section 23 of the 1996 Act) or apply to court
+                     to remove an arbitrator (by section 24 of the 1996 Act). In both cases, the arbitrator
+                     may lose their entitlement to fees and expenses.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Sections 3 and 4 of this Act extend the scope of arbitrator immunity, up to a limit,
+                     as follows.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 3 of this Act provides that an arbitrator will not be liable for the costs
+                     of an application to court under section 24 of the 1996 Act for their removal unless
+                     the arbitrator has acted in bad faith. This aligns with the general immunity already
+                     provided by section 29 of the 1996 Act. This reverses case law which held that an
+                     arbitrator could be liable for those costs.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Section 4 of this Act provides that an arbitrator will no longer be liable for resignation
+                     unless the resignation is shown by a complainant to be unreasonable.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Jurisdiction of tribunal</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Court determination of jurisdiction of tribunal</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>The 1996 Act (sections 82 and 30) provide that an arbitral tribunal has jurisdiction
+                     if there is a valid arbitration agreement, the tribunal is properly constituted, and
+                     the matters which have been submitted to arbitration are in accordance with the arbitration
+                     agreement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>A party who participates in the arbitration proceedings might object that the arbitral
+                     tribunal lacks jurisdiction. The tribunal itself is usually empowered to decide, in
+                     the first instance, whether it has jurisdiction (by section 30 of the 1996 Act). The
+                     court can be asked to rule on whether the tribunal has jurisdiction, including as
+                     follows. One way is to wait until the tribunal has issued a ruling, and then challenge
+                     that ruling under section 67 of the 1996 Act, which allows a challenge to an arbitral
+                     award on the basis that the tribunal lacked jurisdiction. Another way is by invoking
+                     section 32 of the 1996 Act, which allows the court to decide whether the tribunal
+                     has jurisdiction as a preliminary point. Sections 32 and 67 of the 1996 Act have different
+                     requirements.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Section 5 of this Act amends section 32 of the 1996 Act to make clear that it can
+                     only be invoked instead of the tribunal ruling on its jurisdiction. If the tribunal
+                     has already ruled, then any challenge must be brought through section 67 of the 1996
+                     Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Power to award costs despite no substantive jurisdiction</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The arbitral tribunal or the court might rule that the tribunal has no jurisdiction
+                     to resolve a particular dispute. In this case, the arbitration proceedings must come
+                     to an end. Section 6 of this Act provides that, in those circumstances, the tribunal
+                     can nevertheless award the costs of the arbitration proceedings up until that point.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Arbitral proceedings and powers of the court</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Power to make award on summary basis</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Section 7 of this Act confers express power on arbitrators to make an award on a summary
+                     basis to dispose of an issue where an arbitrating party has no real prospect of succeeding
+                     on that issue. “Summary basis” means that the tribunal has adopted an expedited procedure
+                     to consider whether a party has a real prospect of succeeding on that issue. Inserted
+                     section 39A is not mandatory; the parties can agree to disapply it (they can “opt
+                     out”). Arbitrators can exercise the power to make an award on a summary basis only
+                     upon an application by one of the arbitrating parties. The “no real prospect of success”
+                     threshold is the same as that applied in court proceedings in England and Wales. As
+                     for the expedited procedure, this is not prescribed by section 7 of this Act but is
+                     a matter for the arbitrator to decide on a case-by-case basis; inserted section 39A(3)
+                     requires the tribunal to give the parties a reasonable opportunity to make representations
+                     about the procedure to adopt.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Emergency arbitrators</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Arbitral rules sometimes provide a regime for the appointment of emergency arbitrators.
+                     An emergency arbitrator is appointed on an interim basis, pending the constitution
+                     of the full arbitral tribunal, to make orders on urgent matters, for example for the
+                     preservation of evidence. Once constituted, the full tribunal can usually review the
+                     orders of the emergency arbitrator.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Under the 1996 Act, when a normal arbitrator makes an order during arbitration proceedings,
+                     and an arbitrating party fails to comply with that order, possible consequences include
+                     the following. The arbitrator can issue a peremptory order (by section 41 of the 1996
+                     Act), and if there is still no compliance, an application can be made to court for
+                     the court to order compliance with the arbitrator’s order (by section 42 of the 1996
+                     Act). Alternatively, an application can be made directly to court, for the court to
+                     make its own order (by section 44 of the 1996 Act). Section 8 of this Act amends the
+                     1996 Act to extend that scheme to emergency arbitrators.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Court powers exercisable in support of arbitral proceedings in respect
+                     of third parties</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The 1996 Act (section 44) provides that the court can make orders in support of arbitration
+                     proceedings on the following matters: taking of witness evidence, preservation of
+                     evidence, orders relating to relevant property, sale of goods, interim injunctions,
+                     and the appointment of a receiver. Arbitrating parties require the leave (permission)
+                     of the court to appeal decisions made under section 44.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Section 9 of this Act amends section 44 of the 1996 Act to make it clear that court
+                     orders under that section are available against third parties (people who are not
+                     party to the arbitration proceedings). For example, orders might be made against third
+                     parties who hold relevant evidence, or against banks which hold relevant funds. This
+                     aligns the position in arbitration proceedings with the position in court proceedings.
+                     Also, section 9 of this Act provides that third parties do not require the leave of
+                     the court to bring an appeal, thereby giving third parties the full rights of appeal
+                     usually available in court proceedings.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Powers of the court in relation to award</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 10: Challenging the award: remedies available to the court</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>An arbitral tribunal can issue an award on whether it has jurisdiction, and it can
+                     issue an award on the merits of the dispute. Either type of award can be challenged
+                     under section 67 of the 1996 Act on the basis that the arbitral tribunal did not have
+                     jurisdiction.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Awards can also be challenged for serious irregularity (by section 68 of the 1996
+                     Act), where the remedies are: remit the award to the tribunal for reconsideration,
+                     set aside the award, or declare the award to be of no effect. And awards can be appealed
+                     on a point of law (by section 69 of the 1996 Act), where the remedies are: confirm,
+                     vary, remit for reconsideration, or set aside the award. In both sections there is
+                     a proviso that an award will not be set aside unless it is inappropriate to remit
+                     the award to the tribunal.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Section 10 of this Act amends section 67 of the 1996 Act to provide the remedies of
+                     remittance for reconsideration and declaring the award to be of no effect. This renders
+                     section 67 of the 1996 Act consistent with the scheme of remedies in sections 68 and
+                     69 of the 1996 Act, and consistent with the assumptions in the case law that these
+                     remedies were intended to be available.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 11: Procedure on challenge under section 67 of the Arbitration Act 1996</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>The 1996 Act (sections 82 and 30) provides that an arbitral tribunal has jurisdiction
+                     if there is a valid arbitration agreement, the tribunal is properly constituted, and
+                     the matters which have been submitted to arbitration are in accordance with the arbitration
+                     agreement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>A party who participates in the arbitration proceedings might object that the arbitral
+                     tribunal lacks jurisdiction. The tribunal itself is usually empowered to decide, in
+                     the first instance, whether it has jurisdiction (by section 30 of the 1996 Act). Once
+                     the tribunal has issued an award, either on its jurisdiction or also on the merits
+                     of the dispute, a party can challenge that award before the court under section 67
+                     of the 1996 Act on the basis that the tribunal had no jurisdiction after all.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>In its decision in <i>Dallah v Pakistan</i> (2010),<a class="fn" id="fnref-6" href="#fn-6">6</a> the Supreme Court said that, even where the question of the tribunal’s jurisdiction
+                     has been fully debated before the tribunal, a challenge under section 67 of the 1996
+                     Act is a full rehearing before the court.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Section 11 of this Act amends section 67 of the 1996 Act to confer power for rules
+                     of court to provide as follows. Where an application is made under section 67 of the
+                     1996 Act, by a party who took part in the arbitration proceedings, that relates to
+                     an objection on which the tribunal has already ruled, then there will generally be
+                     no full rehearing before the court.&nbsp;This is a departure from <i>Dallah v Pakistan</i>. Specifically, rules of court will be able to provide that, unless necessary in the
+                     interests of justice, there should be no new grounds of objection and no new evidence
+                     before the court, unless it was not reasonably possible to put these before the tribunal;
+                     and evidence should not be reheard by the court.&nbsp;</p>
+               </section>
+               <section class="level">
+                  <p>Section 12: Challenging the award: time limit</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>The 1996 Act provides that an arbitral award can be challenged before the courts on
+                     the basis that the tribunal lacked jurisdiction (section 67), or on the basis of serious
+                     irregularity (section 68), or the award can be appealed on a point of law (section
+                     69). In all cases, the challenge must comply with the further requirements of section
+                     70 of the 1996 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>By section 70 of the 1996 Act, an applicant must first exhaust any available arbitral
+                     process of appeal or review (section 70(2)(a)) and any available recourse under section
+                     57 to correct the award or issue an additional award (section 70(2)(b)). The application
+                     to court must be made within 28 days.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Section 12 of this Act amends section 70 of the 1996 Act to clarify that the time
+                     limit of 28 days begins to run after any arbitral appeal or any application under
+                     section 57 of the 1996 Act. (In any other case, it begins to run from the date of
+                     the award.)</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Appeals from High Court decisions</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 13: Appeals to Court of Appeal from High Court decisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Various applications can be made to the High Court under Part I of the 1996 Act. For
+                     example, under section 9 of the 1996 Act a party can apply to court to stay legal
+                     proceedings in favour of arbitration proceedings. Some sections in Part I say expressly
+                     that a decision of the High Court can be appealed to the Court of Appeal only with
+                     the permission of the High Court. Other sections in Part I, including section 9, are
+                     silent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Rights of appeal to the Court of Appeal are governed by the Senior Courts Act 1981
+                     (for England and Wales) and by the Judicature (Northern Ireland) Act 1978 (for Northern
+                     Ireland). The 1996 Act, Schedule 3, paragraphs 34(2) and 37(2), amended those Acts,
+                     in effect to say that no appeal was possible under Part I except for those sections
+                     which expressly required the permission of the High Court. This was a drafting error.
+                     The House of Lords in <i>Inco Europe v First Choice Distribution </i>(2000),<a class="fn" id="fnref-7" href="#fn-7">7</a> a case involving section 9 of the 1996 Act, identified the drafting error, and said
+                     that the Senior Courts Act 1981 should be read as follows: the usual full rights to
+                     appeal to the Court of Appeal are available under all sections of Part I of the 1996
+                     Act, except that an appeal requires the permission of the High Court only for those
+                     sections which say so expressly. Section 13 of this Act corrects the drafting error
+                     in line with the House of Lords decision.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Miscellaneous minor amendments</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 14: Requirements to be met for court to consider applications</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>The 1996 Act (section 32) provides that an arbitrating party can apply to the court
+                     for the court to make a preliminary ruling on whether the arbitral tribunal has jurisdiction.
+                     Under section 45 of the 1996 Act, a party can apply to the court for the court to
+                     rule on a preliminary point of law arising in the arbitration.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Section 14 of this Act amends sections 32 and 45 of the 1996 Act so that an application
+                     will require either the agreement of the parties or the permission of the tribunal.
+                     It removes the further requirement to satisfy the court on a list of matters. Nevertheless,
+                     the court still retains general discretion on whether to accede to the application.</p>
+               </section>
+               <section class="level">
+                  <p>Section 15: Repeal of provisions relating to domestic arbitration agreements</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Sections 85 to 88 of the 1996 Act concern domestic arbitration agreements, which is
+                     when all the parties are from the United Kingdom and the arbitration is seated in
+                     the United Kingdom. The seat of an arbitration is where the arbitration is deemed
+                     legally to occur, even if hearings are held elsewhere or online. Sections 85 to 87
+                     of the 1996 Act have never been brought into force. Section 88 was brought into force,
+                     but only grants the Secretary of State the power to repeal sections 85 to 87. Section
+                     15 of this Act repeals all these unused sections of the 1996 Act.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Final provisions</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 16: Extent</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>This section establishes that any amendment or repeal made by this Act to the 1996
+                     Act has the same extent as the provision in the 1996 Act which is amended or repealed.</p>
+               </section>
+               <section class="level">
+                  <p>Section 17: Commencement and transitional provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Sections 16 (Extent), 17 (Commencement and transitional provision) and 18 (Short title)
+                     of this Act come into force on the day on which this Act is passed into law. The rest
+                     of this Act comes into force on such day as the Secretary of State may by regulations
+                     appoint. Those regulations may contain transitional and saving provisions. In the
+                     absence of such provisions, the amendments apply to arbitration agreements whenever
+                     made, but not to arbitration proceedings commenced before the date on which the rest
+                     of this Act comes into force, nor to legal proceedings in respect of such arbitration
+                     proceedings. An example of the latter might be legal proceedings to enforce an arbitral
+                     award, where the award was issued before this Act came into force. </p>
+               </section>
+               <section class="level">
+                  <p>Section 18: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>This section establishes that this Act may be referenced as the Arbitration Act 2025
+                     once in force.   </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Section 17 makes provision regarding when measures in this Act will come into force.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>The following documents are relevant to this Act and can be read at the stated location:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Consultation papers and final report of the Law Commission of England and Wales: <a href="https://www.lawcom.gov.uk/project/review-of-the-arbitration-act-1996/"><u>https://www.lawcom.gov.uk/project/review-of-the-arbitration-act-1996/</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of this
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>Stage</p>
+                           <p>Date</p>
+                           <p>Hansard Reference</p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>18 July 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-07-18/debates/07BE831C-2D3E-45E9-A72A-212731042A6A/ArbitrationBill(HL)">
+                                    <u>Vol. 839 Col. 30</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 July 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-07-30/debates/3BF3A985-D9FC-4C4E-97F7-C8A1DF1AF39D/ArbitrationBill(HL)">
+                                    <u>Vol. 839 Col. 949</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>11 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3733/stages/18911">
+                                    <u>Vol. 839 Col. 1575</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>30 October 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-10-30/debates/228FE5DE-138F-46E2-A8AE-029806046077/ArbitrationBill(HL)">
+                                    <u>Vol. 840 Col. 1122</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading </p>
+                           </td>
+                           <td>
+                              <p>06 November 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-11-06/debates/820CF4D4-FAF0-494C-9EE8-AC865950C3EB/ArbitrationBill(HL)">
+                                    <u>Vol. 840 Col. 1497</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>06 November 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://commonsbusiness.parliament.uk/Document/89744/Html?subType=Standard">
+                                    <u>Votes and Proceedings – Lords Message</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 January 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-29/debates/0DB35E95-E401-40F6-8065-A1556390B2EB/ArbitrationBill(Lords)">
+                                    <u>Vol. 761 Col. 331</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>11 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-02-11/debates/CF5BDB51-EAC4-4F05-93B8-5B6B9D27A946/ArbitrationBill(Lords)">
+                                    <u>Vol. 762 Col. 208</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>11 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-02-11/debates/CF5BDB51-EAC4-4F05-93B8-5B6B9D27A946/ArbitrationBill(Lords)">
+                                    <u>Vol. 762 Col. 214</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>24 February 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2025-02-24/debates/3E6E70C9-62D4-455B-AF0A-1B8D54EED1C6/RoyalAssent"><u>Vol. 843 Col. 1445</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2025-02-24/debates/5A2A79F7-C894-49E5-BE4C-685AD366B4A5/Speaker%E2%80%99SStatement"><u>Vol. 762 Col. 485</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>This Annex shows how each section of this Act was numbered during the passage of the
+                     Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.56in">
+                        <col style="width:1.58in">
+                        <col style="width:1.58in">
+                        <col style="width:1.58in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>Section of the Act</p>
+                           <p>Bill as introduced in the Lords</p>
+                           <p>Bill as amended in Committee in the Lords </p>
+                           <p>Bill as introduced in the Commons</p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 </p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 </p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8 </p>
+                           </td>
+                           <td>
+                              <p>Clause 8 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18 </p>
+                           </td>
+                           <td>
+                              <p>Clause 18 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/"><u><a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/">https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/"><u><a href="https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/">https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/"><u><a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/">https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.supremecourt.uk/cases/uksc-2020-0091.html"><u><a href="https://www.supremecourt.uk/cases/uksc-2020-0091.html">https://www.supremecourt.uk/cases/uksc-2020-0091.html</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://www.supremecourt.uk/cases/uksc-2018-0100.html"><u><a href="https://www.supremecourt.uk/cases/uksc-2018-0100.html">https://www.supremecourt.uk/cases/uksc-2018-0100.html</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <a href="https://www.supremecourt.uk/cases/uksc-2009-0165"><u><a href="https://www.supremecourt.uk/cases/uksc-2009-0165">https://www.supremecourt.uk/cases/uksc-2009-0165</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://www.bailii.org/uk/cases/UKHL/2000/15.html"><u><a href="https://www.bailii.org/uk/cases/UKHL/2000/15.html">https://www.bailii.org/uk/cases/UKHL/2000/15.html</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

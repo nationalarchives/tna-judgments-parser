@@ -1,0 +1,2290 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>PROFESSIONAL QUALIFICATIONS</b>
+               <b>
+                  </b>
+               <b>ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Professional Qualifications Act 2022 which received
+                     Royal Assent on 28 April 2022 (c. 20). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for Business, Energy
+                     and Industrial Strategy in order to assist the reader in understanding the Act. They
+                     do not form part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Professional Qualifications Act 2022 (“the Act”) revokes the current EU-based
+                     system for recognising professional qualifications gained overseas and establishes
+                     a new approach based on regulator autonomy and delivering international agreements.
+                     It also helps aspiring professionals understand how to access professions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act contains provisions to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>End the interim system for the recognition of professional qualifications that derives
+                        from the UK’s membership of the EU.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Provide appropriate national authorities with the power to make regulations which
+                        facilitate the assessment of individuals with overseas qualifications or experience
+                        for the purposes of establishing if they should be allowed to practise a profession
+                        in the UK. These regulations must be necessary in order to enable demand to be met
+                        for the services of a regulated profession in the UK, or a part of the UK.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Enable Government to implement international agreements or parts of international
+                        agreements, such as Free Trade Agreements (FTAs), that the UK strikes with partners
+                        so far as they relate to the recognition of professional qualifications.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>Enable appropriate national authorities to provide regulators with a consistent set
+                        of powers to enter into agreements with regulators overseas on the recognition of
+                        professional qualifications, where they do not have this power already.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>Provide for an Assistance Centre service for individuals who wish to practise in a
+                        regulated profession in the UK or overseas. The centre will function as a single point
+                        of information on the entry requirements of regulated professions in the UK.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>Require regulators of professions in all parts of the UK to publish information on
+                        the entry and practice requirements of their profession, including any requirements
+                        for remaining in that profession.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>Require regulators in the UK to provide certain information to counterpart regulators
+                        in other parts of the UK where an individual is or has been entitled to practise in
+                        a part of the UK, and is seeking entitlement to practise in another part of the UK.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">h.</span></h2>
+                     <p>Require regulators in the UK to provide certain information to overseas regulators
+                        (with permission of the individual) where an individual is or has been entitled to
+                        practise that profession in the UK, or a part of the UK, and is seeking entitlement
+                        to practise overseas.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">i.</span></h2>
+                     <p>Amend the Architects Act 1997 to allow a new recognition system for architects, alongside
+                        adjustments to the administration of the Architects Registration Board to support
+                        efficiency.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">j.</span></h2>
+                     <p>Protect the autonomy of regulators in relation to regulations made under the powers
+                        in the Act that affect regulators’ existing powers. Regulations will not remove the
+                        ability of regulators to prevent an unfit individual from practising a profession,
+                        and cannot have a material adverse effect on the knowledge, skills or experience of
+                        individuals practising a profession.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">k.</span></h2>
+                     <p>Require the appropriate national authority to consult relevant regulators ahead of
+                        making regulations under the powers in the Act that affect regulators’ existing powers.
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The regulation of professions</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3 </span></h2>
+                     <p>A regulated profession is one in which there are restrictions to pursuing the activities
+                        or a subset of activities of the profession, such as for doctors, and/or legal restrictions
+                        for using a professional title, such as the use of “architect” in the UK.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>Regulating professions by law is usually done to protect the public interest. Professions
+                        that are regulated in this way typically have requirements to practise in the UK,
+                        or part of the UK, which include licensing and certification. Licensing is where the
+                        individual cannot practise unless their qualification meets standards set out in legislation,
+                        such as a nurse. Certification can be by a public authority established for that purpose
+                        by legislation, such as the Architects Registration Board certifying architects.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>Regulating professions is a critical element of UK public and private services. It
+                        ensures safety in service provision, provides consumer confidence, and helps to maintain
+                        professional standards. Qualification requirements for professionals help make sure
+                        that people have the appropriate professional knowledge, skills and experience to
+                        undertake certain activities. In the UK there are over 200 professions that are regulated
+                        by legislation by a network of more than 80 regulators, in addition to a range of
+                        other professions that are regulated voluntarily.<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>Recognition requirements make sure that holders of professional qualifications obtained
+                        in other jurisdictions have the professional knowledge, skills and experience required
+                        to practise in the UK. In many cases the professional title which goes with the professional
+                        recognition means that those individuals can responsibly practise professions which
+                        hold a higher degree of risk, for example an architect. Some regulatory bodies in
+                        the UK can recognise professional qualifications from overseas to grant access to
+                        that profession in the UK, or part of the UK. Overseas professionals play an important
+                        role in many professions in addressing current and future workforce needs.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>The recognition of professional qualifications is often covered in international trade
+                        negotiations. In order to provide services overseas, many UK services providers need
+                        their qualifications to be recognised in the host country. Qualification recognition,
+                        or a lack of it, can be an enabler or a constraint on professionals qualified in one
+                        country bidding for and winning contracts to provide services in another. In most
+                        FTAs the UK has signed so far, the professional qualifications provisions – and the
+                        implementation of them – will not place new requirements on regulators. They create
+                        provisions which regulators can utilise if they choose  to do so. However, some FTAs,
+                        such as the UK’s recent agreement with the EEA EFTA states<a class="fn" id="fnref-2" href="#fn-2">2</a>, can require the Government to place obligations on regulators.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>While qualification recognition is important in addressing workforce needs and supporting
+                        trade, it also plays a key role in ensuring that the UK is meeting its commitments
+                        to uphold the Common Travel Area (CTA). The CTA is a long-standing political arrangement
+                        between the UK and Ireland which pre-dates both the UK and Ireland’s membership of
+                        the EU. Under the CTA, UK and Irish citizens can move freely and reside in either
+                        jurisdiction and enjoy associated rights and privileges, including the right to work.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>A Memorandum of Understanding (MoU) concerning the CTA was signed by the UK and Irish
+                        governments in 2019, reinforcing both parties’ existing commitments to the CTA as
+                        the UK prepared for exiting the EU. The MoU states that recognition of professional
+                        qualifications ‘is an essential facilitator of the right to work’ and therefore, both
+                        the UK and Irish governments have agreed to ensure there are adequate routes to recognition
+                        for qualified professionals across the UK and Ireland. These routes to recognition
+                        will be established either through UK and Irish regulators putting in place routes
+                        for their profession on a unilateral basis, or through recognition arrangements either
+                        agreed between UK and Irish regulators and professional bodies or using the UK-EU
+                        Trade and Cooperation Agreement mutual recognition agreement framework.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>EU Exit and legislative context for the Act</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>On 31 January 2020, the UK left the European Union and the Withdrawal Agreement agreed
+                        with the EU entered into force. The Withdrawal Agreement provided for a transition
+                        period which ended at 11pm on 31 December 2020.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>For the recognition of professional qualifications, the EU Directive 2005/36/EC on
+                        the mutual recognition of professional qualifications (“MRPQ Directive”) provided
+                        a framework for the recognition of professional qualifications across the EU. The
+                        MRPQ Directive enabled European Economic Area (EEA) and Swiss nationals to have their
+                        professional qualifications recognised in an EEA State or Switzerland, other than
+                        the state in which the qualification was obtained.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>The European Union (Recognition of Professional Qualifications) Regulations 2015 (“2015
+                        Regulations”) implement part of the MRPQ Directive. As part of preparing the statute
+                        book for the UK’s exit from the EU, the Government made the Recognition of Professional
+                        Qualifications (Amendment etc.) (EU Exit) Regulations 2019 (“2019 Regulations”) which
+                        provide for an interim system of recognition of professional qualifications from the
+                        EEA and Switzerland and came into force at the end of the transition period. The Professional
+                        Qualifications and Services (Amendments and Miscellaneous Provisions) (EU Exit) Regulations
+                        in 2020 amended the 2019 Regulations, primarily to implement transitional arrangements
+                        that the UK agreed with the EU, EEA EFTA states, and Switzerland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>The Act is part of the Government’s plans to exercise the UK’s new regulatory flexibility,
+                        as outlined in the HM Treasury report on the Autumn Budget and Spending Review 2021<a class="fn" id="fnref-3" href="#fn-3">3</a>. To make way for the new approach to the recognition of professional qualifications
+                        set out in the Act, the Act revokes the 2015 Regulations and contains powers to revoke
+                        other EU-derived legislation on the recognition of professional qualifications, which
+                        was retained following the EU exit Transition Period to provide continuity in services
+                        and surety for business. This includes legislation where preference is given to certain
+                        professional qualifications issued in the EEA and Switzerland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>The Government issued a written Call for Evidence in August 2020 that sought views
+                        from stakeholders on the recognition of professional qualifications and the regulation
+                        of professions. The Call for Evidence was part of a wider programme of work considering
+                        recognition of professional qualifications; however, the insights from it have also
+                        informed Bill planning. The summary of responses to the Call for Evidence was published
+                        on 12 May 2021.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 20 sets out the territorial extent of the Act. The Act extends to England,
+                     Wales, Scotland and Northern Ireland. In addition, amendments made by the Act have
+                     the same territorial extent as the legislation they are amending.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Power to provide for individuals to be treated as having UK qualifications</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>This Section provides a power which can be exercised by an “appropriate national authority”,
+                     which is defined in Section 19 as the Secretary of State (or the Lord Chancellor),
+                     Scottish Ministers, Welsh Ministers or a Northern Ireland Department, depending on
+                     whether a regulated profession falls within devolved legislative competence. The power
+                     relates to a regulator’s decision about whether an individual with overseas qualifications
+                     or experience should be entitled to practise a regulated profession in the UK.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>It allows the appropriate national authority to, by regulations, specify that individuals
+                     who meet either of two conditions should be treated as if they had the UK qualifications
+                     or experience required to practise the profession. The first condition is that the
+                     regulator has assessed that the knowledge and skills of the individual are substantially
+                     the same as if they had the UK qualifications or experience. The second condition
+                     is that if the individual’s knowledge and skills are lacking, they have obtained further
+                     qualifications or experience to make up the difference.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>For the purposes of the Act, the term “regulator” refers to a person, usually an organisation,
+                     with functions under legislation relating to the regulation of a regulated profession.
+                     A regulator may cover the whole of the UK or a part or parts of it, namely: England,
+                     Wales, Scotland or Northern Ireland. The term “regulated profession” refers to where,
+                     under legislation, an individual must have certain qualifications or experience (or
+                     meet an alternative condition or requirement) to practise the professional activity
+                     or use a protected title. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>This Section is designed to allow regulators to assess an individual with qualifications
+                     or experience gained overseas any way the regulator sees fit, subject to the conditions
+                     set out in the Section and whatever other criteria may be provided for in regulations
+                     by the appropriate national authority. Regulations may, for example, make provision
+                     in relation to the acceptance and processing of applications, including, amongst other
+                     things, the relevant information, documentation, or fees connected to an application.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Subsection (1) sets out that individuals are treated as if they had the UK qualification
+                     or experience required by the law to practise a particular profession. This is subject
+                     to either of the following two conditions being met.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsection (2) sets out the first condition. This is that the regulator has decided
+                     that the individual with overseas qualifications or experience has demonstrated substantially
+                     the same knowledge and skills, to substantially the same standard, as an individual
+                     with the specified UK qualification or experience would demonstrate. Subsection (2)
+                     does not specify how regulators reach this decision and regulators can assess knowledge
+                     and skills as they see fit. However, further detail on the approach to be taken in
+                     assessing such qualifications may be set out in regulations made under subsection
+                     (1).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (3) sets out the second condition. This is that the specified regulator
+                     has made a determination that an individual with overseas qualifications or overseas
+                     experience falls short of the necessary standard under subsection (2), and that the
+                     shortfall could be “made up” by meeting such additional conditions as the regulator
+                     may choose to specify where appropriate; and the individual has met those conditions.
+                     Whether or not the shortfall can be made up is for the regulator to decide.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (4) sets out that a condition may be specified under subsection (1) regardless
+                     of whether or not it is connected to the specified UK qualification or experience.
+                     Subsection 4 also provides that regulations made under Section 1 may provide for the
+                     specified regulator making the determination in subsection (2) or (3) to do so only
+                     on the basis of overseas qualifications or experience, or on any other basis. The
+                     latter would allow a regulator to make a determination in (2) or (3) by considering,
+                     for example, both UK gained and overseas gained qualifications and experience, and/or
+                     any other criteria, such as language proficiency, proof of indemnity insurance, identity
+                     or criminal records checks.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Where neither of the conditions in (2) or (3) are met, the individual with overseas
+                     qualifications or experience cannot be treated as if they have the UK qualification
+                     or experience under regulations made under Section 1.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>A determination under regulations made under Section 1 that an individual with overseas
+                     qualifications or experience should be treated as if they had the UK qualifications
+                     or experience does not necessarily, by itself, entitle the applicant to practise the
+                     relevant profession in the UK. Other requirements to practise in the UK, such as requirements
+                     to hold indemnity insurance, suitability requirements, safeguarding checks, criminal
+                     record checks, and visa requirements may also need to be satisfied.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (5) provides that regulations made under Section 1 may include provisions
+                     relating to an individual’s application for a determination of whether their knowledge
+                     or skills meet UK standards.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Subsection (6) sets out non-exhaustive examples of what regulations made under Section
+                     1 may include. For example, these regulations may include provision requiring a regulator
+                     to have regard to guidance, the manner and form of applications, the fees payable
+                     and the appeals process. The appropriate national authorities may also wish to provide
+                     in regulations for those whose knowledge and skills do not meet the requirements in
+                     subsections (2) or (3) to be given reasons for that decision and, where a shortfall
+                     may be made up under subsection (3), appropriate information on the steps open to
+                     them to do so.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Subsection (7) sets out how a UK qualification or UK experience may be specified for
+                     the purpose of this Section.</p>
+                  <section class="subparagraph">
+                     <p>Section 1 should be read in conjunction with Section 14 (protection of regulator autonomy).
+                        Section 14 limits the potential effect of regulations made under Section 1, ensuring
+                        that they cannot remove the ability of a regulator of a regulated profession to prevent
+                        individuals who are unfit to practise from doing so, or have a material adverse effect
+                        on any regulated profession in terms of the knowledge and skills of the individuals
+                        practising it.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Section 2: Power conferred by section 1 exercisable only if necessary to meet demand</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsections (1) and (2) of Section 2 mean that regulations can be made under Section
+                     1 only if the appropriate national authority is satisfied that it is necessary to
+                     do so to meet the demand for the services provided by that profession in the UK, or
+                     the part of the UK to which the regulations relate, without unreasonable delays or
+                     charges. In making the determination, the appropriate national authority will consider
+                     a range of information relevant to that profession, which would typically include
+                     whether there are skills shortages.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Subsection (3) provides that Section 2 does not apply to regulations made under Section
+                     1 in so far as they are modifying (which includes revoking, repealing or amending)
+                     earlier regulations under that Section, as long as they do not also add further professions
+                     into those regulations. This allows for the revocation, repeal and amendment of such
+                     regulations without having to meet the requirements of subsection (2).</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Implementation of international recognition arrangements</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Section 3(1) (read with subsection (4)) establishes that the “appropriate national
+                     authority” can make regulations to implement any parts of international agreements
+                     that the UK has entered into that relate to the recognition of professional qualifications.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>This would include the relevant sections of free trade agreements and specific agreements
+                     on the recognition of professional qualifications that the UK makes with an international
+                     partner. It includes future agreements negotiated from scratch between the UK and
+                     international partners and ones already in existence that the UK accedes to. It includes
+                     agreements with a single partner and agreements with several international partners,
+                     such as the UK-EEA EFTA States free trade agreement. For example, as a result of the
+                     agreement with the EEA-EFTA States, UK regulators will be required to operate a system
+                     to recognise qualifying qualifications obtained in the EEA EFTA states. This means
+                     that professionals with these qualifications who meet the required standards can practise
+                     in a regulated profession in the UK. This agreement also contains a mutual recognition
+                     agreement (MRA) framework for regulators wishing to agree profession-specific arrangements.
+                     The agreement will not affect UK national authorities’ and regulators’ autonomy to
+                     uphold professional standards for UK regulated professions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>This power will not be necessary to implement any MRAs agreed through the EU-UK Trade
+                     and Cooperation Agreement, which can be implemented using powers in the European Union
+                     (Future Relationship) Act 2020. However, it will be necessary to implement the recognition
+                     of professional qualifications provisions of ongoing and future international agreements,
+                     so far as doing so falls outside the powers available in the Trade Act 2021 to implement
+                     international trade agreements where the other signatory (or signatories) had an agreement
+                     with the EU immediately before exit day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsection (4) of the Section provides further clarification around what provisions
+                     can be implemented under this power. It explains that “international recognition agreement”,
+                     as used in this Section, refers only to the portions of international agreements relating
+                     to the recognition of overseas qualifications or experience. Therefore, any aspect
+                     of international agreements not concerned with the recognition of professional qualifications
+                     cannot be implemented under this power, even if the agreement which they are part
+                     of contains provisions on the recognition of professional qualifications.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Subsection (5) provides further clarification on the provisions that can be implemented
+                     under this power, noting that modifications and amendments to the UK’s international
+                     agreements (as long as they are made in line with the provisions of the original agreement)
+                     can be implemented through this power. An example of such a modification intended
+                     to be covered by subsection (5) includes, for instance, a new Mutual Recognition Agreement
+                     annexed to an existing international agreement the UK is party to.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Subsection (2) explains that the regulations made under this Section may deal with
+                     the following topics to support the implementation of these international agreements:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>First, conferring functions on a person. This includes a corporate or any other legal
+                        entity. This might be necessary, for example, to confer functions on a regulator to
+                        enable them to comply with the processes established in an international agreement
+                        around the recognition of qualifications from another country.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Second, for the sharing of information. This might be necessary where an international
+                        agreement stipulates that UK regulators and overseas regulators must share information
+                        to facilitate the recognition of qualifications.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Third, provisions to charge fees. This may be necessary if an international agreement
+                        references fees and to ensure that regulators can charge appropriately for any systems
+                        established under international agreements.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Subsection (3) clarifies that regulations made using this Section that concern information
+                     sharing cannot contravene the UK’s data protection legislation.</p>
+                  <section class="subparagraph">
+                     <p>Section 3 should be read in conjunction with Section 14 (protection of regulator autonomy).
+                        This Section limits the potential effect of regulations made under Section 3, ensuring
+                        that they cannot remove the ability of a regulator of a regulated profession to prevent
+                        individuals who are unfit to practice from doing so, or have a material adverse effect
+                        on any regulated profession in terms of the knowledge and skills of the individuals
+                        practising it.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Section 4: Authorisation to enter into regulator recognition arrangements</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>This Section enables the “appropriate national authority” to make regulations to enable
+                     the regulators of regulated professions to enter into regulator recognition agreements.
+                     Regulator recognition agreements (RRAs) are a broad term for any type of agreement
+                     between regulators which facilitates the recognition of professional qualifications
+                     or experience. As RRAs are usually country- and regulator-specific, their form can
+                     vary, but they are typically agreed on a profession-by-profession basis by the relevant
+                     regulators or professional bodies across two or more jurisdictions. They enable professionals
+                     who qualified in one regulator’s jurisdiction to gain recognition of their professional
+                     qualification in another regulator’s jurisdiction.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>This ability is intended to complement regulators’ existing powers and cannot be used
+                     to change regulators’ abilities to recognise overseas qualifications or to determine
+                     who can practise in the UK. Regulators will only be able to implement recognition
+                     arrangements through their existing provisions to recognise and assess overseas qualifications
+                     and overseas applicants. It is expected this power would only need to be used once
+                     for each regulator, to provide them with the necessary authorisation to enter into
+                     recognition agreements with overseas regulators.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Subsection (1) of the Section contains the power to make regulations. Currently, not
+                     all regulators have specific provisions in their legislation that would enable them
+                     to enter into recognition agreements with overseas regulators, so allowing this ability
+                     to be conferred on them provides clarity to the regulators. This would be done by
+                     amending any legislation that governs the regulator’s existing powers. Subsection
+                     (1) includes the wording “in connection with”. This is intended to cover the ability
+                     to impose limitations and conditions on a regulator’s authorisation to enter into
+                     a regulator recognition agreement. In other words, the regulations made permitting
+                     the regulator to enter into these agreements can authorise them to only enter into
+                     these agreements in particular situations, authorise them to only enter into particular
+                     kinds of regulator recognition agreement, or include requirements that have to be
+                     met before a regulator recognition agreement is entered into.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Subsection (2) provides a definition of a regulator recognition agreement. This subsection
+                     explains who can be party to a regulator recognition agreement made using an authorisation
+                     provided by this power, namely a regulator of a UK profession and an overseas regulator
+                     who regulates a profession that corresponds to the UK profession. This would not require
+                     the UK regulator and the overseas regulator to regulate professions that were exactly
+                     similar in every way. Professions may vary between countries in their exact requirements
+                     and the activities that are regulated, but as long as they are substantially similar
+                     this would not prevent regulators making a recognition agreement. It also explains
+                     that a regulator recognition agreement is an agreement where the content relates to
+                     the recognition of UK or overseas qualifications and experience.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Subsection (3) provides supplementary explanation of some of the terms used in subsection
+                     (2). Specifically, it explains how overseas qualifications and experience should be
+                     understood in this context. Qualifications are considered to have been obtained in
+                     a country or territory if they have been awarded by a body based in that country or
+                     territory. Experience is understood to have been obtained in a particular overseas
+                     country or territory where it has “mainly” been obtained in that country or territory.
+                     This means that some of the relevant experience could have been obtained in a different
+                     country, but the experience is counted as from a particular country where it has,
+                     for the most part, been obtained in that country.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Subsection (4) defines “corresponding profession” and “overseas regulator” as used
+                     in this Section. It explains that a corresponding profession is one where ordinarily
+                     the activity the professional undertakes is the same, or substantially the same, as
+                     the UK version. It also explains that overseas regulators are those that carry out
+                     activities related to regulating professions anywhere outside of the UK. This definition
+                     differs from the definition of a regulator in the UK since it does not specify that
+                     overseas regulators need to have a legal basis for the regulation of the profession
+                     in that country. This allows the definition of overseas regulator to capture professions
+                     regulated overseas on a voluntary basis or by professional associations.</p>
+                  <section class="subparagraph">
+                     <p>Section 4 should be read in conjunction with Section 14 (protection of regulator autonomy).
+                        This Section limits the potential effect of regulations made under Section 4, ensuring
+                        that they cannot remove the ability of a regulator of a regulated profession to prevent
+                        individuals who are unfit to practice from doing so, or have a material adverse effect
+                        on any regulated profession in terms of the knowledge and skills of the individuals
+                        practising it. Section 4 cannot be used by an appropriate national authority to require
+                        a regulator to enter into a regulator recognition agreement.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Section 5: Revocation of general EU system of recognition of overseas qualifications</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Subsection (1) provides that the 2015 Regulations are revoked. This will come into
+                     effect by commencement regulations made by the Secretary of State. The 2015 Regulations
+                     provided a general system of recognition for qualifications from the EEA and Switzerland.
+                     Following the end of the transition period, this system had been retained in the interim
+                     to provide certainty to businesses and public services by offering potentially preferential
+                     qualification recognition to holders of EEA and Swiss qualifications. The new recognition
+                     framework, as set out in Section 1, will be implemented alongside revoking the 2015
+                     Regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Appropriate national authorities may need to modify other legislation as a result
+                     of the revocation of the 2015 Regulations. This may include, for example, amendments
+                     to references to “the 2015 Regulations”. Modifications may need to be made in legislation
+                     for professions which are regulated at a devolved level. Subsection (2) enables the
+                     appropriate national authority to modify legislation which falls under devolved competence
+                     for regulated professions, as a consequence of revoking the 2015 Regulations in subsection
+                     (1).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Additionally, the Government, intends to use the commencement regulations to make
+                     transitional and saving provisions for recognition decisions obtained under the 2015
+                     Regulations and applications which are in progress at the time when revocation of
+                     the 2015 Regulations comes into effect. This is to ensure professionals’ existing
+                     recognition will continue to be valid, and applications made before revocation comes
+                     into effect by the commencement regulations will continue to be assessed under the
+                     relevant retained EU recognition law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>The revocation of the 2015 Regulations does not affect commitments under the CTA.
+                     The UK is retaining law on qualification recognition that implements international
+                     obligations on the recognition of professional qualifications, under the EU Withdrawal,
+                     EEA EFTA Separation, and Swiss Citizens’ Rights Agreements.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Revocation of other retained EU recognition law</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Subsection (1) gives the appropriate national authority the power to make regulations
+                     modifying “retained EU recognition law” so that it ceases to have effect. This will
+                     enable regulations to be made to revoke legislation for professions outside the scope
+                     of the 2015 Regulations, but which are still part of the broader EU-derived qualification
+                     recognition framework. Such legislation is sector-specific and continues to include
+                     qualification recognition measures which offer preferential treatment to EEA and Swiss
+                     qualifications compared to non-EEA and non-Swiss qualifications. The new recognition
+                     framework, as set out in Section 1, will be implemented alongside revoking retained
+                     EU recognition law in sector-specific legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Subsection (2) defines “retained EU recognition law” which means retained EU law that
+                     provides for, or relates to, the recognition of overseas qualifications or overseas
+                     experience for the purpose of determining whether individuals are entitled to practise
+                     a regulated profession in the United Kingdom or a part of it.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">Section 7: Assistance centre</span></h2>
+                  <section class="paragraph">
+                     <p>56  Subsection (1) places an obligation on the Secretary of State to ensure there
+                        is a designated person (the assistance centre) which provides advice and assistance
+                        to individuals who wish to gain recognition in, and practise in, a regulated profession
+                        in the UK, and to other persons as the Secretary of State considers appropriate. The
+                        assistance centre will help UK-qualified professionals to provide services overseas,
+                        and overseas-qualified professionals to get their qualifications recognised in the
+                        UK. It will do this by providing a signposting and enquiry service, to help professionals
+                        identify the relevant UK or overseas regulator to get their qualifications recognised.
+                        It will also provide a website with information provided by the regulators themselves
+                        on the entry requirements for a profession.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Subsection (2) places an obligation on regulators of professions in the UK to, when
+                     requested, provide the designated assistance centre with any information it may need
+                     to carry out the functions under the arrangements detailed in subsection (1).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Subsection (3) places an obligation on the assistance centre to, when requested, provide
+                     the Secretary of State with any information relating to the advice and assistance
+                     functions provided by the assistance centre, as outlined in subsection (1).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Subsection (4) provides that any information shared between regulators in the UK and
+                     the assistance centre does not breach confidentiality obligations or any other restriction
+                     on the disclosure of information.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Subsection (5) explains that no provision in this Section requires information to
+                     be disclosed where to do so would breach data protection legislation, as defined in
+                     the Data Protection Act 2018, section 3(9). The obligations imposed in this Section
+                     are to be considered when determining whether any disclosure breaches that legislation.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Duty of regulator to publish information on requirements to practise</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Section 8 requires regulators to publish information about the requirements they place
+                     on individuals to enter or remain in their profession. This is a new transparency
+                     duty, which aims to reduce the risk of a lack of information being a barrier to entering
+                     and practising professions for aspiring professionals.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Subsections (1)(a) and (1)(b) require regulators to publish the information specified
+                     in subsections (2)(a) to (2)(j) on their public website. The website must be easy
+                     to use. This might be achieved by meeting Government accessibility requirements, ensuring
+                     the information is easy to find and clearly signposted to website visitors, and ensuring
+                     it is collated, where possible, under clear headings rather than found in general
+                     documents or pamphlets. It is also required to be kept up to date.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>Subsections (2)(a) to (2)(j) list the information that regulators must publish. These
+                     are a consistent requirement across all regulated professions in the UK. Within this:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Subsection (2)(a) refers to the qualifications or experience that an individual must
+                        obtain to become entitled to practise in the UK. This includes alternative, or non-examination,
+                        routes to qualification such as vocational schemes.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Subsections (2)(b) and (2)(c) refer to the application process for applying with an
+                        overseas qualification or a qualification gained in another part of the UK. Subsection
+                        2(d) requires regulators to set out detail about the numbers of individuals applying
+                        though these processes and the outcome of the recognition decisions, as well as the
+                        qualifications or experience held by these individuals.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Subsections (2)(e) refers to any requirement for an individual to be registered, licensed
+                        or otherwise authorized in order to be entitled to practise the profession. Subsection
+                        (2)(f) refers to any other requirement required to be entitled to practise their profession.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>Subsections (2)(g) and (2)(h) refer to any requirements, such as training and learning,
+                        that a professional must meet in order to continue to practise their profession. Regulators
+                        will be required to provide information as to how these requirements may be met, which
+                        could include signposts to relevant educational providers.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>Subsection (2)(i) refers to the costs set by the regulators for an individual or professional
+                        to enter and / or remain in the profession, for example, registration renewal fees.
+                        This does not require a regulator to publish any other costs which the individual
+                        or professional may incur elsewhere.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>Subsection (2)(j) provides a delegated power for the “appropriate national authority”
+                        to make legislation which specifies additional information for regulators to publish.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>Subsection (3) requires regulators, who do not have the kinds of entry and practice
+                     requirements set out in subsection (2), only need to publish a statement explaining
+                     they do not hold the information on their websites.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>Subsection (4) provides that, if there are multiple regulators for a profession, this
+                     duty of a regulator to publish information on how to enter or remain in the profession
+                     can be fulfilled by only one of the regulators so long as the other regulators are
+                     identified on the website of the regulator that is fulfilling this duty. This means
+                     that regulators can agree how the information publication requirement is best divided
+                     between the relevant regulators and signpost between websites.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>Subsections (5) and (6) acknowledge that a regulator carries out its regulatory functions
+                     within the part or parts of the United Kingdom it has responsibility for. Therefore,
+                     a regulator does not have to fulfil the duty to publish information on requirements
+                     to practise for regulatory functions outside of their part, or parts, of the United
+                     Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>Subsection (7) sets out the definition of “regulatory functions” for this Section
+                     only.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Duty of regulator to provide information to regulator in another part of
+                     UK</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>This Section places a duty on regulators who operate in one or more of the four UK
+                     nations to share information, when requested, with their counterpart in another part
+                     of the UK (if such a regulator exists). This information must relate to an individual’s
+                     entitlement to practise that profession. For example, a regulator in one part of the
+                     UK could ask an equivalent regulator in another part of the UK for information relating
+                     to an individual’s fitness to practise. This could include, where applicable, any
+                     evidence of disciplinary action, professional sanctions, or criminal offences inside
+                     or outside of practise. This provision ensures that regulators in all parts of the
+                     UK have access to information that helps them fulfil their obligations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>Subsection (1) specifies that this duty applies where the information relates to an
+                     individual entitled to practise a regulated profession in one part of the UK and this
+                     individual is seeking to practise the same or equivalent profession in another part
+                     of the UK.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>Subsection (2) sets out the conditions that must be met for information sharing to
+                     occur. A regulator in one part of the UK is only required to share information with
+                     their counterpart in another part of the UK if it is held by them, relates to a named
+                     individual, is requested by their counterpart or the individual in question, and will
+                     be used for the purposes of determining that individual’s entitlement to practise.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>Subsection (3) provides that information that is shared by regulators within the UK
+                     to comply with this provision does not breach confidentiality obligations or other
+                     restrictions on disclosure that are placed on the regulator.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>Subsection (4) explains that no provision in this Section requires information to
+                     be disclosed where to do so would breach data protection legislation, as defined in
+                     the Data Protection Act 2018, section 3(9). The obligations imposed in this Section
+                     are to be considered when determining whether any disclosure breaches that legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>Subsection (5) defines the term "corresponding regulated profession" as used in this
+                     Section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 10: Duty of a regulator to provide information to overseas regulator</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>This Section imposes a duty on regulators to assist individuals who are or have been
+                     entitled to practise the relevant profession in the UK, by providing information to
+                     overseas regulators. This information is to enable those overseas regulators to determine
+                     that individual’s entitlement to practise in the overseas regulator’s country or territory.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>Subsection (1) addresses the circumstances in which a regulator is obliged to provide
+                     information to an overseas regulator. The individual must be or have been entitled
+                     to practise a regulated profession in the UK, or part of the UK, and be seeking to
+                     practise a corresponding profession in a country or territory outside the UK.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>Subsection (2) places a duty on UK regulators to provide overseas regulators of the
+                     corresponding profession with information they require to make a decision on the entitlement
+                     of the individual to practise in that country. This extends to any information held
+                     by the UK regulator about the individual that the UK regulator is requested to provide
+                     by either the overseas regulator, or the individual themselves.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>Subsection (3) provides that, where an overseas regulator is requesting information
+                     on an individual, the duty does not apply if it is made without the permission of
+                     that individual.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>Subsection (4) allows the “appropriate national authority”, provided it is within
+                     their legislative competence, to make regulations they consider appropriate in connection
+                     with the duty of a regulator to provide information to an overseas regulator set out
+                     in subsection (2). This includes the ability to limit that duty.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">79 </span></h2>
+                  <p>Subsection (5) gives more detail on the specific limitations that could be included
+                     in regulations made under this Section. These include, but are not limited to, provisions
+                     to the effect that the duty only applies to certain specified information or if the
+                     request is made in a specified manner.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">80 </span></h2>
+                  <p>Subsection (6) provides that any information that is shared with overseas regulators
+                     does not breach confidentiality obligations or other restrictions on disclosure that
+                     are placed on the regulator.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">81 </span></h2>
+                  <p>Subsection (7) explains that no provision in this Section requires information to
+                     be disclosed where to do so would breach the data protection legislation, as defined
+                     in the Data Protection Act 2018, section 3(9). The obligations imposed in this Section
+                     are to be considered when determining whether any disclosure breaches that legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">82 </span></h2>
+                  <p>Subsection (8) defines the terms “corresponding profession” and “overseas regulator”.</p>
+               </section>
+               <section class="level">
+                  <p>Section 11: Amendments to the Architects Act 1997</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>Subsection (2) enables the Architects Registration Board (“the Board”) to nominate
+                     a member of staff to carry out the functions of the Registrar.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>Under section 2 (the Registrar) of the Architects Act 1997 (the 1997 Act), the Registrar
+                     is responsible for maintaining the Register, which includes adding and removing architects
+                     to and from the Register. The new provision will allow the Registrar to delegate functions
+                     to a member of the staff of the Board who is nominated by the Board. This is to ensure
+                     that the functions undertaken by the Registrar can continue if the Registrar is absent
+                     or is otherwise unable to exercise those functions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>For example, in the event the Registrar is on leave or unwell, the Board can nominate
+                     the Director of Qualifications or another Director to deputise for the Registrar.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">86 </span></h2>
+                  <p>Subsection (3) enables the Board to exclude from the published Register the whole
+                     or part of a registrant’s residential address where the registrant has successfully
+                     applied for it to be removed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">87 </span></h2>
+                  <p>Section 3(2) (the Register) of the 1997 Act provides that the Register shall show
+                     the regular business address of each registered person. In some cases, a registrant’s
+                     business address is the same as their residential address, which leads to the publication
+                     of their residential address.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">88 </span></h2>
+                  <p>In such a case, where a registrant has supplied their residential address as their
+                     business address, for example due to unemployment or home working arrangements, the
+                     registrant can apply to the Board to have their address removed from the published
+                     Register, provided that this is a residential address. The Board will still privately
+                     hold the registrant’s full address, but will only publish a geographical indicator
+                     (a county or the international equivalent) on the Register to ensure that the individual
+                     is identifiable to the public in searches of the Register.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">89 </span></h2>
+                  <p>Subsection (4) allows the Board to require compensatory measures from overseas applicants
+                     who seek to register via section 4(1)(a) (registration: general) of the 1997 Act.
+                     This will enable the Board to verify that overseas applicants who are registering
+                     using prescribed overseas qualifications under section 4(1)(a) of the 1997 Act have
+                     knowledge and understanding of the UK context before they can practise in the UK as
+                     an architect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">90 </span></h2>
+                  <p>Compensatory measures will be determined by the Board but can include additional academic
+                     or vocational training and qualifications, supervised workplace experience or competence
+                     tests.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">91 </span></h2>
+                  <p>Currently, the Board has the power to prescribe international qualifications, but
+                     does not do so, as the 1997 Act does not provide a means for ensuring that all applicants
+                     have an understanding of the UK context. Overseas applicants have in the past sought
+                     recognition under section 4(2A)(a) if holding a listed EU qualification under the
+                     MRPQ Directive, or via section 4(1)(b) which provides for an assessment of equivalence
+                     and a prescribed examination. Subsection (4) of Section 11 will enable the Board to
+                     request compensatory measures alongside prescribed overseas qualifications and experience.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">92 </span></h2>
+                  <p>Once the applicant shows the required evidence of the compensatory measure alongside
+                     their qualification and practical experience, the Board will then approve their application,
+                     subject to their rules, and admit the applicant onto the Register.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">93 </span></h2>
+                  <p>Subsection (5) amends the 1997 Act to prevent the Board from establishing a committee
+                     to discharge its function under subsection (4).</p>
+               </section>
+               <section class="level">
+                  <p>Section 12: Crown application</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">94 </span></h2>
+                  <p>This Section states that the Act will apply to and bind the Crown.</p>
+               </section>
+               <section class="level">
+                  <p>Section 13: General provision about regulations</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">95 </span></h2>
+                  <p>This Section makes provision in relation to powers conferred by the Act on the appropriate
+                     national authority to make regulations. The powers may be used to modify legislation,
+                     including, where relevant, Acts of Parliament. When exercised for their stated purpose,
+                     the powers may also be used to make supplementary, incidental, consequential, transitional,
+                     transitory or saving provisions. Subsection (1)(a) does not apply to Section 8 (except
+                     where modifying earlier regulations made under this Section). A power to make regulations
+                     under Section 10 or Section 20 does not include the power to amend, repeal or revoke
+                     legislation other than previous regulations made under those Sections.</p>
+               </section>
+               <section class="level">
+                  <p>Section 14: Protection of regulator autonomy</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">96 </span></h2>
+                  <p>This Section prevents an “appropriate national authority” making regulations under
+                     Sections 1, 3 or 4 unless two conditions which protect regulators’ autonomy are met;
+                     namely the regulations do not affect regulators’ ability to prevent an unfit individual
+                     from practising a profession, and that regulations cannot have a material adverse
+                     effect on standards required to practise a profession.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">97 </span></h2>
+                  <p>Subsection (1) provides that an “appropriate national authority” can only make regulations
+                     under Sections 1, 3 or 4 if it is satisfied that the conditions in subsections (2)
+                     and (3) are both met. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">98 </span></h2>
+                  <p>Subsection (2) stipulates that the regulations do not remove the ability of any regulator
+                     of a regulated profession to prevent individuals who are unfit to practise the profession
+                     from doing so. Subsection (4) defines what is included as being “unfit to practise”
+                     within the meaning of this Section. This means that under regulations made under Sections
+                     1,3 and 4 of the Act, regulators will retain the ability to make the ultimate decision
+                     about whether individuals can practise a profession.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">99 </span></h2>
+                  <p>Subsection (3) stipulates that the regulations will not have a material adverse effect
+                     on any regulated profession in terms of the knowledge and skills of the individuals
+                     practising it. This means that before an “appropriate national authority” makes regulations
+                     with respect to a profession under these Sections, it must ensure that those regulations
+                     would not have a negative impact on the knowledge, skills or experience of individuals
+                     who practise that profession. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">100 </span></h2>
+                  <p>Subsection (4) defines that being “unfit to practise” a profession, as used in subsection
+                     (2), includes being unfit to practise the profession due to an individual’s character,
+                     lack of knowledge, skills or experience, or otherwise. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">101 </span></h2>
+                  <p>Subsection (5) defines that “practising a profession”, as used in this Section, includes
+                     undertaking activities that comprise the practise of the profession or using a title
+                     associated with the practise of the profession.</p>
+               </section>
+               <section class="level">
+                  <p>Section 15: Consultation with regulators</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">102 </span></h2>
+                  <p>This Section places a duty on the “appropriate national authority” to consult regulators
+                     of a regulated profession before making regulations under Section 1, 3 or 4. Specifically,
+                     the authority must consult those regulators that it considers are likely to be affected
+                     by the regulations or those it is otherwise appropriate to consult. This is so that
+                     regulators who would likely have duties placed on them have the opportunity to engage
+                     with and shape the regulations at a formative stage, and bring their expertise to
+                     bear in doing so. Any consultation under this Section for making regulations under
+                     Section 1, would also address whether the condition in Section 2 had been met.</p>
+               </section>
+               <section class="level">
+                  <p>Section 16: Authority by whom regulations may be made</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">103 </span></h2>
+                  <p>This Section defines the “appropriate national authority” by which regulations may
+                     be made under this Act as the Secretary of State, the Lord Chancellor or, where a
+                     provision falls within devolved competence, Welsh Ministers, Scottish Ministers or
+                     Northern Ireland Departments, as stipulated in subsections (2) to (4). This is because
+                     some professions are regulated on a devolved, rather than a UK- or Great Britain-wide,
+                     basis. The Act reflects this regulatory landscape by enabling devolved administrations
+                     to make regulations under this Act as they see fit for such devolved professions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">104 </span></h2>
+                  <p>Restrictions in Schedule 7B to the Government of Wales Act 2006 prevent the Senedd
+                     from removing, without the consent of the appropriate UK Government Minister, any
+                     function of a Minister of the Crown that is exercisable concurrently or jointly with
+                     a Minister of the Crown. Subsection (7) disapplies the relevant restrictions in respect
+                     of the concurrent powers in the Act, by adding the Professional Qualifications Act
+                     2022, to the lists of enactments in paragraph 11(6)(b) of Schedule 7B. This allows
+                     the Senedd to alter the concurrent arrangements in future without needing the UK Government’s
+                     consent.</p>
+               </section>
+               <section class="level">
+                  <p>Section 17: Consultation with devolved authorities</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">105 </span></h2>
+                  <p>This Section places a duty on the Secretary of State or Lord Chancellor to consult
+                     the devolved authorities before making regulations under the Act that contain provision
+                     which could be made under the Act by the devolved authorities themselves. The Section
+                     also sets out a requirement to publish a report on the consultation.&nbsp;</p>
+               </section>
+               <section class="level">
+                  <p>Section 18: Parliamentary procedure</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">106 </span></h2>
+                  <p>This Section sets out the parliamentary procedure for how regulations under this Act
+                     should be made, including the situations in which legislation must be made either
+                     through the affirmative or negative resolution procedure, and what this means for
+                     such regulation to be passed through the relevant legislatures of the UK, Wales, Scotland
+                     or Northern Ireland. These are set out in subsections (1) - (7) and (9). This Section
+                     does not apply to regulations made under Section 20.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">107 </span></h2>
+                  <p>Subsection (8) provides for the ability to pass regulations under this Act that are
+                     subject to the negative resolution procedure via the affirmative resolution procedure
+                     should there be such a need.</p>
+               </section>
+               <section class="level">
+                  <p>Section 19: Interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">108 </span></h2>
+                  <p>This Section provides the information on how terms should be interpreted in the Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 20: Extent</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">109 </span></h2>
+                  <p>This Section specifies that the Act extends to England, Wales, Scotland and Northern
+                     Ireland.</p>
+               </section>
+               <section class="level">
+                  <p>Section 21: Commencement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">110 </span></h2>
+                  <p>See paragraphs 112-113 below.</p>
+               </section>
+               <section class="level">
+                  <p>Section 22: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">111 </span></h2>
+                  <p>This Section contains the short title by which the Act may be cited.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">112 </span></h2>
+                  <p>Section 21 makes provision about when the provisions of this Act will come into force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">113 </span></h2>
+                  <p>The powers and the final provisions in the Act will come into force on the day of
+                     Royal Assent. Section 11(1), (2) and (3) will come into force at the end of the period
+                     of 3 months beginning with the day of Royal Assent. Section 8 (where not already in
+                     force) will come into force at the end of the period of 6 months beginning with the
+                     day of Royal Assent. The remainder of the Act will come into force on a day appointed
+                     by regulations made by the Secretary of State.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">114 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Recognition of professional qualifications and regulation of professions: call for
+                        evidence – <a href="https://www.gov.uk/government/consultations/recognition-of-professional-qualifications-and-regulation-of-professions-call-for-evidence"><u>https://www.gov.uk/government/consultations/recognition-of-professional-qualifications-and-regulation-of-professions-call-for-evidence</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Summary of responses to the Call for Evidence into the recognition of professional
+                        qualifications and the regulation of professions - <a href="https://www.gov.uk/government/consultations/recognition-of-professional-qualifications-and-regulation-of-professions-call-for-evidence"><u>https://www.gov.uk/government/consultations/recognition-of-professional-qualifications-and-regulation-of-professions-call-for-evidence</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The recognition of professional qualifications and regulation of professions: policy
+                        statement <a href="https://www.gov.uk/government/publications/recognition-of-professional-qualifications-and-regulation-of-professions-policy-statement"><u>https://www.gov.uk/government/publications/recognition-of-professional-qualifications-and-regulation-of-professions-policy-statement</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Professional Qualifications Bill Impact Assessment and supplementary note – these
+                        documents can be found on the Professional Qualifications Bill’s Parliamentary webpage:
+                        <a href="https://bills.parliament.uk/bills/2865/publications"><u>https://bills.parliament.uk/bills/2865/publications</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>UK regulated professions and their regulators – a page providing details of professions
+                        regulated by law in the UK, and in parts of the UK, and their associated regulators,
+                        as defined in the Professional Qualifications Bill.: <a href="https://www.gov.uk/government/publications/professions-regulated-by-law-in-the-uk-and-their-regulators/uk-regulated-professions-and-their-regulators"><u>https://www.gov.uk/government/publications/professions-regulated-by-law-in-the-uk-and-their-regulators/uk-regulated-professions-and-their-regulators</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Professional Qualifications Bill 2021: Factsheets: <a href="https://www.gov.uk/government/publications/professional-qualifications-bill-2021-factsheets"><u>https://www.gov.uk/government/publications/professional-qualifications-bill-2021-factsheets</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">115 </span></h2>
+                  <p>The Act will apply and extend to the whole of the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">116 </span></h2>
+                  <p>The devolution settlements make provision for the regulation of certain professions
+                     to be reserved to Westminster, though not all:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Northern Ireland: In relation to legislative competence, there are no reserved or
+                        excepted matters that deal directly with the regulation of the professions. The regulation
+                        of the profession may be an excepted or reserved matter if the subject matter of the
+                        profession is an excepted or reserved matter (for example, intellectual property is
+                        a reserved matter and so the regulation of patent agents may be a reserved matter).
+                        See sections 6 and 8 of the Northern Ireland Act 1998 and Schedules 2 and 3 to that
+                        Act.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Scotland: In relation to legislative competence, the regulation of the professions
+                        listed under Head G of Schedule 5 to the Scotland Act 1998 is reserved to the UK (architects,
+                        most health professions including veterinary surgeons (but not social workers), and
+                        auditors). In addition, the regulation of the profession may be reserved if the subject
+                        matter of the profession is a reserved matter (e.g. intellectual property) (see s.29
+                        Scotland Act 1998).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Wales: In relation to legislative competence, the regulation of professions listed
+                        under Head G of Schedule 7A of the Government of Wales Act 2006 is reserved to the
+                        UK (architects, most health professions (but not social work and social care), veterinary
+                        surgeons and auditors.) In addition, the legal professions are a reserved matter under
+                        Head L of Schedule 7. As with the Northern Ireland Act 1998 and the Scotland Act 1998,
+                        the regulation of the profession may be reserved where the subject matter of the profession
+                        is a reserved matter (see s.108A Government of Wales Act 2006).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">117 </span></h2>
+                  <p>The Act is not limited to particular professions. It therefore contains provisions
+                     regarding devolved matters in Scotland and Wales and transferred matters in Northern
+                     Ireland. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:0.87in">
+                        <col style="width:0.72in">
+                        <col style="width:0.8in">
+                        <col style="width:1in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>England</b>
+                              </p>
+                           <p>
+                              <b>Wales</b>
+                              </p>
+                           <p>
+                              <b>Scotland</b>
+                              </p>
+                           <p>
+                              <b>Northern Ireland</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Sections 1-11</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">118 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.43in">
+                        <col style="width:3.12in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/58-02/002/5802002_en_1.html">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-05-12/debates/527EC690-4D7F-4644-B39A-00B09E4F0F0E/ProfessionalQualificationsBill(HL)">
+                                    <u>Vol. 812 Col. 37</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>25 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-05-25/debates/953F3881-B2DD-4CBC-BAD9-30002950AD95/ProfessionalQualificationsBill(HL)">
+                                    <u>Vol. 812 Col. 909</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="3">
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>9 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-06-09/debates/B8AFC59D-B85E-464B-BF35-181D65D93F0F/ProfessionalQualificationsBill(HL)">
+                                    <u>Vol. 812 Col. 144</u>
+                                    </a>
+                                 <u>2</u>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>14 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-06-14/debates/CE46D622-C580-4501-AA92-51EB802D26B8/ProfessionalQualificationsBill(HL)">
+                                    <u>Vol. 812 Col. 1677</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>22 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-06-22/debates/8885C375-5041-46AD-B881-F875999C5BF2/ProfessionalQualificationsBill(HL)">
+                                    <u>Vol. 813 Col. 148</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>9 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-11-09/debates/94706694-81D3-43EF-AE5E-EAFCCACA7547/ProfessionalQualificationsBill(HL)">
+                                    <u>Vol. 815 Col. 1686</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>17 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-11-17/debates/794F1E0B-65C4-43B2-8B0D-419AF103C892/ProfessionalQualificationsBill(HL)">
+                                    <u>Vol. 816 Col. 238</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>18 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0194/210194.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>15 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-12-15/debates/5174DB74-AB6B-4FCD-984B-AE1B469DFDD3/ProfessionalQualificationsBill(Lords)">
+                                    <u>Vol. 705 Col. 1106</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>18 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-18/debates/bf3a4bff-743d-4ecd-b95a-328f647d9153/ProfessionalQualificationsBill(Lords)(FirstSitting)">
+                                    <u> Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>14 March 22022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-03-14/debates/F4730D36-FBC5-4104-ACA7-E649CE1F4C5D/ProfessionalQualificationsBill(Lords)">
+                                    <u>Vol. 710 Col. 662</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>5 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-05/debates/780B598C-CA79-44D3-B3D3-6C6B2E9BC886/Debate">
+                                    <u>Vol. 820 Col. 1976</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>28 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-28/debates/D11DF494-0AB3-4302-AB2D-C113849A137D/Debate">
+                                    <u>Vol. 821 Col. 382</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">119 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.89in">
+                        <col style="width:0.9in">
+                        <col style="width:0.9in">
+                        <col style="width:0.89in">
+                        <col style="width:0.9in">
+                        <col style="width:0.9in">
+                        <col style="width:0.9in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 17</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 22</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/publications/professions-regulated-by-law-in-the-uk-and-their-regulators/uk-regulated-professions-and-their-regulators"><u><a href="https://www.gov.uk/government/publications/professions-regulated-by-law-in-the-uk-and-their-regulators/uk-regulated-professions-and-their-regulators">https://www.gov.uk/government/publications/professions-regulated-by-law-in-the-uk-and-their-regulators/uk-regulated-professions-and-their-regulators</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Iceland, Liechtenstein, and Norway</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  <a href="https://www.gov.uk/government/publications/autumn-budget-and-spending-review-2021-documents">https://www.gov.uk/government/publications/autumn-budget-and-spending-review-2021-documents</a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

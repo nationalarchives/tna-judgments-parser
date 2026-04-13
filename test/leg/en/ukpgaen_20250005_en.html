@@ -1,0 +1,2106 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>WATER (SPECIAL MEASURES)</b>
+               <b>
+                  </b>
+               <b>ACT 2025</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Water (Special Measures) Act 2025 which received
+                  Royal Assent on 24 February 2025 (c. 5).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Environment, Food
+                  and Rural Affairs in order to assist the reader in understanding the Act. They do
+                  not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Table of Contents</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:3.15in">
+                        <col style="width:3.15in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Subject</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Page of these Notes</b>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="hcontainer tableOfContents"></section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Water (Special Measures) Act 2025 delivers on the Government’s manifesto to put
+                     failing water companies under special measures and seeks to ensure water companies
+                     are better held to account where they have failed to deliver for the environment and
+                     customers. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Water (Special Measures) Act 2025 enables government and the regulators to achieve
+                     the commitments outlined in the 2024 Labour manifesto:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>To block the payment of bonuses to executives who pollute waterways;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>To ensure independent monitoring of every outlet;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>To bring criminal charges against persistent law breakers; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>To impose automatic and severe fines for wrongdoing.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Water (Special Measures) Act 2025 includes provisions to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>ban bonuses for persons holding senior roles where water companies fail to meet required
+                        standards relating to consumer matters, the environment, financial resilience or criminal
+                        liability;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>introduce a fit and proper person test for water company executives;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>ensure consumer representation in water company decision-making;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>require Ofwat to ensure that water companies publish a concise and intelligible overview
+                        of their financial position at least once a year in a prominent place on their websites
+                        to enable easy public access;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>require water companies to produce annual pollution incident reduction plans and report
+                        on the implementation of these plans each year. The Chief Executive will be required
+                        to approve these plans prior to publication and will be held liable for this duty.
+                        The environmental regulators will consider companies’ record implementing these plans
+                        when carrying out its regulatory functions;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>require publication of near real-time data on discharges from emergency overflows;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>require sewerage undertakers to set out in their drainage and sewerage management
+                        plans, the use that is to be made of nature-based solutions, technologies and facilities
+                        within their drainage and sewerage systems;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>in respect of the operations of water companies, extend the sentencing power of the
+                        Courts to include imprisonment in all cases where the Environment Agency, Natural
+                        Resources Body for Wales and Drinking Water Inspectorate investigations have been
+                        obstructed by individuals;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>in relation to specified offences committed by a water company, enable the Environment
+                        Agency and Natural Resources Body for Wales to impose monetary penalties to the civil
+                        standard of proof;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>enable automatic penalties to be issued by the Environment Agency and Natural Resources
+                        Body for Wales for a defined list of offences committed by a water company;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>confer powers to impose conditions or general rules into abstraction and impounding
+                        water industry licences;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>require Ofwat to have regard to the Environment Act 2021 and Climate Change 2008 targets
+                        when carrying out their functions;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>introduce a new power for the Environment Agency and Natural Resources Body for Wales
+                        to recover costs from water companies for enforcement activities;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>allow for improved cost recovery for the Drinking Water Inspectorate;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>supplement existing powers to require water companies to make special provision to
+                        support customers in need;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>modify water company licences to recover shortfall in the event of insolvency or serious
+                        breach by a water company; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>ensure His Majesty’s Government (HMG) and Ofwat are notified ahead of any winding
+                        up petitions. </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The water industry was privatised in 1989 pursuant to the Water Act 1989. The regulatory
+                     regime for the privatised water industry is principally set out in the Water Industry
+                     Act 1991, and amendments made to that Act (notably in 2003 and 2014). Water abstraction
+                     licensing was introduced in the 1960s; the licensing regime is principally set out
+                     in the Water Resources Act 1991 and enables regulators to act to protect the environment
+                     and the needs of water users. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Concerns have been widely expressed about the performance of the water industry, particularly
+                     in relation to their record on pollution<a class="fn" id="fnref-1" href="#fn-1">1</a>. The Labour Party manifesto for the 2024 General Election promised to put failing
+                     water companies under special measures to clean up water. This Act addresses those
+                     concerns and fulfils that commitment. The measures in the Act aim to turn around the
+                     performance of the water industry as a first step in enabling long-term and transformative
+                     change across the water sector. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Act includes measures to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>strengthen the power of the water industry regulators;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>provide greater transparency around water company actions to tackle pollution incidents;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>enable independent monitoring of every outlet by requiring data from emergency overflows
+                        to be published within an hour of a discharge occurring. This requires companies to
+                        install and operate monitoring equipment at all emergency overflows, and for the near
+                        real time data on their operation to be scrutinised by the independent regulator;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>ensure water companies and their executives are held to account; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>modernise the existing special administration regime for the water industry, strengthening
+                        the Government’s control in this space and bringing the regime in line with special
+                        administration regimes in other sectors.&nbsp;</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Act makes provision for new policy to improve the regulation of water and sewerage
+                     companies and to extend the powers of the regulators: Ofwat, the Environment Agency,
+                     Natural Resources Body for Wales and the Drinking Water Inspectorate. The following
+                     significant legislation is referenced or amended by this Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Water Industry Act 1991 </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Environment Act 1995 </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Environment Act 2021</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Environmental Permitting (England and Wales) Regulations 2016 </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Pollution Prevention and Control Act 1999</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Regulatory Enforcement and Sanctions Act 2008</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Security and Emergency Measures (SEMD) Direction 2022</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Water Resources Act 1991</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Water Act 2014 </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Digital Economy Act 2017</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Otherwise, the relevant legal background is explained in the policy background section
+                     of these Notes. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 17 sets out the territorial extent of the sections in the Act. The extent
+                     of an Act is the legal jurisdiction where it forms part of the law. The extent of
+                     an Act can be different from its application. Application refers to where it has practical
+                     effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act forms part of the law of England and Wales and, subject to a few exceptions,
+                     applies to England and Wales. Sections 13 and 14 apply to England only, while section
+                     15 applies to Wales only. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Rules about remuneration and governance</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>This section inserts provisions into the Water Industry Act 1991 (“the 1991 Act”)
+                     that enable Ofwat to make rules about pay and governance in the water industry and
+                     require it to do so on three topics. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Ofwat already has a wide power to set conditions of individual water company appointments
+                     and licences, but changes to those conditions require case-by-case consideration and
+                     the procedure for them can be cumbersome (including rights of appeal to the Competition
+                     and Markets Authority). This section establishes a single set of rules to apply to
+                     water companies generally across the industry, which can be made and revised more
+                     easily than individual conditions. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The first topic the rules will have to address is performance-related pay (new section
+                     35B(2)(a)). The rules will set standards that companies will have to meet in a financial
+                     year in order&nbsp;to be able to make awards of performance-related pay to chief executives
+                     and directors for that year. Those standards will be worked up by Ofwat following
+                     consultation, but they will have to include standards relating to consumer matters,
+                     the environment, financial&nbsp;resilience and criminal liability (new section 35B(3)(a)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The section allows the new rules to override employment contracts (potentially including
+                     existing contracts) and may require the recovery by companies of performance-related
+                     pay awarded in breach of the restrictions: new section 35B(3)(d) and (e). The rules
+                     can apply from the 2024-25 financial year: subsection (4) of the section.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The second mandatory topic for the rules is the fitness and propriety of chief executives
+                     and directors (new section 35B(2)(b)). Ofwat will use the rules to set standards of
+                     fitness and propriety (and potentially other types of standards) which chief executives
+                     and directors will have to meet in order to be appointed or stay in post. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>While the bonus and fitness rules apply principally to chief executives and directors
+                     (as reflected in the above explanation), Ofwat has the power to extend them to cover
+                     other senior roles within&nbsp;water companies: new section 35B(5).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The third mandatory&nbsp;topic is consumer involvement in corporate decision-making (new
+                     section 35B(2)(c)). Companies are required to put in place arrangements for involving
+                     consumers in the wide range of decisions that have a material effect on consumer interests
+                     (the term "consumer matters", used in the section, is defined in section 27A(13) of
+                     the 1991 Act). The precise nature of those arrangements is for Ofwat to determine
+                     when it draws up the rules, but new section 35B(6) gives examples of what they might
+                     include. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The rules will be enforced first by Ofwat directions and then, if the directions are
+                     not complied with, the existing&nbsp;enforcement machinery provided by sections 18 to 22
+                     of the 1991 Act (which involves the giving of enforcement orders enforceable by the
+                     courts). Ofwat has a wide discretion about which steps to tell a company&nbsp;to take to
+                     bring itself back into compliance with the rules.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Ofwat are required to provide a draft to the Secretary of State of the first rules
+                     to be issued under new section 35B of the 1991 Act at least seven days before they
+                     are issued.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>New sections 35C and 35D provide for consultation&nbsp;about the rules, except in cases
+                     involving minor or urgent variations. The procedure is modelled on existing procedures
+                     followed by Ofwat when making&nbsp;codes or rules about bulk supplies: see sections 40C
+                     and 40G of the 1991 Act. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Financial transparency requirements</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>This section inserts provisions into the Water Industry Act 1991 (“the 1991 Act”)
+                     that require Ofwat to secure publication by each water company prominently on its
+                     website an overview of its financial position at least once a year (new section 35E).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>A company’s “financial position” includes details of the share capital and debt used
+                     to fund its operations. The purpose of the provision is to ensure that the public
+                     have easy access to a concise and intelligible overview of a company’s financial position.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Ofwat may either exercise its appointment powers or issue rules in order to impose
+                     the necessary requirements on companies. The precise nature of the information to
+                     be included in the overview and the format in which it is to be published will be
+                     decided by Ofwat. </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Pollution incident reduction plans </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>This section inserts provisions into the Water Industry Act 1991 (“the 1991 Act”)
+                     that require sewerage and water supply undertakers to publish an annual pollution
+                     incident reduction plan by 1 April each year and establishes the matters the plans
+                     must address.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>New section 205A: Duty to prepare and publish plans</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>A pollution incident reduction plan is a plan for reducing the occurrence of pollution
+                     incidents attributable to an undertakers’ sewerage or water supply system. Pollution
+                     incidents are discharges that may be harmful to health or the environment. However,
+                     this excludes treated effluent that is discharged in accordance with environmental
+                     permits.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>These plans must address the frequency, seriousness and causes of pollution incidents
+                     and the measures (and timing of these measures) that undertakers intend to take to
+                     reduce the occurrence of pollution incidents. Undertakers must also assess the impact
+                     that the planned measures will have on reducing pollution incidents and set out the
+                     measures and timing for implementing those measures: subsection (4)(a) – (f) of the
+                     new section.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Ministers (the Secretary of State for undertakers wholly or mainly based in England
+                     or the Welsh Ministers for undertakers wholly or mainly based in Wales) may issue
+                     directions on other matters that the plans must address, subject to consultation with
+                     the environmental regulator (Environment Agency for undertakers wholly or mainly based
+                     in England or Natural Resources Wales for undertakers wholly or mainly based in Wales)
+                     before the directions are issued (new section 205A(4)(g) and (5)). The undertaker
+                     must have regard to guidance produced by the environmental regulator in producing
+                     these plans. The environmental regulators must consult the relevant Minister and Ofwat
+                     prior to providing any guidance under new section 205A(6).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The undertaker must publish its first plan before 1 April in the calendar year after
+                     the one in which this duty comes into force. The undertaker must publish a statement
+                     alongside the plan that confirms the chief executive has personally approved the plan.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>New section 205B: Implementation reports</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>The undertaker must publish an implementation report alongside the pollution incident
+                     reduction plan each year (new section 205B). In this implementation report, the undertaker
+                     must set out the extent to which it succeeded in implementing planned measures in
+                     the preceding year. Where the undertaker failed to implement those measures during
+                     that year, it must set out the reasons for that failure and how it intends to avoid
+                     repeating the failure in future years. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>New section 205C: Enforcement and sanctions</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>New section 205C provides that undertakers that fail to comply with this duty may
+                     be prosecuted and liable to a fine. Where the undertaker fails to comply with this
+                     duty, the chief executive will also have committed an offence and may be personally
+                     prosecuted and liable to a fine. The chief executive may rely on the defence provided
+                     in new section 205C(3) that they took all reasonable steps to avoid the failure. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The environmental regulators are responsible for enforcing this duty. Where the environmental
+                     regulator is considering how to exercise its functions and the undertaker’s record
+                     with respect to compliance with its obligations relating to pollution, the regulator
+                     must also consider the undertaker’s record in implementing measures set out in its
+                     pollution incident reduction plans.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Emergency overflows</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>This section inserts new Chapter 5 (emergency overflows) into Part 4 (sewerage services)
+                     of the Water Industry Act 1991 (“the 1991 Act”) after Chapter 4 (storm overflows).
+                     Chapter 5 includes two new sections to require reporting on discharges from emergency
+                     overflows and establish the meaning of “emergency overflow”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Although this section provides a statutory definition of emergency overflow for the
+                     first time, the concept of emergency overflow is not new. Emergency overflows have
+                     been permitted for many years under the Environmental Permitting (England and Wales)
+                     Regulations 2016 (and preceding regulations). The purpose of this section is to ensure
+                     that discharges from emergency overflows are reported within an hour of their starting
+                     and finishing.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>New section 141F Reporting on discharges from emergency overflows</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Sewerage undertakers must report in near real time (within an hour) on the fact of
+                     a discharge from an emergency overflow, together with location and information as
+                     to when the discharge began and ended. An emergency overflow is defined at new section
+                     141G.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Information on discharges from emergency overflows must be reported within one hour
+                     of the discharge starting, and within one hour of it finishing. Additionally, the
+                     information to be published must be in a format which is both easily understandable
+                     and easily accessible by the public. Ofwat are responsible for bringing enforcement
+                     proceedings against undertakers which fail to comply with the duty, relying on existing
+                     enforcement machinery provided by sections 18 to 22 of the 1991 Act (which involves
+                     the giving of enforcement orders enforceable by the courts).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>The Secretary of State has powers to make regulations that set out exceptions to the
+                     requirements to publish information under section 141F, subject to a consultation
+                     requirement. The regulations are to be made by statutory instrument under the draft
+                     affirmative resolution procedure: new subsections (5), (6) and (7). </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>New Section 141G: meaning of “emergency overflow” in section 141F</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>New section 141G sets out the definition of an emergency overflow. It provides that
+                     the duty in section 141F should apply where there is an emergency overflow of a description
+                     set out in subsection (2) or where an environmental permit has been issued which describes
+                     the overflow as capable of being relied on in an emergency (subsection (3)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>A ‘sewerage system’ as specified in subsection (1) is defined by way of section 17BA(7)
+                     of the 1991 Act, and includes the system of public sewers, the facilities for emptying
+                     or draining it, facilities for dealing with its contents, and the lateral drains that
+                     the undertaker is required to maintain. An ‘environmental permit’ is a permit granted
+                     under the Environmental Permitting (England and Wales) Regulations 2016.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Nature-based solutions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>This section inserts provisions into the Water Industry Act 1991 ("the 1991 Act")
+                     that require sewerage undertakers to explain in their drainage and sewerage management
+                     plans, the use that is to be made of nature-based solutions, technologies and facilities
+                     within their drainage and sewerage systems.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>A drainage and sewerage management plan is the plan for how the sewerage undertaker
+                     will manage and develop its drainage system and sewerage system so as to be able,
+                     and continue to be able, to meet its obligations under Part IV of the 1991 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>The drainage and sewerage management plan must address a number of specific matters,
+                     including: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the capacity of the undertaker’s drainage and sewerage systems;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>an assessment of the current and future demands on the systems;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the resilience of the systems;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the measures the undertaker proposes to take or continue (and the sequence and timing
+                        of those measures) to meet its obligations under Part IV of the 1991 Act and relevant
+                        environmental risks; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>how those risks are to be mitigated.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>The new requirement (s.94A(3)(ea)) is enforceable under existing powers in section
+                     18 of the 1991 Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Impeding investigations into water companies: sentencing and liability</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>This section amends the sentencing and liability provisions for offences related to
+                     impeding investigations under section 110 of the Environment Act 1995 and section
+                     86 of the Water Industry Act 1991 (“the 1991 Act”) of the Environment Agency, the
+                     Natural Resources Body for Wales and the Drinking Water Inspectorate. These amendments
+                     are restricted to water and sewerage undertakers and licensees.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>The section expands the options available to the court during the sentencing of offences
+                     under section 110(1) and (2). These offences are now triable in either the Crown or
+                     Magistrates’ Court and the sentencing powers include an unlimited fine and imprisonment
+                     with a term not exceeding the general limit on summary conviction or 2 years for conviction
+                     on indictment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Previously, the maximum sentence for obstruction of a requirement under section 108,
+                     which details the Environment Agency and Natural Resources Body for Wales’ investigatory
+                     powers, was an unlimited fine – not imprisonment – and the offence could only be heard
+                     in the Magistrates’ Court. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Subsection (1)(b) and (c) of the section amends subsections (4) and (5) of section
+                     110 of the Environment Act 1995, creating exemptions where new subsection (3E) applies.
+                     Section 110(4) details the maximum penalty for an offence under section 110(1); section
+                     110(5) details the maximum penalty for an offence under section 110(2) and (3).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>The section also introduces a corporate liability provision (new sections 5I and 5J)
+                     in section 110 of the Environment Act 1995. If an obstruction offence is committed
+                     with the consent or connivance of, or is attributable to the neglect of, company executives
+                     or other relevant individuals, for example a Chief Executive Officer, they are also
+                     liable.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>For example, where a data request is made, or samples collected, under section 108
+                     of the Environment Act 1995, and it can be demonstrated that there has been a failure
+                     to comply, an officer of the company may be responsible for such failure if they are
+                     considered to be acting with consent, connivance or by way of neglect. This form of
+                     corporate body liability provision sits elsewhere in water regulation. For example,
+                     in section 210 of the 1991 Act and regulation 41 of the Environmental Permitting (England
+                     and Wales) Regulations 2016. The new subsection (5J) provides the definition of a
+                     ‘relevant officer’ in relation to offences committed by the body corporate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>The section also amends the penalty for obstruction offences committed against the
+                     Drinking Water Inspectorate through an amendment of section 86(6) of the 1991 Act.
+                     Section 86(3) places a duty on companies to provide assistance and information during
+                     investigations. The sentencing powers are now increased to mirror those in section
+                     110 of the Environment Act 1995. The penalties are increased, on summary conviction,
+                     to imprisonment for a term not exceeding the general limit or to a fine, or both;
+                     and on conviction on indictment, to imprisonment for a term not exceeding two years
+                     or to a fine, or both. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>To align with the increase in sentencing powers, a ‘reasonable excuse’ defence is
+                     inserted into section 86(6) of the 1991 Act so that culpability and the maximum penalty
+                     is equal to section 110(2) of the Environment Act 1995. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Subsection (3) of the section clarifies that the amendments only have effect in relation
+                     to offences committed on or after the day on which this section comes into force.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Civil penalties: modification of standard of proof </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>This section relates to powers conferred on regulators under sections 36 and 62 of
+                     the Regulatory Enforcement and Sanctions Act 2008 (“the 2008 Act”) to impose fixed
+                     monetary penalties and variable monetary penalties. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>This section allows fixed and variable monetary penalties to be imposed for water
+                     industry offences as if “on the balance of probabilities” appears in sections 39(2)
+                     and 42(2) of the 2008 Act, instead of “beyond reasonable doubt”. The power is made
+                     available only in relation to offences committed by a water company (defined in the
+                     section as an offence committed by a water or sewerage undertaker, or a water supply
+                     or sewerage licensee within the meaning of the Water Industry Act 1991) and will be
+                     specified in secondary legislation, to be made by the Secretary of State or Welsh
+                     Ministers. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>For offences committed by a water supply or sewerage licensee, this provision only
+                     applies in relation to their licensed activities; wider business activities unrelated
+                     to the licensing regime are not included. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>The secondary legislation must also prescribe a cap on the amount that may be imposed
+                     by the regulator when imposing a variable monetary penalty to this modified standard
+                     of proof (subsection (4)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>The offences in respect of which these powers are made available are outlined in subsection
+                     (3), and are those under sections 24(4), 25(2), 25C(1), 80 and 201(3) of the Water
+                     Resources Act 1991, regulations under section 2 of the Pollution Prevention and Control
+                     Act 1999, and regulations under section 61 of the Water Act 2014. </p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Automatic penalties for certain offences</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>This section imposes a duty on the environmental regulators (the Environment Agency
+                     and the Natural Resources Body for Wales) to impose automatic penalties for specified
+                     offences committed by a water company (as defined in section 7(5) of the Act).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>The offences that may fall within scope will be set out in secondary legislation (subsections
+                     (3) to (5)). This is limited to the offences included in section 7(3) of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Exceptions to the duty to apply an automatic penalty include where the regulator determines
+                     that there are exceptional circumstances which mitigate the company’s culpability.
+                     This could include circumstances where breaches occur for reasons outside the water
+                     company’s control, such as IT failures or where there has been third-party interference
+                     with company assets. Exceptions are also applied where alternative enforcement action
+                     is contemplated or in progress, such as criminal proceedings or variable monetary
+                     penalties.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Regulations applying the new duty will have to make provision that follows the procedure
+                     for imposing a penalty set out at section 40 of the Regulatory Enforcement and Sanctions
+                     Act 2008 (“the 2008 Act”), effectively requiring regulators to issue a notice of intent
+                     (section 40(2)(a) of the 2008 Act), as well as offering the company the opportunity
+                     to make representations about the proposed penalty (section 40(2)(c) of the 2008 Act).
+                     Companies will have a right of appeal to the first-tier tribunal for the existing
+                     grounds set out in the 2008 Act, but may be prevented from making an appeal against
+                     the regulator’s determination as to whether exceptional circumstances apply which
+                     mitigate their culpability – subsection (7).</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Abstraction and impounding: power to impose general conditions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>This section amends the Water Resources Act 1991 to insert a new section 46B to confer
+                     on the Secretary of State (in relation to England) and Welsh Ministers (in relation
+                     to Wales) a new power to impose conditions or general rules into water industry licences
+                     (as defined in subsection (3)) for water abstraction and impoundment activity. The
+                     new section 46B enables the use of the provisions set out in section 8 of this Act
+                     in respect of breaches of such conditions and general rules in water industry abstraction
+                     and impoundment licences. </p>
+               </section>
+               <section class="level">
+                  <p>Section 10: Requirement for Ofwat to have regard to climate change etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>This section amends section 2 of the Water Industry Act 1991 to require Ofwat when
+                     exercising its powers and duties to have regard to the Secretary of State's duty to
+                     meet specified environmental targets. This includes the net zero emissions target
+                     in section 1 of the Climate Change Act 2008 and duties in section 5 of the Environment
+                     Act 2021 (when regulating companies wholly or mainly in England).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>This new duty requires Ofwat to consider, when making relevant regulatory decisions,
+                     how the water industry can contribute towards meeting these environmental targets.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 11: Charges in respect of Environment Agency and NRBW functions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>This section amends section 41(1) of the Environment Act 1995 in order to extend existing
+                     powers to make charging schemes to recover costs from water companies (as defined
+                     in the section). The schemes are produced by the Environment Agency and Natural Resources
+                     Body for Wales to enable them to recover their costs of performing functions in relation
+                     to the Environmental Permitting (England and Wales) Regulations 2016, water abstraction
+                     and impounding, drought orders and drought permits under Chapters 2 and 3 of Part
+                     2 of the Water Resources Act 1991, and pollution incident reduction plans and implementation
+                     reports under sections 205A and 205B of the Water Industry Act 1991.&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>The effect of the section is to extend the existing legislation to allow the recovery
+                     of costs by the Environment Agency and Natural Resources Body for Wales incurred in
+                     performing water industry enforcement functions.&nbsp; This includes allowing fees to be
+                     charged to water companies for enforcement relating to unauthorised assets, or in
+                     suspected breach of a permit, and duties relating to pollution incident reduction
+                     plans. This section enables fees to be charged to water undertakers and sewerage undertakers;
+                     and to water licensees and sewerage licensees only in relation to their licensed activities,
+                     excluding their other unrelated wider business activities.</p>
+               </section>
+               <section class="level">
+                  <p>Section 12: Drinking Water Inspectorate: functions and fees</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>This provision relates to the functions of the Drinking Water Inspectorate, the agency
+                     responsible for regulating the safety of public drinking water supplies in England
+                     and Wales. The Drinking Water Inspectorate’s functions include monitoring and auditing
+                     water suppliers responsible for providing drinking water to ensure that regulatory
+                     requirements are adhered to, investigating possible breaches of those standards, and
+                     providing advice to the public and government on drinking water safety.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>The section amends section 86(1) of the Water Industry Act 1991 (“the 1991 Act”) to
+                     extend the purposes for which inspectors of water quality may be appointed to include
+                     functions related to national security directions under section 208 of the 1991 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>This section also makes amendments to section 86ZA (charging of fees by Drinking Water
+                     Inspectorate) to provide greater flexibility in how fees are charged for regulatory
+                     work. This means the Drinking Water Inspectorate could charge fees when individual
+                     functions are completed or charge a fee for all functions completed in a particular
+                     period of time.</p>
+               </section>
+               <section class="level">
+                  <p>Section 13: Special provision in charges schemes</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>This section amends section 143A of the Water Industry Act 1991 (“the 1991 Act”) and
+                     inserts new sections 143AA and 143AB, in order to supplement existing powers to provide
+                     for special charging arrangements for customers in need. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>The amendment to section 143A of the 1991 Act allows regulations under the section
+                     to be able to require water companies to auto-enrol eligible customers. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>New section 143AA of the 1991 Act allows for the costs of special provision under
+                     section 143A(2)(d) of the same Act to be shared among water companies by way of direct
+                     payments or via a managed fund. Subsections (4) to (10) ensure water companies are
+                     not prevented by their other obligations (such as the conditions of their appointment)
+                     from passing on their relevant net costs (subsection (8)) to their customers. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>New section 143AB of the 1991 Act requires the Secretary of State to consult prior
+                     to the introduction of regulations under existing section 143A(2)(d) or new section
+                     143AA, subject to a specific exception set out in subsection (3). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>This section also amends the permissive information-sharing gateways in sections 38
+                     and 39 of the Digital Economy Act 2017 to expand their availability to those eligible
+                     for special provision under section 143A(2)(d) of the 1991 Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 14: Modification by Secretary of State of water company’s appointment conditions
+                     etc to recover losses</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>This section inserts new sections 12J and 12K into the 1991 Act. Section 12J enables
+                     the Secretary of State to modify the conditions of appointment of water and/or sewerage
+                     undertakers whose area is wholly or mainly in England (referred to here as water companies)
+                     to ensure that any shortfall following the provision of financial assistance by the
+                     Secretary of State to a company in special administration can be made good. Appointments
+                     are colloquially referred to as licences. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>The Secretary of State currently has the power to issue licences under section 6 of
+                     the 1991 Act but not to modify the conditions after they have been issued, as that
+                     power sits with Ofwat. However, this change will allow the Secretary of State to make
+                     modifications in these specific and very limited circumstances only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>The modifications can require a water company to raise amounts of money determined
+                     by the Secretary of State from its consumers, and to pay those amounts to the Secretary
+                     of State to make good any shortfall and may include a requirement that amounts be
+                     held on trust pending payment to the Secretary of State. The Secretary of State may
+                     also make incidental or consequential modifications considered necessary or expedient.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>The Secretary of State can modify the licence of the water company that has been placed
+                     in special administration, or any other water company in England.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">79 </span></h2>
+                  <p>The drafting anticipates that the Secretary of State may provide financial assistance
+                     under section 153 of the 1991 Act in relation to a water company in administration
+                     as part of the Water Industry Special Administration Regime (‘WISAR’, provided for
+                     by sections 23-25 of the 1991 Act) which it may not, absent these provisions, be able
+                     to fully recover. This shortfall is described as an ‘SAO loss’ and includes any loss
+                     or expense incurred as a result of, or otherwise in connection with, the giving of
+                     the assistance. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">80 </span></h2>
+                  <p>Money received by the Secretary of State must be paid into the Consolidated Fund.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">81 </span></h2>
+                  <p>New section 12K requires the Secretary of State to fulfil certain procedural requirements
+                     before modifying licence conditions under section 12J. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">82 </span></h2>
+                  <p>Notice must be given that the Secretary of State proposes to make modifications. The
+                     modifications and their effect must be set out along with reasons for making them
+                     and providing a time period of at least 42 days for representations to be made about
+                     the proposed modifications. The notice must be published in an appropriate manner
+                     so those likely to be affected are aware of it and it must be sent to each water company
+                     whose licence conditions are to be modified, other water companies and water supply/sewerage
+                     licensees whose interests may be affected, Ofwat, certain persons representing the
+                     interests of water companies (such as Water UK) and the Consumer Council for Water.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>The Secretary of State must consider any representations made and if a decision is
+                     made to proceed with the licence modifications the decision and the modifications
+                     must be published, the effect of the modifications must be set out, as well as explaining
+                     how the representations were taken into account and any changes between the modifications
+                     and those initially proposed. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>Licence modifications come into effect from a date specified by the Secretary of State
+                     not less than 56 days after the publication of the decision to make the modification,
+                     unless giving them earlier effect is considered to be necessary or expedient and the
+                     notice of intention to modify licence conditions stated the earlier date, gave reasons
+                     for the shorter time period and explained why this would not have a material adverse
+                     effect on a water company.</p>
+               </section>
+               <section class="level">
+                  <p>Section 15: Modification by Welsh Ministers of water company’s appointment conditions
+                     etc to recover losses</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>Section 15 introduces new sections 16C and 16D into the 1991 Act, which have an equivalent
+                     effect to sections 12J and 12K for the purposes of water companies whose area is wholly
+                     or mainly in Wales. Sections 16C and 16D create powers and procedural requirements
+                     for the Welsh Ministers in the same terms as those created for the Secretary of State
+                     in sections 12J and 12K, although note that section 16C does not refer to the Consolidated
+                     Fund since section 120 of the Government of Wales Act 2006 has the effect of directing
+                     the sums collected to the Welsh Consolidated Fund.   </p>
+               </section>
+               <section class="level">
+                  <p>Section 16: Winding up petitions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">86 </span></h2>
+                  <p>Section 16 amends section 25 of the 1991 Act to provide that on an application for
+                     the winding up of an undertaker, a court may not exercise its powers unless the Secretary
+                     of State or the Welsh Minsters (as the case may be, see new subsection (4)) and Ofwat
+                     have been given notice of the petition and at least 14 days have passed - new subsection
+                     (2).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">87 </span></h2>
+                  <p>Subsection (3) is inserted into section 25 of the 1991 Act to require that the Secretary
+                     of State or the Welsh Ministers (as the case may be) and Ofwat (‘relevant persons’)
+                     are entitled to be heard at the hearing of a winding up petition and any other hearings
+                     in relation to Part IV (‘Winding up of companies registered under the Companies Acts’)
+                     of the Insolvency Act 1986. </p>
+               </section>
+               <section class="level">
+                  <p>Section 17: Extent, commencement, transitional provision and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">88 </span></h2>
+                  <p>Section 17 sets out the extent of the Act. Annex A provides further information. The
+                     section comes into force on the day this Act is passed, as do the other sections listed
+                     in subsection (2).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">89 </span></h2>
+                  <p>Those provisions which come into force on such day as the Secretary of State may by
+                     regulations appoint are set out in subsection (3). Corresponding powers are provided
+                     for Welsh Minsters. Commencement regulations may also make transitional or saving
+                     provision and different provision for different purposes or places.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">90 </span></h2>
+                  <p>Those provisions in the Act which will come into force two months after the day this
+                     Act is passed are set out in subsection (5).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">91 </span></h2>
+                  <p>Subsection (7) permits commencement regulations to make reference to criteria established
+                     by regulators (the Environment Agency for assets wholly or mainly in England, Natural
+                     Resources Body for Wales for those in Wales), established to identify the categories
+                     of asset which the duty should first apply to.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">92 </span></h2>
+                  <p>Consultation that takes place prior to this Act being passed will meet any consultation
+                     requirement arising from the provisions of the Act - subsection (9). For example,
+                     under new section 35C of the Water Industry Act 1991, as inserted by section 1, Ofwat
+                     has a duty to consult on rules that it proposes to issue under section 35B. Consultation
+                     undertaken prior to the Act being passed will meet that requirement by virtue of subsection
+                     (9).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">93 </span></h2>
+                  <p>Finally, this section confirms the short title of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">94 </span></h2>
+                  <p>Sections 1, 2, 7, 8, 9, 11, 12 and 17 will come into force on the day this Act is
+                     passed. Section 17(5) sets out those provisions in the Act which will come into force
+                     two months after the day this Act is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">95 </span></h2>
+                  <p>Section 17(3) sets out those provisions which will come into force on such day as
+                     the Secretary of State may by regulations appoint. Corresponding powers are provided
+                     for Welsh Minsters.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">96 </span></h2>
+                  <p>The following document is relevant to the Act and can be read at the stated location:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Water (Special Measures) Act 2025 Policy Statement is available on the GOV.UK
+                        website.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.88in">
+                        <col style="width:1.08in">
+                        <col style="width:1.28in">
+                        <col style="width:1.28in">
+                        <col style="width:1.38in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>England</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Wales</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Scotland</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Northern Ireland</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p>Section 3</p>
+                              <p>Section 4</p>
+                              <p>Section 5</p>
+                              <p>Section 6</p>
+                              <p>Section 7</p>
+                              <p>Section 8</p>
+                              <p>Section 9</p>
+                              <p>Section 10</p>
+                              <p>Section 11</p>
+                              <p>Section 12</p>
+                              <p>Section 13</p>
+                              <p>Section 14</p>
+                              <p>Section 15</p>
+                              <p>Section 16</p>
+                              <p>Section 17</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>No</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">97 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>04 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-09-04/debates/5BE8D412-1E2C-4984-B878-6A305711E930/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Vol. 839 Col. 1158</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>09 October 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-10-09/debates/BC0D6C71-4A7F-43EC-BD5B-B1897796B651/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Vol. 829 Col. 2021</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>28 October 2024</p>
+                              <p>28 October 2024</p>
+                              <p>30 October 2024</p>
+                              <p>30 October 2024</p>
+                              <p>04 November 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-10-28/debates/A0BC3960-E6B5-4ABC-9A1A-F75A6D32EDA9/Water(SpecialMeasures)Bill(HL)">
+                                    <u>First Sitting Vol. 840 Col. 929</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-10-28/debates/75AEA1F9-DB2B-41B4-8819-5E8142A96F63/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Second Sitting Vol. 840 Col. 999</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-10-30/debates/86A07A3A-BD5A-4749-951A-956870917E2D/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Third Sitting Vol. 840 Col. 1129</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-10-30/debates/2A4F323E-1730-436A-9B64-C828EC62292A/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Fourth Sitting Vol. 840 Col. 1188</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-11-04/debates/BA40619F-BF2A-41C3-98CA-A0A479C01004/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Fifth Sitting Vol. 840 Col. 1362</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report  </p>
+                           </td>
+                           <td>
+                              <p>20 November 2024 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-11-20/debates/F4BA2123-484A-49DA-A1E5-9F3EC3265CBD/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Vol. 841 Col. 231</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 November 2024 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-11-26/debates/1F96B035-55FD-433E-BE14-49ED44E58FB0/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Vol. 841 Col. 602</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>27th November 2024</p>
+                           </td>
+                           <td>
+                              <p>NA</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 December 2024 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-12-16/debates/997D199E-23EE-43B4-89B5-6F1ECF1F07CB/Water(SpecialMeasures)Bill(Lords)">
+                                    <u>Vol. 759 Col. 76</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>09 January 2025</p>
+                              <p>09 January 2025</p>
+                              <p>14 January 2025</p>
+                              <p>14 January 2025</p>
+                              <p>16 January 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-09/debates/44b580b1-2828-4453-a7db-fbc977633fd7/Water(SpecialMeasures)Bill(Lords)(FirstSitting)">
+                                    <u>First Sitting Vol. 759 Col. 1</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-09/debates/2711d7a3-3a27-44de-a153-5da06e176144/Water(SpecialMeasures)Bill(Lords)(SecondSitting)">
+                                    <u>Second Sitting Vol.</u>
+                                    <u>759 Col. 31</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-14/debates/26caa167-55ff-4525-88f2-8c2fa4042598/Water(SpecialMeasures)Bill(Lords)(ThirdSitting)">
+                                    <u>Third Sitting Vol.</u>
+                                    <u>760 Col. 69</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-14/debates/ed342bc7-4e35-4bd0-a144-5a852bb33aa2/Water(SpecialMeasures)Bill(Lords)(FourthSitting)">
+                                    <u>Fourth Sitting Vol.</u>
+                                    <u>760 Col. 105</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-16/debates/867547e2-417e-4b8a-8e4b-e83b9145aaf7/Water(SpecialMeasures)Bill(Lords)(FifthSitting)">
+                                    <u>Fifth Sitting Vol. 760 Col.153</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>28 January 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-28/debates/D9A3DF12-0DD0-4F35-9CED-2FDAECEC66AF/Water(SpecialMeasures)Bill(Lords)">
+                                    <u>Vol. 761 Col. 221</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>05 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2025-02-05/debates/97F5FEEA-D79C-44CF-935C-2D33CBB3C2AF/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Vol. 843 Col. 765</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Message</p>
+                           </td>
+                           <td>
+                              <p>11 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-02-11/debates/681FFC88-23E5-4782-94A4-F4A393EE2F91/Water(SpecialMeasures)Bill(Lords)">
+                                    <u>Vol. 762 Col. 194</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments </p>
+                           </td>
+                           <td>
+                              <p>11 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-02-11/debates/05CBDE8F-2260-4F29-8FC1-7BADF39D76FB/Water(SpecialMeasures)Bill(HL)">
+                                    <u>Vol. 843 Col. 1181</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>24 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-02-24/debates/3E6E70C9-62D4-455B-AF0A-1B8D54EED1C6/RoyalAssent">
+                                    <u>House of Lords Vol. 843 Col. 1445</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-02-24/debates/5A2A79F7-C894-49E5-BE4C-685AD366B4A5/Speaker%E2%80%99SStatement">
+                                    <u>House of Commons Vol. 762 Col. 485</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">98 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 </p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/publications/water-and-sewerage-companies-in-england-environmental-performance-report-2023/water-and-sewerage-companies-in-england-environmental-performance-report-2023"><u>Water and sewerage companies in England: environmental performance report 2023 - GOV.UK
+                        (www.gov.uk)</u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

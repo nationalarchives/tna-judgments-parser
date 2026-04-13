@@ -1,0 +1,865 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>CENSUS (RETURN PARTICULARS AND REMOVAL OF PENALTIES)</b>
+               <b>
+                  </b>
+               <b>ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Census (Return Particulars and Removal of Penalties)
+                  Act 2019 which received Royal Assent on 8 October 2019 (c. 28).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Cabinet Office in order to assist
+                  the reader in understanding the Act. They do not form part of the Act and have not
+                  been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Census (Return Particulars and Removal of Penalties) Act 2019 provides for voluntary
+                     questions on sexual orientation and gender identity to be asked in the England and
+                     Wales and Northern Ireland censuses. It does this by removing the criminal penalty
+                     for not responding to questions on these matters. It also clarifies the existing law
+                     that such questions may be asked. In the case of England and Wales only, this will
+                     lead to any such questions being subject to the draft negative Parliamentary procedure
+                     in future Census Orders.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The twenty-second national census is planned to take place in March 2021 across the
+                     United Kingdom, subject to Parliamentary approval. The census is a devolved matter.
+                     The three census offices of the United Kingdom (Scotland, Northern Ireland, and England
+                     and Wales) work closely to ensure the three censuses together provide comparable statistics
+                     on the UK population.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The information the census provides on the population, including their characteristics,
+                     education, religion, ethnicity, working life, housing and health, gives decision-makers
+                     in national and local government, community groups, charities and businesses the opportunity
+                     to better serve communities and individuals in the United Kingdom. Information derived
+                     from the census helps to inform policy, plan services, and distribute resources effectively
+                     to local and health authorities and enable these resources to be directed to where
+                     they are needed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Completion of the census is mandatory across the United Kingdom. With the exception
+                     of questions on religion or (in Northern Ireland) religious profession, refusal to
+                     answer census questions is a criminal offence and subject to a penalty.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>This Act makes amendments to the Census Act 1920 and Census Act (Northern Ireland)
+                     1969 to remove the criminal penalty for refusing or neglecting to respond to any census
+                     questions on sexual orientation and gender identity in the England and Wales and Northern
+                     Ireland censuses. This will ensure that if these questions are asked in future censuses
+                     (by inclusion in future Census Orders, which will be subject to separate Parliamentary
+                     scrutiny) they are voluntary. In particular, anyone who does not wish to provide information
+                     on their sexual orientation and gender identity in future censuses in England and
+                     Wales and/or Northern Ireland would not thereby be committing a criminal offence by
+                     refusing or neglecting to answer these questions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>In the interests of clarity, accessibility and legal certainty, the Act also adds
+                     both matters to the Schedules of the 1920 and 1969 Acts as specific matters on which
+                     census questions may be asked. In England and Wales only, matters individually listed
+                     in the Schedule are subject to a different Parliamentary procedure to those which
+                     are not listed individually. Those not listed fall under the general category in paragraph
+                     6 of the Schedule. This amendment will change the applicable procedure, such that
+                     the approval of any questions relating to sexual orientation and gender identity in
+                     future Census Orders will be subject only to the draft negative procedure. The secondary
+                     legislation, needed to enable a census to take place, will set out the full proposed
+                     content of the 2021 Census. </p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The Census in England and Wales</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>The UK Statistics Authority has statutory responsibility for carrying out the census
+                        in England and Wales. The Government published a White Paper, <i>Help Shape our Future: The 2021 Census of Population and Housing in England and Wales</i><a class="fn" id="fnref-1" href="#fn-1">1</a> in December 2018 (‘the White Paper’), setting out the UK Statistics Authority’s detailed
+                        proposals for the census in England and Wales.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>The UK Statistics Authority’s proposals for the 2021 Census follow a programme of
+                        public consultation, stakeholder engagement, and research and testing. As a result
+                        of this consultation and testing, the UK Statistics Authority recommends new questions
+                        on sexual orientation and gender identity are asked in the 2021 Census for England
+                        and Wales to meet the need for better quality information for equality monitoring
+                        and public service provision. Further detail on the consultation and testing that
+                        informed the proposal to include new questions on sexual orientation and gender identity
+                        in the next England and Wales census can be found in the White Paper in paragraphs
+                        3.34 – 3.54. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>Due to the sensitive nature of these questions, both the UK Statistics Authority and
+                        Government believe they should be voluntary, ensuring that no-one is required to answer
+                        these questions if they do not wish to. The White Paper therefore stated that the
+                        Government and UK Statistics Authority would consider how to ensure this was the case
+                        (paragraphs 3.45 and 3.54). This Act achieves this by amending the principal census
+                        legislation for England and Wales to remove the criminal penalty for not responding
+                        to census questions on sexual orientation and gender identity.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>A binary, mandatory ‘sex’ question will continue to be included in the England and
+                        Wales census (What is your sex? Female/Male). A primary focus of the UK Statistics
+                        Authority’s testing of the inclusion of a gender identity question has been to ensure
+                        there is no risk to the quality of data collected about a person’s sex (male or female)
+                        in order to meet user needs for this data and to preserve data continuity. Further
+                        detail can be found in paragraphs 3.34 – 3.45 of the White Paper.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The Census in Northern Ireland</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>The Registrar General for Northern Ireland has statutory responsibility for carrying
+                        out the census in Northern Ireland. The Northern Ireland Statistics and Research Agency
+                        published its proposals for the Northern Ireland census in April 2019 (‘the Northern
+                        Ireland Proposals’).<a class="fn" id="fnref-2" href="#fn-2">2</a> This followed a programme of public consultation, stakeholder engagement and testing,
+                        the details of which can be found in section 2 of the Northern Ireland Proposals.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>The Northern Ireland Statistics and Research Agency propose to ask a question on sexual
+                        orientation in the 2021 Census to inform policy development and enable organisations
+                        to meet and monitor their statutory equality obligations stemming from section 75
+                        of the Northern Ireland Act 1998 and other relevant legislation. Section 3.6.2 of
+                        the Northern Ireland Proposals sets out the consideration process informing this proposal
+                        in more detail.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>Without an amendment to the census primary legislation for Northern Ireland, a question
+                        on sexual orientation would remain subject to a criminal penalty for non-response.
+                        To ensure people in Northern Ireland are afforded the same level of protection as
+                        people in England and Wales the provisions of the Act extend to Northern Ireland.
+                        The amendments to the primary census legislation for Northern Ireland mirror those
+                        for England and Wales, rather than excluding gender identity from the amendments,
+                        notably because this does not require future Northern Ireland censuses to include
+                        such a question. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The Census in Scotland</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>The Registrar General for Scotland has statutory responsibility to carry out the census
+                        in Scotland. National Records of Scotland published its plans for the 2021 Census
+                        in Scotland in September 2018 (‘Plans for Scotland’s Census 2021’).<a class="fn" id="fnref-3" href="#fn-3">3</a> In accordance with its plans, the Scottish Government has enacted the Census (Amendment)
+                        (Scotland) Act 2019 to enable census particulars about sexual orientation and transgender
+                        history and status to be gathered voluntarily.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>This Act amends existing legislation. The primary legislation that provides for the
+                     taking of a census in England and Wales (and in Scotland) is the Census Act 1920 (‘the
+                     1920 Act’). Under the provisions of section 1(1) of the 1920 Act, an Order in Council
+                     may prescribe:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The date on which the census is to be taken;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The persons by whom and with respect to whom the census returns are to be made; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The particulars to be stated in the returns.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The matters in respect of which particulars may be required are in turn listed in
+                     the Schedule to the 1920 Act. This specifies the following matters:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">1.</span></h2>
+                     <p>Names, sex, age.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">2.</span></h2>
+                     <p>Occupation, profession, trade or employment.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">3.</span></h2>
+                     <p>Nationality, birthplace, race, language.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">4.</span></h2>
+                     <p>Place of abode and character of dwelling.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">5.</span></h2>
+                     <p>Condition as to marriage or civil partnership, relation to head of family, issue born
+                        in marriage.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">5A.</span></h2>
+                     <p>Religion.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">6.</span></h2>
+                     <p>Any other matters with respect to which it is desirable to obtain statistical information
+                        with a view to ascertaining the social or civil condition of the population.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Before Parliament, the Order in Council is subject to the draft negative resolution
+                     procedure for all of these matters except those falling in paragraph 6. The latter
+                     are subject to the draft amendable affirmative procedure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 8 of the 1920 Act provides a number of criminal offences in respect of the
+                     census. It also provides an exception in section 8(1A) whereby ‘no person shall be
+                     liable to a penalty under subsection (1) for refusing or neglecting to state any particulars
+                     in respect of religion’.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 8(1A) and paragraph 5A of the Schedule were inserted by the Census (Amendment)
+                     Act 2000 (insofar as the 1920 Act extends to England and Wales). Those amendments
+                     are similar to those in this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Finally, the above provisions also apply in the case of a local census ordered under
+                     section 6 of the 1920 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>In Northern Ireland, the primary census legislation is the Census Act (Northern Ireland)
+                     1969 (‘the 1969 Act’). The only relevant difference of this legislation from the 1920
+                     Act is that its Census Order is subject to the draft affirmative procedure in its
+                     entirety.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Sexual orientation and gender identity already fall within the Schedules to the 1920
+                     and 1969 Acts, as both constitute ‘any other matters with respect to which it is desirable
+                     to obtain statistical information with a view to ascertaining the social (or civil)
+                     condition of the population’. However, without this amendment to the primary legislation,
+                     any such questions would be compulsory and refusing or neglecting to answer would
+                     be subject to criminal penalty.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 3 sets out the territorial extent of the Act. Section 1 extends to and applies
+                     in England and Wales. Section 2 extends to and applies in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Amendment of the Census Act 1920</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>This section amends the Census Act 1920 insofar as it extends to England and Wales
+                        to enable the asking of voluntary census questions on sexual orientation and gender
+                        identity.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (2) adds sexual orientation and gender identity to the Schedule of the
+                        1920 Act. This means they are specified as matters in respect of which census questions
+                        may be asked in England and Wales and any such questions will be subject to the draft
+                        negative procedure.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Questions on sexual orientation and gender identity could already be asked in the
+                        England and Wales census under paragraph 6 of the Schedule to the 1920 Act. Adding
+                        these matters is intended to clarify this existing law and to make clear to which
+                        matters the removal of penalties in subsection (3) relates. As a consequence of the
+                        statutory scheme, this amendment means that the Parliamentary procedure to which such
+                        questions are subject will change from draft amendable affirmative to draft negative.
+                        This amendment does not require questions on these matters to be asked in future censuses.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (3) amends section 8(1A) of the 1920 Act such that no person shall be liable
+                        to a penalty under section 8(1) of that Act for refusing or neglecting to state any
+                        particulars in respect of sexual orientation or gender identity – effectively making
+                        any such questions voluntary.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Section 1 forms part of the law of, and applies to, England and Wales.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Amendment of the Census Act (Northern Ireland) 1969</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>This section amends the 1969 Act to enable the asking of voluntary questions on sexual
+                        orientation and gender identity in Northern Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Subsection (2) adds sexual orientation and gender identity to the Schedule to the
+                        1969 Act. This means they are specified as matters in respect of which census questions
+                        may be asked in Northern Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Questions on sexual orientation and gender identity could already be asked in the
+                        Northern Ireland census under paragraph 8 of the Schedule to the 1969 Act. Adding
+                        these matters is intended to clarify this existing law and to make clear the matters
+                        to which the removal of penalties in subsection (3) relate. It does not require questions
+                        on these matters to be asked in future censuses.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Subsection (3) amends section 7(3) of the 1969 Act such that no person shall be liable
+                        to a penalty under section 8(1) of that Act for refusing or neglecting to state any
+                        particulars in respect of sexual orientation or gender identity – effectively making
+                        any such questions voluntary.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Section 2 forms part of the law of, and applies to, Northern Ireland.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 3: Extent, commencement and short title</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>This section specifies the territorial extent of the Act and when its provisions come
+                        into force. See ‘Commencement’ and Annex A for further details.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Section 3 forms part of the law of, and applies to, England, Wales and Northern Ireland.
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>This Act comes into force on 8 October 2019 </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:1.2in">
+                        <col style="width:1.18in">
+                        <col style="width:1.28in">
+                        <col style="width:1.28in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>1 May 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-05-01/debates/1288DA86-DAC2-48EE-8529-DA1176E00584/Census(ReturnParticularsAndRemovalOfPenalties)Bill(HL)">
+                                    <u>Vol. 797</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>13 May 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-05-13/debates/94B76DAD-8DC0-453E-A673-1A2A2F6C4C2A/Census(ReturnParticularsAndRemovalOfPenalties)Bill(HL)">
+                                    <u>Vol. 797 Col. 1429</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>4 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-06-04/debates/8ECF441C-8C94-4D64-9D65-1255B229AC2A/Census(ReturnParticularsAndRemovalOfPenalties)Bill(HL)">
+                                    <u>Vol. 798 Col. 2GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>18 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-06-18/debates/451D5CD6-B733-4D8A-88ED-4739591E0A7E/Census(ReturnParticularsAndRemovalOfPenalties)Bill(HL)">
+                                    <u>Vol. 798 Col. 723</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-06-26/debates/B16641CC-D623-4965-883C-D76F7A4C9511/Census(ReturnParticularsAndRemovalOfPenalties)Bill(HL)">
+                                    <u>Vol. 798</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>26 June 2019</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>17 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-07-17/debates/AB38CB0D-3B92-455F-B264-8CAE046A4F1A/Census(ReturnParticularsAndRemovalOfPenalties)Bill(Lords)">
+                                    <u>Vol. 663 Col. 870</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>7 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-10-07/debates/395256D1-082E-4FFF-89D8-F4A88B6AB99F/Census(ReturnParticularsAndRemovalOfPenalties)Bill(Lords)">
+                                    <u>Vol 664 Col 1588</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>7 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-10-07/debates/395256D1-082E-4FFF-89D8-F4A88B6AB99F/Census(ReturnParticularsAndRemovalOfPenalties)Bill(Lords)">
+                                    <u>Vol 644 Col 1597</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>8 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-08/debates/F8035463-42AA-4E78-BB36-F8562A41F22E/RoyalAssent">
+                                    <u>House of Lords Vol. 799</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-10-08/debates/E3016118-963C-48FA-808F-70E9C2AC8515/RoyalAssent">
+                                    <u>House of Commons Vol. 664</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Cm 9745, available at: <a href="https://www.gov.uk/government/publications/the-2021-census-of-population-and-housing-in-england-and-wales"><u><a href="https://www.gov.uk/government/publications/the-2021-census-of-population-and-housing-in-england-and-wales">https://www.gov.uk/government/publications/the-2021-census-of-population-and-housing-in-england-and-wales</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <i>2021 Census Northern Ireland Proposals Document </i>(April 2019), Available at: <a href="https://www.nisra.gov.uk/publications/2021-census-proposals-document"><u><a href="https://www.nisra.gov.uk/publications/2021-census-proposals-document">https://www.nisra.gov.uk/publications/2021-census-proposals-document</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Plans for Scotland’s Census 2021 (September 2018) Available at: <a href="https://www.scotlandscensus.gov.uk/documents/census2021/Plans_for_Scotlands_Census_2021.pdf"><u><a href="https://www.scotlandscensus.gov.uk/documents/census2021/Plans_for_Scotlands_Census_2021.pdf">https://www.scotlandscensus.gov.uk/documents/census2021/Plans_for_Scotlands_Census_2021.pdf</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

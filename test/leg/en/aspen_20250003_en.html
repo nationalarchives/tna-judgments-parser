@@ -1,0 +1,2180 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p class="center">
+               <i>These notes relate to the Judicial Factors (Scotland) Act 2025 (asp 3)</i>
+               <br>
+               <i>which received Royal Assent on 27 January 2025</i>
+               </p>
+            <p class="center">
+               <b>JUDICIAL FACTORS (SCOTLAND) ACT 2025</b>
+               </p>
+            <p class="center">
+               <b>EXPLANATORY NOTES</b>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>INTRODUCTION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.</span></h2>
+               <p>These Explanatory Notes have been prepared by the Scottish Government in order to
+                  assist the reader of the Judicial Factors (Scotland) Act 2025. They do not form part
+                  of the Act and have not been endorsed by the Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.</span></h2>
+               <p>These Notes should be read in conjunction with the Act. They are not, and are not
+                  meant to be, a comprehensive description of the Act. So where a section or schedule,
+                  or a part of a section or schedule, does not seem to require any explanation or comment,
+                  none is given.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>THE ACT</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.</span></h2>
+               <p>The Act implements the Scottish Law Commission’s recommendations in its Report on
+                  Judicial Factors<a class="fn" id="fnref-1" href="#fn-1">1</a>. It consolidates and updates the various Judicial Factors Acts dating from 1849 to
+                  1889, and related legislation, and aims to put in place an updated and comprehensive
+                  regime in this area of the law. The Act is in 6 parts, as follows:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 1 makes provision for the appointment of judicial factors by application to the
+                     Court of Session or the appropriate sheriff court. It makes clear that it is open
+                     to the Court of Session or the sheriff court to appoint a judicial factor in the course
+                     of other proceedings, gives the courts a power to appoint an interim judicial factor
+                     in certain circumstances, sets out the grounds for appointing a judicial factor, and
+                     lays out the necessary qualifications for a judicial factor. It makes provision for
+                     the factory estate to vest in a judicial factor and for a judicial factor to intromit
+                     with the estate, and for the remuneration of judicial factors. It places a duty on
+                     the Scottish Ministers to issue guidance about the appointment of judicial factors
+                     on the estates of missing persons.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 2 deals with the functions a judicial factor has by virtue of appointment. It
+                     confers a general function of holding, managing, administering and protecting the
+                     factory estate for the benefit of those with an interest in the estate. It provides
+                     that a judicial factor has all the powers of a natural person beneficially entitled
+                     to the estate, with an illustrative list of such powers provided in schedule 1. It
+                     includes provision enabling a judicial factor to request relevant information in relation
+                     to the estate from bodies and individuals. In relation to the specific functions of
+                     judicial factors, the Act preserves the existing duty to prepare an inventory of the
+                     estate, and introduces a new duty to prepare a plan as to how the judicial factor
+                     proposes to hold, manage, administer and protect the estate, which must be approved
+                     by the Accountant of Court (“the Accountant”). It requires the judicial factor to
+                     regularly report to the Accountant, including by the submission of accounts, the factor’s
+                     dealings with the factory estate.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 3 makes provision about third parties acquiring title from or entering into dealings
+                     with judicial factors, including making it clear that the judicial factor stands in
+                     place of the factory estate in any such dealings.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 4 sets out simplified administrative processes for the distribution, termination,
+                     recall and discharge of a judicial factor. It provides for the approval by the Accountant
+                     of a scheme for distribution of the factory estate, avoiding the need to refer the
+                     matter to the court where there is no dispute. Where there is an objection, the Accountant
+                     must refer the matter to the court. It sets out processes for distribution of the
+                     factory estate on application by interested parties, for the termination of a factory
+                     estate and the recall and discharge of judicial factors, the appointment of replacement
+                     judicial factors in the case of death or ceasing to perform duties, and for the resignation
+                     of judicial factors.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 5 updates the current provision in relation to the requirements of the office
+                     of the Accountant of Court, particularly the function of supervising judicial factors.
+                     The Accountant currently has the power to direct a judicial factor as to how the duties
+                     of the office should be performed, and the power to require certain information from
+                     banks. These powers have been preserved and updated in the Act, with the Accountant
+                     being able to request any information relevant to their functions from any person
+                     or body, and the recipient of such a request, subject to certain exceptions, being
+                     under a duty to comply. The Act also imposes a duty on the Accountant to investigate
+                     any misconduct or failure by a judicial factor and report serious misconduct or material
+                     failure to the court.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 6 contains miscellaneous and final provisions, including abolishing the power
+                     to appoint a curator bonis, an interpretation clause and provision for commencement
+                     of the Act.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>CROWN APPLICATION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.</span></h2>
+               <p>Section 20 of the Interpretation and Legislative Reform (Scotland) Act 2010 provides
+                  that the Crown will be bound by an Act of the Scottish Parliament or Scottish statutory
+                  instrument unless the provision expressly exempts it. This Act applies to the Crown
+                  in the same way as it applies to everyone else.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>COMMENTARY ON SECTIONS</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 1 – Appointment of judicial factor</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Appointment of judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>Section 1 provides, at subsection (1), for the court to appoint a judicial factor
+                  on an estate if the conditions for appointment, set out in section 4, are met. For
+                  appointment to take place, an application must be made to the court by an interested
+                  person, defined in subsection (7) as a person that the court is satisfied has an interest
+                  in the appointment of a judicial factor on the estate. This might be a person who
+                  has an interest directly in the estate itself, or a person whose interests are affected
+                  by the estate, for example the owner of a property which adjoins property forming
+                  part of the estate, where that estate property is in a state of disrepair such that
+                  damage might be caused to the neighbouring property.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.</span></h2>
+               <p>Subsection (7) also contains a definition of “the court” for the purposes of this
+                  section and section 3. The effect of that definition is that the Court of Session
+                  and the appropriate sheriff court have jurisdiction to appoint a judicial factor under
+                  either section 1 or 3. In circumstances where none of the other sheriff courts have
+                  jurisdiction, Edinburgh sheriff court will have jurisdiction. The other sheriff courts
+                  will have jurisdiction where:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>a part of the estate comprising at least one fifth of its value is located in the
+                     sheriffdom of that court,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>the person who made the application to the court, or any other person with an interest
+                     in the estate, is resident in the sheriffdom of that court, or</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>where the estate belongs to a person who is not an individual, such as a limited company,
+                     the person has their registered office or a place of business in the sheriffdom of
+                     that court.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.</span></h2>
+               <p>Subsection (2) places a requirement on persons applying for the appointment of a judicial
+                  factor to notify every person with an interest in the estate. Subsection (3) provides
+                  a further route for appointment of a judicial factor on an estate, by providing that
+                  the court may appoint a judicial factor during the course of proceedings in that court.
+                  The conditions of appointment set out in section 4 again require to be met, and the
+                  proceedings must have some connection to the estate on which the court wishes to appoint
+                  a judicial factor. Appointment can be done by the court without an application having
+                  been made, or a person who is party to the proceedings can make an application provided
+                  they fall within the definition of “interested person” set out in subsection (7).
+                  Subsection (4) places a requirement on the clerk of court to notify every person with
+                  an interest in the estate that the court is minded to make an appointment under subsection
+                  (3)(a)(i), while subsection (5) places that requirement on a party who makes a motion
+                  for appointment under subsection (3)(a)(ii). Subsection (6) then sets out the circumstances
+                  in which the court may determine that intimation does not require to be given under
+                  subsection (2), (4) or (5).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.</span></h2>
+               <p>Section 2 adds further intimation requirements which are to apply, in addition to
+                  those set out in section 1, in relation to the appointment or potential appointment
+                  of a judicial factor to the estate of a charity.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.</span></h2>
+               <p>Subsection (1) places a requirement on persons applying for the appointment of a judicial
+                  factor to the estate of a charity to notify the Office of the Scottish Charity Regulator
+                  (“OSCR”) (unless OSCR is the applicant), and to advertise to the general public, that
+                  the application has been made. Subsection (2) requires the clerk of court to notify
+                  OSCR, and advertise to the general public, where the court is minded to appoint a
+                  judicial factor to the estate of a charity under section 1(3)(a)(i), while subsection
+                  (3) places that requirement on a party making a motion for the appointment of a judicial
+                  factor in the course of other proceedings relating to the estate of the charity under
+                  section 1(3)(a)(ii). Subsection (4) sets out the circumstances in which the court
+                  may determine that advertisement need not be made to the general public. The court
+                  is not given the power to determine that OSCR need not be notified.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Interim judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.</span></h2>
+               <p>Section 3(1) makes provision for the appointment of an interim judicial factor. This
+                  can be done while an application under section 1(1), or a motion under section 1(3)(a)(ii),
+                  for appointment of a permanent judicial factor is undergoing consideration. In either
+                  case, to appoint an interim judicial factor the court must consider that the appointment
+                  would be necessary or expedient, for example where a business partnership has deteriorated
+                  to the extent that the business is at risk unless immediate action is taken. Applications
+                  for the appointment of an interim judicial factor can be made by the original applicant
+                  under subsection 1(1), or, where a motion has been made under section 1(3)(a)(ii),
+                  by the applicant or another party to the proceedings provided they fall within the
+                  definition of “interested person” in section 1(7). The court may also appoint an interim
+                  judicial factor, pending determination of an application under section 1(1) or a motion
+                  under section 1(3)(a)(ii), without any application having been made. There is no requirement
+                  for the conditions of appointment set out in section 4 to apply in order for an interim
+                  judicial factor to be appointed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.</span></h2>
+               <p>Subsection (2) makes clear that the provisions of the Act apply to an interim judicial
+                  factor, unless the context requires otherwise or the court makes different provision
+                  when appointing the interim judicial factor. Subsection (3) requires the Accountant
+                  to review the progress being made by any interim judicial factory – since appointment
+                  of interim judicial factors will be open-ended, there will be no need for the court
+                  to order extensions to their appointment. The review provision therefore provides
+                  a mechanism by which to ensure that satisfactory progress is being made.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Conditions for appointment of judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.</span></h2>
+               <p>Section 4 sets out the conditions which a court must consider to be satisfied in relation
+                  to an estate in order to appoint a judicial factor under section 1(1) or (3). If the
+                  court does not consider that the conditions are met, then it will not be competent
+                  for the court to appoint a judicial factor.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.</span></h2>
+               <p>The first condition, set out in subsection (1)(a), is that an estate either requires
+                  to be managed, or requires actings to be carried out in relation to it. Subsection
+                  (2) provides that “actings” includes any actions required to hold, administer, or
+                  protect the estate for the benefit of any persons who have an interest in that estate.
+                  This is not an exhaustive list and so if other actions in relation to the estate are
+                  required then it may still be competent for the court to appoint a judicial factor
+                  on that estate. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">14.</span></h2>
+               <p>The second condition, set out in subsection 1(b), is that the court must be satisfied
+                  either that it is not possible, practicable, or sensible for the person who would
+                  ordinarily be responsible for the required actings or management to carry them out,
+                  or that it would be to the advantage of the estate for a judicial factor to be appointed
+                  to carry them out. It might not be possible for a person to carry out actings if,
+                  for example, they are not old enough to legally do so. It might not be practical for
+                  a person to carry out actings if that person lives abroad, or it might not be sensible
+                  for a person to carry out actings where there is a dispute between partners of a partnership
+                  which would otherwise be responsible for the estate.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Qualification for appointment as judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">15.</span></h2>
+               <p>Section 5(1) sets out the requirements which a person must fulfil in order for that
+                  person to be appointed as a judicial factor. A person must be an individual of full
+                  legal capacity, meaning over the age 16 and not subject to any legal incapacity which
+                  would prevent them carrying out any actions. The individual must, in the opinion of
+                  the court making the appointment, be suitable to act as judicial factor on the estate.
+                  There is no requirement that they hold any specific qualification such as a legal
+                  or accounting qualification, although it is expected that in practice the majority
+                  of judicial factors appointed will be legal or financial professionals. Subsection
+                  (2) makes clear that the Scottish courts have jurisdiction in relation to the judicial
+                  factory even if the person who is appointed as judicial factor is domiciled outside
+                  of Scotland.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Finding of caution</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">16.</span></h2>
+               <p>Section 6 gives a power to any court which appoints a judicial factor to require the
+                  judicial factor to find caution for their performance of the functions of judicial
+                  factor, where there are exceptional circumstances which justify it. This means that
+                  the judicial factor would be required to lodge with the court a bond of caution, which
+                  would act as financial security to allow the court to recover from the judicial factor
+                  any financial losses suffered by the estate as a result of the judicial factor’s actions
+                  in managing the estate.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Intimation and recording of notice of appointment</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">17.</span></h2>
+               <p>Section 7 requires the clerk of a court which appoints a judicial factor to notify
+                  the Accountant of the appointment, and to arrange for notice of the appointment to
+                  be recorded in the Register of Inhibitions<a class="fn" id="fnref-2" href="#fn-2">2</a>. Under subsection (3), the notice must include an address at which documents can
+                  be served on the judicial factor. Both the notification and the recording must be
+                  done as soon as reasonably practicable after the court has issued its order or decision
+                  (in the form of an interlocutor) confirming the appointment of the judicial factor.
+                  However, under subsection (2), if the court has required the judicial factor to find
+                  caution under section 6, then the clerk of court is not to send the notice for recording
+                  until the Accountant has confirmed that caution has been found.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">18.</span></h2>
+               <p>Subsection (4) then provides that, if the judicial factory lasts for 5 years or longer,
+                  the judicial factor must re-record the appointment in the Register of Inhibitions
+                  5 years after the original recording, and confirm to the Accountant when this has
+                  been done. This obligation repeats every 5 years for the duration of the judicial
+                  factory. Subsection (5) provides that all fees for recording or re-rerecording in
+                  the Register of Inhibitions are to be paid from the factory estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">19.</span></h2>
+               <p>Section 8(1) places a requirement on the Scottish Ministers to periodically review
+                  the appropriateness of the recording of notices of appointment of judicial factors
+                  in the Register of Inhibitions. If the outcome of such a review is that another register
+                  would be more appropriate, then the Scottish Ministers may make regulations which
+                  change the requirement to record such notices in the Register of Inhibitions, and
+                  which specify which register is to be used instead. This can either be a register
+                  which already exists, or a bespoke register specifically for judicial factories. Any
+                  such regulations are subject to the affirmative procedure.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">20.</span></h2>
+               <p>Subsection (2) provides that if the Scottish Ministers make regulations which specify
+                  that notices are to be registered in an existing register, then the regulations must
+                  also make the legal provision necessary for that register to be used.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">21.</span></h2>
+               <p>Subsection (3) provides that if the Scottish Ministers make regulations which specify
+                  that a bespoke register specifically for judicial factories is to be used, then the
+                  regulations must establish such a register, and may provide for another person, such
+                  as the Accountant, to be responsible for its maintenance. Subsection (3) then goes
+                  on to set out further detail which may be included in such regulations.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Vesting of estate in judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">22.</span></h2>
+               <p>Section 9 provides for the whole of the factory estate to vest in the judicial factor
+                  on appointment, unless the court has required the judicial factor to find caution,
+                  under section 6. In that case, the factory estate will vest in the judicial factor
+                  on the date on which the Accountant confirms in writing, to both the court and the
+                  judicial factor, that this requirement has been met. When the estate vests in the
+                  judicial factor, the judicial factor has full legal rights in relation to the estate
+                  as though they were the owner of the estate. “Estate” is defined in section 53 as
+                  including moveable and heritable property.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">23.</span></h2>
+               <p>Subsection (2) and (3) make clear that in relation to a judicial factor appointed
+                  on the estate of a solicitor under section 41 of the Solicitors (Scotland) Act 1980,
+                  the estate which vests in the judicial factor includes property or assets which are
+                  held by the solicitor on behalf of other people, such as clients, whether or not that
+                  property is held by the solicitor in their capacity as a solicitor. This means that
+                  funds held by the solicitor as, for example, a trustee or executor are also included
+                  in the factory estate.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Warrant to intromit with estate</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">24.</span></h2>
+               <p>Section 10 requires the clerk of the court which appoints a judicial factor to issue
+                  the judicial factor with a certified copy of the interlocutor confirming the appointment
+                  without delay. Subsection (2) provides that the certified copy gives the judicial
+                  factor evidence of their right to access and deal with the property which vests in
+                  them by virtue of section 9. Subsection (3) prevents the clerk of court from issuing
+                  the copy until any bond of caution required by virtue of section 6 has been received.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Remuneration and reimbursement of judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">25.</span></h2>
+               <p>Section 11(1) entitles judicial factors to be remunerated for carrying out their functions
+                  as judicial factor. Subsection (2)(a) places a requirement on the Accountant to fix
+                  rates of such remuneration, after carrying out appropriate consultation. Paragraph
+                  (b) requires the Accountant to consult each individual judicial factor appointed and
+                  to set the frequency of payment for that judicial factor following that consultation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">26.</span></h2>
+               <p>Subsection (3) allows the Accountant to fix different payment rates in respect of
+                  different kinds of work that might be carried out by judicial factors, or for different
+                  circumstances. It also allows the Accountant to fix different rates for interim judicial
+                  factors. Subsection (4) requires the Accountant to review the rates of payment at
+                  least annually. Under subsection (5), the remuneration payable to a particular judicial
+                  factor does not require to be fixed in accordance with this section – for example,
+                  a rate of remuneration might be fixed for a particular judicial factor which is not
+                  based on any consultation having been carried out.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">27.</span></h2>
+               <p>Subsection (6) allows judicial factors to appeal to the court which appointed that
+                  judicial factor in relation to both the rate and frequency of remuneration determined
+                  by the Accountant in relation to that judicial factor. Subsection (7) makes clear
+                  that there is no further right of appeal in relation to a determination by the court
+                  following an appeal made under subsection (6). Subsection (8) allows the judicial
+                  factor to recover from the factory estate any outlays which the judicial factor incurs
+                  in carrying out their functions, whenever those outlays are incurred.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Guidance about the appointment of judicial factors on the estates of missing persons</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">28.</span></h2>
+               <p>Section 12 places a requirement on the Scottish Ministers to issue guidance about
+                  the appointment of judicial factors to the estates of missing persons. Under subsection
+                  (2), this guidance can be reviewed and revised by the Scottish Ministers. Subsection
+                  (3) requires the publication of the guidance when originally prepared, or when updated.
+                  It allows for the guidance to form part of another document, such as guidance about
+                  the appointment of judicial factors generally. Any such guidance might cover how to
+                  evidence a person as missing when making an application for appointment under section
+                  1, the ability of a judicial factor to request specific powers under section 11, situations
+                  where the interests of the estate may not align with the wishes of the missing person,
+                  what happens if a missing person returns, and any interaction with the Presumption
+                  of Death (Scotland) Act 1977.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 2 – Functions of judicial factor</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Functions of judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">29.</span></h2>
+               <p>Section 13(1) provides that the general function of judicial factors is to hold, manage,
+                  administer, and protect the factory estate, for the benefit of those who have an interest
+                  in that estate. This is a fiduciary duty which is placed on judicial factors, whose
+                  actions in respect of the factory estate must always be for the benefit of persons
+                  with an interest in the estate. Subsection (2) clarifies that the general function
+                  is subject to variation by the court, in the interlocutor appointing the judicial
+                  factor (under section 14(1)), or subsequently following an application having been
+                  made to the court (section 14(2)).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">30.</span></h2>
+               <p>Subsection (3) places judicial factors under a duty, when carrying out either the
+                  general function, or any of the factory functions, to exercise care, prudence, and
+                  diligence, and to take professional advice, such as from a solicitor or an accountant,
+                  when appropriate – consulting with the Accountant as to whether it is appropriate,
+                  if required, under subsection (4). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">31.</span></h2>
+               <p>Subsection (5) prohibits judicial factors from delegating the general function or
+                  any factory function unless that delegation has been authorised in the appointing
+                  interlocutor or by the Accountant, or is provided for elsewhere in the Act or any
+                  other enactment. The factory functions are defined in subsection (7) as meaning the
+                  standard powers and the various functions conferred on judicial factors by virtue
+                  of sections 15 to 22 of the Act. These are subject, in either case, to: any variation
+                  made by the court in appointing the judicial factor or subsequently following an application
+                  having been made to the court; any other provision of law which impacts on the judicial
+                  factor’s powers. The factory functions also include any additional function conferred
+                  on a particular judicial factor by the court under section 14(1) or (2). The standard
+                  powers are defined as meaning all of the powers of a natural person beneficially entitled
+                  to the estate. This means that the judicial factor is entitled to do anything in relation
+                  to the estate which an individual who owned the estate would be entitled to do. An
+                  illustrative list of such powers is set out in schedule 1, but a judicial factor may
+                  exercise a power which a natural person entitled to the factory estate would be entitled
+                  to carry out even where that power does not appear on the list in schedule 1.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">32.</span></h2>
+               <p>Subsection (6) provides that, on the appointment date or the date on which the Accountant
+                  confirms that the requirement to find caution has been found (if applicable), the
+                  standard powers, as defined in subsection (8), are transferred to the judicial factor.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Power of court to specify functions of judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">33.</span></h2>
+               <p>Section 14 sets out the powers that the court has in relation to the conferring of
+                  functions on a judicial factor. Subsection (1) relates to the interlocutor issued
+                  by a court appointing a judicial factor. Paragraph (a) allows the court to specify
+                  in the interlocutor that there is withheld from a judicial factor any function which
+                  would otherwise be conferred on the judicial factor by virtue of the Act, while paragraph
+                  (b) gives the court the power to confer on the judicial factor any function in addition
+                  to those ordinarily conferred.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">34.</span></h2>
+               <p>Subsection (2) makes provision for the judicial factor to apply to the court after
+                  appointment for the conferral of a further function, or the removal of any function
+                  previously conferred (either by virtue of the appointing interlocutor or a previous
+                  application under this subsection). Subsections (3) and (4) require the judicial factor
+                  to notify the Accountant of any application under subsection (2), and the Accountant
+                  to investigate the matter and report to the court as to whether, in the Accountant’s
+                  view, the application should be granted.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Power of judicial factor to require information</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">35.</span></h2>
+               <p>Section 15(1) grants to judicial factors the power to serve notice on any person requesting
+                  that the person supply information which the judicial factor reasonably considers
+                  relevant to their functions – this might include, for example, requests being made
+                  to banks for financial information relating to the estate. Subsection (3) places a
+                  requirement on persons receiving notice under subsection (1) to comply with the notice,
+                  unless, as set out in subsection (4) they are a reserved body by virtue of paragraph
+                  3 of Part III of schedule 5 of the Scotland Act 1998, a Minister of the Crown, a department
+                  of the Government of the United Kingdom, or a public body operating wholly in relation
+                  to a reserved matter in accordance with the Scotland Act 1998. Such persons may choose
+                  to supply the information requested, but are not required to do so under the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">36.</span></h2>
+               <p>Subsection (5) provides that if the information can be obtained by the judicial factor
+                  under any other enactment, a person who receives notice sent under subsection (1)
+                  can, instead of supplying the information, direct the judicial factor to the other
+                  means by which the judicial factor can obtain the information, either free of charge
+                  or under another enactment, or both. For example, by accessing publicly available
+                  information registered with Companies House. Subsection (6) makes clear that, while
+                  this section does not authorise a person to charge a fee for supplying information
+                  in compliance with a notice sent under subsection (1), if another enactment authorises
+                  the charging of a fee for supplying that information then that fee may be charged.
+                  Subsections (7) and (8) make clear that this section does not override the provisions
+                  of data protection legislation as defined in the Data Protection Act 2018, meaning
+                  that a person is not required to supply information where to do so would be in breach
+                  of a provision of that legislation – but the provisions of the Act are relevant in
+                  determining whether or not that is the case.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Ingathering</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">37.</span></h2>
+               <p>Section 16 places judicial factors under a duty to ingather the factory estate, meaning
+                  the judicial factor must collect and take possession of all of the property which
+                  forms part of the estate. Subsection (2) gives the judicial factor the power to take
+                  steps to have the title to such property transferred to the judicial factor – this
+                  might include, for example, the registration of a notice of title in the Land Register.
+                  Subsection (3) places the judicial factor under an obligation to notify creditors
+                  and debtors of the estate of their appointment as judicial factor, and to ensure that
+                  in relation to financial assets it is apparent to persons viewing those assets that
+                  they are held by the judicial factor in that capacity, to ensure that the assets of
+                  a judicial factory do not get mixed up with the personal or business assets of the
+                  judicial factor, or of another factory if the factor is appointed to more than one
+                  estate. For example, the judicial factor keeping the funds of the factory estate in
+                  their personal bank account would be in breach of this provision.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Inventory and management plan</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">38.</span></h2>
+               <p>Section 17(1) places an obligation on judicial factors to compile and send to the
+                  Accountant an inventory of the property comprising the factory estate, within 6 months
+                  of appointment. When sending the inventory to the Accountant, the judicial factor
+                  must also send any additional documents specified in rules of court. Subsections (2)
+                  and (3) set out the process for review of the inventory by the Accountant, and subsequent
+                  modification and approval. When the inventory has been approved, both the judicial
+                  factor and the Accountant must sign it, and the inventory is then treated as a definitive
+                  statement of the property within the factory estate as at the date the judicial factor
+                  was appointed. However, if additional information is discovered after that date, then
+                  under subsection (5) the judicial factor and the Accountant may take that into account
+                  in their dealings with the factory estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">39.</span></h2>
+               <p>Section 18(1) requires judicial factors to send to the Accountant a plan setting out
+                  how the judicial factor intends to hold, manage, administer and protect the estate.
+                  The plan must be sent within 6 months of the date on which the judicial factor is
+                  appointed, and must be accompanied by any additional documents specified in rules
+                  of court. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">40.</span></h2>
+               <p>Subsections (2) and (5) set out the process for review of the plan by the Accountant,
+                  and subsequent modification or approval. Under subsection (2), the Accountant must
+                  approve a plan submitted by a judicial factor, either without modification or subject
+                  to modifications specified by the Accountant. Subsection (3) allows the Accountant
+                  to request any further information from the judicial factor prior to determining whether
+                  to require modifications to a plan. If the Accountant has required modifications under
+                  subsection (2), then under subsection (4) the Accountant must require the judicial
+                  factor to resubmit the plan with those modifications made. Subsection (4) also allows
+                  the judicial factor to make their own modifications, in addition to those required
+                  by the Accountant, before submitting the plan. The effect of subsection (5) is that,
+                  where a plan has previously been modified and resubmitted and the Accountant requires
+                  further modification, the Accountant does not need to require the judicial factor
+                  to resubmit the plan. In such cases, subsection (8)(a) places the judicial factor
+                  under a duty to administer the estate in accordance with directions issued by the
+                  Accountant.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">41.</span></h2>
+               <p>If a management plan is approved by the Accountant with no further modifications required,
+                  then under subsection (6) the judicial factor must review the plan at least annually,
+                  and at other times on the direction of the Accountant, and may modify the plan with
+                  the approval of the Accountant. In granting that approval the Accountant may specify
+                  further modifications that must be made. If the judicial factor does not make those
+                  modifications then under subsection (8)(b) the judicial factor must manage the estate
+                  in accordance with the directions of the Accountant. Subsection (7) requires the judicial
+                  factor to administer the estate in accordance with an approved plan. Subsection (9)
+                  places a reporting duty on the judicial factor in relation to dealings with the estate
+                  in accordance with the plan. Subsection (10) provides for references in this section
+                  to “holding, managing, administering and protecting the estate” to apply to the extent
+                  that the individual judicial factor is required to perform those actions by virtue
+                  of the interlocutor appointing the judicial factor and any subsequent variation made
+                  to the judicial factor’s duties by the court.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Submission of accounts etc.</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">42.</span></h2>
+               <p>Section 19 requires judicial factors to report to the Accountant in relation to the
+                  judicial factor’s dealings with the estate to which the judicial factor is appointed.
+                  Subsection (2) requires that such reports include accounts, and provides for the judicial
+                  factor and the Accountant to agree on the format of reports and the way in which they
+                  are to be submitted. If the Accountant and the judicial factor are unable to reach
+                  agreement, then the Accountant may direct the format and manner of submission of the
+                  reports, and the judicial factor will be required to comply with that direction. Reports
+                  are to be submitted as soon as possible following the end of each reporting period.
+                  The reporting period is defined in subsection (3) and will be fixed by the Accountant
+                  for each individual judicial factor, with the first period starting on the date that
+                  the judicial factor is appointed. Subsection (4) provides that reporting periods will
+                  normally be between one and two years, although in exceptional circumstances the Accountant
+                  may specify in relation to a judicial factor a reporting period of less than one year.
+                  Subsection (5) allows the Accountant to extend a reporting period if the judicial
+                  factor can demonstrate why the extension is required, but such extension is in relation
+                  to the reporting year in which the application is made – subsequent reporting periods
+                  will revert to the previously fixed duration.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Investment</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">43.</span></h2>
+               <p>Section 20 places judicial factors under a duty to consider whether it would be appropriate
+                  to invest funds which form part of the factory estate and, if so, how such funds should
+                  be invested. If, following that consideration, the judicial factor is of the view
+                  that investment would be appropriate, they are placed under a further duty to make
+                  the appropriate investment.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Enforcing or defending claims</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">44.</span></h2>
+               <p>Section 21 places judicial factors under a duty to enforce any claim which it is competent
+                  to raise on behalf of the estate, or to defend any claim which is raised against the
+                  estate, if the judicial factor believes that it would be reasonable and prudent to
+                  do so. This will include claims in relation to breach of contract and delictual liability
+                  (where a civil legal wrong has been committed). Subsection (2) allows a judicial factor
+                  to seek the Accountant’s views as to whether it would be reasonable and prudent to
+                  enforce or defend any particular claim, where the judicial factor requires advice
+                  on the matter.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Duty where estate object of dispute</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">45.</span></h2>
+               <p>Section 22 creates a specific duty where the sole or main reason for a judicial factor’s
+                  appointment to a factory estate was that the factory estate was not being properly
+                  managed as a result of disagreement between the persons responsible for managing it
+                  as to how to do so. In these circumstances, the judicial factor must encourage the
+                  responsible persons to agree how the estate is to be managed. Subsection (3) authorises
+                  the judicial factor to act as a mediator or arbitrator, or to appoint a mediator or
+                  arbitrator, if the judicial factor considers one of these methods of dispute resolution
+                  to be the appropriate way to facilitate agreement. Subsection (4) places the judicial
+                  factor under a further duty, where agreement between the relevant parties is not reached,
+                  to prepare a scheme, which the judicial factor considers fair, for either the ongoing
+                  management or the distribution of the estate – subsection (5) clarifies that this
+                  scheme might require the division and sale of the estate, or a part of the estate.
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 3 – Dealing etc. with third parties and validity of certain transactions</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">46.</span></h2>
+               <p>Section 23 provides protection for third parties who acquire title to property either
+                  directly from a judicial factor, or from a person who derived their title from a judicial
+                  factor. Paragraph (a) has the effect that where a judicial factor’s appointment is
+                  recalled after a third party has acquired title from the judicial factor (for example,
+                  where the judicial factor has sold a house which formed part of the factory estate
+                  to the third party), the judicial factor’s recall cannot be used as a ground to challenge
+                  the third party’s title. Under paragraph (b), third parties who have acquired title
+                  from a person other than a judicial factor, where the title has previously been held
+                  by a judicial factor, cannot have their title challenged on the basis that it should
+                  not have been transferred to the person from whom they acquired title.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">47.</span></h2>
+               <p>Section 24 makes clear that where the judicial factor enters into dealings with a
+                  third party, they do so with the full rights and responsibilities which the factory
+                  estate would have, were the factory estate to enter into such dealings. This means
+                  that judicial factors (in their capacity as judicial factors and not as individuals)
+                  are liable for any payment or obligation which the factory estate is due to the third
+                  party, and are entitled to receive any payment or enforce any obligation which the
+                  third party is due to the factory estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">48.</span></h2>
+               <p>Section 25 applies where a person is, or ought to be, aware that a judicial factor
+                  is acting in the capacity of judicial factor, and the person enters into a contract
+                  with the judicial factor on that basis. Subsection (2)(a) offers judicial factors
+                  protection by ensuring that when they enter into contracts on behalf of the factory
+                  estate, the person with whom they have entered into the contract, or any third party,
+                  may enforce their rights only against the factory estate and not against the judicial
+                  factor. Subsection (2)(b) has the effect that any court action raised in relation
+                  to the contract may only be raised by, or against, the judicial factor as judicial
+                  factor, and not as an individual.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">49.</span></h2>
+               <p>Section 26 provides for the expenses of any court proceedings which the judicial factor
+                  enters into on behalf of the factory estate to be paid by the factory estate. This
+                  applies regardless of whether the judicial factor raises the court proceedings, or
+                  is defending a claim against the estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">50.</span></h2>
+               <p>Section 27 makes provision in relation to claims for damages which arise as a result
+                  of any actions of the judicial factor or any person appointed or employed by the judicial
+                  factor in relation to the factory estate. This includes claims for both delictual
+                  liability (civil legal wrongs) and unjustified enrichment (where one party has benefitted
+                  without legal justification at the expense of another person). Subsection (2) requires
+                  that any claim be raised against the judicial factor in the capacity of judicial factor.
+                  Subsection (3) provides that any damages awarded as a result of a claim, including
+                  any expenses awarded against the judicial factor, must be paid from the factory estate,
+                  unless the damages arose as a result of a breach of duty by the judicial factor and
+                  the court considers that the judicial factor should be held personally liable.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">51.</span></h2>
+               <p>Section 28 relates to the prescription (or legal time limit) of obligations which
+                  are due to or by a factory estate. Subsection (1) makes clear that the appointment
+                  of a judicial factor does not affect the prescriptive period (or time limit) of any
+                  such obligations, which will continue as though no judicial factor had been appointed.
+                  Subsection (2) excludes from that provision any obligations which are owed by the
+                  judicial factor to the factory estate, providing that in relation to such obligations,
+                  the prescriptive period is paused for the duration of the judicial factor’s appointment.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">52.</span></h2>
+               <p>Section 29 applies where the factory estate forms part of a trust, and the judicial
+                  factor wishes to exercise a function which the judicial factor would ordinarily be
+                  entitled to exercise in relation to the estate, but considers that the terms or purposes
+                  of the trust do not allow for the exercise of the function. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">53.</span></h2>
+               <p>The process by which the judicial factor must apply for consent, and the Accountant
+                  might grant it, is set out in subsections (2) to (5). Subsection (2) requires the
+                  judicial factor, in applying for consent, to notify any persons which rules of court
+                  require to be notified that the judicial factor intends to exercise the function.
+                  Subsection (3) requires the Accountant to be satisfied, before granting consent, that
+                  the exercise of the function would be in the interest of everyone with an interest
+                  in the trust estate, that the judicial factor has complied with all of the requirements
+                  of the application process, including those set out in rules of court, and that if
+                  any objection to the application has been made, that the objection does not justify
+                  refusing the application. If the Accountant determines that the requirement to give
+                  notice under subsection (2) has been complied with only in so far as reasonably practicable,
+                  for example a party has not been notified because their address cannot be established,
+                  then subsection (3)(b)(i) gives the Accountant flexibility to treat this requirement
+                  as satisfied. Subsection (4) allows the Accountant to give consent subject to conditions.
+                  Subsection (5) makes provision for the procedure for the notification which must be
+                  made under subsection (2). Such notification must be done in the manner specified
+                  in rules of court, and set out what the exercise of the function would involve and
+                  how the person being notified can object to the application to exercise the function.
+                  Subsection (6) prohibits the judicial factor from exercising the function unless the
+                  Accountant has consented to the function being exercised. Subsection (7) provides
+                  that where the judicial factor has applied for and obtained consent, the judicial
+                  factor cannot be treated as having acted at variance with the trust.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 4 – Distribution of factory estate, termination, recall, and discharge of judicial
+                     factor</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">54.</span></h2>
+               <p>Section 30 sets out the basic procedure for the distribution of the factory estate
+                  on the basis of a scheme formulated by the judicial factor. This will apply where
+                  the judicial factor is of the view that either the purpose for the appointment of
+                  a judicial factor has been fulfilled or has ceased to exist, or that there are not
+                  sufficient funds in the factory estate to meet the cost of the judicial factory continuing.
+                  By virtue of subsection (1)(b), this section also applies in relation to a scheme
+                  for the distribution of the factory estate under section 22, where the estate is the
+                  object of dispute.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">55.</span></h2>
+               <p>Section 30(2) requires the judicial factor to send a copy of the proposed distribution
+                  scheme, together with an up to date inventory of the factory estate, to the Accountant
+                  for approval. Subsection (3) provides for the Accountant to either approve the scheme,
+                  subject to any modifications which the Accountant requires, or reject it. If the Accountant
+                  approves the scheme, then subsection (4) requires the judicial factor to intimate
+                  the scheme to OSCR, where the estate is that of a charity, and to every person who
+                  has an interest in the estate, sending to each such person a copy of the scheme and
+                  the inventory. Subsection (5) provides that where the estate is that of a charity,
+                  the judicial factor must give notice to the general public that a scheme for distribution
+                  has been approved. Subsection (6) gives the Accountant the power to determine that
+                  the requirements to notify interested persons, or to advertise to the general public,
+                  do not apply in a particular case. Subsection (7) allows those persons to submit to
+                  the Accountant an objection to the scheme within 21 days of receipt of intimation
+                  under subsection (4). Subsection (8) provides that if no objection is received, or
+                  if any objections are received but then withdrawn, the judicial factor is under a
+                  duty to distribute the estate in accordance with the scheme. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">56.</span></h2>
+               <p>Where an objection is made to the scheme, subsection (9) requires the Accountant to
+                  refer the matter to the court which appointed the judicial factor, and to notify the
+                  judicial factor and the other relevant parties that the referral has been made. Subsection
+                  (10) obliges the court to which a referral is made under subsection (9) to require
+                  the person who submitted the objection to lodge caution for the expenses of the court,
+                  except where the court considers that it would not be in the interests of justice
+                  to do so. Subsection (11) requires the court to give the judicial factor, the person
+                  who submitted the objection, and any other interested person, the chance to present
+                  the arguments in favour of the scheme or the objection to it. After hearing those
+                  arguments, the court may reject the objection and direct that the estate be distributed
+                  in accordance with the scheme. Alternatively, the court may instruct the judicial
+                  factor to distribute the estate in a different way, or make a different order which
+                  the court considers appropriate. Subsection (12) makes clear that a scheme for distribution
+                  under this section may relate to part only of an estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">57.</span></h2>
+               <p>Section 31 sets out the process by which a person with an interest in the distribution
+                  of a factory estate can apply to the court for distribution. Subsection (2) sets out
+                  the notification requirements which a person who lodges such an application must comply
+                  with – subsection (3) gives the court the power to determine that this requirement
+                  does not apply in a particular case. Subsection (4) sets out the parties to whom the
+                  court is required to give the opportunity to make representations about the application
+                  and why it should or should not be granted. Subsection (5) sets out the options which
+                  are available to the court after hearing those representations – the court can either
+                  instruct the judicial factor to distribute the estate as the court directs, or the
+                  court can refuse the application, in which case no distribution will take place and
+                  the judicial factory will continue.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">58.</span></h2>
+               <p>Subsection (6) sets out further conditions which apply if the application is made
+                  to the court by a person other than the judicial factor. The court must be satisfied
+                  that the applicant has tried to persuade the judicial factor to prepare and submit
+                  a scheme for distribution of the factory estate to the Accountant under section 30,
+                  and that the judicial factor has not done so and does not intend to do so. Alternatively,
+                  the court must be satisfied that the judicial factor has previously submitted a scheme
+                  to the Accountant under section 30, but that scheme has been rejected by the Accountant.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">59.</span></h2>
+               <p>Subsection (7) sets out further requirements which apply if the applicant under subsection
+                  (1) is the judicial factor. Before instructing any distribution of the estate, the
+                  court must be satisfied that the judicial factor has prepared and submitted a scheme
+                  for the distribution of the estate under section 30, and that scheme has been rejected
+                  by the Accountant.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">60.</span></h2>
+               <p>Subsection (8) obliges the court to require the applicant to find caution for the
+                  expenses of court proceedings under this section, unless the applicant is the judicial
+                  factor, or the court considers that it would not be in the interests of justice to
+                  impose such a requirement.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Termination, recall and discharge after distribution</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">61.</span></h2>
+               <p>Section 32 makes provision for the termination of the judicial factory, the recall
+                  of the judicial factor’s appointment, and the discharge of the judicial factor, where
+                  the factory estate has been distributed in accordance with section 30(8) or (11) or
+                  section 31(5)(a). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">62.</span></h2>
+               <p>Subsection (2) places the judicial factor under a duty to apply to the Accountant
+                  for termination, recall and discharge, and subsection (3) requires the application
+                  to be accompanied by the final accounts for the factory estate. Section (4) requires
+                  the Accountant to audit the final accounts and grant the termination, recall and discharge,
+                  unless subsection (5) applies. Subsection (5) applies if, having audited the accounts,
+                  the Accountant is of the view that there has or may have been misconduct or failure
+                  by the judicial factor. If the Accountant is of that view, section 41 will apply.
+                  Section 41 makes provision for the Accountant to take action where the Accountant
+                  believes that there has been, or might have been, misconduct, a failure to discharge
+                  duties, or a failure to comply with an instruction by the judicial factor.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">63.</span></h2>
+               <p>Subsection (6) requires the Accountant to send a copy of the certificate of termination,
+                  recall and discharge, if granted, for recording in the Register of Inhibitions.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">64.</span></h2>
+               <p>Section 33 sets out the process where a judicial factor dies or ceases to carry out
+                  the functions of judicial factor and no application has been lodged with the court
+                  for the appointment of a replacement judicial factor.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">65.</span></h2>
+               <p>Subsection (2) applies where the judicial factor dies. The Accountant must determine
+                  whether the purpose for which a judicial factor was appointed still exists and, if
+                  it does, apply to the court for the appointment of a replacement judicial factor.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">66.</span></h2>
+               <p>Subsection (3) applies where the judicial factor ceases to carry out the functions
+                  of judicial factor. The Accountant must apply to the court for the recall of the original
+                  judicial factor and the appointment of a replacement judicial factor. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">67.</span></h2>
+               <p>Subsection (4) makes provision for a situation where a judicial factor has died or
+                  ceased to perform their duties, no application has been lodged for the appointment
+                  of a replacement judicial factor, and the Accountant is of the view that the purpose
+                  for which the judicial factor was appointed no longer exists but that the factory
+                  requires to be formally wound up. In that case, a duty is placed on the Accountant
+                  to apply to the court for the appointment of a judicial factor, for the specific purpose
+                  of bringing the judicial factory to an end.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">68.</span></h2>
+               <p>Subsection (5) sets out duties that apply to a replacement judicial factor appointed
+                  as a result of an application made under subsection (2), (3) or (4). Paragraph (a)
+                  requires the factory accounts pertaining to the period of appointment of the original
+                  judicial factor to be brought up to date, and paragraph (b) requires those accounts
+                  to be closed with effect from the date of appointment of the replacement judicial
+                  factor. Paragraph (c) requires the replacement judicial factor to apply to the Accountant
+                  for the discharge of the original judicial factor, if the replacement judicial factor
+                  considers it to be appropriate to do so. Subsection (6) provides for the Accountant
+                  to grant an application for discharge of the original judicial factor made under subsection
+                  (5)(c) if the Accountant is satisfied that it would be appropriate to discharge the
+                  original judicial factor. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">69.</span></h2>
+               <p>Subsection (7) provides for the expenses of applications under subsection (2), (3)
+                  or (4) to be paid from the factory estate, but gives the court discretion to direct
+                  otherwise.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">70.</span></h2>
+               <p>Section 34 makes provision for the recall and discharge of judicial factors, in circumstances
+                  other than where the purpose for which the judicial factor was appointed has been
+                  fulfilled or there are not sufficient funds in the factory estate to meet the ongoing
+                  costs of the judicial factory. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">71.</span></h2>
+               <p>Subsection (1) allows the court to recall and discharge a judicial factor on an application
+                  being made to the court by the judicial factor. Subsection (2) provides for the court
+                  to recall a judicial factor on an application being made by a person other than the
+                  judicial factor. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">72.</span></h2>
+               <p>Subsections (3) to (7) set out more detail around the procedure that applies in relation
+                  to applications under subsection (1) by the judicial factor for recall and discharge,
+                  and to applications under subsection (2) by another party for recall of the judicial
+                  factor. Subsection (3) requires that applications also request the appointment of
+                  a replacement judicial factor, and subsection (4) requires that the appointment of
+                  a replacement judicial factor takes place at the same time as the original judicial
+                  factor is recalled. Subsection (5) sets out the requirements for intimation of an
+                  application made under subsection (1) or (2), while subsection (6) gives the court
+                  the power to determine that such requirements do not apply in a particular case. Subsection
+                  (7) provides that when the court grants the application to recall the judicial factor,
+                  the judicial factor must send the Accountant the accounts relating to the factory
+                  estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">73.</span></h2>
+               <p> Subsection (8)(a) allows the judicial factor to apply to the court for discharge
+                  in the event recall is granted following an application made by another person under
+                  subsection (2). Subsection (8)(b) makes provision for applications under subsection
+                  (2). Subsection (8)(b)(i) requires the court to be satisfied that a person making
+                  an application under subsection (2) has an interest in the factory estate, and subsection
+                  (8)(b)(ii) requires the court to require the person making the application to find
+                  caution for the court expenses, unless that requirement would not be in the interests
+                  of justice. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">74.</span></h2>
+               <p>Subsection (9) places an obligation on the Accountant to review the accounts for the
+                  factory estate when the court has granted a recall under subsection (1) or subsection
+                  (2). The Accountant must send to the court a report setting out the results of the
+                  audit and the Accountant’s view as to whether, if an application has been made for
+                  the judicial factor to be discharged, the judicial factor should be discharged. Subsection
+                  (10) requires the court to consider the report from the Accountant and make any further
+                  inquiry it considers necessary before granting any application for discharge under
+                  this section.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Inventory and balance sheet</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">75.</span></h2>
+               <p>Section 35(1) applies in any circumstances where a replacement judicial factor has
+                  been appointed under section 33(2), (3)(b) or (4), or where a replacement judicial
+                  factor has been appointed under section 34(4) provided that the original judicial
+                  factor has not been discharged. The new judicial factor and the Accountant are required
+                  to agree the inventory and balance sheet for the estate, with effect from the date
+                  of appointment of the new judicial factor. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">76.</span></h2>
+               <p>Subsection (2) applies if a replacement judicial factor has been appointed under section
+                  34(4) and the outgoing judicial factor has been discharged. A new inventory and balance
+                  sheet do not need to be agreed, and the new judicial factor can proceed on the basis
+                  of the final inventory and balance sheet of the outgoing judicial factor.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Termination of judicial factory where insufficient funds</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">77.</span></h2>
+               <p>Section 36 makes provision for situations where the Accountant considers that, were
+                  the judicial factor to formulate a scheme for the distribution of the estate under
+                  section 30(1), there would not be sufficient funds in the factory estate to meet the
+                  cost of that formulation or the associated process of the judicial factor seeking
+                  approval of the scheme and thereafter distributing the factory estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">78.</span></h2>
+               <p>Subsection (2)(a) requires the Accountant to direct the judicial factor to distribute
+                  the factory estate in the manner specified by the Accountant. Subsection (2)(b) to
+                  (c) require the Accountant to terminate the judicial factory, and recall and discharge
+                  the judicial factor. Subsection (3) provides for recording of the termination, recall
+                  and discharge in the Register of Inhibitions and subsection (4) provides that any
+                  fee for recording is to be paid from the factory estate. Subsection (5) creates an
+                  exception to subsection (2), by providing that if the Accountant is of the view that
+                  there has been, or may have been, misconduct or failure by the judicial factor, then
+                  subsection (2) will not apply, and section 41 will apply instead.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Ending of judicial factor’s accountability on discharge</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">79.</span></h2>
+               <p>Section 37 sets out more detail about the legal effect of the discharge of a judicial
+                  factor. Subsection (1) provides that when the court issues an interlocutor containing
+                  an order for discharge, or the judicial factor is discharged by the Accountant, then
+                  the judicial factor is no longer legally accountable for anything done by the judicial
+                  factor in relation to any part of the factory estate in their capacity as judicial
+                  factor. Subsection (2) makes clear that if the judicial factor has incurred any criminal
+                  liability in the course of their actings as judicial factor, both civil liability,
+                  to the extent tied to the activities relating to that criminal liability, and the
+                  criminal liability continue following the judicial factor’s discharge. The Accountant
+                  will not be able to take action against a judicial factor under section 41 once a
+                  judicial factor has been discharged.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 5 – Accountant of Court</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Accountant of Court and Depute Accountant</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">80.</span></h2>
+               <p>Section 38 makes provision for the appointment of the Accountant of Court. The power
+                  to appoint the Accountant is already vested in the Scottish Courts and Tribunals Service
+                  (SCTS) under section 25 of the Administration of Justice (Scotland) Act 1933. Subsection
+                  (1) requires that the person appointed to the office of Accountant by SCTS must be
+                  appropriately qualified or experienced in law and accounting. Subsection (2) places
+                  a duty on the Scottish Ministers to periodically review that criteria and, if appropriate,
+                  change it by regulations, subject to the affirmative procedure.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">81.</span></h2>
+               <p>Subsection (4) prevents the Accountant from holding any other office, unless express
+                  provision is made elsewhere in legislation in relation to a particular office which
+                  allows the Accountant to hold that office in addition to the office of Accountant.
+                  Subsection (5) makes provision for the SCTS to pay the Accountant for performing the
+                  role of Accountant and makes clear that payment from SCTS is the only payment that
+                  the Accountant is entitled to for carrying out the role of Accountant.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">82.</span></h2>
+               <p>Subsection (6) requires the Accountant to charge fees for the Accountant’s activities
+                  under the Act, and subsection (7) makes clear that those fees must cover any outlays
+                  which the Accountant reasonably incurs in carrying out those activities, and are to
+                  be paid from the factory estate. The exception to this is fees charged under section
+                  46, which relates to the Accountant complying with requests to provide information
+                  or allow access to documents to persons with an interest in the factory estate. In
+                  those cases, the fee is to be paid by the person making the request. Subsection (8)
+                  requires the Accountant to account, in the manner directed by SCTS, for any sums received
+                  by the Accountant other than remuneration. Subsection (9) allows the Accountant to
+                  waive the right to recover any fee that the Accountant considers that they are unlikely
+                  to be able to recover.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">83.</span></h2>
+               <p> Section 39(1) establishes a power for SCTS to appoint a Depute Accountant on terms
+                  and conditions determined by SCTS. In practice, a Depute Accountant is already appointed
+                  by SCTS, and this provision creates a statutory basis for that appointment. Subsection
+                  (2) applies the same requirements to any person appointed to the role as apply to
+                  persons appointed to the role of the Accountant – they must be appropriately qualified
+                  in law and accounting, while subsection (3) places the same duty on the Scottish Ministers
+                  to review the criteria, and the power to change it by regulations, subject to the
+                  affirmative procedure, if appropriate. Subsection (5) provides that the role of the
+                  Depute Accountant is to carry out the role of Accountant when the Accountant is unable
+                  to do so, and makes clear that during any such period the Depute Accountant is to
+                  act and be treated as if they were the Accountant.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">84.</span></h2>
+               <p>Section 40(1) sets out the general function of the Accountant, which is to supervise
+                  the performance by all judicial factors of the functions conferred on those judicial
+                  factors, however the functions were conferred. The Accountant must also seek to ensure
+                  that judicial factors perform their functions in accordance with any applicable legal
+                  requirements and guidance. Subsection (2) allows the Accountant to issue instructions
+                  to a particular judicial factor as to how that judicial factor is to carry out their
+                  functions.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Misconduct or failure of judicial factor</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">85.</span></h2>
+               <p>Section 41 makes provision for the Accountant to take actions where the Accountant
+                  has reason to believe that there is, or has been, misconduct, failure to discharge
+                  duties, or failure to comply with an instruction from the Accountant, on the part
+                  of a judicial factor. Such belief on the part of the Accountant may, for example,
+                  arise as a result of a report being made to the Accountant by a third party in relation
+                  to the conduct of the judicial factor.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">86.</span></h2>
+               <p>Subsection (2) requires the Accountant to make investigations and allow the judicial
+                  factor to make representations about the suspected misconduct or failure. Subsections
+                  (3) and (4) provide that if, following that process, the Accountant is of the view
+                  that there has been serious misconduct or material failure, the Accountant is required
+                  to report that misconduct or failure to the court, and to any professional body of
+                  which the judicial factor is a member, or another body which has responsibility for
+                  dealing with complaints made in relation to members of that professional body. For
+                  example, if the judicial factor is a Scottish solicitor, the Accountant would be required
+                  to report the matter to the Scottish Legal Complaints Commission. The Accountant has
+                  discretion to determine what constitutes serious misconduct or material failure in
+                  the case of a particular judicial factor but this may include, for example, failing
+                  to comply with an instruction of the Accountant under section 40(2) without good reason.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">87.</span></h2>
+               <p>Subsections (5) and (6) set out what happens when a matter is reported to the court
+                  under subsection (4). The court is required to allow the judicial factor the opportunity
+                  to make representations on the matter, and thereafter the court is empowered to dispose
+                  of the matter in any manner that the court considers appropriate. Subsection (6)(a)
+                  makes clear that a disposal by the court is final, meaning that there is no right
+                  of appeal against the court’s decision by either the Accountant or the judicial factor.
+                  Paragraph (b) provides that any right any person has to seek legal recovery of loss
+                  they have suffered as a result of the misconduct or failure of the judicial factor
+                  is retained, and that right is not affected by disposal by the court under this section.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">88.</span></h2>
+               <p>Section 41 will cease to apply in relation to judicial factors when they are discharged.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Power of the Accountant to require information</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">89.</span></h2>
+               <p>Subsection 42(1) gives the Accountant the power to serve notice on any person requesting
+                  that the person supply information which the Accountant reasonably considers relevant
+                  to the Accountant’s functions. This might be, for example, banks with whom a judicial
+                  factor has interacted in relation to the factory estate, where the Accountant has
+                  reason to believe there may have been misconduct on the part of the judicial factor.
+                  Subsection (2) places a requirement on persons receiving notice under subsection (1)
+                  to comply with the notice, unless, as set out in subsection (3), they are a reserved
+                  body by virtue of paragraph 3 of Part III of schedule 5 of the Scotland Act 1998,
+                  a Minister of the Crown, a department of the Government of the United Kingdom, or
+                  a public body operating wholly in relation to a reserved matter in accordance with
+                  the Scotland Act 1998. Such persons may choose to supply the information requested,
+                  but are not required to do so.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">90.</span></h2>
+               <p>Subsection (4) provides that if the information can be obtained by the Accountant
+                  under any other enactment, a person who receives notice sent under subsection (1)
+                  can, instead of supplying the information, direct the judicial factor to the other
+                  means by which the Accountant can obtain the information. Subsection (5) makes clear
+                  that, while this section does not authorise a person to charge a fee for supplying
+                  information in compliance with a notice sent under subsection (1), if another enactment
+                  authorises the charging of a fee for supplying that information then that fee may
+                  be charged. Subsections (6) and (7) make clear that this section does not override
+                  the provisions of data protection legislation as defined in the Data Protection Act
+                  2018, meaning that a person is not required to supply information where to do so would
+                  be in breach of a provision of that legislation – but the provisions of the Act are
+                  relevant in determining whether or not that is the case.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Audit by Accountant</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">91.</span></h2>
+               <p>Section 43 requires the Accountant to audit any accounts received from a judicial
+                  factor under a provision of the Act in accordance with the procedure set out in this
+                  section. Subsection (2) gives the Accountant the power to examine further information,
+                  and to send the accounts to an external accountant for auditing if the Accountant
+                  considers that it is necessary, or would be beneficial, to do so. If the Accountant
+                  does send the accounts to an external auditor, subsection (3) places the Accountant
+                  under a duty to supervise that external audit, and provides that the Accountant is
+                  still the person who is ultimately responsible for the accuracy of the audit. Under
+                  subsection (4), the Accountant is required to send a copy of the report on the audit
+                  to the judicial factor whose accounts have been audited. Subsection (5) requires the
+                  Accountant, or external auditor, to give the judicial factor an opportunity to explain
+                  anything in the accounts which requires explanation, and to explain any correction
+                  made to the accounts in the course of the audit, to the judicial factor. Subsection
+                  (6) requires the costs of any external audit to be paid from the factory estate.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">92.</span></h2>
+               <p>Section 44 sets out the process which will apply when any objection or appeal is made
+                  by the judicial factor in relation to an audit carried out in accordance with section
+                  43. The effect of subsection (1) is that, other than by the process set out in this
+                  section, the results of the audit are not open to challenge. Subsection (2) gives
+                  the judicial factor 21 days from the day on which they receive the report on the audit
+                  to send a written objection to the Accountant. Subsection (3) requires the Accountant
+                  to consider any objection received, after which the Accountant can either amend the
+                  results of the audit based on the objection, or dismiss the objection. In the event
+                  that the Accountant dismisses the objection, subsection (4) allows the judicial factor
+                  to require the Accountant to refer the objection to the court. Subsection (5) makes
+                  clear that there is no right of appeal in respect of a decision made by the court
+                  following such referral.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Annual review</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">93.</span></h2>
+               <p>Section 45(1) places the Accountant under an obligation to publish an annual review
+                  detailing the Accountant’s activities in relation to the relevant judicial factories,
+                  for the reporting year to which the report relates. The meaning of “relevant judicial
+                  factories” is set out in subsection (5), and it covers every judicial factory which
+                  is in place during the relevant reporting year. This means that judicial factories
+                  which existed at any time during, or for any portion of, the reporting year must be
+                  included within the scope of the report, whether or not they were in place at the
+                  time the reporting year started, or were still in place at the time the reporting
+                  year ended. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">94.</span></h2>
+               <p>Subsection (2) gives the Scottish Ministers a power to make regulations setting out
+                  further detail about the reporting requirement. The regulations are subject to the
+                  negative procedure. Such detail must include how the review must be published, the
+                  information it must contain, and the timing of the reporting year. Subsection (3)
+                  allows the Accountant to include in each review further information which is not specified
+                  in the regulations made by the Scottish Ministers under subsection (2).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Inspection of records held by Accountant</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">95.</span></h2>
+               <p>Section 46 places the Accountant under an obligation to make certain documents relating
+                  to a factory estate available for inspection, or to provide copies of the documents,
+                  to a person with an interest in the factory estate who requests such copies or inspection.
+                  The documents are defined in subsection (4) as being the management plan, the inventory,
+                  the balance sheet, the annual accounts, and the audit report in relation to the relevant
+                  estate. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">96.</span></h2>
+               <p>Subsection (1) requires the person to submit a request to the Accountant, and demonstrate
+                  a reason for requiring the copies or to inspect the documents. Subsection (2) requires
+                  the Accountant to charge the person making the request a fee for inspecting the documents
+                  or for the copies, while subsection (3) provides that any copies supplied under this
+                  section have the same evidential status as the original documents, meaning the person
+                  receiving the copies can rely on them in the same way as they could rely on the original
+                  documents, such as in court proceedings.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Inconsistency in judgement or practice</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">97.</span></h2>
+               <p>Section 47 requires the Accountant to submit a report to the Lord President of the
+                  Court of Session if the Accountant is of the view that the sheriff courts in Scotland
+                  are not consistent in their dealings in relation to judicial factors or factories.
+                  The Accountant must propose a rule of practice in relation to the inconsistency identified,
+                  and the Lord President may take such action as the Lord President considers appropriate
+                  – which may include adopting the rule proposed by the Accountant.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Right of judicial factor to require determination as regards decision of Accountant</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">98.</span></h2>
+               <p>Section 48 gives judicial factors a right to apply to the court which appointed them
+                  for a determination in relation to any decision that the Accountant has made in relation
+                  to the judicial factory. Essentially this is a right for the judicial factor to appeal
+                  such decisions to the court. Subsection (2) restricts the decisions in relation to
+                  which the judicial factor can make an application, by excluding decisions to dismiss
+                  an objection made in relation to an audit, under section 44(3), since section 44(4)
+                  already gives the judicial factor power to require the Accountant to refer such objections
+                  to the court. Decisions that the Accountant makes in relation to the amount or frequency
+                  of remuneration of the judicial factor are also excluded, since judicial factors already
+                  have a right of appeal by virtue of section 11(6). Subsection (3) provides that there
+                  is no right of appeal, by either the judicial factor or the Accountant, in respect
+                  of any decision made by the court following a referral made under this section.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 6 – Miscellaneous and general</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">99.</span></h2>
+               <p>Section 49 abolishes the office of curator bonis. A curator bonis was a person appointed
+                  by the court to manage the estate of a child, in the place of the child’s legal guardian
+                  or the estate of a person lacking capacity to manage it. The office of curator bonis
+                  fell within the definition of a judicial factor in terms of the Judicial Factors Act
+                  1849. The Adults with Incapacity (Scotland) Act 2000 abolished the role with reference
+                  to adults with incapacity, and removed reference to curators bonis in relation to
+                  judicial factors in the legislation. However, it remained competent for a court to
+                  appoint a curator bonis in relation to a young person, and the effect of the changes
+                  made by the 2000 Act was that any such curator bonis would not be subject to the supervision
+                  of the Accountant. The Act therefore abolishes the office to ensure that no curator
+                  bonis can be appointed, and that a court will be required to appoint a judicial factor,
+                  who will be subject to the supervision of the Accountant, instead.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">100.</span></h2>
+               <p>Section 50 provides for the provisions of the Act to apply in relation to judicial
+                  factors appointed other than under the Act, including by virtue of the <i>nobile officium</i>, which is the Court of Session’s common law power to exercise its discretion.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">101.</span></h2>
+               <p>Section 51 sets out that the Scottish Ministers may, by regulations, make ancillary
+                  provision for the purposes of, or in connection with or for giving full effect to
+                  the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">102.</span></h2>
+               <p>Section 52(1) introduces schedule 2, which contains modifications to certain enactments.
+                  Note in particular the following modifications.</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p> Paragraph 1 modifies the Trusts (Scotland) Act 1921 to remove judicial factors from
+                     the ambit of that Act.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p> Paragraphs 2 to 8 make consequential modifications to various Acts to reflect the
+                     replacement of historic legislation in relation to judicial factors by the Act.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p> Paragraph 9 modifies the Bankruptcy (Scotland) Act 2016 to prevent property held
+                     by a debtor in the capacity of judicial factor from vesting in a trustee in sequestration,
+                     and to make provision for cases where a judicial factor is appointed to an insolvent
+                     estate. It also makes a number of consequential amendments.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">103.</span></h2>
+               <p>Section 52(2) introduces schedule 3, which repeals certain enactments to the extent
+                  mentioned in the second column of that schedule. The Judicial Factors Act 1849 and
+                  the Judicial Factors (Scotland) Acts 1880 and 1889 are repealed in their entirety
+                  and will be replaced by the Act. The other repeals are consequential on these repeals.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">104.</span></h2>
+               <p>Section 53 is the interpretation section. It contains definitions of certain terms
+                  used in the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">105.</span></h2>
+               <p>Section 54 sets out when the provisions of the Act will come into force (i.e. have
+                  legal effect). Most provisions will be brought into force by regulations as determined
+                  by the Scottish Ministers. These regulations will be laid before the Scottish Parliament
+                  but will not otherwise be subject to any parliamentary procedure. However, this section,
+                  section 51 (ancillary provision) and section 55 (the short title) come into force
+                  on the day after Royal Assent.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">106.</span></h2>
+               <p>Section 55 provides for the short title (i.e. the Judicial Factors (Scotland) Act
+                  2025), which is the name by which the Act may be cited in formal proceedings.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PARLIAMENTARY HISTORY</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">107.</span></h2>
+               <p>The following is a list of the proceedings in the Scottish Parliament on the Bill
+                  for the Act and significant documents connected to the Bill published by the Parliament
+                  during the Bill’s parliamentary passage.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:3.06in">
+                     <col style="width:2.87in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <p>
+                           <b>PROCEEDINGS AND REPORTS</b>
+                           </p>
+                        <p>
+                           <b>REFERENCE</b>
+                           </p>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>INTRODUCTION</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill as Introduced (05 December 2023)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/introduced/bill-as-introduced.pdf">
+                                 <u>SP Bill 40 (Session 6 (2023))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Explanatory Notes </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/introduced/explanatory-notes.pdf">
+                                 <u>SP Bill 40 – EN (Session 6 (2023))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Policy Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/introduced/policy-memorandum.pdf">
+                                 <u>SP Bill 40 – PM (Session 6 (2023))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Financial Memorandum </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/introduced/financial-memorandum.pdf">
+                                 <u>SP Bill 40 – FM (Session 6 (2023))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers Memorandum </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/introduced/delegated-powers-memorandum.pdf">
+                                 <u>SP Bill 40 – DPM (Session 6 (2023))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Statements on Legislative Competence </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/introduced/delegated-powers-memorandum.pdf">
+                                 <u>SP Bill 40 – LC (Session 6 (2023))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>STAGE 1</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Delegated Powers and Law Reform Committee (lead committee)</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (19 December 2023)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/committees/current-and-previous-committees/session-6-delegated-powers-and-law-reform-committee/meetings/2023/dplrs62335/minutes">
+                                 <u>Minutes of proceedings (DPLR/S6/23/35)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (30 January 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/committees/current-and-previous-committees/session-6-delegated-powers-and-law-reform-committee/meetings/2024/delegated-powers-and-law-reform-committee-30-january-2024/minutes">
+                                 <u>Minutes of proceedings</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (6 February 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/committees/current-and-previous-committees/session-6-delegated-powers-and-law-reform-committee/meetings/2024/delegated-powers-and-law-reform-committee-06-february-2024/minutes">
+                                 <u>Minutes of proceedings</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (26 March 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/committees/current-and-previous-committees/session-6-delegated-powers-and-law-reform-committee/meetings/2024/delegated-powers-and-law-reform-committee-26-march-2024/minutes">
+                                 <u>Minutes of proceedings</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (16 April 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15799">
+                                 <u>Official Report (cols. 3 to 23)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (23 April 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15817">
+                                 <u>Official Report (cols. 2 to 42)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (30 April 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15826">
+                                 <u>Official Report (cols. 7 to 46)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (7 May 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15842">
+                                 <u>Official Report (cols. 5 to 30)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (11 June 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/committees/current-and-previous-committees/session-6-delegated-powers-and-law-reform-committee/meetings/2024/delegated-powers-and-law-reform-committee-11-june-2024">
+                                 <u>Minutes of proceedings</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Report on delegated powers provisions in the Judicial Factors (Scotland) Bill at Stage
+                              1 (7 February 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://bprcdn.parliament.scot/published/DPLR/2024/2/7/680847c0-6762-4131-8d5c-c153c2856aba/DPLRS062024R11.pdf">
+                                 <u>SP Paper 523, 11th Report, 2024 (Session 6)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 report (14 June 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://bprcdn.parliament.scot/published/DPLR/2024/6/14/bf74d0bc-dbb6-4414-b3cb-59a7f89a4fba/DPLRS062024R43.pdf">
+                                 <u>SP Paper 620, 43rd Report, 2024 (Session 6)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Whole Parliament</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 debate (19 September 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15999">
+                                 <u>Official Report (cols. 86 to 109)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>STAGE 2</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Marshalled list of amendments for Stage 2</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-2/marshalled-list-of-amendments-for-stage-2.pdf">
+                                 <u>SP Bill 40 – ML (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Groupings of amendments for Stage 2</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-2/groupings-of-amendments-for-stage-2.pdf">
+                                 <u>SP Bill 40 – G (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on amendments (16 November 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16106">
+                                 <u>Official Report (cols. 7 to 20)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill as amended at Stage 2 </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-2/bill-as-amended.pdf">
+                                 <u>SP Bill 40A (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Revised Explanatory Notes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-2/revised-explanatory-notes-accessible.pdf">
+                                 <u>SP Bill 40A – EN (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Supplementary Financial Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-2/supplementary-financial-memorandum-accessible.pdf">
+                                 <u>SP Bill 40A – FM (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Supplementary Delegated Powers Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-2/supplementary-delegated-powers-memorandum-accessible.pdf">
+                                 <u>SP Bill 40A – DPM (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (3 December 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/committees/current-and-previous-committees/session-6-delegated-powers-and-law-reform-committee/meetings/2024/delegated-powers-and-law-reform-committee-03-december-2024/minutes">
+                                 <u>Minutes of proceedings</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Report on delegated powers in the Judicial Factors (Scotland) Bill as amended at Stage
+                              2 (3 December 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://bprcdn.parliament.scot/published/DPLR/2024/12/3/e1aae3fa-9fba-42a6-b4a6-9a276879366f/DPLRS062024R72.pdf">
+                                 <u>SP Paper 700, 72nd Report, 2024 (Session 6)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>STAGE 3</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Marshalled list of amendments for Stage 3</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-3/marshalled-list-of-amendments-for-stage-3.pdf">
+                                 <u>SP Bill 40A – ML (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Groupings of amendments for Stage 3</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-3/groupings-of-amendments-for-stage-3.pdf">
+                                 <u>SP Bill 40A – G (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration of amendments and debate (10 December 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16153">
+                                 <u>Official Report (cols. 22 to 34)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill as passed (10 December 2024)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/judicial-factors-scotland-bill/stage-3/bill-as-passed.pdf">
+                                 <u>SP Bill 40B (Session 6 (2024))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>ROYAL ASSENT</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Royal Assent (27 January 2025)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.legislation.gov.uk/asp/2025/3/contents">
+                                 <u>2025&nbsp;asp 3</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.scotlawcom.gov.uk/files/2913/7776/7158/Report_233.pdf"><u>Scottish Law Commission’s Report on Judicial Factors</u></a>.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  A register, maintained by the Registers of Scotland, of legal documents and proceedings
+                  which prevent the person affected by the document or proceedings from selling or transacting
+                  in relation to their property.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

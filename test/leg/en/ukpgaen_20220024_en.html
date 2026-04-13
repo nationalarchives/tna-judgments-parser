@@ -1,0 +1,743 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>CULTURAL OBJECTS (PROTECTION FROM SEIZURE)</b>
+               <b>
+                  </b>
+               <b>ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Cultural Objects (Protection from Seizure) Act
+                  2022 which received Royal Assent on 28 April 2022 (c. 24).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Digital, Culture,
+                  Media and Sport in order to assist the reader of the Act. They do not form part of
+                  the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>Under section 134 of the Tribunals, Courts and Enforcement Act 2007 (“the 2007 Act”),
+                     cultural objects on loan from abroad to UK museums and galleries approved under the
+                     2007 Act are protected from seizure or forfeiture for a period of 12 months from the
+                     date the object enters the UK. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act amends the 2007 Act to allow the period of protection to be extended for a
+                     further period of up to 3 months for objects on loan to approved museums and galleries
+                     in England and Scotland. The power to extend a period of protection may be exercised
+                     by the Secretary of State for Digital, Culture, Media and Sport and/or Scottish Ministers,
+                     depending on the location of the object and the approved institution, and would be
+                     considered on a case-by-case basis where need arises and taking account of the circumstances
+                     in each case. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act contains two sections covering the following matters:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Protection of cultural objects on loan </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Extent, commencement and short title</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The 12-month period of protection from seizure or forfeiture under the current legislation
+                     has normally provided a sufficient length of time for museum exhibitions to take place
+                     and for objects on loan from abroad to be returned in line with agreed schedules and
+                     before the period of protection has expired. However, the disruptions to international
+                     travel during 2020 created problems when loaned objects due to be returned to their
+                     country of origin were unexpectedly delayed in the UK. Unable to travel out of the
+                     UK, these objects were left at risk of being unprotected should the 12-month limit
+                     expire before the borrowing institutions could arrange for their return. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Unforeseen environmental factors have caused major international air travel disruption
+                     in the past, and this too posed a risk to the timely return of cultural objects on
+                     loan from international lenders, for example, the eruption of the Eyjafjallajokull
+                     volcano in Iceland in 2010, which grounded over 100,000 flights. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>In the event that objects on loan are unexpectedly delayed within the UK and are unable
+                     to be returned within the 12-month timeframe, the measures within the Act provide
+                     a mechanism to extend the length of time an object is protected from seizure or forfeiture
+                     whilst in England or Scotland. This will help alleviate concerns from museums and
+                     international lenders that cultural objects on loan to approved museums and galleries
+                     may be left unprotected should the protection expire before the objects can be returned.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Whilst the risk of seizure or forfeiture is extremely small, a number of countries
+                     place great importance on having this protection. The Act provides a greater degree
+                     of certainty over the protection available for cultural objects on loan. The knowledge
+                     that the length of protection can be extended at the discretion of the relevant authority
+                     helps to increase the confidence of owners that objects loaned to approved museums
+                     and galleries are secure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>A museum or gallery to which an object has been loaned must apply to have the period
+                     of protection extended. The relevant authority will exercise their discretion to extend
+                     the 12 month period in specific cases and where circumstances warrant. Where an extension
+                     to the period of protection is granted, approval will be confirmed in writing to the
+                     applying museum or gallery. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Policy guidance for museums and galleries on how to apply for an extended period of
+                     protection has been issued by the relevant authorities.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 134(4) of the 2007 Act limits the period of protection to 12 months from the
+                     date the object enters the UK, except where subsection (5) applies. Subsection (5)
+                     provides that protection will continue beyond 12 months where the object suffers damage
+                     and as a result undergoes repair, conservation or restoration in the UK.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Act allows the period of protection to be extended for a further period of up
+                     to 3 months by the Secretary of State (where the object is in England for any of the
+                     purposes listed in subsection (7)(b) to (e), or is in the UK for the purpose of display
+                     at an institution in England), or Scottish Ministers (where the object is in Scotland
+                     for any of the purposes listed in subsection (7)(b) to (e) or is in the UK for the
+                     purpose of display at an institution in Scotland). More than one extension of up to
+                     3 months can be granted in relation to the same object. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Whilst the extent of the Act is UK-wide in line with the extent of Part 6 of the 2007
+                     Act, the new provisions will only apply in England and Scotland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Currently only museums in England and Scotland have been approved to use immunity
+                     from seizure protection under the 2007 Act. This Act provides the Secretary of State
+                     for Digital, Culture, Media and Sport and Scottish Ministers with a further power
+                     to agree extensions to the length of time an object on loan to an approved museum
+                     in England or Scotland can be protected from seizure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Any exercise of the power to extend the length of time an object is protected by either
+                     the Secretary of State or Scottish Ministers will have no effect in Northern Ireland
+                     or Wales. Welsh Ministers and the Department for Communities in Northern Ireland cannot
+                     exercise the power to extend the period of protection afforded to objects on loan
+                     in their respective jurisdictions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Under the 2007 Act, the Secretary of State for Digital, Culture, Media and Sport approves
+                     institutions in England and powers are devolved to Ministers in Scotland and Wales
+                     and to the Department for Communities in Northern Ireland to approve institutions
+                     in those jurisdictions under the 2007 Act. This Act does not alter the powers of any
+                     of the devolved administrations to approve institutions under the 2007 Act. Immunity
+                     from seizure protection will apply to cultural objects on loan to those institutions
+                     for the standard period of up to 12 months, providing the relevant conditions are
+                     met.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Protection of cultural objects on loan</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>This section amends sections 134 and 137 of the 2007 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsection (2) inserts new subsections (4A) to (4E) into section 134 of the 2007 Act.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>New subsection (4A) provides that the relevant authority has the power to extend the
+                     existing maximum period of protection for a further period of up to 3 months.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>New subsection (4B) defines ‘relevant authority’ for the purposes of subsection (4A).
+                     The relevant authority is the Secretary of State where the object is in England for
+                     any of the purposes listed in subsection (7)(b) to (e), or is in the UK for the purpose
+                     of display at an institution in England, and Scottish Ministers where the object is
+                     in Scotland for any of the purposes listed in subsection (7)(b) to (e), or is in the
+                     UK for the purpose of display at an institution in Scotland.   </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>New subsection (4C) clarifies that the power in new subsection (4A) can be exercised
+                     more than once in relation to the same object, and, where it is exercisable by both
+                     the relevant authorities at a particular time in relation to the same object, is exercisable
+                     by them concurrently. This will, among other things, ensure that an extended period
+                     of protection can be provided for an object which is in the UK for the purpose of
+                     exhibitions in both Scotland and England, and provide flexibility as to which authority
+                     exercises the power in relation to that object. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>New subsection (4D) clarifies that any extension granted under subsection (4A) is
+                     in addition to the ‘maximum protection period’, which comprises the initial 12-month
+                     period under subsection (4)(b) together with any additional period of protection arising
+                     under subsection (5) where the object has suffered damage, and any period of extension
+                     already granted under subsection (4A).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>New subsection (4E) provides that, where the period of protection in relation to an
+                     object has been extended under new subsection (4A), certain references in section
+                     134 to the United Kingdom are to be read as reference to England or Scotland, meaning
+                     that protection will only continue as long as the object is in England or Scotland.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (3) amends section 134(5) of the 2007 Act to make clear that, where the
+                     period of protection has been extended under new subsection (4A), the object will
+                     continue to be protected after the end of the extended period if it has suffered damage
+                     while in the UK and as a result undergoes repair, conservation or restoration in the
+                     UK.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (4) makes consequential amendments to the definition of “United Kingdom”
+                     in section 137 of the 2007 Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (1) provides that the Act extends to England and Wales, Scotland, and Northern
+                     Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (2) provides that the Act comes into force at the end of the period of
+                     two months after the Act is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (3) provides the short title of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The Act comes into force two months after it is passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.gov.uk/guidance/protecting-cultural-objects-on-loan">
+                           <u>https://www.gov.uk/guidance/protecting-cultural-objects-on-loan</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.museumsgalleriesscotland.org.uk/advice/collections/immunityfrom-seizure/">
+                           <u>https://www.museumsgalleriesscotland.org.uk/advice/collections/immunityfrom-seizure/</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.94in">
+                        <col style="width:1.32in">
+                        <col style="width:1.32in">
+                        <col style="width:1.32in">
+                        <col style="width:1.32in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>England</b>
+                              </p>
+                           <p>
+                              <b>Wales</b>
+                              </p>
+                           <p>
+                              <b>Scotland</b>
+                              </p>
+                           <p>
+                              <b>Northern Ireland</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p></p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p></p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                           <p></p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1 and 2</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Both extends and applies </p>
+                           </td>
+                           <td>
+                              <p>Only extends</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Both extends and applies </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Only extends</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>18 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2906/stages/15376">
+                                    <u>No volume number</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>10 September 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-09-10/debates/8A0DBC28-EE56-43DC-8D28-808142477C79/CulturalObjects(ProtectionFromSeizure)Bill">
+                                    <u>Vol. 700 Col. 620-629</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>17 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2906/stages/15734">
+                                    <u>Hansard – Cultural Objects (Protection from Seizure) Public Bill Committee</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>28 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-28/debates/A89CD9EF-863B-4956-A2B6-0681499896A0/CulturalObjects(ProtectionFromSeizure)Bill">
+                                    <u>Vol. 707 Col. 1188-1206</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>31 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-01-31/debates/DB442780-6E7A-48C6-8B55-CA2DF60EB234/CulturalObjects(ProtectionFromSeizure)Bill">
+                                    <u>Vol. 818 Col. 624</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-18/debates/45B4BE32-F2EF-40E3-92DE-40E7B1E28A85/CulturalObjects(ProtectionFromSeizure)Bill">
+                                    <u>Vol. 820 Col. 577-589</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>06 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-06/debates/824A40A7-37E4-488D-8DE0-B88D058E5B07/CulturalObjects(ProtectionFromSeizure)Bill">
+                                    <u>Vol. 820 Col. 2087</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>25 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-25/debates/172FF914-5E06-4062-A570-033B1564077D/CulturalObjects(ProtectionFromSeizure)Bill">
+                                    <u>Vol. 821 Col. 20-22</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>28 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-28/debates/D11DF494-0AB3-4302-AB2D-C113849A137D/RoyalAssent">
+                                    <u>House of Lords Vol. 821 Col. 382</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

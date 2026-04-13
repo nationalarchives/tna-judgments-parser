@@ -1,0 +1,713 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>WILD ANIMALS IN CIRCUSES ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Wild Animals in Circuses Act 2019 (c. 24) which
+                  received Royal Assent on 24 July 2019.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department of Environment, Food
+                  and Rural Affairs in order to assist the reader in understanding the Act. They do
+                  not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act makes it an offence, from 20 January 2020, for an operator of a travelling
+                     circus in England to use a "wild animal" in the circus. Wild animals are defined in
+                     the Act as animals of a kind which are not commonly domesticated in Great Britain.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act fulfills the Government's policy in relation to the use of wild animals in
+                     travelling circuses as set out in the Written Ministerial Statements of 1 March<a class="fn" id="fnref-1" href="#fn-1">1</a> and 12 July 2012.<a class="fn" id="fnref-2" href="#fn-2">2</a> As an interim measure the Government introduced a licensing scheme using powers available
+                     under the Animal Welfare Act 2006. The Welfare of Wild Animals in Travelling Circuses
+                     (England) Regulations 2012 (SI 2012/2932) came into force on 20 January 2013. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The use of wild animals in circuses in England, ahead of the Act coming into force
+                     on 20 January 2020, is regulated through the Welfare of Wild Animals in Travelling
+                     Circuses (England) Regulations 2012 (SI 2012/2932). </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Section 4 sets out the territorial extent of the Act. Sections 1 and 2 extend to England
+                     and Wales but only apply in England. Section 3 also extends and applies in Scotland.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Prohibition on use of wild animals in travelling circuses in England</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Subsection (1) sets out the central prohibition in the Act which provides that circus
+                     operators are no longer allowed to use wild animals in their travelling circus in
+                     England.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Subsection (2) clarifies that “use” of a wild animal in a circus extends to a performance
+                     by the animal and any exhibition of a wild animal as part of the circus. For example,
+                     performance would include a parade of animals in a circus ring and an exhibition would
+                     include the display of a lion in a cage.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Subsection (3) establishes that a circus operator is guilty of an offence if that
+                     person uses a wild animal in a travelling circus in England in breach of subsection
+                     (1). A person guilty of such an offence is liable on summary conviction to a fine
+                     of any amount.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Subsection (4) provides for individual liability in some cases where there is also
+                     corporate liability.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Subsection (5) contains definitions of expressions used in the Act. For instance,
+                     a “circus operator” is defined as the owner of the circus or any other person with
+                     overall responsibility for the operation of the circus except that, if no such person
+                     is present in the United Kingdom, the circus operator will be the person in the United
+                     Kingdom who has ultimate responsibility for the operation of the circus. A "wild animal"
+                     is defined as any animal of a kind not commonly domesticated in Great Britain, with
+                     "animal" taking the same meaning as section 1(1) of the Animal Welfare Act 2006. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Inspections</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>This section introduces the Schedule, which makes provision for inspections under
+                     the Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Consequential amendment</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 3 makes a consequential amendment to the Dangerous Wild Animals Act 1976 (c.38)
+                     in order to remove the exemption in England and Scotland in section 5(2) that exempts
+                     dangerous wild animals kept in a circus from having to be licensed. After 20 January
+                     2020, none of the vertebrate animals listed in the Dangerous Wild Animals Act 1976
+                     can be used in circuses in England. The Wild Animals in Travelling Circuses (Scotland)
+                     Act 2018 prohibits the use of wild animals in travelling circuses in Scotland from
+                     28 May 2018. The exemption under the Act will remain for circuses in Wales.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>This section provides that the Act will come into force on 20 January 2020.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule - Inspections</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The Schedule makes provision for the appointment of inspectors and specifies the powers
+                     and duties of those inspectors when exercising powers of entry, inspection or search
+                     under the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Paragraph 1 of the Schedule permits the Secretary of State to appoint persons as inspectors
+                     for the purposes of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Paragraph 2 confers a power to enter premises, other than premises used only as a
+                     dwelling, if the inspector has reasonable grounds for suspecting that an offence under
+                     section 1 is being, has been, or is about to be committed on the premises or that
+                     evidence of the commission of such an offence may be found there.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Paragraph 3 provides that a justice of the peace may issue a warrant authorising an
+                     inspector to enter premises used as a dwelling to search for evidence of an offence.
+                     It also sets out the matters that must be satisfied before a warrant may be granted.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Paragraph 4 requires an inspector, on request, to produce evidence of identity before
+                     exercising the power of entry and to state for what purpose the power is being exercised.
+                     If entry is under a warrant, the inspector is required to supply a copy of the warrant
+                     or to leave such a copy on the premises.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Paragraph 5 requires an inspector to exercise a power of entry at a reasonable time
+                     unless the officer believes that, by waiting for that reasonable time, the purpose
+                     for requiring entry and inspection may be thwarted.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Paragraph 6 allows an inspector to use reasonable force where necessary to exercise
+                     a power of entry and to take on to the premises up to two other persons and any equipment
+                     and materials that the inspector considers to be appropriate. The assistants could
+                     include specialists, for example a zoological specialist to help identify animals,
+                     or police constables to help keep the peace when necessary to enable an inspector
+                     to conduct his or her work.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Paragraph 7 outlines the powers of inspection, search and seizure available to an
+                     inspector when exercising a power of entry under paragraph 2 or 3. This paragraph
+                     does not include a power to seize a wild animal. Where any item has been seized under
+                     paragraph 7(k), paragraph 9(2) requires the inspector or their assistant, on request,
+                     to provide a record of the item seized to whoever had possession or control of the
+                     item before it was seized.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Paragraph 7(d) permits an inspector to require any person on the premises to provide
+                     him or her with reasonable assistance. This obligation may be needed, for example,
+                     to enable access to an animal cage, handle an animal (to be able to take samples)
+                     or to move a vehicle.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>The power provided by paragraph 8 enables any person brought to the premises by the
+                     inspector to exercise the inspector’s powers under paragraph 7, but only under the
+                     inspector’s supervision.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Paragraph 10 creates an offence of failing to comply with a requirement for assistance
+                     reasonably made by an inspector or intentionally obstructing an inspector when the
+                     inspector is carrying out their functions under the Schedule. The offence also applies
+                     to the assistants of inspectors. This is a summary offence for which the penalty is
+                     a fine of any amount.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Paragraph 11 protects inspectors and their assistants from liability in any civil
+                     and criminal proceedings for anything done or not done as a result of carrying out
+                     their duties under the Act. This exemption from liability only applies where an inspector
+                     or their assistant acts in good faith or if there were reasonable grounds for acting
+                     in such a manner.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Paragraph 12 defines the terms "power of entry" and "premises" which are used in the
+                     Schedule. This clarifies that the term "premises" includes any vehicle, tent or movable
+                     structure. In relation to a vehicle, where the Schedule refers to the occupier of
+                     premises this is to be read as a reference to the person who is in charge of the vehicle.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>The Act comes into force on 20 January 2020.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                        </span></h2>
+                  <section class="level">
+                     <table>
+                        <colgroup>
+                           <col style="width:1.43in">
+                           <col style="width:1.02in">
+                           <col style="width:1.02in">
+                           <col style="width:1.15in">
+                           <col style="width:1.28in">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 1</p>
+                                 <p>Section 2</p>
+                                 <p>Section 3</p>
+                                 <p>Section 4</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                                 <p>No</p>
+                                 <p>No</p>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                                 <p>No</p>
+                                 <p>Yes</p>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                                 <p>No</p>
+                                 <p>No</p>
+                                 <p>No</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Schedule</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Annex B - Hansard References</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>The following table sets out the dates and Hansard references for each stage of the
+                        Act's passage through Parliament.</p>
+                     <table>
+                        <colgroup>
+                           <col style="width:2.1in">
+                           <col style="width:2.1in">
+                           <col style="width:2.1in">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <p>Stage </p>
+                              </td>
+                              <td>
+                                 <p>Date</p>
+                              </td>
+                              <td>
+                                 <p>Hansard Reference</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td colspan="3">
+                                 <p>House of Commons</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Introduction</p>
+                              </td>
+                              <td>
+                                 <p>1 May 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/commons/2019-05-01/debates/E97853A5-1DA0-4021-B57E-C454F0BB7387/PointsOfOrder">
+                                       <u>Vol.659 Col.221</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Second Reading</p>
+                              </td>
+                              <td>
+                                 <p>7 May 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/commons/2019-05-07/debates/571256E8-47E0-4437-98ED-36862F2E6D5E/WildAnimalsInCircuses(No2)Bill">
+                                       <u>Vol.659 Col. 497</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Public Bill Committee</p>
+                              </td>
+                              <td>
+                                 <p>21 May 2019</p>
+                                 <p>21 May 2019</p>
+                                 <p>22 May 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/commons/2019-05-21/debates/58974712-2ecf-4f50-8343-e20837f23367/WildAnimalsInCircuses(No2)Bill(FirstSitting)">
+                                       <u>Col.1</u>
+                                       </a>
+                                    </p>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/commons/2019-05-21/debates/8e8b2aad-2b3c-4f62-bde6-3c5f40a8cafe/WildAnimalsInCircuses(No2)Bill(SecondSitting)">
+                                       <u>Col.35</u>
+                                       </a>
+                                    </p>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/commons/2019-05-22/debates/3790df21-05c2-46c9-930c-d3f7386ddc48/WildAnimalsInCircuses(No2)Bill(ThirdSitting)">
+                                       <u>Col.73</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Report and Third Reading</p>
+                              </td>
+                              <td>
+                                 <p>4 June 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/commons/2019-06-04/debates/085A082A-7653-4DB3-B48D-DCE37A3C19B8/WildAnimalsInCircuses(No2)Bill">
+                                       <u>Vol.661 Col. 81</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td colspan="3">
+                                 <p>House of Lords</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Introduction</p>
+                              </td>
+                              <td>
+                                 <p>5 June 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/lords/2019-06-05/debates/A0D66651-E06D-4F52-B03A-630AE97D7DBC/WildAnimalsInCircuses(No2)Bill">
+                                       <u>Vol.798</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Second Reading</p>
+                              </td>
+                              <td>
+                                 <p>19 June 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/lords/2019-06-19/debates/B7F1BEDF-6B78-4E27-8AFA-7B788D4B29F1/WildAnimalsInCircuses(No2)Bill">
+                                       <u>Vol.798 Col. 787</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Grand Committee</p>
+                              </td>
+                              <td>
+                                 <p>3 July 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/lords/2019-07-03/debates/7DF4DF45-7CBA-4BDB-80F0-BB67C3E36906/WildAnimalsInCircuses(No2)Bill">
+                                       <u>Vol.798 Col.94GC</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Report</p>
+                              </td>
+                              <td>
+                                 <p>17 July 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/lords/2019-07-17/debates/E7BF537F-9B59-478D-96AD-602D3E2521FD/WildAnimalsInCircuses(No2)Bill">
+                                       <u>Vol.799 Col. 240</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Third Reading</p>
+                              </td>
+                              <td>
+                                 <p>23 July 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/lords/2019-07-23/debates/C281AF58-638F-4992-BBFF-8203FF7C3DB4/WildAnimalsInCircuses(No2)Bill">
+                                       <u>Vol.799 Col. 673</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Royal Assent</p>
+                              </td>
+                              <td>
+                                 <p>24 July 2019</p>
+                              </td>
+                              <td>
+                                 <p>
+                                    <a href="https://hansard.parliament.uk/Lords/2019-07-24/debates/6B1EE293-9CE0-4EA5-87E2-601BC0F8C9D0/RoyalAssent">
+                                       <u>Vol.799</u>
+                                       </a>
+                                    </p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Hansard 1 March 2012 Column 41 WS</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Hansard 12 July 2012 Column 43 WS</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

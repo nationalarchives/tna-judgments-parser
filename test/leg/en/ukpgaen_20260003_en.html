@@ -1,0 +1,1015 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>HOLOCAUST MEMORIAL ACT 2026</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Holocaust Memorial Act 2026 which received Royal
+                     Assent on 22 January 2026 (c. 3). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Ministry of Housing, Communities
+                     and Local Government in order to assist the reader to understand the Act. They do
+                     not form part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act makes provision for and in connection with expenditure by the Secretary of
+                     State on the construction, use, operation, maintenance, or improvement of a Holocaust
+                     Memorial and Learning Centre, and removes restrictions to the siting of the Holocaust
+                     Memorial and Learning Centre on certain land.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>In January 2014, the then Prime Minister David Cameron launched the cross-party Holocaust
+                     Commission to examine what more should be done in Britain to ensure that the memory
+                     of the Holocaust is preserved and that the lessons it teaches are never forgotten.
+                     The Commission recommended that a “striking” new Memorial should be constructed in
+                     a “prominent central London location” to show the UK’s commitment to remembering the
+                     Holocaust, with a world class Learning Centre using “cutting edge technology”<a class="fn" id="fnref-1" href="#fn-1">1</a>. In January 2015, the Prime Minister accepted the Commission’s recommendations and
+                     committed the Government to establish a new national Holocaust Memorial and Learning
+                     Centre.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Holocaust Memorial will be a focal point for national remembrance of the Holocaust,
+                     dedicated to the six million Jewish men, women and children who were murdered and
+                     all other victims of the Nazis and their collaborators. The Learning Centre’s exhibition
+                     will explore the part played by Britain’s Parliament and democratic institutions in
+                     response to the persecution of the Jewish people and other groups both at the time
+                     and subsequently. It will help people understand the way the lessons of the Holocaust
+                     apply more widely, including to other genocides.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Following an extensive search for suitable sites, Victoria Tower Gardens was recommended
+                     to the Government as the most fitting site as its historical, emotional and political
+                     significance substantially outweighed all other locations. The Holocaust Memorial
+                     and Learning Centre was also seen to be in keeping with other memorials sited in the
+                     Gardens representing democratic struggles for equality and justice. Victoria Tower
+                     Gardens is Crown Land for which the Department for Culture, Media and Sport hold the
+                     title. The Government accepted the recommendation and announced Victoria Tower Gardens
+                     as the chosen location for the Memorial on 27 January 2016 to mark Holocaust Memorial
+                     Day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Following an international competition, the winning design for the Memorial and co-located
+                     Learning Centre was announced in October 2017<a class="fn" id="fnref-2" href="#fn-2">2</a>. The design was chosen because it met an essential challenge of the brief by being
+                     visually arresting yet showing sensitivity to its location and context. The winning
+                     design was further developed to meet the requirements of the chosen site, and to ensure
+                     that the new features and landscaping improvements will benefit all users of the gardens.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Government’s intention is that a permanent independent body should be given responsibility
+                     for the maintenance of the Memorial and the operation of the Learning Centre, as recommended
+                     by the Prime Minister’s Commission in Britain’s Promise to Remember.  The Governing
+                     Documents for the operating body will clearly establish that the educational purpose
+                     of the Learning Centre will be education about the Holocaust and about antisemitism.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Act gives the Secretary of State Parliamentary authority to incur expenditure
+                     to construct, maintain, operate or improve the Memorial and Learning Centre, in line
+                     with the requirements of Chapter 2 of HM Treasury’s document Managing Public Money.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>An application for planning consent was made by the then Secretary of State for Housing,
+                     Communities and Local Government in December 2018 for a Holocaust Memorial and accompanying
+                     underground Learning Centre. Following a public inquiry in 2020, planning consent
+                     was granted in July 2021. Subsequently in a statutory review of the planning decision
+                     the High Court concluded that certain sections of the London County Council (Improvements)
+                     Act 1900 (‘the 1900 Act’) which extended the existing Victoria Tower Gardens southwards
+                     and required the Commissioner of Works to maintain the land as a ‘garden open to the
+                     public’ were an obstacle to constructing the Holocaust Memorial and Learning Centre
+                     in the Gardens. The High Court quashed the decision to grant planning consent<a class="fn" id="fnref-3" href="#fn-3">3</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>This Act means that the relevant sections of the 1900 Act do not constitute an obstacle
+                     to construction and operation of the Holocaust Memorial and Learning Centre.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act does not include planning powers to construct the Holocaust Memorial and Learning
+                     Centre at Victoria Tower Gardens: planning consent will be sought separately through
+                     the provisions of the Town and Country Planning Act 1990.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Act is a hybrid Act.  This means it is of general application, but it contains
+                     provisions which have a different legal effect on the private interests of particular
+                     persons. In procedural terms, this meant it was considered as a Public Bill, but was
+                     treated as similar to a Private Bill during certain stages of its passage through
+                     Parliament. The hybrid Bill procedure gives those persons who are directly and specially
+                     affected an opportunity to petition against the Bill and to be heard in Select Committee.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The Holocaust Memorial Bill received its second reading in the House of Commons on
+                     28 June 2023, and was committed to a Select Committee following a motion in the House
+                     of Commons the same day. 10 petitions against the Bill were received. The Committee
+                     started sitting in January 2024 and concluded hearing petitioners in February 2024.
+                     The Committee’s First Special Report, summarising their decisions, can be found <a href="https://committees.parliament.uk/publications/44462/documents/221092/default/"><u>here</u></a><a class="fn" id="fnref-4" href="#fn-4">4</a>.&nbsp;The Committee did not amend the Bill. The Government’s response to the Report can
+                     be found <a href="https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf"><u>here</u></a><a class="fn" id="fnref-5" href="#fn-5">5</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The Bill was then committed to a Committee of the whole House on 22 May 2024 which
+                     made no amendments to the Bill, which then passed Third Reading in the House of Commons
+                     the same day. It passed its First Reading in the House of Lords on 23 May 2024 after
+                     which those directly and specially affected by the scheme could petition against the
+                     Bill until the deadline of 17 July 2024.&nbsp;The Bill was carried over to the new Parliament
+                     and reintroduced on 18 July 2024 and had its second reading on 4 September 2024, after
+                     which it was committed to a Lords Select Committee.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>In the House of Lords, 18 petitions against the Bill were received. The Committee
+                     started sitting in October 2024 and concluded its sittings in December that year,
+                     publishing its Special Report on 21 January 2025, which can be found <a href="https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm"><u>here</u></a><a class="fn" id="fnref-6" href="#fn-6">6</a>. The Committee accepted a number of assurances and an undertaking from the Government
+                     and made 4 recommendations to Government, but did not amend the Bill.&nbsp;The Government’s
+                     response can be found <a href="https://committees.parliament.uk/publications/46856/documents/241401/default/"><u>here</u></a><a class="fn" id="fnref-7" href="#fn-7">7</a>. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>This Act extends to England and Wales but applies to England only.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act </b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Holocaust Memorial and Learning Centre</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Section 1 provides for the Secretary of State to incur expenditure in relation to
+                        the construction, use, operation, maintenance or improvement of a new national Holocaust
+                        Memorial and Learning Centre.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Restrictions on using certain land</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Section 2 provides that the relevant sections of the 1900 Act (Section 8 (1) and Section
+                        8 (8)), which require that Victoria Tower Gardens shall be maintained as a garden
+                        open to the public do not prevent the construction and subsequent use, operation,
+                        maintenance or improvement of a Holocaust Memorial and Learning Centre.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement and short title</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 3 provides that the Act comes into force at the end of the period of two months
+                     beginning with the day on which it is passed, and provides for the short title of
+                     the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>London County Council (Improvements) Act 1900 can be found <a href="https://www.legislation.gov.uk/ukla/1900/269/enacted"><u>here</u></a><a class="fn" id="fnref-8" href="#fn-8">8</a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.37in">
+                        <col style="width:1.48in">
+                        <col style="width:2.45in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference&nbsp;</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>23 February 2023&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Hybridity examination&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>17 April 2023&nbsp;&nbsp;</p>
+                              <p>18 April 2023</p>
+                              <p>18 May 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/50746/documents/4059">
+                                    <u>Transcript AM</u>
+                                    </a>
+                                 <u> and </u>
+                                 <a href="https://bills.parliament.uk/publications/50751/documents/4060">
+                                    <u>Transcript PM</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/51256/documents/4061">
+                                    <u>Transcript</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/51224/documents/3620">
+                                    <u>Report</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>28 June 2023&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-06-28/debates/B7DAB8BD-85BF-4C80-B850-B57755C81F34/HolocaustMemorialBill">
+                                    <u>Vol. 735 Col. 321</u>
+                                    </a>&nbsp;&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Instruction to the Select Committee&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>28 June 2023&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-06-28/debates/58753037-7267-47B9-9E15-1E98B47D4059/HolocaustMemorialBillCommittal">
+                                    <u>Vol. 735 Col.365</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Carry-over motion House of Commons&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>28 June 2023&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-06-28/debates/4587899F-1ED9-4225-8928-EF907AE064F9/HolocaustMemorialBillCarry-Over">
+                                    <u>Vol. 735 Col. 368</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Carry-over motion House of Lords&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>23 October 2023&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>1st and 2nd reading&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>8 November 2023&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>&nbsp;&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Select Committee hearings&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>10 January 2024&nbsp;&nbsp;</p>
+                              <p>16 January 2024&nbsp;&nbsp;</p>
+                              <p>17 January 2024&nbsp;&nbsp;</p>
+                              <p>23 January 2024&nbsp;&nbsp;&nbsp;</p>
+                              <p>24 January 2024&nbsp;&nbsp;</p>
+                              <p>6 February 2024&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://committees.parliament.uk/committee/679/holocaust-memorial-bill-select-committee/publications/oral-evidence/">
+                                    <u>Transcripts of hearings</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Select Committee First Special Report of Session 2023–24&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>26 April 2024&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://committees.parliament.uk/publications/44462/documents/221092/default/">
+                                    <u>Report&nbsp;</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Promoter's response&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>20 May 2024&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://www.gov.uk/government/publications/holocaust-memorial-bill-government-response-to-the-select-committee-report/holocaust-memorial-bill-government-response-to-the-select-committee-report">
+                                    <u>Promoter's response to Select Committee Report&nbsp;</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Programme motion&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>22 May 2024&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-05-22/debates/E00F0136-9FC8-48E2-8418-C25850BE07DD/HolocaustMemorialBillBusinessOfTheHouse">
+                                    <u>Vol. 750 Col. 932</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>22 May 2024&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-05-22/debates/3C6046EB-8967-4852-8889-4886B4DEF2ED/HolocaustMemorialBill">
+                                    <u>Vol. 750 Col. 934</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>22 May 2024&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-05-22/debates/3C6046EB-8967-4852-8889-4886B4DEF2ED/HolocaustMemorialBill">
+                                    <u>Vol. 750 Col.980</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Cary-over Motion&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>22 May 2024&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2024-05-22/debates/D5C2EA6B-81AA-4980-B8E5-4EAC40DAAA0B/BusinessOfTheHouse(Today)">
+                                    <u>Vol. 750 Col.993</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>23 May 2024&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-22/debates/C6438EB1-472B-4F2E-9106-2CA261EED9A3/HolocaustMemorialBill">
+                                    <u>Vol. 838</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Bill Reintroduced&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>18 July 2024&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-07-18/debates/B19A40F3-135F-4527-9207-08F394AF78D0/HolocaustMemorialBill">
+                                    <u>Vol. 839</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>4 September 2024&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-09-04/debates/5FC010DB-3032-4DB7-946C-A558233E6D70/HolocaustMemorialBill">
+                                    <u>Vol. 839 Col. 1160 </u>
+                                    </a>&nbsp;&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Select Committee hearings&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>16 October 2024&nbsp;</p>
+                              <p>5 November 2024&nbsp;</p>
+                              <p>6 November 2024&nbsp;</p>
+                              <p>12 November 2024&nbsp;</p>
+                              <p>13 November 2024&nbsp;</p>
+                              <p>19 November 2024&nbsp;</p>
+                              <p>10 November 2024&nbsp;</p>
+                              <p>26 November 2024&nbsp;</p>
+                              <p>27 November 2024&nbsp;</p>
+                              <p>5 December 2024&nbsp;</p>
+                              <p>10 December 2024&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://committees.parliament.uk/committee/735/holocaust-memorial-bill-select-committee-lords/publications/oral-evidence/">
+                                    <u>Transcripts of Hearings</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Select Committee Special Report of Session 2024-25&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>21 January 2025&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/57870/documents/5669">
+                                    <u>Select Committee Report</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Promoter's response&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>24 February 2025&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://www.gov.uk/government/publications/holocaust-memorial-bill-government-response-to-the-house-of-lords-select-committee-report/holocaust-memorial-bill-government-response-to-the-house-of-lords-select-committee-report">
+                                    <u>Promoters’ response to the House of Lords Select Committee report</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee &nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>4 March 2025&nbsp;&nbsp;</p>
+                              <p>11 March 2025&nbsp;&nbsp;</p>
+                              <p>20 March 2025&nbsp;&nbsp;</p>
+                              <p>27 March 2025&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-03-04/debates/30CB6E45-DE7C-4061-B963-1E2C5E011170/HolocaustMemorialBill">
+                                    <u>Vol. 844 Col. 44GC</u>
+                                    </a>
+                                 <u>&nbsp;&nbsp;</u>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-03-11/debates/72A33140-C760-43DE-8F6E-E702C25470CE/HolocaustMemorialBill">
+                                    <u>Vol. 844 Col.186GC</u>
+                                    </a>
+                                 <u>&nbsp;&nbsp;</u>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-03-20/debates/CDAA6ABD-D6AC-497A-8F5E-55963268DFDC/HolocaustMemorialBill">
+                                    <u>Vol. 844 Col. 380GC</u>
+                                    </a>
+                                 <u>&nbsp;&nbsp;</u>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-03-27/debates/B997DE98-0C68-4A59-8CD7-64DACF06DA4D/HolocaustMemorialBill">
+                                    <u>Vol. 844 Col. 502GC</u>
+                                    </a>&nbsp;&nbsp;&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report  &nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>11 June 2025&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2025-06-11/debates/0A89A770-1051-4D09-9AAF-E772FBAD6A75/HolocaustMemorialBill">
+                                    <u>Vol. 846 Col.1388</u>
+                                    </a>&nbsp;/ <a href="https://hansard.parliament.uk/Lords/2025-06-11/debates/7372BB29-23E6-4C7B-8B53-88FABDD03373/HolocaustMemorialBill"><u>Vol. 846 Col. 1440</u></a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading &nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>17 June 2025&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-06-17/debates/D0B090C2-E382-45E5-8F20-12582FA94033/HolocaustMemorialBill">
+                                    <u>Vol. 846 Col. 1905</u>
+                                    </a>&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>20 January 2026&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2026-01-20/debates/ED08C82B-F5D9-48C0-ABFB-A69D35EA45F2/HolocaustMemorialBill">
+                                    <u>Vol. 779 Col. 219</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons amendments and reasons</p>
+                           </td>
+                           <td>
+                              <p>21 January 2026</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2026-01-21/debates/F0B6655C-7BE4-4290-B3C0-CE785F7C94C7/HolocaustMemorialBill">
+                                    <u>Vol. 852 Col. 361 &nbsp;&nbsp;</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent &nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>22 January 2026&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2026-01-22/debates/E48366D8-61E6-45A5-B376-787AC5463461/RoyalAssent">
+                                    <u>Vol. 852 Col. 473 &nbsp;</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>This Annex shows how each section of the Act was numbered during the passage of the
+                     Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.68in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                        <col style="width:0.98in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords </b>
+                              </p>
+                           <p>
+                              <b>Commons Consideration of Lords Amendment </b>
+                              </p>
+                           <p>
+                              <b>Lords Consideration of Commons Amendment</b>s <b>and / or reasons</b></p>
+                           <p>
+                              <b>Royal Assent</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Expenditure relating to a Holocaust Memorial and Learning Centre</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 - Expenditure relating to a Holocaust Memorial and Learning Centre</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 - Expenditure relating to a Holocaust Memorial and Learning Centre </p>
+                           </td>
+                           <td>
+                              <p>Clause 1 - Expenditure relating to a Holocaust Memorial and Learning Centre </p>
+                           </td>
+                           <td>
+                              <p>Clause 1 - Expenditure relating to a Holocaust Memorial and Learning Centre </p>
+                           </td>
+                           <td>
+                              <p>Clause 1 - Expenditure relating to a Holocaust Memorial and Learning Centre</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Removal of restrictions on using certain land</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Removal of restrictions on using certain land</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Removal of restrictions on using certain land </p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Removal of restrictions on using certain land </p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Removal of restrictions on using certain land </p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Removal of restrictions on using certain land</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Extent, commencement and short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 - Extent, commencement and short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Learning Centre Purpose</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Learning Centre Purpose</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Extent, commencement and short title </p>
+                           </td>
+                           <td>
+                              <p>Clause 3 - Extent, commencement and short title</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 4 - Extent, commencement and short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 - Extent, commencement and short title</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust_Commission_Report_Britains_promise_to_remember.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust</a></u></a><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust_Commission_Report_Britains_promise_to_remember.pdf"><u>_Commission_Report_Britains_promise_to_remember.pdf</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-international-design-competition"><u><a href="https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-">https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-</a></u></a><a href="https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-international-design-competition"><u>international-design-competition</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.judiciary.uk/wp-content/uploads/2022/07/LHPGT-v-Minister-for-Housing-Judgment-080422.pdf"><u><a href="https://www.judiciary.uk/wp-content/uploads/2022/07/LHPGT-v-Minister-for-Housing-Judgment-080422.pdf">https://www.judiciary.uk/wp-content/uploads/2022/07/LHPGT-v-Minister-for-Housing-Judgment-080422.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://committees.parliament.uk/publications/44462/documents/221092/default/"><u><a href="https://committees.parliament.uk/publications/44462/documents/221092/default/">https://committees.parliament.uk/publications/44462/documents/221092/default/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf">https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <a href="https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm"><u><a href="https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm">https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://committees.parliament.uk/publications/46856/documents/241401/default/"><u><a href="https://committees.parliament.uk/publications/46856/documents/241401/default/">https://committees.parliament.uk/publications/46856/documents/241401/default/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.legislation.gov.uk/ukla/1900/269/enacted"><u><a href="https://www.legislation.gov.uk/ukla/1900/269/enacted">https://www.legislation.gov.uk/ukla/1900/269/enacted</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

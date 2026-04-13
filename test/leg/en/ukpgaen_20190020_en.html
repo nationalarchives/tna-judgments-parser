@@ -1,0 +1,654 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>HOLOCAUST (RETURN OF CULTURAL OBJECTS) (AMENDMENT) ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Holocaust (Return of Cultural Objects) (Amendment)
+                  Act 2019 (c. 20) which received Royal Assent on 4 July 2019.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been Department for Digital, Culture, Media and Sport
+                  in order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act amends the Holocaust (Return of Cultural Objects) Act 2009 (the “2009 Act”)
+                     to prevent it from expiring on 11 November 2019.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The 2009 Act received Royal Assent on 12 November 2009. Section 4(7) of the 2009 Act
+                     contains a sunset clause that causes the 2009 Act to expire 10 years from the day
+                     on which it was passed. However, this Act makes provision for the 2009 Act to continue
+                     to have effect indefinitely. To achieve this, this Act repeals the sunset clause in
+                     section 4(7) of the 2009 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The 2009 Act confers power on the national museums and galleries listed in section
+                     1 (the “listed institutions”) to return certain cultural objects on grounds relating
+                     to events occurring during the Nazi era. It does so by enabling these institutions
+                     to give effect to recommendations made by the Spoliation Advisory Panel (the “Panel”)
+                     for the return of such objects. The Panel offers advice on claims for the return of
+                     cultural objects lost during the Nazi era (1933-1945) and which are now in UK national
+                     collections. This Act allows this power to continue indefinitely.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Panel was established by the Government in 2000 to consider claims for the return
+                     of cultural objects in UK collections lost during the Nazi era. It offers non-binding
+                     advice to museums and claimants on what might be an appropriate solution in accordance
+                     with the Washington Principles on Nazi-Confiscated Art, adopted in 1998 by 44 states,
+                     including all EU member states. These Principles aim to encourage the resolution of
+                     issues relating to the return of cultural objects lost during the Nazi era. The Panel
+                     may also advise on claims for items in private ownership but only where this follows
+                     a joint request by the claimant and the owner.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Prior to 2009, where the Panel found that the return of an item in a national museum
+                     or gallery was an appropriate solution, it was unable to recommend this because of
+                     legal restrictions in the governing legislation of these institutions. The statutory
+                     framework only allows the Board of Trustees of these institutions to dispose of items
+                     held in their collections in very limited circumstances, not including following a
+                     recommendation by the Panel.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>With the introduction of the Holocaust (Return of Cultural Objects) Act 2009, the
+                     17 listed institutions are able to return items lost during the Nazi era, where this
+                     follows a recommendation by the Panel and the Secretary of State agrees. Scottish
+                     Ministers must consent before the Secretary of State can approve a recommendation
+                     that relates to an object in the collection of one of the Scottish listed institutions.
+                     The 2009 Act includes a sunset clause which means that it will cease to have effect
+                     after 11 November 2019.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The provisions of the Act extend to England and Wales, and Scotland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act contains provisions that trigger the Sewel Convention that Westminster will
+                     not normally legislate with regard to devolved matters in Scotland without the consent
+                     of the Scottish Parliament. A legislative consent motion was agreed by the Scottish
+                     Parliament on 8 May 2018. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Repeal of Sunset Provision in the Holocaust (Return of Cultural Objects)
+                           Act 2009</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p> Section 1 of the Act amends Section 4 of the 2009 Act to remove subsection (7), which
+                        states that the 2009 Act will expire 10 years from the day it is passed. This amendment
+                        will prevent the 2009 Act from expiring on 11 November 2019, and will allow it to
+                        operate indefinitely.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Extent, Commencement and Short Title</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p> Section 2 describes the extent of the Act, its commencement and short title.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 2 of the Act provides for commencement.  The provisions of the Act came into
+                     force on the day of Royal Assent, so nothing further needs to be done to commence
+                     the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Financial implications of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The Act has no financial implications. The 2009 Act provides a power for the listed
+                     institutions to transfer objects from their collection where the conditions specified
+                     in the 2009 Act are met. The Act removes the sunset clause to extend this power indefinitely.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Compatibility with the European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The Government proposes to make a statement that the provisions of the Act are compatible
+                     with the European Convention on Human Rights (the “Convention”). A formal statement
+                     under section 19(1)(a) of the Human Rights Act 1998 is not required because the Act
+                     began as a Private Member’s Bill. A statement of compatibility was also made for the
+                     2009 Act, which stated that the 2009 Act engaged a number of Convention rights but
+                     strengthened their protection rather than interfering with them. These rights include
+                     the right to peaceful enjoyment of property (Article 1, Protocol 1), to a fair trial
+                     (Article 6), and to respect for private and family life (Article 8). That statement
+                     applies equally to the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Act also engages the prohibition on discrimination (Article 14) in combination
+                     with the right to peaceful enjoyment of property (Article 1, Protocol 1) because it
+                     allows the listed institutions to return lost cultural objects to their owners and
+                     heirs but only in cases where the object was lost during the Nazi era. As a result,
+                     it treats owners of cultural objects deprived of the peaceful enjoyment of these objects
+                     during the Nazi era more favourably than owners of cultural objects outside this group.
+                     The Act has the same effect by extending the operation of the 2009 Act indefinitely.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>On the passing of the 2009 Act, potential interference with Article 14 was considered
+                     to be objectively justified and reasonable as it recognised the particular obstacles
+                     faced by individuals seeking to recover items lost during the Nazi era and the need
+                     to promote special arrangements to assist them. The Government remains of the view
+                     that limiting the power of return to the Nazi era is justified. The widespread and
+                     systematic deprivation of property in this era and the problems faced by individuals
+                     seeking to recover their property have been recognised in international declarations
+                     as requiring particular measures to remedy, including the Washington Principles. The
+                     Act recognises the continued need to assist victims of Nazi expropriation and to give
+                     effect to international standards in this area.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0182/Holocaust%20(Return%20of%20Cultural%20Objects)%20Bill%20-%20LCM%20Scotland%20-%20180516%20.pdf">
+                           <u>Legislative Consent Motion from the Scottish Parliament </u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0182/Holoaust%20(Return%20of%20Cultural%20Objects)%20Bill%20-%20Scotland%20Memo%20-%20180516.pdf">
+                           <u>Legislative Consent Memorandum from the Scottish Parliament </u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://researchbriefings.parliament.uk/ResearchBriefing/Summary/CBP-8409">
+                           <u>House of Commons  Briefing Paper on the Bill  </u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://researchbriefings.parliament.uk/ResearchBriefing/Summary/LLN-2019-0051">
+                           <u>Holocaust (Return of Cultural Objects) (Amendment) Bill: Briefing for Lords Stages
+                              </u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The provisions of the Act extend to England and Wales, and Scotland.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:0.69in">
+                        <col style="width:0.69in">
+                        <col style="width:0.69in">
+                        <col style="width:0.95in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>13 March 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-03-13/debates/CBE9618C-3363-4465-8081-F06124F9BAFF/Holocaust(ReturnOfCulturalObjects)(Amendment)">
+                                    <u>Vol. 637 Col. 752</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>8 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-02-08/debates/07B342B0-BBE2-4E0B-BE35-A1423D4A1C82/Holocaust(ReturnOfCulturalObjects)(Amendment)Bill">
+                                    <u>Vol. 654 Col. 556</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>27 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0182/amend/holocaust_pro_pbc_0227.1.html">
+                                    <u>Col 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>15 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-03-15/debates/BBEF2566-96AF-45E7-842A-1A66E194F49A/Holocaust(ReturnOfCulturalObjects)(Amendment)Bill">
+                                    <u>Vol. 656 Col. 694</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>18 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-03-18/debates/7B40B2E1-CB4B-4ACF-8A11-8EA999DDC3DA/Holocaust(ReturnOfCulturalObjects)(Amendment)Bill">
+                                    <u>Vol. 796</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>12 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-06-12/debates/8E0AE3DA-FCD8-444C-A32A-FC35E461EFD3/Holocaust(ReturnOfCulturalObjects)(Amendment)Bill">
+                                    <u>Vol. 798</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>2 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-02/debates/63A36930-640E-4479-A7EA-DCE8CB6D4812/Holocaust(ReturnOfCulturalObjects)(Amendment)Bill">
+                                    <u>Vol. 798</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>4 July 2019</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2019-07-04/debates/FE58FDA7-EF3B-47CB-9336-A3FA3205D8B5/SexualAbuseConvictionRates"><u>Vol. 662 Col. 1347</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2019-07-04/debates/28ED4FB9-9C74-4840-A4EF-50073F9CC14D/RoyalAssent"><u>Vol. 798</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

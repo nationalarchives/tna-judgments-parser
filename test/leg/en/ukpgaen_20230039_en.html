@@ -1,0 +1,912 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>STRIKES (MINIMUM SERVICE LEVELS) ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Strikes (Minimum Service Levels) Act 2023 which
+                  received Royal Assent on 20 July 2023 (c. 39). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business and Trade
+                  in order to assist in understanding the Act. They do not form part of the Act and
+                  have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act enables the implementation of minimum service levels (MSLs) in certain services
+                     during periods of strike action. The Act amends the Trade Union and Labour Relations
+                     (Consolidation) Act 1992 (“the 1992 Act”) to: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>restrict the protection of trade unions under the 1992 Act from legal action in respect
+                        of strikes relating to certain services and the automatic protection of employees
+                        from unfair dismissal where provision has been made for minimum levels of service
+                        (MSLs). The services will be prescribed by regulations, following consultation; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>enable employers to issue work notices to require the minimum service levels to be
+                        delivered for particular strikes in specified services.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act is intended to expand upon a commitment made in the Conservative Party’s manifesto
+                     for the 2019 general election to require that a minimum service operates during transport
+                     strikes, by enabling the Government to regulate for minimum service levels in a range
+                     of sectors as outlined in paragraph 15. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Minimum service levels will be implemented via regulations, as provided for in this
+                     Act, in specific services. The Government will consult on these regulations before
+                     they are made. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>This Act and subsequent regulations are designed to enable employers to require enough
+                     workers to work so as to ensure minimum service levels are delivered during strikes
+                     within relevant services. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The current legislation relating to industrial action is set out in the 1992 Act,
+                     Part 5 in particular. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>By organising industrial action, trade unions may become liable in tort (a civil wrong
+                     that occurs when someone causes a person to suffer loss or harm, for which the courts
+                     can provide a remedy in law, such as damages or an injunction to compel or prevent
+                     certain conduct).  Where a trade union induces workers to take industrial action which
+                     amounts to a breach of their employment contract, the union may commit the tort of
+                     inducing breach of contract. Part 5 of the 1992 Act provides immunity for unions from
+                     such tortious liability provided the union follows the rules regarding the calling
+                     and conduct of strikes. It also protects employees participating in the strike for
+                     a certain period from being dismissed for breach of their contract of employment by
+                     reason of that participation. Both these protections can be lost if a strike is not
+                     undertaken in accordance with the rules. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The 1992 Act will continue to be the main Act dealing with rules regarding the calling
+                     and conduct of strikes, and this Act inserts new provisions into the 1992 Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act forms part of the law of England and Wales and Scotland, as set out in Section
+                     4. The provisions of the Act extend and apply to Great Britain.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1 and the Schedule: minimum service levels for certain strikes</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 1 introduces the Schedule, which amends Part 5 and other provisions of the
+                     1992 Act. Part 5 of the 1992 Act makes provision relating to industrial action, including
+                     the conditions that must be met in order for strike action to be protected from tort
+                     proceedings. </p>
+               </section>
+               <section class="level">
+                  <p>Act Schedule Part 1: Amendments to Part 5 of the 1992 Act: Minimum Service levels</p>
+               </section>
+               <section class="level">
+                  <p>Paragraphs 1 to 2</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>These paragraphs add the need for a union to take reasonable steps to ensure compliance
+                     by its members with a work notice in relation to minimum service levels to the list
+                     of requirements necessary for a strike to be protected from liability in tort. They
+                     insert new sections 234B, 234C, 234D, 234E, 234F and 234G to the 1992 Act. The meaning
+                     of “strike” is explained in paragraph 28 below and work notices are further explained
+                     in paragraphs 14 to 21.</p>
+               </section>
+               <section class="level">
+                  <p>New section 234B: Power of Secretary of State to specify minimum service levels</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Subsection (1) of this new section provides a power for the Secretary of State to
+                     make regulations providing for levels of service where there are strikes in relevant
+                     services, which are defined as “minimum service regulations”. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Subsection (2) provides that minimum service regulations may apply to strikes that
+                     take place on any day after they come into force, even if notice of the strike was
+                     given on or before that day, or the ballot in respect of the strike was on or before
+                     the day on which this Act comes into force. This means that the regulations may apply
+                     to all such strikes, regardless of when employers are notified of the strike. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Subsection (3) provides for a further power for the Secretary of State to specify
+                     in regulations the relevant services for which minimum service level regulations may
+                     be made.  This power to make regulations specifying relevant services is limited to
+                     the categories of services listed in Subsection (4) namely:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Health services</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Fire and rescue services;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Education services;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Transport services;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Decommissioning of nuclear installations and management of radioactive waste and spent
+                        fuel;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Border security.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>New section 234C: Work notices relating to minimum service levels</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>This new section establishes how work notices are to operate. Work notices are the
+                     mechanism that puts minimum service levels into practice for particular strikes in
+                     relevant services. The work notice may be given by the employer to the trade union
+                     and will identify the people required to work to secure that the levels of service
+                     set out in the minimum service regulations are provided on a strike day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Subsection (1) gives the employer the right to give a work notice to a union in relation
+                     to any strike which relates to the relevant service, where minimum service regulations
+                     have been made, and where the union has notified that strike to the employer in accordance
+                     with the existing rules on giving notice of a strike.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (2) explains that a work notice is to be a notice in writing telling the
+                     union that the levels of services, as provided for in the minimum service regulations,
+                     are to apply in relation to a strike. The work notice is therefore the mechanism by
+                     which the minimum service levels set out in the regulations apply to the provision
+                     of services for a strike day. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subsection (3) requires the notice to be given to the union that has served the strike
+                     notice, in the period between receipt of that strike notice and 7 days before the
+                     relevant day of the strike (or later if this is agreed by the union).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsections (4) and (5) prescribe what the contents of a work notice should be. It
+                     must identify the people who are required to work during the strike, and the work
+                     they must do. It must not list more people than are reasonably necessary to provide
+                     the levels of service set out in the minimum service regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (6) makes clear that the employer must have no regard to the following
+                     when deciding who to identify in a work notice: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>whether someone is or is not a member of a trade union or a particular trade union,
+                        including a particular branch or section of a trade union (see subsection (7));</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>whether a person has or has not taken part in activities of a trade union. This could,
+                        for example, include strike action or recruitment activities;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>whether a person has or has not made use of trade union services;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>whether a trade union has or has not raised a matter on behalf of a person; or</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>whether a person has or has not consented to a trade union raising a matter on their
+                        behalf.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsection (8) requires the employer to consult the union about the number of people
+                     to be identified in the work notice and the work they must do and have regard to any
+                     views expressed by the union before issuing the work notice to that union. Subsection
+                     (9) allows the employer to vary a work notice before the end of the 4th day before
+                     the relevant day of the strike (or later if this is agreed by the union). Subsection
+                     (10) requires the employer to consult the union again, on the same matters as referred
+                     to above, before making such a variation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (11) specifies that where a strike takes place over a number of days (whether
+                     continuously or discontinuously) each day of the strike is to be treated as a separate
+                     strike date. This enables employers to issue individual work notices for individual
+                     strike dates even if the strike as a whole runs for multiple days.  </p>
+               </section>
+               <section class="level">
+                  <p>New section 234D: Work notices: disclosure of information</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>This new section provides that, where it is necessary to name individuals in work
+                     notices, this will not be a breach of confidence owed by the employer or of any other
+                     restrictions on disclosing information. The employer must adhere to data protection
+                     legislation but the obligations regarding the giving of work notices in this section
+                     are to be taken into account when assessing the obligations under that legislation.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>New section 234E: No protection if union fails to take reasonable steps</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>This new section provides that the union’s protection from tort proceedings (see paragraph
+                     6) is removed if: minimum service regulations are in place in relation to a relevant
+                     service; an employer to whom the minimum service regulations applies issues a work
+                     notice in accordance with the procedures in the Act; and the union fails to take reasonable
+                     steps to ensure that members of the union who are identified in the work notice comply
+                     with the work notice. Such compliance by union members would mean not participating
+                     in the strike on strike days when those members are required by the work notice to
+                     work.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>If an employer does seek damages against a union in relation to a failure by the union
+                     to take reasonable steps to ensure a valid work notice is complied with by its members,
+                     subsection (2) requires that any damages awarded by the courts may only cover losses
+                     incurred as a result of the union failing to comply with the obligation in section
+                     234E(1)(b) to take reasonable steps. In other words, damages may not extend to losses
+                     that would have been suffered by the employer anyway.</p>
+               </section>
+               <section class="level">
+                  <p>New section 234F: Regulations: consultation and supplementary</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (1) requires that consultation takes place prior to regulations being made
+                     under section 234B. Subsection (2) explains certain types of provisions those regulations
+                     may contain. Subsection (5) makes it clear that consultation required by subsection
+                     (1) may take place prior to, as well as after, the passing of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsections (3) and (4) provide that these regulations are subject to the affirmative
+                     procedure and require the approval of both Houses of Parliament before they are made.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>New section 234G: Interpretation of terms relating to minimum service levels</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>This section sets out the meaning of various defined terms used in the Act including
+                     that:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Minimum service regulations are defined in section 234B(1);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Relevant services are defined in section 234B(3); and </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>A work notice is defined in section 234C(2).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (2) makes clear that the meaning of ‘strike’ where used in sections 234B
+                     to 234F, does not include overtime bans and call-out bans and that such bans constitute
+                     action short of a strike for the purposes of minimum service levels. This aligns with
+                     the same definition used for the purposes of a ballot on industrial action, as referenced
+                     by s229(2A) of the 1992 Act. </p>
+               </section>
+               <section class="level">
+                  <p>Act Schedule Part 2: Related amendments to the 1992 Act</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>This part of the Act’s schedule makes a number of technical amendments to the 1992
+                     Act to ensure the new requirements regarding minimum service regulations and work
+                     notices are applied to the law around industrial action more broadly, in particular
+                     whether certain strikes are protected against liability for the union or not (see
+                     paragraph 4 of the Schedule). This also includes that unions must make clear in their
+                     notice of industrial action (under section 234A) whether the action is a strike (as
+                     defined in paragraph 28 above).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>This part also makes clear that that there is no automatic protection from unfair
+                     dismissal for an employee who is identified in a valid work notice but participates
+                     in the strike contrary to that work notice,  provided that their employer has (before
+                     the strike day) given the employee notice of the work specified in the work notice
+                     that they are required to carry out on the strike day and a statement that they must
+                     comply with that work notice.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Other sections in the Act</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 2: Meaning of “the 1992 Act”</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>This section is self-explanatory.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Power to make consequential provision</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>This section allows the Secretary of State to make consequential amendments by affirmative
+                        regulations as regards amendments to primary legislation (i.e. an Act) and to make
+                        consequential amendments to any other legislation by regulations subject to annulment
+                        by a resolution of either House of Parliament in accordance with the negative procedure.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>This section is self-explanatory. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Commencement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>See paragraph 36 below.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>This section is self-explanatory.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>All sections within the Act came into force on Royal Assent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament:</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.7in">
+                        <col style="width:1.38in">
+                        <col style="width:3.21in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>10 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-01-10/debates/9E220974-A948-4585-930A-F85DC82A5380/PointsOfOrder">
+                                    <u>Vol. 725 Col. 455 </u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-01-16/debates/A08B1E2A-B712-4C30-9A71-57DAC922C4A5/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol.726 Col. 54</u>
+                                    </a>
+                                 <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/images/ukpga_2023_39_notes_en_001.gif" alt="">
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>30 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-01-30/debates/AA4BBFD1-EBE3-4346-8968-7CB474F3F85E/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 727 Col. 59</u>
+                                    </a>
+                                 <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/images/ukpga_2023_39_notes_en_001.gif" alt="">
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>30 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-01-30/debates/AA4BBFD1-EBE3-4346-8968-7CB474F3F85E/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 727 Col. 165</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>31 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-01-31/debates/FC7B1316-EAC4-42E8-B4CA-3891726111F0/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 827 Col. 549</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>21 February 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3396/stages/17357">
+                                    <u>Vol. 827 Col. 1561</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee</p>
+                           </td>
+                           <td>
+                              <p>9 March 2023</p>
+                              <p>23 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3396/stages/17393">
+                                    <u>Vol. 828 Col. 892</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3396/stages/17393">
+                                    <u>Vol. 828 Col. 1862</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>26 April 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-04-26/debates/61E83113-0B2D-40D2-9CD1-ED34E7C7CC17/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 829 Col. 1222</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>9 May 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-05-09/debates/2137961A-F01A-4E8B-B27D-510B7E1A3601/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 829 Col. 1678</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>22 May 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-05-22/debates/DE7D768F-2624-49B7-A053-2A644CD0B2CE/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 733 Col. 76</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Reasons</p>
+                           </td>
+                           <td>
+                              <p>8 June 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12913">
+                                    <u>Vol. 830 Col. 1600</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>21 June 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-06-21/debates/258A03B6-4C90-4CE2-83D9-B0BF35545FF8/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 734 Col. 801</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Reasons</p>
+                           </td>
+                           <td>
+                              <p>4 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-07-04/debates/BF570E82-AB88-469A-8721-D791596EC5CF/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 831 Col. 1115</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>17 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-07-17/debates/3489D504-6BCE-44E8-BBD1-F5331CFF6697/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 736 Col. 712</u>
+                                    </a>
+                                 <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/images/ukpga_2023_39_notes_en_001.gif" alt="">
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Reasons</p>
+                           </td>
+                           <td>
+                              <p>20 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-07-17/debates/3489D504-6BCE-44E8-BBD1-F5331CFF6697/Strikes(MinimumServiceLevels)Bill">
+                                    <u>Vol. 831 Col. 2461</u>
+                                    </a>
+                                 <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/images/ukpga_2023_39_notes_en_001.gif" alt="">
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>20 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-07-20/debates/E5EE933B-210D-404A-ABAB-4ACB1FAA1FFE/SirDavidAmessSummerAdjournment">
+                                    <u>House of Commons Vol. 736 Col. 1073</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-07-20/debates/B4D727F5-C825-47E0-84E6-FAD54F417244/RoyalAssent">
+                                    <u>House of Lords Vol. 831 Col. 2498</u>
+                                    <img src="http://www.legislation.gov.uk/id/ukpga/2023/39/notes/image1.gif" alt="">
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

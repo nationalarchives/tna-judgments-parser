@@ -1,0 +1,2095 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>ELECTRONIC TRADE DOCUMENTS</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Electronic Trade Documents Act 2023 which received
+                  Royal Assent on 20 July 2023 (c. 38).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been developed by the Department for Science, Innovation
+                  and Technology (DSIT) in order to assist the reader in understanding the Act. They
+                  do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act gives effect to the recommendations made by the Law Commission of England
+                     and Wales in its report on Electronic Trade Documents, published on 16 March 2022.<a class="fn" id="fnref-1" href="#fn-1">1</a> The Act is concerned with certain types of documents used in trade and trade finance
+                     whose functionality depends on their being capable of being (physically) possessed.
+                     Before the passing of the Act, the law in the United Kingdom did not recognise the
+                     possibility of possessing electronic documents; possession was associated only with
+                     tangible assets. These documents could not therefore be used effectively in electronic
+                     form.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act gives effect to the recommendation of the Law Commission for England and Wales
+                     to allow for the legal recognition of such documents in electronic form. It does so
+                     by providing that a trade document in electronic form that satisfies the criteria
+                     set out in the Act (that is, an “electronic trade document”) is capable of possession.
+                     In providing for the possessability of electronic trade documents that fall within
+                     its scope, the Act enables such documents to have the same legal recognition and functionality
+                     as their paper counterparts. Furthermore, the Act sets out provisions relating to
+                     the use of electronic trade documents in practice, such as indorsement and change
+                     of medium between electronic and paper trade documents. It also repeals sections 1(5)
+                     and 1(6) of the Carriage of Goods by Sea Act 1992, and makes consequential amendments
+                     to section 89B(2) of the Bills of Exchange Act 1882.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>International trade involves moving goods across borders in order to get them from
+                     the seller to the buyer. This process typically involves multiple actors, including
+                     those involved in transportation, insurance, finance and logistics. One trade finance
+                     transaction typically involves 20 entities and between 10 and 20 paper documents,
+                     totalling over 100 pages. In a transaction covered by a bill of lading, for example,
+                     it is common to find 50 sheets of paper in a package of shipping documents that must
+                     be exchanged between as many as 30 different parties.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Despite the size and sophistication of the international trade market, many of its
+                     processes, and the laws underlying them, are based on practices developed by merchants
+                     hundreds of years ago. In particular, international trade still relies to a large
+                     extent on a special category of document that entitles the holder to claim performance
+                     of the obligation recorded in the document, and to transfer the right to claim performance
+                     of that obligation by transferring (physical) possession of the document. The document
+                     is said to “embody” the obligation, which may be to deliver goods or to pay money,
+                     rather than merely to evidence it. For example, a bill of lading is a document used
+                     in the carriage of goods by sea which, when transferred to a buyer (or any subsequent
+                     lawful holder), gives that holder constructive possession of the goods described in
+                     the Act, and a right to claim delivery of them from the carrier. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The law governing these documents is premised on the idea that they can be physically
+                     held or “possessed”. For example, in the Bills of Exchange Act 1882 (which applies
+                     to promissory notes and bills of exchange), the terms “bearer”, “holder” and “delivery”
+                     are defined by reference to possession. The existing law in the United Kingdom did
+                     not recognise the possibility of possessing electronic documents given their intangible
+                     nature; possession was associated only with tangible assets.<a class="fn" id="fnref-2" href="#fn-2">2</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Industries using these documents were therefore prevented by law from moving to a
+                     fully paperless process. To give a sense of the enormous amount of paperwork international
+                     trade generates, consider that the world’s largest containerships can carry 24,000
+                     twenty-foot containers at any one time on any one voyage. For each one of those cargoes,
+                     paper transport documentation has to be produced, and must be processed manually to
+                     go from the shipper of the goods to the ultimate buyer at destination, sometimes through
+                     numerous intermediaries. Because electronic versions of the relevant documents could
+                     not be possessed, much of the documentation had to be in hard copy. The Digital Container
+                     Shipping Association (“DCSA”) estimated that 16 million original bills of lading were
+                     issued by ocean carriers in 2020, and that more than 99% of these were in paper form.<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Department for Digital, Culture, Media and Sport (“DCMS”) asked the Law Commission
+                     to make recommendations to solve the problems caused by the law’s approach to the
+                     “possession” and transfer of trade documents in electronic form. DCMS also asked the
+                     Law Commission to prepare draft legislation to implement those recommendations. The
+                     Law Commission consulted on provisional proposals and draft legislation in April 2021,<a class="fn" id="fnref-4" href="#fn-4">4</a> and published its final recommendations for reform, along with the draft Bill, in
+                     March 2022.<a class="fn" id="fnref-5" href="#fn-5">5</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Law Commission’s recommendations relate to the law of England and Wales only.
+                     However, given that much of the relevant legislation in this area (such as the Bills
+                     of Exchange Act 1882 and the Carriage of Goods by Sea Act 1992) extends to the whole
+                     of the UK, and the position at common law is similar across the UK, the Government
+                     extended the Act so that it now extends to the whole of the UK.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Allowing for electronic versions of certain trade documents so that international
+                     trade can be more fully digitalised could lead to significant cost savings and efficiencies,
+                     increased transparency, increased security, reduced errors, and greater resilience
+                     to the impact of sudden shocks such as COVID-19. This is the policy objective of the
+                     Act: to allow for certain trade documents in electronic form that satisfy specific
+                     criteria to be recognised in law as capable of possession, so that they can have the
+                     same legal treatment, effects and functionality as their paper counterparts. The Act
+                     and these explanatory notes refer to these documents as “trade documents”, but in
+                     fact they are a subset of documents used in trade and trade finance which are dependent
+                     on possession for their operation, as described above.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act recognises that not every electronic document has the same functionality.
+                     As such, only trade documents in electronic form that satisfy particular criteria,
+                     designed to replicate the salient features of paper documents, are deemed possessable
+                     under the Act. These criteria include that:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>in order to prevent double spending, it must not be possible for more than one person
+                        (or persons acting together) to exercise control of the document at any one time;
+                        and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>when the document is transferred, any person who was able to exercise control of the
+                        document before the transfer loses the ability to do so.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>In addition, a reliable system must be used to allow any person who is able to exercise
+                     control of the document to demonstrate that fact, to protect the document from unauthorised
+                     interference, and to ensure the document can be distinguished from any copies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The intended effects of the Act are to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>reduce transaction costs associated with paper trade documents by reducing resourcing
+                        and operational costs, and increasing productivity;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>increase efficiency and encourage business growth by facilitating the development
+                        of digital products and services;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>increase environmental benefits due to a reduction in paper documents; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>increase security and transparency in documentation.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Further policy and background to the Law Commission’s recommendations is provided
+                     in its final report and the consultation paper which preceded it.<a class="fn" id="fnref-6" href="#fn-6">6</a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 8(1) sets out that the Act extends to England and Wales, Scotland and Northern
+                     Ireland, save for section 3(4) which extends only to Scotland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, Senedd
+                     Cymru or the Northern Ireland Assembly without the consent of the legislature concerned.
+                     It is also the practice of the UK Government to seek the consent of the devolved legislatures
+                     for provisions which would alter the competence of those legislatures or the devolved
+                     administrations in Scotland, Wales and Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Summary of the Act</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>The Act contains eight sections, which can be summarised as follows.</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Section 1 contains a definition of “paper trade document”. It sets out the criteria
+                           that a document must satisfy in order to qualify as a “paper trade document”. It also
+                           sets out a non-exhaustive list of trade documents that are commonly used in connection
+                           with trade in or transport of goods, or financing such trade or transport. This section
+                           effectively sets the scope for the types of trade documents that could be caught by
+                           the Act.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Section 2 contains a definition of “electronic trade document”. It sets out the criteria
+                           that a trade document in electronic form must satisfy in order to qualify as an “electronic
+                           trade document”, and to therefore be capable of possession.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>Section 3 provides for the possession and indorsement of electronic trade documents.
+                           It also provides that an electronic trade document has the same effect as an equivalent
+                           paper trade document, and that anything done in relation to an electronic trade document
+                           has the same effect (if any) as it would have in relation to an equivalent paper trade
+                           document. It further provides that electronic trade documents are to be treated as
+                           corporeal moveable property for the purposes of any Act of the Scottish Parliament
+                           relating to the creation of a security in the form of a pledge over moveable property.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>Section 4 provides for a change of medium or form; that is, the conversion of a paper
+                           trade document into an electronic trade document, or an electronic trade document
+                           into a paper trade document.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>Section 5 contains an “opt-out” provision which, if applicable, will mean that sections
+                           3 and 4 of the Act will not apply to the relevant electronic trade document. It also
+                           excludes uncertificated securities from the scope of sections 1 to 4 of the Act, and
+                           provides a power to amend section 5 so as to amend or remove the uncertificated securities
+                           exception, or to add to the list of documents or instruments excluded (subject, where
+                           relevant, to prior consultation with the Scottish Ministers).</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">f.</span></h2>
+                        <p>Section 6 sets out the procedural requirements for the use of the amending power contained
+                           in section 5 and confirms that it is exercisable by statutory instrument.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">g.</span></h2>
+                        <p>Section 7 is the consequential amendments section. It sets out an amendment to the
+                           Bills of Exchange Act 1882, and provides for the repeal of certain provisions of the
+                           Carriage of Goods by Sea Act 1992.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">h.</span></h2>
+                        <p>Section 8 sets out the territorial extent of the Act, the commencement date and the
+                           short title.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Commentary on sections of the Act</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Definition of “paper trade document”</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Section 1(1) defines the types of trade documents which may fall within the scope
+                        of the Act. It does this by setting out three criteria that a document must satisfy
+                        in order to qualify as a “paper trade document” for the purposes of the Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Section 1(1)(a) requires the document to be in paper form. This is because the Act
+                        is concerned with electronic forms of trade documents that are currently used in paper
+                        form.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Section 1(1)(b) requires the document to be of a type commonly used in connection
+                        with trade in or transport of goods, or financing such trade or transport of goods.
+                        The purpose of this section is to narrow the ambit of the documents that fall within
+                        the scope of the Act. Its purpose is to exclude documents not of a type commonly used
+                        in connection with trade in or transport of goods (or financing thereof) but which
+                        may otherwise fall within the scope of the Act because they satisfy the remaining
+                        requirements in section 1. To provide certainty and clarity, and to prevent potential
+                        arguments that a broader range of documents fall within the scope of the Act (such
+                        as stock transfer forms, provisional allotment letters and other documents routinely
+                        used in financial or money markets) the Act is limited to documents of a type commonly
+                        used in connection with trade. In addition, the document need only be commonly used
+                        in trade in at least one part of the United Kingdom to satisfy section 1(1)(b). This
+                        wording prevents the situation from arising whereby a document is of a type commonly
+                        used in trade in England and Wales, for example, but not in Scotland (and would otherwise
+                        fall outside the scope of the Act). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Section 1(1)(c) provides that possession of the document must be required for a person
+                        to claim performance of an obligation. Possession may be required as a matter of law,
+                        commercial custom, usage or practice. This section is an “umbrella” provision, and
+                        allows for a broad range of documents to fall within the scope of the Act. The intention
+                        behind this section is to ensure that (subject to the remaining sections of the Act)
+                        any document the functionality of which requires it to be possessed falls within the
+                        scope of the Act, regardless of its precise legal or commercial nature. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>For example, warehouse receipts and ship's delivery orders are not documents of title
+                        at common law, but possession is generally an important part of how these documents
+                        operate in practice. Possession of these documents may be required in certain circumstances
+                        as a matter of practice for a person to claim performance of an obligation, or for
+                        certain effects to follow under statute (for example, the Sale of Goods Act 1979).
+                        Whether possession is required for the operation of such documents depends on the
+                        manner in which they are made out, and the context in which they are used. When possession
+                        is relevant as a matter of practice for a person to claim performance of an obligation,
+                        these documents fall within the scope of section 1(1)(c). The umbrella provision also
+                        ensures flexibility insofar as certain documents may not fall within its scope today,
+                        but could do so if a commercial custom or practice were to develop requiring possession
+                        of those documents in order for them to fulfil their legal and commercial functions.
+                        For example, although consignment notes are already used in electronic form and so
+                        are not generally required to be possessed, they would be covered by the umbrella
+                        provision if there were circumstances in practice where they were required to be possessed
+                        in order for a person to claim performance of an obligation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Section 1(2) sets out a non-exhaustive list of documents that are commonly used in
+                        connection with trade in or transport of goods, or financing such trade or transport.
+                        The documents listed in section 1(2) are key trade documents in widespread use, and
+                        have therefore been specifically listed for the sake of certainty and clarity. A particular
+                        document on the list will only be caught by the Act if it nevertheless satisfies the
+                        remaining requirements in section 1(1). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>For example, the term “bill of lading” is broad and encompasses various types of document,
+                        including, for example, “shipped” or “on-board” bills of lading, “straight” bills
+                        of lading (usually marked as “non-negotiable”) and multimodal bills of lading (which
+                        can classify as “received for shipment” bills of lading). The reference to “a bill
+                        of lading” in section 1(2)(c) of the Act is intended to cover all of these types of
+                        bill of lading, meaning that such documents are commonly used in connection with trade
+                        for the purposes of section 1(2)(b), and will therefore fall within the scope of the
+                        Act, provided possession is a necessary aspect of their functionality.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Definition of “electronic trade document”</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Section 2 sets out the criteria that a document in electronic form must satisfy in
+                        order to qualify as an “electronic trade document” for the purposes of the Bill.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Same information as the equivalent paper trade document</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Some paper trade documents which fall within the scope of the Act have requirements
+                        as to the information they must contain in order to qualify as that trade document.
+                        These requirements may derive from statute, common law, custom or practice. In order
+                        to qualify as an “electronic trade document” for the purposes of the Act, a document
+                        in electronic form must contain the same information as would be required to be contained
+                        in the paper equivalent. Section 2(1) effectively provides for this requirement. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>The purpose of this requirement is to establish the link between the document in electronic
+                        form and its paper counterpart. It entails that, for example, not every electronic
+                        payment instruction will become a bill of exchange and therefore subject to the requirements
+                        of the Bills of Exchange Act 1882. An electronic promissory note would need to include
+                        an unconditional promise to pay the bearer a sum certain in money in order to fall
+                        within the scope of the Act. Importantly, this section does not introduce any new
+                        requirements as to the information that a document in electronic form should contain.
+                        Rather, it requires information that must be contained in a paper trade document to
+                        also be contained in any electronic form of that document for it to fall within the
+                        scope of the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Concept of “document” in electronic form</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Section 2(2) sets out the concept of “document” in electronic form for the purposes
+                        of the Act. It provides that the information in electronic form, as well as any other
+                        information with which it is logically associated that is also in electronic form,
+                        constitutes an “electronic trade document” for the purposes of the Act (emphasis added),
+                        provided a reliable system is used to achieve certain functionality in relation to
+                        that document. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>In practice, a document in electronic form may have multiple components. One component
+                        will always be the particular instance of a data string or data structure consisting
+                        of functional code, which is logically associated with (and specifically identifies)
+                        the human readable part of the document. There might also be other components made
+                        up of human readable text (for example, a .pdf file or other type of data that can
+                        be accessed and displayed in a human readable way by a computer). Depending on the
+                        technology being used, this could be a unique cryptographic “token” allocated to a
+                        system user. The data string or data structure is recorded on or across one or more
+                        ledgers, structured records or registers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Section 2(2) ensures that the various components of a trade document in electronic
+                        form are regarded as a single document, even though they may perform different functions.
+                        For example, the requirement that an electronic document must contain the same information
+                        as its paper counterpart will likely be fulfilled by the human readable component
+                        of the document. This component is logically associated with the controllable data
+                        structure. On the other hand, it is likely that control of the document will be exercised
+                        by means of the document’s underlying data structure (such as the token).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>“Logically associated” in section 2(2) is intended to mean electronically connected
+                        to, linked to, or otherwise cross-referenced to. This wording enables the use of different
+                        models for electronic trade documents’ management systems.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Reliability of an electronic trade document system</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Section 2(2) requires that a reliable system is used to ensure that the document in
+                        electronic form has certain features or functionality designed to replicate the salient
+                        features of a paper trade document. “Reliable” in this context means that an electronic
+                        system meets certain standards in the way that it operates.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Section 2(5) sets out a list of non-exhaustive factors (based loosely on article 12
+                        of the UNCITRAL Model Law on Electronic Transferable Records) that a court may take
+                        into account when considering whether an electronic trade document system is reliable.
+                        In requiring a system to be reliable, and in setting out various factors that may
+                        be taken into account when assessing reliability, the Act does not prescribe or endorse
+                        any particular type of technology. It simply provides a non-exhaustive list of factors
+                        that a court may take into account when assessing the reliability of a particular
+                        electronic trade document system. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Distinguishable from copies</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Section 2(2) requires that a reliable system is used to ensure that the document in
+                        electronic form has certain features or functionality designed to replicate the salient
+                        features of a paper trade document. “Reliable” in this context means that an electronic
+                        system meets certain standards in the way that it operates.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Section 2(5) sets out a list of non-exhaustive factors (based loosely on article 12
+                        of the UNCITRAL Model Law on Electronic Transferable Records) that a court may take
+                        into account when considering whether an electronic trade document system is reliable.
+                        In requiring a system to be reliable, and in setting out various factors that may
+                        be taken into account when assessing reliability, the Act does not prescribe or endorse
+                        any particular type of technology. It simply provides a non-exhaustive list of factors
+                        that a court may take into account when assessing the reliability of a particular
+                        electronic trade document system.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Integrity of an electronic trade document</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Section 2(2) requires that a reliable system is used to ensure that the document in
+                        electronic form has certain features or functionality designed to replicate the salient
+                        features of a paper trade document. “Reliable” in this context means that an electronic
+                        system meets certain standards in the way that it operates.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Section 2(5) sets out a list of non-exhaustive factors (based loosely on article 12
+                        of the UNCITRAL Model Law on Electronic Transferable Records) that a court may take
+                        into account when considering whether an electronic trade document system is reliable.
+                        In requiring a system to be reliable, and in setting out various factors that may
+                        be taken into account when assessing reliability, the Act does not prescribe or endorse
+                        any particular type of technology. It simply provides a non-exhaustive list of factors
+                        that a court may take into account when assessing the reliability of a particular
+                        electronic trade document system. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Exclusive control</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Section 2(2)(c) requires that it must not be possible for more than one person to
+                        exercise control of the document at any one time. Section 2(3)(a), discussed below,
+                        provides that a person exercises control of a document for the purposes of the Act
+                        when they use, transfer or otherwise dispose of it. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Requiring that it must not be possible for more than one person to exercise control
+                        of the document at any one time is not the same as precluding multiple people from
+                        having control at the same time. Multiple people could have control of a document
+                        in electronic form (because, for example, they all have the security credentials or
+                        private key necessary to use, transfer or dispose of the document). However, what
+                        is important for the document in question to qualify as an electronic trade document
+                        is that, even if multiple people have the private key or other means of control, only
+                        one person can utilise that key or means of control at any one time. The question
+                        of who actually has control is therefore separate and distinct from the question of
+                        the features that a document in electronic form must have in order to qualify as an
+                        electronic trade document for the purposes of the Act. The exclusive control requirement
+                        contained in section 2(2)(c) is aimed at addressing the double spend issue so that,
+                        for example, two people with the relevant private key cannot both transfer the same
+                        document to two different transferees independently of each other.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>A system is not excluded from the scope of the Act simply because the system operator
+                        or administrator, as well as the user, is able to exercise control of the document
+                        in electronic form. Since section 2(2)(c) focuses on exercising control, rather than
+                        having control, this removes any concern that such a system would be excluded. Systems
+                        where the system operator or administrator is able to exercise control of the document
+                        fall within the scope of the Act (assuming they meet the other criteria). The requirement
+                        that it must not be possible for more than one person to exercise control of the document
+                        at any one time ensures that where, for example, the user is transferring or otherwise
+                        using the document (thereby exercising control), the system administrator cannot also
+                        do so.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Identification of the persons who are able to exercise control</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Section 2(2)(d) requires that any person who is able to exercise control of the document
+                        in electronic form is able to demonstrate their ability to do so. The electronic trade
+                        document system must be capable of allowing for the identification of any person who
+                        is able to exercise control of the document, regardless of whether any person is in
+                        fact exercising that control.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>This requirement reflects the association between the document in electronic form
+                        and the person or persons who are able to exercise control of that document. It ensures
+                        that, for a document to be an electronic trade document, the document must be capable
+                        of being uniquely associated with the person or persons who are able to exercise control
+                        of it. Depending on the underlying technology, this association could be achieved
+                        by the system linking the document with a particular address or security credentials,
+                        and a person being able to demonstrate that they have the relevant security credentials
+                        or other means of control.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>This section does not mean that, by looking at the system itself, it must be possible
+                        to see who is able to exercise control. Instead, it requires that, if asked to evidence
+                        their ability to exercise control, a person could prove this on the system. For example,
+                        if three people have access to the private key to a document, the system must allow
+                        each of those three persons to identify themselves as persons who are able to exercise
+                        control by showing or using their private key.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Divestibility</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Section 2(2)(e) requires the document in electronic form to be divestible. This means
+                        that transfer of the document must necessarily entail a transfer both of the document
+                        and of the ability to exercise control of it (unless the person is able to exercise
+                        control by virtue of being a transferee). This feature prevents an electronic trade
+                        document from being transferred more than once by the same party, or by another party
+                        having concurrent control with the transferor– the double spend problem. Divestibility
+                        singularises the right to claim performance of the obligation recorded in the document.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Suitable objects of property rights are necessarily divested on transfer. For physical
+                        objects, this is inherent in their material nature. For example, in the paper world,
+                        if Alice gives a paper bill of lading to Bob, Bob then has the bill of lading and
+                        Alice does not. The bill of lading is no longer in Alice’s physical possession, nor
+                        does she have factual control over it. Alice has been divested of the paper trade
+                        document and cannot purport to transfer it to Charlie. Similarly, if a paper bill
+                        of lading is in a vault and Alice and Daisy both have the passcode to the vault (and
+                        therefore concurrent control and possession of the bill of lading), if Alice were
+                        to take the paper bill of lading out of the vault and give it to Bob, both Alice and
+                        Daisy would lose factual control and possession of the document.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>The divestible nature of a paper trade document is crucial to its ability to be possessed.
+                        Section 2(2)(e) aims to replicate this feature in the electronic context by requiring
+                        that when an electronic trade document is transferred, the transferor (and any person
+                        who was able to exercise control concurrently with the transferor) is fully divested
+                        of the document. How divestibility will work in practice will largely depend on the
+                        type of electronic trade document system in question. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Importantly, the word “transfer” in section 2(2)(e) is being used in a factual rather
+                        than a legal sense. It is intended to mean the electronic equivalent of handing over
+                        a piece of paper. It is not intended to refer to the legal process by which the transferee
+                        becomes the valid holder of the document, which may require additional elements (such
+                        as acceptance or indorsement) to be satisfied.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>The ability to retain a copy of the electronic trade document after transfer or disposal
+                        would not, in and of itself, prevent the divestibility requirement from being satisfied,
+                        and would not constitute retention of control of the document.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>What it means to exercise control</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Section 2(3)(a) sets out what it means to exercise control of a trade document in
+                        electronic form for the purposes of the Act. A person exercises control when they
+                        use, transfer or otherwise dispose of the document (regardless of whether they have
+                        a legal right to do so). The concept of control within the meaning of section 2(3)(a)
+                        is a factual rather than a legal or rights-based enquiry. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>“Use” of a trade document in electronic form constitutes an independent and separate
+                        exercise of control, in addition to transferring or disposing of the document. There
+                        may be situations where a party is able to use the document without also being able
+                        to transfer or dispose of it. This would be the case where, for example, a party is
+                        able to hold or retain the document in order to prevent any dealings in the document
+                        by anyone else. In such a case, the party who is able to retain the document has the
+                        ability to use the document. For example, where a pledge is granted, the pledgee,
+                        to whom the document is transferred, may be precluded by the system from further transferring
+                        or disposing of it until the debtor has either repaid the loan or defaulted. This
+                        does not, however, change the fact that the document has been transferred to the pledgee.
+                        The pledgee retains the document, and can thereby prevent any dealings in the document
+                        by anyone else. In this case, the pledgee is using the document, notwithstanding that
+                        they cannot transfer or otherwise dispose of it.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Other examples of acts that constitute “use” of the document include requesting a
+                        change of medium, requesting an amendment of the document, adding an indorsement or
+                        an acceptance to the document, and presenting or surrendering the document.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Reading or viewing a document</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Section 2(4) provides that reading or viewing a trade document in electronic form
+                        does not, without more, constitute “use” of the document for the purposes of the Act.
+                        Reading or viewing a trade document could arise both where a person does not otherwise
+                        have factual control of the document (and therefore the ability to exercise control),
+                        and where they do. For example, a person could have read-only access to a document,
+                        allowing them to view and read the document but nothing more. Such a person does not
+                        have the ability to use that document for the purposes of the Act. This means that
+                        they do not have control (or the ability to exercise control). For example, a stevedoring
+                        service provider (who loads and offloads cargo to or from a ship) might need to check
+                        the information in a bill of lading in the course of unloading the goods. If the service
+                        provider is only given access to the document over the system for this limited purpose,
+                        and simply views the document, this does not constitute “use” of the document for
+                        the purposes of the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>In other cases, a person who has the ability to use, transfer or otherwise dispose
+                        of the document (and therefore the ability to exercise control) would ordinarily also
+                        be able to access the document to read or view it. If, however, the person only reads
+                        or views the document in a particular instance, that does not constitute “use” of
+                        the document and, as such, the person cannot be said to be exercising control of the
+                        document for the purposes of the Act. This is the case notwithstanding the fact that
+                        the person would otherwise have control of the document that they could exercise (because,
+                        for example, they could transfer or otherwise dispose of it). In theory, this means
+                        that someone could exercise control of a document while another party with control
+                        is simply reading or viewing it.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>To “use” a trade document in electronic form is, therefore, to utilise or retain the
+                        document to achieve a particular purpose. It includes causing something to happen
+                        (or preventing something from happening) to the document. Merely reading or viewing
+                        the document does not, in and of itself, constitute “use” of the document in a particular
+                        instance.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Persons acting jointly</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Section 2(3)(b) of the Act covers the situation where a group of persons acting jointly
+                        can exercise control of the trade document in electronic form. This could arise, for
+                        example, in a multi-signature arrangement, where several people have different (fragments
+                        of) keys, with a certain combination or number of them being necessary to effect a
+                        transfer of the document. In this case, the persons who can exercise control jointly
+                        over the document are treated as one person for the purposes of section 2(2)(c). As
+                        such, even though multiple persons (acting jointly) can exercise control of the document,
+                        these arrangements are still capable of satisfying the exclusive control requirement
+                        in section 2(2)(c).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Possession, indorsement and effect of electronic trade documents</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Possession and indorsement of an electronic trade document</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Section 3(1) provides that a person may possess, indorse and part with possession
+                        of an electronic trade document. This section is intended to remove the legal blocker
+                        that historically has prevented trade documents in electronic form from being possessed.
+                        As a result of this section, electronic trade documents are capable of possession.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>The Act does not set out what constitutes possession of an electronic trade document.
+                        Since possession is a relative and fact-specific concept, what constitutes possession
+                        of an electronic trade document in any particular context will be assessed as a matter
+                        of common law. The common law approach to establishing possession as a matter of fact
+                        considers two elements: factual control and intention (see for example <i>The Tubantia</i> (No 2) [1924] P 78; <i>Mainline Private Hire Ltd v Nolan</i> [2011] EWCA Civ 189; [2011] CTLC 145). Who has possession of something at any one
+                        time will therefore depend on the type of control they have in respect of it and their
+                        intentions in relation to it, assessed against the control and intentions of other
+                        people who may also have a claim. Although existing case law concerning possession
+                        relates to tangible assets, many of the principles are capable of application to electronic
+                        trade documents. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Although possession is often described in terms of exclusive control, the existing
+                        common law admits many situations in which more than one person has control of a tangible
+                        asset. Exclusivity means one person, or group of persons acting in concert, can exclude
+                        others from having control of that object. Exclusive control is not the same as singular
+                        control. Control may be consensually shared (for example, where multiple people acting
+                        together all have knowledge of the relevant private key and any one of them may use
+                        it in furtherance of mutual objectives). In other cases, control may be concurrent
+                        but the persons who have control are acting independently (for example, where multiple
+                        people have knowledge of the relevant private key or security credentials facilitating
+                        control of an electronic trade document). Control may also be joint (for example,
+                        in a multi-signature arrangement as described above). The important feature of exclusive
+                        control is the ability it provides to limit access and use; it is not nullified simply
+                        by virtue of being widely shared on any given set of facts.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Intention is an integral part of the enquiry whether a document is in fact possessed
+                        by a particular person. Whether a person with the ability to control an electronic
+                        trade document has the requisite intention to possess it will depend on the facts
+                        of the case and the evidence available as to their state of mind. Their intention
+                        may also need to be assessed relative to that of others.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Parties may also have other possessory interests in electronic trade documents, including
+                        legal possession (being the right to possess rather than possession in fact). The
+                        range of potential relationships between persons and electronic trade documents is
+                        analogous to that between persons and paper documents (or indeed any other tangible
+                        object).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Section 3(1) provides that a person may part with possession of an electronic trade
+                        document. The Act does not specify what amounts to a transfer of possession. However,
+                        section 2(2)(e) (the divestibility criterion) ensures that when a person transfers
+                        an electronic trade document (meaning the electronic equivalent of handing over a
+                        piece of paper), the transferor necessarily loses the ability to exercise control
+                        of the document. So too do all the people who shared the ability to exercise control
+                        of the document with the transferor (unless they are themselves a transferee). Transfer
+                        of (factual) possession of an electronic trade document therefore entails a loss of
+                        control by the transferor. To gain possession, the transferee(s) must have the requisite
+                        intention to possess the electronic trade document. Depending on the circumstances,
+                        the transferor may retain some rights over the document, for example, if the document
+                        is released to a debtor subject to a trust in favour of the creditor.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Section 3(1) further provides that a person may indorse an electronic trade document.
+                        Indorsement is an essential part of the transfer of many trade documents and any rights
+                        which attach to them. Indorsement is an annotation in writing on a document of title
+                        instructing that the obligation recorded therein be performed to the order of a named
+                        person or simply “to order”. There is a business practice of indorsing paper documents
+                        on their reverse, which reflects the origins of the word “indorsement”: the Latin
+                        “dorsus”, meaning “back”. Unlike a paper document, an electronic document may not
+                        have a “back”. The purpose of providing expressly for indorsement of an electronic
+                        trade document is to ensure that an electronic indorsement will be valid regardless
+                        of where it is located on the document.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Equivalence between paper and electronic trade documents</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>An electronic trade document should be the same in law as the equivalent paper trade
+                        document. Electronic and paper trade documents should have the same legal effect and
+                        functionality, and the same rules should apply to both. Further, anything done in
+                        relation to an electronic trade document should have the same effect (if any) as it
+                        would have in relation to a paper trade document. Sections 3(2) and 3(3) are intended
+                        to give effect to these overarching policy intentions. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Section 3(2) provides that an electronic trade document has the same effect as an
+                        equivalent paper trade document. This means that where, for example, a paper trade
+                        document can be said to “embody” an obligation (which may be to deliver goods or to
+                        pay money) the electronic equivalent has the same legal effect insofar as it also
+                        embodies the relevant obligation. The holder of the electronic trade document can
+                        enforce the obligation in the same way as a holder of the paper equivalent. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Section 3(3) provides that anything done in relation to an electronic trade document
+                        has the same effect (if any) as it would have in relation to an equivalent paper trade
+                        document. For example, where the transfer or delivery of possession of a paper trade
+                        document is the means by which the right to claim performance of the obligation embodied
+                        in that document is transferred, then transfer or delivery of possession of the equivalent
+                        electronic trade document will similarly be required. In other words, the right to
+                        claim performance of the obligation embodied in the document, whether in paper or
+                        electronic form, is generally transferred by this means and not by assignment or assignation.
+                        This is so regardless of the fact that an electronic trade document is regarded as
+                        intangible (or incorporeal); as a result of the Act it can nevertheless be possessed.
+                        What constitutes a transfer or delivery of possession of an electronic trade document
+                        will look different from handing over a physical paper trade document. The transfer
+                        of possession will be effected on the system – but the act is the same, that is, transfer
+                        of possession rather than assignment/assignation. Assigning the right to claim performance
+                        of the obligation would not be sufficient where assignment in relation to the equivalent
+                        paper trade document would not be sufficient to transfer the document, and section
+                        3(3) ensures that the effect of assignment in relation to both the electronic and
+                        paper trade document is the same. Section 3(3) therefore ensures that the same process
+                        of transferring the document applies in relation to a trade document, whether in electronic
+                        or paper form. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>A similar result arises in the context of security interests. Certain paper trade
+                        documents can be subject to possessory securities (for example, pledge) or non-possessory
+                        securities (for example, charge). To effect a possessory security, there has to be
+                        a transfer of possession of the relevant paper trade document to the creditor. Because
+                        the Act provides for electronic trade documents to be possessed, it will be possible
+                        to make them subject to possessory security arrangements. In order to effect a possessory
+                        security in relation to an electronic trade document, there has to be a transfer of
+                        possession. Anything less would not be sufficient because that action in relation
+                        to the equivalent paper trade document would not be sufficient. Section 3(3) therefore
+                        entails a transfer of possession of the electronic trade document, and this has the
+                        same effect as a transfer of possession of the equivalent paper trade document. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>In addition, any act which amounts to the electronic equivalent of delivery, presentment,
+                        amendment, acceptance or rejection, or surrender will have the same effect as it would
+                        have in relation to a paper trade document. For example, delivery of a bill of exchange
+                        is defined as “the transfer of possession, actual or constructive, from one person
+                        to another”. Determining what constitutes delivery of an electronic bill of exchange
+                        will therefore entail assessing whether there has been a “transfer of possession”
+                        of the electronic document. At its most basic, transfer of possession as a matter
+                        of fact requires a transfer of control from the transferor. Determining what constitutes
+                        “delivery” of a particular electronic trade document will therefore require an assessment
+                        of the features of the electronic trade document system in question, and the evidence
+                        available. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>These sections are not intended to overcome or circumvent (statutory or other) requirements
+                        applicable to paper trade documents. Rather, they are intended to ensure that electronic
+                        and paper trade documents have equivalence in all respects, are dealt with in the
+                        same way, and that the same substantive law applies to “trade documents” whether in
+                        paper or electronic form.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Interaction with the Scots law relating to the creation of security in the form of
+                              pledge over moveable property</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Section 3(4) is intended to address the interaction between the Act and the Moveable
+                        Transactions (Scotland) Act 2023 (asp 3) (the “MT(S) Act”). The MT(S) Act reforms
+                        Scots law relating to the assignation of claims and to security over corporeal moveable
+                        property. In relation to security, the rules on possessory pledge for corporeal moveable
+                        property are updated and a new “statutory pledge”, which will normally be created
+                        by registration, is introduced. A statutory pledge will be available for corporeal
+                        moveable property and certain incorporeal moveable property (initially intellectual
+                        property or an application for, or licence over, intellectual property, with power
+                        to the Scottish Ministers to add other categories of incorporeal moveable property).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Negotiable instruments (such as bills of exchange) are excluded from the scope of
+                        the MT(S) Act. However, there remains some crossover between the Act and the MT(S)
+                        Act in that certain paper trade documents which fall within the scope of the Act (those
+                        which are non-negotiable instruments, including bills of lading) also fall within
+                        the scope of the MT(S) Act. The provisions of the MT(S) Act therefore apply to some
+                        of the trade documents that the Act is concerned with.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>In light of the policy intention behind the Act, which is to ensure that an electronic
+                        trade document is the same in law as the equivalent paper trade document, section
+                        3(4) is intended to ensure that the MT(S) Act will have the same effect as regards
+                        an electronic trade document as it would have for the equivalent paper trade document,
+                        specifically in relation to the creation of pledges. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>Part 2 of the MT(S) Act allows for corporeal moveable property to be the subject of
+                        possessory and statutory pledges. However, it does not envisage the creation of possessory
+                        pledges in respect of incorporeal moveable property in any circumstances and, as noted
+                        above, statutory pledges can only be created in respect of certain incorporeal moveable
+                        property. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>“Pledge” of a bill of lading constitutes a pledge of the underlying goods, which are
+                        tangible/corporeal. No special provision is therefore required to allow for this under
+                        the MT(S) Act. However, it is at least theoretically possible to deliver a different
+                        type of paper trade document with the intention of creating a (possessory) pledge
+                        over the document itself, given its tangible/corporeal nature. It should therefore
+                        be equally possible to do this with an electronic trade document (or to create a statutory
+                        pledge in respect of it under the MT(S) Act) in order to ensure legal parity between
+                        electronic and paper trade documents. It is not clear that sections 3(1), 3(2) and
+                        3(3) of the Act are sufficient to allow for the pledge of an electronic trade document
+                        itself under Scots law, as the MT(S) Act might be taken to override these provisions.
+                        Section 3(4) is included to address this possibility. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>It does so by providing that electronic trade documents should be treated as corporeal
+                        moveable property for the purposes of any Act of the Scottish Parliament relating
+                        to the creation of a security in the form of a pledge over moveable property.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Change of form or medium</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>Section 4 allows for change of form or medium of a trade document from electronic
+                        to paper form, and from paper to electronic form. It uses the word “converted” to
+                        describe the act of changing the medium of a trade document; it does not refer to
+                        the tort of conversion. The purpose of section 4 is to provide that a change of form
+                        or medium is permissible, to set out clearly the requirements that must be met for
+                        a valid change of medium, and to provide for the consequences thereof. Many of the
+                        documents that the Act covers are used in cross-border transactions spanning multiple
+                        jurisdictions and involving contracts governed by different laws. It is inevitable
+                        that different jurisdictions will recognise electronic trade documents to varying
+                        extents. It may therefore be necessary in some situations to replace an electronic
+                        trade document with a paper substitute. For the sake of completeness, a paper trade
+                        document may also be converted into an electronic trade document.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>Upon a change of medium, it is only the medium or form of the document that changes.
+                        If there is any substantive change to the content of the document upon the purported
+                        change of medium, this would constitute a fresh issue, not a change of form or medium.
+                        Where it is only the medium of the document that is changing (rather than the document
+                        being re-issued), the date and place of issue of the document in its new medium would
+                        be the same as that of the document in its old medium.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Requirements for a valid change of form</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">77 </span></h2>
+                     <p>Section 4(1) provides for the change of medium (or conversion) of a trade document
+                        from electronic to paper form and from paper to electronic form, provided two conditions
+                        are met. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">78 </span></h2>
+                     <p>Section 4(1)(a) requires a statement that the document has been converted to be included
+                        in the document in its new form. For example, a document converted from paper to electronic
+                        form must contain, in that electronic form, a statement that it has been converted
+                        from paper. The statement need only specify that the document has been converted or
+                        changed from paper to electronic form; it need not contain additional details. The
+                        purpose of this requirement is to ensure that the transferee of a trade document,
+                        the medium of which has been changed or converted, is aware that the document was
+                        originally issued in a different form or medium. This puts the transferee on notice
+                        of a change of medium, helps maintain an audit trail of the document, and enables
+                        the transferee to ascertain the document’s genuineness and compatibility with any
+                        specific requirements.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">79 </span></h2>
+                     <p>Section 4(1)(b) requires any contractual or other requirements relating to the conversion
+                        of the document to be complied with. Systems currently in use, which provide electronic
+                        alternatives to paper trade documents, generally operate in accordance with underlying
+                        contractual provisions governing a change of medium. The issuer, as well as the person
+                        in possession, would generally need to agree to the change of medium. The purpose
+                        of this requirement is to ensure that such arrangements are not rendered redundant
+                        or overridden. The intention is to ensure that a change of medium is permissible at
+                        law, but not to establish how or by whom it may be done. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Consequences of compliance with the requirements for a change of form</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">80 </span></h2>
+                     <p>Section 4(2) sets out the consequences of a valid change of form in accordance with
+                        the provisions of section 4(1). It provides that when a document is converted in accordance
+                        with section 4(1), the document in its old form ceases to have effect, and the rights
+                        and liabilities relating to the document continue to have effect in relation to the
+                        document in its new form.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">81 </span></h2>
+                     <p>This section ensures that, upon a change of form or medium in accordance with the
+                        requirements set out in the Act, there is no duplication of the performance obligation
+                        because the old form of the document ceases to have effect. In addition, the continuation
+                        of the rights and liabilities ensures that a change of medium is precisely that –
+                        a change of the form of the document, rather than any substantive change to the rights
+                        or liabilities pertaining to the document.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Consequences of non-compliance with the requirements for a change of form</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">82 </span></h2>
+                     <p>Since the requirement to include a statement on the trade document in its new medium
+                        imposes a mandatory formality requirement, failure to include such a statement will
+                        result in an invalid change of medium for the purposes of the Act. Similarly, failure
+                        to comply with any contractual or other requirements necessary for a change of medium
+                        will result in an invalid change of medium for the purposes of the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">83 </span></h2>
+                     <p>While failure to comply with either of the requirements set out in section 4(1) would
+                        result in an invalid change of medium for the purposes of the Act, the document created
+                        as a result of the purported conversion may nonetheless constitute a newly issued
+                        trade document in its own right, with its own date and place of issue. For example,
+                        if the purported change is from paper to electronic, but the parties forget to include
+                        a statement that the document has been converted, the electronic document could still
+                        qualify as an electronic trade document if it satisfies the requirements of the Act.
+                        However, since the document is not validly converted under the Act, this could lead
+                        to a duplication of the promisor’s obligation. This is because, in the absence of
+                        a valid change of medium, the document in its old (paper) form will not automatically
+                        cease to have effect. It would need to be separately cancelled and taken out of circulation
+                        in order to no longer bind the obligor.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Exceptions</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">84 </span></h2>
+                     <p>Section 5(1) provides that sections 3 and 4 of the Act do not apply in relation to
+                        an electronic trade document if an intention that section 3 should not apply appears
+                        in, or can reasonably be inferred from, the document or terms that have effect in
+                        relation to it. The purpose of this sub-section is to ensure that the Act is facilitative
+                        insofar as parties do not have to rely on possessory concepts in relation to their
+                        electronic trade document if they do not wish to. That is, parties can, if they so
+                        choose, “opt-out” of the effects of the Act. This means they can continue to rely
+                        on other contractual workarounds or mechanisms for using documents in electronic form,
+                        rather than relying on the possessory concepts in the Act. This section is drafted
+                        broadly so as to include a situation where the terms of issue, or the terms otherwise
+                        governing the manner of holding and transferring the document, contemplate or provide
+                        for an arrangement other than one based on possession. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">85 </span></h2>
+                     <p>Section 5(2)(a) excludes documents or instruments entered in a relevant system under
+                        the Uncertificated Securities Regulations 2001 (S.I. 2001/3755) from the scope of
+                        sections 1 to 4 of the Act. The purpose of this exclusion is to avoid potential confusion
+                        that could result from the fact that two statutory regimes in relation to electronic
+                        documents or instruments could apply. For example, a type of debt security known as
+                        “commercial paper” (which is technically a promissory note) could meet the requirements
+                        of the Uncertificated Securities Regulations 2001, and also fall within the scope
+                        of the Act. Since the Uncertificated Securities Regulations 2001 provide for a different
+                        statutory regime entirely from one based on possessory concepts, it is preferable
+                        for documents or instruments falling under that regime to fall outside the scope of
+                        the Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">86 </span></h2>
+                     <p>Section 5(2)(b) provides a power to further exclude a type of document or instrument
+                        from the scope of sections 1 to 4 of the Act by specifying that document or instrument
+                        in regulations made by the appropriate authority. Section 5(7) identifies the appropriate
+                        authority as the Secretary of State, the Secretary of State acting jointly with the
+                        Scottish Ministers and - where all the provision made by the regulations is within
+                        Scottish devolved competence - the Scottish Ministers. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">87 </span></h2>
+                     <p>This power may be exercised in circumstances where it is determined that a type of
+                        document or instrument which falls within the scope of the Act requires more bespoke
+                        provisions to allow for its digitalisation, or where a type of document or instrument
+                        should not be capable of being used in electronic form. Given that the Act could lead
+                        to a significant change in practice for certain types of documents, it is important
+                        that the legislation includes a power to make further carve-outs if it proves necessary
+                        or desirable. Any regulations made pursuant to section 5(2)(b) would not amend section
+                        5 of the Act, and could themselves be amended or revoked by further regulations made
+                        under that sub-section. Sections 5(4) and 5(5) provide that the Secretary of State
+                        must consult the Scottish Ministers before making regulations under section 5(2)(b)
+                        containing provision with effect in relation to Scotland, except when the Secretary
+                        of State and Scottish Ministers are acting jointly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">88 </span></h2>
+                     <p>Section 5(3) provides that the exception in sub-section (2)(a) may be amended or removed
+                        by regulations made by the Secretary of State. This power may be exercised in circumstances
+                        where the Uncertificated Securities Regulations 2001 are amended, thereby necessitating
+                        consequential amendments to the exception provision in the Act. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Regulations under section 5</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">89 </span></h2>
+                     <p>Section 6 makes provisions for the regulations made under section 5. It confirms that
+                        the power is exercisable by statutory instrument subject to the affirmative parliamentary
+                        procedure. Regulations made by the Scottish Ministers, whether acting alone or jointly
+                        with the Secretary of State, are also subject to the affirmative procedure of the
+                        Scottish Parliament.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Consequential provision</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">90 </span></h2>
+                     <p>Section 7(1) provides for consequential amendments to section 89B(2) of the Bills
+                        of Exchange Act 1882 (“Instruments to which section 89A applies”). It effectively
+                        provides that section 89A of the Bills of Exchange Act 1882 (“Presentment of instruments
+                        by electronic means”) does not apply to anything that is an electronic trade document
+                        within the meaning of the Act. Sections 89A and 89B of the Bills of Exchange Act 1882
+                        envisage a different type of electronic presentment from that provided for by the
+                        Act, which does not involve a physical document. It is appropriate therefore that
+                        anything constituting an electronic trade document within the meaning of the Act is
+                        excluded from the scope of these provisions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">91 </span></h2>
+                     <p>Section 7(2) repeals sections 1(5) and 1(6) of the Carriage of Goods by Sea Act 1992
+                        (“COGSA 1992”). Sections 1(5) and 1(6) of COGSA 1992 give a power to make regulations
+                        to enable bills of lading, sea waybills and ship’s delivery orders to be issued, indorsed,
+                        delivered or otherwise transferred by electronic means. Given that bills of lading
+                        and ship’s delivery orders fall within the scope of the Act, the powers provided for
+                        in these provisions become redundant with respect to those documents. In addition,
+                        even though the Act does not apply to sea waybills, sea waybills are not transferable,
+                        and possession of them is not (either as a matter of law or commercial practice) relevant
+                        to the determination of rights and entitlements. As such, the inability to possess
+                        sea waybills is not an obstacle to their use in electronic form. If it were ever the
+                        case that possession was relevant to a sea waybill in a particular situation, it would
+                        fall within the umbrella provision in section 1(1)(c) of the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Extent, commencement and short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">92 </span></h2>
+                     <p>Section 8(1) sets out the territorial extent of the Act. The Act extends to England
+                        and Wales, Scotland and Northern Ireland, except for section 3(4) which extends only
+                        to Scotland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">93 </span></h2>
+                     <p>Section 8(2) makes provision about the coming into force of the Act. The Act comes
+                        into force at the end of the period of two months beginning with the day on which
+                        it is passed.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">94 </span></h2>
+                     <p>Section 8(3) effectively provides that the Act has prospective effect only. It achieves
+                        this by providing that sections 3 and 4 of the Act do not apply in relation to a paper
+                        trade document or an electronic trade document issued before the day on which the
+                        Act comes into force. The Act uses the word “issue” as all the documents with which
+                        the Act is concerned need to be issued before they can be used in the ordinary course
+                        of business to achieve certain effects at law. When a particular trade document can
+                        be said to be issued will depend on the facts, and the type of document in question.
+                        For example, the word “issue” could be said to describe the moment in time when a
+                        trade document (where relevant) becomes a document of title.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">95 </span></h2>
+                     <p>Section 8(3) entails that an electronic trade document issued before the Act comes
+                        into force cannot be possessed or indorsed, and cannot be converted into a paper trade
+                        document. It also entails that it is not possible to effect a change of form or medium
+                        under the Act from paper to electronic, if the relevant paper trade document was issued
+                        prior to the Act coming into force. In order to promote certainty and clarity, section
+                        4 of the Act only applies to paper trade documents or electronic trade documents issued
+                        after the Act comes into force. Since the documents falling within the scope of the
+                        Act are generally issued, transferred, and accomplished in a relatively short space
+                        of time, the period during which such documents exist which cannot be converted to
+                        electronic or paper form in accordance with the Act will be relatively short.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">96 </span></h2>
+                     <p>Section 8(4) sets out the short title of the Act. The Act may be cited as the Electronic
+                        Trade Documents Act 2023.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">97 </span></h2>
+                  <p>Section 8(2) provides for the Act to come into force at the end of the period of two
+                     months beginning with the day on which it is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">98 </span></h2>
+                  <p>Sections 3 and 4 do not apply in relation to a paper trade document or an electronic
+                     trade document issued before the day on which the Act comes into force.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">99 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Law Commission for England and Wales consultation paper - Digital assets: electronic
+                        trade documents: <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2021/04/Electronic-trade-documents-CP.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2021/04/Electronic-trade-documents-CP.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Law Commission for England and Wales report and draft Bill - Electronic Trade Documents:
+                        <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2022/03/Electronic-Trade-Documents-final-report-ACCESSIBLE-1.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2022/03/Electronic-Trade-Documents-final-report-ACCESSIBLE-1.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Impact Assessment: <a href="https://bills.parliament.uk/publications/49071/documents/2629"><u>https://bills.parliament.uk/publications/49071/documents/2629</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Delegated Powers memorandum: <a href="https://bills.parliament.uk/publications/48009/documents/2696"><u>https://bills.parliament.uk/publications/48009/documents/2696</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Supplementary Delegated Powers memorandum: <a href="https://bills.parliament.uk/publications/52291/documents/3819"><u>https://bills.parliament.uk/publications/52291/documents/3819</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.94in">
+                        <col style="width:1.24in">
+                        <col style="width:1.24in">
+                        <col style="width:1.24in">
+                        <col style="width:1.24in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>England</b>
+                              </p>
+                           <p>
+                              <b>Wales</b>
+                              </p>
+                           <p>
+                              <b>Scotland</b>
+                              </p>
+                           <p>
+                              <b>Northern Ireland</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>In part</p>
+                           </td>
+                           <td>
+                              <p>In part</p>
+                           </td>
+                           <td>
+                              <p>In part</p>
+                           </td>
+                           <td>
+                              <p>In part</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Yes&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-10-12/debates/23CDFE06-709A-4E32-AF46-0D67F8DD0DC8/ElectronicTradeDocumentsBill(HL)">
+                                    <u>Vol. 824 Col. 789</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading Committee</p>
+                           </td>
+                           <td>
+                              <p>7 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-11-07/debates/EFDEB437-4656-42AA-B3FF-0531B0DFA9BB/ElectronicTradeDocumentsBill(HL)">
+                                    <u>Vol. 825 Col.145GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-11-30/debates/C9771E5D-FBED-4EF2-86DA-4DCE032E512F/ElectronicTradeDocumentsBill(HL)">
+                                    <u>Vol. 825 Col. 1783</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Special Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>12, 19 and 26 January 2023</p>
+                              <p>20 February 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-02-20/debates/CEA7D90D-DFD5-491F-A202-AA06C75714BA/ElectronicTradeDocumentsBill(HL)">
+                                    <u>Vol. 827 Col. 1</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=122465&amp;sectionId=40&amp;businessPaperDate=2023-02-20">
+                                    <u>Vol. 827 Col. 1534</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>14 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-03-14/debates/5A99D905-3FEF-400B-A5C6-56289CFD9C0A/ElectronicTradeDocumentsBill(HL)">
+                                    <u>Vol. 828 Col. 1196</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>22 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-03-22/debates/AF2515E1-8848-4DDD-B84A-C73FC39C62C9/ElectronicTradeDocumentsBill(HL)">
+                                    <u>Vol. 828 Col. 1758</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons amendments</p>
+                           </td>
+                           <td>
+                              <p>19 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-07-19/debates/08E66509-23D2-467A-B084-79B24C11C58C/ElectronicTradeDocumentsBill(HL)">
+                                    <u>Vol. 831 Col. 2323</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>23 March 2023</p>
+                           </td>
+                           <td>
+                              <p>No publications for this sitting.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading Committee</p>
+                           </td>
+                           <td>
+                              <p>12 June 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-06-12/debates/d87bcf55-7df5-4474-820d-368be3c21c03/ElectronicTradeDocumentsBill(Lords)">
+                                    <u>Vol. 734 Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>13 June 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3344/stages/17751">
+                                    <u>Vol. 734 Col. 267</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>19 June 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3344/stages/17753">
+                                    <u>Vol. 734 Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>10 July 2023</p>
+                           </td>
+                           <td>
+                              <p>No publications for this sitting.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>10 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-07-10/debates/67C84F39-D540-4100-BF66-3A16B3AAAAE7/ElectronicTradeDocumentsBill(Lords)">
+                                    <u>Vol. 736 Col. 93</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>20 July 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-07-20/debates/E5EE933B-210D-404A-ABAB-4ACB1FAA1FFE/SirDavidAmessSummerAdjournment">
+                                    <u>House of Commons Vol. 736 Col. 1072</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-07-20/debates/B4D727F5-C825-47E0-84E6-FAD54F417244/RoyalAssent">
+                                    <u>House of Lords Vol. 831 Col. 2498</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.57in">
+                        <col style="width:1.57in">
+                        <col style="width:1.57in">
+                        <col style="width:1.57in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Electronic trade documents: Report and Act (2022) Law Com No 405.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  OBG Ltd v Allan [2007] UKHL 21, [2008] 1 AC 1; Your Response Ltd v Datateam Business
+                  Media Ltd [2014] EWCA Civ 281, [2015] QB 41.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  DCSA, Streamlining international trade by digitalising end-to-end documentation (February
+                  2022) p 3, <a href="https://go.dcsa.org/ebook-ebl/?utm_source=dcsa&amp;utm_medium=display&amp;utm_campaign=ebook-ebl"><u><a href="https://go.dcsa.org/ebook-ebl/?utm_source=dcsa&amp;utm_medium=display&amp;utm_campaign=ebook-ebl">https://go.dcsa.org/ebook-ebl/?utm_source=dcsa&amp;utm_medium=display&amp;utm_campaign=ebook-ebl</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Digital assets: electronic trade documents (2021) Law Commission Consultation Paper
+                  No 254 <a href="https://www.lawcom.gov.uk/project/electronic-trade-documents"><u><a href="https://www.lawcom.gov.uk/project/electronic-trade-documents">https://www.lawcom.gov.uk/project/electronic-trade-documents</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Electronic trade documents: Report and Bill (2022) Law Com No 405, <a href="https://www.lawcom.gov.uk/project/electronic-trade-documents"><u><a href="https://www.lawcom.gov.uk/project/electronic-trade-documents">https://www.lawcom.gov.uk/project/electronic-trade-documents</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Both available at <a href="https://www.lawcom.gov.uk/project/electronic-trade-documents"><u><a href="https://www.lawcom.gov.uk/project/electronic-trade-documents">https://www.lawcom.gov.uk/project/electronic-trade-documents</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

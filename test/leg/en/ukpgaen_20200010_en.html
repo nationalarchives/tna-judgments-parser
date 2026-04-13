@@ -1,0 +1,2012 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>BIRMINGHAM COMMONWEALTH GAMES</b>
+               <b>
+                  </b>
+               <b>ACT 2020</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Birmingham Commonwealth Games Act 2020 (c. 10)
+                  which received Royal Assent on 25 June 2020.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Digital, Culture,
+                  Media and Sport in order to assist the reader in understanding the Act. They do not
+                  form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act provides for a number of operational measures required to support the delivery
+                     of the 2022 Commonwealth Games to be held predominantly in Birmingham (and venues
+                     across the West Midlands). It provides United Kingdom ministers and the Organising
+                     Committee with the powers necessary to ensure delivery of aspects of the Games relating
+                     to funding of the Organising Committee, Organising Committee reporting, provisions
+                     regarding association with the Games, ticket touting, advertising and trading and
+                     transport. The Act does not apply to other Commonwealth Sport events such as championships,
+                     which will not form part of the Games.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Commonwealth Games is one of the largest multi-sport events in the world, with
+                     a global audience estimated at 1.5 billion people. It has been held every four years
+                     since 1930, with a short intermission between 1938 and 1950. The Birmingham 2022 Games
+                     will bring elite athletes from around the Commonwealth drawn from the 71 different
+                     nations and territories who are members of the Commonwealth Games Federation.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The right to host the 2022 Commonwealth Games had originally been awarded to Durban,
+                     South Africa. However, in March 2017 the Commonwealth Games Federation removed hosting
+                     rights from Durban following its failure to meet a number of hosting requirements.
+                     In April 2017 the United Kingdom government invited interested cities to submit proposals
+                     for hosting the 2022 Games and, in September 2017, following a competitive bid process,
+                     confirmed that Birmingham would be submitting a government-backed bid to host the
+                     Games.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>On 21 December 2017 Birmingham was awarded the right to host the 2022 Games with a
+                     truncated timeline of four and a half years rather than the typical seven years to
+                     deliver the Games. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Analysis of the hosting requirements and the legislation brought forward for previous,
+                     similar multi-sports events, such as the London Olympic Games and Paralympic Games
+                     Act 2006, the London Olympic Games and Paralympic Games (Amendment) Act 2011, and
+                     the Glasgow Commonwealth Games Act 2008, identified a small number of areas which
+                     require a legislative response in respect of Birmingham 2022. This Act addresses those
+                     requirements.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Section 32 sets out the territorial extent - that is the jurisdiction of which the
+                     Act forms part of the law - and application of the Act. Application is where a provision
+                     produces a practical effect. The extent of an Act can be different from its application.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>As the territorial extent and application differ between the Act’s provisions, commentary
+                     set out in these notes on each individual provision (or group of provisions) includes
+                     a paragraph explaining its extent and application. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act includes one offence, the ticket touting offence, which extends and applies
+                     to England and Wales, Scotland and Northern Ireland. It also applies to United Kingdom
+                     nationals and those normally resident in the United Kingdom where the offence is carried
+                     out overseas (for example where the offence is carried out online), and to internet
+                     service providers established in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: The Organising Committee</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Financial assistance</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>This section enables the Secretary of State to provide financial assistance to the
+                        Birmingham Organising Committee for the 2022 Commonwealth Games Ltd (“the Organising
+                        Committee”). The Organising Committee is a private company limited by guarantee established
+                        for the purpose of delivering the Games. It is wholly owned by the Secretary of State
+                        and is an arm’s length body of the Department for Digital, Culture, Media and Sport.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>Financial assistance may be given for the delivery of the Commonwealth Games, or for
+                        any other purpose connected to, or arising from, the Commonwealth Games. For instance,
+                        this would enable the Secretary of State to fund any Organising Committee activities
+                        in relation to legacy programmes that may continue after the Games. Section 1(2) sets
+                        out that this assistance could be provided in the form of grants, loans, guarantees
+                        or indemnities and may be subject to conditions. Conditions which may be attached
+                        to any financial assistance will be set out in the Management Agreement which governs
+                        the relationship between government and the Organising Committee. The Management Agreement,
+                        which is updated annually, can be found online at: <a href="https://www.gov.uk/government/publications/birmingham-organising-committee-for-the-2022-commonwealth-games-ltd-management-agreement-201920"><u>https://www.gov.uk/government/publications/birmingham-organising-committee-for-the-2022-commonwealth-games-ltd-management-agreement-201920</u></a>. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>Section 33(1) provides for this provision to come into effect on the day on which
+                        the Act is passed. This is because the provision is intended to provide specific statutory
+                        spending authority for financial propriety reasons and so it is appropriate for any
+                        funding to be made under that authority as soon as the Act is passed. Until that time,
+                        the Organising Committee will continue to be funded under section 70 of the Charities
+                        Act 2006.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Annual reporting</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Section 2 places a requirement on the Organising Committee to send a report to the
+                        Secretary of State on the exercise of its functions during each reporting period,
+                        including the progress made towards delivering the Games, and requires the Secretary
+                        of State to lay a copy of this report before Parliament. Subsection (2) sets out what
+                        this report must include. Subsection (5) sets out what the reporting periods are.
+                        The Organising Committee’s reports must be sent to the Secretary of State as soon
+                        as is reasonably practicable after the end of each reporting period. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Section 33 subsection (1) provides for this provision to come into effect on the day
+                        on which the Act is passed. This will ensure that any relevant activity undertaken
+                        by the Organising Committee from the date of Royal Assent is captured in the first
+                        reporting period.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 32: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Section 32 (2) establishes that the provisions in this Part extend and apply to England,
+                        Scotland, Wales and Northern Ireland as some of the Organising Committee’s activities
+                        may be carried out anywhere in the United Kingdom, such as any enforcement action
+                        in relation to an unauthorised association under section 3 or section 6. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 2: Association with the Games</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 3: Unauthorised association with the Games</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Section 3 (1) provides that a person acting in the course of a business may not use
+                        a representation to suggest an association between themselves (or any other person),
+                        or any goods or services, and the Birmingham Commonwealth Games 2022. A representation
+                        need not be visual; it could simply be a statement designed to convince the public
+                        that a business is in any way associated with the Games. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>This provision is intended to prevent the use of inventive tactics by those trying
+                        to gain commercial benefit from an association with the Commonwealth Games without
+                        having made the financial or other commitments of an authorised business.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Section 3 (2) provides examples of an association between the Games and a person providing
+                        goods and services. Subsection (3) provides a non-exhaustive list of how a representation
+                        could be used to suggest an association and is designed to illustrate how the right
+                        of association could be infringed without using words, images or symbols which are
+                        otherwise protected (for example; the Birmingham 2022 logo, for which a registered
+                        trade mark will be sought). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Section 3 subsections (4) and (5) provide that any breach of subsection (1) is to
+                        be considered an infringement of the Organising Committee’s exclusive right to use
+                        this type of representation and that the Organising Committee can take action in a
+                        civil court against such an infringement to seek relief, including damages or an injunction.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Subsection (6) specifies for each jurisdiction which courts may grant relief.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>For completeness, subsection (7) makes clear that representations are not prohibited
+                        when they are authorised under section 4 or captured under the exceptions to the prohibition
+                        under section 5.  It also makes clear that the restriction on unauthorised association
+                        is enforceable only by the Organising Committee, which may apply to the court for
+                        an order in relation to infringing goods and documents under section 6, subject to
+                        the protections for a person with an interest in those goods and documents set out
+                        in section 7.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsections (1) to (3) of this section, and sections 4, 5 and 6(a), are subject to
+                        the sunsetting provision at section 33(3); they will cease to have effect on 1 January
+                        2023, when it is anticipated that all events associated with the Games will have taken
+                        place and the Organising Committee will be, or will shortly be, wound up.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Authorised association</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Section 4 provides for the Organising Committee to grant an authorisation to a person
+                        acting in the course of a business so that they may legitimately associate with the
+                        Games. Use of a representation by an authorised person will not infringe the right
+                        of association described in section 3.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (2) provides that such an authorisation may be granted in relation to a
+                        person acting in the course of business (or a group of businesses). It may also be
+                        granted in respect of a particular type of representation – such as if the Organising
+                        Committee decided to allow the use of a particular type of representation to express
+                        general support for the Games. An authorisation may also be subject to conditions
+                        or be revoked.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (3) allows the Organising Committee to take account of any agreements entered
+                        into by others - for example the Secretary of State - when considering whether to
+                        grant an authorisation. Subsection (4) requires that authorisations be given in writing.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Exceptions to the prohibition on unauthorised association</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Section 5 establishes a number of circumstances where activities are not prohibited
+                        (and so do not require authorisation by the Organising Committee). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (1)(a) provides that it would not be an unauthorised association for a
+                        business to use a trade mark registered in its own name, or which it has been granted
+                        a licence to use (provided the relevant goods or services are registered for that
+                        use). Similarly, subsection (1)(b) provides that it would not be an unauthorised association
+                        for a business to use its own registered design. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Subsection (1)(c) protects the use of a representation under another right that existed
+                        before the date on which the Act obtains Royal Assent. This provision is designed
+                        to ensure that those who obtained rights, which, for example, may include an unregistered
+                        trade mark or design or the sort of rights which may be enforced through an action
+                        for passing off, before that date are unaffected by the restriction. In contrast,
+                        a person who acquires a right on or after that date would need to register that right
+                        if they wish to suggest an association with the Games. Under the Trade Marks Act 1994,
+                        the rights of a proprietor have effect from the date of registration, which is the
+                        date of filing the application for registration (sections 9(3) and 40(3)). Equivalent
+                        provision applies to registered designs (section 3C of the Registered Designs Act
+                        1949).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Subsection (2) allows a representation to be used by a business if the representation
+                        was used in that way before 21 December 2017 and has been used by the business continuously
+                        since that date. This is the date on which the Games were awarded to Birmingham by
+                        the Commonwealth Games Federation. For example, a company established in 2007 under
+                        the name of Commonwealth Foods and which has consistently traded under that name,
+                        would not infringe the prohibition unless, since the Games were awarded, that business
+                        changed the way in which it used the representation. This enables a person who does
+                        not have an enforceable right - protected by virtue of subsection (1)(c) - but who
+                        nevertheless carried out their business in a particular way before the Games were
+                        awarded (and so could not have anticipated that representations suggesting an association
+                        with the Games might be restricted), to continue to carry out their business in that
+                        way even if doing so might have such an effect.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Subsection (3) provides for certain exceptions, such as the use of certain types of
+                        factual information when providing goods or services, which would not amount to an
+                        unauthorised association with the Games. This includes representations that describe
+                        (amongst other things) the purpose, quality or origin of a product or service. For
+                        example, a restaurant might state on its website that it was within walking distance
+                        of Alexander Stadium, a venue for the Commonwealth Games in 2022. This would be a
+                        factual description and would not be deemed an unauthorised association. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Subsections (4) – (6) provide that it is not an unauthorised association to use a
+                        representation in a Games related publication or broadcast for reporting purposes.
+                        This is to ensure that information about the Games can be shared - such as in news
+                        broadcasts. However, this exception does not apply if the activity has the purpose
+                        of promoting something other than the Games. Incidental inclusion of the Games in
+                        other artistic endeavours would also not be deemed an unauthorised association. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Subsection (7) enables goods sold in accordance with an authorisation to be further
+                        sold without breaching the prohibition, provided this is done in accordance with the
+                        authorisation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Subsection (8) provides that the use of a representation by the Organising Committee
+                        does not constitute an unauthorised association.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Subsection (9) sets out that exceptions relevant to providers of information society
+                        services are contained in Schedule 1. </p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 1: Unauthorised association: Providers of information society services</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>This Schedule makes provision regarding the liability of providers of information
+                        society services in the United Kingdom in relation to unauthorised association. It
+                        provides exceptions to the offence, subject to conditions, for service providers who
+                        act as mere conduits, who cache information, or who store information. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Enforcement of this Part in relation to goods and documents</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Section 6 provides for the remedies which may be sought by the Organising Committee
+                        in relation to infringing goods or documents. These are defined in subsection (2)
+                        as goods or documents bearing an unauthorised representation and things which have
+                        been specifically designed or adapted to produce such goods or documents. This section
+                        is intended to enable a court to make orders in relation to physical representations;
+                        for example, where there is an infringing representation on a t-shirt.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Subsection (3), provides a number of remedies that a court could order, following
+                        an application from the Organising Committee. This gives the court a suite of options
+                        from delivery, to erasure, to forfeiture and destruction. In practice, whilst it is
+                        preferable that the Court orders the removal of a representation that creates an unauthorised
+                        association in the first instance, there may be reasons why delivery up - the surrender
+                        of goods - is required. For example, where a court considers an order for erasure
+                        might not be complied with. However, if a court considers no further enforcement action
+                        is to be taken, a court may order that goods be returned to someone. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Subsection (4) provides that an order for the forfeiture or destruction of goods or
+                        documents can only be made as a last resort where no other remedy is available. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Protection for persons with an interest in goods or documents</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Section 7 provides that those with an interest in any goods or documents that are
+                        subject to court proceedings have certain rights. This means that any application
+                        to the court must be served on any identifiable person with an interest in the goods,
+                        and that an interested party can appear in the court proceedings or even bring an
+                        appeal. For example, an interested party could be someone who owns goods (even if
+                        they were not in that person’s control). In the event a court makes an order under
+                        section 6(3)(c) for the return of goods or documents, it may order the return of those
+                        goods to anyone with an interest in them. For example, the Organising Committee may
+                        bring action against Person A who is in the possession of infringing goods or documents,
+                        whilst the goods actually belong to Person B. If Person B can be identified, the notices
+                        should be served on both Person A and B. Should a court decide to order those goods
+                        to be returned, the court would consider the interests of both Person A and B before
+                        making such an order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Subsection (2) provides that no order for destruction or forfeiture will be exercised
+                        until after the appeals period ends or any appeal is determined or abandoned. The
+                        appeals period for statutory appeals is specified in the relevant court rules.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 8: Guidance</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Section 8 provides that the Organising Committee is under a duty to produce guidance
+                        on this Part of the Act within 31 days of Royal Assent. (The commencement provision
+                        at section 33(1) provides for this provision to come into effect on the day of Royal
+                        Assent.) The Organising Committee will publish guidance on the new provisions as soon
+                        as possible in order to ensure that any person acting in the course of business who
+                        might have wished to make an infringing representation has the opportunity to understand
+                        the restrictions imposed by Part 2 before the restrictions take effect. The guidance
+                        is intended to provide an accessible and user-friendly explanation of these provisions
+                        - including how businesses can engage with the Games and more detail about enforcement
+                        action.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 9: Interpretation of Part 2</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Subsection (1) provides definitions for the terms used in this Part. Section 32 establishes
+                        that this Part extends and applies to England, Scotland, Wales and Northern Ireland.
+                        Interpretation of the terms used in section 5 is also provided for the application
+                        of this part in Scotland.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 32: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Section 32 subsection (2) establishes that this Part extends and applies to England,
+                        Scotland, Wales and Northern Ireland. Section 33 subsection (1) provides for Section
+                        8 to come into effect on the day of Royal Assent; this is to ensure that the Organising
+                        Committee is under a duty to publish guidance in advance of the prohibition on making
+                        unauthorised representations coming into effect, in order to raise public awareness
+                        about the potential effect of the restrictions and enable those affected to take steps
+                        to avoid infringing the prohibition.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 3: Touting, Advertising and Trading Offences</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 10: Ticket touting offence</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>This section establishes that it is a criminal offence to tout a Games ticket. Subsections
+                        (1) – (3), establish that it is an offence for a person to sell, offer to sell, or
+                        expose for sale (for example in a shop window) a Games ticket without authorisation
+                        from the Organising Committee. The offence is committed where it is carried out in
+                        a public place, in the course of a business (including at face value or below), or
+                        where the intention is for any person to make a profit from the sale of the ticket.
+                        It does not cover a person giving away their ticket informally for free or for payment
+                        of up to the face value of the ticket, unless this activity takes place in a public
+                        place. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsection (3)(d) also makes it an offence to advertise that a ticket is available
+                        for purchase.  However, by virtue of subsection (4), this does not apply where a person
+                        advertises that a Games ticket is available to purchase from someone else and the
+                        person advertising the ticket did not know, or could not be expected to know, that
+                        the ticket was being touted.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Subsection (5) applies the offence where a ticket is offered to a person paying for
+                        other goods and services (for example, as part of a promotional offer where a ticket
+                        is given to a consumer if they purchase a certain amount of other goods or services).
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Subsection (6) defines what is meant by a ‘Games ticket’. It covers a ticket for any
+                        event forming part of the Birmingham Games, including non-sporting events (for example
+                        the Opening and Closing Ceremonies), or any other event organised by or on behalf
+                        of the Organising Committee.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Subsection (7) provides that the Organising Committee cannot commit the offence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (8) provides for the penalties for the offence, and subsection (9) makes
+                        provision regarding the recovery of fines in Scotland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Subsection (10) establishes that sections 10 and 11 are subject to Schedule 2, which
+                        sets out restrictions and exceptions in relation to the application of the provision
+                        to information society service providers. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 11: Ticket touting outside of United Kingdom</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Section 11 sets out how the offence will apply to activity outside the United Kingdom.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Subsection (1) establishes that if a United Kingdom person (as defined in subsection
+                        (6)) carries out activity outside the United Kingdom that would constitute a ticket
+                        touting offence if carried out in the United Kingdom, they would also commit an offence
+                        under this section 10.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Subsection (2) sets out that a ticket touting offence committed by a service provider
+                        (who is established in the United Kingdom (as defined in subsection (6)), but is not
+                        a United Kingdom person), where this is carried out in a European Economic Area state
+                        other than the United Kingdom, would constitute an offence under section 10 as if
+                        carried out in the United Kingdom.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Subsection (3) establishes that proceedings for any offence committed outside the
+                        United Kingdom may be taken in any place in the United Kingdom and subsection (4)
+                        makes provision regarding the application of this provision to Scotland. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Subsection (5) refers to paragraph 1 of Schedule 2, which sets out restrictions on
+                        the institution of proceedings against service providers established in an EEA state
+                        other than the United Kingdom.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Subsection (6) defines what is meant by ‘established’ in relation to a service provider,
+                        ‘information society services’, ‘service provider’, sheriff court district’, ‘United
+                        Kingdom national’ and ‘United Kingdom person’.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 12: Other provision about authorisations under section 10</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>This section makes provision regarding the authorisations that may be granted by the
+                        Organising Committee. </p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 2: Ticket touting: Providers of information society services</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>This Schedule makes provision regarding the liability of United Kingdom and non-United
+                        Kingdom providers of information society services in relation to the touting offence.
+                        It provides exceptions from the commission of the offence, subject to conditions,
+                        for service providers who act as mere conduits, who cache information, or who store
+                        information. The Schedule also provides that non-United Kingdom service providers,
+                        as defined in sub-paragraph (3), cannot be prosecuted for the commission of the offence
+                        regarding their provision of information society services, unless the derogation condition
+                        is met. The derogation condition is established where an information society service
+                        prejudices, or presents a serious risk of prejudicing, the pursuit of public policy
+                        and action is deemed to be proportionate.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>The Schedule references at paragraph 5(a) Directive 98/34/EC. This directive has now
+                        been repealed and any reference to it has to be construed as a reference to Directive
+                        2015/1535/EU.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 13: Advertising offence</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Section 13 makes it an offence to advertise (or to arrange or permit advertising)
+                        in, or in the vicinity of, a specified Games location during a specified period (the
+                        “advertising offence”). A person guilty of the offence is liable to an unlimited fine.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>This offence is introduced to ensure that Games locations and the areas around them
+                        provide a welcoming atmosphere for spectators and have a consistent celebratory look
+                        and feel in line with Commonwealth Games branding. This is intended to prevent activity
+                        where an advertiser ‘ambushes’ an event to compete for exposure (both at live events
+                        and via broadcast) against other advertisers who may be official sponsors of the Games.
+                        This in turn will help safeguard public investment in the Games by ensuring the rights
+                        of commercial sponsors can be robustly protected.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Subsection (1) establishes that in addition to it being an offence to carry out Games
+                        location advertising it is also an offence to permit Games location advertising (for
+                        example on private land) or to arrange for someone else to carry out Games location
+                        advertising that would be an offence. Subsection (5) makes further provision about
+                        permitting.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Subsection (2) defines ‘Games location advertising’ as meaning when someone does something
+                        in, or in the vicinity of, a specified Games location during a specified period and
+                        where the thing is done wholly or partly for the purpose of promoting a product, service
+                        or business to members of the public who are in, or in the vicinity of, a Games location
+                        or are watching or listening to a Games event via a broadcast. Whilst there is a definition
+                        of what constitutes a “Games location” in section 24(1), the specific locations to
+                        which the offence will apply will be stipulated in the regulations. A ‘specified period’
+                        is also to be set out in regulations, subject to the limitation in subsection (3)
+                        on specified period. The definition of advertising as being ‘something done wholly
+                        or partly for the purposes of promoting a product, service or business’ means that
+                        activities such as promoting a cause or belief would not be prohibited (unless they
+                        also promoted a product, service or business). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Subsection (4) provides a power for the Secretary of State to make regulations about
+                        when a person will be treated, or not, as doing something, or as being, in or in the
+                        vicinity of a Games location. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Subsection (5) establishes that a person does not ‘permit’ Games location advertising
+                        if that person took all reasonable steps to prevent the advertising from taking place
+                        or continuing to take place. This means that if the offence took place on a person’s
+                        land, and the landowner took appropriate action to try to prevent the offence, they
+                        would not be considered to be ‘permitting’ advertising for the purposes of the offence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Subsection (6) provides that it is not a defence that the advertising was carried
+                        out in accordance with a licence (see the interpretation of ‘licence’ at section 24)
+                        (for example, from a local authority or private land owner), other than an authorisation
+                        granted by the Organising Committee (as set out at section 14).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Subsection (7) provides a penalty for the offence, namely that anyone found guilty
+                        of this offence is liable to an unlimited fine. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Subsection (8) makes clear that no offence is committed if advertising has been authorised
+                        by the Organising Committee under section 14 or is otherwise excepted by section 15
+                        or any regulations made under section 15.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 14: Authorised advertising</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Section 14 empowers the Organising Committee to authorise, in writing, advertising
+                        that would otherwise be considered an offence. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Subsection (1) provides that it is not an offence under section 13 to carry out Games
+                        location advertising in accordance with an authorisation granted by the Organising
+                        Committee, or to arrange for or to permit advertising that is so authorised.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>Subsection (2) provides for the type of authorisations that may be granted (such as
+                        an authorisation in relation to advertising of a certain nature) and that the Organising
+                        Committee can revoke authorisations. Subsection (3) sets out the sorts of conditions
+                        which may be imposed upon authorisations by the Organising Committee (for example
+                        specifying where advertising may be carried out). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>Subsection (4) allows the Organising Committee to take account of agreements entered
+                        into by others - for example the Secretary of State - when considering whether to
+                        grant an authorisation. It also allows the Organising Committee to take into account
+                        any existing advertising licences (see section 24(1)). Subsection (5) provides that
+                        an authorisation must be in writing.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 15: Exceptions to the advertising offence</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Subsection (1) establishes that advertising by the Organising Committee would not
+                        be an offence. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>Subsection (2) gives the Secretary of State a power to bring forward regulations to
+                        provide additional exceptions to the advertising offence. Subsection (3) requires
+                        the Secretary of State, before making such regulations, to consult the Organising
+                        Committee, the local authority for an area that includes any place to which the regulations
+                        would apply, and any other person whom the Secretary of State considers it appropriate
+                        to consult. Subsection (4) provides that this requirement can be satisfied by consultation
+                        undertaken before section 15 comes into force.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 16: Trading offence</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>Section 16 makes it an offence to trade (or to arrange or permit trading) in a specified
+                        Games location during a specified period, or in a relevant public place (see 16(8))
+                        in the vicinity of a Games location during a specified period (the “trading offence”).
+                        Trading is defined for this purpose at subsection (2) as selling, offering or exposing
+                        an item for sale; providing, or offering to provide, a service for gain or reward;
+                        providing public entertainment for gain or reward; and appealing for money or other
+                        property. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">77 </span></h2>
+                     <p>This offence will improve the spectator experience by helping ensure that trading
+                        does not obstruct the easy movement around Games areas such as from transport hubs
+                        to Games venues. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">78 </span></h2>
+                     <p>Subsection (1) establishes that, in addition to it being an offence to carry out Games
+                        location trading, it is also an offence to permit Games location trading (for example
+                        on private land) or to arrange for someone else to carry out Games location trading.
+                        Subsection (5) makes further provision about permitting. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">79 </span></h2>
+                     <p>Subsection (2) defines ”Games location trading” as meaning trading in a specified
+                        Games location at any time during a specified period, or trading in a relevant public
+                        place (defined in subsection (8)) in the vicinity of a Games location during a specified
+                        period. Whilst there is a definition of what constitutes a “Games location” in section
+                        24(1), the specific locations to which the offence will apply will be stipulated in
+                        the regulations. What is a “specified period” will be set out in regulations (subject
+                        to the limits about specified period in subsection (3)). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">80 </span></h2>
+                     <p>Subsection (4) provides a power for the Secretary of State to make regulations about
+                        when a person will be treated, or not, as doing something, in or in the vicinity of
+                        a Games location. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">81 </span></h2>
+                     <p>Subsection (5) establishes that a person does not ”permit” Games location trading
+                        if that person took all reasonable steps to prevent the trading from taking place
+                        or continuing to take place. This means that if the offence took place on a person’s
+                        land, and the landowner took appropriate action to try to prevent the offence, they
+                        would not be considered to be ”permitting” trading for the purposes of the offence.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">82 </span></h2>
+                     <p>Subsection (6) provides that it is not a defence to the trading offence that the trading
+                        was carried out in accordance with a licence (see the interpretation of ”licence”
+                        at section 24) (for example, from a local authority, private landowner or police),
+                        other than an authorisation from the Organising Committee (as set out at section 17).
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">83 </span></h2>
+                     <p>Subsection (7) provides a penalty for the offence, namely that anyone found guilty
+                        of this offence is liable to an unlimited fine. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">84 </span></h2>
+                     <p>Subsection (8) defines a relevant public place as a highway, indoor carpark, or any
+                        outdoor space to which the public have access. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">85 </span></h2>
+                     <p>Subsection (9) makes clear that no offence is committed if trading has been authorised
+                        by section 17 or is otherwise excepted by section 18 or any regulations made under
+                        section 19.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 17: Authorised trading</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">86 </span></h2>
+                     <p>Section 17 empowers the Organising Committee to authorise, in writing, trading that
+                        would otherwise be considered an offence. Subsection (1) provides that it is not an
+                        offence to carry out trading in accordance with such an authorisation, or to arrange
+                        for or permit trading so authorised. Subsection (2) provides for the type of authorisations
+                        that may be granted (such as in relation to trading of a certain nature) and that
+                        the Organising Committee can revoke authorisations. Subsection (3) sets out the sorts
+                        of conditions which may be imposed by the Organising Committee upon authorisations
+                        (for example specifying where trading may be carried out). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">87 </span></h2>
+                     <p>Subsection (4) allows the Organising Committee to take account of agreements entered
+                        into by others - for example the Secretary of State - when considering whether to
+                        grant an authorisation. It also allows the Organising Committee to take into account
+                        any existing trading licences (see section 24).   </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 18: Exceptions for certain kinds of trading</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">88 </span></h2>
+                     <p>Section 18 establishes that trading by the Organising Committee, and other types of
+                        trading specified in the section (for premises adjoining a highway; public facilities;
+                        motor vehicles), would not be an offence. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">89 </span></h2>
+                     <p>Subsection (2) deals with activities relating to premises adjoining a highway. For
+                        example, the trading offence will not apply to selling an item to a person who is
+                        in a premises adjoining a highway, or providing a service to such a person. This includes,
+                        for example, deliveries of groceries or providing services to premises such as window
+                        cleaning. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">90 </span></h2>
+                     <p>Subsection (3) lists certain public amenities (the provision of public toilets, cash
+                        machines or permanent telephone kiosks) which are excepted from the offence. Whilst
+                        it is not an offence to provide a permanent telephone kiosk, an unauthorised advertisement
+                        on a telephone kiosk would constitute an advertising offence under section 13.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">91 </span></h2>
+                     <p>Subsection (5) lists a range of activities relating to motor vehicle services (such
+                        as provision of a car park, or selling a motor vehicle) which are excepted from the
+                        offence. Whilst it would not be an offence to provide motor vehicle parking services
+                        from a place usually used for such services, it would be an offence to undertake other
+                        types of unauthorised trading in car parks within the prohibited area during the prohibited
+                        period (unless they are excepted in section 18). </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 19: Power to provide exceptions to the trading offence</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">92 </span></h2>
+                     <p>Section 19 gives the Secretary of State a power to bring forward regulations to provide
+                        additional exceptions to the trading offence. Subsection (2) requires the Secretary
+                        of State, before making such regulations, to consult the Organising Committee, the
+                        local authority for an area to which the regulations would apply, and any other person
+                        whom the Secretary of State considers it appropriate to consult. Subsection (3) provides
+                        that this requirement can be satisfied by consultation undertaken before section 19
+                        comes into force.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 20: Enforcement of offences under this Part</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">93 </span></h2>
+                     <p>Section 20 provides for the enforcement of the offences set out in this Part and gives
+                        effect to Schedule 3.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">94 </span></h2>
+                     <p>Subsection (1) provides that the ticket touting offence may be enforced by a local
+                        weights and measures authority in England, Scotland or Wales, or by the Department
+                        for the Economy in Northern Ireland. By virtue of subsection (2), however, it does
+                        not authorise a local weights and measures authority in Scotland to undertake a prosecution
+                        under this offence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">95 </span></h2>
+                     <p>Subsection (3) provides that the advertising and trading offences may be enforced
+                        by a local weights and measures authority in England. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">96 </span></h2>
+                     <p>Subsection (4) provides that a local weights and measures authority and the Department
+                        for the Economy can use the investigatory powers set out at Schedule 5 to the Consumer
+                        Rights Act 2015 - see <a href="http://www.legislation.gov.uk/ukpga/2015/15/schedule/5"><u>http://www.legislation.gov.uk/ukpga/2015/15/schedule/5</u></a> and subsection (5) amends Schedule 5 to that Act so that these powers can be used
+                        to enforce the relevant provisions in this Act. Subsection (6) gives effect to Schedule
+                        3, which sets out further provision about the enforcement of the touting, advertising
+                        and trading offences.</p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 3 – Further provision about enforcement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">97 </span></h2>
+                     <p>This Schedule sets out a number of powers available to an enforcement officer who
+                        is enforcing the ticket touting, advertising and trading offences in addition to the
+                        investigatory powers set out in Schedule 5 to the Consumer Rights Act 2015 (see <a href="http://www.legislation.gov.uk/ukpga/2015/15/schedule/5"><u>http://www.legislation.gov.uk/ukpga/2015/15/schedule/5</u></a>). In paragraph 1, a number of terms are defined for the purposes of the Schedule
+                        to the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Conditions for seizure and detention of goods</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">98 </span></h2>
+                     <p>Paragraph 2(1) provides additional circumstances under which the powers to seize goods
+                        or documents under paragraph 28 or 29 of Schedule 5 to the Consumer Rights Act 2015
+                        may be used; namely, to stop a relevant offence from occurring, or to prevent it from
+                        continuing. Subparagraph (1) also provides for the power of seizure to be used to
+                        enable the goods or documents to be used as evidence in proceedings. Subparagraph
+                        (2) makes clear that this does not preclude an officer using the power to seize and
+                        detain goods as set out in Schedule 5 to the Consumer Rights Act 2015 in relation
+                        to any other legislation in relation to which the investigatory powers in Schedule
+                        5 can be used (for example, if in the course of enforcing the trading offence, the
+                        officer discovers counterfeit goods that are liable to forfeiture).</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Additional powers of search and seizure</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">99 </span></h2>
+                     <p>Paragraph 3 provides for additional powers of search and seizure where an officer
+                        is in a public place (other than in reliance on a power in paragraph 23(1) or 32 of
+                        Schedule 5 to the 2015 Act) and the officer reasonably suspects that a person has
+                        committed, is committing or is about to commit a relevant offence. This is intended,
+                        for example, to provide that officers are able to act against itinerant traders in
+                        a public place who are not trading from premises. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">100 </span></h2>
+                     <p>Paragraph 3(2) provides that an officer may search or examine, seize and detain an
+                        item in the person’s possession or control. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">101 </span></h2>
+                     <p>Paragraph 3(3) makes clear that items may only be seized where it is appropriate to
+                        stop an offence or prevent it continuing, or to enable the item to be used as evidence.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">102 </span></h2>
+                     <p>Paragraph 4 provides that the power to break open a container as provided by the Consumer
+                        Rights Act at paragraph 31 of Schedule 5 is available to an enforcement officer for
+                        the purpose of exercising the power conferred by paragraph 3 (i.e. where a person
+                        is not trading from premises).</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Protections relating to search and seizure under paragraph 3</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">103 </span></h2>
+                     <p>Paragraphs 5-8 set out further conditions which apply to the powers of search and
+                        seizure under paragraph 3. Paragraph 5 provides that the officer must show evidence
+                        of the officer’s identity and authority (unless it is not reasonably practicable to
+                        do so). Paragraph 6 provides that an enforcement officer must inform an individual
+                        that an item has been seized and provide a written record of the seizure. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">104 </span></h2>
+                     <p>Paragraph 6 subparagraph (2) also provides that an enforcement officer exercising
+                        the power of seizure must have regard to any relevant code of practice under the Police
+                        and Criminal Evidence Act 1984 (in England and Wales) or under the Criminal Evidence
+                        (Northern Ireland) Order 1989 (in Northern Ireland). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">105 </span></h2>
+                     <p>Paragraph 7 provides that an enforcement officer cannot use the power in paragraph
+                        3(2)(b) to seize a legally privileged item.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">106 </span></h2>
+                     <p>Paragraph 8 makes clear that the powers in paragraph 3 and 4 cannot be used to search
+                        a person. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Retention etc of items seized under paragraph 3</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">107 </span></h2>
+                     <p>Paragraph 9 provides that any items seized under paragraph 3 may be retained for a
+                        maximum of 3 months or, if it is necessary to retain for a longer period for specific
+                        purposes - such as bringing a criminal prosecution where the item is used as evidence
+                        - only for as long as required for those purposes. This paragraph also provides a
+                        reference to the corresponding provisions in Schedule 5 to the Consumer Rights Act
+                        for seizure under paragraph 28 or 29 of that Schedule.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">108 </span></h2>
+                     <p>Paragraph 10 provides that a person from whom goods were seized is able to access
+                        the detained items, and that they may appeal that detention, as per the provisions
+                        contained with Schedule 5 to the Consumer Rights Act at paragraphs 38 and 40. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Disposal</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">109 </span></h2>
+                     <p>Paragraph 11 subparagraph (1) provides for the disposal of seized items where they
+                        are no longer required by an enforcement authority. However, items may only be disposed
+                        of when they have been held for a minimum of 3 months and where it has not been possible
+                        for the reasons given in paragraph 11(1)(c) to return the item. For example, if the
+                        items were seized from a person who gave a false address, and who could not be contacted
+                        by the enforcement authority in another way, the authority could dispose of those
+                        items after 3 months.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">110 </span></h2>
+                     <p>Subparagraph (2) sets out that seized items relate to items seized under paragraph
+                        3 or the exercise of relevant powers under Schedule 5 to the Consumer Rights Act.
+                        Subparagraph (3) provides that the enforcing authority may dispose in any way they
+                        consider appropriate.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">111 </span></h2>
+                     <p>Subparagraph (4) provides that perishable items (such as food) that no longer have
+                        any commercial value can be disposed of by an enforcing authority before the end of
+                        the 3-month period. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">112 </span></h2>
+                     <p>Subparagraph (5) notes who may be entitled to an item - this is either a person from
+                        whom the items were seized or, if not the same person, the person who owns the items.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Power to conceal or destroy prohibited advertising</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">113 </span></h2>
+                     <p>Paragraph 12 subparagraph (1) provides that where necessary, an officer may conceal
+                        an advertisement that the officer reasonably suspects is an offence under section
+                        12, but the provision at subparagraph (2) provides that where the seizure or concealment
+                        of an advertisement is not reasonably practicable, an enforcement officer may deface
+                        or destroy an advertisement, such as when a poster is stuck to the side of a building
+                        in the vicinity of a Games location. Subparagraph (3) makes it clear that, for the
+                        purpose of exercising a power in subparagraphs (1) or (2) (concealment or destruction),
+                        an enforcement officer can exercise a power of entry and require the assistance of
+                        a person on the premises as provided within paragraphs 23 and 32 to 34(1) of Schedule
+                        5 to the Consumer Rights Act 2015. Subparagraph (4) provides that nothing may be concealed
+                        for longer than is necessary to prevent the commission of the offence at section 13.
+                        Subparagraph (5) provides that a person is not liable if they fail to reveal any advertising,
+                        provided they took reasonable steps to reveal the advertisement as soon as reasonably
+                        practicable after the concealment ceased to be necessary, or that they ensured any
+                        other person was able to reveal an advertisement. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Obstruction of officers etc</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">114 </span></h2>
+                     <p>Paragraph 13 provides that in line with the powers in the Consumer Rights Act 2015,
+                        it is an offence to obstruct an enforcement officer. It is also an offence to pose
+                        as an enforcement officer. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Exercise of powers outside authority’s area</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">115 </span></h2>
+                     <p>Paragraph 14 provides that a local weights and measures authority may exercise a power
+                        contained by this Schedule outside of their area. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Compensation</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">116 </span></h2>
+                     <p>Paragraph 15 provides that a person whose property is damaged as a result of the exercise
+                        or purported exercise of certain powers is entitled to compensation from a relevant
+                        authority if the exercise of the power was unlawful or any force used in the exercise
+                        of the power was unreasonable. Subparagraph (2) explains which powers compensation
+                        relates to. Subparagraph (3) provides for the amount of compensation that is to be
+                        paid.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">117 </span></h2>
+                     <p>Paragraph 16 provides that the Secretary of State may make regulations setting out
+                        supplementary provision relating to the payment of compensation, including how to
+                        make a compensation claim, to whom any claim must be made, and who will consider any
+                        review or appeal.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Section 21: Offences by directors, partners etc</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">118 </span></h2>
+                     <p>Section 21(1) sets out circumstances in which, where the touting, advertising or trading
+                        offence has been committed by a body corporate, an individual (as well as the body
+                        corporate) will also be liable to have proceedings taken against them. In particular,
+                        if it is proven that the offence was committed with the consent or connivance of a
+                        person falling within subsection (2) or is attributable to any neglect on the part
+                        of such a person, that person - as well as the body or organisation - could also be
+                        found guilty.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">119 </span></h2>
+                     <p>This is intended to ensure that both a company and an individual could be found guilty
+                        of the offence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">120 </span></h2>
+                     <p>The persons listed in subsection (2) are a director, manager, secretary or other similar
+                        officer of the body, or any person who was purporting to act in such a capacity. Subsection
+                        (3) provides where a body corporate is managed by its members, subsection (1) applies
+                        to a member as if they were a director i.e. a member could also be liable for the
+                        offence in the same circumstances a director could be.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">121 </span></h2>
+                     <p>Subsection (4) makes similar provision with regard to the partners of a Scottish partnership.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">122 </span></h2>
+                     <p>Subsection (5) limits subsections (1) to (4) by providing that where the ticketing
+                        offence is carried out overseas by a body corporate or Scottish partnership, the offence
+                        only applies in respect of an officer where that officer is a United Kingdom national
+                        or habitually resident in the United Kingdom, a body incorporated under the law of
+                        a part of the United Kingdom, or a Scottish partnership.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 22: Existing restrictions to be unaffected</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">123 </span></h2>
+                     <p>Section 22 provides that nothing in this Part authorises a person to do anything that
+                        is otherwise against the law or affects any other requirement to hold a licence. For
+                        example, in order to be authorised to trade, a street trader must have permission
+                        from the local authority (or land owner where this is private land) to trade. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 23: Guidance and information</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">124 </span></h2>
+                     <p>Section 23 provides that guidance must be published by the Organising Committee about
+                        the operation of the advertising and trading provisions (see section 23(2)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">125 </span></h2>
+                     <p>The guidance is intended to provide an accessible and user-friendly explanation of
+                        the impact of these provisions including where and when restrictions will be in place,
+                        how advertising and trading will be authorised, and to provide more detail about enforcement
+                        action. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">126 </span></h2>
+                     <p>Subsection (4) requires local authorities to share this guidance with traders who
+                        hold a licence or consent (see the definition of “licence” in section 24) to trade
+                        from that local authority (or who have applied for one) and who the authority considers
+                        could be affected by the trading offence. Local authorities are also required to provide
+                        any additional information as appropriate which could assist with mitigating the impact
+                        of the trading offence. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 24: Interpretation of Part 3</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">127 </span></h2>
+                     <p>Subsection (1) sets out the meaning of terms used in Part 3 of the Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">128 </span></h2>
+                     <p>Subsection (2) makes provision about determining whether a person is carrying out
+                        Games location trading for the purposes of section 16. The effect of subsection (2)(a)
+                        is that in determining whether a person is trading in a relevant public place or specified
+                        Games location, it is not necessary, for example, for both an offer to have been made
+                        in a relevant public place or specified Games location (as the case may be) and for
+                        any person to whom the offer is made to be in such a place.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 32: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">129 </span></h2>
+                     <p>Section 32 establishes the extent and application of the provisions which relate solely
+                        to the advertising and trading offences in this Part of the Act as extending to England
+                        and Wales only. These provisions will apply only in England as the vicinity of Games
+                        locations fall in England. The remaining provisions will apply and extend to England,
+                        Scotland, Wales and Northern Ireland given the need to take enforcement action in
+                        relation to touting. Section 33(1) provides that the regulation making powers provided
+                        in this Part and in Schedule 3 come into force on Royal Assent.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 4: Transport</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 25: Games transport plan</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">130 </span></h2>
+                     <p>Section 25(1) allows the Secretary of State to place a requirement on a local authority
+                        in England or combined authority to produce a Games transport plan. ”Combined authority”
+                        is defined in section 29. Under subsection (8) the Secretary of State may only place
+                        this requirement on such an authority in writing and may revoke it. Subsection (3)
+                        provides that this authority will be required to prepare the plan, keep it under review,
+                        make appropriate revisions and publish the plan and any revisions, unless there are
+                        security reasons preventing this.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">131 </span></h2>
+                     <p>Subsection (4) requires the local authority or combined authority to consult a number
+                        of persons in preparing or revising the plan; these persons are listed in subsection
+                        (5). Subsection (7) allows this consultation to take place prior to the Secretary
+                        of State being enabled to place the requirement on the authority to produce the plan.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">132 </span></h2>
+                     <p>Under subsection (6) local traffic authorities for roads affected by the plan will
+                        be required to undertake their transport functions with a view to securing the implementation
+                        of the proposals contained in the plan.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 26: Temporary prohibition or restriction on roads</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">133 </span></h2>
+                     <p>Section 26(1) allows a traffic authority for a road in England to make a temporary
+                        traffic regulation order (TTRO) or issue a temporary traffic regulation notice (TTRN)
+                        for the purposes of implementing the Games transport plan, facilitating transport
+                        services in connection with the Games, and facilitating travel by any person for a
+                        purpose connected to the Games. Both TTROs and TTRNs can be used to impose restrictions
+                        or prohibitions upon road use, including footpaths, cycle tracks and other types of
+                        highway, that the traffic authority may consider necessary. They can apply to identified
+                        classes of vehicle, motorised or not, or pedestrians. TTROs provide for longer-term
+                        temporary restrictions but a proposal to make one needs to be publicised 7 days prior
+                        to it being made, whereas TTRNs are a short-term measure that can be used where the
+                        traffic authority is satisfied that the restriction or prohibition should come into
+                        force without delay. When used for the purposes outlined in subsection (1), these
+                        are to be known as “Games temporary traffic regulation orders” or “Games temporary
+                        traffic regulation notices”.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">134 </span></h2>
+                     <p>Subsection (2) provides that the durations for which TTROs and TTRNs may ordinarily
+                        be in place, as per section 15 of the Road Traffic Regulation Act 1984, shall not
+                        apply in the case of Games TTROs or Games TTRNs; neither will the power to extend
+                        them. Regulation 8(3) of the Road Traffic (Temporary Restrictions) Procedure Regulations
+                        1992 is disapplied for Games TTROs to ensure that they can be revoked as soon as they
+                        become unnecessary. As Games TTROs will not be made for the purpose of works on the
+                        road, regulation 6 is disapplied.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">135 </span></h2>
+                     <p>Subsection (3) provides that Games TTROs or Games TTRNs cannot come into operation
+                        any earlier than 21 days before the Games Opening Ceremony. Subsection (4) provides
+                        that Games TTROs cannot remain in effect any later than 5 days after the Games Closing
+                        Ceremony.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">136 </span></h2>
+                     <p>Subsection (5) provides that Games TTRNs cannot remain in force longer than 21 days
+                        in total, starting on the day upon which they were issued, or 5 days after the end
+                        of the Games, whichever is sooner.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 27: Concurrent exercise of powers of a local traffic authority</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">137 </span></h2>
+                     <p>Section 27(1) grants the power to make Games TTROs and issue Games TTRNs to the authority
+                        appointed to produce the Games transport plan as per section 25(1) as if they were
+                        the local traffic authority for the roads being regulated. An order made or notice
+                        issued by this authority will be treated as if it were an order made or notice issued
+                        by the local traffic authority.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">138 </span></h2>
+                     <p>Subsections (2) and (3) establish that this power is dependent on the consent of the
+                        relevant local traffic authority and subsequently on this local traffic authority
+                        being identified in future regulations issued by the Secretary of State. The authority
+                        directed to prepare the plan will furthermore only be able to make a Games order or
+                        issue a Games notice if the local traffic authority for the road agrees to it (subsection
+                        (4)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">139 </span></h2>
+                     <p>When exercising powers under the Road Traffic Regulation Act 1984, including those
+                        provided by section 26 of this Act, section 122 of the 1984 Act requires the local
+                        traffic authority to have regard to the need to secure access to premises, protecting
+                        amenities, environmental considerations, facilitating the passage of public service
+                        vehicles and their users and other pertinent considerations before complying with
+                        their duty to use powers under the Act to secure the expeditious, convenient and safe
+                        movement of vehicular, pedestrian and other traffic and the provision of suitable
+                        and adequate parking facilities, both on and off the highway. Section 27(5) provides
+                        that this duty will also apply to a local traffic authority when it is asked to agree,
+                        under subsection (4), to an order being made or a notice issued by the authority directed
+                        to prepare the plan. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 28: Power to direct a local traffic authority</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">140 </span></h2>
+                     <p>Section 28(1) allows the Secretary of State to direct a local traffic authority to
+                        make a Games temporary traffic regulation order or issue a Games temporary traffic
+                        regulation notice. The Secretary of State may make such a direction only if satisfied
+                        that such action is necessary for any of the purposes specified in section 26 and
+                        the relevant local traffic authority has failed to take that action within 7 days
+                        of being asked by the Secretary of State. Under subsection (7) the Secretary of State
+                        must issue the direction in writing and may revoke it.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">141 </span></h2>
+                     <p>Subsection (2) places a requirement on the Secretary of State to consult a number
+                        of groups before requesting a local traffic authority to take the action. Subsection
+                        (3) provides that the Secretary of State is not bound by the requirements to consult
+                        or to request the local traffic authority to take action if satisfied that the direction
+                        must be issued without delay.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">142 </span></h2>
+                     <p>Under subsections (4) and (5), if the direction is not complied with before the end
+                        of the period specified in the direction, the Secretary of State will be able to take
+                        the directed action in place of the relevant local traffic authority and may recover
+                        from the authority the costs of so acting.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">143 </span></h2>
+                     <p>Subsection (6) sets out that the Secretary of State may not issue a direction under
+                        this section to the local authority or combined authority directed to prepare the
+                        Games transport plan should that authority acquire powers as per section 27(1) and
+                        (2).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 29: Interpretation of Part 4</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">144 </span></h2>
+                     <p>Section 29 sets out the meaning of terms used in part 4 of the Act. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 32: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">145 </span></h2>
+                     <p>Section 32 extends the provisions relating to transport to England and Wales. These
+                        provisions will apply in England only as they are only required in relation to Games
+                        locations, all of which fall in England.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 5: Final Provisions</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 30: Power to make transitional provision and savings</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">146 </span></h2>
+                     <p>Section 30 contains a standard power for the Secretary of State to make transitional
+                        or savings provision where it is considered necessary or expedient in consequence
+                        of any provision of the Act. This is intended to enable changes made to the Act to
+                        be implemented in an orderly manner. This will help to ensure that, where certain
+                        provisions of the Act cease to have effect, this can be managed smoothly and is necessary
+                        in the absence of a specific delegated power in relation to commencement. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 31: Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">147 </span></h2>
+                     <p>Section 31 confirms that the powers in the Act to make regulations are exercisable
+                        by statutory instrument and are to be made under the negative resolution procedure.
+                        Regulations exercised by statutory instrument under paragraph 16 of Schedule 3 are
+                        to be made under the affirmative resolution procedure.</p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">Section 32: Extent</span></h2>
+                     <section class="paragraph">
+                        <p>138 Section 32 deals with the extent of provisions; respective extent is dealt with
+                           in the commentary on each of the Act’s provisions.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 33: Commencement and duration</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">148 </span></h2>
+                  <p>Section 33 provides for Part 1 (Organising Committee financial assistance and annual
+                     reporting), the duty on the Organising Committee to publish guidance about the prohibition
+                     on unauthorised association with the Games (section 8), Part 5 (final provisions)
+                     and any power to make regulations to come into force on the day the Act is passed;
+                     under subsection (2) the remaining provisions come into force two months after this
+                     date. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">149 </span></h2>
+                  <p>Subsections (3) and (4) set out when some of the Act’s provisions will cease to have
+                     effect. Section 3(1) to (3) and subsection (6)(a), section 4 and section 5 and Schedule
+                     1 (which prohibit unauthorised association and provide for relevant exceptions) will
+                     cease to have effect on 1 January 2023. This is when it is anticipated that all events
+                     associated with the Games will have taken place and the Organising Committee will
+                     be, or will shortly be wound up.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">150 </span></h2>
+                  <p>Subsection (4) provides that the ticketing touting provisions (sections 10 to 12)
+                     and Schedule 2 will cease to have effect the day after the Games ends because tickets
+                     will no longer be valid after this point. </p>
+               </section>
+               <section class="level">
+                  <p>Section 34: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">151 </span></h2>
+                  <p>This Act may be cited as the Birmingham Commonwealth Games Act 2020.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.87in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Part 1 Organising Committee </b>
+                                 </p>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes </p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Part 2 Association with the Games </b>
+                                 </p>
+                              <p>Sections 3-9 </p>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes </p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Part 3 Touting, Advertising and Trading Offences </b>
+                                 </p>
+                              <p>Sections 10-12</p>
+                              <p>Schedule 2</p>
+                              <p>Sections 13-19, 23</p>
+                              <p>Section 20</p>
+                              <p>Section 21 </p>
+                              <p>Section 22, 24</p>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>No</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>No</p>
+                              <p>In part</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>In part</p>
+                              <p></p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>No</p>
+                              <p>In part</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>In part</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Part 4 Transport </b>
+                                 </p>
+                              <p>Sections 25-29</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Part 5 Final Provisions </b>
+                                 </p>
+                              <p>Sections 30-34</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">152 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>07 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-01-07/debates/BF32799F-2AB8-4E68-BBA1-3512650EC432/BirminghamCommonwealthGamesBill(HL)">
+                                    <u>Vol. 801</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>03 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-02-03/debates/9862D65F-3E66-48DE-BD2F-0548FFF97DA9/BirminghamCommonwealthGamesBill(HL)">
+                                    <u>Vol. 801 Col. 1624</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee</p>
+                           </td>
+                           <td>
+                              <p>25 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-02-25/debates/D7DD1910-C776-43D1-9738-B67844BBE003/BirminghamCommonwealthGamesBill(HL)">
+                                    <u>Vol. 802 Col. 152</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>25 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-02-25/debates/8C58608F-0704-4BA9-8F55-1667703C7A3B/BirminghamCommonwealthGamesBill(HL)">
+                                    <u>Vol. 802 Col. 203</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third reading</p>
+                           </td>
+                           <td>
+                              <p>04 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-03-04/debates/7AFFCBBB-4D82-49E2-881D-B4659132FDB3/BirminghamCommonwealthGamesBill(HL)">
+                                    <u>Vol. 802 Col. 617</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>04 March 2020</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>09 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-03-09/debates/761A00EB-8F47-40E7-BED0-1D0757603FE3/BirminghamCommonwealthGamesBill(Lords)">
+                                    <u>Vol. 673 Col. 41</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>17 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-03-17/debates/a324a20e-82f8-4c76-b97b-bbcb305ab123/BirminghamCommonwealthGamesBill(Lords)">
+                                    <u>Vol. Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>11 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-01/0115/20115.pdf">
+                                    <u>Vol. 677 Col. 439</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>25 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="http://www.legislation.gov.uk/ukpga/2020/10/contents/enacted/data.htm">
+                                    <u>House of Lords Vol. 804 Col. 458</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-06-25/debates/E1479A23-8697-4B2E-9E5F-2A208EC3E217/Covid-19SupportForUKIndustries">
+                                    <u>House of Commons Vol. 677 Col. 1566</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

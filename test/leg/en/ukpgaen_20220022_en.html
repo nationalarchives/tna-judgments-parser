@@ -1,0 +1,791 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>ANIMAL WELFARE (SENTIENCE)</b>
+               <b>
+                  </b>
+               <b>ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Animal Welfare (Sentience) Act 2022 which received
+                  Royal Assent on 28 April 2022 (c. 22).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Environment, Food
+                  and Rural Affairs in order to assist the reader in understanding the Act. They do
+                  not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act recognises that animals are sentient beings and creates an accountability
+                     mechanism which aims to ensure that UK Ministers have due regard to their welfare
+                     needs when formulating and implementing government policy.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>An appropriate committee will be established to assess and report on the animal welfare
+                     impacts of policy decisions that have been taken, or which may be taken, by the Government.
+                     The relevant Secretary of State is required to lay a written statement before Parliament
+                     responding to any such report.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Government has made clear its commitment to raising animal welfare standards,
+                     and to ensuring that animals do not lose any recognitions or protections now that
+                     the UK has left the EU.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Government is therefore legislating to ensure that animal sentience is explicitly
+                     recognised in domestic law and to enhance scrutiny of major policy decisions taken
+                     by UK Ministers which impact on the welfare of sentient animals. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>In its 2019 manifesto, the Conservative Party made a commitment to “bring in new laws
+                     on animal sentience.” The Act fulfils this pledge. The Act includes provision to maintain
+                     a committee called the Animal Sentience Committee (“the Committee”). The role of the
+                     Committee will be to consider the ways in which a policy might have an adverse effect
+                     on the welfare of animals as sentient beings and to give its opinion in the form of
+                     a report. The Committee will be able to investigate a policy, both during and after
+                     its development.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>In 2020, in response to ongoing discussion surrounding the potential sentience of
+                     decapod crustaceans and cephalopod molluscs, Defra commissioned LSE Consulting, part
+                     of the London School of Economics and Political Science, to produce a review of the
+                     scientific evidence on the subject. Following peer-review, the ‘Review of the evidence
+                     for sentience in decapod crustaceans and cephalopod molluscs’ was published on 19
+                     November 2021. The Bill was subsequently amended during Report stage in the House
+                     of Lords to bring these invertebrates within the scope of the Committee’s reports.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p> The Act applies to all animals (other than humans) if they are vertebrates, decapod
+                     crustaceans or cephalopod molluscs. It therefore applies to wild animals, as well
+                     as domesticated animals.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Several amendments were tabled during the passage of the European Union (Withdrawal)
+                     Bill (now the European Union (Withdrawal) Act 2018), which sought to incorporate the
+                     recognition in Article 13 of the Treaty on the Functioning of the European Union that
+                     animals are sentient beings. The then Government did not support this, stating instead
+                     that it would consider how it might explicitly reflect animal sentience in wider UK
+                     legislation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Article 13 of the Treaty on the Functioning of the European Union provides that Member
+                     States should pay full regard to the welfare requirement of animals when formulating
+                     policies in certain areas “since animals are sentient beings”. The expression “sentient
+                     beings” is not defined in the Treaty, but an EU Commission publication on the Animal
+                     Welfare Strategy 2012–2015 stated that sentience means that animals are “capable of
+                     feeling pleasure and pain”.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:5.98in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Article 13 of the Treaty on the Functioning of the European Union</b>
+                                 </p>
+                              <p>In formulating and implementing the Union's agriculture, fisheries, transport, internal
+                                 market, research and technological development and space policies, the Union and the
+                                 Member States shall, since animals are sentient beings, pay full regard to the welfare
+                                 requirements of animals, while respecting the legislative or administrative provisions
+                                 and customs of the Member States relating in particular to religious rites, cultural
+                                 traditions and regional heritage.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>An earlier proposal to recognise animal sentience was contained in the draft Animal
+                     Welfare (Sentencing and Recognition of Sentience) Bill 2017, which was published by
+                     Defra in December 2017. At the then Secretary of State’s invitation, the EFRA Select
+                     Committee conducted pre-legislative scrutiny of the draft Bill. The select committee
+                     made a number of recommendations, including a recommendation that the Government introduce
+                     separate legislation on animal sentience.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The provisions of the Act extend to the United Kingdom as a whole. The Act applies
+                     only to policies formulated or implemented by UK Ministers. This means that it does
+                     not apply to policies formulated or implemented by the Scottish Ministers, Welsh Ministers
+                     or the Northern Ireland Executive.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: The Animal Sentience Committee</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>This section requires a new committee, the Animal Sentience Committee (the Committee),
+                     to be established and maintained.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Subsection (1) names the Committee and requires the Secretary of State to establish
+                     and maintain it. This means that the Secretary of State should take reasonable steps
+                     to ensure that the Committee, once established, remains extant and has the resources
+                     necessary to conduct the business specified in this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Subsection (2) states that the members of the Committee will be appointed by the Secretary
+                     of State. Standard public appointments rules apply to appointments made by the Secretary
+                     of State (e.g. a fair recruitment process is required).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Subsection (3) specifies that the terms of appointment, such as appointment length
+                     and remuneration, may be determined by the Secretary of State.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Reports of the Committee</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>This section empowers the Committee to publish reports, for selected policies, giving
+                     its opinion as to whether the Government is having, or has had, “all due regard” to
+                     the ways in which the policy might have an adverse effect on the welfare of animals
+                     as sentient beings. When publishing its opinions, the Committee may include recommendations
+                     to Ministers on the steps that the Government should take to ensure that, in any further
+                     formulation or implementation of the policy, its effect on the welfare of animals
+                     is given "all due regard”.  As the reports relate to “animals as sentient beings”,
+                     the section recognises that animals within the meaning of section 5(1) are sentient.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subsection (1) allows the Committee to produce a report on any government policy which
+                     is being, or has been, formulated or implemented.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsection (2) says that any such report must give the Committee’s view on “whether,
+                     or to what extent, the government is having, or has had, all due regard to the ways
+                     in which the policy might have an adverse effect on the welfare of animals as sentient
+                     beings”. The Committee will be able to issue an opinion in relation to any central
+                     government policy. In order to produce a report on this question, the Committee will
+                     need to scrutinise the manner in which the policy in question is being, or has been,
+                     formulated or implemented and assess the type and level of consideration that the
+                     Government is giving, or has given, to any potential adverse effects of the policy
+                     on the welfare of animals as sentient beings. This does not mean that the welfare
+                     of sentient animals should take precedence over other considerations when formulating
+                     or implementing a particular policy.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (3) allows the Committee’s reports to include recommendations to the Government
+                     in relation to the policy covered by the report.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsection (4) explains that these recommendations will address the future development
+                     or application of the policy in question. Specifically, the Committee can advise on
+                     the steps that should be taken to ensure that any potential adverse effects on animal
+                     welfare arising from the policy are given due consideration.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (4a) requires any recommendations in reports produced by the Animal Sentience
+                     Committee to respect religious rites, cultural traditions and regional heritage.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Subsection (5) requires the Committee’s reports to be published, by whichever methods
+                     it deems appropriate. This is intended to promote transparency.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsection (6) excludes a Government policy from the Committee’s remit if, or to the
+                     extent that, the policy relates to legislative provision falling within devolved competence.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (7) defines legislative provision falling within devolved competence.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Response to reports</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>This section requires the relevant Minister to lay a written response before Parliament
+                     within three months. This is intended to encourage Ministers to engage with the Committee’s
+                     recommendations in appropriate detail in a timely manner and support Parliament in
+                     scrutinising the policy-making process. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (1) requires the Secretary of State to lay a response to a Committee report
+                     before Parliament within a certain time limit. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (2) specifies this time limit as three months beginning on the date on
+                     which the report is published.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (3) excludes from this time limit any days when Parliament is dissolved
+                     or prorogued, and any periods of more than three days when Parliament is adjourned.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Information</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>This section includes the Committee and its work in the scope of existing transparency
+                     legislation, namely the Public Records Act and the Freedom of Information Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Subsection (1) lists the Committee as subject to the provisions of the Public Records
+                     Act 1958, with Defra as the responsible department. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsection (2) adds the Committee to the list of public bodies subject to the provisions
+                     of the Freedom of Information Act 2000.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>This section defines the animals to which the Act applies, and stipulates that this
+                     definition may be amended by the Secretary of State by means of statutory instrument,
+                     which would need to be approved by both Houses of Parliament. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection (1) defines an “animal,” for the purposes of this Act, as any vertebrate
+                     other than Homo sapiens (e.g. birds, dogs, cats, reptiles); any cephalopod mollusc
+                     (e.g. octopuses, squid) and any decapod crustacean (e.g. crab, shrimp). All animals
+                     defined in this subsection are therefore considered to be sentient for the purposes
+                     of Section 2(2) and (4) and will be within the scope of the Committee’s consideration.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Subsection (2) allows this definition of an “animal” to be extended by the Secretary
+                     of State by regulations. If the Secretary of State considers that a certain type of
+                     invertebrate (other than decapod crustaceans and cephalopod molluscs) is sentient,
+                     then he or she may exercise the regulation-making power to apply the provisions of
+                     this Act to that type of invertebrate. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Subsection (4) specifies that these statutory instruments can be made only under the
+                     affirmative resolution process. This means that both Houses of Parliament must actively
+                     approve any changes for them to become law. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsection (5) gives meaning to the terms “vertebrate” and “invertebrate”. These are
+                     the meanings given by section 1(5) of the Animal Welfare Act 2006, namely ““vertebrate”
+                     means any animal of the Sub-phylum Vertebrata of the Phylum Chordata and “invertebrate”
+                     means any animal not of that Sub-phylum”.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Sections 1 to 5 of the Act will come into force on a day to be appointed by the Secretary
+                     of State by regulations to be made by statutory instrument.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The draft Terms of Reference for the Animal Sentience Committee: </p>
+                  <section class="subparagraph">
+                     <p>
+                        <a href="https://data.parliament.uk/DepositedPapers/Files/DEP2022-0007/Animal_Sentience_Committee_Draft_Terms_of_Reference.pdf">
+                           <u>https://data.parliament.uk/DepositedPapers/Files/DEP2022-0007/Animal_Sentience_Committee_Draft_Terms_of_Reference.pdf</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Review of the evidence for sentience in decapod crustaceans and cephalopod molluscs:
+                     <a href="http://sciencesearch.defra.gov.uk/Document.aspx?Document=15299_SentienceinCephalopodMolluscsandDecapodCrustaceans_FinalReport_November2021.pdf"><u>http://sciencesearch.defra.gov.uk/Document.aspx?Document=15299_SentienceinCephalopodMolluscsandDecapodCrustaceans_FinalReport_November2021.pdf</u></a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The Animal Welfare (Sentencing and Recognition of Sentience) Draft Bill laid before
+                     Parliament by the previous Government in December 2017:</p>
+                  <section class="subparagraph">
+                     <p>
+                        <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/666576/draft-animal-welfare-bill-171212.pdf">
+                           <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/666576/draft-animal-welfare-bill-171212.pdf</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The EFRA Select Committee’s pre-legislative scrutiny report on that draft bill:</p>
+                  <section class="subparagraph">
+                     <p>
+                        <a href="https://publications.parliament.uk/pa/cm201719/cmselect/cmenvfru/709/709.pdf">
+                           <u>https://publications.parliament.uk/pa/cm201719/cmselect/cmenvfru/709/709.pdf</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The previous Government’s response to the Select Committee’s report: </p>
+                  <section class="subparagraph">
+                     <p>
+                        <a href="https://publications.parliament.uk/pa/cm201719/cmselect/cmenvfru/984/984.pdf">
+                           <u>https://publications.parliament.uk/pa/cm201719/cmselect/cmenvfru/984/984.pdf</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>13 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-05-13/debates/987038BA-23FA-4226-96FE-A6FA318FE1B7/AnimalWelfare(Sentience)Bill(HL)">
+                                    <u>Vol. 812 Col. 166</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-06-16/debates/81851658-6B9F-4739-8199-22398F81085F/AnimalWelfare(Sentience)Bill(HL)">
+                                    <u>Vol. 812 Col. 1899-1948</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>6 July 2021</p>
+                              <p>20 July 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-07-06/debates/B8CBC730-DC86-4D6C-B915-C145CF158B80/AnimalWelfare(Sentience)Bill(HL)">
+                                    <u>Vol. 813 Col. 267GC-340GC</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-07-20/debates/98AD89E5-DFBD-46DF-B48A-743480D7B5EB/AnimalWelfare(Sentience)Bill(HL)">
+                                    <u>Vol. 814 Col. 1GC-48GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>6 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-12-06/debates/97D946EC-88E7-4D9A-9B10-15F6835F1946/AnimalWelfare(Sentience)Bill(HL)">
+                                    <u>Vol. 816 Col. 1655-1666</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>13 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-12-13/debates/E2CAE469-DF73-4F0D-BE7D-7E1229E3B07D/AnimalWelfare(Sentience)Bill(HL)">
+                                    <u>Vol. 817 Col. 15-24</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>14 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-12-14/debates/83F2F8AF-58C5-4313-AAEB-87CAE528ED38/BusinessWithoutDebate">
+                                    <u>Vol. 705 Col. 1027</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-18/debates/33984457-F036-4329-B701-FC4F71A26E62/AnimalWelfare(Sentience)Bill(Lords)">
+                                    <u>Vol. 707 Col. 243-287</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>10 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-02-10/debates/83c65059-a966-4e52-bd9f-ac7de7ed38b3/AnimalWelfare(Sentience)Bill(Lords)">
+                                    <u>Vol. 708 Col. 1-31</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>14 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-03-14/debates/AFFC9F8D-F3B7-4DD7-877B-F36620B67362/AnimalWelfare(Sentience)Bill(Lords)">
+                                    <u>Vol. 710 Col. 683-732</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>7 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-07/debates/0132059F-ED6E-4453-AFBC-0198A6CED8FC/AnimalWelfare(Sentience)Bill(HL)">
+                                    <u>Vol. 820 Col. 2109-2216</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>28 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-28/debates/D11DF494-0AB3-4302-AB2D-C113849A137D/RoyalAssent">
+                                    <u>House of Lords Vol. 821 Col. 382</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-04-28/debates/5F1FDD7A-35F7-40C1-B357-1F6C6F3A5B15/RoyalAssent">
+                                    <u>House of Commons Vol. 712 Col. 890</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

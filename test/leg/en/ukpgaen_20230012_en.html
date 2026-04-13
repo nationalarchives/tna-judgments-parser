@@ -1,0 +1,858 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>BALLOT SECRECY</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Ballot Secrecy Act 2023 which received Royal
+                     Assent on 2 May 2023 (c. 12). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for Levelling Up, Housing
+                     and Communities in order to assist the reader in understanding the Act. They do not
+                     form part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act means in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act affects existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act amends existing electoral law to strengthen the secrecy of voting in polling
+                     stations at UK parliamentary elections, Northern Ireland Assembly elections, England
+                     local elections and Northern Ireland local elections. The Act introduces two new offences
+                     in relation to a person being with or near another person in a polling booth, with
+                     the intention of influencing how that person will cast their vote. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act seeks to strengthen the secrecy of votes cast in polling stations at elections
+                     and aims to address concerns of voters being accompanied by other persons into or
+                     near polling booths and being influenced into voting in a particular way (so called
+                     “family voting”).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>There are existing offences in the Representation of the People Act 1983 (“RPA 1983”)
+                     and the Electoral Law Act (Northern Ireland) 1962 (“1962 Act”) designed to safeguard
+                     the secrecy of voting and to prevent voters being subject to inappropriate or undue
+                     influence from other persons when casting their vote.  Electoral law currently provides
+                     that it is an offence for a person to carry out particular activity for the purpose
+                     of inducing or compelling a voter to vote in a particular way (or refrain from voting),
+                     or to interfere with or attempt to interfere with a voter while they are voting, or
+                     to find out or attempt to find out in a polling station for whom they are about to
+                     vote or have voted.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The measures in the Act are designed to strengthen the existing law concerning the
+                     secrecy of voting.  The Act introduces new offences to provide clarity that a voter
+                     should enter a polling booth alone when completing a ballot paper and not be accompanied
+                     by another person (unless, as per existing law, they are a companion of a disabled
+                     voter who has made the required written declaration acting in that capacity; the presiding
+                     officer assisting the voter acting in that capacity; or a child under the voter’s
+                     supervision).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The measures will support presiding officers to challenge such behaviour in polling
+                     stations, and assist in the prosecution of cases where necessary, and support the
+                     Electoral Commission in producing guidance to Returning Officers and polling station
+                     staff on the issue.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The law governing the proceedings of elections and the requirements placed on those
+                     running for public office is set out in a large number of statutes and orders. The
+                     RPA 1983 is the core Act dealing with the voting franchise for UK parliamentary elections
+                     and local elections in England, Wales and Scotland, as well as other rules, and the
+                     detailed procedure for conducting UK parliamentary elections. This Act inserts new
+                     section 62C into the RPA 1983, which creates the new offences of being with a voter
+                     in a polling booth with the intention of influencing how the voter casts their vote,
+                     and of being near a polling booth when another person is at that booth with the same
+                     intention. This is in addition to existing offences in the RPA 1983 relating to secrecy
+                     of the ballot (under section 66) and of undue influence (under section 114A, which
+                     has not yet been commenced, and section 115). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The conduct rules for Northern Ireland Assembly elections and offences in relation
+                     to those elections are set out in the Northern Ireland Assembly (Elections) Order
+                     2001 (S.I. 2001/2599) (“the 2001 Order”). Schedule 1 to the 2001 Order applies provisions
+                     of the RPA 1983 with some modifications. The Act amends that Schedule to apply the
+                     new offences to Northern Ireland Assembly elections. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The rules for local elections in Northern Ireland are set out in the 1962 Act. The
+                     Act inserts a new paragraph 26A in Schedule 9 to the 1962 Act which creates the same
+                     offences as new section 62C of the RPA 1983 and also makes consequential amendments
+                     to the 1962 Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 3(1) and (2) set out the territorial extent of provisions of the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Amendment of the Representation of the People Act 1983</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>This section inserts new section 62C into the RPA 1983.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Subsection (1) of new section 62C makes it an offence at UK parliamentary elections
+                     and local elections in England for a person to be with another person at a polling
+                     booth, with the intention of influencing that other person to vote in a particular
+                     way or to refrain from voting.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Subsection (2) of new section 62C makes it an offence at UK parliamentary elections
+                     and local elections in England for a person to be near a polling booth when another
+                     person is at that booth, with the intention of influencing that other person to vote
+                     in a particular way or to refrain from voting.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Subsection (3) of new section 62C defines certain terms and makes provision for the
+                     purposes of new section 62C.   Subsection (3)(b) provides that a person helping a
+                     voter under rule 39 of the Parliamentary Election Rules, Schedule 1 to the RPA 1983,
+                     or any other legislation, is not influencing the voter to vote in a particular way
+                     or to refrain from voting.  Companions or presiding officers, where they are acting
+                     in accordance with the provisions on assisting a voter will not commit the offence.
+                     Subsection (3)(c) provides that under new section 62C, a person may be near one polling
+                     booth while at a different polling booth. This means the offences will capture a person
+                     in or near a polling booth seeking to influence another voter in a different polling
+                     booth.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Under subsection (4), those found guilty of the new summary offences will be liable
+                     to imprisonment for a term not exceeding 6 months, to a fine (which is unlimited in
+                     England and Wales, and not exceeding level 5 on the standard scale in Scotland and
+                     Northern Ireland), or to both.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (5) of new section 62C provides that section 62C does not apply to local
+                     elections in Scotland or Wales.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Amendment of Northern Ireland legislation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>This section creates equivalent offences for the purposes of local elections in Northern
+                     Ireland and applies new section 62C of the RPA 1983 for the purposes of elections
+                     to the Northern Ireland Assembly.  Subsection (1) amends the 1962 Act to introduce
+                     equivalent offences in relation to local elections in Northern Ireland. Subsection
+                     (2) amends the 2001 Order to apply new section 62C of the RPA 1983 in relation to
+                     Northern Ireland Assembly elections. </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsections (1) and (2) of this section set out the extent of the Act. The Act extends
+                     to England and Wales, Scotland and Northern Ireland, apart from section 2(1), which
+                     extends to Northern Ireland only. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (3) provides that the section comes into force on the day on which the
+                     Act is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsections (4) to (8) give the Secretary of State the power to commence the provisions
+                     in the Act through subsequent commencement regulations, and make transitional, transitory
+                     or saving provisions in connection with commencement. The transitional, transitory
+                     or saving regulations may make different provision for different purposes or areas.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (9) states that the Act may be cited as the Ballot Secrecy Act 2023.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 3 sets out that provisions in the Act come into force on such day or days
+                     to be set by the Secretary of State in commencement regulations.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>None. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.18in">
+                        <col style="width:1.37in">
+                        <col style="width:1.37in">
+                        <col style="width:1.37in">
+                        <col style="width:1.37in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>England</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Wales</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Scotland</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Northern Ireland</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>(Amendment of the Representation of the People Act 1983) </p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                              <p>(Amendment of Northern Ireland legislation)</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                              <p>(Extent, commencement and short title)</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>26 May 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-05-26/debates/4AADB047-5FE1-48B9-BF04-93504D292FC0/BallotSecrecyBill(HL)">
+                                    <u>Vol. 822 Col. 955</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>15 July 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-07-15/debates/8D7583BC-6E5C-4FC2-BE52-530A835BE22C/BallotSecrecyBill(HL)">
+                                    <u>Vol. 823 Col. 1707</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>18 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-11-18/debates/857C35AB-E779-4102-966F-58D1963DEBE9/BallotSecrecyBill(HL)">
+                                    <u>Vol. 825 Col. 1153</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>23 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-11-23/debates/6223B716-4C03-4EE6-A1F5-C65DF525D58E/BallotSecrecyBill(HL)">
+                                    <u>Vol. 825 Col. 1376</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>30 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-11-30/debates/1B9AC4FC-725B-45FD-9E1E-B7FF23048987/BallotSecrecyBill(HL)">
+                                    <u>Vol. 825 Col. 1783</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>House of Commons</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>1 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3172/stages/17199">
+                                    <u>1 December 2022</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>9 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-12-09/debates/562C2FAB-9D4D-4AA8-9821-EC6DABF66B3E/BusinessWithoutDebate">
+                                    <u>Vol. 724 Col. 701</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>7 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-03-07/debates/8315a66e-a7f8-4161-ba8b-dd6b3fad0d15/BallotSecrecyBill(Lords)">
+                                    <u>PBC 7 March 2023</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-03-24/debates/F3E264BC-0A2E-4C33-890F-DE5A58EC689F/BallotSecrecyBill(Lords)">
+                                    <u>Vol. 730 Col. 565</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>2 May 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Commons  <a href="https://hansard.parliament.uk/Commons/2023-05-02/debates/18871A6E-741C-4C6F-A229-6559FADCF6DA/Prayers"><u>Vol. 732 Col. 1</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2023-05-02/debates/A65FE493-41F9-4603-974D-20ABBFDDBD71/RoyalAssent"><u>Vol. 829 Col. 1391</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>This Annex shows how each section of the Act was numbered during the passage of the
+                     Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.07in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Section of the Act</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as Introduced in the Lords</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as amended in Committee in the Lords</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as amended on Report in the Lords </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as introduced in the Commons </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Bill as amended in Committee in the Commons</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1 (Amendment of the Representation of the People Act 1983)</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2 (Amendment of Northern Ireland legislation)</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                              <p>(Extent,</p>
+                              <p>commencement</p>
+                              <p>and short title)</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

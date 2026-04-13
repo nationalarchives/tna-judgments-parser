@@ -1,0 +1,1614 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>TRADE (COMPREHENSIVE AND PROGRESSIVE AGREEMENT FOR TRANS-PACIFIC PARTNERSHIP) ACT
+                  2024</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Trade (Comprehensive and Progressive Agreement
+                  for Trans-Pacific Partnership) Act 2024 which received Royal Assent on 20 March 2024
+                  (c. 6). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business and Trade
+                  in order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Trade (Comprehensive and Progressive Agreement for Trans-Pacific Partnership)
+                     Act (the “Act”) provides measures to help ensure the UK will be compliant with its
+                     international obligations pursuant to the Comprehensive and Progressive Agreement
+                     for Trans-Pacific Partnership (“CPTPP”) when the UK accedes to that treaty. In particular,
+                     the measures in the Act make changes to domestic law in three areas:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>technical barriers to trade;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>government procurement; and </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>intellectual property.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>CPTPP implementation</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">2 </span></h2>
+                     <p>The UK concluded negotiations to join the CPTPP on 31 March 2023 and signed the Protocol
+                        on the Accession of the United Kingdom of Great Britain and Northern Ireland to the
+                        Comprehensive and Progressive Agreement for Trans-Pacific Partnership (the “Accession
+                        Protocol”) on 16 July 2023<a class="fn" id="fnref-1" href="#fn-1">1</a>. Entry into force of the agreement will take place once the UK and the requisite
+                        number of CPTPP Parties have finished their domestic processes for entry into force
+                        of the Accession Protocol. The Accession Protocol outlines the terms and conditions
+                        upon which the UK will accede to the CPTPP. The CPTPP largely incorporates the provisions
+                        set out in the Trans-Pacific Partnership (done at Auckland on 4 February 2016), with
+                        a small number of provisions suspended upon entry into force of the CPTPP. References
+                        in these explanatory notes to Articles and Chapters of the CPTPP mean the relevant
+                        Articles and Chapters of the Trans-Pacific Partnership as incorporated into the CPTPP.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3 </span></h2>
+                     <p>Certain parts of the CPTPP Chapters on Technical Barriers to Trade, Government Procurement,
+                        and Intellectual Property (Chapter numbers 8, 15, and 18 respectively) required the
+                        UK to create new primary legislation to provide for their implementation for the entry
+                        into force of the CPTPP for the UK. This legislative implementation of the obligations
+                        in the CPTPP is needed before entry into force of the Accession Protocol and the CPTPP
+                        for the UK to ensure that the UK is not in breach of them when they enter into force.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Technical barriers to trade</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>Conformity assessment procedures provide assurance that products meet relevant regulatory
+                        requirements. Examples of conformity assessment procedures are testing, certification
+                        and inspection. Some products require conformity assessment procedures to be carried
+                        out by third-party organisations called conformity assessment bodies (“CABs”). Some
+                        of the UK’s legislation requires these CABs to be based in the UK, Great Britain,
+                        or in a country with which the UK has a mutual recognition agreement.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>When the CPTPP enters into force for the UK, the UK is required by Article 8.6 of
+                        the Trans-Pacific Partnership, as it is incorporated into the CPTPP, to ensure that
+                        CABs established in the territories of CPTPP Parties are treated no less favourably
+                        than CABs located domestically. To comply with this obligation, the UK must amend
+                        its legislation to allow CABs established in CPTPP Parties (for which the CPTPP is
+                        in force as between the UK and that Party) to apply for approval to carry out conformity
+                        assessment for the Great British market. The Act therefore confers a power on the
+                        Secretary of State to amend relevant legislation to enable this to occur.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Government procurement</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>The Government Procurement Chapter consists of (a) the text of the Chapter setting
+                        out the government procurement obligations and (b) the Schedules in an Annex to the
+                        Chapter, which set out the procurement market access coverage of each of the Parties.
+                        The text sets out rules for fair, transparent and non-discriminatory conditions of
+                        competition in government procurement. These rules do not automatically apply to all
+                        procurement activities of each Party. Rather, the Schedules determine which entities
+                        and procurements are covered by the scope of the Chapter and must follow the rules.
+                        Only government procurement activities by covered entities purchasing covered goods,
+                        services or construction services, of a value exceeding the specified thresholds,
+                        are within the scope of the CPTPP.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>To implement the Chapter, the Act amends the UK’s government procurement legislative
+                        framework in two ways. Firstly, to give effect to the UK’s market access commitments
+                        to CPTPP suppliers. Secondly, and where applicable, the Act brings that framework
+                        into compliance with two technical rules of the Government Procurement Chapter. Those
+                        rules concern: (i) an exemption from the CPTPP rules for procurements organised and
+                        funded by international organisations, pursuant to Article 15.2.3(e)(ii) of the Chapter;
+                        and (ii) the information to be published following the award of a contract, pursuant
+                        to Article 15.16.3(d) of the Chapter. At Royal Assent of this Act, the UK’s procurement
+                        legislative framework is set out in regulations. For England, Wales and Northern Ireland,
+                        those regulations will be replaced by the Procurement Act 2023 from substantive commencement
+                        of that Act, expected October 2024. For Scotland, the relevant regulations will endure.
+                        Accordingly, this Act amends both the regulations and the Procurement Act 2023.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Intellectual property</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>The Intellectual Property Chapter covers multiple forms of intellectual property (“IP”),
+                        including patents, geographical indications, copyright and related rights, trade secrets,
+                        trade marks and designs, as well as their enforcement. The text sets minimum standards
+                        of protection across these areas, creating a shared baseline of protection in CPTPP
+                        Parties’ domestic regimes. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>The Act makes changes in relation to geographical indications, and copyright and related
+                        rights.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>Geographical indications (“GIs”) protect the names of products which have a special
+                        relationship with their geographical origin. A UK example is Melton Mowbray Pork Pies.
+                        Article 18.32 of the Intellectual Property Chapter sets out that procedures must be
+                        in place to allow interested persons to object to an application for the protection
+                        of a GI, and to seek the cancellation of a protected GI, on specified grounds. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>To comply with this obligation, the Act amends domestic law (assimilated law, known
+                        as retained EU law before 01 January 2024) so that, in relation to agricultural products
+                        and foodstuffs (“agri-foods”) only, an application to register a GI can be opposed
+                        on the ground it is likely to cause confusion with a pre-existing trade mark or application
+                        for a trade mark. The Act also introduces the ability to cancel a registered agri-food
+                        GI on the grounds that, as at the time the GI was applied for, it was likely to cause
+                        confusion with a pre-existing trade mark or application for a trade mark, or because
+                        it was a generic term. These new grounds will also apply at other stages related to
+                        applications to register a GI. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>The amendments made by the Act will apply to both agri-food protected designations
+                        of origin (“PDOs”) and agri-food protected geographical indications (“PGIs”). PDOs
+                        and PGIs are both categories of agri-food GIs in domestic law. References in these
+                        notes to GIs mean PGIs and PDOs.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>In relation to copyright and related rights, each CPTPP Party is required to provide
+                        certain rights to performers and producers who meet the eligibility criteria for protection
+                        as specified in the CPTPP. Article 18.62.1 of the Intellectual Property Chapter sets
+                        out that CPTPP Parties are required to afford rights to: </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>performers and producers of phonograms that are nationals of another CPTPP Party;
+                           and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>performances or phonograms first published or fixed in the territory of another CPTPP
+                           Party.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>The eligibility criteria under the CPTPP by which performers can qualify for rights
+                        in their performances is wider than the criteria currently provided for in UK law.
+                        This means that some performers who should qualify for protection under the CPTPP
+                        when it enters into force for the UK would not get this.  The Act therefore expands
+                        the eligibility criteria by which performers can qualify for rights in their performances
+                        in the UK.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The relevant legal background is also explained in the policy background section of
+                     these notes. However, a summary of the relevant legal changes in each area of the
+                     Act can be found below.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Technical barriers to trade</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>The Act confers a power on the Secretary of State to amend relevant subordinate legislation
+                        in order to comply with the UK’s obligations under Article 8.6 of the Trans-Pacific
+                        Partnership, as it is incorporated into the CPTPP.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Government procurement</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>The procurement provisions of the Act amend the following legislation:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the Procurement Act 2023;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>the Public Contracts Regulations 2015 (S.I. 2015/102);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>the Concession Contracts Regulations 2016 (S.I. 2016/273);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>the Utilities Contracts Regulations 2016 (S.I. 2016/274);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>the Public Contracts (Scotland) Regulations 2015 (S.S.I. 2015/446);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">f.</span></h2>
+                        <p>the Utilities Contracts (Scotland) Regulations 2016 (S.S.I. 2016/49); and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">g.</span></h2>
+                        <p>the Concession Contracts (Scotland) Regulations 2016 (S.S.I. 2016/65).</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Intellectual property</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>The GI provisions of the Act amend the following legislation:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>assimilated Regulation (EU) No 1151/2012 of the European Parliament and of the Council
+                           of 21 November 2012 on quality schemes for agricultural products and foodstuffs;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>assimilated Commission Delegated Regulation (EU) No 664/2014 of 18 December 2013 supplementing
+                           Regulation (EU) No 1151/2012 of the European Parliament and of the Council with regard
+                           to the establishment of the Union symbols for protected designations of origin, protected
+                           geographical indications and traditional specialities guaranteed and with regard to
+                           certain rules on sourcing, certain procedural rules and certain additional transitional
+                           rules; and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>assimilated Commission Implementing Regulation (EU) No 668/2014 of 13 June 2014 laying
+                           down rules for the application of Regulation (EU) No 1151/2012 of the European Parliament
+                           and of the Council on quality schemes for agricultural products and foodstuffs.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>The copyright provisions of the Act amend the following legislation:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the Copyright, Designs and Patents Act 1988.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 6 sets out the territorial extent of the Act. The extent of an Act can be
+                     different from its application. Application is about where an Act produces a practical
+                     effect rather than where it forms part of the law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The Trade (CPTPP) Act extends and applies to the whole of the UK, subject to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Section 3(4)(a) and Part 1 of the Schedule extends to England and Wales and Northern
+                        Ireland only;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Section 3(4)(b) and Part 2 of the Schedule which extends to Scotland only;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Section 4 only applies to Great Britain; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>Secondary legislation made using the power in section 2 only applies to Great Britain.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>See the table in Annex B for a summary of the position regarding territorial extent
+                     and application in the UK. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Meaning of “the CPTPP”</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 1 defines the meaning of “the CPTPP” and “the UK Accession Protocol” for the
+                     purposes of the Act. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Treatment of conformity assessment bodies etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Section 2(1) provides that the Secretary of State may, by regulations made by statutory
+                     instrument, amend subordinate legislation in order to implement the UK’s obligations
+                     under Article 8.6 of Trans-Pacific Partnership as it is incorporated into the CPTPP.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Article 8.6 of the Trans-Pacific Partnership as it is incorporated into the CPTPP
+                     will require the UK to ensure that conformity assessment bodies located in CPTPP Parties'
+                     territories are afforded treatment no less favourable than conformity assessment bodies
+                     located in the UK.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Section 2(2) provides that regulations made under this section of the Act may include
+                     consequential, supplementary, incidental, transitional or saving provision. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Section 2(3) provides that statutory instruments made under this section are subject
+                     to the made negative parliamentary procedure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Section 2(4) defines what “subordinate legislation” and “Article 8.6 of the CPTPP”
+                     means in this section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Procurement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Section 3 amends the domestic legislative framework that regulates procurement, namely
+                     the Procurement Act 2023 and six sets of procurement regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Section 3(2) amends Schedule 2 to the Procurement Act 2023. That Schedule concerns
+                     contracts that are substantively exempted from the procurement framework established
+                     under that Act. Paragraph 24 of that Schedule makes provision for contracts to be
+                     exempted when awarded under procedures adopted by international organisations. Subsection
+                     (2) replaces that paragraph to provide that an exempted contract includes a contract
+                     wholly or mainly funded by an international organisation of which the UK is a member
+                     and that is awarded under a procedure adopted by that organisation which is inconsistent
+                     in any material respect with the procedure for the award of the contract set out in
+                     the Procurement Act 2023. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Section 3(3) amends Schedule 9 to the Procurement Act 2023. That Schedule lists international
+                     agreements to which the UK is a signatory. In accordance with Part 7 of that Act,
+                     where a supplier is entitled to the benefit of an international agreement specified
+                     in that Schedule they are treated as a “treaty state supplier”. Accordingly, the supplier
+                     benefits from the duties owed by contracting authorities to treaty state suppliers
+                     under the Act as well as the remedies available to those suppliers. Subsection (3)
+                     inserts a reference to the CPTPP in the list of international agreements specified
+                     in Schedule 9 to that Act. That insertion extends the duties owed, and remedies available,
+                     to treaty state suppliers under that Act to CPTPP suppliers, effective once such supplier
+                     is entitled to the benefit of the CPTPP; that is, upon UK accession. The provision
+                     thereby implements the market access commitments of the UK to other CPTPP Parties.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Section 3(4) gives effect to the Schedule, which provides as follows:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Part 1 makes amendments to the procurement regulations for England and Wales and Northern
+                        Ireland;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Part 2 makes amendments to the procurement regulations for Scotland; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Part 3 makes transitional provisions for procurements commenced before the Schedule
+                        comes into force. </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Section 4: Designations of origin and geographical indications</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Section 4 amends the domestic legislative framework that regulates agri-food GIs,
+                     namely assimilated Regulation (EU) No 1151/2012 of the European Parliament and of
+                     the Council of 21 November 2012 on quality schemes for agricultural products and foodstuffs
+                     (Regulation 1151/2012), and two other assimilated Regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Section 4(2) amends the definition of “application to register a trade mark” in Article
+                     3 of assimilated Regulation (EU) No 1151/2012 to clarify the meaning of a trade mark
+                     that has been “applied for” or is “pending”. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Section 4(3) amends Article 6(4) of assimilated Regulation (EU) 1151/2012, so that
+                     a name is not to be registered as a GI if it is likely to cause confusion with an
+                     existing trade mark (whether registered in good faith or established by use) or a
+                     trade mark which is the subject of a pre-existing good faith pending application for
+                     registration. At present, an application for a GI must be rejected under Article 6(4)
+                     if, broadly, it would be liable to mislead the consumer in the light of a pre-existing
+                     trade mark. In combination with Articles 51 and 10(1)(b) of assimilated Regulation
+                     (EU) 1151/2012, this has the effect of allowing an application for an agri-food GI
+                     to be opposed on this ground. This amendment will also have effect in other parts
+                     of the agri-food GI application process where the ground in Article 6(4) is referred
+                     to.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Section 4(4) expands the grounds on which the Secretary of State may cancel the registration
+                     of an agri-food GI to include cases where, when the application for registration of
+                     the GI (under Article 49 of assimilated Regulation (EU) 1151/2012), or a later successful
+                     name change application, was submitted it was likely to cause confusion with a pre-existing
+                     trade mark or good faith pending application for a trade mark, or it was a generic
+                     term. This will involve carrying out an assessment based on the position when the
+                     relevant registration or name change was applied for.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Sections 4(5) to (9) make consequential amendments to two other assimilated Regulations,
+                     so that general provisions about opposition to a GI application and cancellation of
+                     a GI registration will apply in relation to the new and amended grounds.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Section 4(10) provides that the amendments in sections 4(3) and (8) will apply only
+                     in relation to applications to register a GI or to applications to amend the product
+                     specification for a GI which involves changing the name of the GI (a “name-change
+                     application”) that are submitted on or after the date on which the CPTPP enters into
+                     force for the UK.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Section 4(11) sets out when and how sections 4(4), (5), (7) and (9) (which relate
+                     to the new grounds of cancellation) will apply. The grounds of cancellation in new
+                     Article 54(1A)(a) (no registration of generic terms) will apply regardless of when
+                     the application for the GI was submitted. The ground of cancellation in new Article
+                     54(1A)(b) (conflict with trade mark) will apply only where the application for the
+                     GI or the name-change application (as the case may be), was submitted on or after
+                     the day on which sections 4(4), (5), (7) and (9) come into force. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Section 4(12) defines terms used earlier in section 4.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Performers’ rights</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Section 5 amends the Copyright, Designs and Patents Act 1988 (the “CDPA”) to extend
+                     the eligibility criteria by which performers can qualify for rights in their performances
+                     in the UK. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Section 5(1) amends Part 2 of the CDPA by substituting section 181 and amending section
+                     206, as set out in section 5(2) and 5(3) respectively.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Section 5(2) substitutes section 181 (qualifying performances) of the CDPA and sets
+                     out what a “qualifying performance” is for the purposes of qualifying for rights in
+                     performances under UK law. Section 181 as amended provides that a performance is a
+                     qualifying performance if it meets any of the four specified conditions (Conditions
+                     A to D) set out in new subsections 181(2) to 181(7). Conditions A and B replicate
+                     the bases for protection in pre-existing law. Conditions C and D go beyond the effect
+                     of pre-existing law and expand the bases on which a performance can qualify for rights
+                     in UK law. The following sub-paragraphs deal with section 181 as amended.</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Subsection 181(2) sets out Condition A and provides that a performance is a qualifying
+                        performance if it is given by a qualifying individual. The meaning of a “qualifying
+                        individual” is set out in the CDPA under section 206(1). </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Subsection 181(3) sets out Condition B and provides that a performance is a qualifying
+                        performance if it takes place in a qualifying country. The meaning of a “qualifying
+                        country” for the purpose of Part 2 of the CDPA is set out in section 206(1).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Subsection 181(4) sets out Condition C and provides that a performance is a qualifying
+                        performance if it is included in a sound recording, and either the producer of that
+                        sound recording meets certain criteria as set out in subsection 181(4)(a), or the
+                        sound recording is either first published in a qualifying country, or published in
+                        a qualifying country within 30 days of the original publication. Subsection 181(5)
+                        provides for when Condition C will be considered to have not been met. The term “producer”
+                        used in Condition C in subsection 181(4)(a) is defined in subsection 181(7). </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>Subsection 181(6) sets out Condition D which provides that a performance is a qualifying
+                        performance where the performance has not been included in a sound recording, the
+                        performance has been broadcast and the broadcast is made from a qualifying country,
+                        or the headquarters of the broadcasting organisation are situated in a qualifying
+                        country.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Section 5(3) amends section 206(4) of the CDPA to insert new paragraph (za) in subsection
+                     (4). It allows for the making of an Order in Council to make provision for specific
+                     restrictions to be applied in relation to rights afforded to performances as a result
+                     of qualifying for protection by virtue of meeting Condition C or Condition D in section
+                     5(2).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Section 5(4) provides that the provisions in section 5(2) apply to performances which
+                     have taken place before, on or after the Act comes into force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Sections 5(5) and 5(6) provide that any rights that arise as a result of these amendments
+                     are not to be regarded as infringed or affected by: any act done before the coming
+                     into force of the section; or any act done on or after the coming into force of the
+                     section, if the act done on or after the coming into force of the section was in pursuance
+                     of arrangements made before that date, except where those arrangements are an agreement
+                     that attempts to exclude or restrict a right or to prevent a person from questioning
+                     such a right or to restrict the powers of the Copyright Tribunal in relation to such
+                     a right which Part 2 of the CDPA provides cannot be excluded or restricted or prevented
+                     by agreement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Section 5(7) provides that the amendments made by section 5(3) enable an Order in
+                     Council made under new paragraph (za) of section 206(4) of the CDPA to apply to performances
+                     taking place before, on or after the date on which the Order in Council comes into
+                     force or the Act comes into force. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Section 5(8) provides definitions relevant to section 5. </p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Extent</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>This section confirms the extent of the legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Section 6(1) provides that the Act extends to England and Wales, Scotland, and Northern
+                     Ireland subject to the following exceptions set out in section 6(2) and 6(3): </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Section 3(4)(a) and Part 1 of the Schedule (amendments to procurement regulations
+                        for England and Wales and Northern Ireland) extend to England and Wales and Northern
+                        Ireland only; and </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Section 3(4)(b) and Part 2 of the Schedule to the Act (amendments to procurement regulations
+                        for Scotland) extend to Scotland only. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>The GI and Technical Barriers to Trade provisions in this Act extend to but will not
+                     apply in Northern Ireland. This is because, under the terms of the Windsor Framework,
+                     EU legislation relating to geographical indications and conformity assessment of goods,
+                     as listed in Annex 2 of the Windsor Framework, continues to apply in Northern Ireland.
+                     Article 15 of the Accession Protocol ensures that the UK can fulfil its obligations
+                     under the Windsor Framework.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Commencement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Section 7 provides that the Act comes into force on the day on which the CPTPP enters
+                     into force for the UK, subject to the following exceptions set out in sections 7(2),
+                     7(3) and 7(4):</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Section 7(2) provides that the following sections came into force on the day on which
+                        the Act received Royal Assent:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>section 1 (meaning of “the CPTPP”);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">ii.</span></h2>
+                        <p>section 2 (treatment of conformity assessment bodies etc);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">iii.</span></h2>
+                        <p>section 5(3) and (7) (amendment to section 206(4) of the Copyright, Designs and Patents
+                           Act 1988), and section 5(1) in so far as it relates to section 5(3);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">iv.</span></h2>
+                        <p>section 6 (extent);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">v.</span></h2>
+                        <p>section 7 (commencement);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">vi.</span></h2>
+                        <p>section 8 (short title). </p>
+                     </section>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Section 7(3) provides that section 3(2) (and section 3(1) so far as it relates to
+                        that provision) comes into force at the same time as Schedule 2 to the Procurement
+                        Act 2023. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Section 7(4) provides that section 3(3) (and section 3(1) so far as it relates to
+                        that provision) comes into force at the same time as Schedule 9 to the Procurement
+                        Act 2023. </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Section 8: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Section 8 provides that the short title of the legislation is the Trade (Comprehensive
+                     and Progressive Agreement for Trans-Pacific Partnership) Act 2024.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Schedule 1: Amendments to procurement regulations</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Part 1 – Amendments to procurement regulations for England and Wales and Northern
+                              Ireland</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">54 </span></h2>
+                        <p>Part 1 makes similar amendments to each of the three sets of procurement regulations
+                           that apply for England and Wales and Northern Ireland to implement the CPTPP commitments
+                           from when the CPTPP enters into force. Paragraphs 1 to 4 amend the Public Contracts
+                           Regulations 2015; paragraphs 5 to 7 the Concession Contracts Regulations 2016; and
+                           paragraphs 8 to 11 the Utilities Contracts Regulations 2016. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">55 </span></h2>
+                        <p>Paragraphs 2, 6, and 9 amend similar provisions of each set of regulations concerning
+                           contracts awarded pursuant to international rules. The amendments make provision for
+                           the substantive procurement framework in the regulations not to apply to relevant
+                           contracts where the procurement rules under which the contract is being awarded do
+                           not restrict the participation of economic operators (that is, suppliers). A relevant
+                           contract in this case is one awarded in accordance with the rules of an international
+                           organisation or financing institution and is financed, fully or mostly, by the organisation
+                           or institution. Provision is made that if such rules do not restrict the participation
+                           of suppliers, then the only provision of each set of regulations that applies to that
+                           contract is the provision requiring equal treatment of suppliers.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">56 </span></h2>
+                        <p>Paragraphs 3 and 10 amend similar provisions of the Public Contracts Regulations 2015
+                           and the Utilities Contracts Regulations 2016 concerning the information that contracting
+                           authorities must publish in a contract award notice. The amendments make provision
+                           for contracting authorities to publish the value of the successful tender, removing
+                           the option to publish either the value of the successful tender or a range of values
+                           (the highest and lowest tenders taken into account for the award of the contract).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">57 </span></h2>
+                        <p>Paragraphs 4, 7 and 11 amend similar schedules in each set of regulations to insert
+                           a reference to the CPTPP. Those schedules list international trade agreements to which
+                           the UK is bound. Pursuant to each set of regulations, where such agreement applies
+                           to a procurement (that is, is covered by it) suppliers of the signatories to that
+                           agreement are entitled to equal treatment as UK suppliers under the regulations and
+                           benefit from duties owed by contracting authorities. Accordingly, the rights and duties
+                           will be extended to CPTPP suppliers.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Part 2 - Amendments to procurement regulations for Scotland</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">58 </span></h2>
+                        <p>Part 2 makes similar amendments to each of the three sets of procurement regulations
+                           that apply for Scotland. Paragraphs 12 to 15 amend the Public Contracts (Scotland)
+                           Regulations 2015; paragraphs 16 to 19 the Utilities Contracts (Scotland) Regulations
+                           2016; and paragraphs 20 to 22 the Concession Contracts (Scotland) Regulations 2016.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">59 </span></h2>
+                        <p>Paragraphs 13, 17 and 21 make similar provision in the Scottish regulations to those
+                           described in paragraph 55 above for the equivalent England and Wales and Northern
+                           Ireland regulations, regarding contracts awarded pursuant to international rules.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">60 </span></h2>
+                        <p>Paragraphs 14 and 18 make similar provision in the Public Contracts (Scotland) Regulations
+                           2015 and the Utilities Contracts (Scotland) Regulations 2016 to those described in
+                           paragraph 56 above for the equivalent England and Wales and Northern Ireland regulations,
+                           regarding the information to be published in a contract award notice.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">61 </span></h2>
+                        <p>Paragraphs 15, 19 and 22 make similar provision in the Scottish regulations to those
+                           described in paragraph 59 above for the equivalent England and Wales and Northern
+                           Ireland regulations, reflecting the CPTPP in the relevant schedule of international
+                           trade agreements in those regulations.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Part 3 – Transitional provision</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">62 </span></h2>
+                        <p>Part 3 makes transitional arrangements for those procurements commenced before the
+                           Schedule comes into force. </p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>Section 7 makes provision about when the provisions of this Act will come into force.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>CPTPP Free Trade Agreement </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">◦</span></h2>
+                        <p>The UK’s accession to the Comprehensive and Progressive Agreement for Trans-Pacific
+                           Partnership (CPTPP)&nbsp;.GOV document collection  (including links to the text of the
+                           CPTPP and the text of the Chapters of the Trans-Pacific Partnership signed at Auckland,
+                           4 February 2016 that are incorporated in CPTPP and associated documents)– <a href="https://www.gov.uk/government/collections/the-uks-accession-to-the-comprehensive-and-progressive-agreement-for-trans-pacific-partnership-cptpp"><u>https://www.gov.uk/government/collections/the-uks-accession-to-the-comprehensive-and-progressive-agreement-for-trans-pacific-partnership-cptpp</u></a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">◦</span></h2>
+                        <p>Protocol on the Accession of the United Kingdom of Great Britain and Northern Ireland
+                           to the Comprehensive and Progressive Agreement for Trans-Pacific Partnership– <a href="https://www.gov.uk/government/publications/protocol-on-the-accession-of-the-united-kingdom-of-great-britain-and-northern-ireland-to-the-comprehensive-and-progressive-agreement-for-trans-pacific"><u>https://www.gov.uk/government/publications/protocol-on-the-accession-of-the-united-kingdom-of-great-britain-and-northern-ireland-to-the-comprehensive-and-progressive-agreement-for-trans-pacific</u></a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">◦</span></h2>
+                        <p>Explanatory Memorandum on the Protocol on the Accession of the United Kingdom of Great
+                           Britain and Northern Ireland to the Comprehensive and Progressive Agreement for Trans-Pacific
+                           Partnership - <a href="https://www.gov.uk/government/publications/protocol-on-the-accession-of-the-united-kingdom-of-great-britain-and-northern-ireland-to-the-comprehensive-and-progressive-agreement-for-trans-pacific"><u>https://www.gov.uk/government/publications/protocol-on-the-accession-of-the-united-kingdom-of-great-britain-and-northern-ireland-to-the-comprehensive-and-progressive-agreement-for-trans-pacific</u></a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">◦</span></h2>
+                        <p>Impact Assessment – <a href="https://www.gov.uk/government/publications/cptpp-impact-assessment"><u>https://www.gov.uk/government/publications/cptpp-impact-assessment</u></a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">◦</span></h2>
+                        <p>CPTPP: benefits for the UK – <a href="https://www.gov.uk/government/publications/cptpp-benefits-for-the-uk"><u>https://www.gov.uk/government/publications/cptpp-benefits-for-the-uk</u></a></p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.11in">
+                        <col style="width:1.53in">
+                        <col style="width:2.66in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>8 November 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2023-11-08/debates/C42EC30D-277E-4978-9877-A76866873E52/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(HL)"><u>Vol. 834 Col. 22 </u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading </p>
+                           </td>
+                           <td>
+                              <p>21 November 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2023-11-21/debates/BF38A5A2-DFC2-42BF-8EBB-D29C6CF855D8/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(HL)"><u>Vol. 834 Col. 672</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>7 December 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2023-12-07/debates/B726DADA-6646-4A33-B630-5641BA3790DA/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(HL)"><u>Vol. 834 Col. 171GC</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>14 December 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2023-12-14/debates/C017293A-B834-4C83-AE4E-2596386DED89/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(HL)"><u>Vol. 834 Col. 325GC</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>16 January 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-01-16/debates/3A5F8F32-3503-483A-824A-4029CF3602E3/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(HL)"><u>Vol. 835 Col. 321</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 January 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-01-23/debates/65BDB778-BA41-474B-8024-9383D8ABFB10/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(HL)"><u>Vol. 835 Col. 677</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>24 January 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://commonsbusiness.parliament.uk/Document/84512/Pdf?subType=Standard">
+                                    <u>Votes and Proceedings, No 37</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 January 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2024-01-29/debates/8A2C3D8F-10AA-4418-AEB3-745F9FF5C315/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(Lords)"><u>Vol. 744 Col. 654</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>20 February 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-02-20/debates/b3143c1c-28c9-4eb2-9154-fb627dc6becc/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(Lords)(FirstSitting)">
+                                    <u>First sitting: Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-02-20/debates/817b0e42-74c6-469f-8207-dcabf3344cbe/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(Lords)(SecondSitting)">
+                                    <u>Second sitting: Col. 33</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>19 March 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2024-03-19/debates/F8D39031-33BF-4841-936B-D5634B62CDDF/Trade(ComprehensiveAndProgressiveAgreementForTrans-PacificPartnership)Bill(Lords)"><u>Vol. 747 Col. 837</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>20 March 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2024-03-20/debates/4848D016-14F3-46D7-98C1-D4137E77F908/HMRCSelf-AssessmentHelpline"><u>Vol. 747 Col. 943</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2024-03-20/debates/16514A7F-CB94-4A6F-9F3E-D5CEF9E182A6/RoyalAssent"><u>Vol. 837 Col. 195</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>The Trade (Comprehensive and Progressive Agreement for Trans-Pacific Partnership)
+                     Act extends to the whole of the UK except for section 3(4)(a) and Part 1 (amendments
+                     to procurement regulations for England and Wales and Northern Ireland) and section
+                     3(4)(b) and Part 2 of the Schedule (amendments to procurement regulations for Scotland).
+                     </p>
+                  <section class="subparagraph">
+                     <p>The information provided is the view of the UK Government.</p>
+                     <table>
+                        <colgroup>
+                           <col style="width:0.73in">
+                           <col style="width:1.28in">
+                           <col style="width:1.48in">
+                           <col style="width:1.48in">
+                           <col style="width:1.81in">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                              <p>
+                                 <b>England</b>
+                                 </p>
+                              <p>
+                                 <b>Wales</b>
+                                 </p>
+                              <p>
+                                 <b>Scotland</b>
+                                 </p>
+                              <p>
+                                 <b>Northern Ireland</b>
+                                 </p>
+                           </tr>
+                           <tr>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 1 </p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 2 – 2(1) to 2(4)</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes it so extends but no it does not so apply</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 3 – 3(1) to 3(3) </p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 3 –4(a)</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 3 - 4(b)</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 3 - 4(c)</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 4 – 4(1) to 4(12) </p>
+                              </td>
+                              <td>
+                                 <p>Yes </p>
+                              </td>
+                              <td>
+                                 <p>Yes </p>
+                              </td>
+                              <td>
+                                 <p>Yes </p>
+                              </td>
+                              <td>
+                                 <p>Yes it so extends but no it does not so apply </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 5 – 5(1) to 5(8) </p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 6 – 6(1) to 6(3)</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 7 – 7(1) to 7(4) </p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Section 8 </p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Schedule, Part 1</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No </p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Schedule, Part 2</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                              <td>
+                                 <p>No </p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>No</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Schedule, Part 3</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                              <td>
+                                 <p>Yes</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C – Glossary</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:3.05in">
+                        <col style="width:3.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Term </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Definition </b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Act of Parliament </p>
+                           </td>
+                           <td>
+                              <p>An Act of Parliament is a law that both Houses of Parliament and the King have agreed
+                                 to. An Act may be enforced in all the areas of the UK where it is applicable. </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Bill </p>
+                           </td>
+                           <td>
+                              <p>A proposal for a new law or an amendment to an existing law that has been presented
+                                 to Parliament for consideration. Once agreed and made into law, it becomes an Act.
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Devolved administrations </p>
+                           </td>
+                           <td>
+                              <p>The governments of the devolved nations of the UK. These are the Scottish Government,
+                                 the Welsh Government and the Northern Ireland Executive. </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Devolved competence </p>
+                           </td>
+                           <td>
+                              <p>The areas in which the devolved legislatures are responsible for making laws (“legislative
+                                 competence”) or the devolved administrations are responsible for governing or making
+                                 secondary legislation (“executive competence”).</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Devolved legislatures </p>
+                           </td>
+                           <td>
+                              <p>The law making bodies of the devolved nations of the UK. These are the Scottish Parliament,
+                                 the Senedd Cymru and the Northern Ireland Assembly. </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Made negative procedure </p>
+                           </td>
+                           <td>
+                              <p>The made negative procedure is a type of parliamentary procedure that applies to statutory
+                                 instruments. Its name describes the form of scrutiny that the statutory instrument
+                                 receives from Parliament.</p>
+                              <p>A statutory instrument laid under the made negative procedure becomes law on the day
+                                 the Minister signs it and automatically remains law unless a motion – or ‘prayer’
+                                 – to reject it is agreed by either House within 40 sitting days. Certain SIs on financial
+                                 matters are only considered by the Commons. </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Secondary legislation </p>
+                           </td>
+                           <td>
+                              <p>Legal instruments (including regulations and orders) made under powers delegated to
+                                 ministers or other office holders in Acts of Parliament. They have the force of law
+                                 but can be disapplied by a court if they do not comply with the terms of their parent
+                                 Act or the Human Rights Act. Also called subordinate or delegated legislation. </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Statutory instrument </p>
+                           </td>
+                           <td>
+                              <p>A form of secondary legislation to which the Statutory Instruments Act 1946 applies.
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/publications/accession-protocol-of-the-uk-to-the-cptpp"><u><a href="https://www.gov.uk/government/publications/accession-protocol-of-the-uk-to-the-cptpp">https://www.gov.uk/government/publications/accession-protocol-of-the-uk-to-the-cptpp</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

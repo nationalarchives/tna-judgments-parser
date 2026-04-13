@@ -1,0 +1,708 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>EUROPEAN UNION (APPROVALS)</b>
+               <b>
+                  </b>
+               <b>ACT 2017</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the European Union (Approvals) Act 2017 which received
+                  Royal Assent on 7 December 2017 (c. 35).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business, Energy
+                  and Industrial Strategy in order to assist the reader in understanding the Act. They
+                  do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Act is to approve four draft decisions of the Council of the European
+                     Union ("the Council"). This is to fulfil a requirement in section 8 of the European
+                     Union Act 2011 (“2011 Act”) which requires Parliament to approve draft decisions made
+                     under Article 352 of the Treaty on the Functioning of the European Union (“TFEU”).
+                     Parliamentary approval will enable the United Kingdom to vote in favour of the draft
+                     decisions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The first draft decision is on the participation of the Republic of Albania as an
+                     observer in the work of the European Union Agency for Fundamental Rights.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The second draft decision is on the participation of the Republic of Serbia as an
+                     observer in the work of the European Union Agency for Fundamental Rights.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The third and fourth draft decisions are to sign and then conclude an Agreement between
+                     the European Union and the Government of Canada that will allow enhanced cooperation
+                     between the European Commission and the Canadian Competition Bureau on competition
+                     matters.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>The draft decisions on the participation of the Republic of Albania and the Republic
+                     of Serbia as observers in the work of the European Union Agency for Fundamental Rights.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The EU Fundamental Rights Agency (“the FRA”) was established in 2007 by Regulation
+                     168/2007 EC (“the Regulation”). Its function is to provide assistance and expertise
+                     on fundamental rights to the EU institutions and Member States. It collects and analyses
+                     data across the EU and provides advice by way of reports and opinions, raising awareness
+                     of fundamental rights.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Under Article 28 of the Regulation, the FRA is open to the participation of candidate
+                     countries as observers. The draft decisions are on the participation of the Republic
+                     of Albania and the Republic of Serbia as observers in the work of the FRA. The draft
+                     decisions will not, themselves, confer observer status. Instead they establish an
+                     EU position at other bodies, the EU-the Republic of Albania Stabilisation and Association
+                     Council and the EU-the Republic of Serbia Stabilisation and Association Council. Participation
+                     as observers, and the conditions of doing so, are determined by the respective Stabilisation
+                     and Association Councils.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The draft decisions are based on Articles 218(9) and 352 of TFEU. They have been proposed
+                     by the European Commission and can be made by the Council acting unanimously after
+                     obtaining the consent of the European Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The proposal includes the European Commission's estimate of the contributions that
+                     Albania and Serbia will be making to the EU budget in order to participate in the
+                     FRA.&nbsp; The figures for Albania are EUR 160,000 for Year 1, EUR 163,000 for Year 2 and
+                     EUR 166,000 for Year 3.&nbsp; The figures for Serbia are EUR 180,000 for Year 1, EUR 183,000
+                     for Year 2 and EUR 186,000 for Year 3.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The draft decisions were deposited in Parliament on 9 March 2016. They were cleared
+                     from scrutiny by the House of Commons European Scrutiny Committee at its meeting on
+                     13 April 2016 and by the House of Lords Europe Select Committee on 12 April 2016.&nbsp;
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The text of the draft decisions is now settled and it is intended that the proposals
+                     are concluded in the Council as soon as possible.</p>
+               </section>
+               <section class="level">
+                  <p>The draft decisions to sign and then conclude a competition Agreement between the
+                     European Union and the Government of Canada (the Canada decisions)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The EU and Canada have cooperated in the area of competition policy enforcement since
+                     1999 (pursuant to an existing cooperation agreement).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The draft decisions concern the replacement of the existing EU-Canada competition
+                     enforcement cooperation arrangement, with a new agreement that includes the exchange
+                     of information gathered by their respective competition authorities during antitrust
+                     and merger investigations (the new Agreement). The Commission may share such information
+                     with Member States’ competition authorities (in the case of the UK, the Competition
+                     and Markets Authority (CMA)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The new Agreement in practice means that information obtained during competition enforcement
+                     investigations may be discussed and transferred between the European Commission and
+                     the Canadian Competition Bureau. The European Commission states that the absence of
+                     the possibility to exchange information has become a major impediment to effective
+                     cooperation as bilateral cooperation between the European Commission and the Canadian
+                     Competition Bureau has become deeper and more frequent. The ability to share information
+                     is intended to increase the ability of both organisations to conclude competition
+                     enforcement investigations efficiently.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>In cases where a UK company is involved in an investigation undertaken by both the
+                     European Commission and the Canadian Competition Bureau into the same merger or anticompetitive
+                     conduct, the new Agreement would mean that information provided by the UK company
+                     to one competition authority would not necessarily have to be provided again to the
+                     other party’s competition authority. Following the UK’s exit from the European Union,
+                     UK companies operating in the EU will still be subject to the jurisdiction of the
+                     European Commission in antitrust investigations and, where the thresholds are met,
+                     in merger investigations in the same way as for other non-EU companies operating in
+                     the EU. Information relating to UK companies operating in the EU would therefore still
+                     be transferable under the new Agreement.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The draft decisions are based on Articles 103 and 352 of TFEU. They have been proposed
+                     by the European Commission and can be made by the Council acting unanimously after
+                     obtaining the consent of the European Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The draft Council decisions to sign and conclude the new Agreement were deposited
+                     in Parliament on 6 July 2016. The Department for Business, Energy and Industrial Strategy
+                     submitted an explanatory memorandum covering the draft decisions on 12 August 2016.
+                     The documents were cleared by the European Union Committee of the House of Lords on
+                     25 August 2016. The European Scrutiny Committee considered the documents at its meeting
+                     on 12 October 2016 and assessed them as politically important<b>.  </b>The documents were not cleared from scrutiny.  Further information was requested on<b></b>whether the Government would seek to participate in the new Agreement after the UK
+                     withdraws from the EU and, if so, how it may be possible to secure its continuing
+                     application<b>.</b> The documents were drawn to the attention of the Business, Energy and Industrial
+                     Strategy Committee. The Minister for Small Business, Consumers, and Corporate Responsibility
+                     (Margot James MP) wrote to the Chair of the European Scrutiny Committee (Sir William
+                     Cash MP) on 24 October outlining the options for international cooperation on competition
+                     law enforcement once the UK leaves the EU. The European Scrutiny Committee considered
+                     the documents again on 14 December 2016 and assessed them as politically important.
+                     The documents were cleared from scrutiny and drawn to the attention of the BEIS Committee
+                     and the Treasury Committee.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The text of the draft decisions is now settled and it is intended that the proposals
+                     are concluded in the Council as soon as possible.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Article 352 TFEU allows the EU to act where there is no specific applicable treaty
+                     base, as long as this does not entail harmonisation or affect the Common Foreign and
+                     Security Policy. Proposals made under Article 352 TFEU require the unanimous approval
+                     of Member States and the consent of the European Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Under section 8(1) of the 2011 Act, a Minister cannot vote in favour of an Article
+                     352 measure unless one of subsections (3) to (5) is complied with. Subsection (3)
+                     provides that a Minister may only vote in favour of an Article 352 decision where
+                     the draft decision is approved by Act of Parliament. This requirement does not apply
+                     where urgent approval is required (subsection (4)) or where the draft decision relates
+                     to an exempt purpose (subsection (5)), as defined in subsection (6). Neither of these
+                     subsections in the 2011 Act applies to the FRA or Canada decisions, so an Act of Parliament
+                     is needed before the UK Government may vote for their adoption in the Council.  </p>
+               </section>
+               <section class="level">
+                  <p>The Fundamental Rights Agency Decisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Under Article 28(1) of Council Regulation (EC) No 168/2007 of 15 February 2007 establishing
+                     a European Union Agency for Fundamental Rights, the FRA is open to the participation
+                     of candidate countries.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Under Article 2 of the Regulation, the FRA’s objective is to provide the relevant
+                     institutions, bodies, offices and agencies of the European Union and its Member States
+                     when implementing European Union law with assistance and expertise relating to fundamental
+                     rights.</p>
+               </section>
+               <section class="level">
+                  <p>The Decisions on the EU-Canada Competition Agreement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>These proposals derive from a Council mandate of 9 October 2008 in which the European
+                     Commission was authorised to start negotiations to replace the existing cooperation
+                     agreement between the EU and Canada in competition matters.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>The legal bases for the Canada decisions are Articles 103 and 352 TFEU. Article 103
+                     is the legal basis for the implementation of Article 101 (which prohibits anti-competitive
+                     agreements) and Article 102 (which prohibits abuse of dominance). The legal bases
+                     for Regulation 139/2004 (the Merger Regulation) are Articles 103 and 352 and the proposed
+                     new Agreement with Canada covers cooperation in merger investigations.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>All the provisions in the Act extend to the whole of the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Approval of draft decisions under Article 352 of TFEU</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Section 1(2)(a) provides for the approval of the draft decisions of the Council of
+                     the European Union under Article 352 of the TFEU on the participation of the Republic
+                     of Albania and the Republic of Serbia as observers in the work of the FRA.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Section 1(2)(b) provides for the approval of the draft decisions to sign and conclude
+                     an agreement between the European Union and the Government of Canada regarding the
+                     application of their competition laws.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Section 2 is self-explanatory.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Draft Council Decision on the position to be adopted on behalf of the European Union
+                        within the EU-Albania Stabilisation and Association Council on the participation of
+                        Albania as an observer in the European Union Agency for Fundamental Rights' work and
+                        the respective modalities thereof, within the framework of Regulation (EC) No 168/2007
+                        (Council Document 9877/16): <a href="http://data.consilium.europa.eu/doc/document/ST-9877-2016-INIT/en/pdf"><u>http://data.consilium.europa.eu/doc/document/ST-9877-2016-INIT/en/pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Draft Council Decision on the position to be adopted on behalf of the European Union
+                        within the EU-Serbia Stabilisation and Association Council on the participation of
+                        Serbia as an observer in the European Union Agency for Fundamental Rights' work and
+                        the respective modalities thereof, within the framework of Regulation (EC) No 168/2007:
+                        <a href="http://data.consilium.europa.eu/doc/document/ST-9876-2016-INIT/en/pdf"><u>http://data.consilium.europa.eu/doc/document/ST-9876-2016-INIT/en/pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Council and Commission Decision  of  29 April  1999  (1999/445/EC, ECSC)1: Agreement
+                        between  the  European  Communities  and  the Government  of  Canada  regarding  the
+                        application  of  their  competition laws: <a href="http://ec.europa.eu/competition/international/bilateral/ca2a_en.pdf"><u>http://ec.europa.eu/competition/international/bilateral/ca2a_en.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Draft Council Decision on the signing, on behalf of the European Union, of the Agreement
+                        between the European Union and the Government of Canada regarding the application
+                        of their competition laws (Council Document 10819/16): <a href="http://data.consilium.europa.eu/doc/document/ST-10819-2016-INIT/en/pdf"><u>http://data.consilium.europa.eu/doc/document/ST-10819-2016-INIT/en/pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Draft Council Decision on the conclusion of the Agreement between the European Union
+                        and the Government of Canada regarding the application of their competition laws (Council
+                        Document 10821/16): <a href="http://data.consilium.europa.eu/doc/document/ST-10821-2016-INIT/en/pdf"><u>http://data.consilium.europa.eu/doc/document/ST-10821-2016-INIT/en/pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Proposed new Agreement between the European Union and the Government of Canada regarding
+                        the application of their competition laws (Council Document 10819, ADD 1): <a href="http://data.consilium.europa.eu/doc/document/ST-10819-2016-ADD-1/en/pdf"><u>http://data.consilium.europa.eu/doc/document/ST-10819-2016-ADD-1/en/pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>Explanatory memorandum prepared by the Department for Business, Energy and Industrial
+                        Strategy on Council Decisions 10819/16 and 10821/16: <a href="http://europeanmemoranda.cabinetoffice.gov.uk/files/2016/08/EM_10819-16.pdf"><u>http://europeanmemoranda.cabinetoffice.gov.uk/files/2016/08/EM_10819-16.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Letter from the Minister for Small Business, Consumers and Corporate Responsibility
+                        (Margot James MP) to the Chair of the European Scrutiny Committee (Sir William Cash
+                        MP): <a href="http://europeanmemoranda.cabinetoffice.gov.uk/files/2016/11/Margot_James_to_William_Cash_-_Agreement_between_the_EU_and_the_Government_of_Canada_Regarding_the_Application_of_their_Competition_Laws.pdf"><u>http://europeanmemoranda.cabinetoffice.gov.uk/files/2016/11/Margot_James_to_William_Cash_-_Agreement_between_the_EU_and_the_Government_of_Canada_Regarding_the_Application_of_their_Competition_Laws.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.18in">
+                        <col style="width:1.08in">
+                        <col style="width:4in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>22.06.2017</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2017-06-22/debates/EB3A05AE-101D-4936-8F6B-B878CC68D27B/PointOfOrder">
+                                    <u>Vol.626 Col.227</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>04.07.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-07-04/debates/C0865A5A-54F2-46B3-A646-24BEEB2FB15D/EuropeanUnion(Approvals)Bill">
+                                    <u>Vol.626 Col.1043</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>10.10.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-10-10/debates/43529399-EBB1-4140-BF7D-E53632CBCA21/EuropeanUnion(Approvals)Bill">
+                                    <u>Vol.629 Col.253</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>10.10.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-10-10/debates/43529399-EBB1-4140-BF7D-E53632CBCA21/EuropeanUnion(Approvals)Bill">
+                                    <u>Vol.629 Col.266</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>11.10.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2017-10-11/debates/07B5CC68-FD7B-46EC-90A3-F7A781D00DAD/EuropeanUnion(Approvals)Bill">
+                                    <u>Vol.785 Col.262</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading </p>
+                           </td>
+                           <td>
+                              <p>25.10.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2017-10-25/debates/9A46B548-CBB4-4A06-A86D-368B6D20A1BA/EuropeanUnion(Approvals)Bill">
+                                    <u>Vol.785 Col.952</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>13.11.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2017-11-13/debates/1018669C-A1C1-4D19-AB3A-C5E0B2F77EE6/EuropeanUnion(Approvals)Bill">
+                                    <u>Vol.785 Col.1804</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>27.11.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2017-11-27/debates/1BBE40DF-944D-430E-9380-737ECD5BA4A5/EuropeanUnion(Approvals)Bill">
+                                    <u>Vol.787 Col.490</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>07.12.2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2017-12-07/debates/F85A3313-CC0B-468D-880F-20A283C7E57F/RoyalAssent">
+                                    <u>Vol.787 Col.1149</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

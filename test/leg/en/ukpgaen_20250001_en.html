@@ -1,0 +1,567 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>THE LORDS SPIRITUAL (WOMEN) ACT 2015 (EXTENSION) ACT 2025</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Lords Spiritual (Women) Act 2015 (Extension)
+                  Act 2025 which received Royal Assent on 16 January 2025 (c. 1).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Cabinet Office in order to assist
+                  the reader in understanding the Act. They do not form part of the Act and have not
+                  been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of this Act is to extend the limited period in which, if a female diocesan
+                     bishop is eligible when a Lords Spiritual seat becomes vacant, she will be appointed
+                     to the seat.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy and legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The two Church of England Archbishops and 24 of its other diocesan bishops are entitled
+                     to sit in the House of Lords as the Lords Spiritual. They do so by virtue of ancient
+                     usage and statute. Five of the 26 bishops automatically receive writs of summons to
+                     attend the House of Lords on the basis of the sees they occupy (Canterbury, York,
+                     Durham, London and Winchester; 'the five ex officio sees'). The remaining 21 are issued
+                     with writs of summons on the basis of seniority (i.e. length of tenure as a diocesan
+                     bishop) when a vacancy arises. This mechanism is set out in section 5 of the Bishoprics
+                     Act 1878.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>On 17 November 2014 the General Synod of the Church of England enacted the final legislation
+                     necessary to allow women to become bishops. However, due to the arrangements under
+                     the Bishoprics Act 1878, it would have taken over seven years before a newly appointed
+                     female diocesan bishop would have become sufficiently senior to take a place in the
+                     House of Lords (unless she were appointed to one of the five ex officio sees). Consequently,
+                     the Archbishop of Canterbury, after consultation with the Lords Spiritual and others,
+                     requested on behalf of the Church of England that amendments be made to the arrangements
+                     under the Bishoprics Act 1878 to enable the accelerated entry of female bishops to
+                     the House of Lords. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Parliament subsequently passed the Lords Spiritual (Women) Act 2015 (‘the 2015 Act’),
+                     which came into effect on 18 May 2015. The 2015 Act modified the application of the
+                     procedure under the Bishoprics Act 1878 for a time-limited period so that vacancies
+                     among the 21 places, which are normally filled by seniority, are filled as they arise
+                     by eligible female bishops, if there are any available at that point (an eligible
+                     bishop is a bishop of a diocese in England who is not already entitled as such to
+                     a writ of summons). If there is more than one eligible female bishop then the one
+                     whose election as a bishop of the diocese was confirmed first will receive the writ.
+                     In practice, for a period of 10 years between 2015 and 2025, the most senior eligible
+                     female bishop at any time now fills a vacant Lords Spiritual seat in preference to
+                     the most senior eligible male bishop.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The effect of the 2015 Act has been that six bishops who are women have sat in the
+                     House of Lords sooner than would have been possible under the procedure in place prior
+                     to the 2015 Act. Five of these bishops still sit in the House; one has retired. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Male bishops have continued to enter the Lords under the 2015 Act, in accordance with
+                     the arrangements under the Bishoprics Act 1878 for determining seniority of precedence,
+                     if there were no eligible female bishops at the time a Lords Spiritual vacancy arose.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The relevant provisions of the 2015 Act were due to expire on 17 May 2025. The Lords
+                     Spiritual (Women) Act 2015 (Extension) Act 2025 extends the provisions of the 2015
+                     Act for a further five-year period so that the appointment process in the 2015 Act
+                     will now expire on 17 May 2030. This is designed to increase the number of female
+                     bishops sitting in the House of Lords more quickly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>After the end of this period, the provisions made by the 2015 Act and extended by
+                     this Act will come to an end, and the arrangements under the Bishoprics Act 1878 for
+                     determining which bishops are to fill vacancies among the Lords Spiritual will be
+                     restored. The arrangements in relation to the five ex officio sees are left unchanged
+                     since any woman appointed to one of those sees will in any event become a Lord Spiritual
+                     immediately. For example, Sarah Mullally became Bishop of London in March 2018 and
+                     took her seat in the House of Lords in April 2018, outside of the provisions of the
+                     2015 Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act extends to England and Wales, Scotland and Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act relates to the reserved matter of the Parliament of the United Kingdom in
+                     the Scottish and Welsh devolution settlements, and the excepted matter of the Parliament
+                     of the United Kingdom in relation to Northern Ireland. As such, legislative consent
+                     motions are not required.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Amendment of Lords Spiritual (Women) Act 2015 </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 1 amends section 1 of the Lords Spiritual (Women) Act 2015 Act so that its
+                     provisions are extended and continue to have effect for all vacancies arising before
+                     18 May 2030, rather than ceasing to have effect on 17 May 2025. This means that a
+                     vacancy within the 21 Lords Spiritual who do not hold an ex officio see will be filled
+                     by the most senior eligible female diocesan bishop in England, who is not already
+                     entitled to sit in the House of Lords, for a further five years, if one is available.
+                     The vacancy will be filled by the issue of a writ of summons to that bishop. She will
+                     be entitled to a writ in subsequent Parliaments until she ceases to be a diocesan
+                     bishop or is appointed to one of the five ex officio sees. The most senior eligible
+                     bishop will be the person whose election as a bishop of a diocese was confirmed first
+                     (this reflects the arrangements under the Bishoprics Act 1878 for determining seniority
+                     of precedence). If there is no eligible female bishop, the most senior male bishop
+                     will become a member of the House of Lords, as per the 1878 Act. A summary of how
+                     these arrangements operate can be found at Annex A.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 2 sets out the territorial extent of the Act, as per the ‘Territorial Extent
+                     and Application’ section above; and the commencement of the Act, as per the ‘Commencement’
+                     section below. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The Act commenced on Royal Assent. Given that the 2015 Act - if left unamended - would
+                     have effect until 17 May 2025, the provisions of this Act only have substantive effect
+                     from 18 May 2025.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Bishoprics Act 1878, <br><a href="https://www.legislation.gov.uk/ukpga/Vict/41-42/68/contents"><u>https://www.legislation.gov.uk/ukpga/Vict/41-42/68/contents</u></a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Bishops and Priests (Consecration and Ordination of Women) Measure 2014,<br><a href="https://www.legislation.gov.uk/ukcm/2014/2"><u>https://www.legislation.gov.uk/ukcm/2014/2</u></a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Lords Spiritual (Women) Act 2015,<br><a href="https://www.legislation.gov.uk/ukpga/2015/18/contents/enacted"><u>https://www.legislation.gov.uk/ukpga/2015/18/contents/enacted</u></a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Appointment Process</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <img src="http://www.legislation.gov.uk/id/ukpga/2025/1/notes/images/ukpga_2025_1_notes_en_001.gif" alt="">
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>30 July 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-07-30/debates/AD789A8C-2318-4E0A-98B9-B806AC6A6611/LordsSpiritual(Women)Act2015(Extension)Bill(HL)">
+                                    <u>Vol. 839 Col. 877</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>10 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-09-10/debates/A14A2D20-2D42-4F82-A464-DCEDCA07C8FA/LordsSpiritual(Women)Act2015(Extension)Bill(HL)?highlight=lords%20spiritual#contribution-17698839-9F14-49DE-BA24-795C42A08516">
+                                    <u>Vol. 839 Col. 1521</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee (discharged)</p>
+                           </td>
+                           <td>
+                              <p>16 October 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-10-16/debates/3D3F1005-FDF6-4D3A-AA80-7BB24B09F558/LordsSpiritual(Women)Act2015(Extension)Bill(HL)">
+                                    <u>Vol. 840 Col. 202</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>22 October 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-10-22/debates/263F551F-DF2E-4969-BB2E-39707E111B34/LordsSpiritual(Women)Act2015(Extension)Bill(HL)?highlight=lords%20spiritual#contribution-0995EAE4-30B0-43A3-9422-3B923990DA60">
+                                    <u>Vol. 840 Col. 527</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>23 October 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://commonsbusiness.parliament.uk/Document/89263/Pdf?subType=Standard">
+                                    <u>Votes and Proceedings, No.33</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>14 November 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2024-11-14/debates/24111425000001/LordsSpiritual(Women)Act2015(Extension)Bill(Lords)?highlight=lords%20spiritual#contribution-C8ABCDED-DFA6-4563-A7F9-EA8E92063A07">
+                                    <u>Vol.  756 Col. 952</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of Whole House</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2024-12-18/debates/BF776C79-979E-4527-A66B-1D2B6B8C13D1/LordsSpiritual(Women)Act2015(Extension)Bill(Lords)?highlight=lords%20spiritual#contribution-A9A4A9C6-4311-4A52-9157-93AE58C53E6F">
+                                    <u>Vol. 759 Col. 389</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>18 December 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2024-12-18/debates/BF776C79-979E-4527-A66B-1D2B6B8C13D1/LordsSpiritual(Women)Act2015(Extension)Bill(Lords)">
+                                    <u>Vol. 759 Col. 391</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>16 January 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons: <a href="https://hansard.parliament.uk/Commons/2025-01-16/debates/5D03B216-BFC6-40F6-825D-A9BF49DA1075/MiddleEast?highlight=lords%20spiritual#contribution-91E50B0E-58EF-4D1F-B0E6-FBB48061C3F1"><u>Vol. 760 Col. 543</u></a></p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords: <a href="https://hansard.parliament.uk/lords/2025-01-16/debates/13AB0AE3-DBEE-4E72-AF78-D44C93CC6014/RoyalAssent"><u>Vol. 842 Col. 1300</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

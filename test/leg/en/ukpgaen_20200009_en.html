@@ -1,0 +1,1800 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>SENTENCING (PRE-CONSOLIDATION AMENDMENTS)</b>
+               <b>
+                  </b>
+               <b>ACT 2020</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Sentencing (Pre-consolidation Amendments) Act
+                  2020 which received Royal Assent on 8 June 2020 (c. 9).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been produced by the Ministry of Justice in order to
+                  assist the reader of the Act and to help inform debate on it. They do not form part
+                  of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Sentencing (Pre-consolidation Amendments) Act (“the Act”) is to
+                     make amendments to existing legislation in order to facilitate the enactment and operation
+                     of the Law Commission’s proposed Sentencing Code (“the Code”). The Code is a consolidation
+                     of legislation governing sentencing procedure which aims to ensure that the law relating
+                     to sentencing procedure is readily comprehensible and operates within a clear framework
+                     as efficiently as possible. It will provide the courts with a point of reference which
+                     can be amended and adapted to changing needs. The Code re-enacts law already in force.
+                     It does not alter its substance or effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The pre-consolidation amendments are generally limited to correcting minor errors
+                     and streamlining the law in the area being consolidated by the Code and only have
+                     effect for the purposes of the consolidation. They are required, or otherwise desirable,
+                     for the Code to operate as intended.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act and the Code also introduce a new approach to dealing with changes in the
+                     law, referred to as the “clean sweep”. The effect of the clean sweep is to remove
+                     historic and redundant layers of sentencing procedural legislation. Subject to some
+                     limited exceptions needed to protect an offender’s fundamental rights, the clean sweep
+                     will allow for all offenders convicted after the Code comes into force to be sentenced
+                     according to the most up to date law, irrespective of when they committed the offence.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Neither the Act nor the Code introduce any new sentencing law. They do not alter the
+                     maximum penalties available for an offence or increase the scope of minimum sentencing
+                     provisions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Act was first introduced in the previous Parliament where, in the 2017-2019 session,
+                     it reached House of Lords Report stage, after passing through a Special Public Bill
+                     Committee. It was then carried-over to the 2019 session where government amendments
+                     were tabled, but the Act fell before reaching Third Reading. Those amendments have
+                     been incorporated into this Act print.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Since the Act was most recently considered in the last parliament the Government has
+                     included additional provisions which will correct anomalies in existing legislation
+                     that will be consolidated in the Sentencing Code, help to enable the Code to apply
+                     to the Armed Forces, ensure that existing powers to be consolidated in the Code are
+                     not inadvertently drawn too widely, and support powers to make subordinate legislation
+                     to be contained in the Code so they can operate properly.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The law of sentencing applies to over a million individual cases every year but is
+                     currently complex and disparate. The complexity of the current law leads to a disproportionate
+                     number of errors and unlawful sentences being imposed, resulting in delays, an unnecessary
+                     number of appeals, and an inefficient use of public money. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The coalition government agreed in 2014 that the Law Commission should undertake a
+                     project to consolidate the law relating to sentencing procedure. The Sentencing Code
+                     project is part of the Law Commission’s 12th programme of law reform.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>In November 2018, the Law Commission published a concluding report of the project<a class="fn" id="fnref-1" href="#fn-1">1</a> alongside a draft Sentencing (Pre-consolidation Amendments) Act and a draft Sentencing
+                     Code Act.<a class="fn" id="fnref-2" href="#fn-2">2</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The aim of the Code is to set out the relevant sentencing provisions in a clear, simple
+                     and logical way, to provide the courts with a single point of reference for procedural
+                     provisions, which a court would need to rely upon during the sentencing process, and
+                     to allow for all updates to sentencing procedure to be made in a single place. Once
+                     enacted, the Code will bring clarity to the law, reducing errors and delays.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Sentencing Code project has been subject to four formal public consultations (conducted
+                     by the Law Commission), including a consultation on the transitions from the current
+                     law to the Code (also known as the “clean sweep issues” paper)<a class="fn" id="fnref-3" href="#fn-3">3</a> and a consultation on the draft Code, which included the substantive sections of
+                     the Act.<a class="fn" id="fnref-4" href="#fn-4">4</a> The provisions in the Code relating to the disposals available for children and young
+                     persons were subject to a separate consultation.<a class="fn" id="fnref-5" href="#fn-5">5</a> As with the main consultation, this included an appendix with a description of every
+                     pre-consolidation amendment made in relation to those provisions and the reason for
+                     making them.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The Act has two main objectives: (1) to remove historic layers of sentencing legislation
+                     and give effect to the clean sweep; and (2) to make changes to the existing law of
+                     sentencing procedure in order to enable the consolidation in the Code to take place.
+                     The first, to remove historic layers of legislation, will have the effect of repealing
+                     partially saved provisions concerning sentencing procedure which are no longer needed,
+                     thereby simplifying the law, and allowing for a single set of provisions to govern
+                     the sentencing process for offenders convicted after commencement of the Code, even
+                     where the offences were committed before its commencement. The second will also provide
+                     the Secretary of State with the power to make further pre-consolidation amendments
+                     to the law to enable the consolidation (i.e. the Code) to proceed. Such changes are
+                     a standard measure which precedes consolidation ACTs. As a consolidation must operate
+                     on the current law, it is necessary to make certain changes to allow the consolidation
+                     to happen - for example, changing language to avoid inconsistency, correcting error
+                     or updating existing statutory references. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The Act contains provisions which will enable the consolidation of sentencing law
+                     under the Code. Once the Sentencing Code Act is commenced the Act will have served
+                     its purpose and will largely be repealed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The sentencing framework in England and Wales is derived from three key statutes.
+                     The Criminal Justice Act 1991 established the current sentencing statutory framework.
+                     In 2000, the Powers of Criminal Courts (Sentencing) Act 2000 (“2000 Act”) consolidated
+                     further sentencing law in order to bring the relevant sentencing procedures into one
+                     statute, but this was in turn surpassed by further legislative provisions. In 2003,
+                     the Home Office revisited sentencing procedure and the statutory framework was revised
+                     again further with the introduction of the Criminal Justice Act 2003 (“2003 Act”);
+                     now the principal statute for sentencing procedure. Subsequently, large parts of the
+                     2000 Act were replaced by Part 12 of the 2003 Act which now sets down the majority
+                     of sentencing procedure law in England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Consequently, the majority of current statutory provisions governing sentencing procedure
+                     are set out in the 2000 Act and Part 12 of the 2003 Act. The Act makes pre-consolidation
+                     amendments to both the 2000 Act and Part 12 of the 2003 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The following Acts also make relevant provisions relating to the sentencing of offenders
+                     in England and Wales:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The Serious Organised Crime and Police Act 2005;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>The Criminal Justice and Immigration Act 2008;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>The Coroners and Justice Act 2009;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>The Legal Aid, Sentencing and Punishment of Offenders Act 2012;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>The Offender Rehabilitation Act 2014; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>The Criminal Justice and Courts Act 2015.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>These Acts (with other related provisions related to sentencing, including the Armed
+                     Forces Act 2006) will also be subject to pre-consolidation amendments in Schedule
+                     2 to the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Common law procedures that are also relevant when a court is dealing with sentencing
+                     were necessarily excluded from the scope of the Sentencing Code project.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The majority of the Act extends to England and Wales only. Subsections (5) and (6)
+                     of section 5 provide that the operation of the “clean sweep” or a pre-consolidation
+                     amendment on an existing provision has the same extent as the existing provision.
+                     Subsection (7) ensures that regulations to which paragraph 133 of Schedule 2 can apply
+                     include regulations that could extend to Northern Ireland and that the power to state
+                     commencement information on the face of the Code in paragraph 134 of Schedule 2 could
+                     in principle extend to Northern Ireland and/or Scotland. Subsections (8) – (11) provide
+                     that any amendment, modification or repeal of the Criminal Justice Act 2003 that is
+                     made by, or under the Act can be extended to the Crown Dependencies and that any amendment,
+                     modification or repeal of the Armed Forces Act 2006 (or of any other provision in
+                     so far as it is applied by or under that Act) that is made by, or under the Act directly
+                     extends to the Isle of Man and British overseas territories (except Gibraltar), and
+                     can be extended to the Channel Islands.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>There are some pre-consolidation amendments that extend to Scotland and Northern Ireland
+                     - these deal with circumstances in which a sentence imposed in England and Wales applies
+                     to an offender who has, during the period of that sentence, moved to Scotland or Northern
+                     Ireland. These amendments extend to those jurisdictions in order to facilitate the
+                     consolidation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The table at Annex A provides a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Section 1: Consolidation of sentencing legislation: amendment of law for old offences</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>One of the issues with complexity in sentencing laws is the layering of changes to
+                     legislation over time – which means that different provisions apply to different offences
+                     and offenders, depending on when the offence was committed. For example, there are
+                     occasions when an Act is repealed but some provisions in the Act remain in force (are
+                     partially saved) for certain circumstances. Section 1 of the Act contains a “clean
+                     sweep” provision. The clean sweep approach removes the need to identify and apply
+                     historic versions of the law, minimising the use of complex transitional provisions,
+                     whilst respecting the fundamental rights of those affected by the sentencing process.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>The legal effect of the section is twofold: first, to fully repeal partially saved
+                     provisions concerning sentencing procedure which are no longer needed, and secondly,
+                     to fully commence provisions concerning sentencing procedure that have only been commenced
+                     prospectively.<a class="fn" id="fnref-6" href="#fn-6">6</a> With limited exceptions, this means that all offenders convicted after commencement
+                     of the Code would be sentenced by applying the sentencing law and procedure in the
+                     Code regardless of when the offence was committed.<a class="fn" id="fnref-7" href="#fn-7">7</a> The clean sweep applies only to provisions to be consolidated by the Code, and does
+                     not apply more broadly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The clean sweep is subject to exceptions to ensure that no offender is subject to
+                     a greater penalty than that available at the time of the offence, or subject to a
+                     minimum or mandatory sentence that did not apply at the time of the offence. These
+                     exceptions ensure that the clean sweep does not contravene the general common law
+                     presumption against retroactivity, and accords with human rights protections against
+                     retroactive criminalisation and retroactive punishment – in particular those provided
+                     by Article 7 of the European Convention on Human Rights. Subsections (4) and (5) of
+                     this section give effect to those exceptions. Subsection (4) ensures that the clean
+                     sweep does not increase the maximum penalty for any offence. Subsection (5) gives
+                     effect to Schedule 1 to the Act which creates a series of exceptions to the clean
+                     sweep necessary to ensure no offender is subject to a greater penalty than that available
+                     at the time of the offence, or subject to a minimum or mandatory sentence that did
+                     not apply at the time of the offence, and confers on the Secretary of State a further
+                     power to make regulations to ensure this.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Section 2: Pre-consolidation amendments relating to sentencing</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Section 2 refers to the pre-consolidation amendments and modifications of sentencing
+                     legislation contained in Schedule 2 to the Act. Such changes are a standard measure
+                     which precedes consolidation Acts. As a consolidation must operate on the current
+                     law, it is necessary to make certain changes to allow the consolidation to happen.
+                     For example, changing language to avoid inconsistency, correcting error or updating
+                     existing statutory references.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>The section also gives the Secretary of State the power to make any further pre-consolidation
+                     amendments to legislation, by statutory instrument laid under the affirmative procedure,
+                     to enable the consolidation to proceed. This power is limited only to changes that
+                     the Secretary of State is of the opinion facilitate, or are otherwise desirable in
+                     connection with, the consolidation. As such, once the consolidation occurs, the power
+                     will no longer be able to be used.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Section 3: Interpretation</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>This section lists the Acts referred to in the Act and caught by the phrase “the Acts
+                     relating to sentencing”. It also clarifies what is meant by other definitions or defined
+                     phrases used throughout the Act. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Section 4: Regulations</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Section 4 requires any relevant regulations made under section 1, that will create
+                     an exception to the clean sweep, or section 2 to be made by a statutory instrument
+                     that is laid in and approved by both the House of Commons and House of Lords. Any
+                     such regulations are to come into force in accordance with section 5.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Section 5: Commencement, extent and short title</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Subsection (1) confirms that, to enable regulations to be made under section 1(5)(b)
+                     and section 2(2), the Sentencing (Pre-consolidation Amendments) Act comes into force
+                     on Royal Assent. Subsections (2) and (3) of section 5 confirm that the clean sweep
+                     and any exceptions to it in Schedule 1 or regulations under section 1, and the pre-consolidation
+                     amendments in Schedule 2 and any further amendments made under section 2, do not come
+                     into force unless a consolidation of the legislation relating to sentencing – in practice,
+                     the Sentencing Code - is enacted and that if the Code is enacted those provisions
+                     will come into force immediately before the consolidation date (i.e. the date at which
+                     the Code comes into force). Section 5(3) also provides that those provisions will
+                     only relate to an offence of which a person is convicted on or after the date that
+                     the Code comes into force.<a class="fn" id="fnref-8" href="#fn-8">8</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Subsection (8) replicates the power conferred by section 338 of the Criminal Justice
+                     Act 2003 to allow for the pre-consolidation amendments in Schedule 2 and any further
+                     pre-consolidation amendments made under section 2 in relation to the Criminal Justice
+                     Act 2003 to be extended to the Crown Dependencies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsections (9) – (11) of section 5 directly extend the pre-consolidation amendments
+                     of armed forces legislation (the Armed Forces Act 2006 and legislation applied by
+                     or under it) contained in Schedule 2, and any further pre-consolidation amendments
+                     made under section 2, to the Isle of Man and British overseas territories (except
+                     Gibraltar), and also replicate the power conferred by section 384 of the Armed Forces
+                     Act 2006, which allows for any of the provision of that Act to be extended to the
+                     Channel Islands. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Section 5 also sets out the territorial extent of the Act (see paragraphs 17 to 19
+                     above).</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Schedules</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Schedule 1: Section 1: Exceptions</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>This Schedule lists the exceptions to the “clean sweep”. As noted in paragraph 22
+                     above, exceptions to the clean sweep policy have been identified in order to comply
+                     with Article 7 of the ECHR and to not breach common law standards of fairness.</p>
+               </section>
+               <section class="level">
+                  <p>Surcharge and Criminal Courts Charge</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>The exceptions given in paragraphs 1-6 of Schedule 1 mean that offenders who committed
+                     offences at a time when the victims surcharge or criminal courts charge did not exist,
+                     or when the amount payable under the surcharge was less than prescribed in the most
+                     recent legislative revision, would not, under the Code, be subject to an additional,
+                     more severe penalty. </p>
+               </section>
+               <section class="level">
+                  <p>Compensation Orders</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>A compensation order can be considered to be a penalty and therefore, applying the
+                     clean sweep would expose offenders to penalties in excess of that which applied at
+                     the time of their offence. Paragraphs 7-11 preserve the limit for old cases committed
+                     before the commencement of changes to compensation order provisions in various Acts.</p>
+               </section>
+               <section class="level">
+                  <p>References to legal aid etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>The Legal Aid, Sentencing and Punishment of Offenders Act 2012 made consequential
+                     amendments to the provisions relating to legal representation in proceedings relating
+                     to the imposition of custodial sentences or certain requirements under a youth rehabilitation
+                     order. The exception at paragraph 12 ensures that certain provisions operate correctly
+                     where legal aid was made available prior to 1 April 2013.</p>
+               </section>
+               <section class="level">
+                  <p>Driving disqualification</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Section 38 of the Road Traffic Act 1991 extended the power to order driving disqualification
+                     to offences of common assault, and offences involving an assault for which driving
+                     disqualification was not previously available. Section 39 of the Crime (Sentences)
+                     Act 1997 extended the power to order driving disqualification to all offences. The
+                     effect of these provisions is now reproduced in sections 146 and 147 of the Powers
+                     of Criminal Courts (Sentencing) Act 2000. Without the exceptions in paragraphs 13
+                     and 14 the courts would be able to impose driving disqualification orders, in addition
+                     to a fine or imprisonment (or both), where they were not previously available. This
+                     would subject some offenders to a more severe penalty under the Code than that which
+                     applied at the time of the offence.</p>
+               </section>
+               <section class="level">
+                  <p>Youth rehabilitation orders: curfew requirements</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Section 81 of the Legal Aid, Sentencing and Punishment of Offenders Act 2012 increased
+                     the maximum curfew requirement that can be attached to a youth rehabilitation order
+                     – which, in contrast to adult community orders, may be imposed for both imprisonable
+                     and non-imprisonable offences. The exception in paragraph 15 ensures that a higher
+                     maximum curfew requirement cannot be attached to a youth rehabilitation order than
+                     applied at the time of the commission of the offence.</p>
+               </section>
+               <section class="level">
+                  <p>References to remands of children</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>The Legal Aid, Sentencing and Punishment of Offenders Act 2012 made changes in respect
+                     of the remand of children and young persons. The exception in paragraph 16 ensures
+                     that those children and young persons remanded before 2012 have their time on remand
+                     credited for a custodial sentence imposed in relation to that remand. </p>
+               </section>
+               <section class="level">
+                  <p>Detention and training orders</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>The exception in paragraph 17 means that for offences committed before 1 February
+                     2015 a further period of supervision is not applied after a detention and training
+                     order has expired.</p>
+               </section>
+               <section class="level">
+                  <p>Detention of child for specified period</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Paragraph 7 of Schedule 2 to the Offensive Weapons Act 2019 (“the 2019 Act”) extends
+                     the category of offences for which a sentence can be imposed by section 91 of the
+                     Powers of Criminal Courts (Sentencing) Act 2000 to certain offences under the Firearms
+                     Act 1968. Paragraph 8 of Schedule 2 to the 2019 Act provides that this extension will
+                     only apply to offences committed after paragraph 7 of Schedule 2 to the 2019 Act comes
+                     into force. These provisions in Schedule 2 to the 2019 Act are not yet in force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>The exception in paragraph 18 will ensure that if regulations are made to commence
+                     paragraphs 7 and 8 of Schedule 2 to the 2019 Act, an offender is not subject to the
+                     extended category of offences for offences committed before the date paragraph 7 is
+                     brought into force.</p>
+               </section>
+               <section class="level">
+                  <p>Life sentences other than the mandatory life sentence for murder etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>The provisions in paragraphs 19 - 26 would mean that offenders are not exposed to
+                     a mandatory life sentence which did not exist, or in circumstances that did not apply,
+                     at the time of the offence.  </p>
+               </section>
+               <section class="level">
+                  <p>Mandatory life sentence for murder etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>The exceptions in paragraphs 27 - 31 mean a higher starting point for sentencing would
+                     not be applied to cases where it did not apply at the time of the offence.</p>
+               </section>
+               <section class="level">
+                  <p>Mandatory minimum sentences</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>The exceptions in paragraphs 32 - 43 mean that an offender will not be exposed to
+                     a mandatory minimum sentence which did not exist at the time of the commission of
+                     the offence, or to a minimum sentence in circumstances that did not apply at the time
+                     of the commission of the offence.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Schedule 2: Sentencing Consolidation: Pre-Consolidation Amendments</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>This Schedule makes a number of pre-consolidation amendments to existing legislation
+                     relating to sentencing for the purposes of enabling the enactment of the consolidation
+                     of sentencing law: the Sentencing Code. The pre-consolidation amendments are limited
+                     to those which facilitate, or are otherwise desirable in connection with, the consolidation.
+                     Pre-consolidation amendments are made to the Powers of Criminal Courts (Sentencing)
+                     Act 2000, the Criminal Justice Act 2003 and the Criminal Justice and Immigration Act
+                     2008 and other primary and secondary legislation relating to sentencing, including
+                     the Armed Forces Act 2006.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>These pre-consolidation amendments will only come into force immediately before the
+                     consolidation of sentencing legislation (the Code) comes into force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>The pre-consolidation amendments are principally organised in this Schedule by reference
+                     to the legislation they amend. They can broadly be categorised as:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>clarifying the legislation or removing an element of ambiguity from it; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>remedying a missed consequential provision in earlier legislation;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>repealing or omitting provisions in existing legislation that are either spent or
+                        now considered unnecessary to repeat;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>simplifying, streamlining, or making more consistent sentencing procedure;  </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>ensuring consistency in re-sentencing or committal powers;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>ensuring consistency in relation to the powers of different courts to provide for
+                        when sentences or particular requirements of sentences are to take effect; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>giving effect to the “clean sweep” in relation to future amendments.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Appendix 2 to Volume I of the Law Commission’s Report on the Sentencing Code (22 November
+                     2018, Law Com No 382, HC 1724)<a class="fn" id="fnref-9" href="#fn-9">9</a> explains the effect and purpose of every pre-consolidation amendment contained in
+                     Schedule 2 to the draft Sentencing (Pre-consolidation Amendments) Act as published
+                     in Volume II of that report. A number of amendments have been made to the Act since
+                     its initial publication in November 2018.  </p>
+               </section>
+               <section class="level">
+                  <p>Categories (a) to (d)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>A significant proportion of the pre-consolidation amendments in this Schedule fall
+                     into categories (a) to (d): being of clarificatory effect; correcting errors in existing
+                     legislation; omitting unnecessary provisions or wording; or simplifying, streamlining
+                     or making more consistent sentencing procedure. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Examples of the sort of change made by category (a) are those amendments which clarify
+                     that notices issued by the Secretary of State may be withdrawn (see, for example,
+                     paragraphs 85 or 110(12)); or those amendments which replace references to remitting
+                     a “case” (sending for trial), with references to remitting an “offender” (see, for
+                     example, paragraph 14(3)). These are generally amendments that are required to ensure
+                     consistency in the Code where replicating differing wording in a single Act could
+                     introduce a doubt that the provisions are intended to have differing effects.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>An example of category (b) amendments are those replacing references to the Education
+                     and Library Board (abolished on 12 December 2014 by section 3 of the Education Act
+                     (Northern Ireland) 2014) with references to its replacement, the Education Authority
+                     (see, for example, paragraph 112(6)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>An example of category (c) are those amendments omitting defunct references to local
+                     probation boards, which were abolished by section 11 of the Offender Management Act
+                     2007 on 1 March 2008 (see, for example, paragraphs 24(5) or 110(3)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Finally, examples of category (d) are the amendments transferring the duty to provide
+                     copies of a youth rehabilitation order on the breach of such an order from the proper
+                     officer of the court to the court itself, for consistency with the provisions relating
+                     to the making of such an order (see, for example, paragraph 111(18)); or the amendments
+                     aligning mental health treatment requirements available as part of a community order
+                     or a suspended sentence order with their equivalent under a youth rehabilitation order,
+                     expressly allowing such requirements to specify different kinds of treatment for different
+                     periods (see, for example, paragraph 79(2)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Most of the amendments made to existing legislation by the pre-consolidation amendments
+                     in categories (a) to (d) are of this technical nature. Others in these categories
+                     might appear to make more significant changes. The following paragraphs (54 - 70)
+                     identify and explain these changes.</p>
+               </section>
+               <section class="level">
+                  <p>Minimum sentences and offenders aged 18 to 20</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>By virtue of section 89 of the Powers of Criminal Courts (Sentencing) Act 2000 offenders
+                     convicted under the age of 21 cannot be sentenced to imprisonment. Where an offender
+                     aged 18, 19 or 20, is convicted and the court wishes to impose a custodial sentence
+                     they must impose either a sentence of detention in a young offender institution (under
+                     section 96 of the Powers of Criminal Courts (Sentencing) Act 2000) or a sentence of
+                     custody for life (under sections 93 or 94 of the Powers of Criminal Courts (Sentencing)
+                     Act 2000).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>These sentences are to be abolished by section 61 of, and Schedule 7 to, the Criminal
+                     Justice and Court Services Act 2000 so that any offender convicted aged 18 or over
+                     may be sentenced to imprisonment. These provisions have not yet been commenced. At
+                     present, there is a need, where a provision requires a sentence of imprisonment to
+                     be imposed on an offender aged 18 or over, to provide that for offenders aged 18 to
+                     20 that is to be read as requiring a sentence of detention in a young offender institution
+                     (or if the offence has a maximum penalty of life, a sentence of custody for life).
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Section 110 of the 2000 Act (minimum of seven years for third class A drug trafficking
+                     offence) and section 51A of the Firearms Act 1968 (minimum sentence for certain offences
+                     under s.5) require the courts, in the case of an offender aged 18 or over, to impose
+                     a custodial sentence of at least 7 or 5 years (respectively). In the case of an offender
+                     aged 21 or over this will always be a sentence of imprisonment. In the case of an
+                     offender aged 18 to 20 these sections have been amended so that the court must impose
+                     a sentence of detention in a young offender institution of at least the requisite
+                     length. Reference has not also been made to the availability of sentences of custody
+                     for life under section 94 of the Powers of Criminal Courts (Sentencing) Act 2000.
+                     This is because specific references to imprisonment for life are not required in the
+                     case of offenders aged 21 or over.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>It is not the intention of these provisions that, where a minimum sentence applies
+                     to an offender aged 18 to 20, the courts cannot impose a sentence of custody for life
+                     where they consider the seriousness of the offence, and the danger the offender poses
+                     to the public, justify it.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>To resolve this ambiguity amendments are made to section 110 of the 2000 Act by paragraph
+                     38 and to Article 2(b) of the Firearms (Sentencing) (Transitory Provisions) Order
+                     2007 (SI 2007/1324) by paragraph 137 so that in both provisions it is clarified that
+                     the court may impose a sentence of custody for life where the minimum sentence applies,
+                     the offender is aged 18 to 20, and the offence carries a maximum sentence of life
+                     imprisonment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Another example of this issue also applies in relation to section 225 of the Criminal
+                     Justice Act 2003, which requires the court to impose a life sentence on certain persons
+                     convicted of serious offences aged 18 or over. Section 225 already clarifies that
+                     where a person is aged 18, 19 or 20, the sentence that must be imposed is one of custody
+                     for life, not imprisonment for life. In some references in that section to imprisonment
+                     for life there is not a corresponding reference to custody for life. Paragraph 139(2)
+                     therefore amends Article 3(4) of the Criminal Justice Act 2003 (Sentencing) (Transitory
+                     Provisions) Order 2005 (SI 2005/643) to ensure that in all places they appear, such
+                     references in section 225 also refer to sentences of custody for life.</p>
+               </section>
+               <section class="level">
+                  <p>Minimum sentences and reductions in sentence for assisting the prosecution</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Section 73 of the Serious Organised Crime and Police Act 2005 allows the Crown Court,
+                     when sentencing offenders who plead guilty in proceedings before that court and who
+                     have entered into a written agreement to provide assistance in any investigation or
+                     prosecution, to reduce the sentence imposed on such offenders to reflect the extent
+                     and nature of the assistance given or offered. In particular, section 73(5) provides
+                     that nothing that requires a minimum sentence to be passed in respect of any offence
+                     limits the power of the court to pass a reduced sentence.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>Paragraphs 59 and 131(2) make amendments clarifying the effect of this provision.
+                     Paragraph 59 amends section 150 of the Criminal Justice Act 2003 to clarify that a
+                     community order may still be imposed where a minimum sentence applies (except for
+                     murder offences, where the penalty is fixed by law as a life sentence) to an offender
+                     where a sentence is being reduced due to the extent and nature of the assistance given
+                     or offered. Paragraph 131(2) simply lists the minimum sentences to which section 73(5)
+                     refers. Both changes are made to improve legal transparency.</p>
+               </section>
+               <section class="level">
+                  <p>Section 109 of the Powers of Criminal Courts (Sentencing) Act 2000</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>Section 109 of the Powers of Criminal Courts (Sentencing) Act 2000 required the court
+                     to impose a life sentence where an offender aged 18 or over was convicted of a second
+                     serious offence (listed in that section) committed after 30 September 1997. Section
+                     109 was repealed by the Criminal Justice Act 2003 with effect from 4 April 2005.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>It was repealed twice as was the drafting practice at the time. The first repeal was
+                     effected by section 303 of the Criminal Justice Act 2003, and the second by section
+                     332 of, and Part 7 of Schedule 37 to, the 2003 Act. Both repeals were commenced on
+                     4 April 2005 by the Criminal Justice Act 2003 (Commencement No.8 and Transitional
+                     and Saving Provisions) Order 2005 (SI 2005/950). The second repeal was subject to
+                     an explicit saving in paragraphs 5(2)(c)(xii) and 6 of the 2005 Order, providing that
+                     the repeal did not have effect in relation to offences committed before 4 April 2005.
+                     There was though no explicit saving in relation to the first repeal. This leaves an
+                     ambiguity.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>The intent of the savings in the 2005 Order must have been to preserve section 109
+                     of the 2000 Act where a second serious offence was committed before 4 April 2005.
+                     Accordingly, paragraph 136 removes the ambiguity by amending the 2005 Order to insert
+                     a savings provision in relation to the repeal of section 109 by section 303 of the
+                     Criminal Justice Act 2003. This clarification will apply to anyone convicted after
+                     the Act comes into force.</p>
+               </section>
+               <section class="level">
+                  <p>The availability of fines in the Crown Court</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>Section 163 of the Criminal Justice Act 2003 provides the Crown Court with the power
+                     to impose a fine of any amount instead of, or in addition to, dealing with the offender
+                     in any other way in which the court has power to deal with them. This section is subject
+                     to specific restrictions, including where a sentence falls to be imposed under sections
+                     110 or 111 of the Powers of Criminal Courts (Sentencing) Act 2000 (minimum sentences
+                     for repeat class A drug trafficking or domestic burglary offences, respectively).
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>Paragraph 63 omits the reference to section 110 of the Powers of Criminal Courts (Sentencing)
+                     Act 2000. It does this because all the offences to which section 110 of the 2000 Act
+                     applies (relating to drug trafficking offences) already have maximum sentences allowing
+                     for imprisonment and an unlimited fine to be imposed. Accordingly, even where a minimum
+                     sentence applies under section 110, a fine may still be imposed alongside a custodial
+                     term. It was considered that the retention of the reference to section 110 risked
+                     confusing matters and introducing doubt here.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>The reference to section 111 of the 2000 Act has not been omitted because the maximum
+                     sentence for burglary under section 9 of the Theft Act 1968 does not confer on the
+                     Crown Court the power to impose a sentence of imprisonment and a fine. Accordingly,
+                     to omit the reference to section 111 would be to confer on the Crown Court the power
+                     to also impose a fine where the minimum sentence under section 111 applied, and therefore
+                     increase the maximum sentence available for the offence.</p>
+               </section>
+               <section class="level">
+                  <p>Appeal rights: restitution orders and parenting orders</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>There are inconsistencies in the current law relating to express powers to appeal
+                     against sentences. The general position is that section 108 of the Magistrates’ Courts
+                     Act 1980 grants offenders the right to appeal against sentences imposed in the magistrates’
+                     court to the Crown Court, and section 9 of the Criminal Appeal Act 1968 grants offenders
+                     the right to appeal against sentences imposed in the Crown Court to the Court of Appeal.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>Despite these general powers of appeal, the legislation providing for some particular
+                     sentences provides for an express power of appeal. Generally, these express powers
+                     of appeal are included for the avoidance of doubt, and principally appear alongside
+                     an express provision relating to similar orders that are not imposed on conviction.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>In the current law, although they are generally redundant their existence does not
+                     present any problems. By consolidating the law into a single enactment (the Code),
+                     the existence of express powers of appeal in relation to a few sentences, but not
+                     in relation to others, risks implying that there is no power to appeal against those
+                     other sentences. Accordingly, paragraphs 49(3)(c) and 119(3) repeal section 149(3)(b)
+                     of the Powers of Criminal Courts (Sentencing) Act 2000 and section 10(5) of the Crime
+                     and Disorder Act 1998, which provide express powers of appeal against restitution
+                     orders (where imposed for an offence taken into consideration) and parenting orders
+                     respectively. Such orders may be appealed under section 108 of the Magistrates’ Courts
+                     Act 1980 and section 9 of the Criminal Appeal Act 1968 regardless, and therefore these
+                     changes do not alter the legal position.</p>
+               </section>
+               <section class="level">
+                  <p>Category (e): re-sentencing and committal powers</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>A number of the pre-consolidation amendments in Schedule 2 fall into category (e):
+                     amendments that are desirable in ensuring consistency in re-sentencing or committal
+                     powers.</p>
+               </section>
+               <section class="level">
+                  <p>Re-sentencing</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>As noted above, the Code will give effect to a clean sweep of sentencing law, ensuring
+                     that whenever an offender is convicted after the Code is commenced, the most recent
+                     law as consolidated in the Code is applied to them, regardless of when their offence
+                     is committed (subject to specific exceptions). The aim of the clean sweep is to avoid
+                     the need for courts to make reference to multiple historic versions of the law, and
+                     to avoid the errors that result from that requirement presently.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>The clean sweep is principally achieved through the universal change effected by section
+                     1 (and the exceptions in Schedule 1). One example of where the clean sweep policy
+                     is not achieved by section 1 is in the case of provisions giving a court the power
+                     to re-sentence an offender.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>At present, a large number of the powers to re-sentence an offender in the Crown Court
+                     are powers for the court to deal with the offender “in any way in which he could have
+                     been dealt with for that offence by the court which made the order”. The intended
+                     effect of such provisions was to ensure that where an offender is being re-sentenced
+                     by a court with greater powers than the original sentencing court (i.e. being re-sentenced
+                     in the Crown Court for an offence originally sentenced in the magistrates’ court)
+                     the re-sentencing court is limited to the same jurisdictional powers as the original
+                     sentencing court. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>While the current law achieves that effect, the current statutory wording has a further,
+                     unintended, effect which is to require the re-sentencing court to apply the sentencing
+                     law as it applied to the original sentencing court. If, for example, there has been
+                     a change to sentencing law between the original sentencing and re-sentencing, such
+                     as the introduction of a new requirement available as part of a community order, the
+                     re-sentencing court would have to continue applying the old law (and the new requirement
+                     would not therefore be available to them).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>By contrast, re-sentencing powers in the magistrates’ court are generally powers to
+                     deal with the offender “in any way in which it could deal with him if he had just
+                     been convicted by the court of the offence”. This wording provides the magistrates’
+                     courts with their present legislative powers, rather than the powers available to
+                     the original magistrates’ court.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">79 </span></h2>
+                  <p>Schedule 2 makes a large number of amendments to ensure that whenever a court is re-sentencing
+                     they are applying the current law, and not that in force at the time of the original
+                     sentencing. In line with the intended effect of the current provisions, the amendments
+                     ensure that where the Crown Court is re-sentencing an offender who was originally
+                     sentenced by a court limited to magistrates’ courts’ sentencing powers those limits
+                     still apply to the re-sentencing court. Further, the amendments ensure that whenever
+                     an offender was convicted as a child they are re-sentenced as if at the age at which
+                     they were convicted (replicating the effect of the present law in relation to re-sentencing
+                     those convicted under the age of 18). Section 2(3)(b) also confers on the Secretary
+                     of State specific powers to remove the differences between powers of different courts
+                     to deal with offenders subject to particular sentences.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">80 </span></h2>
+                  <p>The same changes are also made to powers to amend existing orders.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">81 </span></h2>
+                  <p>The relevant amendments can be found at paragraphs 18(3), (4), (5), (6) and (7), 36(3),
+                     52(2), (3) and (8), 53(2) and (3), 83(2) and (3), 100(4), (5), (8), (9), (10), (12)
+                     and (14), 101(6), 102(11) and 111(3), (5), (7), (8), (9), (10), (11), (13) and (14).</p>
+               </section>
+               <section class="level">
+                  <p>Committals</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">82 </span></h2>
+                  <p>Schedule 2 makes a number of amendments in order to ensure consistency in relation
+                     to sentencing powers on committal from the magistrates’ courts to the Crown Court
+                     for sentence. There are principally three types of amendments to powers of committal
+                     that are of note.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>The first series of amendments relates to the particular wording of the powers to
+                     sentence an offender after they have been committed for sentence. Under sections 4,
+                     4A, 5, 5A and 7 of the Powers of Criminal Courts (Sentencing) Act 2000 the court’s
+                     powers on committal are those they would have if the offender had “just been convicted
+                     of the offence on indictment” (or in the case of section 7 the powers the magistrates’
+                     court would have if it had “just convicted him of the offence”).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>The effect of this provision appears to be to deem the offender to have been convicted
+                     on the day of sentencing, rather than the day they were actually convicted. In <i>R v Robson </i>[2006] EWCA Crim 1414, [2007] 1 Cr. App. R. (S.) 54, the Court of Appeal was required
+                     to consider whether this meant that where an offender had crossed a relevant age threshold
+                     between his original conviction and his sentencing on committal this meant he should
+                     be sentenced by reference to his current age rather than his age at conviction. The
+                     court held it did not. The word “just” in these powers is potentially misleading and
+                     has therefore been omitted in the relevant places by paragraphs 8(2), 9(3), 10, 11
+                     and<i></i>13.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>The second series of amendments relates to section 6 of the 2000 Act which provides
+                     that where a magistrates’ court has committed an offender to be sentenced in the Crown
+                     Court, they may also commit to the Crown Court additional offences to be dealt with
+                     at the same time. The intent of this provision is to allow all relevant matters to
+                     be dealt with at once by the same court. This is not only administratively easier,
+                     but also helps to ensure that the resulting sentence is consistent with the principles
+                     of totality, and that the discretion of the Crown Court is not fettered by a sentence
+                     imposed by the magistrates’ court.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">86 </span></h2>
+                  <p>Section 6 of the 2000 Act applies only where an offender is committed under a power
+                     listed in subsection (4) of that section. At present there are a few notable omissions
+                     from that section, namely the powers to commit an offender for sentence under section
+                     6(6) or 9(3) of the Bail Act 1976 (committal for offences of absconding by person
+                     released on bail or agreeing to indemnify sureties in criminal proceedings, respectively),
+                     section 43 of the Mental Health Act 1983 (power of magistrates’ courts to commit for
+                     restriction order) and paragraph 22(1) of Schedule 8 to the Criminal Justice Act 2003
+                     (committal for commission of a further offence while community order is in force).
+                     These omissions cause practical problems. In <i>R v De Brito</i> [2013] EWCA Crim 1134, [2014] 1 Cr. App. R. (S.) 38, having committed an offender
+                     under paragraph 22(1) of Schedule 8 to the Criminal Justice Act 2003 to the Crown
+                     Court, the magistrates’ court also purported to commit him to that court for the further
+                     offence under section 6 of the Powers of Criminal Courts (Sentencing) Act 2000. They
+                     did not, however, have that power and therefore the sentence ultimately imposed by
+                     the Crown Court was unlawful. Paragraph 12 therefore amends section 6(4) of the 2000
+                     Act to ensure that it applies where offences are committed under those provisions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">87 </span></h2>
+                  <p>The third notable amendment relating to committal powers is that made to section 147
+                     of the 2000 Act by paragraph 48.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">88 </span></h2>
+                  <p>Section 147 provides the Crown Court with the power to disqualify an offender from
+                     driving where they used a motor vehicle for the purposes of their offence. The power
+                     is available where the Crown Court convicts the offender of certain offences, or where
+                     the offender is convicted of such an offence by the magistrates’ court and committed
+                     for sentence to the Crown Court under section 3 of the 2000 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">89 </span></h2>
+                  <p>Paragraph 48 omits subsection (1)(b) of section 147 so that a driving disqualification
+                     can be imposed where the offender is committed for sentence under any power that gives
+                     the Crown Court the power to deal with the offender as if they had been convicted
+                     on indictment. This change does not impact on a maximum penalty and in all cases the
+                     order would have been available if the offender had been committed under a different
+                     provision.</p>
+               </section>
+               <section class="level">
+                  <p>Category (f): when sentences take effect</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">90 </span></h2>
+                  <p>Another category of pre-consolidation amendments are those in category (f): amendments
+                     desirable in ensuring consistency in relation to the powers of different courts to
+                     provide for when sentences or particular requirements of sentences are to take effect.
+                     A specific power has been taken in section 2(3)(c) for the Secretary of State to remove
+                     differences between provisions relating to powers of different courts to provide for
+                     when sentences or particular requirements of sentences are to take effect. The amendments
+                     made can broadly be sub-categorised into two types.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">91 </span></h2>
+                  <p>The first type of amendments are those affecting when a sentence starts and when a
+                     sentence ends.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">92 </span></h2>
+                  <p>The most significant of these amendments is the amendment to section 154 of the Powers
+                     of Criminal Courts (Sentencing) Act 2000 by paragraph 51. Section 154 provides that
+                     any sentence imposed by a Crown Court takes effect from the beginning of the day on
+                     which it is made unless the court otherwise directs. The Law Commission, in their
+                     consultation on the Sentencing Code (Law Commission Consultation Paper No 232: paragraph
+                     10.23) noted that there is no corresponding legislative provision for the magistrates’
+                     court, although current practice is the same. The amendment at paragraph 51 accordingly
+                     extends section 154 so that, unless the court orders otherwise, sentences imposed
+                     by the magistrates’ court take effect from the beginning of the day on which they
+                     are made.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">93 </span></h2>
+                  <p>Other amendments in this category are of a similar nature. For example, the amendments
+                     effected by paragraph 31(4) and 110(17) ensure that specific sentences take effect
+                     at the beginning of the day on which they are imposed unless ordered otherwise.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">94 </span></h2>
+                  <p>The amendments effected by paragraphs 66(3) and 110(19) ensure that sentences finish
+                     at the end of the final day on which they must be complied with, to remove the uncertainty
+                     about when they end if expressed to end “on” that day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">95 </span></h2>
+                  <p>The second type are those which align the language used to refer to periods of time
+                     and better clarify when periods begin. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">96 </span></h2>
+                  <p>For example, in a number of enactments the maximum period for the sentence is expressed
+                     as a period “from” the date of the order. A period of time running “from” from a particular
+                     event is ambiguous and will usually be taken to exclude the day on which the event
+                     takes place (although not always): see <i>Dodds v Walker </i>[1981] 2 All E.R. 609. It is, therefore, no longer standard drafting practice to use
+                     “from”, and amendments have therefore been made to replace these references with descriptions
+                     of a period “beginning with” the date of the order, clarifying that the day of the
+                     order itself is counted: see paragraphs 17, 25(5), 46(2) and 128.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">97 </span></h2>
+                  <p>Similarly, a number of provisions relating to requirements that can be imposed as
+                     part of a community order or a suspended sentence order express the maximum period
+                     that such requirements can be imposed for as a period “beginning with the day on which
+                     it is made”. These provisions are potentially ambiguous as to whether the maximum
+                     period begins from the day the order itself is made, or the day the requirement is
+                     imposed (which can be later). Amendments have been made to clarify that the intended
+                     effect is the latter: see paragraphs 75, 76 and 78.</p>
+               </section>
+               <section class="level">
+                  <p>Category (g): commencement of future orders</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">98 </span></h2>
+                  <p>The final category of pre-consolidation amendments are those in category (g): amendments
+                     necessary to provide for the clean sweep policy in relation to future amendments to
+                     the law. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">99 </span></h2>
+                  <p>As referred to above, the principal effects of the clean sweep are given effect by
+                     section 1 (and the exceptions in Schedule 1). There are some specific cases where
+                     amendments are necessary to achieve the desired result (such as with powers to re-sentence
+                     discussed above). A distinct category of these are the series of amendments necessary
+                     to existing order-making powers to amend the law, to provide that any such amendments
+                     may have effect for any conviction occurring on or after the change is commenced,
+                     regardless of when the offence is committed. These amendments are intended to provide
+                     that as the law is amended after the clean sweep it will remain a single body of law.
+                     Section 1 does not affect these powers as it only operates on existing transitional
+                     provisions, not those that may come into force in the future.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">100 </span></h2>
+                  <p>For example, some of the amendments alter the Secretary of State’s power to amend
+                     the maximum fine or maximum period for which the requirement can be imposed, so that
+                     the change to the maximum can apply to any offender convicted after the change comes
+                     into force, not only for any offender whose offence was committed after that time.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">101 </span></h2>
+                  <p>As with the clean sweep itself, these amendments have only been made where they will
+                     not have the effect of increasing the maximum penalty available for the offence, or
+                     of exposing an offender to a minimum penalty that did not exist at the time of their
+                     offence. The relevant amendments can be found at paragraphs 19(2), 21, 32(2), 52(3),
+                     91, 94, 96, 100(7), 102(7), 106(4), 110(15), 111(6) and (19), 112(12) and 132.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">102 </span></h2>
+                  <p>Most of the Act will come into force immediately before “the consolidation date” -
+                     i.e. when the Sentencing Code itself comes into force. The exceptions are the powers
+                     to make orders under sections 1 and 2 which come into force upon Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">103 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">104 </span></h2>
+                  <p>The following were published on 22 November 2018, reference LC382:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Sentencing Code Volume I: Report (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf</u></a>)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Summary of Sentencing Code Report (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Summary-of-Sentencing-Code-Report.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Summary-of-Sentencing-Code-Report.pdf</u></a>)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Sentencing Code Volume II: Draft Legislation (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Complete-Sentencing-Code-V2.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Complete-Sentencing-Code-V2.pdf</u></a>)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Welsh Summary Of Sentencing Code Report (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-Welsh-Summary-of-Report.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-Welsh-Summary-of-Report.pdf</u></a>) </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Appendix 5 - Main Consultation Analysis (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Appendix-5-Main-consultation-analysis.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Appendix-5-Main-consultation-analysis.pdf</u></a>)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Appendix 6 - Consultation Analysis: Children and Young Persons (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Appendix-6-Consultation-Analysis-Children-and-Young-Persons.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Appendix-6-Consultation-Analysis-Children-and-Young-Persons.pdf</u></a>)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Sentencing Code Impact Assessment (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-Impact-Assessment.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-Impact-Assessment.pdf</u></a>) </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Executive Summary of Sentencing Code Report (<a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/12/6.5138_LC_Sentencing-code-summary-report_Web.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/12/6.5138_LC_Sentencing-code-summary-report_Web.pdf</u></a>)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>A full list of consultations and supporting documents can be found at <a href="https://www.lawcom.gov.uk/project/sentencing-code/"><u>https://www.lawcom.gov.uk/project/sentencing-code/#the-sentencing-code</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:2.31in">
+                        <col style="width:1in">
+                        <col style="width:1in">
+                        <col style="width:1in">
+                        <col style="width:0.99in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision in Schedule 2</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Paragraph 101 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Paragraph 103 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Paragraph 112</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Paragraph 133</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Paragraph 134</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">105 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.95in">
+                        <col style="width:1.9in">
+                        <col style="width:1.94in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>22 May 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-05-22/debates/47975E3B-21B1-4E2A-A10A-4C99941E438F/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 797 Col. 1981</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading Committee</p>
+                           </td>
+                           <td>
+                              <p>12 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-06-12/debates/7E56EA51-A60E-4DCA-B141-169851C71712/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 798 Col. 13GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>17 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-06-17/debates/66163BCF-200C-4DC1-8C9D-D08ADB4A8D2B/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 798 Col. 658</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>23 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-07-23/debates/DDDAF095-B6CA-4B11-80DB-64703627E8D6/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 799 Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>04 September 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-09-05/debates/FE623237-E8D1-492F-865E-D8CE49C1FE1F/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 799 Col. 1234</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>15 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-15/debates/0EBE098D-0F75-4D7C-81C7-5E2FD101FBD6/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 800 Col. 23</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-16/debates/B2C4E434-F59F-4C5A-9BFF-78444682A141/Sentencing(Pre-ConsolidationAmendments)Bill(LawCommissionBill)">
+                                    <u>Vol. 800 Col. 97</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>16 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-16/debates/B2C4E434-F59F-4C5A-9BFF-78444682A141/Sentencing(Pre-ConsolidationAmendments)Bill(LawCommissionBill)">
+                                    <u>Vol. 800 Col. 97</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>16 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-16/debates/B2C4E434-F59F-4C5A-9BFF-78444682A141/Sentencing(Pre-ConsolidationAmendments)Bill(LawCommissionBill)">
+                                    <u>Vol. 800 Col. 97</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>21 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-01-21/debates/7A16D984-6CBF-44A9-9265-455BCCCFCDBE/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 801 Col. 1047</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>11 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-02-11/debates/2068E2D2-0070-4730-8C8F-CA69566D8E21/Sentencing(Pre-ConsolidationAmendments)Bill(HL)(LawCommissionBill)">
+                                    <u>Vol. 801 Col. 2234</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>03 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-03-03/debates/B00363C9-6C55-4373-85F1-25928C01781E/Sentencing(Pre-ConsolidationAmendments)Bill(HL)">
+                                    <u>Vol. 802 Col. 512</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>04 March.2020</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading Committee</p>
+                           </td>
+                           <td>
+                              <p>17 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-03-17/debates/8204be0e-11ea-473a-a911-333d75628418/Sentencing(Pre-ConsolidationAmendments)Bill(Lords)">
+                                    <u>Vol. 673 Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 March 2020</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>04 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-04/debates/74E2342E-E676-45AA-BD44-3FF573B57036/Sentencing(Pre-ConsolidationAmendments)Bill">
+                                    <u>Vol. 676 Col. 1062</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>04 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-04/debates/74E2342E-E676-45AA-BD44-3FF573B57036/Sentencing(Pre-ConsolidationAmendments)Bill">
+                                    <u>Vol. 676 Col. 1076</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent </p>
+                           </td>
+                           <td>
+                              <p>08 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-06-08/debates/E1794007-55D3-4CD6-96E8-73F7D7E510CE/RoyalAssent">
+                                    <u>Vol. 803</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Complete-Sentencing-Code-V2.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Complete-Sentencing-Code-V2.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Complete-Sentencing-Code-V2.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2015/06/Sentencing-Procedure-Issues-Paper-Transition-online.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2015/06/Sentencing-Procedure-Issues-Paper-Transition-online.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2015/06/Sentencing-Procedure-Issues-Paper-Transition-online.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2017/07/The-Sentencing-Code-Consultation-Volume-1.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2017/07/The-Sentencing-Code-Consultation-Volume-1.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2017/07/The-Sentencing-Code-Consultation-Volume-1.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/03/YOUTH-CP-FINAL-WITH-ORIGINS-1.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/03/YOUTH-CP-FINAL-WITH-ORIGINS-1.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/03/YOUTH-CP-FINAL-WITH-ORIGINS-1.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Detailed examples illustrating the clean sweep are given in the Law Commission Report
+                  ‘The Sentencing Code’ p.60-71 <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Detailed examples illustrating the clean sweep are given in the Law Commission Report
+                  ‘The Sentencing Code’ p.60-71 <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  For the purposes of the Act, the definition of someone being convicted includes a
+                  special verdict under section 1 of the Criminal Procedure (Insanity) Act 1964, a finding
+                  mentioned in section 5(1)(b) of that Act being made of the person’s having done the
+                  act or made the omission charged (following a finding of being under a disability),
+                  and a conviction by a service court.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf">https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2018/11/Sentencing-Code-report-Web-version-1.pdf</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,2510 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>GENETIC TECHNOLOGY (PRECISION BREEDING)</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Genetic Technology (Precision Breeding) Act
+                  2023 which received Royal Assent on 23 March 2023 (c. 6).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by Department for Environment, Food and
+                  Rural Affairs in order to assist the reader of the Act and to help inform debate on
+                  it. They do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act intends to reduce the regulatory burden and financial barriers in place for
+                     researchers and commercial breeders using precision breeding technologies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>This Act removes the plants and animals produced using modern biotechnologies, and
+                     the food and feed derived from them, from Genetically Modified Organisms (GMO) regulation
+                     if those organisms could have occurred naturally or been produced by traditional methods.
+                     It replaces GMO controls with proportionate and science-based measures. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act includes provisions to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Bring in two mandatory notification systems for precision bred organisms (PBOs), one
+                        for non-marketing purposes (research and development) and one for marketing purposes.
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Allow for new powers to introduce on-going obligations to report information relating
+                        to the health and welfare of precision bred vertebrate animals, and to prescribe the
+                        processes and powers the Secretary of State can use to take the necessary action in
+                        response to this post-marketing animal welfare information. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Create a duty on the Secretary of State to create and maintain a new public register
+                        of notified information. The register is to be kept in electronic form and accessible
+                        on gov.uk. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Grant powers to create a new regulatory framework for food and feed derived from PBOs,
+                        ensuring that appropriate regulation is in place before placing these products on
+                        the market. These powers include the power to make regulations that will outline the
+                        procedure for issuing a precision bred food and feed marketing authorisation, and
+                        the power to make regulations that will require the FSA to carry out risk assessments.
+                        Regulations will also set out the requirements within the resultant framework that
+                        must be satisfied before the Secretary of State can issue a food and feed marketing
+                        authorisation.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Grant powers for the Food Standards Agency (FSA) to establish, publish and update
+                        a public register for PBOs authorised for food and feed use. An entry on this register
+                        would indicate that the Secretary of State has made a determination to authorise the
+                        PBO, and products derived from it to enter the market for food and feed uses based
+                        on the recommendation of the FSA.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Grants powers to create an inspection and enforcement regime, including civil sanctions,
+                        in order to secure compliance with the obligations under the Act.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The current GMO legislation, most of which derives from retained European Union (EU)
+                     law, is over 30 years old and has not kept pace with scientific developments and knowledge
+                     of the environmental impacts associated with precision breeding technologies. Current
+                     GMO legislation is also not reflective of the risk of organisms produced by modern
+                     biotechnology when the final product could have been produced by traditional breeding
+                     methods. Advice from the independent scientific committee - the Advisory Committee
+                     on Releases to the Environment (ACRE) is that PBOs pose no greater risk than their
+                     traditionally bred or naturally arising counterparts<a class="fn" id="fnref-1" href="#fn-1">1</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>This Act aligns with the scientific view of groups such as the EU Commission’s Scientific
+                     Advice Mechanism, the European Academies’ Scientific Advisory Council and the UK’s
+                     Royal Society, as well as ACRE, who consider that it is the nature of the genetic
+                     change – and not the technique by which it was produced – that determines the risk
+                     posed by an organism and should therefore determine whether an organism should be
+                     regulated as a GMO<a class="fn" id="fnref-2" href="#fn-2">2</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Defra held a public consultation from 7 January to 17 March 2021, to gather views
+                     on the regulation of genetic technologies in England<a class="fn" id="fnref-3" href="#fn-3">3</a>. This focused on organisms, which are the product of precision breeding technologies
+                     such as gene editing that result in genetic changes similar to those found naturally
+                     in varieties of the same species, or in very similar species that could be combined
+                     by traditional breeding. The consultation received no new scientific evidence indicating
+                     that PBOs should be regulated as GMOs, and many responses expressed the view that
+                     GMOs are demonstrably different to the products of precision breeding.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In addition to public consultation, both Defra and the FSA undertook additional stakeholder
+                     engagement. This engagement included workshops, round table discussions, public polling,
+                     and consumer research. This engagement assisted both agencies by providing insight
+                     into academia, industry, and the public’s perceptions, understanding the appetite
+                     for these modern technologies. The Government will continue to engage with stakeholders
+                     to seek views and to continue to develop policy in this area.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Defra and the FSA have also investigated international approaches to the regulation
+                     and food safety standards of Precision Bred and Novel Foods.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The regulation of GMOs in the UK is mainly based on EU law passed in the 1990s and
+                     updated in the 2000s. These regulations were implemented in the UK through Part VI
+                     of the Environmental Protection Act 1990 (EPA) and subsequent secondary legislation
+                     and retained direct EU law.&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 106 of the EPA (Part VI) and Regulation 5 of the Genetically Modified Organisms
+                     (Deliberate Release) Regulations 2002 (“the Deliberate Release Regulations 2002”)
+                     use the EU definition of a GMO from Directive 2001/18/EC. The EPA introduces the additional
+                     concept of ‘artificial modification’ which more clearly establishes that it is the
+                     techniques used to develop an organism that determine its GM status; whether the genetic
+                     changes could have occurred naturally or by traditional methods has no bearing. The
+                     techniques of artificial modification are set out in regulation 5 of the Deliberate
+                     Release Regulations 2002. This list captures the techniques developed in the 1980s
+                     (and aligns with Annex 1A, part 1 of Directive 2001/18/EC). This regulation also lists
+                     natural processes and traditional breeding methods that are not regarded as being
+                     GM techniques (and aligns with Annex 1A, part 2 of Directive 2001/18/EC).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The UK is a signatory of the Cartagena Protocol on Biosafety. The Cartagena Protocol
+                     on Biosafety is an international treaty governing the movements of GMOs from one country
+                     to another. This is implemented by retained EU Regulation 1946/2003, which establishes
+                     a system for notifying and providing information for the transboundary movements of
+                     GMOs. The Genetically Modified Organisms (Transboundary Movements) (England) Regulations
+                     2004 provide for enforcement of this Regulation in England.&nbsp; The UK Government considers
+                     that the Cartagena Protocol does not apply to organisms produced using modern biotechnologies
+                     if those organisms could have occurred naturally or been produced by traditional methods.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Retained EU GM Food and Feed Regulations (1829/2003/EC) govern the use of GM human
+                     food and animal feed. This covers food and feed products containing living GMOs as
+                     well as non-living products derived from them. Persons intending to market GMOs can
+                     seek authorisation to cultivate GM crops under these regulations in addition to seeking
+                     approval to use them as food and feed. Alternatively, they can seek authorisation
+                     for cultivation under the GMO Deliberate Release legislation and separately, seek
+                     authorisation for their use in food and/or feed. If the organism is not intended for
+                     use in food or feed, it can be authorised for marketing under the GMO Deliberate Release
+                     legislation. The GM food and feed regulations refer to the definition of a GMO in
+                     the EU Directive 2001/18/EC.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 47 sets out the territorial extent of the provisions of the Act. The extent
+                     of an Act is the legal jurisdiction of which it forms part of the law; application
+                     refers to where it has practical effect. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The regulation of precision bred organisms is a devolved matter and the provisions
+                     of this Act generally extend to England and Wales only and apply in relation to England
+                     only. Section 41 amends the Environmental Protection Act 1990 which extends to England
+                     and Wales and Scotland, so that section and the definitions in Part 1 of the Act to
+                     which those amendments refer likewise extend to England and Wales and Scotland. The
+                     general provisions in sections 42 to 48 extend to England and Wales and Scotland and
+                     Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>As a result of the changes proposed in the Act, it will be possible to market precision
+                     bred plants and animals in England without the need for consent under Part 6 of the
+                     Environmental Protection Act 1990.  The mutual recognition principle in the United
+                     Kingdom Internal Market (UKIM) Act 2020 will apply to precision bred plants and animals,
+                     and food and feed derived from them, which are produced in or imported into England,
+                     meaning that it would be possible to place them legally on the market in Scotland
+                     and Wales if they can be marketed lawfully in England as a result of this Act and
+                     the delegated legislation to be made under it.  &nbsp; Precision bred organisms, and food
+                     derived from them, moved to Northern Ireland from Great Britain will need to comply
+                     with the arrangements agreed under the Windsor Framework.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: Precision Breeding: Definitions</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>1: Precision bred organism</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>This section provides the definition of “precision bred organism” and related terms
+                        for the purposes of this Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Subsection (1) defines “precision bred organism” as a precision bred plant, or a precision
+                        bred animal.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Subsection (2) of this section establishes the conditions under which an organism
+                        is considered to be precision bred for the purposes of the Act. It dictates that the
+                        genome of such organisms must have been altered using modern biotechnology, that these
+                        alterations must be stable and that all features of its genome that have been made
+                        using modern biotechnology could also have arisen by traditional processes, whether
+                        or not in conjunction with selection techniques, alone. It also dictates that an organism
+                        cannot be precision bred if it contains any genetic features which have been made
+                        by artificial modification techniques, other than modern biotechnology.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Subsection (3) outlines the definition of modern biotechnology for the purposes of
+                        this Act. This aligns with the techniques listed in regulation 5(1)(a) or (b) of the
+                        Genetically Modified Organisms (Deliberate Release) Regulations 2002 (S.I. 2002/2443).
+                        Regulation 5(1)(a) of those Regulations lists techniques which are considered to constitute
+                        artificial alteration of an organism for the purposes of Part VI of the Environmental
+                        Protection Act 1990, while regulation 5(1)(b) lists techniques which are not considered
+                        to constitute artificial alteration of an organism for that purpose.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Subsection (4) further outlines the definition of a stable genomic feature laid out
+                        in subsection (2). It dictates that the genomic feature must be capable of being passed
+                        on to subsequent generations whether by sexual or asexual means.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsection (5) outlines matters to be disregarded when conducting the test of whether
+                        an organism made using modern biotechnology could also have arisen via traditional
+                        processes. These are: the number of times a genomic feature repeats in the genome
+                        (copy number),&nbsp;the set of chemical modifications to the genome and its associated
+                        proteins (epigenetic status), and the position of a genomic feature within the genome
+                        (location).&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Subsection (6) outlines a list of traditional processes for plants and animals, in
+                        relation to this Part. The lists cover the range of genomic alterations that could
+                        occur through traditional processes.&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (7) defines “artificial modification technique”, for   subsection (2),
+                        as any technique by which genes or other genetic material can be artificially modified
+                        within Part 6 of the Environmental Protection Act 1990.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (8) allows the definition of “modern biotechnology” to be amended to mirror
+                        changes that may occur in regulation 5 of the Genetically Modified Organisms (Deliberate
+                        Release) Regulations 2002 (S.I. 2002/2443), or if the powers in subsection (4B) or
+                        (4C) of section 106 of the Environmental Protection Act 1990 are exercised to prescribe
+                        techniques that are (or are not, as the case may be), considered to constitute artificial
+                        modification for the purposes of that Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection (9) specifies that regulations made under this section are subject to the
+                        draft affirmative procedure.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (10) makes it possible for organisms to which subsection (11) applies to
+                        qualify for “precision bred” status regardless of the exclusion outlined in subsection
+                        (2)(d), provided they meet all other criteria set out in subsection (2).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Subsection (11) outlines which artificially modified organisms should have the potential
+                        to gain “precision bred” status. These are organisms which are not considered to be
+                        genetically modified in Part 6 of the Environmental Protection Act 1990. Specifically,
+                        organisms with genetic features produced through techniques mentioned in regulation
+                        5 paragraph (3) of the Genetically Modified Organisms (Deliberate Release) Regulations
+                        2002 (S.I. 2002/2443), and organisms mentioned in regulations under subsection (4C)
+                        of section 106 of the Environmental Protection Act 1990.</p>
+                  </section>
+                  <section class="level">
+                     <p>2: Meaning of “plant” and “animal”</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>This section defines “plant” and “animal” for the purposes of this Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Subsection (1) of this section describes the scope of what is considered a plant for
+                        the purposes of this Act. It defines plants as residing within the group Archaeplastida,
+                        or Phaeophyceae.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Subsection (2) describes the scope of what is considered an animal, for the purposes
+                        of this Act. It defines animals as residing in the group Metazoa but excludes humans
+                        at any developmental stage as well as human admixed embryos.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Subsection (3) outlines what is and is not considered an ‘organism’ in relation to
+                        subsections (1) and (2). This includes an embryo and all subsequent developmental
+                        stages, a seed or vegetative propagule (in plants) but excludes a gamete, as defined
+                        in subsection (4).&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Subsection (4) outlines the definition of a “gamete”, for the purposes of this Act.
+                        This includes a mature germ cell (i.e., egg, sperm (animals) or pollen (plants)) capable
+                        of initiating fertilisation but excludes an egg that is in the process of fertilisation
+                        or is undergoing any other process capable of resulting in an embryo.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Subsection (5) describes the extent of what is considered an “embryo”, “human” and
+                        “human admixed embryo” for the purposes of this section.&nbsp;</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 2: Precision Bred Organisms, Release, Marketing, and Risk Assessments</b>
+                        </p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Release</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>3: Restrictions on release of precision bred organisms in England</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">36 </span></h2>
+                        <p>This section sets out the conditions under which a person who has a precision bred
+                           organism under their control may release that organism into the environment in England.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">37 </span></h2>
+                        <p>Subsection (1) outlines that a person who has a precision bred organism under their
+                           control must not release a precision bred organism in England unless the notification
+                           requirements set out in section 4 have been satisfied in relation to the release,
+                           the person is specified in the notification and the release is carried out in accordance
+                           with the notice; or the organism is either a marketable precision bred organism (as
+                           defined in section 5(2) is the qualifying progeny of a marketable precision bred organism).
+                           “Qualifying progeny” is defined in section 24.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">38 </span></h2>
+                        <p>Subsection (2) describes the circumstances in which a precision bred organism can
+                           be considered under a person’s control.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">39 </span></h2>
+                        <p>Subsection (3) describes the circumstances in which a precision bred organism is considered
+                           to be released. </p>
+                     </section>
+                     <section class="level">
+                        <p>4: Release of precision bred organism: notification requirements</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">40 </span></h2>
+                        <p>This section sets out the notification requirements for the release of a precision
+                           bred organism in England. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">41 </span></h2>
+                        <p>Subsection (1) sets out the legal requirements for a notification of release of a
+                           precision bred organism. The notification requirements are satisfied in relation to
+                           the release if a person gives the Secretary of State a notice of the intention to
+                           release an organism (with any required information) and if the person has paid the
+                           fees required by regulations made under section 40, and any minimum period required
+                           by regulations has elapsed between satisfying the requirements and releasing the organism.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">42 </span></h2>
+                        <p>Subsection (2) requires the notice to specify persons in relation to the release.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">43 </span></h2>
+                        <p>Subsection (3) sets out a power to make regulations to make provisions for the details
+                           of the release notification form, such as the form and content of the release notice,
+                           and any other required information. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">44 </span></h2>
+                        <p>Subsection (4) provides that these regulations may prescribe who can be specified
+                           in relation to a notice.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">45 </span></h2>
+                        <p>Subsection (5) provides that the meaning of “release” is as in section 3(3).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">46 </span></h2>
+                        <p>Subsection (6) specifies that regulations under subsection (1)(b) are subject to the
+                           negative procedure.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">47 </span></h2>
+                        <p>Subsection (7) specifies that regulations under subsection (3) are subject to the
+                           affirmative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Marketing</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>5: Restrictions on marketing of precision bred organisms in England</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">48 </span></h2>
+                        <p>This section sets out the notification requirements for the marketing of a precision
+                           bred organism in England. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">49 </span></h2>
+                        <p>Subsection (1) contains restrictions on the marketing of precision bred organisms
+                           in England: a person must not market a precision bred organism in England unless the
+                           organism is a marketable precision bred organism or is the qualifying progeny of a
+                           marketable precision bred organism. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">50 </span></h2>
+                        <p>Subsection (2) defines a “marketable precision bred organism” as one which will have
+                           to have received a precision bred confirmation (under section 8(1)(a)), and, for a
+                           relevant animal, have an animal marketing authorisation. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">51 </span></h2>
+                        <p>Subsection (3) explains what it means to market precision bred organisms in England,
+                           for the purposes of this Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">52 </span></h2>
+                        <p>Subsection (4) sets out where relevant definitions can be found in the Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">53 </span></h2>
+                        <p>Subsection (5) explains what is meant by a confirmation or authorisation being “in
+                           force”.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Precision bred confirmation</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>6: Application for precision bred confirmation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">54 </span></h2>
+                        <p>This section describes the application process for a precision bred confirmation.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">55 </span></h2>
+                        <p>Subsection (1) establishes that a person may apply for confirmation, from the Secretary
+                           of State, that an organism is a precision bred organism by giving a notice (a “marketing
+                           notice”) to the Secretary of State.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">56 </span></h2>
+                        <p>Subsection (2) provides for regulations that may be used to establish the form and
+                           content of the marketing notice and the required information that must accompany it.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">57 </span></h2>
+                        <p>Subsection (3) requires the Secretary of State to refer the marketing notice and any
+                           required information that accompanied it to the advisory committee as soon as practical
+                           after receiving this information and after receiving any fee that is required under
+                           section 36.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">58 </span></h2>
+                        <p>Subsection (4) specifies that regulations made under this section are subject to the
+                           affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>7: Report by advisory committee</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">59 </span></h2>
+                        <p>This section sets out the requirements for the report of the advisory committee. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">60 </span></h2>
+                        <p>Subsection (1) establishes this section applies where a marketing notice has been
+                           referred to the advisory committee by the Secretary of State.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">61 </span></h2>
+                        <p>Subsection (2) establishes a period of 90 days as the timeframe in which the advisory
+                           committee must provide a report to the Secretary of State. This report must outline
+                           whether the advisory committee considers the organism to be precision bred and its
+                           reasons for that conclusion.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">62 </span></h2>
+                        <p>Subsection (3) provides that the committee may request further information from the
+                           notifier under an ‘information notice’ request, if they deem it necessary in order
+                           to assess and report if an organism is precision bred.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">63 </span></h2>
+                        <p>Subsection (4) provides that the committee report must contain any information provided
+                           by the notifier as a result of an information notice.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">64 </span></h2>
+                        <p>Subsection (5) provides for the committee report to be subject to regulations made
+                           under section 23 regarding time limits.</p>
+                     </section>
+                     <section class="level">
+                        <p>8: Issue of precision bred confirmation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">65 </span></h2>
+                        <p>Subsection (1) of this section provides for the Secretary of State, upon receipt of
+                           the advisory committee report, to issue the notifier with a precision bred confirmation
+                           and provide the notifier notice of it if the Secretary of State is satisfied the organism
+                           is precision bred. If not satisfied the organism is precision bred, the Secretary
+                           of State must give notice to the notifier of that fact, stating the reasons for such
+                           notice as required by subsection (2).</p>
+                     </section>
+                     <section class="level">
+                        <p>9: Revocation of precision bred confirmation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">66 </span></h2>
+                        <p>This section provides for the revocation of a precision bred confirmation. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">67 </span></h2>
+                        <p>Subsection (1) enables regulations to provide to the Secretary of State a power to
+                           revoke a precision bred confirmation if no longer satisfied that the organism is precision
+                           bred.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">68 </span></h2>
+                        <p>Subsection (2) provides that the Secretary of State must, in those such regulations,
+                           outline the procedures which must be followed in order to revoke a precision bred
+                           confirmation. Regulations must include provisions for publication of such revocation,
+                           allowing the persons affected by the revocation to make representation about it, the
+                           consequences of such revocation, and the details of information which will be published
+                           on the PB Public Register.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">69 </span></h2>
+                        <p>Subsection (3) provides that if a precision bred confirmation is revoked, any marketing
+                           authorisations issued under regulations under Part 3 (Food and feed produced from
+                           precision bred organisms) in reliance on the organism being a marketable precision
+                           bred organism, and for relevant animals a precision bred animal marketing authorisation
+                           relating to the animal cease to have effect.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">70 </span></h2>
+                        <p>Subsection (4) enables regulations under this section to confer a function on the
+                           advisory committee, for instance to provide the Secretary of State with advice relating
+                           to the revocation of a precision bred confirmation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">71 </span></h2>
+                        <p>Subsection (5) specifies that regulations made under this section are subject to the
+                           negative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Relevant animals: precision bred animal marketing authorisation</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>10: “Relevant animal”</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">72 </span></h2>
+                        <p>This section defines what a “relevant animal” is. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">73 </span></h2>
+                        <p>Subsection (1) explains that a “relevant animal” for the purposes of this Act is a
+                           vertebrate.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">74 </span></h2>
+                        <p>Subsection (2) provides that regulations may be made in order to extend the definition
+                           of a “relevant animal” if the definition in the Animal Welfare Act 2006 is extended
+                           to include invertebrates of any description.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">75 </span></h2>
+                        <p>Subsection (3) explains that the meanings of “vertebrate” and “invertebrate” are set
+                           out in the Animal Welfare Act 2006, as follows: “vertebrate” means any animal of the
+                           Sub-phylum Vertebrata of the Phylum Chordata and “invertebrate” means any animal not
+                           of that Sub-phylum.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">76 </span></h2>
+                        <p>Subsection (4) specifies that regulations made under this section are subject to the
+                           draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>11: Application for precision bred animal marketing authorisation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">77 </span></h2>
+                        <p>This section sets out the application process for a precision bred animal marketing
+                           authorisation. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">78 </span></h2>
+                        <p>Subsection (1) explains that this section applies where the Secretary of State has
+                           received a marketing notice relating to an animal.  </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">79 </span></h2>
+                        <p>Subsection (2) explains that the person who gave a marketing notice in respect of
+                           an animal who wishes to obtain a precision bred animal marketing authorisation for
+                           that animal can apply to the Secretary of State.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">80 </span></h2>
+                        <p>Subsection (3) sets out that when making an application for a precision bred animal
+                           marketing authorisation the applicant must include an animal welfare declaration.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">81 </span></h2>
+                        <p>Subsection (4) lists the information requirements and fees which must accompany an
+                           application for a precision bred animal marketing authorisation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">82 </span></h2>
+                        <p>Subsection (5) allows for the form and content of an application for a precision bred
+                           animal marketing authorisation and related documentation to be set out in regulations
+                           and allows for regulations to require additional information to be provided with the
+                           application.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">83 </span></h2>
+                        <p>Subsection (6) explains that the Secretary of State must refer an application for
+                           a precision bred animal marketing authorisation and any related information to the
+                           welfare advisory body.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">84 </span></h2>
+                        <p>Subsection (7) sets out that when the Secretary of State must refer the application
+                           to the welfare advisory body and allows the Secretary of State to decide to wait until
+                           a confirmation of precision breeding is issued in relation to the relevant animal.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">85 </span></h2>
+                        <p>Subsection (8) explains that the duty to refer the application to the welfare advisory
+                           committee does not apply if the Secretary of State decides not to issue a precision
+                           breeding confirmation in relation to the relevant animal.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">86 </span></h2>
+                        <p>Subsection (9) allows for regulations to set out when a person other than the notifier
+                           can apply for a precision bred marketing authorisation for a precision-bred animal.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">87 </span></h2>
+                        <p>Subsection (10) specifies that regulations made under subsection (5) are subject to
+                           the affirmative procedure.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">88 </span></h2>
+                        <p>Subsection (11) specifies that regulations made under subsection (9) are subject to
+                           the negative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>12: Report by welfare advisory body</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">89 </span></h2>
+                        <p>This section refers to the report by the welfare advisory body. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">90 </span></h2>
+                        <p>Subsection (1) explains that this section applies where the Secretary of State refers
+                           a precision bred animal marketing authorisation to the welfare advisory body.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">91 </span></h2>
+                        <p>Subsection (2)(a) to (c) outlines what must be included in the report from the welfare
+                           advisory body to the Secretary of State and that the report must be provided within
+                           a set timeframe.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">92 </span></h2>
+                        <p>Subsection (3) explains that the timeframe for the reporting period will be set out
+                           in regulations, and that it will begin on the day the application is referred to the
+                           welfare advisory body.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">93 </span></h2>
+                        <p>Subsection (4) enables the welfare advisory body to request further information from
+                           a person submitting an application under an ‘information notice’ before the end of
+                           the reporting period set out in subsection (3).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">94 </span></h2>
+                        <p>Subsection (5) sets out that the advisory body’s report to the Secretary of State
+                           must be accompanied by any information that the body was provided with after issuing
+                           an information notice.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">95 </span></h2>
+                        <p>Subsection (6) confirms that subsections (2) and (3) are subject to regulations under
+                           section 23 on Advisory bodies and time limits.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">96 </span></h2>
+                        <p>Subsection (7) specifies that regulations made under this section are subject to the
+                           negative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>13: Issue of precision bred animal marketing authorisation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">97 </span></h2>
+                        <p>This section sets out the process for issuing a precision bred marketing authorisation.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">98 </span></h2>
+                        <p>Subsection (1) (a) to (c) explains what the Secretary of State must do when he receives
+                           a report from the welfare advisory body. It sets out that he must decide if a precision
+                           bred animal marketing authorisation can be issued and notify the applicant of his
+                           decision, including any reasons for not issuing the authorisation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">99 </span></h2>
+                        <p>Subsection (2) (a) to (b) sets out that the Secretary of State must consider whether
+                           the notifier’s declaration explains the traits produced by precision breeding in the
+                           animal and identifies any risks to the health or welfare of the animal or its qualifying
+                           progeny (as defined in section 24) associated with those traits. This subsection explains
+                           that if he is satisfied with how these elements have been considered, the Secretary
+                           of State may issue a precision bred animal marketing authorisation.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Protection of relevant animals following issue of marketing authorisation</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>14: Precision bred animal marketing authorisations: reporting obligations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">100 </span></h2>
+                        <p>This section provides for reporting obligations concerning precision bred marketing
+                           authorisations. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">101 </span></h2>
+                        <p>Subsection (1) (a) to (b) and (2) set out that draft affirmative regulations may make
+                           provisions to require the notifier, or any other person specified, to report information
+                           to the Secretary of State about the welfare of the relevant animal and its qualifying
+                           progeny (as defined in section 24). This subsection also provides that when the relevant
+                           animal is supplied to another person, the notifier may be required to take steps to
+                           collect that health and welfare information, or enable it to be collected, from the
+                           other person.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">102 </span></h2>
+                        <p>Subsection (3) provides for the periods during which reporting obligations would apply.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">103 </span></h2>
+                        <p>Subsection (4) specifies that regulations made under this section are subject to the
+                           draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>15: Suspension and revocation of precision bred animal marketing authorisation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">104 </span></h2>
+                        <p>This section provides for the suspension and revocation of a precision bred marketing
+                           authorisation. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">105 </span></h2>
+                        <p>Subsection (1) (a) to (c) sets out that regulations made under this section can enable
+                           the Secretary of State to suspend or revoke a precision bred animal marketing authorisation,
+                           either because of new information about animal health or welfare, or because of a
+                           failure by any person to comply with a legal requirement to report information about
+                           a relevant animal’s health and welfare.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">106 </span></h2>
+                        <p>Subsection (2) (a) to (c) explains that Regulations made under this section must set
+                           out the procedure to be followed if the Secretary of State plans to suspend or revoke
+                           a precision bred animal marketing authorisation – including who should be notified
+                           and who can appeal, what the effect of the suspension or revocation is and what changes
+                           should be made to the register of precision bred organisms.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">107 </span></h2>
+                        <p>Subsection (3) confirms that regulations under this section can also confer a function
+                           to the welfare advisory body as part of the process if needed.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">108 </span></h2>
+                        <p>Subsection (4) confirms that nothing in this section affects the power to make provision
+                           in relation to a failure to comply with regulations under section 14.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">109 </span></h2>
+                        <p>Subsection (5) specifies that regulations made under this section are subject to the
+                           negative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Reviews and appeals relating to Part 2</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>16: Reviews and appeals relating to Part 2</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">110 </span></h2>
+                        <p>This section provides for reviews and appeals relating to Part 2. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">111 </span></h2>
+                        <p>Subsection (1) requires the Secretary of State to make regulations for reviews and
+                           appeals against decisions made under this part.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">112 </span></h2>
+                        <p>Subsection (2) provides that regulations must secure that the appellant has the rights
+                           to require the Secretary of State to review, and then to appeal to the First-tier
+                           Tribunal against the decisions made under Part 2 of this Act and provides for the
+                           grounds on which that review or appeal can be made.&nbsp;&nbsp;&nbsp;&nbsp;These are that the decision
+                           was based on an error of fact, was wrong in law, unreasonable or on any other grounds
+                           prescribed by regulations.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">113 </span></h2>
+                        <p>Subsection (3) describes the decisions an appellant is able to request a review or
+                           appeal against: a decision not to issue or to revoke a precision bred confirmation;
+                           or a decision not to issue, to revoke or to suspend a precision bred animal marketing
+                           authorisation. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">114 </span></h2>
+                        <p>Subsection (4) provides that additional provisions concerning appeals may be made
+                           by regulations, including the powers of the First-tier Tribunal on an appeal.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">115 </span></h2>
+                        <p>Subsection (5) specifies that regulations made under this section are subject to the
+                           negative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Risk assessments</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>17: Restrictions on importation and acquisition of precision bred organisms in England</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">116 </span></h2>
+                        <p>This section provides for restrictions on importation and acquisition of precision
+                           bred plants and animals in contained use conditions. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">117 </span></h2>
+                        <p>Subsection (1) provides that regulations may be made requiring a person to carry out
+                           an environmental risk assessment for precision bred organisms that are imported to
+                           a place in England or that are acquired in England. The Government intends that this
+                           should have limited application in that it envisages it only applying to precision
+                           bred animals and plants before they are released into the environment or marketed
+                           (after which point, they are subject to the regulatory provisions on release and marketing
+                           in this Act). It provides for existing requirements placed on Genetically Modified
+                           Organisms and Precision Bred plants and animals in contained use conditions (such
+                           as laboratories) to be maintained. In the majority of cases, a mixture of Genetically
+                           Modified and Precision Bred organisms will be present in laboratories and other contained
+                           use facilities and this subsection will provide for the current regulations on environmental
+                           risk assessment to continue to apply. These are proportionate and science based.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">118 </span></h2>
+                        <p>Subsection (2) establishes the meaning of an environmental risk assessment for the
+                           purposes of any regulations that are made under subsection (1).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">119 </span></h2>
+                        <p>Subsection (3) establishes the provisions that may be made in regulations for environmental
+                           risk assessments, including keeping them under review and keeping records for provision
+                           to the Secretary of State.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">120 </span></h2>
+                        <p>Subsection (4) makes provision requiring persons carrying out environmental risk assessments
+                           to obtain advice from prescribed persons.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">121 </span></h2>
+                        <p>Subsection (5) defines the terms ‘acquire’ and ‘damage to the environment’.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">122 </span></h2>
+                        <p>Subsection (6) specifies that regulations made under this section are subject to the
+                           negative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Register</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>18: Precision breeding register</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">123 </span></h2>
+                        <p>This section refers to the Precision Breeding Register. Subsection (1) requires the
+                           Secretary of State must establish and maintain a register and prescribes the information
+                           the register must contain. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">124 </span></h2>
+                        <p>Subsection (2) provides for the Secretary of State not to include information in the
+                           register if they determine that such information is commercially confidential, subject
+                           to subsection (4). </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">125 </span></h2>
+                        <p>Subsection (3) explains the circumstances of the requirements in subsection (2) cease
+                           to apply when the Secretary of State determines that the information is no longer
+                           commercially confidential. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">126 </span></h2>
+                        <p>Subsection (4) provides that neither the name of any person giving the notices and
+                           required information mentioned in subsection (1)(a) nor the general description of
+                           any precision bred organism are considered to be commercially confidential. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">127 </span></h2>
+                        <p>Subsection (5) provides for the Secretary of State to ensure the register is accessible
+                           to the public, free of charge, in electronic form.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">128 </span></h2>
+                        <p>Subsection (6) enables the Secretary of State to make regulations for the keeping
+                           of the register.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">129 </span></h2>
+                        <p>Subsection (7) specifies that regulations made under subsection (1) are subject to
+                           the affirmative procedure.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">130 </span></h2>
+                        <p>Subsection (8) specifies that regulations made under subsection (6) are subject to
+                           the negative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Monitoring and inspection</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>19: Inspectors</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">131 </span></h2>
+                        <p>This section refers to monitoring and inspection powers. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">132 </span></h2>
+                        <p>Subsection (1) provides for the Secretary of State to appoint inspectors for the purposes
+                           of Part 2 of this Act. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">133 </span></h2>
+                        <p>Subsection (2) provides for the inspectors appointed under this section to not be
+                           liable in any civil or criminal proceedings for anything done in the purported exercise
+                           of their functions if the court deems in was done in good faith and there were reasonable
+                           grounds for doing it. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">134 </span></h2>
+                        <p>Subsection (3) does not cover any liability of any other person in respect to the
+                           inspector’s act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">135 </span></h2>
+                        <p>Subsection (4) defines what an “inspector” is for the purposes of Part 2 of this Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>20: Monitoring and inspection of Part 2 obligations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">136 </span></h2>
+                        <p>This section provides for monitoring and inspections in respect of Part 2 obligations.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">137 </span></h2>
+                        <p>Subsection (1) enables the Secretary of State to make regulations for monitoring compliance
+                           with the obligations under this Part and investigate compliance failures.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">138 </span></h2>
+                        <p>Subsection (2) provides for the Secretary of State to make regulations regarding the
+                           appointment of inspectors and their functions and provides for a non-exhaustive list
+                           of what these regulations might cover.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">139 </span></h2>
+                        <p>Subsection (3) establishes that regulations made under this section may not create
+                           criminal offences, confer power of entry into private dwellings except under a warrant
+                           or authorise the use of force on power of entry. Regulations must also prohibit inspectors
+                           from wider use or disclosure of information obtained under them.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">140 </span></h2>
+                        <p>Subsection (4) specifies that regulations made under this section are subject to the
+                           draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>21: Meaning of “Part 2 obligation”</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">141 </span></h2>
+                        <p>This section describes the meaning of an obligation under Part 2 in relation to release,
+                           marketing and risk assessments of PBOs. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">142 </span></h2>
+                        <p>Subsection (1) defines a “Part 2 obligation” as an obligation imposed under Part 2
+                           (except for those circumstances described in subsection (2)), or a requirement arising
+                           from a stop notice or compliance notice issued in connection with Part 2. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">143 </span></h2>
+                        <p>Subsection (2) establishes that a Part 2 obligation is not one imposed by an information
+                           notice or any obligation of the Secretary of State, an advisory body, or an inspector.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">144 </span></h2>
+                        <p>Subsection (3) allows regulations to provide that a failure to comply with a Part
+                           2 obligation can also relate to the provision of misleading or false information in
+                           relation to a Part 2 obligation or an authorisation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">145 </span></h2>
+                        <p>Subsection (4) defines “requirement” to include “prohibition”.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">146 </span></h2>
+                        <p>Subsection (5) specifies that regulations made under section (3) are subject to the
+                           draft affirmative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Release and marketing: general provisions</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>22: Advisory bodies</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">147 </span></h2>
+                        <p>This section sets out the advisory bodies for Part 2 of this Act. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">148 </span></h2>
+                        <p>Subsection (1) establishes the advisory committee referenced in this Part is the same
+                           committee established under section 124(1) of the Environmental Protection Act 1990.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">149 </span></h2>
+                        <p>Subsection (2) places a duty on the advisory committee to give advice on applications,
+                           reports and the issuing and revocation of precision breeding confirmation as required
+                           by the Secretary of State.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">150 </span></h2>
+                        <p>Subsection (3) defines “welfare advisory body” for the purposes of this Part as the
+                           body so designated by regulations.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">151 </span></h2>
+                        <p>Subsection (4) allows the welfare advisory body to be a committee appointed by the
+                           Secretary of State for the purposes of this Part, or a body which was established
+                           previously by or under any other Act or which exercises functions of a public nature.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">152 </span></h2>
+                        <p>Subsection (5) places a duty on the welfare advisory body to provide advice to the
+                           Secretary of State on any matter relevant to the Secretary of State’s functions under
+                           sections 11 to 15.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">153 </span></h2>
+                        <p>Subsection (6) establishes that subsections (7) and (8) apply to the welfare advisory
+                           committee if it is appointed by the Secretary of State under subsection 4(a). </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">154 </span></h2>
+                        <p>Subsection (7) enables members of the committee to hold and vacate office in accordance
+                           with the terms of their appointment. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">155 </span></h2>
+                        <p>Subsection (8) enables the Secretary of State to pay members of the committee remuneration
+                           and allowances, as decided by the Secretary of State.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">156 </span></h2>
+                        <p>Subsection (9) specifies that regulations made under section (3) are subject to the
+                           affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>23: Advisory bodies: time limits etc</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">157 </span></h2>
+                        <p>This section sets out additional provisions for the advisory bodies. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">158 </span></h2>
+                        <p>Subsection (1) allows for Secretary of State to make regulations for the notification
+                           to be treated as paused while information requested by an information notice has not
+                           been provided and withdrawn if the requested information is not provided to the advisory
+                           body’s satisfaction within a prescribed period.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">159 </span></h2>
+                        <p>Subsections (2) and (3) define “information notice”, “relevant application”, and “reporting
+                           period” for these purposes.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">160 </span></h2>
+                        <p>Subsection (4) specifies that regulations made under this section are subject to the
+                           negative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>24: “Qualifying progeny”</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">161 </span></h2>
+                        <p>This section establishes the meaning of a “qualifying progeny” of a marketable precision
+                           bred organism.</p>
+                     </section>
+                     <section class="level">
+                        <p>25: Precision bred animal marketing authorisation: adverse effects</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">162 </span></h2>
+                        <p>Subsection (1) enables the Secretary of State to specify in regulations subject to
+                           the affirmative procedure when the health or welfare of a precision bred animal or
+                           its qualifying progeny is, or is not, considered to be adversely affected by a trait
+                           which results from precision breeding. This would allow the Secretary of State to
+                           establish thresholds for assessing risk or exceptions which may need to be considered
+                           as part of the decision to issue, suspend, or revoke a precision bred animal marketing
+                           authorisation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">163 </span></h2>
+                        <p>Subsection (2) specifies that regulations made under this section are subject to the
+                           draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Part 3: Food and Feed Produced from Precision Bred Organisms</b>
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>26: Regulation of food and feed produced from precision bred organisms</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">164 </span></h2>
+                        <p>This section sets out powers for the regulation of food and feed derived from precision
+                           bred organisms. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">165 </span></h2>
+                        <p>Subsection (1) will grant a general power to introduce a regulatory framework governing
+                           the placing on the market of food and feed from precision bred organisms.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">166 </span></h2>
+                        <p>Subsection (2) provides for regulations made under the general power in subsection
+                           (1) to make provision for the matters set out in (a) and (b).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">167 </span></h2>
+                        <p>&nbsp;&nbsp;Subsection (3) provides that regulations which prohibit any person from placing
+                           food or feed from PBOs on the market except in accordance with a marketing authorisation
+                           issued by the Secretary of State may include the criteria that must be met in order
+                           for the Secretary of State to grant such an authorisation.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">168 </span></h2>
+                        <p>Subsection (4) and (5) provide powers for establishing an application procedure to
+                           be followed for food and feed marketing authorisations and provision that such authorisations
+                           be issued subject to conditions and limitations and to be varied or cancelled.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">169 </span></h2>
+                        <p>Subsection (6) grants powers to make regulations that confer functions on the Food
+                           Standards Agency.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">170 </span></h2>
+                        <p>Subsection (7) allows regulations to provide that an obligation on any other person
+                           than the Food Standards Agency, is not a Part 3 obligation referenced in section 29.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">171 </span></h2>
+                        <p>Subsection (8) outlines that, where regulations are made under subsection (2) (a)
+                           to authorise a precision bred organism for food and feed use, such regulations may
+                           prescribe which person(s) is authorised to market the precision bred organism for
+                           food and feed use and any other limitations on the authorisation that are necessary.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">172 </span></h2>
+                        <p>Subsection (9) prescribes that any regulations made under this section are subject
+                           to the draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>27: Food and feed marketing authorisations: register</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">173 </span></h2>
+                        <p>This section sets out the requirements of a register for precision bred products and
+                           the associated marketing authorisation of such products and how the limitations of
+                           these authorisations can be varied or cancelled.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">174 </span></h2>
+                        <p>Subsection (1) grants a power to make regulations requiring the Food Standards Agency
+                           to establish a register of precision bred products that have been granted marketing
+                           authorisation for uses in food and feed and setting out the information required to
+                           be included in such a register</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">175 </span></h2>
+                        <p>Subsection (2) sets out the information relating to food and feed marketing authorisations
+                           that regulations may state are to be included in the register.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">176 </span></h2>
+                        <p>Subsection (3) states that the prescribed particulars to be included in the register
+                           may include information of any precision bred confirmation or precision bred animal
+                           marketing authorisation issued by the Secretary of State in relation to a food or
+                           feed marketing authorisation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">177 </span></h2>
+                        <p>Subsection (4) prescribes that any regulations made under this section are subject
+                           to the draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>28: Monitoring and inspection of Part 3 obligations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">178 </span></h2>
+                        <p>This section makes provisions for monitoring and inspection obligations of Part 3.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">179 </span></h2>
+                        <p>Subsection (1) grants powers to make regulations for designating bodies within subsection
+                           (2) as enforcement authorities with various functions.  </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">180 </span></h2>
+                        <p>Subsection (2) identifies bodies which may be designated as enforcement authorities.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">181 </span></h2>
+                        <p>Subsection (3) grants powers to make regulations for enforcement authorities in connection
+                           with monitoring compliance with relevant obligations and investigating suspected breaches,
+                           including the conferral on inspectors of powers of entry, inspection, examination
+                           and search and seizure. Subsection (3) also provides for regulations to apply (with
+                           or without modifications) any provision made under the Food Safety Act 1990 (to include
+                           the appointment of public analysts under section 27) and section 67 of the Agriculture
+                           Act 1970.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">182 </span></h2>
+                        <p>Subsection (4) prevents regulations made under section 28 from being able to establish
+                           criminal offences and or conferring powers of entry into private dwellings without
+                           the need for a warrant.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">183 </span></h2>
+                        <p>Subsection (5) prescribes that any regulations made under this section are subject
+                           to the draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>29: Meaning of “Part 3 obligation”</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">184 </span></h2>
+                        <p>This section describes the meaning of obligation under Part 3. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">185 </span></h2>
+                        <p>Subsection (1) provides a definition of a “Part 3 obligation”. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">186 </span></h2>
+                        <p>Subsection (2) clarifies that an obligation to comply with the conditions of a food
+                           and feed marketing authorisation is included within the scope of a “Part 3 obligation”
+                           in addition to any requirement imposed by an inspector in exercise of functions conferred
+                           upon them.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">187 </span></h2>
+                        <p>Subsection (3) specifies the obligations which fall outside of scope of the definition
+                           of a “Part 3 obligation”.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">188 </span></h2>
+                        <p>Subsection (4) allows regulations to provide that a failure to comply with a Part
+                           3 obligation can also relate to the provision of misleading or false information in
+                           relation to a Part 3 obligation or an authorisation”</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">189 </span></h2>
+                        <p>Subsection (5) provides that “requirement” includes “prohibition” for these purposes.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">190 </span></h2>
+                        <p>Subsection (6) prescribes that any regulations made under this section are subject
+                           to the draft affirmative procedure. </p>
+                     </section>
+                     <section class="level">
+                        <p>30: Interpretation of Part 3</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">191 </span></h2>
+                        <p> This section sets out definitions and clarifications used in association with Part
+                           3.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">192 </span></h2>
+                        <p>Subsection (1) provides definitions of terms that are used in Part 3 of the Act. These
+                           terms are frequently used across food legislation, both in retained EU law and domestic
+                           food law. Definitions of key terms including ‘food’ and ‘feed’ are aligned with the
+                           definitions in retained Regulation (EC) 178/2002, which is the main piece of retained
+                           direct principal EU legislation governing the regulation of food in England.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">193 </span></h2>
+                        <p>Subsection (2) outlines that products in Part 3 are defined as being produced from
+                           precision bred organisms if they contain or consist of the whole or parts of a precision
+                           bred organism.  </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">194 </span></h2>
+                        <p>Subsection (3) outlines that ‘placing on the market’ means the holding of food or
+                           feed for the purpose of sale- including offering for sale or any other form of transfer
+                           whether free of charge or not- and the sale, distribution, and other forms of transfer
+                           themselves, in line with Article 3(8) of retained Regulation (EC) 178/2002. The term
+                           “placing on the market” is defined broadly in retained EU food law to extend to the
+                           holding of the food and feed for the purpose of the sale.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Part 4: Enforcement</b>
+                           </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Enforcement of relevant breaches: general provisions</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>31: Meaning of “relevant breach” etc</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">195 </span></h2>
+                        <p>This section sets out provisions regarding a “relevant breach”. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">196 </span></h2>
+                        <p>Subsection (1) contains a definition of what a “relevant breach” means for the purposes
+                           of this Act.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">197 </span></h2>
+                        <p>Subsection (2) provides that in Part 4, an “inspector” means an appointed inspector
+                           under section 19 or under regulations under section 28.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">198 </span></h2>
+                        <p>Subsection (3) grants powers to create regulations that may outline certain circumstances
+                           where a failure to comply with a Part 3 obligation will not be deemed to constitute
+                           a relevant breach. Such circumstances may include where the breach was due to the
+                           fault of another person or where a person can demonstrate that they took all reasonable
+                           precautions and exercised due diligence to avoid the breach in question. Subsection
+                           (a) also provides a power for regulations to enable the transfer of liability to another
+                           person in circumstances where the commission of the relevant breach was due to the
+                           fault of that other person.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">199 </span></h2>
+                        <p>Subsection (4) confirms that regulations relating to this subsection are subject to
+                           the draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>32: Enforcement</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">200 </span></h2>
+                        <p>This section sets out provisions regarding enforcement. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">201 </span></h2>
+                        <p>Subsection (1) enables the Secretary of State to make provisions in regulations with
+                           respect to the issuing of compliance notices, stop notices and monetary penalty notices.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">202 </span></h2>
+                        <p>Subsection (2) grants powers to make regulations to ensure that requirements included
+                           in the stop notice can be legally enforced in the courts by way of application for
+                           an injunction by the Secretary of State.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">203 </span></h2>
+                        <p>Subsection (3) describes what “enforcement notice” means.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">204 </span></h2>
+                        <p>Subsection (4) confirms that regulations relating to this subsection are subject to
+                           the draft affirmative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Enforcement notices</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>33: Compliance notices</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">205 </span></h2>
+                        <p>This section sets out provisions regarding compliance notices.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">206 </span></h2>
+                        <p>Subsection (1) describes what a “compliance notice” means.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">207 </span></h2>
+                        <p>Subsection (2) provides for the conditions for the issue of a compliance notice under
+                           regulations.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">208 </span></h2>
+                        <p>Subsection (3) signposts the sections where further provisions about compliance notices
+                           are made.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">209 </span></h2>
+                        <p>Subsection (4) clarifies that for a step to have been “specified” it must have been
+                           specified as such in the compliance notice.</p>
+                     </section>
+                     <section class="level">
+                        <p>34: Stop notices</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">210 </span></h2>
+                        <p>This section sets out provisions regarding stop notices. Subsection (1) describes
+                           what a “stop notice” means.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">211 </span></h2>
+                        <p>Subsection (2) provides for conditions for the issue of a stop notice under regulations.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">212 </span></h2>
+                        <p>Subsection (3) signposts the sections where further provisions about stop notices
+                           are made.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">213 </span></h2>
+                        <p> Subsection (4) clarifies that for a step to have been “specified” it must have been
+                           specified as such in the stop notice.</p>
+                     </section>
+                     <section class="level">
+                        <p>35: Monetary penalty notices</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">214 </span></h2>
+                        <p>This section sets out provisions regarding monetary penalty notices. Subsection (1)
+                           describes what a “monetary penalty notice” is for the purposes of this Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">215 </span></h2>
+                        <p>Subsection (2) defines the “appropriate authority” for the purposes of the monetary
+                           penalty notice.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">216 </span></h2>
+                        <p>Subsection (3) provides for the Secretary of State to make provisions for a monetary
+                           penalty to be imposed as a sanction to a relevant offence by the Secretary of State
+                           or an inspector only when satisfied that the person has committed a relevant breach.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">217 </span></h2>
+                        <p>Subsection (4) provides for the Secretary of State to make provisions for the manner
+                           in which the payments are made, the period within the payment must be made and the
+                           consequences of late payment.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">218 </span></h2>
+                        <p>Subsection (5) provides for the Secretary of State to make provisions for the payment
+                           of interest on late payment and for how any amounts payable are to be recoverable.</p>
+                     </section>
+                     <section class="level">
+                        <p>36: Content of enforcement notices: further provision</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">219 </span></h2>
+                        <p>This section sets out further provisions on enforcement notices. Subsections (1) and
+                           (2) set out the requirements and the information which must be included in an enforcement
+                           notice when served by the Secretary of State on a person.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">220 </span></h2>
+                        <p>Subsection (3) states regulations made to enable the issuance of enforcement notices
+                           may provide for the conferral of powers on an inspector or the Secretary of State
+                           (as appropriate) to amend or revoke such notices.</p>
+                     </section>
+                     <section class="level">
+                        <p>37: Enforcement notices: reviews and appeals</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">221 </span></h2>
+                        <p>This section sets out provisions on reviews and appeals of enforcement notices. Subsection
+                           (1) provides that regulations must secure that the person served an enforcement notice
+                           has the right to review and appeal against that notice being served and provides for
+                           the grounds on which that appeal can be made, make an appeal to the First-tier tribunal,
+                           and provides for further regulations to be made in relation to the notice pending
+                           the outcome of the appeal.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">222 </span></h2>
+                        <p>Subsection (2) provides that regulations may make provision conferring on the Secretary
+                           of State and the First-tier Tribunal functions for the purposes of them carrying out
+                           their roles on a review of a decision to issue an enforcement notice and on an appeal
+                           of the outcome of that review respectively.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Costs</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>38: Costs</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">223 </span></h2>
+                        <p>This section sets out provisions regarding costs. Subsection (1) grants powers to
+                           create regulations that may allow the appropriate authority, by a “cost notice”, to
+                           recover costs incurred by them in relation to the issuance of an enforcement notice</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">224 </span></h2>
+                        <p>Subsection (2) established what “appropriate authority” means.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">225 </span></h2>
+                        <p>Subsection (3) contains a non-exhaustive definition of “costs” for the purposes of
+                           subsection (1).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">226 </span></h2>
+                        <p>Subsection (4) requires that any regulations made under subsection (1) must ensure
+                           that notices specify the amount payable, and satisfy requirements for issuing the
+                           costs notice, in accordance with points (a) to (e).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">227 </span></h2>
+                        <p>Subsection (5) states regulations must include provisions granting a right of appeal
+                           for the person(s) to whom a costs notice has been served and the suspension of the
+                           operation of a costs notice pending the outcome of any appeal which has been brought.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">228 </span></h2>
+                        <p>Subsection (6) provides the definition for a “relevant decision”.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">229 </span></h2>
+                        <p>Subsection (7) states regulations made under this section may also include provisions
+                           related to the collections of costs prescribed by cost notices and interest on late
+                           payment.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">230 </span></h2>
+                        <p>Subsection (8) confirms that regulations relating to this subsection will be subject
+                           to the draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Part 5: General</b>
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>39: Fees</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">231 </span></h2>
+                        <p>This section sets out provisions regarding fees.  </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">232 </span></h2>
+                        <p>Subsection (1) is a power to enable regulations to be made which make provision for
+                           a fee to be made payable, in respect of the exercise of certain functions, to the
+                           appropriate authority as defined in subsection (2).   </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">233 </span></h2>
+                        <p> Subsection (3) sets out the information relating to the payment of fees that must
+                           be included within regulations made under powers granted in this section.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">234 </span></h2>
+                        <p>Subsection (4) relates to the desirability of, as far as possible, setting fees that
+                           are equal to the cost of providing the function.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">235 </span></h2>
+                        <p>Subsection (5) confirms that regulations relating to this subsection will subject
+                           to the draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>40: Notices and documents</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">236 </span></h2>
+                        <p>This section provides for the Secretary of State to make regulations in respect of
+                           how a notice or other document is issued or confirmed as being received under this
+                           part.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">237 </span></h2>
+                        <p>Subsection (2) confirms that regulations brought forward under this section will be
+                           subject to the negative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>41: Consequential amendment of the Environmental Protection Act 1990</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">238 </span></h2>
+                        <p>This section makes consequential amendments to the Environmental Protection Act 1990.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">239 </span></h2>
+                        <p>Subsection (2) inserts a new section (106A) into the Environmental Protection Act
+                           1990 in order to exclude precision bred organisms from Part VI of the Act as it applies
+                           in relation to England and describes the circumstances where this subsection applies.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">240 </span></h2>
+                        <p> Subsection (3) inserts into section 124(1) of the Environmental Protection Act 1990,
+                           which establishes an advisory committee, a cross-reference to the additional functions
+                           of that committee provided for under this Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>42: Powers to make Consequential Provision</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">241 </span></h2>
+                        <p>This section sets out further powers for consequential provisions in connection with
+                           any provision of or made under this Act. Subsection (1) gives powers to make supplementary,
+                           incidental and consequential provisions by regulations, which could be used to modify
+                           primary legislation, retained direct EU legislation or subordinate legislation. (See
+                           sections 43 and 44 for additional details).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">242 </span></h2>
+                        <p>Subsection (3) provides that regulations made under these powers will be subject to
+                           the draft affirmative procedure if they contain provision modifying primary legislation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">243 </span></h2>
+                        <p>Subsection (4) provides that other regulations made under these powers will be subject
+                           to the negative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>43: Regulations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">244 </span></h2>
+                        <p>Subsection (1) states this section relates to all regulations made under this Act,
+                           apart from the commencement regulations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">245 </span></h2>
+                        <p>Subsections (2) to (3) provide that regulations made under this Act are to be made
+                           by statutory instrument and may make transitional, transitory or saving provisions;
+                           and that different provision may be made for different purposes or areas.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">246 </span></h2>
+                        <p>Subsection (4) provides for regulations made under the draft affirmative procedure
+                           to be laid before and approved by a resolution of each House of Parliament before
+                           they are made.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">247 </span></h2>
+                        <p>Subsection (5) provides what is meant by “the negative resolution procedure” in relation
+                           to regulations made under this Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">248 </span></h2>
+                        <p>Subsection (6) provides that regulations made under the negative procedure may be
+                           made subject to the draft affirmative procedure.</p>
+                     </section>
+                     <section class="level">
+                        <p>44: Interpretation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">249 </span></h2>
+                        <p>This provision defines various terms used for the purposes of this Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>45: Financial provisions</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">250 </span></h2>
+                        <p> This section provides that any expenditure incurred under or by virtue of this Act
+                           by the Secretary of State or by the Food Standards Agency, and any sums payable out
+                           of money so provided under any other Act are to be paid out of money provided by Parliament.</p>
+                     </section>
+                     <section class="level">
+                        <p>46: Crown application</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">251 </span></h2>
+                        <p>Subsection (1) provides for the Act to apply to the Crown.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">252 </span></h2>
+                        <p>Subsection (2) provides the Secretary of State with power to certify on grounds of
+                           national security that powers of entry may not be exercised in respect of certain
+                           Crown premises.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">253 </span></h2>
+                        <p>Subsection (3) defines “Crown premises” for the purpose of this Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">254 </span></h2>
+                        <p>Subsection (4) provides an exemption to powers of entry in relation to His Majesty’s
+                           private estates and subsection (5) notes that his private estates are defined in the
+                           Crown Private Estates Act 1862.</p>
+                     </section>
+                     <section class="level">
+                        <p>47: Extent and application to sea areas</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">255 </span></h2>
+                        <p>Section 47 establishes the extent and territorial applications of various Parts of
+                           this Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>48: Short title and Commencement</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">256 </span></h2>
+                        <p>Subsection (1) provides that the title for this Act will be “Genetic Technology (Precision
+                           Breeding) Act 2023”.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">257 </span></h2>
+                        <p>Subsection (2) to (5) provide that Parts 1 and 5 (except sections 39-41) come into
+                           force on Royal Assent, as do regulation making powers under the Act. In other respects,
+                           the Act comes into force as appointed by commencement regulations. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">258 </span></h2>
+                        <p>Subsections (6) to (8) enable the Secretary of State, by regulations, to make provisions
+                           in connection with the coming into force of the provisions of the Act and provide
+                           for such regulations to be made by statutory instrument.&nbsp;Commencement regulations
+                           under this section are not subject to Parliamentary procedure.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">259 </span></h2>
+                  <p>Part 1 comes into force on the day on which this Act is passed. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">260 </span></h2>
+                  <p>Parts 2 to 4 and sections 39 and 40 come into force— (a) so far as necessary to enable
+                     the exercise of any power to make regulations, on the day on which this Act is passed;
+                     (b) for remaining purposes, on such day as regulations may appoint. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">261 </span></h2>
+                  <p>Section 41 comes into force on such day as regulations may appoint. The rest of Part
+                     5 comes into force on the day on which this Act is passed. Regulations under this
+                     section may appoint different days for different purposes. Regulations may make transitional,
+                     transitory, or saving provision in connection with the coming into force of any provision
+                     of this Act. Regulations under this section are to be made by statutory instrument.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">262 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1021309/genetic-technologies-regulation-summary-of-responses.pdf">
+                           <u>Government Response to “</u>
+                           <i>
+                              <u>The Regulation of Genetic Technologies” </u>
+                              </i>
+                           <u>consultation</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.gov.uk/government/publications/acre-advice-the-regulation-of-genetic-technologies">
+                           <u>ACRE advice: the regulation of genetic technologies - GOV.UK (www.gov.uk)</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62016CJ0528">
+                           <u>EUR-Lex - 62016CJ0528 - EN - EUR-Lex (europa.eu)</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">263 </span></h2>
+                  <p>Section 47 sets out the territorial extent of the provisions of the Act. The extent
+                     of an Act is the legal jurisdiction of which it forms part of the law; application
+                     refers to where it has practical effect. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">264 </span></h2>
+                  <p>The regulation of precision bred organisms is a devolved matter and most of the provisions
+                     of this Act extend to England and Wales only and apply in relation to England only.
+                     Section 41 amends legislation which extends to England and Wales and Scotland, so
+                     that section and the definitions in Part 1 of the Act to which those amendments refer
+                     likewise extend to England and Wales and Scotland. The general provisions in sections
+                     42 to 48 extend to England and Wales and Scotland and Northern Ireland.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.75in">
+                        <col style="width:0.04in">
+                        <col style="width:0.55in">
+                        <col style="width:0.59in">
+                        <col style="width:0.59in">
+                        <col style="width:0.81in">
+                        <col style="width:0.81in">
+                        <col style="width:0.99in">
+                        <col style="width:0.89in">
+                        <col style="width:0.89in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td colspan="2">
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Would corresponding provision be within the competence of the National Assembly for
+                                    Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Would corresponding provision be within the competence of the Scottish Parliament?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Would corresponding provision be within the competence of the Northern Ireland Assembly?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Legislative Consent Motion needed?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Part 1 and section 41 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 42-48 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>All other sections </p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">265 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.89in">
+                        <col style="width:1.63in">
+                        <col style="width:2.77in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>25 May 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-05-25/debates/E888D0F8-37F7-48A5-8598-4449887A0935/SueGrayReport?highlight=genetic%20technology%20precision%20breeding%20bill">
+                                    <u>Vol. 715 Col. 317</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>15 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-06-15/debates/61856BD0-C88F-40E1-B42D-8604F6B2B9C3/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 716 Col. 374</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Programme Motion</p>
+                           </td>
+                           <td>
+                              <p>15 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-06-15/debates/A936FCFD-BFF5-4575-B959-858A30DEA1FD/GeneticTechnology(PrecisionBreeding)BillPROGRAMME">
+                                    <u>Vol 716. Col. 401</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Money Resolution</p>
+                           </td>
+                           <td>
+                              <p>15 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-06-15/debates/E6CD0D4B-BFFC-45AA-9EA0-64BB47D14903/GeneticTechnology(PrecisionBreeding)BillMoney">
+                                    <u>Vol 716. Col. 401</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>28 June 2022</p>
+                              <p>30 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0011/PBC011_GeneticTechnology_1st-8th_Compilation_08_07_2022.pdf">
+                                    <u>Official Report</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report&nbsp;and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>31 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-10-31/debates/0FFD4BB6-68DF-46C1-9BC5-6DC7779C29CB/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 721 Col. 668</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>1 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-11-01/debates/DF0AC89C-51E7-4A6B-AE57-C39A3C313119/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 825 Col. 126</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>21 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-11-21/debates/243A3CA0-6AAA-404C-AA70-1193916D0177/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 825 Col. 1196</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="3">
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>12 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-12-12/debates/AE904A12-2F68-4992-8BCE-AF885A45DE8B/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 826 Col. 463</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>14 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-12-14/debates/318A724E-A72B-402F-A144-9989FA6B087B/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 826 Col. 666</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>14 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-12-14/debates/00C4BF5A-C190-4DC0-8A3E-3036C6225A74/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 826 Col. 707</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>25 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-01-25/debates/6D8A0914-F879-4480-B78F-8BBD8F4CE3E6/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 827 Col. 218</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>01 February 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-02-01/debates/E32D7816-FCEB-4FA9-8D6A-38D64D32C460/GeneticTechnology(PrecisionBreeding)Bill">
+                                    <u>Vol. 827 Col. 684</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>24 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-03-23/debates/36800095-ECFB-4315-8BD2-283E0B0FD460/RoyalAssent">
+                                    <u>Vol. 828 Col. 1957</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/publications/acre-advice-the-regulation-of-genetic-technologies"><u>ACRE advice: the regulation of genetic technologies - GOV.UK (www.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://ec.europa.eu/food/plants/genetically-modified-organisms/new-techniques-biotechnology/ec-study-new-genomic-techniques_en"><u>EC study on new genomic techniques (europa.eu)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.gov.uk/government/consultations/genetic-technologies-regulation"><u>Genetic technologies regulation - GOV.UK (www.gov.uk)</u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

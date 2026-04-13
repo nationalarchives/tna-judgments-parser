@@ -1,0 +1,1138 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>PRODUCT REGULATION AND METROLOGY</b>
+               <b>
+                  </b>
+               <b>ACT 2025</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Product Regulation and Metrology Act 2025 which
+                  received Royal Assent on 21 July 2025 (c. 20).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business and Trade
+                  in order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="level">
+               <p>Overview of the Act</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1 </span></h2>
+               <p>The Product Regulation and Metrology Act 2025 contains measures that relate to the
+                  United Kingdom’s (UK’s) product safety, regulation and metrology framework.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Much of the UK product safety and metrology framework is derived from European Union
+                     (EU) law and has developed over the past four decades, whilst the UK was a member.
+                     On leaving the EU, the UK set up an independent UK regulatory regime. However, this
+                     body of law remains broadly as it was when we left and the Government considers updates
+                     are required to be able to adapt to new technologies and changes in the way consumers
+                     buy products. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act provides the necessary powers to update the legislative framework, supporting
+                     economic growth, providing regulatory stability and delivering more protection for
+                     consumers by:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>responding to new product risks and opportunities to enable the UK to keep pace with
+                        technological advances, such as AI, and address issues such as incidents from ingesting
+                        button batteries and fire risks associated with e-bikes. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>identifying new and emerging business models in the supply chain, ensuring the responsibilities
+                        of those involved in the supply of products, such as online marketplaces (which are
+                        online platforms that connect third-party sellers to consumers for distance sale and
+                        purchasing of products), are clear and modernised for increasingly complex supply
+                        chains, to support consumers’ confidence in the products they buy and from whom they
+                        buy them. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>ensuring that the law can be updated to allow a means of recognising new or updated
+                        EU product requirements, with the intention of preventing additional costs for businesses
+                        and providing regulatory stability; or to end such recognition if this is the right
+                        decision for the UK. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>enabling improvements to compliance and enforcement, reflecting the challenges of
+                        modern, digital borders. This Act seeks to enable the Government and its regulators
+                        to tackle non-compliance and target interventions by allowing greater sharing of data
+                        between regulators and market surveillance authorities.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>updating the legal metrology framework, which governs the accuracy of weights and
+                        measures for purchased goods. This seeks to give consumers and business confidence
+                        in what they are buying and to allow for technological progress, including in support
+                        of net zero aims and infrastructure, for example enabling innovation whilst ensuring
+                        energy smart meters are accurate in their readings. </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The product regulatory framework in the UK covers most consumer products, for example
+                     toys and cosmetics, and a significant number of industrial products too, such as lifts
+                     and pressure equipment. The overwhelming majority of this legislation is assimilated
+                     law, transposed into UK law while the UK was part of the EU and then assimilated following
+                     EU exit. Much of the legislation is secondary legislation, made, at least in part,
+                     using powers in the European Communities Act 1972, powers which were also used to
+                     regularly update that secondary legislation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Whilst the UK was a member of the EU, the legislation also provided for various systems
+                     of mutual recognition and mandated conformity markings that are used across the EU.
+                     On EU exit, powers under the European Union (Withdrawal) Act 2018 were used to create
+                     a UK regulatory regime, using the UK Conformity Assessed (UKCA) marking. However,
+                     to ensure a continued flow of goods, provision was also made to allow certain goods
+                     that meet current EU requirements on the market across the UK.&nbsp;The Act will provide
+                     the Secretary of State with the ability to update relevant legislation to allow the
+                     UK to maintain high product standards.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Domestic legislation originally enacted to deal with product safety and metrology
+                     – the Consumer Protection Act 1987 and the Weights and Measures Act 1985 – was drafted
+                     before the shift in consumer buying behaviour and did not contemplate the technological
+                     advances that have taken place since then, for example the widespread use of new actors
+                     in the supply chain, such as online marketplaces.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Finally, the enforcement of product and metrology regulation is contained in a number
+                     of pieces of legislation, including the Consumer Protection Act 1987 and the Weights
+                     and Measures Act 1985, as well as some secondary legislation. The provisions of these
+                     pieces of legislation are not always consistent. Furthermore, they allow for limited
+                     civil enforcement measures. This Act will provide the ability to rationalise enforcement
+                     provisions so that they are consistent across the product safety and metrology landscape
+                     and provide for more civil sanctions, as well as criminal penalties where appropriate.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>A summary of the legal changes in each area of the Act can be found in the commentary
+                     section. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 14 sets the territorial extent of the Act. The Act will extend and apply to
+                     England, Wales, Scotland and Northern Ireland. The Secretary of State is required
+                     to seek the consent of the Scottish and Welsh Devolved Governments to make regulations
+                     under section 1, and the Northern Ireland department to make regulations under section
+                     1 or 5(2), where the regulations contain provision within devolved competence, unless
+                     the provision is merely incidental to, or consequential on, provision outside devolved
+                     competence.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Product regulations</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Product regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>Section 1(1) gives the Secretary of State the authority to enact regulations with
+                        the intention of guaranteeing that products marketed or used in the UK reduce or mitigate
+                        any risk presented by those products, give accurate readings and operate efficiently
+                        and effectively. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>Section 1(2) provides that in addition to the matters listed in Section 1(1), the
+                        Secretary of State may make provision for the purpose of reducing or mitigating the
+                        environmental impact of products where the EU makes provision in that area. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>Section 1(3) excludes products listed in the Schedule from the scope of product regulations.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Section 1(4) sets out what is meant by a product presenting a “risk” (that is, where
+                        used as intended or under typical or reasonably foreseeable conditions, a product
+                        endangers the health or safety of persons, domestic animals, endangers property or
+                        causes or is susceptible to electromagnetic disturbance).  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Section 1(5) and 1(6) requires the Secretary of State to publish a statement setting
+                        out how the Secretary of State expects to identify and assess product risks, and provides
+                        that this statement may be amended or replaced from time to time.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Section 1(7) sets out the meanings of key terms including what constitutes “marketing”
+                        in the UK and that, for the purposes of the Act, products are tangible items that
+                        are manufactured or result from another method of production.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Section 1(8) makes clear that further provisions of the Act give more detail on what
+                        is included in the Section 1 power. Section 1(9) sets out that regulations made under
+                        Section 1 are “product regulations”. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Product requirements</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Section 2(1) provides that product regulations (under Section 1) may set out requirements
+                        that relate to the conditions to be met in relation to products which are marketed
+                        or used in the UK.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Section 2(2) provides that the regulations may cover requirements relating to the
+                        characteristics of a product such as how it is manufactured, produced or installed,
+                        its components (which may be intangible, such as software) or composition or other
+                        characteristics; requirements for marketing or use (which includes packaging, storage
+                        or transportation), and provision when products are marketed on an online marketplace.
+                        Provisions concerning statements about products, monitoring, assessments, certification
+                        and verification of products, recording or investigating complaints, production or
+                        retention of samples or documents, and cooperation with relevant authorities are other
+                        examples of provisions that can be made. Product regulations may also include provision
+                        about information about products, including information about risk that must be provided
+                        to consumers, other people who engage in activities in relation to the product, and
+                        relevant authorities.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Section 2(3) gives examples of the persons on whom product regulations may impose
+                        requirements. This includes manufacturers, those who market a product (such as distributors
+                        and retailers) in, or import a product to, the UK, or installers of a product and
+                        a person who controls access to, or contents of, an online marketplace or an intermediary.
+                        It also allows requirements to be placed on the authorised representatives of persons
+                        conducting product-related activities. It extends to enabling requirements to be placed
+                        on a person carrying out monitoring, assessment or verification of a product, or a
+                        person carrying out certification or accreditation activities on such a person. Section
+                        2(3)(i) makes clear that this is not an exhaustive list and requirements may be placed
+                        on any other person carrying out activities in relation to a product.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Section 2(4) states that product regulations may make provision for and in relation
+                        to technical standards relating to product requirements and Section 2(5) provides
+                        that product regulations may set out what is to be covered by a technical standard
+                        and who may prepare them, as well as the procedure by which technical standards may
+                        be prepared. Section 2(6) explains that product requirements may include provision
+                        about published standards and that meeting a particular standard creates a presumption
+                        of compliance with a particular product requirement. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Section 2(7) allows product regulations to provide that a product requirement may
+                        be treated as being met by meeting specified provision in relevant EU law (and may
+                        attach conditions to this) and Section 2(8) states that before making provision described
+                        in subsection (7) the Secretary of State must have regard to the social, environmental
+                        and economic impact of the proposed measure.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Section 2(9) states that intangible components of products includes software. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Enforcement of product regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Section 3(1) and (2) provide that product regulations may designate one or more persons
+                        as a relevant authority, responsible for monitoring compliance and enforcement of
+                        product regulations, but only where such persons exercise functions of a public nature.
+                        This can include the Secretary of State, as well as other bodies exercising public
+                        functions, for example, local authorities<a class="fn" id="fnref-1" href="#fn-1">1</a>, the Health and Safety Executive (HSE), HSE Northern Ireland (HSENI), the Office
+                        for Nuclear Regulation (ONR), the Medicines and Healthcare Regulatory products Agency
+                        (MHRA), the Office of Communications (Ofcom), the Office of Rail and Road (ORR), and
+                        the Driver and Vehicle Standards Agency (DVSA). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Section 3(3) enables product regulations to be made in relation to the monitoring
+                        of compliance, investigating suspected non-compliance, securing compliance and mitigating
+                        the effect of non-compliance with product regulations. &nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Section 3(4) states that product regulations can confer powers on relevant authorities
+                        to appoint inspectors to carry out functions under the regulations. Regulations may
+                        include conferring on relevant authorities or inspectors powers of entry, search,
+                        inspection, as well as the ability to seize and retain products or other evidence
+                        of non-compliance. Product regulations can also confer a power on a relevant authority
+                        or an inspector to require a person to retain or provide a document or information,
+                        as well as a power to dispose of a product (either by requiring a person to do so
+                        or for the relevant authority or inspector to do so themselves). Powers under Section
+                        3(4) apply to premises including vehicles (see Section 12). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Section 3(5) makes clear that product regulations may not authorise entry into premises
+                        used wholly or mainly as a dwelling without a warrant issued by a justice of the peace
+                        (in England and Wales), a sheriff, summary sheriff or justice of the peace (in Scotland),
+                        or a lay magistrate (in Northern Ireland). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Section 3(6) states that any provisions in product regulations that confers power
+                        on a relevant authority to secure compliance or mitigate the effect of non-compliance
+                        with product regulations under Section 3(3)(c) or Section 3(3)(d) may also allow the
+                        relevant authority to give notice to require a person to do something or to stop doing
+                        something, such as requiring a person to warn others of the risks relating to a product,
+                        requiring a product to display markings relating to such risks, prohibiting the marketing
+                        or use of a product, or requiring the withdrawal or recall of the product from the
+                        market.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Section 3(7) states that product regulations may make provision for, or in connection
+                        with, sanctions for non-compliance with product regulations; non-compliance with a
+                        notice; the obstruction of, or failure to assist or cooperate with, a relevant authority
+                        or an inspector; or for providing false or misleading information to a relevant authority
+                        or an inspector.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Section 3(8) makes clear that product regulations can allow a relevant authority to
+                        accept an undertaking to secure compliance with product regulations instead of taking
+                        other action; and put sanctions in place for a failure to comply with such undertakings.
+                        Provisions under this Section may also cover forfeiting of products by court order
+                        or order of the sheriff. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Sections 3(9), (10) and (11) provide that any provisions in product regulations may
+                        create or widen the scope of criminal offences, provide for prosecution by relevant
+                        authorities of such offences, and confer powers on relevant authorities to impose
+                        civil sanctions including monetary fines. Where product regulations create criminal
+                        offences, those offences must be tried summarily or on indictment and can be punishable
+                        by a fine or with a prison sentence not exceeding two years (on indictment). The provisions
+                        may also allow for an appeal against any decisions made by the relevant authority.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Emergencies</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Section 4(1) provides that product regulations may disapply or modify regulatory requirements
+                        in response to emergencies and 4(2) permits the disapplication or modification to
+                        be subject to conditions.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Metrology</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 5: Metrology regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Section 5(1) provides that the Secretary of State may make regulations which make
+                        provision about the units of measurement used to express quantities (whether of goods
+                        or other things). It also sets out that such regulations may include provision about
+                        how units of measurement must or may be calculated, determined, or referred to.  
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Section 5(2) provides that the Secretary of State may make regulations concerning
+                        the quantities in which goods must or may be marketed in the United Kingdom, and the
+                        units of measurement that must or may be used to express such quantities. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Section 5(3) states that such regulations may include setting requirements for the
+                        marking or packaging of goods; monitoring, assessing and verifying the quantities
+                        in which goods are marketed in the United Kingdom and the units of measurement used
+                        to express such quantities, and the retention of documents and other information.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Section 5(4) prevents the Secretary of State from making regulations under this Section
+                        to prevent or restrict the use of the pint in the marketing of draught beer or cider,
+                        or milk in returnable containers. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Section 5(5) clarifies the meaning of the key terms, stating that ”goods” means tangible
+                        items (including packaging or labels); a “pint” is equal to 0.568 261 25 cubic decimetres;
+                        “quantity” means quantity expressed by number or a unit of measurement; and “unit
+                        of measurement” means any unit of measurement, including measurement of length, area,
+                        volume, capacity, mass, weight, time, temperature or electrical current.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Section 5(6) makes clear that further provisions of the Act give more detail on what
+                        is included in the Section 5 power. Section 5(7) provides that these provisions are
+                        known as metrology regulations. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Enforcement of metrology regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Section 6(1) and (2) provide that metrology regulations may designate one or more
+                        persons as a relevant authority, responsible for monitoring compliance and enforcement
+                        of metrology regulations, but only if it exercises functions of a public nature. This
+                        can include the Secretary of State, as well as other bodies exercising public functions,
+                        for example, local authorities<a class="fn" id="fnref-2" href="#fn-2">2</a>.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Section 6(3) enables metrology regulations to be made in relation to the monitoring
+                        of compliance, investigating suspected non-compliance, securing compliance and mitigating
+                        the effect of non-compliance with metrology regulations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Section 6(4) states that metrology regulations can confer powers on relevant authorities
+                        to appoint inspectors to carry out functions under the regulations. Regulations may
+                        include conferring on relevant authorities or inspectors powers of entry, search,
+                        inspection, as well as the ability to seize and retain goods or other evidence of
+                        non-compliance. Metrology regulations can also confer a power on a relevant authority
+                        or an inspector to require a person to retain or provide a document or information,
+                        as well as a power to dispose of goods (either by requiring a person to do so or for
+                        the relevant authority or inspector to do so themselves). Powers under Section 6(4)
+                        apply to premises including vehicles (see Section 12). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Section 6(5) makes clear that metrology regulations may not authorise entry into premises
+                        used wholly or mainly as a dwelling without a warrant issued by a justice of the peace
+                        (in England and Wales), a sheriff, summary sheriff or justice of the peace (in Scotland),
+                        or a lay magistrate (in Northern Ireland).  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Section 6(6) states that any provision in metrology regulations that confers a power
+                        on a relevant authority to secure compliance (or mitigate the effect of non-compliance)
+                        with metrology regulations under Section 6(3)(c) or Section 6(3)(d) may also allow
+                        the relevant authority to give notice to require a person to do something or to stop
+                        doing something.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Section 6(7) states that metrology regulations may make provision for, or in connection
+                        with, sanctions for non-compliance with metrology regulations; non-compliance with
+                        a notice; the obstruction of, or failure to, assist or cooperate with a relevant authority
+                        or an inspector; or for providing false or misleading information to a relevant authority
+                        or an inspector. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Section 6(8) makes clear that metrology regulations can allow a relevant authority
+                        to accept an undertaking to secure compliance with metrology regulations instead of
+                        taking other action; and put sanctions in place for a failure to comply with such
+                        undertakings. Provisions under this Section may also cover forfeiting of goods by
+                        court order or order of the sheriff.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Sections 6(9), (10) and (11) provide that any provisions in metrology regulations
+                        may create or widen the scope of criminal offences, provide for prosecution by relevant
+                        authorities of such offences, and confer powers on relevant authorities to impose
+                        civil sanctions including monetary fines. Where metrology regulations create criminal
+                        offences, those offences must be tried summarily or on indictment and can be punishable
+                        by a fine or with a prison sentence not exceeding two years (on indictment). The provisions
+                        may also allow for an appeal against any decisions made by the relevant authority.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Supplementary provisions</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 7: Information sharing</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Section 7(1) enables product regulations or metrology regulations to be made permitting
+                        the sharing of information between persons specified in Section 7(2).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Section 7(2) provides that the information sharing regulations may apply to a relevant
+                        authority, the emergency services, or any other person named in product or metrology
+                        regulations. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Section 7(3) provides that such regulations may cover the circumstances in which information
+                        can or must be disclosed, the type of information which may or must be disclosed,
+                        how disclosed information may or may not be used and sanctions for non-compliance,
+                        including potential criminal offences. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Section 7(4) provides that product or metrology regulations may specify that information
+                        processed in accordance with a regulation does not breach any duty of confidence or
+                        any other restriction on the processing of personal data, except as provided for by
+                        Section 7(5), which makes clear that regulations must not be read as authorising processing
+                        in breach of the data protection legislation taking into account the powers or duties
+                        imposed by the regulation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Section 7(6) provides a definition of data protection legislation and the emergency
+                        services. Data protection legislation in this Section has the same meaning as in the
+                        Data Protection Act 2018. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 8: Cost recovery</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Section 8(1) to (3) enables provisions to be made for fees to be imposed in respect
+                        of any costs incurred by a relevant authority in carrying out functions conferred
+                        on the authority. It sets out what such provisions may cover: for example, who would
+                        be liable for a charge, the circumstances in which a charge would apply, the amount
+                        of the charge including any reductions, exemptions or waivers that may apply.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 9: Application to existing product and metrology provision</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Section 9(1) and 9(2) make clear that regulations made under the Act can be used to
+                        amend or supplement existing product or metrology regulations, if those regulations
+                        could have been made under the powers in the Act. This is necessary to ensure that
+                        all the different types of provision that can be made by product and metrology regulations
+                        can be relied on to update existing regulations. Section 9(3) defines existing provisions
+                        and existing requirements.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 10: Regulations making provision within devolved competence</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Section 10(1) requires the Secretary of State to seek the consent of the Scottish
+                        Ministers to make regulations under section 1 which contain provision within Scottish
+                        devolved competence, unless the provision is merely incidental to, or consequential
+                        on, provision outside Scottish devolved competence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Section 10(2) requires the Secretary of State to seek the consent of the Welsh Ministers
+                        to make regulations under section 1 which contain provision within Welsh devolved
+                        competence, unless the provision is merely incidental to, or consequential on, provision
+                        outside Welsh devolved competence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Section 10(3) requires the Secretary of State to seek the consent of the relevant
+                        Northern Ireland department to make regulations under section 1 or 5(2) which contain
+                        provision within Northern Ireland devolved competence, unless the provision is merely
+                        incidental to, or consequential on, provision outside Northern Ireland devolved competence.
+                        Section 10(4) clarifies that the ‘relevant Northern Ireland department’ is the appropriate
+                        Northern Ireland department for the provision contained in the concerned regulations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Section 10(5) sets out what is meant by devolved competence in relation to Scotland,
+                        Wales and Northern Ireland for the purpose of this section.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Section 10(6) amends the Government of Wales Act 2006 allowing the Senedd to pass
+                        legislation removing the need for the Secretary of State to seek the consent of the
+                        Welsh Ministers under section 10(2).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Section 10(7) clarifies the meaning of ‘Minister of the Crown’. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 11: Consequential amendments of certain Acts</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Section 11(1) repeals Parts 2 and 4 of the Consumer Protection Act 1987 in order to
+                        ensure that there is no overlap with regulations made under this Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Section 11(2) enables regulations to amend or repeal the Gun Barrel Proof Acts 1868
+                        to 1978 in order to ensure that there is no overlap or inconsistency with regulations
+                        made under this Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Section 11(3) repeals sections 1, 8(1)(a) and 25, and Schedule 1 of the Weights and
+                        Measures Act 1985 in order to ensure that there is no overlap with metrology regulations
+                        made under this Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Section 11(4) makes clear that other legislation may be amended in consequence of
+                        any repeal of, or amendment to, the Acts specified above (for example, to remove or
+                        update references to provisions repealed or amended by those provisions). </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Final provisions</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 12: Interpretation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Section 12(1) defines key terms used in the Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Section 12(2) provides the Secretary of State with the power to amend the definition
+                        of “online marketplace” (defined in Section 12(1)).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 13: Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Section 13(1) sets out that regulations made under powers in the Act must be made
+                        by statutory instrument and sets out the parliamentary procedures that must be followed
+                        when using those powers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Section 13(2) makes clear that regulations made under the Act may include making provision
+                        generally or in relation to particular cases, making different provision for different
+                        purposes or areas and consequential, supplementary, incidental, transitional or saving
+                        provision (amongst other things).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Section 13(3) and (4) set out when the affirmative parliamentary procedure will apply
+                        to regulations under the Act. These include when making provision for a power of entry
+                        or creating, or widening the scope of, a criminal offence or where amending primary
+                        legislation or first use of the power relating to matters set out in Sections 2(2)(e)
+                        and 2(3)(e) regarding online marketplaces and the first use of the power in Section
+                        2(3)(i) with respect to any new category of persons carrying out activities in relation
+                        to products.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Section 13(5) provides that the negative procedure will apply to all other regulations
+                        made under the Act (except for commencement regulations made under Section 15 (see
+                        Section 13(7)). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Section 13(6) requires the Secretary of State to consult such persons as they consider
+                        appropriate before making regulations under the Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Section 13(7) makes clear that there is no parliamentary procedure attaching to commencement
+                        regulations made under Section 15, as is usual practice, and the consultation requirements
+                        in Section 13(6) do not apply to commencement regulations made under Section 15.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 14: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>The provisions of the Act extend to England and Wales, Scotland and Northern Ireland.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 15: Commencement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>Section 15(1) provides for Sections 11(1) and 11(3) to be brought into force by commencement
+                        regulations, and Section 15(2) provides for the rest of the Act to come into force
+                        on the day on which the Act is passed.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 16: Short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Section 16 provides that the short title of the legislation will be the Product Regulation
+                        and Metrology Act 2025.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Schedule: Excluded products</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>The Schedule lists the products not within the scope of the provisions in Section
+                        1.  </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>Section 15 provides for commencement of the provisions of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>Sections 11(1) and (3) come into force on such day as the Secretary of State may by
+                     regulations appoint, and the Secretary of State may appoint different days for different
+                     purposes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>The rest of the Act came into force on the day the Act was passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">79 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>04 September 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2024-09-04/debates/79CA58AD-63C4-4A70-8F91-420445132015/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 839 Col. 1158</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>08 October 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2024-10-08/debates/90B79649-7D3C-49AB-A82F-B0DA74985428/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 839 Col. 1937</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="4">
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>20 November 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-11-20/debates/CE04D56E-40B6-4181-9287-E9E209D05529/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 841 Col. 23GC</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>25 November 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-11-25/debates/225925C8-4303-4D2F-BF1C-E92AE15F0321/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 841 Col. 131GC</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>27 November 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-11-27/debates/46D3158D-BD1D-4C10-8EAE-9C929C1CCD01/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 841 Col. 213GC</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>11 December 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-12-11/debates/BD38D1B0-6E06-4045-96B0-51E8FF4F89DB/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 841 Col. 459GC</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>26 February 2025</p>
+                           </td>
+                           <td>
+                              <p>Part One: House of Lords <a href="https://hansard.parliament.uk/lords/2025-02-26/debates/2338333D-4618-4FAF-8A53-0828F5A8B699/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 843 Col. 1701</u></a></p>
+                              <p>Part Two: House of Lords <a href="https://hansard.parliament.uk/lords/2025-02-26/debates/D04057E2-C32B-4CBE-A91A-99430D88073E/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 843 Col. 1769</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>05 March 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2025-03-05/debates/64F82F9F-EC44-42D3-9CC6-7D5A59270654/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 844 Col. 259</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 March 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2025-03-12/debates/007CB0FA-3DE3-407F-9145-3ACE3DA62B31/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 844 Col. 711</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>13 March 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://commonsbusiness.parliament.uk/Document/93177/Pdf?subType=Standard">
+                                    <u>Votes and Proceedings, No. 106</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>01 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2025-04-01/debates/298723EA-059D-4682-8B74-C64D603A8F20/ProductRegulationAndMetrologyBill(Lords)"><u>Vol. 765 Col. 210</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="3">
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>13 May 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-05-13/debates/3ad24fea-775b-4d13-9408-eb40bad22cf2/ProductRegulationAndMetrologyBill(Lords)(FirstSitting)">
+                                    <u>First Sitting: Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-05-13/debates/544b9d70-a0c7-4d36-bd2f-60a7cbb08bfc/ProductRegulationAndMetrologyBill(Lords)(SecondSitting)">
+                                    <u>Second Sitting: Col. 35</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>15 May 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-05-15/debates/c02c52cc-063b-4e20-ad86-8d7061b14511/ProductRegulationAndMetrologyBill(Lords)(ThirdSitting)">
+                                    <u>Third Sitting: Col. 91</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>04 June 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2025-06-04/debates/746EBC71-73BB-4B4F-ADCC-8CA482BB7F7E/ProductRegulationAndMetrologyBill(Lords)"><u>Vol. 768 Col. 367</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>10 July 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-07-10/debates/80204D85-3900-4A41-BCBC-D01233EF43D2/ProductRegulationAndMetrologyBill(HL)"><u>Vol. 847 Col. 1504</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>21 July 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2025-07-21/debates/EF2CF0C9-77DB-4EAB-B135-CC857B47E575/HouseOfCommons"><u>Vol. 771 Col. 527</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-07-21/debates/FE5FFE11-EBAA-453B-B552-D2FC68FCA59F/RoyalAssent"><u>Vol. 848 Col. 15</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  In GB, local weights and measures authorities, known as ‘Trading Standards’ and in
+                  NI, the Department for the Economy.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  In GB, local weights and measures authorities, known as ‘Trading Standards’ and in
+                  NI, the Department for the Economy.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,2332 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p class="center">
+               <i>These notes relate to the Social Security (Amendment) (Scotland) Act 2025 (asp 2)</i>
+               <br>
+               <i>which received Royal Assent on 23 January 2025</i>
+               </p>
+            <p class="center">
+               <b>SOCIAL SECURITY (AMENDMENT) (SCOTLAND) ACT 2025</b>
+               </p>
+            <p class="center">
+               <b>EXPLANATORY NOTES</b>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>INTRODUCTION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.</span></h2>
+               <p>These Explanatory Notes have been prepared by the Scottish Government in order to
+                  assist the reader of the Social Security (Amendment) (Scotland) Act 2025. They do
+                  not form part of the Act and have not been endorsed by the Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.</span></h2>
+               <p>These Notes should be read in conjunction with the Act. They are not, and are not
+                  meant to be, a comprehensive description of the Act. So where a section or a part
+                  of a section does not seem to require any explanation or comment, none is given.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>CROWN APPLICATION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.</span></h2>
+               <p>Section 20 of the Interpretation and Legislative Reform (Scotland) Act 2010 provides
+                  that the Crown will be bound by an Act of the Scottish Parliament or Scottish statutory
+                  instrument unless a provision expressly exempts it. The freestanding provisions in
+                  this Act apply generally to emanations of the Crown in the same way as they apply
+                  to everyone else. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.</span></h2>
+               <p>The Act also amends the 2018 Act, which applies to the Crown generally – and the Act
+                  makes no change to the application of the 2018 Act to the Crown.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>OVERVIEW OF THE ACT</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>The aim of the Act is to improve the Scottish system of social security established
+                  under the 2018 Act. The Act includes a number of provisions intended to improve the
+                  experience of people using the services provided by Social Security Scotland (the
+                  agency which delivers social security assistance on behalf of the Scottish Ministers)
+                  and a number of provisions intended to make the system more efficient. The Act also
+                  seeks to implement the findings of an independent review into the remit and operation
+                  of the Scottish Commission on Social Security, and to revoke emergency provision inserted
+                  into the 2018 Act in 2020 at the height of the coronavirus pandemic. Some provisions
+                  of the Act amend or repeal sections of the 2018 Act, and others create new provisions
+                  in that Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.</span></h2>
+               <p>The Act is drafted in ten Parts: </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 1 contains regulation-making powers for the Scottish Ministers to create two
+                     new forms of social security assistance: childhood assistance, for individuals with
+                     children; and care experience assistance, for individuals with experience of having
+                     been in the care system. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 2 repeals section 52B of the 2018 Act, which contains emergency coronavirus provision
+                     introduced in 2020 during the pandemic; and provides a power to allow late applications
+                     for assistance for each form of assistance under the 2018 Act. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 3 contains provisions which set out timescales for re-determination or appeal
+                     requests; provisions which introduce the right to withdraw a re-determination request;
+                     provisions which clarify the duties on Scottish Ministers where they have not completed
+                     a re-determination within the statutory deadline; provisions introducing a power for
+                     Scottish Ministers to make a new determination of entitlement during an appeal, with
+                     the effect of ending that appeal; provisions to set out the circumstances which may
+                     be taken into account by the First-tier Tribunal in making a determination on appeal;
+                     and provisions which set out the powers of the Tribunal in a “process appeal” under
+                     section 61 of the 2018 Act, along with the consequences of the Tribunal’s decision.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 4 contains provisions which modify the 2018 Act provisions on liability for assistance
+                     given in error and introduce a right to a review, followed by a right to appeal to
+                     the First-tier Tribunal for Scotland, against a finding of liability for assistance
+                     given in error. Provision is also made to allow assistance given in error under regulations
+                     made under section 79 to be recovered by way of deduction from other assistance given
+                     to that individual.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 5 contains provisions which would allow Scottish Ministers to treat a person
+                     appointed by the UK Department for Work and Pensions for a limited time as though
+                     they are an appointee under the 2018 Act; provision is also made to make appointees
+                     liable to the person they act for where they act in breach of their duties.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 6 extends the duty on the Scottish Ministers to take into account the effect
+                     of inflation and annually uprate social security assistance, so that it applies to
+                     all payments delivered under the 2018 Act.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 7 confers powers on Scottish Ministers allowing them to audit the monetary value
+                     of error and fraud in the Scottish social security system.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 8 contains the provisions and powers which will allow the Scottish Ministers
+                     to make recoveries of devolved social security assistance from awards of compensation,
+                     where they have both been awarded in relation to the same accident, injury or disease.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 9 contains provisions amending the remit and operation of the Scottish Commission
+                     on Social Security.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 10 contains the final and general provisions for the Act. </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>COMMENTARY ON PROVISIONS</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 1 – TYPES OF SOCIAL SECURITY ASSISTANCE</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 1: Childhood assistance</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.</span></h2>
+               <p>The Scottish Child Payment is currently delivered under section 79 of the 2018 Act
+                  as a ‘top-up’ where an individual is receiving a qualifying UK Government benefit.
+                  Section 1 of the Act provides a new enabling power for the Scottish Ministers to give
+                  childhood assistance under section 24 of the 2018 Act. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.</span></h2>
+               <p> Chapter 2 of Part 2 of the 2018 Act sets out the nine existing types of assistance
+                  that are to be given by the Scottish Ministers under section 24. Each assistance type
+                  is described at a high level by a section of Chapter 2, setting out the characteristics
+                  of the assistance, for example an activity that qualifies for assistance (such as
+                  caring for a disabled person), a purpose of assistance (such as to help with heating
+                  costs) or an event that qualifies for assistance (such as an employment-related injury).
+                  Regulations then set out the eligibility rules that will determine entitlement to
+                  assistance and what assistance is to be provided. For all sections there is a link
+                  to a schedule which makes further provision about the content of regulations. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.</span></h2>
+               <p>Section 1 of the Act follows this same approach in inserting a new section 32A and
+                  schedule 6A into the 2018 Act. These amendments together provide for childhood assistance,
+                  which is assistance to an individual to help towards meeting some of the costs associated
+                  with having a child in their family. This form of assistance will also effectively
+                  replace Early Years Assistance, with section 1 of the Act repealing section 32 and
+                  schedule 6 of the 2018 Act once the powers are commenced. The Act also makes transitional
+                  provision so that the regulations under the 2018 Act providing for Best Start Grants
+                  are to be treated as if they were made using the new power in section 32A(2).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.</span></h2>
+               <p>Under paragraph 1 of schedule 6A, the primary eligibility criteria for childhood assistance
+                  are that the individual is, or has been, pregnant; has a particular relationship to
+                  another individual who is, or has been, pregnant; is to, or has, become responsible
+                  for a child, or has a particular relationship to an individual who is to, or has,
+                  become responsible for a child. Regulations under section 32A must define what being
+                  responsible for a child is to mean (paragraph 1(3) of schedule 6A).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.</span></h2>
+               <p>The regulations may also make provision about continuing to give childhood assistance
+                  for a specific period, and in specific circumstances, to an individual who previously
+                  satisfied one of the primary eligibility criteria but no longer does so (paragraph
+                  1(2) of schedule 6A). It is envisaged that this power would be used, for example,
+                  to give childhood assistance to a recently bereaved parent.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 2: Care experience assistance</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.</span></h2>
+               <p> Section 2 of the Act inserts a new section 93A into the 2018 Act, giving a regulation-making
+                  power to the Scottish Ministers to create a scheme providing for a new kind of social
+                  security assistance for individuals with experience of being in the care system, known
+                  as “care experience assistance”. This regulation-making power is subject to the affirmative
+                  procedure. The power allows flexibility as to who would deliver care experience assistance
+                  in practice.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.</span></h2>
+               <p>An example of what having had experience of being in the care system could mean would
+                  be an individual who has been looked after by a local authority (within the meaning
+                  given by section 17(6) of the Children (Scotland) Act 1995) – or an individual who
+                  has been subject to a kinship care order (within the meaning given by section 72 of
+                  the Children and Young People (Scotland) Act 2014).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">14.</span></h2>
+               <p>The detail of the scheme would be set out in the regulations. Subsection (3) of inserted
+                  section 93A sets out that provision can be made in the regulations for who is to administer
+                  the scheme; how entitlement is to be determined; the amount of assistance; the process
+                  by which assistance is sought and determined; what happens if assistance is given
+                  incorrectly; and creating offences. Subsections (4) to (7) make equivalent provision
+                  on the application of offences to these regulations as section 80A of the 2018 Act
+                  on “top-ups” of reserved benefits.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">15.</span></h2>
+               <p>Subsection (9) of inserted section 93A provides that Ministers have the power to give
+                  directions to the person administering the scheme for care experience assistance in
+                  relation to the implementation of the scheme; that the administrators must comply
+                  with Ministerial directions; and that Ministers must publish any directions that they
+                  give.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 2 – APPLICATIONS FOR ASSISTANCE</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 3: Repeal of section 52B of the 2018 Act </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">16.</span></h2>
+               <p>Section 52B of the 2018 Act was inserted by the Coronavirus (Scotland) Act 2020, passed
+                  on 1 April 2020 during the height of the coronavirus pandemic. Its effect is to allow
+                  the relaxation of the relevant deadline in an application for assistance under the
+                  2018 Act where that deadline was missed for a reason related to coronavirus. Given
+                  the passage of time since the pandemic this provision is no longer necessary and so
+                  section 3 of the Act repeals section 52B. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 4: Power to make provision about late applications for assistance</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">17.</span></h2>
+               <p>Section 4 of the Act provides a power to allow late applications for assistance for
+                  each kind of assistance under the 2018 Act – inserting provision in each relevant
+                  schedule of the 2018 Act to the effect that if the regulations on assistance contain
+                  an application deadline, they may also make provision about the circumstances in which
+                  an application made after the deadline may be treated as if it had been made by that
+                  deadline. Section 1 of the Act contains equivalent provision for schedule 6A on childhood
+                  assistance.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 3 – DETERMINATIONS AND RE-DETERMINATIONS OF ENTITLEMENT TO ASSISTANCE </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Re-determinations </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 5: Re-determination and appeal deadlines in exceptional circumstances </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">18.</span></h2>
+               <p>As with section 52B, section 52A was amended into the 2018 Act by the Coronavirus
+                  (Scotland) Act 2020. Under section 52A, requests to the Scottish Ministers for re-determinations
+                  of entitlement to assistance must be considered valid beyond the maximum period of
+                  one year prescribed by the 2018 Act, where the reason for delay was related to coronavirus;
+                  appeals against determinations of entitlement may also be brought beyond the maximum
+                  prescribed period of one year, where the First-tier Tribunal is satisfied that the
+                  reason for the delay was related to coronavirus. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">19.</span></h2>
+               <p>Section 5 of the Act repeals section 52A and instead, through a series of amendments
+                  to Chapter 3 of Part 2 of the 2018 Act, gives Ministers (acting through Social Security
+                  Scotland) discretion to accept late requests for re-determination beyond the one-year
+                  prescribed period on the basis of ‘exceptional circumstances’, rather than only for
+                  reasons relating to coronavirus. Similarly, appeals against determinations of entitlement
+                  will be able to be brought, with the permission of the First-tier Tribunal, beyond
+                  the one-year prescribed period on the basis of ‘exceptional circumstances’, rather
+                  than only for reasons relating to coronavirus. The intention is that examples of ‘exceptional
+                  circumstances’ will be provided in guidance: for instance, severe physical or mental
+                  illness, unstable housing, abuse or detainment.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 6: Withdrawal of request for re-determination </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">20.</span></h2>
+               <p>Under section 43 of the 2018 Act, if an individual requests a re-determination of
+                  their entitlement to assistance, the Scottish Ministers (acting through Social Security
+                  Scotland) are under a duty to make a new determination. But at present an individual
+                  cannot subsequently withdraw their request for re-determination, even if their circumstances
+                  have changed since making their request, or if they have otherwise changed their mind.
+                  Section 6 of the Act inserts a new section 42A into the 2018 Act, enabling an individual
+                  to ask Ministers to disregard a re-determination request. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">21.</span></h2>
+               <p>In such a case, section 42A(2) provides that Ministers’ duty under section 43 ceases
+                  to apply, and they are not to make a determination of the individual's entitlement
+                  to the particular type of assistance mentioned in the request for re-determination.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">22.</span></h2>
+               <p>Section 42A(3) provides that a request to Ministers to disregard a re-determination
+                  must be made in such form as Ministers require; and the requisite form for this must
+                  be publicised by Ministers, as per section 42A(4).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 7: Re-determinations after the period allowed </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">23.</span></h2>
+               <p> Where a re-determination of entitlement is not completed by the Scottish Ministers
+                  (acting through Social Security Scotland) in the timescales set out in regulations
+                  under section 43(5) of the 2018 Act, a re-determination becomes out-of-time and the
+                  individual in question must be notified that they have a right to appeal to the First-tier
+                  Tribunal under section 46. The Scottish Ministers are, at that point, no longer under
+                  a duty to make the re-determination. However, in practice, they continue to consider
+                  the re-determination request.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">24.</span></h2>
+               <p>Section 7 of the Act amends section 43 of the 2018 Act to clarify that Ministers remain
+                  under the duty to make the re-determination beyond the period allowed, unless an individual
+                  opts to exercise their right to appeal, in which case the duty on Ministers falls
+                  away. However if an appeal under section 46 is subsequently withdrawn, the duty on
+                  Ministers to make the determination applies again and continues unless the appeal
+                  is reinstated. Sections 44 to 46 are also amended in consequence of this change. The
+                  amendments to sections 44 and 45 provide that the individual will be provided with
+                  information as to how the process will work. The amendments to section 46 ensure that
+                  the right to appeal arises once the period allowed for re-determination has ended
+                  without a re-determination having been made, but without implying that the duty to
+                  make a re-determination has ended.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>New determination of entitlement during appeal</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 8: New determination of entitlement during appeal</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">25.</span></h2>
+               <p>Under the 2018 Act at present the Scottish Ministers (acting through Social Security
+                  Scotland) cannot make a new determination of entitlement after a valid appeal has
+                  been lodged with the First-tier Tribunal, even if an error has been identified, or
+                  new evidence received, which shows that an individual has been underpaid, or not received
+                  an award that they were entitled to. The appeal must continue unless it is withdrawn
+                  by the individual. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">26.</span></h2>
+               <p>Section 8 of the Act inserts a new section 49A into the 2018 Act providing that in
+                  instances where the Scottish Ministers recognise after an appeal has been made that
+                  an individual should have received a higher award of assistance, or an otherwise more
+                  advantageous determination of entitlement, Ministers will be required to make a new
+                  determination of entitlement, and the appeal will come to an end as a result. The
+                  new determination can only be made if the individual agrees to it, as per section
+                  49A(1)(c). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">27.</span></h2>
+               <p>Inserted section 49A(2) provides that a new determination of entitlement of this kind
+                  must result in the individual being given more assistance, or otherwise be a more
+                  advantageous determination of entitlement, than the original determination. A new
+                  determination may be advantageous to the individual in a way which does not amount
+                  to more assistance than the original determination: for example, it may amount to
+                  a decision that they should receive an ongoing award of assistance, where they previously
+                  did not.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">28.</span></h2>
+               <p>Inserted section 49B then requires the Scottish Ministers to inform the individual
+                  concerned of their new determination of entitlement under section 49A; of the reasons
+                  for it; and of the individual’s rights to request re-determination of the new determination,
+                  and to appeal it. As with other sections of the 2018 Act, the individual must also
+                  be given a proper record of the decision.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">29.</span></h2>
+               <p>Inserted section 49C allows the Scottish Ministers, by regulations, to make provision
+                  in Scottish Tribunal Rules so that proceedings in the First-tier Tribunal in relation
+                  to an appeal will automatically come to an end by operation of law where Ministers
+                  make a determination of entitlement in relation to any type of assistance under section
+                  49A, or any assistance provided under “top-up” regulations made under section 79 of
+                  the 2018 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">30.</span></h2>
+               <p>Consequential amendments are made to the 2018 Act to give individuals the right under
+                  section 41 to request re-determination of a new determination made under section 49A,
+                  and the right under section 46 to appeal a new determination to the First-tier Tribunal.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">31.</span></h2>
+               <p>In addition, section 62 of the 2018 Act contains a legal presumption that when an
+                  individual is notified of something by Ministers, the individual is to be taken to
+                  have received the information 48 hours after it is sent, unless the contrary is shown:
+                  section 8(8) of the Act applies this to notifications under section 49B. Section 62A’s
+                  rule against the disclosure of information about an individual’s health is also applied
+                  to notifications under section 49B by section 8(10) of the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">32.</span></h2>
+               <p>Finally, sections 8(11) and (12) of the Act amend schedule 9 of the Tribunals (Scotland)
+                  Act 2014, to provide that Tribunal Rules may make provision for appeal proceedings
+                  to end in a case where Ministers have made a new determination of entitlement under
+                  section 49A of the 2018 Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Determinations as part of appeal</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 9: Determinations as part of appeal</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">33.</span></h2>
+               <p>This section of the Act amends section 49 of the 2018 Act in order to clarify that
+                  when exercising its powers to either uphold a determination or make its own determination
+                  in an appeal, the First-tier Tribunal must not take into account circumstances which
+                  did not exist at the relevant time, although it may take into account circumstances
+                  which existed but which were not known. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">34.</span></h2>
+               <p>Therefore, the Tribunal must not consider changes in the individual’s circumstances
+                  that have occurred since the relevant time. The relevant time is the time at which
+                  entitlement fell to be determined by Scottish Ministers, under the applicable regulations
+                  for that assistance, when making the original determination under section 37 in relation
+                  to that entitlement. Depending on the regulations governing that form of assistance,
+                  this could be, for example, the date of application, the “treat as made” date for
+                  the application, or the qualifying period for assistance.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">35.</span></h2>
+               <p>For example, the Tribunal could take into account medical results from a later date
+                  which demonstrate that the individual had a particular condition at the relevant time,
+                  or a backdated award of a qualifying benefit or assistance which confers eligibility
+                  for the form of assistance being determined. However it could not take into account,
+                  for example, evidence of a deterioration in the individual’s medical condition which
+                  has occurred after the relevant time.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">36.</span></h2>
+               <p>This ensures that individuals have re-determination and appeal rights in relation
+                  to any change in their circumstances for a later period, separate from the re-determination
+                  and appeal rights that flow from the determination for an earlier period.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">37.</span></h2>
+               <p>If this were not the case, and the Tribunal were to consider a change of circumstances
+                  for a later period when making a determination at appeal, the individual would only
+                  have a right to ask the First-tier Tribunal to review its own decision or ask permission
+                  to appeal to the Upper Tribunal, on a point of law, against that decision.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Appeal against Scottish Ministers’ process decisions </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 10: Appeal to First-tier Tribunal against process decisions </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">38.</span></h2>
+               <p>Under section 61 of the 2018 Act, an individual can appeal to the First-tier Tribunal
+                  against certain decisions made by the Scottish Ministers (acting through Social Security
+                  Scotland) on the process of applying for social security assistance and the process
+                  of challenging determinations of entitlement to assistance. Section 10 of the Act
+                  amends section 61 in order to clarify the powers of the Tribunal to uphold or set
+                  aside decisions in process appeals. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">39.</span></h2>
+               <p>Section 10 of the Act also inserts a new section 61A into the 2018 Act, setting out
+                  the actions that Ministers have to take in consequence of the different kinds of Tribunal
+                  decisions, including the making of a new determination of entitlement in certain cases.
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 4 – ASSISTANCE GIVEN IN ERROR</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 11: Liability for assistance given in error </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">40.</span></h2>
+               <p> Under the 2018 Act, an individual has a statutory liability to repay any overpayment
+                  of assistance made in error, except where they did not cause or contribute to that
+                  error, or if it was the sort of error an individual could not reasonably be expected
+                  to have noticed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">41.</span></h2>
+               <p>Where Social Security Scotland determines that an overpayment has occurred, it makes
+                  a new determination on a client’s entitlement to benefit. Although this new determination
+                  will bring re-determination and appeal rights if the client wants to challenge the
+                  decision, there is not currently any formal right to challenge the decision that an
+                  individual is liable to repay the overpayment.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">42.</span></h2>
+               <p>There was also no provision in the 2018 Act for circumstances in which a representative
+                  is acting for an individual.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">43.</span></h2>
+               <p>Section 11 therefore modifies section 63 of the 2018 Act in two ways: firstly, to
+                  provide for an individual’s representative to be liable to repay assistance given
+                  in error in certain circumstances, and secondly, so that rather than arising automatically,
+                  liability flows from a decision by the Scottish Ministers that an individual or an
+                  individual’s representative is liable to repay assistance given in error. In particular,
+                  section 63(1) refers to assistance given “to or for the benefit of the individual”
+                  to make clear that in the case of a representative, what is being referred to is assistance
+                  given to the representative for the benefit of the individual.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">44.</span></h2>
+               <p>Section 11 inserts a new section 63(1A) into the 2018 Act setting out the test for
+                  Scottish Ministers to decide when a person is liable to repay an overpayment. Previously,
+                  section 64(1) set out the circumstances in which an individual would not be liable.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">45.</span></h2>
+               <p>New section 63(1A)(a) reframes that test in positive terms, requiring the error to
+                  be the fault of the individual or representative, or the kind of error that an individual
+                  could reasonably be expected to notice.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">46.</span></h2>
+               <p>Section 63(1A)(b) then sets out a further requirement that for an individual to be
+                  found liable, the individual must have benefitted from the overpaid assistance. For
+                  a representative to be found liable, the individual must not have benefitted from
+                  the assistance. Section 63(9) provides that it is assumed that the individual has
+                  benefitted from the assistance unless the Scottish Ministers are aware that that is
+                  not the case. Therefore, where it is unclear whether or not the individual has benefitted,
+                  the presumption will be that that is the case. This provides protection from liability
+                  for representatives.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">47.</span></h2>
+               <p>New section 63(5) to (8) describes when an error is the fault of the individual or
+                  individual’s representative, replicating what was previously set out in section 64(2)
+                  to (4) of the 2018 Act but adding reference to the representative. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">48.</span></h2>
+               <p>The effect of section 63(1) to (9), as modified by the Act, is that where an individual
+                  or individual’s representative has caused or contributed to an error which has led
+                  to an overpayment of assistance (for example, by providing false information or failing
+                  to notify a change of circumstances), or should have noticed the error (for example,
+                  because a system error has given them thousands of pounds more than the entitlement)
+                  then the Scottish Ministers may decide to recover that assistance. If the individual
+                  has benefitted from the assistance, then it is the individual who will be liable,
+                  even if the error is the fault of their representative. But if the individual has
+                  not benefitted from the assistance, for example, because the representative has misappropriated
+                  it, then it is the representative who will be liable.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">49.</span></h2>
+               <p>Section 63(10) and (11) applies if a person has died since the overpayment was made.
+                  Section 63(10) allows the Scottish Ministers to make a liability decision if they
+                  would have been entitled to do so had the person not died. This is distinct from section
+                  69 of the 2018 Act, which allows any assistance given in respect of a period after
+                  death to be recovered, whether or not there has been an error. Section 63(10) applies
+                  instead to overpayments made while the person was alive. It is required because liability
+                  now flows from a decision by the Scottish Ministers rather than arising automatically.
+                  Therefore, unless a decision has been made before death, there is no automatic liability
+                  which would transmit to the person’s estate. Section 63(10) therefore preserves the
+                  ability for the Scottish Ministers to recover these overpayments.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">50.</span></h2>
+               <p>Inserted section 63(12) allows the Scottish Ministers to make regulations specifying
+                  the persons or categories of persons who are included within the meaning of “individual’s
+                  representative”. For example, this might include legal representatives of children,
+                  people appointed under section 85A or 85B of the 2018 Act (which allow the Scottish
+                  Ministers to appoint people to act on behalf of children and other individuals in
+                  certain circumstances) and guardians under the Adults with Incapacity (Scotland) Act
+                  2000, amongst others.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">51.</span></h2>
+               <p>Section 11(3) inserts two new sections into the 2018 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">52.</span></h2>
+               <p>Inserted section 63A replicates what was section 63(2) and (3) of the 2018 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">53.</span></h2>
+               <p>Inserted section 63B provides that having made a decision that a person is liable
+                  under section 63, the Scottish Ministers must inform the person of the decision, the
+                  reasons for it, the right to request a review of the decision and the right to appeal
+                  to the First-tier Tribunal for Scotland (Social Security Chamber) if that review is
+                  not completed within the period allowed. The processes for reviews and appeals are
+                  set out in new sections 69A to 69L inserted by section 13. The further review and
+                  appeal provisions in part 6 of the Tribunals (Scotland) Act 2014 will also be available.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">54.</span></h2>
+               <p>Section 11(4) repeals section 64 of the 2018 Act, because it is no longer required
+                  following the restructuring of the provisions in section 11(2) and (3).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">55.</span></h2>
+               <p>Section 11(5) modifies section 65 of the 2018 Act, which requires the Scottish Ministers
+                  to consider the financial circumstances of someone who is liable under section 63
+                  when deciding whether and how to recover the overpayment, so that it applies to both
+                  an individual and an individual’s representative.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">56.</span></h2>
+               <p>Section 12: Liability of individual’s estate</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">57.</span></h2>
+               <p>Section 12 modifies section 69 of the 2018 Act, which deals with the liability of
+                  an individual’s estate for assistance which is paid after their death.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">58.</span></h2>
+               <p>Subsection (2) changes the reference to assistance being given “under section 24”
+                  to assistance being given “in the performance of a function conferred by virtue of
+                  this Part”. Section 24 requires the Scottish Ministers to give the assistance the
+                  individual is entitled to be given, so assistance which fell outwith that duty (because
+                  it was given in error) would not necessarily be caught by that reference. The replacement
+                  wording is consistent with other references in the 2018 Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 13: Assistance given in error: reviews and appeals</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">59.</span></h2>
+               <p>  Section 13 inserts a run of sections after section 69 of the 2018 Act, to provide
+                  for reviews and appeals of decisions on liability made under section 63.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">60.</span></h2>
+               <p>Inserted section 69A provides that a person has a right to request that the Scottish
+                  Ministers review a decision under section 63. The request must be in the required
+                  form: if the Scottish Ministers decide that it is not, they must inform the person
+                  who submitted it of that decision and that the person has a right to appeal that decision
+                  under section 69J. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">61.</span></h2>
+               <p>The request for a review must be made within a period to be prescribed in regulations
+                  or, if it is made after that period, the person must have a good reason for not requesting
+                  it sooner and it must be made within a year of being informed of the decision (unless
+                  there are exceptional circumstances).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">62.</span></h2>
+               <p> Under section 69B, it is for the Scottish Ministers (or the First-tier Tribunal on
+                  appeal) to decide whether a person has a good reason for not making an appeal within
+                  the period allowed or whether there are exceptional circumstances justifying why it
+                  was not made within a year. A decision of the Scottish Ministers under this section
+                  can be appealed under section 69J. The intention is that examples of ‘exceptional
+                  circumstances’ will be provided in guidance: for instance, severe physical or mental
+                  illness, unstable housing, abuse or detainment.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">63.</span></h2>
+               <p>Section 69C requires the Scottish Ministers to complete a review within the period
+                  allowed for review, which will be prescribed in regulations. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">64.</span></h2>
+               <p>If the Scottish Ministers complete a review, section 69D requires them to inform the
+                  person who requested the review of the outcome, the reasons for that outcome and the
+                  right to appeal to the First-tier Tribunal against the outcome. If the person has
+                  previously been given a notice under section 69E informing them of their right to
+                  appeal against the original decision because the review had not been completed within
+                  the period allowed, the Scottish Ministers must also inform them that they no longer
+                  have that right. The person must be given a form which they can submit to bring an
+                  appeal against the outcome of the review.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">65.</span></h2>
+               <p>If the Scottish Ministers do not complete a review within the period allowed, section
+                  69E provides that they must inform the person of that, that the person has the right
+                  to appeal against the original decision under section 63, and that if the person withdraws
+                  an appeal, the Scottish Ministers will again consider the request for a review. They
+                  must also explain the interaction with section 69D: that if the review is completed,
+                  the right to bring an appeal against the original decision will end (because there
+                  will then be a right to appeal against the review).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">66.</span></h2>
+               <p>Section 69F sets out the right for a person to appeal to the First-tier Tribunal against
+                  the outcome of a review, or against the original decision under section 63 where a
+                  review has been requested, the period for review has ended, but the review has not
+                  yet been completed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">67.</span></h2>
+               <p>Section 69G provides that an appeal is brought by submitting the form provided to
+                  the Scottish Ministers, who must then send it to the First-tier Tribunal.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">68.</span></h2>
+               <p>Section 69H sets out the deadlines for bringing an appeal. An appeal may be brought
+                  within 31 days of the person either being informed of the outcome of a review, or
+                  told that they have the right to appeal if the review was not completed within the
+                  period allowed. After that, the First-tier Tribunal’s permission is required. If the
+                  appeal is brought after 31 days but within a year, the First-tier Tribunal must be
+                  satisfied that there is a good reason for the application not having been made sooner.
+                  If the appeal is brought after a year, the First-tier Tribunal must be satisfied that
+                  there are exceptional circumstances justifying this.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">69.</span></h2>
+               <p>On appeal, section 69I allows the First-tier Tribunal to uphold the original decision
+                  or the outcome of the review, or make its own determination of liability under section
+                  63.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">70.</span></h2>
+               <p>Section 69J allows a person to appeal against process decisions of the Scottish Ministers:
+                  that is decisions to reject a request for a review, that a person has no good reason
+                  for not requesting a review sooner or that there are no exceptional circumstances
+                  justifying why a review request was not made sooner. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">71.</span></h2>
+               <p>An appeal may be brought within 31 days of the person being informed of the decision.
+                  After that, the First-tier Tribunal’s permission is required. If the appeal is brought
+                  after 31 days but within a year, the First-tier Tribunal must be satisfied that there
+                  is a good reason for the application not having been made sooner. If the appeal is
+                  brought after a year, the First-tier Tribunal must be satisfied that there are exceptional
+                  circumstances justifying this. If any provision of Scottish Tribunal Rules would prevent
+                  an appeal being brought after a year, that provision is to be disregarded with the
+                  effect that an appeal can still be made as provided for in this section.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">72.</span></h2>
+               <p>The First-tier Tribunal may uphold the Scottish Ministers’ decision or may set it
+                  aside and make its own decision. In the case of an appeal relating to the form of
+                  a request for review, the First-tier Tribunal may decide that further information
+                  is required. The decision of the First-tier Tribunal under section 69J is final.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">73.</span></h2>
+               <p>Section 69K requires the Scottish Ministers to take appropriate action following a
+                  decision of the First-tier Tribunal. If the decision was that the request for a review
+                  should have been allowed, the Scottish Ministers must complete the review under section
+                  69C. If the decision was that more information was required, the Scottish Ministers
+                  must seek that further information. If it is obtained, they must complete the review
+                  under section 69C, and if it is not then they may make a further decision that the
+                  request is not in the correct form. That decision could again be subject to appeal
+                  to the First-tier Tribunal.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">74.</span></h2>
+               <p>Section 69L creates a presumption that information is received 48 hours after it is
+                  sent by the Scottish Ministers, for the purposes of sections 69A, 69H and 69J.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 14: Assistance given in error: deductions from other assistance</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">75.</span></h2>
+               <p>For assistance which is paid on an ongoing basis rather than as a one-off payment,
+                  the relevant schedules to the 2018 Act (schedules 2, 5, 7 and 9) allow that assistance
+                  to be paid by way of deduction from any liability the individual has to the Scottish
+                  Ministers under section 63. Despite the general restriction on assistance being given
+                  in a form other than money without the individual’s agreement, assistance can be paid
+                  by way of deduction at a reasonable level from section 63 liability if the individual
+                  has unreasonably refused to agree to that. Regard must be had to the individual’s
+                  financial circumstances.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">76.</span></h2>
+               <p>Because under the 2018 Act this was restricted to liability under section 63, it did
+                  not extend to liability for overpayments which arises as a result of regulations made
+                  under section 79, such as the Scottish Child Payment Regulations 2020. This means
+                  that overpayments of assistance paid under section 79 regulations could not be repaid
+                  by deduction from assistance given under Part 2 Chapter 2 of the 2018 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">77.</span></h2>
+               <p>Section 14 therefore modifies schedule 2 (carer’s assistance regulations), schedule
+                  5 (disability assistance regulations), schedule 7 (employment-injury assistance regulations)
+                  and schedule 9 (housing assistance regulations) to add reference to provision corresponding
+                  to section 63 made by regulations under section 79. That means that where regulations
+                  under section 79 provide for recovery of overpayments, recovery may be made by deduction
+                  from those forms of assistance, on the same basis as where the liability arises under
+                  section 63. Section 1 of the Act contains equivalent provision for schedule 6A on
+                  childhood assistance.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 5 – APPOINTEES</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 15: Power to make provision in relation to appointments made by a Minister
+                     of the Crown</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">78.</span></h2>
+               <p>Section 85A of the 2018 Act allows the Scottish Ministers to appoint a person to act
+                  on behalf of a child in connection with the determination of their entitlement to
+                  assistance under section 24 or regulations made under section 79 of the 2018 Act,
+                  and where appropriate to receive that assistance on the child’s behalf. Section 85B
+                  makes similar provision regarding appointments on behalf of adults regarded as incapable
+                  within the meaning of the Adults with Incapacity (Scotland) Act 2000, on behalf of
+                  deceased individuals, and on behalf of adults in other circumstances set out in section
+                  85B(4). UK Ministers have several similar powers of appointment in respect of benefits
+                  administered by the UK Department of Work and Pensions.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">79.</span></h2>
+               <p>Section 15 of the Act inserts a new section 85F into the 2018 Act, giving a regulation-making
+                  power to the Scottish Ministers to provide that a person appointed by a UK Minister
+                  to act on behalf of an individual who is or may be eligible to receive assistance
+                  under the 2018 Act is to be treated as though appointed by the Scottish Ministers
+                  under section 85A or 85B to act on that individual’s behalf. This regulation-making
+                  power is subject to the affirmative procedure. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">80.</span></h2>
+               <p>Subsection (3) of inserted section 85F sets out that the regulations must provide
+                  that where an individual is or may be eligible to receive a specified form of assistance,
+                  the Scottish Ministers must, as soon as reasonably practicable, consider whether the
+                  conditions for making an appointment under section 85A or 85B are met;  consider whether
+                  to terminate the UK appointment; and if they do so, make their own appointment of
+                  a representative under section 85A or 85B. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 16: Liability of appointees under sections 85A and 85B of the 2018 Act</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">81.</span></h2>
+               <p>This section of the Act inserts a new section 85G into the 2018 Act on the liability
+                  of persons appointed to act on behalf of an individual in receipt of social security
+                  assistance under sections 85A, 85B or 85F. Where an appointee uses any funds of the
+                  individual for whom the appointee is acting in breach of the appointee’s common law
+                  fiduciary duty of good financial management, in breach of the appointee’s common law
+                  duty of care towards the individual, or outwith the appointee’s statutory authority
+                  under section 85A or 85B, the appointee is liable to repay those funds to the individual.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">82.</span></h2>
+               <p>However as per subsection (2) of inserted section 85G the appointee is not liable
+                  under subsection (1) for any breach as described in subsection (1) where the appointee
+                  has acted reasonably and in good faith, or where the appointee has failed to act and
+                  that failure was reasonable and in good faith. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 6 – UPRATING ASSISTANCE FOR INFLATION</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 17: </b>
+                  <b>Duty to uprate assistance for inflation</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">83.</span></h2>
+               <p>The Scottish Ministers are required under the 2018 Act to consider the effects of
+                  price inflation on all forms of assistance delivered under Part 2 Chapter 2 and section
+                  79 of the 2018 Act; and to lay a report in the Scottish Parliament, before the end
+                  of each financial year, setting out what they have done or intend to do as a result
+                  of the changes to prices under section 86A of the 2018 Act. Furthermore, Ministers
+                  are required under section 86B to bring forward subordinate legislation before the
+                  end of each financial year to uprate all forms of Carer’s Assistance (including Young
+                  Carer Grant), Disability Assistance, Employment Injury Assistance, Funeral Support
+                  Payment and Scottish Child Payment.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">84.</span></h2>
+               <p>Section 17 of the Act extends section 86A of the 2018 Act to include assistance created
+                  under the care experience assistance power in section 2 of the Act. It also extends
+                  section 86B to include all Scottish social security payments delivered under the 2018
+                  Act. This means that Scottish Ministers are required by statute to uprate all Scottish
+                  social security payments annually to reflect the effects of inflation. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 7 – INFORMATION FOR AUDIT</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 18: </b>
+                  <b>Information for audit of social security system</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">85.</span></h2>
+               <p>Currently the Scottish Ministers, through Social Security Scotland, can only request
+                  that individuals provide information to them for the specific purpose of determining
+                  entitlement to assistance. Section 18 of the Act amends the 2018 Act to give Ministers
+                  powers to require individuals to provide information in order to audit the social
+                  security system as a whole.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">86.</span></h2>
+               <p>Where an individual is entitled to social security assistance under the 2018 Act,
+                  inserted section 87B gives power to the Scottish Ministers to request that the individual
+                  provides information in relation to their entitlement, by a set deadline. Such a request
+                  may only be made for the purpose of auditing the monetary value of error and fraud
+                  in the Scottish social security system, and for connected activities. The subsequent
+                  use of the information is limited to the same purposes.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">87.</span></h2>
+               <p>Under section 87B(4), the response to a request under subsection (1) may be required
+                  to take the form of an interview with the individual in person; a telephone call or
+                  a video call; a written response (in circumstances prescribed by Ministers in regulations);
+                  or such other form of response as Ministers set out in regulations. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">88.</span></h2>
+               <p>Section 87B(5) gives a further regulation-making power to Ministers to prescribe categories
+                  of individuals who cannot be requested to provide information under subsection (1),
+                  for example for reasons of inherent vulnerability. Section 87B(6) requires Ministers
+                  to consult publicly on these regulations before making them.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">89.</span></h2>
+               <p>Section 87B(7) gives Ministers the power to suspend assistance to an individual who
+                  has failed to meet the deadline to provide information under this section. Suspension
+                  must be in accordance with the safeguards set out in schedule 11 of the 2018 Act:
+                  therefore Ministers must have regard to the financial circumstances of the individual
+                  first; Ministers must give due notice to the individual of the decision to suspend
+                  their assistance, of the reasons for it, and of any steps which the individual can
+                  take in order for Ministers to consider ending the suspension; and the individual
+                  will also have the right to require Ministers to review their decision.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">90.</span></h2>
+               <p>Under section 87B(8), where Ministers suspend assistance to an individual, they must
+                  at the same time make a further request under subsection (1) that the individual provide
+                  them with the requested information, by a further deadline.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">91.</span></h2>
+               <p>Section 87B(9) clarifies that subsections (7) and (8) may apply more than once in
+                  respect of the same individual: therefore multiple suspensions would be possible in
+                  theory. Ministers also have the power under the 2018 Act to terminate the assistance
+                  given to an individual by making a determination without application under section
+                  52.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">92.</span></h2>
+               <p>Inserted section 87C provides that an individual who has received a request for information
+                  under section 87B(1) may ask Ministers to withdraw the request (for instance due to
+                  bereavement, illness or another personal crisis that means they are unable to comply
+                  with the request). This must occur before a deadline to be set out in regulations.
+                  Ministers must then decide by a deadline also to be set out in regulations if there
+                  is a good reason for granting withdrawal, and their decision on the matter is final.
+                  An individual must be given notice of the decision and the reasons for it (and that
+                  it is final). As with other sections of the 2018 Act, the individual must also be
+                  given a proper record of the decision. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">93.</span></h2>
+               <p>Where an individual is judged to have a good reason for requesting it, Ministers must
+                  withdraw the request for information that was made to the individual under section
+                  87B(1).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">94.</span></h2>
+               <p>Inserted section 87D allows an individual who has been given a request for information
+                  under section 87B to have a third-party supporter present during any interview, call
+                  or other form of provision of a response: Ministers must comply with an individual’s
+                  wish to have a supporter unless their wish is unreasonable. Whether someone’s wishes
+                  are unreasonable will depend on the facts and circumstances of the particular case,
+                  but it may, for example, be considered unreasonable to someone to continue to attend
+                  as a supporter if they are behaving aggressively. The role of a supporter is simply
+                  to support the individual during their response to the information request, and to
+                  make representations on their behalf.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">95.</span></h2>
+               <p>Inserted section 87E gives disabled individuals a right of independent advocacy in
+                  connection with their engagement with the process for a request for information under
+                  section 87B (in the same way as section 10 of the 2018 Act gives such a right in connection
+                  with the determination of an individual’s entitlement to assistance).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 8 – RECOVERY FROM COMPENSATION PAYMENTS </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 19: Recovery of value of assistance from compensation payments</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">96.</span></h2>
+               <p>A person affected by accident, injury, or disease due to the fault of a third party
+                  may be entitled to compensation. Depending on the nature of their accident, injury,
+                  or disease they may also be entitled to social security assistance. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">97.</span></h2>
+               <p>The provisions in the Act will allow the Scottish Government to recover relevant forms
+                  of Scottish assistance from awards of compensation, avoiding the risk of a person
+                  being ‘doubly compensated’ for the same incident. They largely mirror the provisions
+                  of the Social Security (Recovery of Benefits) Act 1997, with the intention that, in
+                  this area, devolved assistance will be treated in the same way as reserved benefits.
+                  Essentially, the provisions require that where a person is making a compensation payment
+                  to an individual who has received assistance, they must deduct the value of that assistance
+                  from the amount paid to the individual and pay it instead to the Scottish Ministers.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">98.</span></h2>
+               <p>  Section 19 inserts a new Part 6A into the 2018 Act. This consists of a series of
+                  sections making provision for recovery from compensation payments.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">99.</span></h2>
+               <p>Inserted section 94A sets out that the Part applies where a person is to make a payment
+                  to an individual in consequence of accident, injury or disease, and relevant assistance
+                  has been received by that individual in respect of that accident, injury or disease.
+                  The provisions only apply where the accident or injury takes place, or the person
+                  claims assistance in relation to the disease, on or after the date on which this section
+                  comes into force.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">100.</span></h2>
+               <p>This extends to payments by a person who is or may be liable, as well as payments
+                  under the compensation schemes mentioned in subsection (2). Liability for the accident,
+                  injury or disease is not affected by the provisions and so the test is simply whether
+                  a payment has been made. However, certain payments are excluded and they are listed
+                  in Part 1 of schedule 12 inserted into the 2018 Act. The Scottish Ministers have a
+                  power to vary this list by regulations which will be subject to affirmative procedure
+                  (as the new regulation making power will be added to the list in section 96(2) of
+                  the 2018 Act). Section 94A(5) allows the Scottish Ministers to make regulations about
+                  the recovery of payments made under schemes which make lump sum payments, where a
+                  compensation payment has also been made. Although the Scottish Ministers do not currently
+                  administer any such schemes, this will allow any provision to be made in relation
+                  to any future schemes. Regulations must specify the lump sum payments to which they
+                  apply. Subsection (6)(b) sets out the kind of detail which may be included in regulations.
+                  Regulations are subject to affirmative procedure (as the new regulation making power
+                  will be added to the list in section 96(2) of the 2018 Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">101.</span></h2>
+               <p>Section 94B(1) sets out the definitions used in this Part. In particular, it defines
+                  “relevant assistance” as being assistance listed in column 2 of the table in Part
+                  2 of schedule 12 inserted into the 2018 Act, as well as short-term assistance (defined
+                  in section 36 of the 2018 Act) given as a result of its reduction or cessation. Subsection
+                  (2) allows the Scottish Ministers to modify the definition of relevant assistance,
+                  or the table in Part 2 of schedule 12 (which would have the effect of modifying what
+                  was included in the definition).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">102.</span></h2>
+               <p>The definitions of “relevant period”, “relevant period start date” and “relevant period
+                  end date” have the effect that assistance will be recovered in respect of a period
+                  of five years from the date of the accident or injury occurring (or the individual
+                  claiming assistance for the disease, since a disease will not have an easily identifiable
+                  start date). Once a compensation payment is made, the five year period stops running
+                  and the amount of assistance is calculated up to the date the compensation payment
+                  is made.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">103.</span></h2>
+               <p>Section 94C requires a compensator, as defined in section 94B, to apply for a certificate
+                  of recoverable assistance before making a compensation payment and sets out the process
+                  related to that application. The Scottish Ministers may by regulations prescribe periods
+                  within which certificates must be issued: if they do not do so, certificates must
+                  be issued within 4 weeks of receipt by the Scottish Ministers. Regulations will be
+                  subject to negative procedure (as the new regulation making power will be added to
+                  the list in section 96(3) of the 2018 Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">104.</span></h2>
+               <p>Section 94D details the information to be contained in certificates of recoverable
+                  assistance. This is the amount of assistance which has been (or is likely to be) received
+                  during the relevant period (as defined in section 94B). If the certificate is issued
+                  before the relevant period ends (for example, before the compensation payment is actually
+                  made) then it must include details of assistance which is likely to be received. Amounts,
+                  rates or periods may be based on reasonable estimates if the actual figures are not
+                  available. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">105.</span></h2>
+               <p>The Scottish Ministers must send the information contained in the certificate to the
+                  recipient of the compensation payment. If that person or the compensator requests
+                  it, they must also provide details of the way in which any amount, rate or period
+                  specified in the certificate has been determined, in a way in which the person can
+                  share with others (mirroring other provisions of the 2018 Act where information is
+                  provided by the Scottish Ministers).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">106.</span></h2>
+               <p>Section 94E provides that the compensator is to pay to the Scottish Ministers an amount
+                  equal to the amount of the recoverable assistance within 14 days of the compensation
+                  payment being made (or, if later, within 14 days of the certificate of recoverable
+                  assistance being issued).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">107.</span></h2>
+               <p>Section 94F allows the Scottish Ministers to issue a demand for payment if the amount
+                  due under section 94E is not paid on time. If no certificate of recoverable assistance
+                  has been issued, the Scottish Ministers must issue one with the demand for payment.
+                  The amount shown in the demand for payment is recoverable as if a sheriff had issued
+                  a decree with a warrant for execution, which allows the Scottish Ministers to take
+                  immediate action for debt recovery.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">108.</span></h2>
+               <p>If the compensator pays the Scottish Ministers an amount for which they were not liable,
+                  section 94G requires the Scottish Ministers to pay the compensator the difference
+                  between the amount they paid and the amount they should have paid. The Scottish Ministers
+                  must provide details of the calculation to the compensator and the person who received
+                  the compensation payment, and issue a new certificate of recoverable assistance. Where
+                  the compensator deducted recoverable assistance from the compensation payment it made,
+                  the compensator must recalculate the amount and pay any increase in the compensation
+                  payment to the person who received the original compensation payment (but only when
+                  the money is received from the Scottish Ministers). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">109.</span></h2>
+               <p>For example, if the compensator paid the Scottish Ministers £2,000 when there was
+                  only £1,500 of recoverable assistance, the compensator would have to pay the difference
+                  of £500 to the person who received the compensation payment.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">110.</span></h2>
+               <p>Section 94G does not apply where section 94P applies, because that section sets out
+                  a different procedure for recalculation following a reconsideration or appeal.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">111.</span></h2>
+               <p>Section 94H ensures that the provisions of this Part will apply where it is an insurer
+                  rather than the compensator themselves who is ultimately funding the compensation
+                  payment. The Scottish Ministers may by regulations limit the liability of insurers.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">112.</span></h2>
+               <p>Section 94I has the effect that if the Scottish Ministers fail to issue a certificate
+                  of recoverable assistance, the compensator need not deduct the amount of recoverable
+                  assistance from the compensation payment nor pay it to the Scottish Ministers. However,
+                  if a compensator does in fact make a payment despite this section, it is treated in
+                  the same way as any other payment and the Scottish Ministers do not have to repay
+                  it.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">113.</span></h2>
+               <p>Section 94J requires the compensator to make a calculation deducting any recoverable
+                  assistance from each relevant head of compensation as set out in the table in Part
+                  2 of schedule 12. That may have the effect of reducing the compensation payment to
+                  nil (but not beyond that: an injured person cannot be required to make a payment to
+                  the compensator or the Scottish Ministers). A payment calculated in this way satisfies
+                  the compensator’s liability to make the compensation payment. If the payment is reduced
+                  to nil, the compensator must provide a statement setting that out.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">114.</span></h2>
+               <p>Section 94K applies instead of section 94J where the payment is made under the Diffuse
+                  Mesothelioma Payment Scheme. It simply requires the compensation payment under that
+                  scheme to be reduced by the amount of recoverable assistance (which may reduce the
+                  compensation payment to nil). As in section 94J a payment calculated in this way satisfies
+                  the scheme administrator’s liability to make the compensation payment. If the payment
+                  is reduced to nil, the scheme administrator must provide a statement setting that
+                  out.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">115.</span></h2>
+               <p>Section 94L requires that the person receiving a compensation payment be provided
+                  with details of how the payment has been calculated and the date on which payment
+                  is made, in such a way that they have a record they can share with others. Subsection
+                  (5) prevents the recoverable assistance from being deducted twice, by providing that
+                  the calculation of the gross compensation payment (or an award of damages made by
+                  a court) must not take into account the recoverable assistance.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">116.</span></h2>
+               <p>Section 94M provides for a certificate of recoverable assistance to be reviewed by
+                  the Scottish Ministers. An application for review can be made by a compensator (but
+                  not the scheme administrator of the Diffuse Mesothelioma Payment Scheme) or, if the
+                  compensation payment is to be reduced under section 94J or 94K, the injured person
+                  or another person who would receive the payment. The Scottish Ministers may also conduct
+                  a review on their own initiative. Any review must take place before the compensation
+                  payment is made and before any payment to the Scottish Ministers under section 94E.
+                  In particular, if the compensator makes a compensation payment without applying for
+                  a certificate of recoverable assistance, and one is issued under section 94F, the
+                  compensator will not be able to request a review of it.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">117.</span></h2>
+               <p>The Scottish Ministers are to make regulations setting out further details of the
+                  review process and any request for a review will have to meet these requirements.
+                  Regulations will be subject to affirmative procedure (as the new regulation making
+                  power will be added to the list in section 96(2) of the 2018 Act). The Scottish Ministers
+                  may decide that something purporting to be a request for a review is not valid and
+                  if they do so, must inform the person who made the request.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">118.</span></h2>
+               <p>Following a review, the Scottish Ministers may confirm the certificate of recoverable
+                  assistance, issue a modified certificate or revoke the certificate, and must give
+                  everyone who would have been entitled to ask for a review notice of the result of
+                  the review and the reason for that, in a way that leaves them with a record they can
+                  share with others. The Scottish Ministers cannot increase the total amount of recoverable
+                  assistance unless that is required because the person who applied for the certificate
+                  supplied incorrect or insufficient information (for example, the person gave the wrong
+                  dates for the relevant period).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">119.</span></h2>
+               <p>Section 94N provides for a certificate of recoverable assistance to be reconsidered
+                  by the Scottish Ministers. A reconsideration can only be requested after payment to
+                  the Scottish Ministers under section 94E has been made and any claim giving rise to
+                  the compensation payment has been disposed of (bearing in mind that there may not
+                  be a claim if the compensation payment is being made voluntarily). An application
+                  for reconsideration can be made by a compensator who applied for or was issued with
+                  the certificate of recoverable assistance (but not the scheme administrator of the
+                  Diffuse Mesothelioma Payment Scheme) or, if the compensation payment is to be reduced
+                  under section 94J or 94K, the injured person or another person who has received the
+                  payment (or who has been treated as receiving it, where the compensation payment was
+                  reduced to nil under section 94J or 94K). There are limited grounds for reconsideration
+                  which are set out in subsection (6). The Scottish Ministers may by regulations make
+                  further provision about the process for requesting a reconsideration. Those regulations
+                  will be subject to negative procedure (as the new regulation making power will be
+                  added to the list in section 96(3) of the 2018 Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">120.</span></h2>
+               <p>Following a reconsideration, the Scottish Ministers may confirm the certificate of
+                  recoverable assistance, issue a modified certificate or revoke the certificate, and
+                  must give everyone who would have been entitled to ask for a reconsideration notice
+                  of the result of the reconsideration and the reason for that, in a way that leaves
+                  them with a record they can share with others. The Scottish Ministers cannot increase
+                  the total amount of recoverable assistance unless that is required because the person
+                  who applied for the certificate supplied incorrect or insufficient information (for
+                  example, the person gave the wrong dates for the relevant period).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">121.</span></h2>
+               <p>Section 94O allows a person who is given notice of a reconsideration (other than the
+                  scheme administrator of the Diffuse Mesothelioma Payment Scheme) to appeal to the
+                  First-tier Tribunal for Scotland against the reconsideration. Subsection (5) sets
+                  out the limited grounds on which an appeal may be made.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">122.</span></h2>
+               <p>On an appeal, the First-tier Tribunal may confirm the certificate of recoverable assistance,
+                  specify variations to be made or order the Scottish Ministers to revoke the certificate,
+                  and the Scottish Ministers must action those decisions accordingly.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">123.</span></h2>
+               <p>Section 94P provides for the recalculation of payments where the certificate of recoverable
+                  assistance is reissued as a result of a reconsideration or appeal. It does not need
+                  to apply to reviews, because a review can only be brought before a payment has been
+                  made.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">124.</span></h2>
+               <p>Any difference between what should have been paid by the compensator to the Scottish
+                  Ministers and what was actually paid is to be paid to or by the Scottish Ministers
+                  as the case may be. The Scottish Ministers must send a statement detailing that to
+                  the compensator and the person to whom the compensation payment was made. Where the
+                  compensator deducted recoverable assistance from the compensation payment it made,
+                  the compensator must recalculate the amount and pay any increase in the compensation
+                  payment to the person who received the original compensation payment (but only when
+                  the money is received from the Scottish Ministers).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">125.</span></h2>
+               <p>If the injured person or the person who received the compensation payment supplied
+                  incorrect or insufficient information, and that is why a new certificate was required
+                  after reconsideration or appeal, then the compensator may require payment from that
+                  person of the increased amount which they are required to pay to the Scottish Ministers.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">126.</span></h2>
+               <p>For example, if an injured person supplies the wrong dates to the compensator so that
+                  less recoverable assistance is deducted from a compensation payment, and that comes
+                  to light on reconsideration, then the injured person would be liable to pay the compensator
+                  the increased amount which is due to the Scottish Ministers.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">127.</span></h2>
+               <p>Section 94Q applies where multiple compensation payments are made in respect of the
+                  same injured person and the same accident, injury or disease. This may occur, for
+                  example, if an injured person has requested an interim compensation payment from a
+                  single compensator to help with adverse personal circumstances arising from an accident,
+                  injury or disease. This may happen in the case of serious injuries, such as brain
+                  injury claims, spinal injury claims, serious medical injury claims and mesothelioma
+                  claims. There could also be occasions when multiple compensation payments are to be
+                  received from different compensators. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">128.</span></h2>
+               <p>In circumstances where an earlier payment has been made to or in respect of an injured
+                  person, and subsequently a second, later payment is made to or in respect of the same
+                  injured person as a result of the same accident, injury or disease, the Scottish Ministers
+                  must determine the liability of the compensator for the second payment based on the
+                  total amount of recoverable assistance with a reduction for any amount already paid
+                  to the Scottish Ministers when the earlier compensation payment was made. This means
+                  that if sums due in relation to the recoverable assistance have already been recouped
+                  by the Scottish Ministers in relation to the first compensation payment, they will
+                  not be recouped a second time. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">129.</span></h2>
+               <p>If the compensator does pay more than was due because the certificate of recoverable
+                  assistance does not reflect the earlier payment, the Scottish Ministers must pay the
+                  difference to the compensator. The Scottish Ministers must send a statement detailing
+                  the amounts to the compensator and the person to whom the compensation payment was
+                  made. Where the compensator deducted recoverable assistance from the compensation
+                  payment it made, the compensator must recalculate the amount and pay any increase
+                  in the compensation payment to the person who received the original compensation payment
+                  (but only when the money is received from the Scottish Ministers).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">130.</span></h2>
+               <p>If the two payments are being made by the same compensator, the compensator may treat
+                  the two payments as aggregated and made on the date of the later payment, as set out
+                  in subsection (6).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">131.</span></h2>
+               <p>The Scottish Ministers may by regulations make provision about the timescales for
+                  payments of any amounts due under this section. They may also make further provision
+                  for cases in which multiple compensation payments are made by multiple compensators
+                  in respect of the same accident, injury or disease. Those regulations will be subject
+                  to affirmative procedure (as the new regulation making power will be added to the
+                  list in section 96(2) of the 2018 Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">132.</span></h2>
+               <p>In situations of serious injury where it has been decided that settlement by way of
+                  a single lump sum payment is not appropriate, the court can decide that all or part
+                  of the damages will be paid in the form of a continuing series of regular payments.
+                  These payments are known as periodical payments and involve the injured party receiving
+                  a regular payment for the rest of their life. Section 94R deals with the situation
+                  where an agreement is entered into for periodical payments to be made to an injured
+                  person (whether or not with lump sum payments).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">133.</span></h2>
+               <p>Subsection (2) treats the periodical payments as aggregated into a single amount paid
+                  on the date of settlement, so that the compensator does not have to obtain a certificate
+                  of recoverable assistance every time a payment is made. The relevant period is treated
+                  as ending on the day of settlement, as defined in subsection (5), so that no further
+                  recoverable assistance will be deducted from payments made. However, if there is a
+                  payment made which falls outside the agreement, it will be treated as a compensation
+                  payment in the usual way and the relevant period will not be treated as having ended
+                  in relation to that payment.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">134.</span></h2>
+               <p>  Where another person is in fact making the payments (for example, because they are
+                  providing an annuity funded by the person who is liable), it is the person who is
+                  liable who is treated as the compensator and not the person making the payments.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">135.</span></h2>
+               <p>Section 94S provides that where making an order for compensation, the court must specify
+                  the amount of the compensation payment which is attributable to each head of compensation
+                  listed in the table in Part 2 of schedule 12, so that that can then be used to make
+                  the calculation of the compensation payment under deduction of recoverable assistance.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">136.</span></h2>
+               <p>Section 94T allows the Scottish Ministers to make regulations about the information
+                  to be provided where compensation is sought in respect of any accident, injury or
+                  disease. Subsection (2) sets out what the regulations are to contain. This is to ensure
+                  that the Scottish Ministers are provided with sufficient information to be able to
+                  recover assistance from compensation payments. Those regulations will be subject to
+                  affirmative procedure (as the new regulation making power will be added to the list
+                  in section 96(2) of the 2018 Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">137.</span></h2>
+               <p>Section 94U allows the Scottish Ministers to make regulations about the investigation
+                  of any matter relating to the application of this Part to any payment made in consequence
+                  of accident, injury or disease suffered by an individual. This is to ensure that the
+                  circumstances of such payments can be properly investigated where required. Those
+                  regulations will be subject to affirmative procedure (as the new regulation making
+                  power will be added to the list in section 96(2) of the 2018 Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">138.</span></h2>
+               <p>Subsection (2) sets out particular matters which may be included in the regulations.
+                  In particular, this allows for powers of entry to prescribed premises, and the creation
+                  of offences for obstructing an authorised person in their investigations or failing
+                  to comply with requirements as to the provision of information. The maximum penalty
+                  for such offences is a fine not exceeding level 3 on the standard scale (£1,000 at
+                  January 2025). The statutory time bar in section 136 of the Criminal Proceedings (Scotland)
+                  Act 1995 will automatically apply to these offences because they are statutory offences
+                  triable only summarily.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">139.</span></h2>
+               <p>Sections 94V and 94W deal with the interaction between this Part and the equivalent
+                  provisions which apply in the rest of the UK (in England and Wales, the Social Security
+                  (Recovery of Benefits) Act 1997 and in Northern Ireland, the Social Security (Recovery
+                  of Benefits) (Northern Ireland) Order 1997, in each case as amended and supplemented
+                  by regulations). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">140.</span></h2>
+               <p>Section 94V allows the Scottish Ministers to modify this Part to make provision about
+                  the relationship between this Part and the enactments applying in the rest of the
+                  UK where both this Part and those enactments apply. This could happen, for example,
+                  if an individual who is to receive a compensation payment receives benefits in England
+                  and then moves to Scotland and receives recoverable assistance.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">141.</span></h2>
+               <p>Section 94W allows the Scottish Ministers to modify this Part to make provision about
+                  the recovery of payments from a compensator where the compensation payment falls under
+                  the equivalent provisions in the rest of the UK but the compensator is resident in
+                  Scotland.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">142.</span></h2>
+               <p>Regulations under sections 94V and 94W will be subject to affirmative procedure (as
+                  the new regulation making power will be added to the list in section 96(2) of the
+                  2018 Act).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 9 – SCOTTISH COMMISSION ON SOCIAL SECURITY</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 20: Scrutiny of regulations by the Commission </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">143.</span></h2>
+               <p> Section 21 of the 2018 Act establishes the Scottish Commission on Social Security
+                  (“the Commission”) and makes it a body corporate. Section 22 sets out its functions,
+                  which are principally in the form of reporting duties to the Scottish Ministers and
+                  Scottish Parliament. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">144.</span></h2>
+               <p>Under section 97, when the Scottish Ministers propose to make regulations under either
+                  Chapter 2 of Part 2 or section 79 of the 2018 Act, they must, before laying that instrument
+                  in Parliament, inform the Commission of the proposals in the form of draft regulations.
+                  Having been informed of the proposals, the Commission must then prepare a report setting
+                  out its observations and recommendations in relation to the proposals. This report
+                  is submitted to the Scottish Ministers and Scottish Parliament, and made publicly
+                  available. Section 20 of the Act amends section 97 of the 2018 Act to ensure that
+                  these requirements apply regardless of whether regulations are subject to the negative
+                  or the affirmative Parliamentary procedure.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">145.</span></h2>
+               <p>The specific reporting requirements set out at section 97 currently only extend to
+                  regulations made under Chapter 2 of Part 2 or section 79 of the 2018 Act. Section
+                  20 of the Act expands the scope of section 97 to apply those reporting requirements
+                  to more regulation-making powers within the 2018 Act, as follows: </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 11(2) – in relation to independent advocacy services to be delivered in terms
+                     of section 10 of the 2018 Act, there must be compliance with advocacy service standards.
+                     These standards are to be set out, in terms of section 11(2), by way of regulations.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 13(3) – in connection with making a determination of what assistance an individual
+                     is eligible to be given through the Scottish social security system, they may be required
+                     to undergo an assessment. Where an assessment is to occur in terms of section 13(2),
+                     this must be carried out by a suitably qualified person. Section 13(3) allows Scottish
+                     Ministers to specify within regulations who is to be regarded as a suitably qualified
+                     person. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 41(4)(a) – where an individual has a right to request a re-determination of
+                     their entitlement in terms of section 41(1), a request for a re-determination will
+                     only be valid if it meets the conditions set out at sections 41(3) and (4). This includes
+                     making a request within a period to be prescribed by the Scottish Ministers in regulations,
+                     as set out at section 41(4)(a).</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 43(5) – under section 43, on being requested to re-determine an individual’s
+                     entitlement, the Scottish Ministers must aim to make the determination within the
+                     period allowed for re-determination. Section 43(5) sets out that the period allowed
+                     for re-determination is to be prescribed by the Scottish Ministers in regulations.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 51(1) – this section allows the Scottish Ministers to make provision by way
+                     of regulations for a determination of entitlement to be made on the basis of ongoing
+                     entitlement to that type of assistance, and provide for exceptions to any such provision.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 52 – this section provides that Scottish Ministers may in regulations specify
+                     circumstances in which they are to make a determination of an individual’s entitlement
+                     to a particular type of assistance without receiving an application; the regulations
+                     may also make provision about the information to be used and assumptions to be made
+                     in making a determination without receiving an application.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 63(12) – this provision allows the Scottish Ministers to make regulations
+                     defining the meaning of “the individual’s representative” for the purpose of determining
+                     liability for assistance given in error.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 69A(4)(a) – this section provides that the Scottish Ministers are to prescribe
+                     the period within which an individual or individual’s representative may request a
+                     review of a decision that they are liable to repay assistance given in error.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 69C(6) – this section provides that the Scottish Ministers are to prescribe
+                     the period within which a review of a decision that an individual or individual’s
+                     representative is liable to repay assistance given in error should be carried out.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 79(1) – this section allows the Scottish Ministers to make regulations to
+                     provide for financial assistance to be given to top up a reserved benefit.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 81(8) – this section makes provision for a ‘carer’s allowance supplement’
+                     to be paid to qualifying individuals. Section 81(2) and (2A) detail who will be a
+                     qualifying individual, and section 81(8) allows modification of this section by way
+                     of regulations, to alter the definition of who is a qualifying individual.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 82 – this section allows the Scottish Ministers, by way of regulations, to
+                     repeal section 81 and revoke any regulations made under it, and repeal section 82.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 84A(1) – this section allows the Scottish Ministers to make provision, by
+                     way of regulations, about investigation of offences under the 2018 Act or regulations
+                     made using section 79.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 85B(5) – this provision requires the Scottish Ministers to make regulations
+                     defining the meaning of an “appropriate person” for the purpose of certifying an appointment
+                     to act on behalf an individual in connection with the determination of the individual's
+                     entitlement to assistance.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 85F(1) – this section allows the Scottish Ministers to treat a person appointed
+                     by the UK Department for Work and Pensions for a limited time as though they are an
+                     appointee under the 2018 Act.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 87B(4)(c) – this provision allows the Scottish Ministers to make regulations
+                     setting out the circumstances in which a written response is required by an individual
+                     to a request for information for audit.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 87B(4)(d) – this provision allows the Scottish Ministers to make regulations
+                     setting out other required forms of responses to requests for information for audit.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 87B(5) – this provision allows the Scottish Ministers to make regulations
+                     exempting categories of individuals from requests for information for audit.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 87C(1) – this provision allows the Scottish Ministers to make regulations
+                     setting the deadline for an individual to ask Ministers to withdraw a request for
+                     information for audit.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 87C(4) – this provision allows the Scottish Ministers to make regulations
+                     setting the deadline for Ministers to decide whether an individual has a good reason
+                     for seeking the withdrawal of a request for information for audit.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 93A(1) – this section allows the Scottish Ministers, by regulations, to establish
+                     one or more schemes to give financial assistance to individuals who have had experience
+                     of being in the care system.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Section 95 – this section allows the Scottish Ministers to make ancillary provision
+                     as they consider appropriate for the purposes of, or in connection with, or for giving
+                     full effect to the 2018 Act or any provision made under it. Where this power is used
+                     in combination with another section to be included within the section 97 scrutiny
+                     requirements, its exercise will also be included within those requirements.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">146.</span></h2>
+               <p>In addition to these further regulation-making powers in the 2018 Act, section 20
+                  of the Act also provides for scrutiny by the Commission of regulations made in relation
+                  to Best Start Foods. This is a benefit which is legislated for under regulation-making
+                  powers set out at section 13 of the Social Security Act 1988 and section 175(4) of
+                  the Social Security Contributions and Benefits Act 1992. When exercised together,
+                  these powers are now included within the terms of section 97 as per the insertion
+                  made by section 20(2)(b) of the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">147.</span></h2>
+               <p>Finally, section 20(2)(e) of the Act allows the Scottish Ministers to make regulations
+                  amending the list of powers in section 97 which are subject to scrutiny by the Commission
+                  by adding, removing or varying the description of a power.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 21: Removal of Commission’s status as body corporate</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">148.</span></h2>
+               <p>This section of the Act repeals the Commission’s status as a body corporate under
+                  the 2018 Act. A body corporate is an entity with its own legal existence, making it
+                  capable of legal functions such as entering into contracts or employing staff. Since
+                  the coming into force of the 2018 Act the Commission has not used any functions which
+                  its status as a body corporate would allow, so this section aligns its status with
+                  how it has operated in practice. It will continue to be recognised as an advisory
+                  non-departmental public body.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 22: Removal of Commission’s accounting and auditing duties </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">149.</span></h2>
+               <p> As an advisory non-departmental public body within the Scottish Administration, the
+                  Commission does not itself require to meet auditing requirements. This is because
+                  under section 19(1) of the Public Finance and Accountability (Scotland) Act 2000,
+                  there is a duty for the Scottish Ministers and every other person to whom funds are
+                  paid out of the Scottish Consolidated Fund in a financial year to prepare accounts
+                  of their expenditure and receipts for that year. Since it receives funding in this
+                  way, the Commission’s accounts are covered within the Scottish Ministers’ duty under
+                  section 19 of the 2000 Act, and the Commission’s accounting and auditing duties under
+                  the 2018 Act are legally otiose. Section 22 of the Act therefore repeals those duties.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 23: Duty on Commission to publish annual report</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">150.</span></h2>
+               <p> This section creates a new annual reporting duty for the Commission by amending section
+                  22 of the 2018 Act on the Commission’s functions. This report is to be prepared and
+                  published as soon as practicable after the end of each financial year. The Commission
+                  are also required to submit a copy of the report to the Scottish Ministers, who are
+                  then required in turn to lay a copy of the report before the Scottish Parliament.
+                  The report is to provide information about the Commission’s performance of their functions
+                  over the course of the year.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PART 10: FINAL PROVISIONS</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 24: Meaning of “2018 Act”</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">151.</span></h2>
+               <p>This section provides that the Social Security (Scotland) Act 2018 is referred to
+                  throughout the Act as the “2018 Act”.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 25: Ancillary provision</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">152.</span></h2>
+               <p>This section gives the Scottish Ministers a freestanding regulation-making power to
+                  make any incidental, supplementary, consequential, transitional, transitory or saving
+                  provision that they consider appropriate for the purposes of, or in connection with,
+                  or for giving full effect to, the Act. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">153.</span></h2>
+               <p>Subsection (2) allows such regulations to modify any legislation, including the Act
+                  itself: in doing so the regulations would be subject to the affirmative Parliamentary
+                  procedure. Otherwise they are subject to the negative procedure.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 26: Regulation-making powers</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">154.</span></h2>
+               <p>This section amends section 96 of the 2018 Act in order to set out the Parliamentary
+                  procedure for the regulation-making powers amended into the 2018 Act by this Act.
+                  The affirmative powers are listed in section 96(2) of the 2018 Act and the negative
+                  powers in section 96(3). </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 27: Commencement</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">155.</span></h2>
+               <p>This section provides that Part 10 of the Act comes into force on the day after Royal
+                  Assent. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">156.</span></h2>
+               <p>All other provisions of the Act are to come into force on a day appointed by regulations
+                  made by the Scottish Ministers. These regulations may make transitional, transitory
+                  or saving provision related to commencement and may make different provision for different
+                  purposes. These regulations are also required to be laid before the Parliament under
+                  section 30 of the Interpretation and Legislative Reform (Scotland) Act 2010, but they
+                  are not otherwise subject to any Parliamentary procedure.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 28: Short title </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">157.</span></h2>
+               <p>This section provides that the Act will be referred to as the Social Security (Amendment)
+                  (Scotland) Act 2025.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PARLIAMENTARY HISTORY</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">158.</span></h2>
+               <p>The following is a list of the proceedings in the Scottish Parliament on the Bill
+                  for the Act and significant documents connected to the Bill published by the Parliament
+                  during the Bill’s parliamentary passage.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:2.26in">
+                     <col style="width:4in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <p>
+                           <b>
+                              <i>Proceedings and reports</i>
+                              </b>
+                           </p>
+                        <p>
+                           <b>
+                              <i>Reference</i>
+                              </b>
+                           </p>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Introduction</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill As Introduced – 13 June 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/social-security-amendment-scotland-bill/introduction/bill-as-introduced.pdf">
+                                 <u>Social Security (Amendment) (Scotland) Bill</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Stage 1</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <i>Social Justice and Social Security Committee</i>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on 09 November 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15540">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on 07 March 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15750">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on 14 March 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15766">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on 21 March 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15782">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on 28 March 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15796">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on 18 April 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15810">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Meeting on 09 May 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15854">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 Report on the Circular Economy (Scotland) Bill </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://bprcdn.parliament.scot/published/SJSS/2024/5/14/af859f4f-bfe5-4cfa-935b-0f865372a8d6/SJSSS062024R5.pdf">
+                                 <u>Stage 1 Report on the Social Security (Amendment) (Scotland) Bill</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Response to Stage 1 Report from the Cabinet Secretary for Social Justice</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/committees/social-justice-and-social-security-committee/social-security-amendment-scotland-bill/cabinet-secretary-for-social-justice--social-security-amendment-scotland-bill-stage-1-report-respons.pdf">
+                                 <u>cabinet-secretary-for-social-justice--social-security-amendment-scotland-bill-stage-1-report-respons.pdf</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <i>Delegated Powers and Law Reform Committee</i>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers in the Circular Economy (Scotland) Bill Stage 1 Report </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://bprcdn.parliament.scot/published/DPLR/2024/3/26/c147e069-4af6-4835-abb7-4e0fbcce794f/DPLRS062024R24.pdf">
+                                 <u>Delegated powers in the Social Security (Amendment) (Scotland) Bill at Stage 1</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <i>Consideration by Parliament</i>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 Debate – 04 June 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=15909">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Stage 2</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <i>Social Justice and Social Security Committee</i>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>First Meeting on Amendments – 19 September 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16002">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Second Meeting on Amendments – 26 September 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16018">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill As Amended at Stage 2 </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/social-security-amendment-scotland-bill/stage-2/bill-as-amended.pdf">
+                                 <u>Social Security (Amendment) (Scotland) Bill</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <i>Delegated Powers and Law Reform Committee</i>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers in the Circular Economy (Scotland) Bill (As Amended At Stage 2) Report
+                              – 21 June 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://bprcdn.parliament.scot/published/DPLR/2024/11/15/5de3b7cd-3a99-4ee1-b327-038c91402bb7/DPLRS062024R66.pdf">
+                                 <u>Delegated powers in the Social Security (Amendment) (Scotland) Bill (as amended at
+                                    Stage 2)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Stage 3</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Debate on Proposed Amendments and Final Debate on Bill – 03 December 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16139">
+                                 <u>Official Report</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill As Passed – 26 June 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/social-security-amendment-scotland-bill/stage-3/bill-as-passed.pdf">
+                                 <u>Bill as passed</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Royal Assent</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>23 January 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.legislation.gov.uk/asp/2025/2/contents/enacted">
+                                 <u>Social Security (Amendment) (Scotland) Act 2025</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

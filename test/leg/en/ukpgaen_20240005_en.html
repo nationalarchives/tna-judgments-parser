@@ -1,0 +1,729 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NATIONAL INSURANCE CONTRIBUTIONS (REDUCTION IN RATES)</b>
+               <b>
+                  </b>
+               <b>ACT 2024</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the National Insurance Contributions (Reduction
+                     in Rates) Act 2024 which received Royal Assent on 20 March 2024 (c. 5). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by HM Revenue and Customs (HMRC) in order
+                     to assist the reader in understanding the Act. They do not form part of the Act and
+                     have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act introduces a cut in the main rate of primary (employee) Class 1 National
+                     Insurance contributions (NICs) from 10% to 8% and a cut in the main rate of self-employed
+                     Class 4 NICs from the previously announced rate of 8% to 6%. The reduction in rates
+                     to 8% was legislated in the National Insurance Contributions (Reduction in Rates)
+                     Act 2023. The further rate cuts take effect from 6 April 2024. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act is intended to provide a further cut in the amount of NICs paid for 29 million
+                     working people, worth over £450 to the average employee earning £35,400 per annum
+                     and £310 to the average self-employed person with profits of £28,000 per annum.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Legislation relating to the existing system of NICs and social security benefits is
+                     set out in a combination of primary and subordinate legislation. The most relevant
+                     provisions are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Social Security Contributions and Benefits Act 1992 (SSCBA 1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Social Security Contributions and Benefits (Northern Ireland) Act 1992 (SSCB(NI)A
+                        1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>National Insurance Contributions (Reduction in Rates) Act 2023.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>Social Security (Contributions) Regulations 2001 (S.I. 2001/1004).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>These provisions will continue to be the main legislation dealing with NICs. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Act extends to, that is forms part of, the law of England and Wales, Scotland
+                     and Northern Ireland. Amendments the Act makes to the legislation of Great Britain
+                     and Northern Ireland have the same extent as the enactments they amend. The Act applies
+                     in England, Wales, Scotland and Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, Senedd
+                     Cymru or the Northern Ireland Assembly without consent of the legislature concerned.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the Scottish Parliament, Senedd Cymru or the Northern Ireland Assembly,
+                     and no legislative consent motion is being sought in relation to any provision of
+                     the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Reduction in rates</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 1(1)(a) amends section 8(2)(a) SSCBA 1992 to reduce the main primary percentage
+                     of Class 1 NICs paid by employees from 10% to 8%. Section 1(1)(b) makes equivalent
+                     provisions for Northern Ireland by amending SSCB(NI)A 1992.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 1(3)(a) amends section 15(3ZA)(a) SSCBA 1992 to reduce the main Class 4 percentage
+                     paid by the self-employed to 6%. Section 1(3)(b) makes equivalent provisions for Northern
+                     Ireland by amending SSCB(NI)A 1992.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 1(2) reduces the reduced rate that applies in relation to a historic class
+                     of married women and widows. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 1(4) provides that section 2 of the National Insurance Contributions (Reduction
+                     in Rates) Act 2023 is superseded by section 1(3) and accordingly is to be treated
+                     as never having had effect. The current main Class 4 percentage is 9%. Section 2 of
+                     the National Insurance Contributions (Reduction in Rates) Act 2023 would have set
+                     the Class 4 NIC rate at 8% for the start of the 2024-25 tax year (if that section
+                     had not been superseded by section 1(3) of this Act).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The amendments made by Section 1 take effect from 6 April 2024.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Annual maximum contributions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 2 amends S.I. 2001/1004. Section 2 amends the calculation of the annual maximum
+                     for the start of the 2024-25 tax year, as set out in regulations 21 and 100 of S.I.
+                     2001/1004 to reflect the reduced main rates of primary Class 1 NICs and Class 4 NICs.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 2(4) provides that paragraph 3 of the Schedule to the National Insurance Contributions
+                     (Reduction in Rates) Act 2023 is superseded by this section and accordingly is to
+                     be treated as never having had effect. Paragraph 3 of the National Insurance Contributions
+                     (Reduction in Rates) Act 2023 would have set the annual maximum specified in regulations
+                     21 and 100 of S.I. 2001/1004 for the start of the 2024-25 tax year based on the rate
+                     reductions in that Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 3(1) provides that the Act comes into force on 6 April 2024.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 3(2) gives the short title of the Act as the National Insurance Contributions
+                     (Reduction in Rates) Act 2024.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>All the provisions in the Act come into force on 6 April 2024. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>A Tax Information and Impact Note has been published by HM Revenue and Customs.<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.89in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.18in">
+                        <col style="width:1.28in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>England</b>
+                              </p>
+                           <p>
+                              <b>Wales</b>
+                              </p>
+                           <p>
+                              <b>Scotland</b>
+                              </p>
+                           <p>
+                              <b>Northern Ireland</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.43in">
+                        <col style="width:3.12in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>7 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2024-03-07/debates/F1CABA77-BC64-4D76-9CFD-87DF07E06779/BillPresented">
+                                    <u>Vol. 746 Col. 984</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>13 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-03-13/debates/310F0D59-4DFA-4030-9C7C-4197DCBC05C8/NationalInsuranceContributions(ReductionInRates)(No2)Bill">
+                                    <u>Vol. 747 Col. 331</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>13 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-03-13/debates/F2155AEA-F281-4DC6-92ED-2D14A83072C5/NationalInsuranceContributions(ReductionInRates)(No2)Bill">
+                                    <u>Vol. 747 Col. 374</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>13 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-03-13/debates/F2155AEA-F281-4DC6-92ED-2D14A83072C5/NationalInsuranceContributions(ReductionInRates)(No2)Bill">
+                                    <u>Vol. 747 Col. 386</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>13 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-03-13/debates/761845A7-EEF8-4C59-8F9A-BC1587C5F799/NationalInsuranceContributions(ReductionInRates)(No2)Bill">
+                                    <u>Vol. 836 Col. 2101</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-03-18/debates/F89EA9D1-AA85-4D3A-A254-F31E9B89C7E5/NationalInsuranceContributions(ReductionInRates)(No2)Bill">
+                                    <u>Vol. 837 Col. 86</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee Stage</p>
+                           </td>
+                           <td>
+                              <p>19 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-03-19/debates/AA890986-F117-44F6-9E55-81B4A601E9CD/NationalInsuranceContributions(ReductionInRates)(No2)Bill">
+                                    <u>Vol. 837 Col.106</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>19 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-03-19/debates/AA890986-F117-44F6-9E55-81B4A601E9CD/NationalInsuranceContributions(ReductionInRates)(No2)Bill">
+                                    <u>Vol. 837 Col. 106</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>20 March 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons<u></u><a href="https://hansard.parliament.uk/Commons/2024-03-20/debates/4848D016-14F3-46D7-98C1-D4137E77F908/HMRCSelf-AssessmentHelpline"><u>Vol. 747 Col. 943</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords<u></u><a href="https://hansard.parliament.uk/Lords/2024-03-20/debates/16514A7F-CB94-4A6F-9F3E-D5CEF9E182A6/RoyalAssent"><u>Vol. 837 Col. 195</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.04in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>Section of the Act</p>
+                           <p>Bill as Introduced in the Commons</p>
+                           <p>Bill as amended in Committee in the Commons </p>
+                           <p>Bill as introduced in the Lords</p>
+                           <p>Bill as amended in Committee in the Lords</p>
+                           <p>Bill as amended on Report in the Lords</p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/publications/changes-to-national-insurance-contributions-from-6-april-2024/reduction-to-the-main-rates-of-primary-class-1-and-class-4-national-insurance-contributions"><u><a href="https://www.gov.uk/government/publications/changes-to-national-insurance-contributions-from-6-april-2024/reduction-to-the-main-rates-of-primary-class-1-and-class-4-national-insurance-contributions">https://www.gov.uk/government/publications/changes-to-national-insurance-contributions-from-6-april-2024/reduction-to-the-main-rates-of-primary-class-1-and-class-4-national-insurance-contributions</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

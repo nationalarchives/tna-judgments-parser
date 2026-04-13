@@ -1,0 +1,1271 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>DIVORCE, DISSOLUTION AND SEPARATION ACT 2020</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Divorce, Dissolution and Separation Act 2020
+                     which received Royal Assent on 25 June 2020 (c. 11). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Ministry of Justice to assist the
+                     reader in understanding the Act. They do not form part of the Act and have not been
+                     endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>Overview of the Act</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1 </span></h2>
+               <p>The Act will revise the legal process in England and Wales for married couples to
+                  obtain a divorce or judicial separation and for civil partners to dissolve their civil
+                  partnership (a process termed dissolution) or obtain a separation. It will therefore
+                  amend certain provisions set out in the Matrimonial Causes Act 1973 and the Civil
+                  Partnership Act 2004, which are the main statutes governing these proceedings.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Divorce and dissolution are a fundamental change of legal status that may have implications
+                     for people’s rights and responsibilities, for matters such as property and inheritance,
+                     and for the families involved. Since the Matrimonial Causes Act 1857, divorce has
+                     always been a court process.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Prior to the Act, the law on divorce dated back, in large part, to the Divorce Reform
+                     Act 1969, which replaced the previous grounds of divorce (adultery, desertion, cruelty
+                     and being “incurably of unsound mind”) with the sole ground that the marriage has
+                     broken down irretrievably.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The current legal process of divorce (prior to the implementation of the Act) can
+                     only be initiated by one party to the marriage (the “petitioner”). The other party
+                     (the “respondent”) must then acknowledge that they have received (been “served with”)
+                     the petition and state whether they disagree with the divorce and intend to contest
+                     (“defend”) it. Only around 2% of respondents indicate an intention to contest, and
+                     only a handful of such cases progress to a final court hearing in front of a judge.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Currently (prior to the implementation of the Act), the law requires a person seeking
+                     a divorce to satisfy the court that the legal test of irretrievable breakdown is met
+                     by citing in the divorce petition one or more of five “facts”, as the statute calls
+                     them. Three facts are based on conduct (adultery, behaviour – commonly referred to
+                     as “unreasonable behaviour” – and desertion). Two facts are based on a period of separation
+                     prior to filing the petition for divorce (two years if both parties consent to the
+                     divorce, or five years otherwise).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The court can hold that the marriage has broken down irretrievably only if it is satisfied
+                     of one of the five facts. If one of the five facts is made out, the court must grant
+                     the decree of divorce. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Granting a divorce is a two-stage process in which the court will first grant a conditional
+                     decree (the “decree nisi”). This signifies that the court is satisfied that the marriage
+                     can be brought to a legal end because it has broken down irretrievably. To finalise
+                     the divorce and legally end the marriage, the petitioner must wait for at least six
+                     weeks from the granting of the decree nisi and can then apply to the court for the
+                     decree of divorce to be made final (the “decree absolute”).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Decrees of judicial separation are granted on a similar basis to divorce in some respects.
+                     A fact must be proved, but judicial separation does not bring a legal end to the marriage
+                     and therefore there is no ground of irretrievable breakdown and instead the decree
+                     is granted in a single stage.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>With the introduction of civil partnerships through the Civil Partnership Act 2004,
+                     the legal processes for dissolution and separation largely mirrored those for marriage.
+                     There are some differences, such as adultery not being an available fact, and the
+                     terminology of some aspects of these processes. (In respect of a civil partnership,
+                     the equivalent of a decree, for example, is an order, and the statute refers to applicants
+                     rather than petitioners.)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Ministry of Justice publishes statistics on matrimonial proceedings, including
+                     case progression, at <a href="https://www.gov.uk/government/collections/family-court-statistics-quarterly"><u>https://www.gov.uk/government/collections/family-court-statistics-quarterly</u></a>. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Government set out its proposals for reform in September 2018 and held a twelve-week
+                     public consultation. The Government responded to the consultation in April last year.
+                     The Government’s consultation paper, response and associated documents are available
+                     at <a href="https://consult.justice.gov.uk/digital-communications/reform-of-the-legal-requirements-for-divorce"><u>https://consult.justice.gov.uk/digital-communications/reform-of-the-legal-requirements-for-divorce</u></a>. These set out the Government’s assessment of the evidence leading to its conclusion
+                     that the existing requirement to make allegations about conduct can introduce or worsen
+                     ongoing conflict and be harmful to any children.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The Government’s policy intention behind the reformed law is that the decision to
+                     divorce should be a considered one, and that separating couples should not be put
+                     through legal requirements which do not serve their or the state’s interests and which
+                     can lead to ongoing conflict and poorer outcomes for children. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>In summary, the measures in the Act: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <b>Replace the requirement to provide evidence of conduct or separation facts with a
+                           new requirement to provide a statement of irretrievable breakdown.</b>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <b>Remove the possibility of contesting the decision to divorce</b>, as the statement of irretrievable breakdown is to be taken as conclusive evidence
+                        that the marriage has broken down irretrievably. (Divorce proceedings will still be
+                        able to be challenged for other reasons including jurisdiction, validity of the marriage,
+                        fraud and procedural compliance.)</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <b>Introduce a minimum overall timeframe of six months (26 weeks) into the divorce process</b>, made up of a new period of twenty weeks between the start of proceedings and when
+                        the application can be progressed to conditional order (there is currently no minimum
+                        period between these stages), and the current minimum timeframe of six weeks between
+                        the grant of a conditional order (decree nisi) and when the order can be made final
+                        (decree absolute). </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <b>Enable the Lord Chancellor by order to adjust the time periods</b> between the start of proceedings and confirmation to the court that the conditional
+                        order of divorce (decree nisi) may be made, and between the conditional order and
+                        final order (decree absolute) stages, subject to the proviso that the total period
+                        may not exceed 26 weeks (six months).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <b>Introduce a new option of a joint application</b> for cases where the decision to divorce is a mutual one, in addition to retaining
+                        the current ability of one party to initiate the legal process of divorce. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <b>Update terminology,</b> for example replacing terms such as “decree nisi”, “decree absolute” and “petitioner”
+                        with “conditional order”, “final order” and “applicant”.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The relevant changes above are also reflected in the changes being made to applications
+                     for separation orders; removing the ‘fact’ requirement in separation proceedings and
+                     replacing this with a statement that the applicant seeks (or both applicants seek)
+                     to be judicially separated. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Minor changes are also being made in relation to proceedings for nullity of marriage,
+                     principally to provide the Lord Chancellor with a power to amend the minimum time
+                     period before a conditional nullity of marriage order can be made final. This will
+                     align the position with that currently found in the 2004 Act for nullity of civil
+                     partnerships. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The principal statute governing divorce, judicial separation and nullity of marriage
+                     in England and Wales is the Matrimonial Causes Act 1973. This is a consolidating Act
+                     that in large part consolidated provisions enacted by the Divorce Reform Act 1969
+                     (which introduced irretrievable breakdown of the marriage as the sole ground for divorce)
+                     and by the Nullity of Marriage Act 1971 (which provided that a decree of nullity in
+                     the case of a voidable marriage would no longer have retrospective effect). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The Matrimonial Causes Act 1973 has, since enactment, been amended by a number of
+                     other statutes, for example to deal with a marriage formed by the conversion of a
+                     civil partnership and to remove the provision that voided the marriage of a same-sex
+                     couple.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Certain other statutes make ancillary provision in matrimonial proceedings. Part II
+                     of the Family Law Act 1986, for instance, makes provision for the recognition of divorces,
+                     annulments and legal separations ordered outside England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The Civil Partnership Act 2004 largely mirrors this provision for civil partnership
+                     dissolution, separation and nullity. There are some differences, including adultery
+                     not being an available fact in the dissolution of a civil partnership. The Civil Partnership
+                     Act 2004 was not a consolidating Act, and so there are also some presentational differences.
+                     The civil partnership equivalents of a decree nisi and decree absolute are a conditional
+                     order and a final order, petitions are applications and petitioners are applicants.
+                     The Divorce, Dissolution and Separation Act mirrors, in turn, this later terminology
+                     in respect of proceedings following a marriage. The approach to drafting that was
+                     possible with the Civil Partnership Act 2004 means that this Act requires less consequential
+                     amendment than the Matrimonial Causes Act 1973.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Because divorce (or civil partnership dissolution) effects a change of legal status,
+                     there are also references to divorce in some statutes outside family law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The practice and procedure in matrimonial proceedings – such as when applications
+                     can be made and how the court deals with them – are set by rules of court. These can
+                     be found principally at Part 7 of the Family Procedure Rules 2010 and the associated
+                     Practice Directions, supplemented by other Parts of the Rules dealing with matters
+                     applying more widely to family proceedings, such as case management and service of
+                     documents.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 7 sets out the territorial extent of the Act i.e. the jurisdictions of which
+                     the law forms a part. The extent of an Act can be different from its application.
+                     Application is about where an Act produces a practical effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subject to subsections (2) and (3), the provisions of the Act extend and apply to
+                     England and Wales only. Subsection (2) provides that section 6 relating to minor and
+                     consequential amendments, section 7 itself, section 8 on commencement and transitional
+                     provision and section 9 containing the short title, all form part of the law of the
+                     United Kingdom. Subsection (3) provides that an amendment or repeal made by the Schedule
+                     has the same extent as the provision amended or repealed. The amendments and repeals
+                     made by the Schedule extend and apply to England and Wales, save for Part 3 of the
+                     Schedule of minor and consequential amendments which contains amendments to a small
+                     number of provisions that also extend and apply to Northern Ireland and/or Scotland,
+                     in one instance apply to Wales only, in one instance extend and apply to Scotland
+                     only, and in one instance extend and apply to Northern Ireland only. These amendments
+                     amend references to divorce, judicial separation and/or nullity decrees from, or such
+                     proceedings in, the courts of England and Wales. More information is provided in Annex
+                     A.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Divorce and judicial separation</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 1: Divorce: removal of requirement to establish facts etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>This section substitutes a new section 1 of the Matrimonial Causes Act 1973.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>New subsection (1) provides that an application for a divorce order may be made to
+                     the court by either or both parties to a marriage. New subsection (2) specifies that
+                     an application for divorce must be accompanied by a statement that the marriage has
+                     broken down irretrievably (“statement of irretrievable breakdown”), and that this
+                     statement may be made by the applicant or applicants (in a joint application). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>New subsection (3) makes clear that a court in receipt of an application under subsection
+                     (1) must take the statement of irretrievable breakdown as conclusive evidence that
+                     the marriage has broken down irretrievably, and make a divorce order accordingly.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>New subsection (4) provides that a divorce order is at first a conditional order and
+                     may not be made final before 6 weeks have elapsed from the making of the conditional
+                     order. New subsection (5) provides that the court cannot make a conditional order
+                     until the applicant, or both joint applicants, has or have confirmed to the court
+                     that they want the application to continue, and the applicant(s) cannot give that
+                     confirmation until 20 weeks have elapsed since the start of the proceedings. Rules
+                     of court govern how and when proceedings are started. The current provision in rule
+                     5.3 of the Family Procedure Rules 2010 provides that proceedings are started when
+                     a court officer issues an application at the request of the applicant (an application
+                     is issued on the date entered in the application form by the court officer). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>New subsection (6) provides that the Lord Chancellor may, by statutory instrument,
+                     shorten or lengthen the minimum periods set out in subsection (4)(b) or (5). Any such
+                     statutory instrument containing an order under subsection (6) may not be made unless
+                     a draft of the instrument has been laid before and approved by a resolution of each
+                     House of Parliament (new subsection (9)). New subsection (7) stipulates that the Lord
+                     Chancellor may not vary the minimum periods set out in subsections (4)(b) and (5)
+                     so as to provide for a total minimum period exceeding 26 weeks.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>New subsection (8) provides that the court may, in a particular case, shorten the
+                     time periods set out in subsections (4)(b) and (5). This replaces the existing power
+                     of the court currently set out in section 1(5) of the Matrimonial Causes Act 1973
+                     to reduce the six-week period to decree absolute in exceptional cases (such as in
+                     the case of terminal illness or imminent birth of a child to one of the parties).
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>New subsection (10) provides that Family Procedure Rules may make provision as to
+                     the procedure for a joint application to become a sole application. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Judicial separation: removal of factual grounds</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>This section amends section 17 of the Matrimonial Causes Act 1973.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection (2) substitutes subsection (1) of section 17 and provides that an application
+                     for a judicial separation order may be made by either or both of the parties to a
+                     marriage. New subsection (1A) specifies that an application for judicial separation
+                     must be accompanied by a statement that it is the intention of one or both parties
+                     to the marriage to be judicially separated from one another. New subsection (1B) provides
+                     that the court dealing with the application must make a judicial separation order.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Subsection (3) omits the current subsection (2) of section 17, reflective of the removal
+                     of the facts in the substituted section.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Subsection (4) updates the language in section 17 for clarity and for consistency
+                     with divorce, dissolution and separation in a civil partnership.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Civil Partnership: dissolution and separation</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Dissolution: removal of requirement to establish facts</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>This section amends section 44 of the Civil Partnership Act 2004.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Subsection (2) provides for an application to the court for dissolution to be made
+                     by either one or both civil partners. Subsection (3) introduces new subsection (1A)
+                     of section 44, which provides that an application for dissolution must be accompanied
+                     by a statement that the civil partnership has broken down irretrievably, made by either
+                     one or both of the applicants. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Subsection (4) omits subsections (2) and (3) of section 44 (which relate to the facts
+                     alleged and are accordingly no longer applicable). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Subsection (5) replaces subsection (4) of section 44 to provide that the court must
+                     take the statement of irretrievable breakdown, made by one or both of the parties
+                     to a civil partnership, as conclusive evidence that the civil partnership has broken
+                     down irretrievably, and make a dissolution order accordingly. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Subsection (6) omits subsection (5) of section 44 (which contains the facts that no
+                     longer apply).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Subsection (7) inserts provision that Family Procedure Rules may make provision as
+                     to the procedure for a joint application for dissolution to become a sole application.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Dissolution orders: time limits</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>This section amends sections 37 and 38 of the Civil Partnership Act 2004 and inserts
+                     a new section 37A.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Subsection (2) omits subsection (2) of section 37 (the current provision stating that
+                     a dissolution, nullity or presumption of death order is at first a conditional order
+                     and may not be made final before the end of the prescribed period set out in section
+                     38). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Subsection (3) inserts new section 37A, which reflects the amendments to the Matrimonial
+                     Causes Act made by section 1 and provides that every dissolution order is at first
+                     a conditional order and may not be made final before the end of 6 weeks from the making
+                     of the conditional order. It also provides for the minimum time periods between stages
+                     and provides a power for the Lord Chancellor to amend these minimum time periods in
+                     a way that reflects the timeframes and Lord Chancellor power set out for divorce in
+                     section 1 of this Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Subsection (4) amends section 38 (which deals with nullity and presumption of death
+                     orders) to insert a new subsection (A1) which provides for each such order to be conditional
+                     in the first instance and not to be made final before the end of the prescribed period.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Separation: removal of factual grounds</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>This section amends section 56 of the Civil Partnership Act 2004.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Subsection (2) amends subsection (1) of section 56 to provide that a separation order
+                     may be applied for by either or both of the parties to a civil partnership. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Subsection (3) inserts new subsection (1A), which sets out that any application for
+                     a civil partnership separation order must be accompanied by a statement stating that
+                     it is the intention of one or both civil partners to be separated from one another.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Subsection (4) omits subsection (2) of section 56 (the current provision requiring
+                     the court to inquire into facts alleged). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Subsection (5) restates current subsection (3) of section 56 (to provide that the
+                     court must make a separation order (if the requirements are met)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Subsection (6) omits subsection (4) of section 56 (which cross-refers to provision
+                     elsewhere in the 2004 Act which relates to the facts alleged, and which is repealed
+                     by provision in the Schedule to the Act).</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>General</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Minor and consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Subsection (1) of this section introduces the Schedule, which contains minor and consequential
+                     amendments resulting from the main provisions of this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Subsections (2) to (7) allow the Lord Chancellor by regulations made by statutory
+                     instrument to make provision consequential on the provisions of this Act, including
+                     transitional or saving provision. Regulations may amend, repeal or revoke provisions
+                     made by or under primary legislation.</p>
+               </section>
+               <section class="level">
+                  <p> Section 7: Extent</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Section 7 sets out the extent of the Act (see commentary at paragraphs 16 to 18 above
+                     and Annex A for further information).</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Commencement and transitional provisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Provision in sections 6(2) to (7) (power to make consequential provision), 7 (extent)
+                     and 9 (short title), together with Sections 1 and 3 in so far as they confer power
+                     to make provision by Family Procedure Rules, came into force on the day the Bill received
+                     Royal Assent. All other provisions will come into force on such day as the Lord Chancellor
+                     may by regulations appoint.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Subsections (4) to (7) make transitional provision to disapply various provisions
+                     where proceedings have started before the commencement date, so that these proceedings
+                     can continue under the Matrimonial Causes Act 1973 and the Civil Partnership Act 2004
+                     before their amendment through this Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Section 9 sets out the short title of the Act. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Schedule: Minor and consequential amendments</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>The provisions in this Schedule have the same extent and application as the provisions
+                     that they amend. The provisions amended by Parts 1 and 2 extend to England and Wales
+                     only. The provisions amended by Part 3 extend and apply to England and Wales, in a
+                     small number of cases also extend and apply to Northern Ireland and Scotland, in one
+                     instance apply to Wales only, in one instance extend and apply to Scotland only and
+                     in one instance extend and apply to Northern Ireland only. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Part 1 of this Schedule makes amendments to the Matrimonial Causes Act 1973 that are
+                     minor and consequential on sections 1 and 2 of this Act, for consistency of approach
+                     and terminology within the Act and with present and amended provisions of the Civil
+                     Partnership Act 2004.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Part 2 of this Schedule amends the Civil Partnership Act 2004 in a number of minor
+                     ways that are consequential on sections 3, 4 and 5 of this Act, and for consistency
+                     of terminology and approach within the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Part 3 makes amendments to other Acts that are minor and consequential on sections
+                     1 to 5 of the Act, typically where these other Acts contain references to decrees
+                     of divorce, judicial separation or nullity that need to be amended to reflect the
+                     new terminology of orders.</p>
+               </section>
+               <section class="level">
+                  <p>Part 1: Amendments to the Matrimonial Causes Act 1973</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Paragraphs 2, 4, 5, 10(b), 16(a), 17 and 31 omit and/or amend sections of the Matrimonial
+                     Causes Act 1973 which are no longer necessary or appropriate because they relate to
+                     evidence of facts of irretrievable breakdown which will no longer exist by virtue
+                     of section 1. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>Paragraphs 3, 6 to 9, 10 (but for subparagraph (1)), 11, 13, 16(b), 18(a), 19 to 21
+                     and 23 to 30 amend provisions of the Act for consistency with sections 1 and 2 (which
+                     substitute new section 1 and amend section 17 respectively), such as changes of references
+                     in the current Act from petitions to applications, and from granting of decrees nisi
+                     and absolute to making of conditional and final orders, as well as to reflect the
+                     fact that applications for divorce orders can now be made jointly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>Paragraph 12 inserts a new section 12B that will ensure consistency of approach to
+                     nullity orders as currently found in the Act and with terminology introduced by sections
+                     1 and 2 in relation to divorce orders and judicial separation orders. This provision
+                     retains the two-stage process that currently applies to nullity orders by virtue of
+                     sections 11, 15 and 1(5) of the Act, retains the current six-week time frame between
+                     what is now a decree nisi and decree absolute for nullity (which will now by virtue
+                     of this provision become conditional and final nullity orders), and replaces the current
+                     power of the High Court to amend the time frame with a power in the Lord Chancellor
+                     similar to that provided for in respect of nullity orders for civil partnerships in
+                     section 38(2) of the Civil Partnership Act 2004. A new provision is necessary because
+                     the current provision that creates these effects – section 15 of the Act – did so
+                     by cross-applying section 1(5) of the Act, but, given the formulation of new section
+                     1, this simple cross-application was no longer practicable. Paragraph 14 substitutes
+                     a new section 15 in further consequence of these amendments and in consequence of
+                     the changes in section 1. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>Paragraphs 18(b), 20(5), 21(4), 22(3), 23(4), 24(4), 25(5), 27(6), 29(8) and 32 contain
+                     amendments that ensure that references to decrees, which will now be changed to orders,
+                     can still be read as including decrees if these were granted before the coming into
+                     force of the relevant provisions of this Act.</p>
+               </section>
+               <section class="level">
+                  <p>Part 2: Amendments to the Civil Partnership 2004</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>Paragraphs 36, 38 to 40, 41(a) and (b) and 42 omit sections of the Act which are no
+                     longer necessary or appropriate because they relate to evidence of facts of irretrievable
+                     breakdown which will no longer exist by virtue of the amendments in section 3 to section
+                     44 of the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>Paragraph 35 amends cross-references consequential on the amendments made in sections
+                     3, 4 and 5 of the Act. Paragraphs 37 and 41(c) amend provisions of the Act for consistency
+                     with the amendments in sections 4, 5 and 6, such as changes to reflect the fact that
+                     applications for dissolution orders can now be made jointly.</p>
+               </section>
+               <section class="level">
+                  <p>Part 3: Amendments to other Acts</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>Paragraphs 43 to 60 make amendments to references in a number of Acts to decrees of
+                     divorce, judicial separation or nullity, and decrees nisi or absolute, which therefore
+                     require minor and consequential changes to reflect the changes in sections 1 and 2
+                     of the Act to refer to divorce orders, judicial separation orders and nullity orders
+                     and in some cases to refer to conditional orders or final orders rather than decrees
+                     nisi or absolute. These provisions also contain amendments to ensure that references
+                     to decrees, which will now be changed to orders, can still be read as including decrees
+                     if these were granted before the coming into force of the relevant provisions of this
+                     Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>Paragraphs 43 to 57 and 59 extend and apply to England and Wales, but for paragraph
+                     59 which applies to Wales only. Paragraphs 47, 49, 51(4), 51(5) and 53 to 57 also
+                     extend to Scotland and Northern Ireland. Paragraph 58 extends and applies to Scotland
+                     only.  Paragraph 60 extends and applies to Northern Ireland only. Whilst these amendments
+                     extend beyond England and Wales, they strictly amend references to divorce, judicial
+                     separation and/or nullity decrees from, or such proceedings in, the courts of England
+                     and Wales. In other words, even where the provision being amended extends and applies
+                     to Scotland or Northern Ireland or applies to Wales only, the amendments are strictly
+                     to the references to decrees from and/or proceedings in England and Wales. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Reform of the legal requirements for divorce consultation and Government response:
+                        <a href="https://consult.justice.gov.uk/digital-communications/reform-of-the-legal-requirements-for-divorce/"><u>https://consult.justice.gov.uk/digital-communications/reform-of-the-legal-requirements-for-divorce/</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.83in">
+                        <col style="width:0.75in">
+                        <col style="width:0.75in">
+                        <col style="width:0.75in">
+                        <col style="width:1.03in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.97in">
+                        <col style="width:1.48in">
+                        <col style="width:2.99in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>25 March 2020</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading </p>
+                           </td>
+                           <td>
+                              <p>8 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-08/debates/09B51B40-1E0B-4513-877D-CF836DB67F75/DivorceDissolutionAndSeparationBill(Lords)">
+                                    <u>Vol. 677 Col. 95</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Money Resolution</p>
+                           </td>
+                           <td>
+                              <p>8 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-08/debates/09B51B40-1E0B-4513-877D-CF836DB67F75/DivorceDissolutionAndSeparationBill(Lords)#contribution-BDF10C21-D541-43BF-A3AB-1E0820B3FDD5">
+                                    <u>Vol. 677 Col. 95</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Programme Motion</p>
+                           </td>
+                           <td>
+                              <p>8 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-08/debates/09B51B40-1E0B-4513-877D-CF836DB67F75/DivorceDissolutionAndSeparationBill(Lords)#contribution-BDF10C21-D541-43BF-A3AB-1E0820B3FDD5">
+                                    <u>Vol. 677 Col. 95</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>17 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-17/debates/45EE5F3F-8AE6-413D-AF68-EDA8484726CD/DivorceDissolutionAndSeparationBill(Lords)#contribution-2661EB83-7FC6-4056-BC59-DFFCA07B69A9">
+                                    <u>Vol. 677 Col. 846</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee</p>
+                           </td>
+                           <td>
+                              <p>17 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-17/debates/45EE5F3F-8AE6-413D-AF68-EDA8484726CD/DivorceDissolutionAndSeparationBill(Lords)">
+                                    <u>Vol. 677 Col. 846</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>7 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-01-07/debates/597F28A4-E0A8-43F2-B6ED-DAE8A6C949E9/DivorceDissolutionAndSeparationBill(HL)">
+                                    <u>Vol. 801 Col. 38</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>5 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-02-05/debates/81678CD1-63E7-4F5A-A70F-44E3B4A4EBEC/DivorceDissolutionAndSeparationBill(HL)">
+                                    <u>Vol. 801 Co. 1807</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee</p>
+                           </td>
+                           <td>
+                              <p>3 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <u>Vol. 802</u>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>17 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-03-17/debates/0A5B4680-8185-4007-8F06-A4B6464A0ED5/DivorceDissolutionAndSeparationBill(HL)">
+                                    <u>Vol. 802</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-03-24/debates/3684D8F0-2B65-4646-A800-BE48EC95E97F/DivorceDissolutionAndSeparationBill(HL)">
+                                    <u>Vol. 802</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>18 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-06-18/debates/9C1D0256-CCB7-41B6-8AEB-F21D00D37C17/DivorceDissolutionAndSeparationBill(HL)">
+                                    <u>Vol .803</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>25 June 2020</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2020-06-25/debates/965A3EFB-7FED-4A7B-A809-FD3C153F926B/RoyalAssent"><u>Vol. 804 Col. 458</u></a><br>House of Commons <a href="https://hansard.parliament.uk/Commons/2020-06-25/debates/E1479A23-8697-4B2E-9E5F-2A208EC3E217/Covid-19SupportForUKIndustrieshighlight=assent+majesty+divorce#contribution-9D9D2F6E-39E7-432F-BA9C-14EC81C1F9C3"><u>Vol. 677 Col. 1566</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

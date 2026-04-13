@@ -1,0 +1,1246 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>PARENTAL BEREAVEMENT (LEAVE AND PAY) ACT 2018</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Parental Bereavement (Leave and Pay) Act 2018
+                  (c. 24) which received Royal Assent on 13 September 2018.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business, Energy
+                  and Industrial Strategy with the consent of Kevin Hollinrake, the Member in charge
+                  of the Private Member’s Bill, in order to assist the reader in understanding the Act.
+                  They do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act amends or inserts a number of provisions into the Employment Rights Act 1996
+                     and the Social Security Contributions and Benefits Act 1992, providing powers to make
+                     regulations in relation to Parental Bereavement Leave and Pay for eligible parents.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act’s powers allow provision to be made for the following:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <u>Parental Bereavement Leave</u> - a right for employed parents to be absent from work for a prescribed period (to
+                        be set at a minimum of two weeks) following the death of a child.  All employed bereaved
+                        parents who meet the eligibility conditions, regardless of how long they have worked
+                        for their employer, will be entitled to this leave.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <u>Parental Bereavement Pay</u> – a right for those eligible parents who meet minimum requirements relating to continuity
+                        of employment (at least 26 weeks with their current employer) and earnings to be paid
+                        during that leave at the statutory flat rate (currently £140.98 a week) or 90% of
+                        average earnings (whichever is lower).  In line with other entitlements to paid statutory
+                        leave, the Bill allows provision to be made for employers to reclaim payments from
+                        the Government.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <u>Employment protections</u> – parents taking Parental Bereavement Leave will have the same employment protections
+                        as those associated with other forms of family related leave (i.e. Maternity, Paternity,
+                        Adoption and Shared Parental Leave).  This includes protection from dismissal or detriment
+                        as a result of having taken leave.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Although there is an (unpaid) entitlement to time off to deal with an emergency involving
+                     a dependent, there is currently no specific parental entitlement to time off work
+                     (paid or otherwise) following the death of a child.  Some employers allow parents
+                     to take compassionate leave.  This is at the discretion of the employer and there
+                     is therefore no minimum standard across the board.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Employed parents who lose a child from 24 weeks’ gestation or whilst already accessing
+                     an existing family related leave and pay right, for example Maternity or Paternity
+                     Leave, are entitled to take/remain on that leave for its duration.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Act would not change this entitlement but would give employed parents an additional
+                     right to time away from work following the death of a child aged under 18.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>It requires Regulations to give employed parents a ‘day 1’ right to a minimum of 2
+                     weeks of leave away from work to help them to come to terms with the loss of a child,
+                     should they wish to take it.  This means that an employee would be eligible regardless
+                     of their length of service with their current employer.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Employed parents would also be entitled to a statutory flat rate of pay (currently
+                     £140.98 a week) or 90% of their average weekly earnings per week (whichever is lower),
+                     in respect of the two weeks’ leave, subject to a requirement that the employee has
+                     worked for their employer continuously for at least 26 weeks by the end of the week
+                     before the week of the child’s death. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The introduction of a specific, statutory entitlement to parental bereavement leave
+                     and pay will set a minimum standard for employees and employers.  The intention of
+                     the policy is to provide certainty for employed parents and employers in relation
+                     to parents’ right to time off from work following the death of a child.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>All measures in this Act apply to England, Wales and Scotland as employment matters
+                     are not devolved in relation to Wales and Scotland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Employment matters are devolved in Northern Ireland.  It will be for the Northern
+                     Ireland Assembly to decide whether similar provisions should apply in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the Scottish Parliament, the National Assembly for Wales or the Northern
+                     Ireland Assembly, and no legislative consent motion is being sought in relation to
+                     any provision of the Bill.  If there are amendments relating to matters within the
+                     legislative competence of the Scottish Parliament, the National Assembly for Wales
+                     or the Northern Ireland Assembly, the consent of the relevant devolved legislature(s)
+                     will be sought for the amendments.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Parental bereavement leave and pay</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Section 1 of the Act introduces the Schedule, which sets out the amendments to existing
+                        legislation to establish an entitlement to Parental Bereavement Leave and Pay.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Extent, commencement and short title</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Section 2 sets out the extent and short title of the Act and makes provision for commencement.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Schedule</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>The Schedule consists of three Parts which are explained in more detail below:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Part 1 creates a statutory entitlement to Parental Bereavement Leave;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Part 2 creates a statutory entitlement to Parental Bereavement Pay; and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Part 3 contains related amendments.</p>
+                     </section>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 1: Parental Bereavement Leave</b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Part 1 of the Schedule amends Part 8 of the Employment Rights Act 1996 by inserting
+                        a new Chapter 4, consisting of sections 80EA to 80EE, to provide for an entitlement
+                        to Parental Bereavement Leave.  </p>
+                  </section>
+                  <section class="level">
+                     <p>80EA: Parental Bereavement Leave</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Section 80EA requires the Secretary of State to make regulations to give an entitlement
+                        to employed parents to time off work following the death of a child.  It provides
+                        for conditions for that entitlement – determining exactly who is a ‘parent’ for these
+                        purposes – to be defined in regulations by reference to the employee’s relationship
+                        with the child who has died, including by reference to caring for the child prior
+                        to the child’s death.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Regulations must set the duration of leave and when the leave can be taken. The duration
+                        of leave must be at least 2 weeks; and the Regulations must establish a period within
+                        which the leave may be taken, which must extend to at least 56 days after the child’s
+                        death. The Regulations must also specify that, where more than one child dies, the
+                        employee is entitled to leave in respect of each child.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>In addition, Regulations can make provision for how the leave is to be taken.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>A child is defined as being under the age of 18 years and a week is any 7 day period.</p>
+                  </section>
+                  <section class="level">
+                     <p>80EB: Rights during and after bereavement leave</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>80EB requires the Regulations made under 80EA to set out:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>The employee’s rights in relation to retaining their existing terms and conditions
+                           of employment, whilst taking Parental Bereavement Leave;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>The employee’s obligations in relation to those terms and conditions; </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>The employee’s right to return to work once their leave period has concluded and the
+                           nature of the job to which they are entitled to return, as well as the terms and conditions
+                           applicable on return, and matters such as seniority, pension and similar rights.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>The reference to ’terms and conditions’ in this context is not limited to contractual
+                        terms and conditions, but does not include remuneration.  Regulations can specify
+                        what things should, or should not be, seen as ‘remuneration’ for this purpose.</p>
+                  </section>
+                  <section class="level">
+                     <p>80EC: Special Cases</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Section 80EC allows the Regulations to make special provision for the redundancy and
+                        dismissal of employees during a period of Parental Bereavement Leave, including whether
+                        an employer is required to offer alternative employment, and the consequences of failing
+                        to comply with the regulations.</p>
+                  </section>
+                  <section class="level">
+                     <p>80ED Chapter 4: Supplemental</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Section 80ED allows the Regulations made under 80EA to set out what notices and evidence
+                        must be given by an employee to their employer and what procedures are to be followed,
+                        in order to take Parental Bereavement Leave as well as any requirements for record
+                        keeping.  They can also set out the consequences of not complying with any of these
+                        requirements or procedures.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>The Regulations can also make provision for situations where an employee also has
+                        a non-statutory right to take Parental Bereavement Leave (for example, a right arising
+                        under their contract of employment).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Regulations can also modify the way in which a week’s pay is calculated in Chapter
+                        2 of Part 14 of the Employment Rights Act 1996 to take account of periods of parental
+                        bereavement leave.  The concept of ‘a week’s pay’ is widely used in that Act, for
+                        example in section 119 which sets out how the basic Employment Tribunal award for
+                        unfair dismissal should be calculated.  </p>
+                  </section>
+                  <section class="level">
+                     <p>80EE Power to extend Chapter to stillbirths</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>The entitlement to Parental Bereavement Leave under sections 80EA to 80ED applies
+                        on the death of a child under 18.  Section 80EE enables Regulations to extend this
+                        provision to include parents of children stillborn after 24 weeks of pregnancy.</p>
+                  </section>
+                  <section class="level">
+                     <p>Parliamentary procedure applying to Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Paragraph 3 of Part 1 of the Schedule adds sections 80EA and 80EE to the list of powers
+                        in section 236 of the Employment Rights Act 1996 which are subject to the affirmative
+                        parliamentary procedure.  That means that any Regulations made under these new powers
+                        would need to be debated in both Houses of Parliament before becoming law.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 2: Parental Bereavement Pay</b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Part 2 of the Schedule adds Part 12ZD (containing sections 171ZZ6 to 171ZZ15) to the
+                        Social Security, Contributions and Benefits Act 1992 to create an entitlement to Parental
+                        Bereavement Pay.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ6: Entitlement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Section 171ZZ6 provides that an employee will be eligible for Parental Bereavement
+                        Pay subject to meeting certain conditions. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>These conditions include:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>That the employee is a bereaved parent, because they meet the conditions to be set
+                           in Regulations as to their relationship with the child;</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">•</span></h2>
+                           <p>That the employee must have been continuously working for their employer for at least
+                              26 weeks by the end of the week immediately before the one in which the child dies
+                              (this is known as the ‘relevant week’), and was legally entitled to be in that employment;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">•</span></h2>
+                           <p>That the employee is still employed by this employer at the time of their child’s
+                              death and;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">•</span></h2>
+                           <p>That, over an 8 week period ending with the end of the relevant week, the employee’s
+                              normal weekly earnings are not less than the Lower Earnings Limit (whatever this is
+                              at the end of the relevant week).  </p>
+                        </section>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Section 171ZZ6 specifies that the pay entitlement is applicable per deceased child.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>This section also ensures that the condition requiring someone to be legally entitled
+                        to be in the employment in relation to which they are claiming statutory pay will
+                        only apply when Section 63(3) of the Welfare Reform Act 2012 (which makes similar
+                        provision for Statutory Maternity Pay, Statutory Adoption Pay and Statutory Paternity
+                        Pay) comes into force.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ7 Entitlement: Supplementary</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Section 171ZZ7 specifies that, in order to receive payments, an employee must give
+                        notice to their employer of the week or weeks they are intending to take leave.  This
+                        must be in writing if the employer requires it.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Regulations may provide for when that notice must be given, and can disapply or modify
+                        the requirement for notice in specified circumstances.  They can also set out requirements
+                        for evidence relating to proof of entitlement.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Regulations may specify that someone employed by the same employer for at least 26
+                        weeks, but under different contracts of service which were not continuous, will nevertheless
+                        meet the test for continuous employment.  They can also prescribe circumstances for
+                        other employees in which employment is to be treated as continuous.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>The Regulations can specify how earnings are to be calculated or estimated for the
+                        purposes of deciding whether an employee meets the earnings threshold.  This includes
+                        being able to identify particular types of payments which are to be excluded from
+                        the calculation. The Regulations may also provide for amounts earned from the same
+                        employer under two separate contracts to be aggregated for this purpose.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ8: Liability to make payments</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Section 171ZZ8 states that an employer is liable to pay their employee Parental Bereavement
+                        Pay, conditional on that employee having at least 26 weeks’ continuous service with
+                        them by the end of the ‘relevant week’, and continuing to be employed by them at the
+                        time the child dies. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Regulations must make provision for liability for Parental Bereavement Pay in the
+                        event that the employer terminates their employee’s contract to avoid making this
+                        payment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Regulations may also specify conditions where this liability will shift to HM Revenue
+                        and Customs.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ9: Rate and period of Pay</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Section 171ZZ9 states that the weekly statutory rate of Parental Bereavement Pay will
+                        be set in Regulations, which may include provisions for different rates for different
+                        situations. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Regulations will specify the number of weeks’ entitlement (which must be a minimum
+                        of two weeks), and the ‘qualifying period’ within which the pay must be claimed (which
+                        must be a minimum of 56 days starting from the child’s death). The employee will be
+                        able to choose the week or weeks for which pay is claimed, in accordance with the
+                        Regulations, and the Regulations may allow pay to be claimed for non-consecutive periods,
+                        which must be blocks of a week or weeks. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Statutory pay is not payable if the employee is working for the employer who is liable
+                        to pay statutory pay.  This is regardless of whether or not the work is performed
+                        under an existing contract of service, or a new one.  It is also not payable if the
+                        employee is working for another employer who is not liable to pay statutory pay, but
+                        Regulations can prescribe situations where this does not apply for weeks taken as
+                        leave.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Regulations may specify further circumstances in which an employer is not required
+                        to pay statutory Parental Bereavement Pay.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Employees may choose the start and end point of their statutory pay week.  A week
+                        is any period of 7 days.  If it is necessary to calculate a daily rate of statutory
+                        Parental Bereavement Pay (for the purposes of these provisions, or any Regulations),
+                        this should equal one seventh of the weekly rate.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ10: Restrictions on contracting out</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Section 171ZZ10 specifies that Parental Bereavement Pay rights cannot be diluted or
+                        denied in an employee’s contract, nor can an employee be required to contribute to
+                        the costs.  This does not affect the validity of any agreement allowing the employer
+                        to make deductions from statutory pay, if the employer is also authorised to make
+                        the same deductions from any contractual remuneration which the employer is obliged
+                        to pay during the period (or would be authorised to make those deductions if there
+                        was an obligation to pay contractual remuneration).</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ711: Relationship with Contractual Remuneration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Section 171ZZ11 states that the entitlement to statutory Parental Bereavement Pay
+                        does not affect an employee’s rights to payments associated with their contract of
+                        employment.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>However, it allows an employer to set off any contractual remuneration paid to an
+                        employee during a period in which they are entitled to statutory pay, against the
+                        liability to make statutory payments to that employee, and vice versa. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Regulations can specify particular types of payments which are to be regarded (or
+                        not regarded) as contractual remuneration.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ12: Crown Employment</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Section 171ZZ12 provides that bereaved parents employed by the Crown will have the
+                        same entitlements to Parental Bereavement Pay as those who work for other employers.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ13: Special Classes of Person</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Section 171ZZ13 allows Regulations to set, with the agreement of HM Treasury, how
+                        the right to Parental Bereavement Pay applies to bereaved parents who are, have been
+                        or will be outside Great Britain, employed on board any ship, vessel, hovercraft or
+                        aircraft, or employed in continental shelf operations.</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ14: Supplementary</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Section 171ZZ14 defines an employer as someone who is paying secondary Class 1 National
+                        Insurance contributions in relation to any of the earnings of the bereaved parent.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>An employee is defined as someone who is employed in Great Britain, either under a
+                        contract of employment or in an office with earnings.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Regulations can set out exceptions to this, and also circumstances where individuals
+                        who would not be classed as employees according to this definition are nevertheless
+                        to be treated as employees for the purposes of Parental Bereavement Pay.   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Regulations may set out when two or more employers, or two or more employment contracts,
+                        should be treated as a single employer or contract.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>A week is defined as a calendar week, except for in relation to section 171ZZ9 which
+                        deals with the weeks in which statutory pay can be claimed; in that case a ‘week’
+                        can start or end on any day of the week. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>An employee’s normal weekly earnings are calculated as the average weekly earnings
+                        that have been paid to them over a set period (to be specified in Regulations) under
+                        their employment contract with the employer liable for Parental Bereavement Pay. Regulations
+                        can set a different method for calculating normal weekly earnings in designated circumstances.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Regulations will also specify what is meant by ‘earnings’. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Regulations can make provisions for employees working for certain National Health
+                        Service (NHS) bodies whose contracts of employment have been treated as ‘divided’
+                        into more than one contract, following the establishment of NHS trusts, to elect for
+                        all their contracts to be considered as one for the purposes of Parental Bereavement
+                        Pay e.g. determining eligibility and pay rate.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Regulations may also set the conditions that must be satisfied in order for an employee
+                        to be entitled to make this decision.  These include the time within which an employee
+                        must make this decision, how notice of this choice must be given and to whom, as well
+                        as how the information that must be provided alongside the notice should be given.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Regulations can also specify which one of the person’s employer, under these circumstances,
+                        is liable to pay their employee Parental Bereavement Pay</p>
+                  </section>
+                  <section class="level">
+                     <p>171ZZ15: Power to extent Part to stillbirths</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>The entitlement to Parental Bereavement Pay under sections 171ZZ6 to 171ZZ14 applies
+                        on the death of a child under 18.  Section 171ZZ15 enables regulations to extend this
+                        provision to include the parents of children stillborn after twenty-four weeks of
+                        pregnancy.</p>
+                  </section>
+                  <section class="level">
+                     <p>Parliamentary procedure applying to Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Paragraph 6 of the Schedule specifies which of the powers to make Regulations are
+                        subject to the affirmative procedure, meaning that Regulations made under these powers
+                        would need to be debated in both Houses of Parliament before becoming law.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 3: Further Amendments to do with Parental Bereavement Leave and Pay</b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Part 3 makes consequential amendments to other legislation, including references to
+                        Parental Bereavement Leave and Pay where relevant.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>It includes amendments to the following Acts:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security Act 1989</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Finance Act 1989 Social Security Contributions and Benefits Act 1992</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security Administration Act 1992</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Employment Rights Act 1996</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security Contributions (Transfer Functions, etc.) Act 1999</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Finance Act 1999</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Finance Act 2000</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Employment Act 2002</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Proceeds of Crime Act 2002</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Income Tax (Earnings and Pensions) Act 2003</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Commissioners for Revenue and Customs Act 2005</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Income Tax Act 2007</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Pensions Act 2008</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Finance Act 2013</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>HM Revenue &amp; Customs and commercial payroll providers usually require around 18 months’
+                     lead-in time to implement the changes which enable employers to administer new statutory
+                     payments.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>For this reason, implementation is likely in 2020 if the Act successfully completes
+                     all of its Parliamentary stages in 2018.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Financial implications of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>The estimated cost to the Exchequer of 2 weeks’ leave paid at the statutory flat rate
+                     (currently £140.98 a week) or 90% of average weekly earnings where that is lower,
+                     is £1.77m per year.  In addition, there will be a one-off cost estimated at £1.25m
+                     to amend HM Revenue &amp; Customs’ systems so that employers can reclaim a percentage
+                     of the statutory pay.  They do this by reducing their National Insurance payments
+                     to HM Revenue &amp; Customs.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>The one off cost to business of familiarising themselves with the new legislation,
+                     and for example to amend their HR policies, is estimated at £4.8m.  The annual cost
+                     to business resulting from greater staff absence, and in some cases a contribution
+                     towards the statutory pay, is estimated at £1.45m.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Compatibility with the European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>The Act contains powers to make regulations which will specify what relationship with
+                     a deceased child is required in order for someone to qualify as a ‘bereaved parent’
+                     for the purposes of determining eligibility for parental bereavement leave and/or
+                     pay.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>The exercise of this power will result in the conferral of rights on some groups of
+                     adults with particular relationships to children, and not to others. The power could
+                     therefore be exercised in a manner which engages Article 14 read with Article 8, or
+                     possibly Article 1 of Protocol 1.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>However, the Department considers that the power is drafted so as to enable it to
+                     be exercised in a manner which is compatible with Convention rights, in accordance
+                     with section 6 Human Rights Act 1998. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>Modern family structures can be complex, and sometimes fluid, and there are a wide
+                     range of legal and factual relationships between an adult and a child which could
+                     be said to be ‘parental’ in nature.  The existence of the power recognises that different
+                     views are possible as to which of these relationships should qualify for the entitlements
+                     created by the Act, which recognises the particularity of parental bereavement.  It
+                     is necessary therefore to allow for secondary legislation which can identify those
+                     relationships (on the basis of detailed legal and factual criteria) in which adults
+                     are likely to be particularly affected by grief on the loss of a child for whom they
+                     have been caring.  In addition, the Department anticipates that the make-up of family
+                     units and social attitudes towards different parental relationships will continue
+                     to evolve; for example, relationships created by fostering and adoption arrangements
+                     are areas in relation to which legislation can be expected to continue to change (and
+                     to develop differently across the different jurisdictions of the United Kingdom).
+                     The existence of delegated powers to determine eligibility allows provision to be
+                     adapted to reflect these changes in the future.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0105/18105-impact-assessment.pdf">
+                           <u>Impact Assessment</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:0.69in">
+                        <col style="width:0.69in">
+                        <col style="width:0.69in">
+                        <col style="width:0.95in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                              <p>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule </p>
+                              <p>Part 1</p>
+                              <p>Part 2</p>
+                              <p>Part 3</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>19 July 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-07-19/debates/AE667929-DA6E-4938-9928-FE573D5D0F3A/PointsOfOrder">
+                                    <u>Vol. 627 Col. 876</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>20 October 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-10-20/debates/3DED3C9D-E118-43C1-861A-8B5593114E79/ParentalBereavement(LeaveAndPay)Bill">
+                                    <u>Vol. 629</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Money Resolution</p>
+                           </td>
+                           <td>
+                              <p>13 November 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-11-13/debates/86B41B92-1D9B-4431-89BB-1BAD807BB269/ParentalBereavement(LeaveAndPay)Bill(Money)">
+                                    <u>Vol. 631 Col. 120</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee 1st Sitting</p>
+                           </td>
+                           <td>
+                              <p>31 January 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-01-31?showNoDebateMessage=True">
+                                    <u>Vol. 635 Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee 2nd Sitting</p>
+                           </td>
+                           <td>
+                              <p>7 February 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-02-07/debates/830784ba-0189-4beb-aa3c-84c842d482e2/ParentalBereavement(LeaveAndPay)Bill(SecondSitting)">
+                                    <u>Vol. 635 Col. 27</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>11 May 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-05-11/debates/A3B10E8B-5139-4404-8E8F-3E89665A477F/ParentalBereavement(LeaveAndPay)Bill">
+                                    <u>Vol. 640 Col. 1069</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>14 May 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-05-14/debates/076062D5-2DAF-434F-8A0A-EBAF4F679172/ParentalBereavement(LeaveAndPay)Bill">
+                                    <u>Vol. 791 Col. 414</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 June 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-06-29/debates/F3BB3D54-C90D-4772-A373-F096026717FB/ParentalBereavement(LeaveAndPay)Bill">
+                                    <u>Vol. 792 Col. 372</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment Discharged</p>
+                           </td>
+                           <td>
+                              <p>17 July 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-07-17/debates/CB045BB6-DC50-49F7-8F6C-CD6D2419E5D2/ParentalBereavement(LeaveAndPay)Bill">
+                                    <u>Vol. 792 Col. 1139</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 July 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-07-24/debates/23C74CB0-1230-4B1C-A188-C7B0376F61FE/ParentalBereavement(LeaveAndPay)Bill">
+                                    <u>Vol. 792 Col. 1609</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>13 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-09-13/debates/7A44CE51-F576-4C2C-A951-F9CC827A2980/BusinessOfTheHouse">
+                                    <u>House of Commons Vol. 676 Col. 892</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-09-13/debates/274B5EEA-2228-434D-B7FC-0E111A930F97/RoyalAssent">
+                                    <u>House of Lords Vol. 792 Col. 2371</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

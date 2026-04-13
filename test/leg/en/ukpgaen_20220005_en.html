@@ -1,0 +1,2276 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>DORMANT ASSETS</b>
+               <b>
+                  </b>
+               <b>ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Dormant Assets Act 2022 which received Royal
+                  Assent on 24 February 2022 (c. 5).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Digital, Culture,
+                  Media and Sport in order to assist the reader in understanding the Act. They do not
+                  form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Dormant Assets Act ("the Act") takes forward the Government's commitment to expand
+                     the Dormant Assets Scheme. <a href="https://www.legislation.gov.uk/ukpga/2008/31/contents"><u>The Dormant Bank and Building Society Accounts Act 2008</u></a> ("the 2008 Act") limits the scope of the Scheme to dormant bank and building society
+                     accounts, and provides no opportunity to expand it without primary legislation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act enables an authorised reclaim fund, which administers the Scheme, to accept
+                     a wider range of dormant assets, including certain assets in the insurance and pensions,
+                     investment and wealth management, and securities sectors. A dormant asset is a financial
+                     product, such as a bank account, that the customer has not used for many years, and
+                     which the provider has been unable to reunite them with, despite efforts based on
+                     industry best practice. The Act also introduces a power for the Secretary of State
+                     or the Treasury to expand the Scheme to broaden the pool of eligible dormant assets
+                     in the future. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act also amends the approach for distributing dormant assets funding in England,
+                     aligning it with the model used for Scotland, Wales, and Northern Ireland. The 2008
+                     Act restricts the English portion of dormant assets funding to youth, financial inclusion,
+                     and social investment. The Act removes these restrictions and introduces a power for
+                     the Secretary of State to make an order to determine the social and environmental
+                     purposes for which, and the kinds of person to whom, dormant assets money can be distributed
+                     in England. The measure includes a statutory requirement to consult before making
+                     an order, and no changes to the existing restrictions can be formed until or unless
+                     a new order is made.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>The Dormant Assets Scheme</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Dormant Assets Scheme is led by industry and backed by the Government with the
+                     aim of reuniting people with their assets. Where this is not possible, the Scheme
+                     enables this money to support social and environmental purposes across the United
+                     Kingdom. In the first ten years of its operation, the Scheme has released over £800
+                     million. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Scheme is underpinned by the following principles: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>reunification first: participants' first priority is to reunite owners with their
+                        assets;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>full restitution: dormant assets owners are able, at any point, to reclaim the amount
+                        that would have been due to them had a transfer into the Scheme not occurred; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>voluntary participation: industry participation in the Scheme is voluntary.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The 2008 Act enables participating banks and building societies to voluntarily transfer
+                     funds from dormant accounts which cannot be reunited with their owners to an authorised
+                     reclaim fund. A transfer and agency agreement (TAA) is held between Reclaim Fund Ltd
+                     (RFL) and the bank or building society, and establishes a contractual framework between
+                     the two parties. The TAA outlines the operational arrangements for transfers and reclaims,
+                     and includes further details of participants' obligations to undertake reunification
+                     efforts prior to transferring eligible assets into the Scheme. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>RFL manages the funds, retaining enough to meet any future reclaims, and distributing
+                     the surplus to The National Lottery Community Fund (TNLCF). TNLCF in turn makes these
+                     funds available for social and environmental purposes across the United Kingdom, in
+                     accordance with the provisions of the 2008 Act, any relevant secondary legislation,
+                     and any directions given in each of the four nations. Dormant assets funding is used
+                     to fund projects, or aspects of projects, for which funds would be unlikely to be
+                     made available by a Government department of a devolved administration. This is known
+                     as the principle of additionality.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The 2008 Act also provides for an alternative scheme, available to small banks and
+                     building societies. This enables firms with balance sheets below £7 billion to transfer
+                     dormant assets funds to RFL and nominate a local or aligned charity to receive the
+                     surplus. The alternative scheme is maintained but not expanded in the Act. To date,
+                     the alternative scheme has two participants.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Scheme expansion</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>From 2016, industry worked with the Government to consider how best to expand the
+                     Scheme. In 2017, the Commission on Dormant Assets reported on the potential to include
+                     a wider range of asset classes.<a class="fn" id="fnref-1" href="#fn-1">1</a> In 2018, the Government confirmed its support for Scheme expansion and asked industry
+                     to explore how this would work in practice.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Four senior Industry Champions took this forward, publishing their report in April
+                     2019.<a class="fn" id="fnref-2" href="#fn-2">2</a>  This made recommendations to industry, the Government, and regulators on broadening
+                     the Scheme to include assets from the insurance and pensions, investment and wealth
+                     management, and securities sectors.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Building on this, the Government launched a public consultation in February 2020 to
+                     gather views on the proposed approach to expansion.<a class="fn" id="fnref-3" href="#fn-3">3</a> The Government's response to the consultation was published in January 2021 and committed
+                     to introducing legislation to enable Scheme expansion. Responses to the consultation
+                     informed the development of the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The expanded Scheme functions in a similar manner to the pre-existing Scheme with
+                     a participant being required to sign a TAA with RFL before transferring money to it.
+                     Such an agreement gives RFL the flexibility to tailor certain provisions to the assets
+                     in question, ensuring that the relevant consumer protection efforts – including tracing,
+                     verification, and reunification – are made.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>For funds that cannot be reunited with owners, despite these efforts, Scheme expansion
+                     is estimated to unlock £880 million over the next ten years for social and environmental
+                     purposes across the United Kingdom.<a class="fn" id="fnref-4" href="#fn-4">4</a></p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Classification of Reclaim Fund Ltd (RFL) as a public body</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>As specified in the 2008 Act, a reclaim fund is responsible for receiving dormant
+                     assets funds from participants, managing the reserves to meet customer reclaims, and
+                     making surplus funds available to TNLCF to be spent on social or environmental purposes.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>RFL was established in 2010 by the Co-operative Banking Group (renamed Angel Square
+                     Investments Ltd) and (at the time of writing) is the only authorised reclaim fund
+                     in the United Kingdom. Following a decision by the Office for National Statistics
+                     to classify RFL to the central Government subsector, RFL has been established as a
+                     Non-Departmental Public Body (NDPB) of the Treasury, operating at arm's length from
+                     the Government. RFL continues to manage the Scheme in an open and transparent way,
+                     governed by a separate board of directors.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>RFL's funds remain separate from central Government funds, and the Treasury does not
+                     have access to dormant assets money. Surplus funds continue to be transferred to TNLCF
+                     for distribution in accordance with legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The Act reflects RFL's establishment as a NDPB of the Treasury and names it as the
+                     Scheme's only authorised reclaim fund. It also includes a power for the Treasury to
+                     designate additional authorised reclaim funds in the future. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Changing the model for distributing dormant assets funding in England</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The 2008 Act provides that all dormant assets money must be used to fund initiatives
+                     which have a social or environmental purpose.<a class="fn" id="fnref-5" href="#fn-5">5</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Funds are apportioned by TNLCF to each nation in the United Kingdom according to the
+                     <a href="https://www.legislation.gov.uk/uksi/2011/1799/contents/made"><u>Distribution of Dormant Account Money (Apportionment) Order 2011 (SI 2011/1799</u></a>), based on the Barnett formula. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The 2008 Act restricted funding allocations in England further to youth, financial
+                     inclusion, and social investment. The other three nations do not have restrictions
+                     in primary legislation; instead, the relevant ministers have the power to set the
+                     particular purposes and recipients of their allocations through secondary legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Within the boundaries of the 2008 Act and any such secondary legislation, each nation
+                     has powers to issue broad policy directions to TNLCF on how to allocate their portion
+                     of the funding. The Secretary of State has the power to issue policy directions to
+                     TNLCF specifying the purposes for which the English portion may be distributed. To
+                     date, TNLCF has channelled funding in England through four specialist dormant assets-funded
+                     organisations, overseen by an independent Oversight Trust.<a class="fn" id="fnref-6" href="#fn-6">6</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Following policy directions from the Secretary of State, TNLCF has created funding
+                     agreements with each organisation in order to distribute funds, which are then drawn
+                     down by the organisations on the basis of need. There is no set time limit to these
+                     funds, which enables these independent organisations to take a long-term view of the
+                     challenges they exist to tackle. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>In response to calls from the public to review these causes, the Act amends the approach
+                     to restrictions in England to allow the Government to respond to public feedback and
+                     evolving social and environmental needs by setting the causes through secondary legislation,
+                     which is subject to public consultation and parliamentary approval.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The first consultation launched under this Act must include youth, financial inclusion,
+                     and social investment as options to consider. It must also consult on an option to
+                     distribute funds to community wealth funds: a fund that provides long-term financial
+                     support to communities for the provision of social infrastructure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>No further changes, other than consequential amendments, have been made to Part 2
+                     of the 2008 Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>The current legal framework for the Dormant Assets Scheme is set out in the 2008 Act.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Part 1 of the 2008 Act deals with the transfer of balances in dormant accounts. This
+                     includes provisions about the general Scheme (section 1), provisions about the alternative
+                     scheme for smaller banks and building societies (sections 2 and 3), and provisions
+                     about the functions of a reclaim fund (section 5). Under each scheme, the customer
+                     retains against the reclaim fund whatever right to payment of the balance the customer
+                     would have had against the bank or building society had the transfer(s) not happened.
+                     Under the 2008 Act, the reclaim fund must meet reclaims and manage dormant account
+                     funds in a way that enables it to meet whatever reclaims it is prudent for it to anticipate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Under the general Scheme, a bank or building society may make a transfer to an authorised
+                     reclaim fund from a dormant account, provided the reclaim fund consents to the transfer.
+                     After the transfer, the customer no longer has any right of reclaim against the bank
+                     or building society, rather this liability is transferred to the reclaim fund.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>In addition to the general Scheme, there is an alternative scheme for smaller banks
+                     and building societies. Under this scheme, a smaller bank or building society can
+                     itself transfer money from a dormant account to certain charities (for example, a
+                     charity with which it has a special connection). The reclaim fund and the charity
+                     must consent to the transfer, and a proportion of the money from the dormant account
+                     must be transferred to the reclaim fund. In determining what this proportion must
+                     be, the reclaim fund must take account of the need to have access at any point to
+                     enough money to enable it to meet whatever reclaims it is prudent to anticipate (section
+                     2(4)). After the transfer, the customer no longer has any right of reclaim against
+                     the bank or building society, but instead can claim from the reclaim fund whatever
+                     they would have been owed had the transfer not happened. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Section 1 and section 2 of the 2008 Act provide for transfers to be made to an "authorised"
+                     reclaim fund. Section 6 defines "authorised" as meaning authorised for the purposes
+                     of the <a href="https://www.legislation.gov.uk/ukpga/2000/8/contents"><u>Financial Services and Markets Act 2000 (FSMA</u></a>). Section 31 of FSMA makes provision for "authorised persons", including a person
+                     who has a Part 4A FSMA permission to carry out one or more regulated activities (as
+                     set out in section 22(1) and Schedule 2 of FSMA). The 2008 Act made various amendments
+                     to FSMA. This included adding the activities of a reclaim fund to the list of activities
+                     in Schedule 2 to FSMA (Schedule 2 provides a non-exhaustive list of activities which
+                     may be specified under section 22 of FSMA as regulated activities). Article 63N of
+                     the <a href="https://www.legislation.gov.uk/uksi/2001/544/contents/made"><u>Financial Services and Markets Act 2000 (Regulated Activities) Order 2001 (SI 2001/544)</u></a> specifies activities of reclaim funds that are regulated activities for the purposes
+                     of FSMA.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Section 5 of and Schedule 1 to the 2008 Act set out requirements about provision to
+                     be made in the articles of association of a reclaim fund. For example, the objects
+                     of a reclaim fund must be restricted by its articles of association to those matters
+                     in section 5(1) e.g., the meeting of reclaims.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Part 2 of the 2008 Act makes provision about the distribution of money under the general
+                     Scheme. Under the general Scheme, dormant account money is distributed by the Big
+                     Lottery Fund (now operating as TNLCF). Schedule 3 to the 2008 Act makes further provision
+                     about the functions of TNLCF in relation to dormant account money.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Section 16 makes provision about the distribution of dormant account money by TNLCF,
+                     in particular that it must distribute dormant account money for meeting expenditure
+                     that has a social or environmental purpose. Section 17 makes provision about the apportionment
+                     of dormant account money between the different nations in the United Kingdom. An order
+                     prescribing the percentages for the purpose of section 17(1) was made in 2011 <a href="https://www.legislation.gov.uk/uksi/2011/1799/contents/made"><u>(SI 2011/1799</u></a>). Section 18 provides further restrictions as to the purposes for which, or people
+                     to which, dormant account money can be distributed for meeting English expenditure.
+                     Sections 19-21 provide a power for the respective devolved administrations to set
+                     out such restrictions for the relevant nation's expenditure by way of order. The Welsh
+                     ministers have made an order <a href="https://www.legislation.gov.uk/wsi/2010/1317/contents/made"><u>(SI 2010/1317)</u></a>, as have the Scottish ministers <a href="https://www.legislation.gov.uk/ssi/2010/278/contents/made?page=3"><u>(SSI 2010/278)</u></a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>There is also a power to give directions to TNLCF under section 22. This requires
+                     TNLCF to comply with any directions given to it by the Secretary of State (in relation
+                     to English expenditure) or by the devolved administrations (in relation to their nation's
+                     portion of the expenditure). A direction under section 22 may specify, for example,
+                     matters to be taken into account in determining the persons to whom TNLCF distributes
+                     money, or the purposes for which TNLCF may or may not distribute money. In addition,
+                     the Secretary of State (but not the devolved administrations) may give directions
+                     under subsection (4) relating to operational matters such as financial management,
+                     staffing and accounts. TNLCF must be consulted before any direction is given under
+                     section 22.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Section 34 sets out the territorial extent of the Act; that is the legal jurisdiction
+                     of which the provisions of the Act are intended to form part of the law. The extent
+                     of an Act can be different from its application. Application is about where an Act
+                     produces a practical effect. In this Act, the extent is to the whole of the United
+                     Kingdom. The application of the Act is to the whole of the United Kingdom except section
+                     29 which applies to England only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the Scottish Parliament, Senedd Cymru or the Northern Ireland Assembly.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: The Dormant Assets Scheme</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 1: The Dormant Assets Scheme: Overview</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">37 </span></h2>
+                        <p>This section provides an overview of the operation of the Scheme, which enables eligible
+                           participants to transfer money from dormant or unwanted assets to an authorised reclaim
+                           fund. Having determined how much it must retain in order to meet any future reclaims,
+                           the section allows the reclaim fund to distribute the surplus to TNLCF. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">38 </span></h2>
+                        <p>Subsection (3) sets out the main features of the Dormant Assets Scheme, which mirror
+                           those specified in the 2008 Act. It ensures that once a participant transfers an asset
+                           to the reclaim fund, any liability pertaining to the transfer, including any liability
+                           to meet owner reclaims, is extinguished and makes provisions for the reclaim fund
+                           to take on the liability to meet such reclaims.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">39 </span></h2>
+                        <p>Beneficial owners can always reclaim the full amount owed to them. Participants transfer
+                           the dormant money to the reclaim fund. Participants act as agents of the reclaim fund
+                           – for example, maintaining owner engagement, records, and personal data on its behalf;
+                           and managing and verifying reclaims before recouping the amount from the reclaim fund.
+                           Owners therefore engage with participants – rather than the reclaim fund – in order
+                           to make a reclaim. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">40 </span></h2>
+                        <p>Subsection (5) provides that the reclaim fund retains sufficient funds to meet future
+                           reclaims and that surplus money can be distributed via TNLCF for social and environmental
+                           purposes. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">41 </span></h2>
+                        <p>Subsection (6) lists the dormant assets which fall in scope of the Scheme: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>Bank and building society accounts, which includes suspense accounts, specified in
+                              section 1 of the 2008 Act;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>Long-term insurance assets as specified in sections 2 to 4 in the Act; </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>Pension assets as specified in sections 5 to 7 in the Act; </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>Investment assets as specified in sections 8 to 11 in the Act; </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">e.</span></h2>
+                           <p>Client money assets as specified in sections 12 and 13; and </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">f.</span></h2>
+                           <p>Securities assets as specified in sections 14 to 16 in the Act. </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">42 </span></h2>
+                        <p>Subsection (7) states that this Act supersedes the general Scheme under the 2008 Act,
+                           but does not affect its continued operation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">43 </span></h2>
+                        <p>Subsection (8) disapplies the following from the Scheme:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>a transfer of an agreed proportion of a balance from the alternative scheme for smaller
+                              institutions under section 2 of the 2008 Act; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>unwanted assets, i.e. where owners have chosen to give away all or part of their asset
+                              to the reclaim fund. </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">44 </span></h2>
+                        <p>Subsection (9) clarifies that activities may be carried out directly by an institution
+                           or by another person acting on its behalf.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">45 </span></h2>
+                        <p>Subsection (10) ensures that the provisions of Part 1 relating to transfers of dormant
+                           assets to the reclaim fund cover not only cases where an amount is payable immediately
+                           (i.e., as a debt) but also cases where the person entitled to an amount needs to request
+                           payment, or that person’s entitlement needs to be verified, before the amount becomes
+                           payable immediately.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sections 2-4: Long-term insurance assets</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>These sections define the insurance assets and participants in scope of the Scheme.
+                        They also set out an owner's right to reclaim and the definitions of dormancy for
+                        insurance assets.</p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 2: Transfer of eligible insurance proceeds to reclaim fund</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">47 </span></h2>
+                        <p>This section provides that an insurance institution can transfer dormant insurance
+                           proceeds to an authorised reclaim fund, if the latter consents to it. Upon the transfer,
+                           the owner no longer has the right to payment of the proceeds against any insurance
+                           institution, but rather has that right against the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">48 </span></h2>
+                        <p>If that person has died, whoever the right to payment from the insurance institution
+                           would have passed on to has the right to payment from the reclaim fund. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">49 </span></h2>
+                        <p>This section also defines the type of insurance institutions that are and are not
+                           eligible to participate in the Scheme in relation to insurance proceeds.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 3: "Eligible insurance proceeds"</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">50 </span></h2>
+                        <p>This section provides that dormant proceeds of a long-term insurance contract are
+                           in scope of the Scheme provided that it is not a with-profits policy, an industrial
+                           branch policy, or a policy that is the subject of a trust. Insurance proceeds held
+                           in a Lifetime ISA are excluded when their transfer to the reclaim fund would result
+                           in liability to pay a withdrawal charge to HMRC. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">51 </span></h2>
+                        <p>This section provides that:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>a non-cash asset must be converted to cash in line with its relevant terms and conditions
+                              before it is eligible for transfer into the Scheme. For long-term insurance contracts,
+                              this could be, for example, when it reaches its contractual end date or when the owner
+                              is deceased; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>the amount that can be reclaimed is adjusted as appropriate (e.g., for any relevant
+                              interest or fees) so that the owner has the same right to repayment from the reclaim
+                              fund as they would have had against the participant if the transfer had not taken
+                              place.</p>
+                        </section>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 4: Meaning of "dormant" in relation to eligible insurance proceeds</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">52 </span></h2>
+                        <p>This section provides that an insurance asset can be classed as dormant if any of
+                           the four conditions set out in subsections (2)-(5) are met.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">53 </span></h2>
+                        <p>Subsection (2) sets out the first condition: that an insurance asset can be classed
+                           as dormant if the person whose life is insured is deceased and the participant is
+                           satisfied that there is no owner. This captures circumstances where the participant
+                           knows that the deceased person has no beneficiaries.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">54 </span></h2>
+                        <p>Subsection (3) sets out the second condition; namely, that an insurance asset can
+                           be classed as dormant if: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>at least seven years have passed since the participant was notified that the person
+                              whose life was insured is deceased; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>there has been no communication from the owner, anyone acting on their behalf, or
+                              anyone administering the deceased person's estate since that time. </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">55 </span></h2>
+                        <p>Subsection (4) sets out the third condition; namely, that an insurance asset can be
+                           classed as dormant if: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>records indicate that the person whose life was insured would be at least 120 years
+                              old (i.e. that the participant can reasonably assume they are deceased); and </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>there has been no communication from the owner, anyone acting on their behalf, or
+                              anyone administering the deceased person's estate during the preceding seven years.
+                              </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">56 </span></h2>
+                        <p>Subsection (5) sets out the fourth condition; namely, that an insurance asset can
+                           be classed as dormant if: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>at least seven years have passed since the end of the contractual term; and </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>there has been no communication from the owner or anyone acting on their behalf since
+                              that time. </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">57 </span></h2>
+                        <p>Subsection (6) defines a responsible institution as the insurance institution assessing
+                           whether the asset meets any of the four conditions set out in subsections (2)-(5).</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sections 5-7: Pension assets</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>These sections define the pension assets and participants in scope of the Scheme.
+                        They also set out an owner's right to reclaim and the definitions of dormancy for
+                        pension assets.</p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 5: Transfer of eligible pension benefits to reclaim fund</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">59 </span></h2>
+                        <p>This section provides that a pension institution can transfer dormant pension benefits
+                           to an authorised reclaim fund, if the latter consents to it. Upon the transfer, the
+                           owner no longer has the right to payment of the benefits against any pension institution,
+                           but rather has that right against the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">60 </span></h2>
+                        <p>If that person has died, whoever the right to payment from the pension institution
+                           would have passed on to has the right to payment from the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">61 </span></h2>
+                        <p>This section also defines the type of pension institutions that are and are not eligible
+                           to participate in the Scheme in relation to pension benefits.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 6: "Eligible pension benefits"</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">62 </span></h2>
+                        <p>This section provides that the following dormant pension benefits are in scope of
+                           the Scheme:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>an income withdrawal that has become payable;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>a personal pension with money purchase arrangements that has become payable; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>a personal pension with money purchase arrangements available to become payable.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">63 </span></h2>
+                        <p>This provision excludes personal pension schemes whose owners were automatically enrolled,
+                           and any scheme with sums invested in with-profit funds. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">64 </span></h2>
+                        <p>This section provides that: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>a non-cash asset must be converted to cash in line with its relevant terms and conditions
+                              before it is eligible for transfer into the Scheme. Personal pension schemes are only
+                              in scope of the Scheme if this conversion happens because the owner is deceased. Where
+                              an income withdrawal is purchased as a standalone product (as opposed to becoming
+                              owed as part of a personal pension scheme), this conversion could also occur when
+                              it reaches its contractual end date; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>the amount that can be reclaimed will be adjusted as appropriate (e.g. for any relevant
+                              fees) so that the owner has the same right to repayment from the reclaim fund as they
+                              would have had against the participant if the transfer had not taken place. </p>
+                        </section>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 7: Meaning of "dormant" in relation to eligible pension benefits</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">65 </span></h2>
+                        <p>This section provides that a pension asset can be classed as dormant if any of the
+                           four conditions set out in subsections (2)-(5) are met.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">66 </span></h2>
+                        <p>Subsection (2) sets out the first condition: that a pension asset can be classed as
+                           dormant if the person in respect of whom the proceeds are owed is deceased and the
+                           participant is satisfied that there is no owner. This captures circumstances where
+                           the participant knows that the deceased person has no beneficiaries.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">67 </span></h2>
+                        <p>Subsection (3) sets out the second condition; namely, that a pension asset can be
+                           classed as dormant if:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>at least seven years have passed since the participant was notified that the person
+                              in respect of whom the benefits are payable is deceased; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>there has been no communication from the owner or anyone acting on their behalf since
+                              that time.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">68 </span></h2>
+                        <p>Subsection (4) sets out the third condition; namely, that a pension asset can be classed
+                           as dormant if:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>records indicate that the person in respect of whom the benefits are payable would
+                              be at least 120 years old (i.e. that the participant can reasonably assume they are
+                              deceased); and </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>there has been no communication from the owner, anyone acting on their behalf, or
+                              anyone administering the deceased person's estate during the preceding seven years.
+                              </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">69 </span></h2>
+                        <p>Subsection (5) sets out the fourth condition, which is only applicable to income withdrawals
+                           as a standalone product. In addition to the first three conditions, an income withdrawal
+                           can also be classed as dormant if: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>at least seven years have passed since the end of the contractual term; and </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>there has been no communication from the owner or anyone acting on their behalf since
+                              that time. </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">70 </span></h2>
+                        <p>Subsection (6) defines a responsible institution as the pension institution assessing
+                           whether the asset meets any of the four conditions set out in subsections (2)-(5).
+                           </p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sections 8-11: Investment assets</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>These sections define the investment assets and participants in scope of the Scheme.
+                        They also set out an owner's right to reclaim and the definitions of dormancy for
+                        investment assets.</p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 8: Transfer of eligible amount owing by virtue of a collective scheme investment</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">72 </span></h2>
+                        <p>This section provides that an investment institution can transfer a dormant eligible
+                           amount owing by virtue of a collective scheme investment to an authorised reclaim
+                           fund, if the latter consents to it. Upon the transfer, the owner no longer has the
+                           right to payment of the amount against any investment institution, but rather has
+                           that right against the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">73 </span></h2>
+                        <p>If that person has died, whoever the right to payment from the investment institution
+                           would have passed on to has the right to payment from the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">74 </span></h2>
+                        <p>This section also defines the type of investment institutions that are and are not
+                           eligible to participate in the Scheme in relation to an amount owing by virtue of
+                           a collective scheme investment. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 9: "Eligible amount owing by virtue of a collective scheme investment"</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">75 </span></h2>
+                        <p>This section provides that the following dormant amounts owing by virtue of an open-ended
+                           investment company; a unit trust; or an authorised contractual scheme are in scope
+                           of the Scheme:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>share or unit conversion proceeds, converted to cash in line with relevant terms and
+                              provisions;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>a redemption proceed;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>a distribution of income; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>orphan monies.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">76 </span></h2>
+                        <p>Subsection (4) specifies that an amount held in a Lifetime ISA is excluded when its
+                           transfer to the reclaim fund would result in liability to pay a withdrawal charge
+                           to HMRC. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 10: Meaning of "dormant" in relation to eligible amount owing by virtue of
+                              a collective scheme investment</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">77 </span></h2>
+                        <p>This section provides that an investment asset can be classed as dormant if any of
+                           the conditions set out in subsections (2), (3) and (5) are met.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">78 </span></h2>
+                        <p>Subsection (2) sets out the first condition, which is applicable to share or unit
+                           conversion proceeds. These can be classed as dormant if the owner has been "gone-away"
+                           for at least twelve years. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">79 </span></h2>
+                        <p>Subsection (3) sets out the second condition, which is applicable to a redemption
+                           proceed, a distribution of income, and orphan monies. These can be classed as dormant
+                           if the owner has been "gone-away" for at least six years. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">80 </span></h2>
+                        <p>In subsections (2) and (3), an owner can be defined as "gone-away" if there has been
+                           no communication from the owner or anyone acting on their behalf. "Gone-away" is a
+                           standard industry term used when an owner cannot be contacted successfully. There
+                           are a range of indicators that may be considered when determining if an owner is gone-away,
+                           such as whether mail has been returned, an email has bounced back, or a cheque has
+                           not been cashed. The precise definition varies and is expected to evolve over time
+                           as new technologies emerge. The section captures this concept broadly to allow for
+                           these variations.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">81 </span></h2>
+                        <p>Where the owner's other investment asset(s) held by the participant has already been
+                           classed as dormant and transferred to the Scheme, subsection (5) allows any further
+                           orphan monies received to be transferred immediately.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">82 </span></h2>
+                        <p>Subsection (7) defines a responsible institution as the investment institution assessing
+                           whether the asset meets any of the two conditions set out in subsections (2)-(3).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">83 </span></h2>
+                        <p>While the definitions of dormancy do not require this, participants can choose to
+                           wait until all of the assets they hold for an owner are dormant before transferring
+                           them into the Scheme.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 11: Meaning of "reclaim amount" in relation to an eligible amount owing by
+                              virtue of a collective scheme investment</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">84 </span></h2>
+                        <p>This section defines the right to payment that the owner of a dormant investment asset
+                           has against an authorised reclaim fund in order to align with FCA rules. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">85 </span></h2>
+                        <p>Subsection (2) provides that the reclaim amount for conversion proceeds is the value
+                           of the share or unit at the time the participant (acting as agent for the reclaim
+                           fund, per section 23(5)(b)) accepts the owners reclaim, as well as any distributions
+                           or allocations that would have been attributable to the share or unit if the conversion
+                           had not occurred. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">86 </span></h2>
+                        <p>Subsection (4) specifies that the reclaim amount for a redemption proceed, a distribution
+                           of income, and orphan monies as whatever would have been owed had the assets not been
+                           transferred to the Scheme.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">87 </span></h2>
+                        <p>Subsection (5) affirms that the amount that can be reclaimed is adjusted as appropriate
+                           (e.g. for any relevant interest or fees) so that the owner has the same right to repayment
+                           from the reclaim fund as they would have had against the participant if the transfer
+                           had not taken place.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sections 12-13: Client money assets</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">88 </span></h2>
+                     <p>These sections define the client money assets and participants within scope of the
+                        Scheme. They also set out an owner's right to reclaim and the definitions of dormancy
+                        for client money assets.</p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 12: Transfer of eligible client money to reclaim fund</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">89 </span></h2>
+                        <p>This section provides that an investment institution can transfer dormant client money
+                           to an authorised reclaim fund, if the latter consents to it. Upon the transfer, the
+                           owner no longer has the right to payment of the money against any investment institution,
+                           but rather has that right against the reclaim fund. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">90 </span></h2>
+                        <p>If that person has died, whoever the right to payment from the investment institution
+                           would have passed on to has the right to payment from the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">91 </span></h2>
+                        <p>Subsection (4) specifies that money that could be transferred to the reclaim fund
+                           under any other provision in Part 1 (or under provisions for unwanted assets) cannot
+                           be defined as eligible client money. It also excludes share or unit conversion proceeds
+                           from collective scheme investments from being defined as eligible client money, even
+                           if the investment institution holding it is not in scope of section 8.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">92 </span></h2>
+                        <p>Subsection (5) specifies that client money held in a Lifetime ISA is excluded if its
+                           transfer to the reclaim fund would result in liability to pay a withdrawal charge
+                           to HMRC.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">93 </span></h2>
+                        <p>This section also defines the type of investment institutions that are and are not
+                           eligible to participate in the Scheme in relation to client money.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 13: Meaning of "dormant" in relation to eligible client money</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">94 </span></h2>
+                        <p>This section provides that client money can be classed as dormant if the responsible
+                           institution is satisfied that the owner has been "gone-away" for at least six years.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">95 </span></h2>
+                        <p>An owner can be defined as "gone-away" if there has been no communication from the
+                           owner or anyone acting on their behalf. "Gone-away" is a standard industry term used
+                           when an owner cannot be contacted successfully. There are a range of indicators that
+                           may be considered when determining if an owner is gone-away, such as whether mail
+                           has been returned, an email has bounced back, or a cheque has not been cashed. The
+                           precise definition varies and is expected to evolve over time as new technologies
+                           emerge. The section captures this concept broadly to allow for these variations. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">96 </span></h2>
+                        <p>Subsection (5) defines a responsible institution as the investment institution assessing
+                           whether the asset meets the dormancy condition.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sections 14-16: Securities assets</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">97 </span></h2>
+                     <p>These sections define the securities assets and participants in scope of the Scheme.
+                        They also set out an owner's right to reclaim and the definitions of dormancy for
+                        securities assets. </p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 14: Transfer of eligible proceeds or distribution to reclaim fund</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">98 </span></h2>
+                        <p>This section provides that a traded public company can transfer dormant proceeds or
+                           a distribution relating to a share to an authorised reclaim fund, if the latter consents
+                           to it. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">99 </span></h2>
+                        <p>Upon the transfer, the owner no longer has the right to payment of the proceeds or
+                           distribution against any traded public company (or, where the shareholder and beneficial
+                           owner are different individuals, against the shareholder). Instead, the owner has
+                           the right to payment of the proceeds or distribution against the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">100 </span></h2>
+                        <p>If that person has died, whoever the right to payment would have passed onto has the
+                           right to payment from the reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">101 </span></h2>
+                        <p>This section defines the type of traded public company that is eligible to participate
+                           in the Scheme as a public company that is traded on a UK-regulated market or UK multilateral
+                           trading facility.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 15: "Eligible proceeds or distribution"</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">102 </span></h2>
+                        <p>This section provides that the following dormant proceeds or distribution are in scope
+                           of the Scheme, provided that the shareholder is a natural person: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>share conversion proceeds, converted to cash in line with relevant articles, terms,
+                              and/or provisions;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>a cash distribution from a share; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>proceeds from corporate actions.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">103 </span></h2>
+                        <p>Subsection (2) specifies that an amount held in a Lifetime ISA is excluded when its
+                           transfer to the reclaim fund would result in liability to pay a withdrawal charge
+                           to HMRC.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">104 </span></h2>
+                        <p>Share conversion proceeds in the securities sector are only in scope on the condition
+                           that the articles, terms, and/or provisions that govern them enable a gone-away shareholder,
+                           should they return, to reclaim the value of the share at the point it was converted
+                           to cash. After adjusting as appropriate (e.g. for any relevant interest or fees),
+                           this will be the reclaim amount for the purposes of the Scheme.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 16: Meaning of "dormant" in relation to eligible proceeds or distribution</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">105 </span></h2>
+                        <p>This section provides the definitions of dormancy for securities assets. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">106 </span></h2>
+                        <p>Subsection (2) provides that share conversion proceeds or a distribution can be classed
+                           as dormant if the shareholder has been identified as "gone-away" for at least twelve
+                           years.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">107 </span></h2>
+                        <p>A shareholder can be defined as "gone-away" if there has been no communication from
+                           the shareholder or anyone acting on their behalf. "Gone-away" is a standard industry
+                           term used when a shareholder cannot be contacted successfully. There are a range of
+                           indicators that may be considered when determining if a shareholder is gone-away,
+                           such as whether mail has been returned, an email has bounced back, or a cheque has
+                           not been cashed. The precise definition varies and is expected to evolve over time
+                           as new technologies emerge. The section captures this concept broadly to allow for
+                           these variations. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">108 </span></h2>
+                        <p>Subsections (4) and (5) provide that corporate action proceeds can be classed as dormant:
+                           </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>at least twelve years after the company was notified of the consideration and the
+                              proceeds have remained unclaimed; or</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>immediately, if the share to which the corporate action proceeds relate has already
+                              been transferred to the Scheme.</p>
+                        </section>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 17: Transfers: general</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">109 </span></h2>
+                        <p>Subsection (1) provides that a transfer into the Scheme is not in itself a breach
+                           of trust or fiduciary duties. It also ensures that it does not give rise to any liabilities
+                           for any institution, other than the liability on the reclaim fund to meet reclaims.
+                           This does not absolve a participant, or anyone acting on its behalf, of any liabilities
+                           which are unconnected with the transfer. For example, where a participant acted negligently
+                           in managing an asset prior to its transfer, that liability is not extinguished by
+                           virtue of the transfer.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">110 </span></h2>
+                        <p>Subsection (2) confirms that the right to reclaim an amount from the reclaim fund
+                           accommodates situations where that right has been passed on after the previous owner
+                           has died.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">111 </span></h2>
+                        <p>Subsection (3) provides for a situation where, following a transfer into the Scheme,
+                           an institution has been succeeded by another (for example, through a take-over). References
+                           to the institution in sections 2, 5, 8, 12 and 14 should be taken to mean the successor
+                           in these scenarios.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 18: Interpretation of Part 1</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">112 </span></h2>
+                        <p>This section defines and clarifies terms used in Part 1 that are relevant to more
+                           than one section.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 2: Other Provisions</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 19: Power to extend the dormant assets scheme to cover new dormant assets</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">113 </span></h2>
+                        <p>This section provides a power for the Secretary of State or the Treasury to bring
+                           additional asset classes in scope of the Scheme. This might include ones which have
+                           already been proposed for inclusion but whose suitability needs further exploration,
+                           new ones, or ones where dormancy has not yet been identified as an issue. The power
+                           also enables the Secretary of State or the Treasury to amend the current asset classes
+                           so that they can cover new types of assets within that class, and make consequential
+                           amendments. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">114 </span></h2>
+                        <p>Subsection (1) allows the Secretary of State or the Treasury to amend Part 1 of the
+                           Act or the 2008 Act by regulations for this purpose. Subsections (2) and (3) make
+                           further provision about what such regulations must and can include; for example, identifying
+                           when dormancy exists and ensuring that the owner has a right to payment against an
+                           authorised reclaim fund. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">115 </span></h2>
+                        <p>Under subsection (4), the Secretary of State or the Treasury may include in such regulations
+                           provision to enable participants to convert a dormant non-cash asset into cash in
+                           order for it to be transferred into the Scheme, where the asset's terms do not provide
+                           for this. Subsections (5)-(8) make further provision about what such regulations must
+                           do. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">116 </span></h2>
+                        <p>Subsection (9) ensures that all assets currently in scope cannot be excluded or have
+                           their associated definitions of dormancy altered using this power. Subsection (10)
+                           provides that any regulations made under this power must be approved by both Houses
+                           of Parliament.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 20: Return of surplus alternative scheme assets</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">117 </span></h2>
+                        <p>Section 2 of the 2008 Act makes provision for the alternative scheme for smaller banks
+                           and building societies. The 2008 Act also allows for an authorised reclaim fund to
+                           remodel the proportion of funds that it reserves for reclaims - provided that it meets
+                           its objects in section 5(1) of the 2008 Act - and, per section 5(1)(c), for any surplus
+                           funds to be distributed to TNLCF. Section 20 of the Act introduces a means for the
+                           reclaim fund to transfer additional surplus money from the alternative scheme back
+                           to the participant to be distributed to local or aligned charities. This is included
+                           as new section 2A in the 2008 Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">118 </span></h2>
+                        <p>Subsection (1) of the new section 2A in the 2008 Act specifies that an authorised
+                           reclaim fund may only return surplus money if it no longer needs to retain the funds,
+                           for example for the purpose of meeting reclaims. The section then sets out the steps
+                           the reclaim fund must take if that condition is met in order to transfer the additional
+                           surplus money to the alternative scheme participant. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">119 </span></h2>
+                        <p>Subsection (6) prescribes that the alternative scheme participant must consent to
+                           receiving surplus funds from the reclaim fund. If it does not consent, subsection
+                           (7) allows for the reclaim fund to transfer these surplus funds to TNLCF. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">120 </span></h2>
+                        <p>Subsection (8) requires the alternative scheme participant that has received surplus
+                           funds to transfer them to charity. Subsections (9) and (10) define an eligible charity
+                           as one which: </p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>is considered to have a special connection with the smaller bank or building society;
+                              or </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>will use the money to benefit communities which are local to the smaller bank or building
+                              society's branches. </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">121 </span></h2>
+                        <p>Aside from this new section, the alternative scheme remains as it is. It continues
+                           to be available to those smaller banks and building societies that meet the assets-limit
+                           condition. Its scope has not been extended to cover new assets or participants.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 21: Unwanted assets</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">122 </span></h2>
+                        <p>The Dormant Assets Scheme requires participants to have attempted to reunite an asset
+                           with its owner before it can be classed as dormant and transferred to the Scheme.
+                           When these reunification efforts are successful, the owner may decide that they no
+                           longer want their asset. This could be, for example, because the asset is of low value,
+                           and the owner does not want the administrative effort of reclaiming it (such as ¬£5
+                           in a deposit account, a share worth ¬£2, etc). This section enables these unwanted
+                           assets to be donated to the Scheme.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">123 </span></h2>
+                        <p>Subsection (2) provides that an owner can opt for all or part of their asset to be
+                           donated to the Scheme. This must be an asset otherwise in scope of the Dormant Assets
+                           Scheme - i.e. of the type provided for in section 8 of the 2008 Act, or sections 3,
+                           6, 9, 12 or 15 in this Act. The owner must declare that no other person has a right
+                           in or over the asset, and an authorised reclaim fund must consent to the transfer.
+                           Subsection (2) also provides that unwanted assets cannot be reclaimed from an authorised
+                           reclaim fund, given that they have been donated by the owner. </p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sections 22-25: Provisions applicable to more than one scheme</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">124 </span></h2>
+                     <p>These sections outline core provisions underpinning the practical operation of the
+                        Scheme, including contractual arrangements between an authorised reclaim fund and
+                        participants, and how information is shared between participants and the reclaim fund.
+                        </p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 22: Third party rights and interests</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">125 </span></h2>
+                        <p>This section ensures that third party rights and interests are preserved upon an asset
+                           being transferred to an authorised reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">126 </span></h2>
+                        <p>A participant or an authorised reclaim fund will not always know what, if any, third
+                           party rights or interests may exist in relation to an asset. This may be, for example,
+                           because they may arise pursuant to a private contract entered into between an owner
+                           and a third party. Therefore, if a third party legitimately asserts their rights or
+                           interests in respect of a dormant asset after its transfer to the Scheme, that third
+                           party will have an equivalent right of reclaim. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 23: Arrangements between reclaim fund and institutions</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">127 </span></h2>
+                        <p>This section provides that an authorised reclaim fund may only accept transfers from
+                           an institution if it has made contractual or other arrangements with the institution
+                           that the reclaim fund considers to be a satisfactory basis for accepting such transfers.
+                           An institution is considered a participant once these arrangements are in place.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">128 </span></h2>
+                        <p>While the 2008 Act does not make reference to the agreements held between the reclaim
+                           fund and participants, or the requirement for participants to make reunification efforts,
+                           these provisions are based on existing practice. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">129 </span></h2>
+                        <p>Subsections (2) and (3) specify that the arrangements must include provisions requiring
+                           the participant to take steps to reunite assets with their owners. The section does
+                           not stipulate the specific tracing, verification, and reunification practices that
+                           should be included in the arrangements, allowing for the practices to be tailored
+                           and improved over time. Subsection (4) clarifies that these requirements do not apply
+                           for unwanted assets.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">130 </span></h2>
+                        <p>Subsection (5) specifies what the arrangements may provide for. This includes participants
+                           maintaining customer engagement on the reclaim fund's behalf, including managing owner
+                           reclaims.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">131 </span></h2>
+                        <p>In line with current practice, there may be cases where undertaking steps to trace
+                           and verify an owner would be disproportionate, or otherwise unnecessary. For example,
+                           this could be because a dormant asset is of such low value that it would cost the
+                           participant a significant proportion of what it is worth to try to reunite it with
+                           its owner. To accommodate these situations and enable participants to determine appropriate
+                           de minimis values, subsections (5)(a) and (6) allow for reasonable exceptions to be
+                           agreed in the arrangements where tracing and verification would be disproportionate
+                           or unnecessary.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 24: Effect of insolvency etc. of institutions</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">132 </span></h2>
+                        <p>This section sets out the effect of insolvency of a participant on an owner's right
+                           to reclaim. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">133 </span></h2>
+                        <p>An authorised reclaim fund is liable for meeting reclaims for assets transferred by
+                           a participant, even if that participant becomes insolvent or winds up. However, a
+                           person's right to payment is limited to the amount they would have received from the
+                           participant in its insolvency (i.e. what would have happened had the transfer not
+                           occurred). This may result in the owner's entitlement being reduced or even valued
+                           at nil.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">134 </span></h2>
+                        <p>Any right to payment arising under section 11 of the 2008 Act (a customer's rights
+                           preserved on insolvency etc. of a bank or building society) continues to apply to
+                           rights acquired before this section comes into force. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 25: Disclosure of information</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">135 </span></h2>
+                        <p>This section provides that common law or other obligations pertaining to confidentiality
+                           do not prevent a participant from disclosing information to an authorised reclaim
+                           fund for the purposes of enabling the reclaim fund to plan for or deal with reclaims.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">136 </span></h2>
+                        <p>This section responds to exceptional circumstances where the transfer of confidential
+                           information from the participant to the reclaim fund may be necessary, for example
+                           where a dispute arises which involves the reclaim fund directly. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">137 </span></h2>
+                        <p>A disclosure of information should not be made under this section if it would breach
+                           data protection legislation. </p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sections 26-28: Provisions relating more than one scheme</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">138 </span></h2>
+                     <p>These sections make provisions relating to an authorised reclaim fund.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">139 </span></h2>
+                     <p>They name RFL as the authorised reclaim fund for the Scheme and provide the Treasury
+                        with the power to name another authorised reclaim fund in the future - either in addition
+                        to, or to replace, RFL.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">140 </span></h2>
+                     <p>They also remove RFL's activities from the scope of Financial Services Compensation
+                        Scheme (FSCS) protection, and provide that the Treasury could provide RFL with a loan
+                        in the event of potential insolvency, in recognition of its status as a NDPB of the
+                        Treasury.</p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 26: Meaning of "authorised reclaim fund"</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">141 </span></h2>
+                        <p>Subsection (1) defines an authorised reclaim fund, with subsection (2) naming RFL
+                           as an authorised reclaim fund.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">142 </span></h2>
+                        <p>Subsection (3) provides the Treasury with the power to add or remove a company named
+                           in the Act as an authorised reclaim fund. It also provides the Treasury with the power
+                           to specify which assets a reclaim fund is responsible for managing.  </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 27: Treasury Loans</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">143 </span></h2>
+                        <p>This section provides that, in the event an authorised reclaim fund is, or looks likely
+                           to be, unable to meet its reclaim liabilities, the Treasury can provide RFL with a
+                           loan to cover these liabilities out of money provided by Parliament. The loan's purpose
+                           is to support an authorised reclaim fund until it is able to cover these costs with
+                           its own income. At this point, the Government would look to recoup its costs. The
+                           contingent liability will remain in place throughout the operation of an authorised
+                           reclaim fund. The Treasury will note the liability in its accounts.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 28: Exclusion of repayment claims from Financial Services Compensation Scheme</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">144 </span></h2>
+                        <p>This section has the effect of removing the FSCS protection for an authorised reclaim
+                           fund's activities, which section 27 replaces with a Treasury loan. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 29: Distribution of dormant assets money for meeting English expenditure</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">145 </span></h2>
+                        <p>This section amends the approach in the 2008 Act for distributing dormant assets money
+                           in England. It enables the Secretary of State to make secondary legislation determining
+                           the types of social and environmental purposes to which funding can be distributed
+                           in England. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">146 </span></h2>
+                        <p>Subsection (1) inserts a new section 18A into the 2008 Act, which provides the Secretary
+                           of State with the power to restrict the particular purposes or people for which dormant
+                           assets money (which includes money from unwanted assets) in England can be distributed.
+                           This is in line with the powers that the devolved administrations have for their respective
+                           nations under sections 19-21 of the 2008 Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">147 </span></h2>
+                        <p>Subsection (4) of this section and subsection (2) of the new 18A provide that an order
+                           may make transitional or saving provisions, for example to honour any outstanding
+                           funding commitments made under section 18 of the 2008 Act. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">148 </span></h2>
+                        <p>Subsection (3) of the new 18A includes a statutory requirement for the Secretary of
+                           State to consult with the public on the social or environmental purposes of the English
+                           portion of funds before making an order. The Secretary of State must then consult
+                           with TNLCF on a draft of the order, and the draft order must be approved by both Houses
+                           of Parliament before it can be made.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">149 </span></h2>
+                        <p>Subsection (4) also requires the Secretary of State, in the first public consultation
+                           under this section, to consult on whether distributions of dormant assets funding
+                           in England should include any one or more of the following: youth, financial inclusion,
+                           social investment wholesalers, and community wealth funds. This does not preclude
+                           the Secretary of State from including any other additional purpose in the consultation.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">150 </span></h2>
+                        <p>Section 18 of the 2008 Act, which makes restrictions on English distributions in primary
+                           legislation, will be repealed on the day that the first order made under section 18A
+                           comes into force. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">151 </span></h2>
+                        <p>The restrictions of youth, financial inclusion, and social investment wholesalers
+                           specified by the 2008 Act will remain in place until or unless new secondary legislation
+                           comes into force. From that day, the restrictions on distributions in England will
+                           be specified in secondary - rather than primary - legislation.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 30: Periodic review and report to Parliament</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">152 </span></h2>
+                        <p>This section requires the Secretary of State to carry out periodic reviews of the
+                           general Scheme and the alternative scheme under section 2 of the Dormant Bank and
+                           Building Society Accounts Act 2008, and lay the results and conclusions in a report
+                           before Parliament. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">153 </span></h2>
+                        <p>Subsections (1) and (2) provide that the review must consider:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>the operation of the Scheme and the alternative scheme, including how many institutions
+                              have made transfers, how much money has been transferred, and the effectiveness of
+                              arrangements with participants to meet repayment claims;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>the effectiveness of steps taken to reunite assets with their owners; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>any use of the power to extend the Scheme under section 19 during and after that period.
+                              </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">154 </span></h2>
+                        <p>As well as information on the findings of the review, subsection (7) requires the
+                           report laid before Parliament to include information about the uses made by an authorised
+                           reclaim fund of its financial resources, the uses of dormant assets money in England,
+                           and reporting on how the principle of additionality has been met.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">155 </span></h2>
+                        <p>Subsections (10) and (11) require the first report to be laid no more than three years
+                           after the Act is passed, and subsequent reports to be laid every five years thereafter.
+                           </p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 3: Final Provisions</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 31: Regulations: general</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">156 </span></h2>
+                        <p>This section makes further provision about the regulation-making powers in the Act.
+                           For example, any power in the Act to make regulations (other than the power to make
+                           commencement regulations) includes the power to make incidental, supplemental, consequential,
+                           saving or transitional provisions (including modifying primary legislation). </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">157 </span></h2>
+                        <p>For example, consequential amendments could be made to the unwanted assets section
+                           following regulations to bring new assets into scope of the Scheme, to ensure it covers
+                           the same scope. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 32: Repeals in the 2008 Act and other minor or consequential amendments</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">158 </span></h2>
+                        <p>This section sets out the provisions in the 2008 Act that are repealed by the Act.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">159 </span></h2>
+                        <p>Subsection (3) introduces Schedule 1, which makes minor and consequential amendments
+                           as a result of the Act. This includes amendments to FSMA 2000 and to the 2008 Act.
+                           </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 33: Index of defined terms</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">160 </span></h2>
+                        <p>This section introduces Schedule 2, which contains an index of terms used in the Act.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 34: Extent, commencement, construction as one with 2008 Act and citation</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">161 </span></h2>
+                        <p>This section explains the geographic extent of the Act, when the provisions come into
+                           effect, and how the Act may be cited.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">162 </span></h2>
+                        <p>Subsection (1) provides that the Act extends to England and Wales, Scotland, and Northern
+                           Ireland. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">163 </span></h2>
+                        <p>Subsection (2) provides that this section comes into force on the day on which the
+                           Act is passed. Subsection (3) enables the Secretary of State to make commencement
+                           regulations to bring the other provisions in the Act into force. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">164 </span></h2>
+                        <p>Subsections (6) and (7) state that the Act may be cited alone as the Dormant Assets
+                           Act 2022 - or together with the 2008 Act as the Dormant Assets Acts 2008 to 2022.
+                           Subsection (5) provides that the Act and the 2008 Act are to be construed as one.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 1: Minor and consequential amendments</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">165 </span></h2>
+                        <p>This Schedule includes various amendments to the 2008 Act and other relevant legislation
+                           as a consequence of this Act. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 2: Index of defined terms</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">166 </span></h2>
+                        <p>This Schedule presents a table listing various terms defined or explained in the Act
+                           and the section(s) in which they are set out. </p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">167 </span></h2>
+                  <p>Section 34 provides for the commencement of the provisions in the Act.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">168 </span></h2>
+                  <p>Subsection (2) specifies that section 34 comes into force on the day on which the
+                     Act is passed.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">169 </span></h2>
+                  <p>Subsection (3) provides that the other provisions of the Act will be brought into
+                     force by regulations made by the Secretary of State.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">170 </span></h2>
+                  <p>Subsection (4) provides that different days may be appointed for different purposes.&nbsp;
+                     In addition, the regulations may make transitional or saving provisions in connection
+                     with the coming into force of any provision in the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">171 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Government response to the consultation on expanding the Dormant Assets Scheme (Jan
+                        2021) - <a href="https://www.gov.uk/government/publications/the-dormant-accounts-scheme/government-response-to-the-consultation-on-expanding-the-dormant-assets-scheme"><u>https://www.gov.uk/government/publications/the-dormant-accounts-scheme/government-response-to-the-consultation-on-expanding-the-dormant-assets-scheme</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Consultation on expanding the Dormant Assets Scheme (Feb 2020) - <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/942209/Consultation_on_expanding_the_dormant_assets_scheme.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/942209/Consultation_on_expanding_the_dormant_assets_scheme.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Dormant Assets Scheme: A Blueprint For Expansion (April 2019) - <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/942210/Industry_Champions_Report_on_Dormant_Assets_2019_full_report__2_.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/942210/Industry_Champions_Report_on_Dormant_Assets_2019_full_report__2_.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Government Response to the Commission on Dormant Assets' Report (Feb 2018)- <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/681983/Government_Response_to_Commission_on_Dormant_Assets_16_February_2018.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/681983/Government_Response_to_Commission_on_Dormant_Assets_16_February_2018.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Dormant Assets Commission: final report to Government (March 2017) - <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/727189/Tackling_dormant_assets_-_recommendations_to_benefit_investors_and_society__1_.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/727189/Tackling_dormant_assets_-_recommendations_to_benefit_investors_and_society__1_.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Dormant Bank and Building Society Accounts Act (2008) - <a href="https://www.legislation.gov.uk/ukpga/2008/31/contents"><u>https://www.legislation.gov.uk/ukpga/2008/31/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Dormant Assets Bill: Delegated Powers Memorandum (12 May 2021) - <a href="https://bills.parliament.uk/publications/41511/documents/272"><u>https://bills.parliament.uk/publications/41511/documents/272</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Dormant Assets Bill: 2nd Report of the Delegated Powers and Regulatory Reform Committee
+                        (27 May 2021) - <a href="https://committees.parliament.uk/publications/6129/documents/68369/default/"><u>https://committees.parliament.uk/publications/6129/documents/68369/default/</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">172 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.49in">
+                        <col style="width:1.1in">
+                        <col style="width:1.98in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords&nbsp;</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-05-12/debates/523BFCE3-2D88-491D-B61A-0088FECFE64D/DormantAssetsBill(HL)">
+                                    <u>Vol. 812 Col. 160</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>26 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-05-26/debates/47D12772-75FC-4FE5-858B-A76E7D829F1C/DormantAssetsBill(HL)">
+                                    <u>Vol. 812 Col. 1033</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>21 June 2021</p>
+                              <p>23 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-06-21/debates/B0B375F7-7E33-4C61-8563-4C2573E60FE7/DormantAssetsBill(HL)">
+                                    <u>Vol. 813 Col. 1GC</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-06-23/debates/3168CF4A-3CC9-49AB-B239-B4B6332F3117/DormantAssetsBill(HL)">
+                                    <u>Vol. 813 Col. 77GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>16 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-11-16/debates/9CD42B5B-47FC-4451-B015-10C9CE0643F7/DormantAssetsBill(HL)">
+                                    <u>Vol. 816 Col. 167</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-11-23/debates/6028E675-D6CF-4F38-BF7B-641AFC6598E6/DormantAssetsBill(HL)">
+                                    <u>Vol. 816 Col. 740</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>24 November 2021</p>
+                           </td>
+                           <td>
+                              <p>Not referenced</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>06 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-12-06/debates/966BB12B-95D0-401A-BF25-8EE7C90FEC71/DormantAssetsBill(Lords)">
+                                    <u>Vol. 705 Col. 121</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>11 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-01-11/debates/ea1b2d72-ddb7-4be3-bacf-c27ef9575fb7/DormantAssetsBill(Lords)(FirstSitting)">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>31 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-01-31/debates/B61D8122-B220-413C-8A42-F41E0ACF0E81/DormantAssetsBill(Lords)">
+                                    <u>Vol. 708 Col. 98</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>09 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-02-09/debates/583580BE-1314-46DB-BA7D-BA7083B675CA/DormantAssetsBill(HL)">
+                                    <u>Vol. 818 Col. 1645</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>24 February 2022</p>
+                           </td>
+                           <td>
+                              <p>House of Commons Vol. 709 Col.486</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords Vol. 819</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">173 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.74in">
+                        <col style="width:0.99in">
+                        <col style="width:1.16in">
+                        <col style="width:1.05in">
+                        <col style="width:1.22in">
+                        <col style="width:1.15in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <a href="https://bills.parliament.uk/publications/41507/documents/253">
+                                 <b>
+                                    <u>Bill as Introduced in the Lords</u>
+                                    </b>
+                                 </a>
+                              </p>
+                           <p>
+                              <a href="https://bills.parliament.uk/publications/41998/documents/444">
+                                 <b>
+                                    <u>Bill as amended in Committee in the Lords</u>
+                                    </b>
+                                 </a>
+                              </p>
+                           <p>
+                              <a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0203/210203.pdf">
+                                 <b>
+                                    <u>Bill as introduced in the Commons</u>
+                                    </b>
+                                 </a>
+                              </p>
+                           <p>
+                              <a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0226/210226.pdf">
+                                 <b>
+                                    <u>Bill as amended in Committee in the Commons</u>
+                                    </b>
+                                 </a>
+                              </p>
+                           <p>
+                              <a href="https://bills.parliament.uk/publications/45030/documents/1336">
+                                 <b>
+                                    <u>Bill as amended on Report in the Commons</u>
+                                    </b>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Sections 1 - 29</p>
+                           </td>
+                           <td>
+                              <p>Clauses 1 - 29</p>
+                           </td>
+                           <td>
+                              <p>Clauses 1 - 29</p>
+                           </td>
+                           <td>
+                              <p>Clauses 1 - 29</p>
+                           </td>
+                           <td>
+                              <p>Clauses 1 - 29</p>
+                           </td>
+                           <td>
+                              <p>Clauses 1 - 29</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 30</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>- </p>
+                           </td>
+                           <td>
+                              <p>Clause 30</p>
+                           </td>
+                           <td>
+                              <p>Clause 30</p>
+                           </td>
+                           <td>
+                              <p>Clause 30</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Sections 31 - 34</p>
+                           </td>
+                           <td>
+                              <p>Clauses 30 - 33</p>
+                           </td>
+                           <td>
+                              <p>Clauses 30 - 33</p>
+                           </td>
+                           <td>
+                              <p>Clauses 31 - 34</p>
+                           </td>
+                           <td>
+                              <p>Clauses 31 - 34</p>
+                           </td>
+                           <td>
+                              <p>Clauses 31 - 34</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Commission on dormant assets report. March 2017. Available via: <a href="https://www.gov.uk/government/publications/dormant-assets-commission-final-report-to-government"><u><a href="https://www.gov.uk/government/publications/dormant-assets-commission-final-report-to-government">https://www.gov.uk/government/publications/dormant-assets-commission-final-report-to-government</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The Dormant Assets Scheme: a blueprint for expansion. April 2019. Available via:
+                  <a href="http://www.gov.uk/government/publications/the-dormant-assets-scheme-a-blueprint-for-expansion"><u>www.gov.uk/government/publications/the-dormant-assets-scheme-a-blueprint-for-expansion</u></a>&nbsp;</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Consultation on expanding the Dormant Assets Scheme. February 2020. Available via:
+                  <a href="https://www.gov.uk/government/consultations/consultation-on-expanding-the-dormant-assets-scheme"><u><a href="https://www.gov.uk/government/consultations/consultation-on-expanding-the-dormant-assets-scheme">https://www.gov.uk/government/consultations/consultation-on-expanding-the-dormant-assets-scheme</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Government response to the consultation on expanding the Dormant Assets Scheme. January
+                  2021. Available via: <a href="https://www.gov.uk/government/publications/government-response-to-the-consultation-on-expanding-the-dormant-assets-scheme"><u><a href="https://www.gov.uk/government/publications/government-response-to-the-consultation-on-expanding-the-dormant-assets-scheme">https://www.gov.uk/government/publications/government-response-to-the-consultation-on-expanding-the-dormant-assets-scheme</a></u></a></p>
+               <p></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Under the alternative scheme, money can also be distributed to local charities.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  These are: Big Society Capital, Access – The Foundation for Social Investment, Fair4All
+                  Finance, and Youth Futures Foundation.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

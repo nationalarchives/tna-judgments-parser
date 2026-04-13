@@ -1,0 +1,1667 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>SEAFARERS’ WAGES</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Seafarers’ Wages Act 2023 which received Royal
+                  Assent on 23 March 2023 (c. 8). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Transport in order
+                  to assist the reader in understanding the Act. They do not form part of the Act and
+                  have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The objective of the Seafarers’ Wages Act 2023 is to improve remuneration for seafarers
+                     with close ties to the UK. The Act is part of the Secretary of State for Transport’s
+                     nine-point plan<a class="fn" id="fnref-1" href="#fn-1">1</a>, announced on Wednesday 30 March 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act applies to services which carry goods or people by ship between a place outside
+                     the UK and a place in the UK. The Act requires harbour authorities to ask the operator
+                     of a service which enters a UK harbour 120 times or more in a year for a declaration.
+                     The declaration is that seafarers on the service who do not qualify for the UK national
+                     minimum wage (NMW) are being paid at least an equivalent rate to the UK NMW while
+                     working in the UK or its territorial waters. Harbour authorities must impose surcharges
+                     when operators fail to provide a declaration or where they operate a service inconsistently
+                     with a declaration. Subject to certain exceptions, the Act requires harbour authorities
+                     to refuse ships providing a service access to their harbour if they impose a surcharge
+                     and it is not paid.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Wage Protection for Seafarers</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3 </span></h2>
+                     <p>Prior to this Act, some seafarers (non-qualifying seafarers) who worked on international
+                        routes were not in scope of UK NMW legislation, even though they had close ties to
+                        the UK by virtue of working on services that regularly call at UK ports.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>As UK-flagged ships and UK-resident seafarers are more likely to fall in scope of
+                        UK Minimum Wage legislation, UK-based agents are less cost-competitive and UK flagged
+                        ships face a disincentive to employ UK resident seafarers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>This Act encourages more comparable remuneration for non-qualifying seafarers on services
+                        which regularly enter UK harbours and thereby helps to reduce competitive distortion
+                        between domestic and international services, and those flagged in the UK and those
+                        flagged elsewhere<a class="fn" id="fnref-2" href="#fn-2">2</a>.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>NMW is a legally defined term under the National Minimum Wage Act 1998 (c. 39) (the
+                        1998 Act) and this Act does not amend the 1998 Act to extend legal entitlement of
+                        NMW to seafarers. Rather, it encourages operators to pay non-qualifying seafarers
+                        no less than an equivalent sum whilst they are working in the UK or its territorial
+                        waters. The NMW is from April 2023 £10.42 per hour for those 23 years old and over.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The National Minimum Wage Act 1998</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>The NMW was introduced in 1999 by the 1998 Act. The general right to receive the NMW
+                        is set out in section 1(1) of the 1998 Act, which provides that a person who qualifies
+                        for the NMW shall be remunerated by their employer in respect of their work in any
+                        pay reference period at a rate which is not less than the NMW. Section 1(2) of the
+                        1998 Act provides that a worker above the age of the compulsory schooling qualifies
+                        for the NMW if they ordinarily work in the UK.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>Section 40 of the 1998 Act provides that, for the purposes of that Act, a person employed
+                        to work on board a ship registered in the UK under Part II of the Merchant Shipping
+                        Act 1995 (“UK flagged ships”) shall be treated as ordinarily working in the UK unless
+                        their employment is wholly outside the UK or they are not ordinarily resident in the
+                        UK.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>Section 42 of the 1998 Act provides a power to apply that Act to “offshore employment”.
+                        “Offshore employment” is defined as employment for the purpose of activities: in the
+                        territorial waters of the UK; connected with exploring the sea-bed or subsoil in the
+                        UK sector of the continental shelf; or connected with the exploration or exploitation
+                        of a cross-boundary petroleum field. This power is exercised by making an Order in
+                        Council and was used to create the National Minimum Wage (Offshore Employment) Order
+                        1999 (S.I. 1999/1128) (the 1999 Order).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>Article 2 of the 1999 Order (amended by the National Minimum Wage (Offshore Employment)
+                        (Amendment) Order 2020 (S.I. 2020/779)) deems a person who works or ordinarily works
+                        in the territorial waters of the UK or (in connection with certain activities) in
+                        the UK sector of the continental shelf to be a person who works or ordinarily works
+                        in the UK for the purposes of the 1998 Act (and is therefore entitled to the NMW).
+                        The Order applies to individuals regardless of whether they are British subjects and
+                        to corporate bodies regardless of whether they are incorporated under UK law. However,
+                        the Order has no application to any individual employed for the purposes of activities
+                        on a ship exercising the right of innocent passage or the right of transit passage.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The National Minimum Wage Regulations 2015</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>The National Minimum Wage Regulations 2015 (S.I. 2015/621) (the 2015 Regulations)
+                        set out the detailed rules for determining whether a worker is paid the NMW. They
+                        make provision for the NMW rates, exemptions, what payments count towards NMW pay,
+                        how to determine what hours have been worked for NMW purposes, and what NMW records
+                        need to be kept.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The Harbours, Docks and Piers Clauses Act 1847</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>Section 33 of the Harbours, Docks and Piers Clauses Act 1847 (c.27) (the 1847 Act),
+                        as adopted in the private legislation of harbour authorities (each harbour authority
+                        is established under its own enabling Act), provides for the “open port duty”. It
+                        requires harbours, docks and piers to be open to all persons for the shipping and
+                        unshipping of goods and the embarking and landing of passengers, subject to the provisions
+                        of the 1847 Act and any subsequent Acts authorising the construction or improvement
+                        of a harbour, dock or pier and the payment of applicable rates. The open port duty
+                        prohibits harbour authorities from denying access to ports to ships physically capable
+                        of using them, but does not prevent them from regulating the terms on which such access
+                        is granted.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The Harbours Act 1964 and the Harbours Act (Northern Ireland) 1970</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>The Harbours Act 1964 (c.40) (the 1964 Act) and the Harbours Act (Northern Ireland)
+                        1970 (c. 1) (the 1970 Act) make provision with respect to harbours for England, Wales
+                        and Scotland, and Northern Ireland respectively. Section 57 of the 1964 Act and section
+                        38 of the 1970 Act define “harbour” and “harbour authority”.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The United Nations Convention on the Law of the Sea</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>The United Convention on the Law of the Sea (UNCLOS), to which the UK is a signatory,
+                        defines and codifies the standards and principles of international maritime law. Article
+                        17 of UNCLOS provides that, subject to the provisions of the Convention, the ships
+                        of all states enjoy the right of innocent passage through the territorial sea.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>The Maritime Labour Convention</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>The Maritime Labour Convention (MLC), to which the UK is also a signatory, is an international
+                        treaty that sets out the minimum working and living conditions for seafarers.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The provisions of the Act extend and apply to the whole of the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Introductory</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Services to which this Act applies</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Section 1 sets out the scope of the Act. The Act applies to a service for the carriage
+                        of persons or goods by ship, with or without vehicles, between a place outside the
+                        United Kingdom and a place in the United Kingdom. The Act does not apply to a service
+                        that is for the purpose of leisure or recreation or to a service provided by a fishing
+                        vessel. Section 1(3) provides a power to make regulations for the purpose of determining
+                        what is or is not a service. Section 1(4) defines “ship” for the purposes of the Act
+                        as including any kind of vessel used in navigation and hovercraft. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Non-qualifying seafarers</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Section 2 sets out who is a non-qualifying seafarer for the purposes of the Act. “Non-qualifying
+                        seafarer” means a person who works on a ship providing a service to which the Act
+                        applies, whose work on that ship is carried out in relation to the provision of the
+                        service and who fails to qualify for the NMW in respect of that work merely because,
+                        for the purposes of the 1998 Act, the person does not work, or does not ordinarily
+                        work, in the United Kingdom.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>National minimum wage equivalence declarations</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 3: Request for declaration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Section 3 requires harbour authorities to request that operators of services within
+                        the scope of the Act provide them with a national minimum wage equivalence declaration
+                        (an equivalence declaration) (see section 4) where they have reasonable grounds to
+                        believe that ships providing the service will call at their harbour at least 120 times
+                        in a relevant year.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>“Relevant year” is defined in section 3(6) as being a period of 12 months beginning
+                        with a date specified in regulations and then each successive period of 12 months.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>This duty is subject to any direction given by the Secretary of State not to request
+                        an equivalence declaration.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>The section provides that a harbour authority which does not comply with the duty
+                        to request an equivalence declaration commits an offence and is liable on summary
+                        conviction in England and Wales to a fine and in Scotland and Northern Ireland to
+                        a fine not exceeding level 5 on the standard scale. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>This section also includes a power for the Secretary of State to make regulations
+                        specifying the period within which harbour authorities must request an equivalence
+                        declaration, the form of such declarations and the manner and period following a request
+                        in which declarations are to be provided.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Nature of declaration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Section 4 sets out the nature of an equivalence declaration. A declaration provided
+                        before the beginning of the relevant year will be to the effect that during the relevant
+                        year either there will be no non-qualifying seafarers working on ships providing the
+                        service, or non-qualifying seafarers working on ships providing the service will be
+                        paid at least the NMW equivalent for their UK work in relation to that service. “UK
+                        work” is defined in subsection (10) as being work which is carried out in the UK or
+                        its territorial waters. Subsections (3) to (5) make provision to allow equivalence
+                        declarations to be provided during and after the relevant year and for declarations
+                        to relate to part of a year.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (6) provides that the NMW equivalent is an hourly rate set out in regulations.
+                        Regulations may make provision for:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the hourly rate at which a non-qualifying seafarer is remunerated in any period in
+                           respect of any work, and </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>whether, or the extent to which, a non-qualifying seafarer’s work in relation to the
+                           service is in the UK or its territorial waters.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>In making such regulations under this section, the Secretary of State must seek to
+                        secure that the amount of remuneration received by non-qualifying seafarers within
+                        scope of the Act is at least broadly equivalent, having regard to all the circumstances,
+                        to the remuneration they would have received had they qualified for the NMW.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Offence of operating service inconsistently with declaration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Section 5 provides for offences where services are operated inconsistently with an
+                        equivalence declaration or where declarations are false or misleading insofar as they
+                        concern the operation of a service before the declaration was provided. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsections (2)(a) and (3)(a) (read with subsection (1)) provide that the operator
+                        of a service commits an offence where it operates a service inconsistently with a
+                        declaration from the start of a relevant year or at the time a declaration is provided
+                        during a relevant year. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Subsections (2)(b) and (3)(b) (read with subsection (1)) provide that the operator
+                        of a service commits an offence where it starts to operate a service inconsistently
+                        with a declaration at any later time during the relevant year (having previously operated
+                        the service consistently with the declaration), and fails to notify the harbour authority
+                        within four weeks of the fact that the service has started to be so operated and the
+                        time when it started to be so operated.  Subsection (4) makes it an offence for an
+                        operator to provide a declaration which is false or misleading in so far as it concerns
+                        the operation of a service for a period in the past.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>A person guilty of an offence under this section is liable on summary conviction to
+                        a fine in England and Wales or to a fine not exceeding level 5 on the standard scale
+                        in Scotland and Northern Ireland. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Surcharges</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 6: Imposition of surcharges: failure to provide declaration in time</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Section 6 applies if a harbour authority requests an equivalence declaration and it
+                        is not provided in the form, manner and period prescribed in regulations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>In these circumstances the section requires the harbour authority to impose surcharges
+                        in respect of each occasion when a ship providing the service entered or enters its
+                        harbour between the beginning of the relevant year and whichever is the earlier of
+                        the end of the relevant year or the operator providing an equivalence declaration.
+                        Where an operator provides a declaration with respect to the relevant year such that
+                        it is no longer required to pay surcharges, the harbour authority is required in the
+                        circumstances in subsection (5) to refund certain surcharges already paid.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Imposition of surcharges: in-year declaration that is prospective only</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Section 7 applies if a harbour authority requests an operator to provide an equivalence
+                        declaration and the operator provides a declaration which is prospective only because
+                        it cannot demonstrate that it has paid the NMW equivalent for a period of the relevant
+                        year in the past. In those circumstances section 7 requires the harbour authority
+                        to impose surcharges in respect of each occasion when a ship providing the service
+                        entered its harbour between the beginning of the relevant year and the time the declaration
+                        was provided.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 8: Imposition of surcharges: operating inconsistently with declaration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Section 8 requires harbour authorities to impose surcharges where a service is operated
+                        inconsistently with an equivalence declaration or where a declaration is false or
+                        misleading. It requires a harbour authority to impose surcharges on each occasion
+                        that ships providing a service enter its harbour during the relevant year in three
+                        scenarios:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Where an operator notifies an authority that after an equivalence declaration was
+                           provided the service has been operated inconsistently with that declaration (subsection
+                           (1)(b)(i));</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Where an authority has reasonable grounds to believe that the service has been operated
+                           inconsistently with a declaration (subsection (1)(b)(ii));</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>Where an authority has reasonable grounds to believe that a declaration is false or
+                           misleading in so far as it concerns the operation of a service before it was provided
+                           (subsection (4)).</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Pursuant to subsections (3) and (6) the harbour authority must cease imposing surcharges
+                        on ships operating the service if it is provided with a fresh equivalence declaration
+                        by the operator in respect of the service for the relevant year. However, this section
+                        will apply again if the service is operated inconsistently with the new equivalence
+                        declaration or if that declaration is false or misleading.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 9: Surcharges general</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Section 9 provides that the amount of a surcharge is to be determined by a tariff
+                        of surcharges specified in regulations and that a harbour authority’s duty to impose
+                        a surcharge is subject to any direction given by the Secretary of State not to impose
+                        a surcharge. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Subsection (3) provides that a harbour authority which fails to comply with a duty
+                        to impose a surcharge under sections 6, 7 and 8 is guilty of an offence and liable
+                        on summary conviction to a fine in England and Wales or to a fine not exceeding level
+                        5 on the standard scale in Scotland and Northern Ireland. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Subsections (4) and (5) provide the power to make regulations setting out the procedural
+                        and administrative detail related to the imposition of surcharges.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Pursuant to subsection (6) a harbour authority may retain a surcharge and apply it
+                        for the purposes of shore-based welfare facilities for seafarers. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 10: Objections to surcharges</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Section 10 sets out how objections can be made to the imposition or amount of a surcharge
+                        and the procedure for considering those objections.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>An interested party (defined in subsection (5)) may make an objection to the imposition
+                        of a surcharge by a harbour authority or its amount. An objection to the amount of
+                        a surcharge may be made only on the grounds that it is not in accordance with the
+                        tariff of surcharges specified in regulations under section 9(1). Objections must
+                        be made to the Secretary of State in writing within the period specified in regulations
+                        made under subsection (4).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Where an objection is made the Secretary of State must send a copy of the objection
+                        to the harbour authority and publish a notice online with details of the objection
+                        and how to make any representations in relation to the objection. If any representations
+                        are made the Secretary of State must send copies to the harbour authority and the
+                        objector and allow them a reasonable time to comment.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Once the time for any representations and further comments has expired, the Secretary
+                        of State must proceed to consider the objection and any representations made. Following
+                        that consideration, the Secretary of State may decide:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>to approve the imposition of the surcharge and its amount,</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>to direct the harbour authority to revoke the imposition of the surcharge, or</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>to direct the harbour authority to increase or decrease the amount of the surcharge
+                           so that it is in accordance with the tariff of surcharges specified in regulations
+                           under section 9(1).</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>The Secretary of State may also direct a harbour authority to repay any surcharges
+                        that appear to be appropriate to be repaid by that result of a decision, for example,
+                        if the Secretary of State decides to direct the authority to revoke the imposition
+                        of the surcharge, they may also direct that authority to refund any surcharges that
+                        have already been paid. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>The Secretary of State must communicate the decision to the harbour authority and
+                        the objector, and publish the decision online.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Where the Secretary of State considers that the substance of an objection has already
+                        been, or is being, considered in connection with another objection, they are not required
+                        to consider the later objection. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 11: Refusal of harbour access for failure to pay surcharge</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Section 11 provides that a harbour authority must refuse access to its harbour if
+                        the authority has imposed a surcharge on the operator of a service and the operator
+                        has not paid the surcharge in the form, manner and period prescribed in regulations,
+                        irrespective of whether an objection has been made under section 10. Failure to comply
+                        with this duty is an offence, punishable on summary conviction by a fine in England
+                        and Wales, or a fine not exceeding level 5 on the standard scale in Scotland and Northern
+                        Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>The duty to refuse access to a harbour is subject to any direction by the Secretary
+                        of State not to refuse access. The duty also does not apply in circumstances where
+                        a harbour authority has imposed a surcharge but must later refund this surcharge under
+                        section 6(5) because the operator subsequently provides a valid equivalence declaration
+                        that covers the period for which the surcharge was imposed. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Subsection (4) provides exceptions where a harbour authority must not refuse access
+                        to its harbour:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>in cases of <i>force majeure</i>;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>where there are overriding safety concerns;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>where there is a need to reduce or minimise the risk of pollution;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>where there is a need to rectify deficiencies on the ship.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (7) provides for regulations to make provision as to how a harbour authority
+                        is to communicate refusal of access. Subsection (8) clarifies that nothing in section
+                        33 of the Harbours, Docks and Piers Clauses Act 1847 prevents refusal of access to
+                        a harbour under this section.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Enforcement powers</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 12: Provision of information by operators</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Section 12 provides a power for the Secretary of State to give a notice to an operator
+                        of a service in scope of the Act, requiring it to provide information, in the manner
+                        and within the period specified in the notice, for the purpose of:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>establishing whether a service is or any time was being operated consistently with
+                           an equivalence declaration provided by the operator, or </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>establishing whether an equivalence declaration provided by the operator is false
+                           or misleading in so far as it concerns the operation of the service before the declaration
+                           was provided. </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>This may in particular include information relating to the service and information
+                        relating to persons working on ships providing the service and their remuneration.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>There is an exception whereby operators are not required to provide information under
+                        this section to the extent that doing so would cause the operator to breach domestic
+                        data protection legislation or the data protection laws of any country or territory
+                        outside the UK. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>It is an offence for an operator to fail to provide information required in the manner
+                        and within the period specified, to provide information that is false or misleading,
+                        or to provide information that becomes false or misleading and fail to inform the
+                        Secretary of State within four weeks. This offence is punishable on summary conviction
+                        by a fine in England and Wales, or a fine not exceeding level 5 on the standard scale
+                        in Scotland and Northern Ireland.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 13: Provision of information by harbour authorities</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Section 13 provides a power for the Secretary of State to give a notice to a harbour
+                        authority requiring it to provide information, in the manner and within the period
+                        specified in the notice, for the purpose of establishing whether, or to what extent,
+                        the authority is complying with its duties under the Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>This may in particular include information about:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the services provided by ships that use the harbour,</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>equivalence declarations requested by, or provided to, the harbour authority,</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>surcharges imposed or received by the harbour authority, and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>decisions by the harbour authority to refuse or not refuse access to its harbour.
+                           </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>There is an exception whereby operators are not required to provide information under
+                        this section to the extent that doing so would cause the operator to breach domestic
+                        data protection legislation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>A notice may require the information to be provided in a manner, and within a period,
+                        specified in the notice. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>It is an offence for an operator to fail to provide information required in the manner
+                        and within the period specified, to provide information that is false or misleading,
+                        or to provide information that becomes false or misleading and fail to inform the
+                        Secretary of State within four weeks. This offence is punishable on summary conviction
+                        by a fine in England and Wales, or a fine not exceeding level 5 on the standard scale
+                        in Scotland and Northern Ireland.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 14: Inspections</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Section 14 empowers an inspector appointed by the Secretary of State to board a ship
+                        in a harbour in the United Kingdom or enter any premises for the purposes of:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>establishing whether a service is being operated consistently with an equivalence
+                           declaration, </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>establishing whether an equivalence declaration is false or misleading in so far as
+                           it concerns the operation of a service before the declaration was provided,</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>verifying any information provided under section 12,</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>establishing whether, or to what extent, a harbour authority is complying with its
+                           duties under the Act, or</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>verifying any information provided by a harbour authority under section 13. </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>The powers of inspectors under this section include:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>making such inspection as they consider necessary; </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>being accompanied by another person;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>requiring a person to answer questions and sign a statement that their answers are
+                           true, at the time of the inspection or subsequently at a time specified by the inspector;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>requiring the production of documents (including requiring provision of information
+                           held in electronic form in a legible format);</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>requiring a person to provide facilities and assistance to the inspector, where that
+                           is in that person’s control.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>It is an offence for a person to intentionally obstruct an inspector in the exercise
+                        of their powers; to fail without reasonable excuse to comply with a requirement imposed
+                        by this section, or to prevent another person from complying with such a requirement;
+                        or to make a statement which the person knows is false or misleading, or to recklessly
+                        make such a statement,  in purported compliance with a requirement imposed under this
+                        section. Such an offence is punishable on summary conviction by a fine in England
+                        and Wales, or a fine not exceeding level 5 on the standard scale in Scotland and Northern
+                        Ireland.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 15: Prosecution of offences</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Section 15 provides that in England and Wales and Northern Ireland proceedings relating
+                        to offences under the Act may be prosecuted by the Secretary of State. In Scotland,
+                        all prosecutions are brought by the Lord Advocate.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Supplementary</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 16: Directions</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Section 16 provides the Secretary of State the power to give directions to harbour
+                        authorities requiring them not to comply with their duties under the Act, or to comply
+                        with any of them in a particular way. Directions must be published and may be varied
+                        or revoked. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Failure to comply with a direction under this section is an offence punishable on
+                        summary conviction by a fine in England and Wales, or a fine not exceeding level 5
+                        on the standard scale in Scotland and Northern Ireland.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 17: Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Section 17 provides that regulations under the Act are to be made by statutory instrument.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Where regulations are made under the Act, those regulations may make different provision
+                        for different cases, including for different descriptions of service to which the
+                        Act applies or non-qualifying seafarers. They may also confer a discretion on any
+                        person and contain consequential, supplementary, incidental or transitional provision.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Subsections (3) to (5) make provision about the Parliamentary procedure associated
+                        with regulations made under the Act. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>General</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 18: “Harbour” and “harbour authority”</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Section 18 provides definitions of “harbour” and “harbour authority”, which align
+                        with the definitions in the Harbours Act 1964 for England, Wales and Scotland, and
+                        the Harbours Act (Northern Ireland) 1970 for Northern Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>References in the Act to harbours of a harbour authority are to harbours in respect
+                        of which it is the harbour authority. In circumstances where there is more than one
+                        harbour authority in respect of a particular harbour, subsection (3) provides a power
+                        for regulations to specify which harbour authority is the responsible authority for
+                        that harbour, and therefore subject to the powers and duties in the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 19: General interpretation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Section 19 provides definitions of terms used throughout the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 20: Extent, commencement and short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>Section 20 sets out the territorial extend of the Act. It also makes provision for
+                        the coming into the force of the Act and its short title.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>Section 20(2) provides that any provision so far as conferring a power to make regulations,
+                     and sections 1, 2 and 16 to 20 come into force on Royal Assent. All other provisions
+                     come into force on a day appointed in regulations, and such regulations may appoint
+                     different days for different purposes and contain transitional provision.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>06 July 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3310/stages/16839">
+                                    <u>Vol. 823</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>20 July 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-07-20/debates/0380DA0D-E5ED-403F-9129-7E0303F961C8/Seafarers%E2%80%99WagesBill(HL)">
+                                    <u>Vol. 823 Col. 1975</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>12 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-10-12/debates/E9A96D5A-5AA6-438F-9DBF-6E71729AFEE7/Seafarers%E2%80%99WagesBill(HL)">
+                                    <u>Vol. 824 Col. 88GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>26 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-10-26/debates/1B26A0B9-0EFF-4374-A650-6FED7F4358F5/Seafarers%E2%80%99WagesBill(HL)">
+                                    <u>Vol. 824 Col. 1500</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>07 November 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-11-07/debates/E508C345-B67E-46AF-880D-8DDB7FBDFC8C/Seafarers%E2%80%99WagesBill(HL)">
+                                    <u>Vol. 825 Col. 460</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>08 November 2022</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-12-19/debates/2A6356CE-C82E-4E45-83E5-5F2C72885BC1/Seafarers%E2%80%99WagesBill(Lords)">
+                                    <u>Vol. 725 Col. 65</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Act Committee</p>
+                           </td>
+                           <td>
+                              <p>17 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0184/PBC184_Seafarers_Wages_Bill_1st-2nd_Compilation_17_01_2023.pdf">
+                                    <u>Vol. XXX Col. 1, 39</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>07 February 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-02-07/debates/61BB3D40-1955-4601-B1C7-DA9476FDF43B/Seafarers%E2%80%99WagesBill(Lords)">
+                                    <u>Vol. 727 Col. 800</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>21 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-03-21/debates/A0BBA99B-3ABE-41F8-B2BF-5BD0C6E843B7/Seafarers%E2%80%99WagesBill(HL)">
+                                    <u>Vol. 828 Col. 1670</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>23 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-03-23/debates/BEB83D31-D480-430B-B292-E8CBB82EBF5F/PostOfficeHorizonCompensation">
+                                    <u>House of Commons Vol. 730 Col. 475</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-03-23/debates/36800095-ECFB-4315-8BD2-283E0B0FD460/RoyalAssent">
+                                    <u>House of Lords Vol. 828 Col. 1957</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>This Annex shows how each section of the Act was numbered during the passage of the
+                     Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 12 </p>
+                           </td>
+                           <td>
+                              <p>Clause 10 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9 </p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>-</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12 </p>
+                           </td>
+                           <td>
+                              <p>Clause 16 </p>
+                           </td>
+                           <td>
+                              <p>Clause 17 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/publications/nine-point-plan-for-seafarers-our-commitments-to-protect-seafarers"><u>Nine-point plan for seafarers – our commitments to protect seafarers - GOV.UK (www.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  See Impact Assessment, pg 38 <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1095066/seafarers-wages-impact-assessment.pdf"><u>Seafarer Wages Act - Final Stage Impact Assessment (publishing.service.gov.uk)</u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

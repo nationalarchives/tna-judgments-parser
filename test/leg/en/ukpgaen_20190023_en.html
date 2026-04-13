@@ -1,0 +1,817 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NATIONAL INSURANCE CONTRIBUTIONS (TERMINATION AWARDS AND SPORTING TESTIMONIALS)</b>
+               <b>
+                  </b>
+               <b>ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes refer to the National Insurance Contributions (Termination
+                  Awards and Sporting Testimonials) Act (c. 23) which received Royal Assent on 24 July
+                  2019.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by HM Revenue &amp; Customs (HMRC) in order
+                  to assist the reader of the Act. They do not form part of the Act and have not been
+                  endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each section of the Act will mean in practice;
+                  provide background information on the development of policy; and provide additional
+                  information on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act deals with the following matters:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Aligning the National Insurance contributions (NICs) treatment of termination awards
+                        made to employees with the income tax treatment; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Aligning the NICs treatment of income from sporting testimonials with the income tax
+                        treatment.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Termination Awards</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Government announced at Budget 2016 that it would be reforming the tax and NICs
+                     treatment of termination awards. Currently, certain forms of termination awards are
+                     exempt from employee and employer NICs and the first £30,000 is free from income tax.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The changes to the NICs treatment of termination awards place an employers’ (Class
+                     1A) NICs liability on the amount of a termination award that exceeds £30,000 mirroring
+                     the income tax treatment. The new Class 1A liability does not affect individuals as
+                     it is paid by the employer.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Act introduces a new Class 1A NICs liability which will be payable on payments
+                     made on termination of employment which are in excess of £30,000 and which are not
+                     already charged to Class 1 NICs as earnings.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>It amends the existing section 10 of the Social Security Contributions and Benefits
+                     Act 1992 (SSCBA 1992) and the Social Security Contributions and Benefits (Northern
+                     Ireland) Act 1992 (SSCB(NI)A 1992) by providing for the new Class 1A NICs liability
+                     on termination awards, whilst keeping the existing provisions for Class 1A contributions
+                     payable on benefits in kind provided to employees, and defining which subsection applies.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Sporting Testimonials</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>As part of the 2015 Autumn Statement, the Government announced that it would be reforming
+                     the income tax and NICs treatment of payments derived from sporting testimonials.
+                     The changes for income tax were legislated for in the Finance Act 2016, and came into
+                     effect on 5 April 2017.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The changes to the NICs treatment of sporting testimonials places a Class 1A NICs
+                     liability (which mirrors the income tax liability) on the amount of a testimonial
+                     payment that exceeds £100,000. The new Class 1A liability does not affect individuals
+                     as it is to be paid by the controller of the sporting testimonial.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The changes will bring payments from sporting testimonials that are non-contractual,
+                     non-customary and organised by an independent testimonial committee within the scope
+                     of both income tax and NICs. The new £100,000 exemption applies to only one testimonial
+                     in a person’s lifetime, which could come from one event or a series of events held
+                     over a 12 calendar month testimonial year.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The legislation relating to the existing system of NICs and social security benefits
+                     is set out in a combination of primary and subordinate legislation. The relevant provisions
+                     are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Social Security Contributions and Benefits Act (SSCBA 1992);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Social Security Contributions and Benefits (Northern Ireland) Act 1992 (SSCB(NI)A
+                        1992);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Social Security Administration Act 1992;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Social Security Administration (Northern Ireland) Act 1992;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Social Security (Contributions) Regulations 2001 (SI 2001/1004).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>These provisions will continue to be the main legislation dealing with NICs.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Sections 1 and 3 extend to England and Wales and Scotland. Sections 2 and 4 extend
+                     to Northern Ireland. Section 5 extends to the whole of the United Kingdom. An amendment
+                     or repeal in the Act has the same extent as the provision amended or repealed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, the
+                     National Assembly for Wales or the Northern Ireland Assembly without the consent of
+                     the legislature concerned.</p>
+               </section>
+               <section class="level">
+                  <p>Scotland</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the Scottish Parliament. </p>
+               </section>
+               <section class="level">
+                  <p>Wales</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The Act does not contain any provisions relating to matters within the legislative
+                     competence of the National Assembly of Wales. </p>
+               </section>
+               <section class="level">
+                  <p>Northern Ireland</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Under the provisions of Schedule 2 to the Northern Ireland Act 1998 NICs are an excepted
+                     matter. The Act therefore applies to the relevant Northern Ireland legislation relating
+                     to NICs.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Termination Awards</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Termination awards: Great Britain</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Subsection (1) provides for amendments to section 10 of the SSCBA 1992.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Subsection (2) inserts new subsections (1A), (1B) and (1C) into section 10 of the
+                        SSCBA 1992.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>New subsection (1A) provides that a Class 1A contribution is payable in respect of
+                        an amount of a payment or benefit received by an earner in connection with the termination
+                        of the earner’s employment (termination award). It further clarifies that the amount
+                        paid as a termination award, and on which the new Class 1A liability will arise, must
+                        count as employment income under section 403 of Income Tax (Earnings and Pensions)
+                        Act 2003 (ITEPA 2003) and that the earner is chargeable to tax on the termination
+                        award under section 403 ITEPA 2003.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>New subsection (1B) prevents double charging by providing that Class 1A contributions
+                        payable under new subsection (1A) are not payable on an amount of earnings on which
+                        Class 1 contributions are also payable.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>New subsection (1C) clarifies that the employment from which the termination award
+                        arises must be the employed earner’s employment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Subsection (3) amends section 10(2) of the SSCBA 1992 so that the section’s existing
+                        purpose, clarifying who is liable to pay a Class 1A contribution, is restricted to
+                        Class 1A contributions other than that paid on a termination award.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Subsection (4) inserts new subsection (3A) into section 10 of the SSCBA 1992. New
+                        subsection (3A) clarifies who is liable to pay a Class 1A contribution on termination
+                        awards under new subsection (1A). It is the person who would be liable to pay secondary
+                        Class 1 NICs if the amount of earnings were subject to Class 1.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsection (5) amends section 10(4) of the SSCBA 1992 so that the section’s existing
+                        purpose, explaining how the amount of a Class 1A contribution is calculated, is restricted
+                        to Class 1A NICs other than that paid on a termination award.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Subsection (6) inserts a new subsection (4A) into section 10 of the SSCBA 1992. New
+                        subsection (4A) clarifies how the amount of a Class 1A NICs payable on a termination
+                        award is calculated by using the Class 1A percentage.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (7) amends section 10(5) of the SSCBA 1992 so that it applies to both existing
+                        subsection (4) and new subsection (4A).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (8) amends subsection (9)(a) of section 10 of the SSCBA 1992 so that the
+                        Treasury may by regulations provide that Class 1A NICs are not to be payable in respect
+                        of general earnings or termination awards.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection<i></i>(9)<i></i>inserts new subsection (12) after subsection (11) of section 10 of the SSCBA 1992.
+                        This new subsection clarifies that a termination award means a payment or benefit
+                        received by an earner (or their spouse, civil partner, blood relative or dependent)
+                        in connection with the termination of the earner’s employment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (10)<i></i>amends the heading of section 10 of the SSCBA 1992, removing reference to “benefits
+                        in kind etc.” to reflect that the provisions of the section now apply more widely
+                        than just to Class 1A NICs due on benefits in kind. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Subsection (11)<i></i>amends section 162(5)(c) of the Social Security Administration Act 1992 to ensure
+                        that Class 1A NICs paid on termination awards are included in the calculation of the
+                        allocation of payments to the National Health Service.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Termination awards: Northern Ireland</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>This section mirrors the effect of section 1 in Northern Ireland legislation.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Sporting Testimonials</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 3: Sporting testimonials: Great Britain</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>This section provides for any Class 1A NICs liability arising on taxable sporting
+                        testimonial payments by virtue of section 226E of ITEPA 2003 and section 10 of the
+                        SSCBA 1992 to be met by third party controllers of sporting testimonials.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>The controller will be liable to pay Class 1A NICs due on sporting testimonial payments
+                        that comprise cash as well as benefits in kind. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Subsection (1) provides for amendments to the SSCBA 1992.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Subsection (2) inserts into section 10 of the SSCBA 1992 a reference to new section
+                        10ZBA which will provide for the new Class 1A NICs liability on sporting testimonial
+                        payments to be placed on the controller of a sporting testimonial.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Subsection (3) inserts into section 10ZA of the SSCBA 1992 new subsection (1A). This
+                        new subsection makes clear that section 10ZA will not apply if the benefit being provided
+                        by the third party consists of a sporting testimonial payment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Subsection (4) inserts into the SSCBA 1992 new section 10ZBA.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>New section 10ZBA(1) defines the circumstances in which a sporting testimonial controller
+                        will be liable to pay Class 1A contributions. Three conditions must be satisfied:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>a Class 1A NICs liability must be payable for the tax year in respect of general earnings
+                           paid to an earner;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>those general earnings must consist in a sporting testimonial payment; and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the controller of the sporting testimonial making the payment must not be the person
+                           who, but for new section 10ZBA, would be liable to pay Class 1A NICs on those general
+                           earnings.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>New subsection 10ZBA(2) provides that the controller of the sporting testimonial is
+                        liable to pay the Class 1A NICs due in respect of the sporting testimonial payment
+                        instead of the earner’s employer.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>New subsections 10ZBA(3), (4) and (5) deal with cases where the controller of the
+                        sporting testimonial pays an amount to discharge any liability of the earner to pay
+                        income tax in the relevant tax year in respect of a sporting testimonial payment.
+                        Normally, a payment of an earner’s income tax by someone other than the earner himself
+                        constitutes a payment of earnings for NICs purposes on which a Class 1 NICs liability
+                        arises. New subsection (4) provides that where such an amount is paid by the controller
+                        of the sporting testimonial, that amount is to be treated as a payment of general
+                        earnings and is to be ignored in the computation of the earner’s earnings for Class
+                        1 NICs purposes. The combined effect of sub sections (3), (4) and (5) is to require
+                        the controller of a sporting testimonial to pay Class 1A NICs on any payment made
+                        by him to discharge the earner’s tax liability on the sporting testimonial payment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>New subsection 10ZBA(6) provides that the expressions used in this section have the
+                        same meaning as in section 226E of ITEPA 2003.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Sporting testimonials: Northern Ireland</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>This section mirrors the effect of section 3 in Northern Ireland legislation.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>General</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 5: Extent, commencement and short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Subsection (1) provides that sections 1 and 3 of the Act extend to England and Wales
+                        and Scotland. Sections 2 and 4 extend to Northern Ireland. This section extends to
+                        England and Wales, Scotland and Northern Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Subsection (2) provides that section 5 comes into force on the day the Act is passed.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Subsection (3) provides that the other provisions of the Act come into force on such
+                        a day as the Treasury may appoint by regulations made by statutory instrument.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Subsection (4) provides that regulations:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>may appoint different days for different purposes or different areas; and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>may include transitional, transitory or saving provision.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsection (5) provides for the Act to be known as the National Insurance Contributions
+                        (Termination Awards and Sporting Testimonials) Act 2019. </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Draft legislation and explanatory notes for termination awards and sporting testimonial
+                        payments, December 2016 <a href="https://www.gov.uk/government/collections/national-insurance-contributions-bill-2016"><u>https://www.gov.uk/government/collections/national-insurance-contributions-bill-2016</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Termination awards tax information impact note (TIIN), December 2016 (updated April
+                        2018) <a href="https://www.gov.uk/government/publications/income-tax-and-national-insurance-contributions-treatment-of-termination-payments/income-tax-and-national-insurance-contributions-treatment-of-termination-payments"><u>https://www.gov.uk/government/publications/income-tax-and-national-insurance-contributions-treatment-of-termination-payments/income-tax-and-national-insurance-contributions-treatment-of-termination-payments</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Sporting testimonials TIIN, March 2016 (updated November 2017) <a href="https://www.gov.uk/government/publications/income-tax-update-to-treatment-of-income-from-sporting-testimonials/income-tax-update-to-treatment-of-income-from-sporting-testimonials"><u>https://www.gov.uk/government/publications/income-tax-update-to-treatment-of-income-from-sporting-testimonials/income-tax-update-to-treatment-of-income-from-sporting-testimonials</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Table 2.1 Budget 2016, March 2016 <a href="https://www.gov.uk/government/publications/budget-2016-documents"><u>https://www.gov.uk/government/publications/budget-2016-documents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Table 2.2 Budget 2017, March 2017 <a href="https://www.gov.uk/government/publications/spring-budget-2017-documents"><u>https://www.gov.uk/government/publications/spring-budget-2017-documents</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Acts passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>25 April 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-04-25/debates/5C3ED958-D316-464A-833C-1224472F9347/CarbonCaptureUsageAndStorage">
+                                    <u>Vol. 658 Col 931</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 April 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-04-30/debates/B4BC9FEA-FEAC-4FB6-BDB0-5C83403701D3/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill">
+                                    <u>Vol. 659 Col. 153</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>14 May 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-05-14/debates/369dd437-d430-4d4c-9f84-38e0d153c9f2/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill(FirstSitting)">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 <a href="https://hansard.parliament.uk/commons/2019-05-14/debates/d1eff82c-f099-490f-95be-51d23f7b6f34/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill(SecondSitting)">
+                                    <u>Col. 29</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>10 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-06-10/debates/0B6D46D7-CE40-4EA5-80FA-8F4CA0879704/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill">
+                                    <u>Vol. 661 Col. 453</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>11 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-06-11/debates/CC0D21F0-FF93-48F4-A94D-BA683B7101EC/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill">
+                                    <u>Vol. 798</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>26 June 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-06-26/debates/BF823DED-0735-4193-9581-EB955B3294D3/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill">
+                                    <u>Vol. 798</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment discharged: House of Lords</p>
+                           </td>
+                           <td>
+                              <p>10 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-07-10/debates/D5E45A46-E446-455A-B36A-DB672E1A93B8/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill">
+                                    <u>Vol. 798</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-07-23/debates/333EBD3C-D87D-403B-A147-41FD8830A047/NationalInsuranceContributions(TerminationAwardsAndSportingTestimonials)Bill">
+                                    <u>Vol. 799 Col. 673</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>24 July 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-07-24/debates/F7C1D9DF-0A2F-4904-A0CC-44467694A887/Prayers">
+                                    <u>House of Commons Vol. 663</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-07-24/debates/6B1EE293-9CE0-4EA5-87E2-601BC0F8C9D0/RoyalAssent">
+                                    <u>House of Lords Vol. 799</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

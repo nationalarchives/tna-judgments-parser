@@ -1,0 +1,1581 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>MENTAL CAPACITY (AMENDMENT) ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Mental Capacity (Amendment) Act 2019 (c. 18)
+                  which received Royal Assent on 16 May 2019.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Health and Social
+                  Care in order to assist the reader. They do not form part of the Act and have not
+                  been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Mental Capacity (Amendment) Act 2019 is to reform the process under
+                     the Mental Capacity Act 2005 (“MCA”) for authorising arrangements enabling the care
+                     or treatment of people who lack capacity to consent to the arrangements, which give
+                     rise to a deprivation of their liberty. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act amends the MCA. In particular it inserts a new Schedule AA1. The Act is based
+                     on a Law Commission draft Bill published as part of its report <i>Mental Capacity and Deprivation of Liberty </i>(2017).<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>In 2014 the Government asked the Law Commission to review the Deprivation of Liberty
+                     Safeguards scheme (“DoLS”) (contained in Schedules A1 and 1A to the MCA). The DoLS
+                     provide a process for authorising adults who lack capacity to consent to being accommodated
+                     in a hospital or care home for the purpose of care or treatment to be deprived of
+                     liberty if it is in their best interests and necessary to prevent harm to the person
+                     and a proportionate response to that harm. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The DoLS scheme was introduced in 2009 following the decision of the European Court
+                     of Human Rights in <i>HL v United Kingdom</i>.<a class="fn" id="fnref-2" href="#fn-2">2</a> This judgment identified a gap in the law, known as the “Bournewood gap”.<a class="fn" id="fnref-3" href="#fn-3">3</a> The European Court held that individuals who lacked capacity and were being deprived
+                     of liberty for the purpose of treatment under the common law, rather than under the
+                     Mental Health Act 1983, were being denied the procedural safeguards required by Article
+                     5 of the European Convention on Human Rights. Article 5 provides that no one shall
+                     be deprived of liberty except in specific cases (one of which is the lawful detention
+                     of persons of “unsound mind”) and “in accordance with a procedure prescribed by law”.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>However, the DoLS have been subject to criticism since their inception. The House
+                     of Lords Select Committee on the MCA found in its 2014 post-legislative scrutiny report
+                     that the DoLS were “frequently not used when they should be, leaving individuals without
+                     the safeguards Parliament intended” and care providers “vulnerable to legal challenge”.
+                     The Committee concluded that “the legislation is not fit for purpose” and recommended
+                     its replacement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>In 2014 the decision of the Supreme Court in the case of <i>Cheshire West</i><a class="fn" id="fnref-4" href="#fn-4">4</a> gave a significantly wider interpretation of deprivation of liberty than had been
+                     previously applied in the health and social care context. This increased considerably
+                     the number of people treated as being deprived of liberty, and correspondingly increased
+                     the obligations on public authorities (primarily local authorities) in connection
+                     with authorising, and providing safeguards for, these extra deprivations of liberty.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Following <i>Cheshire West</i>, the Government asked the Law Commission to review this area of law. The Commission’s
+                     final report, which included a draft Bill, called for the DoLS to be replaced as a
+                     matter of “pressing urgency” and set out a replacement scheme. The new scheme was
+                     intended to establish a proportionate and less bureaucratic means of authorising deprivation
+                     of liberty (see footnote 1). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Government’s final response to that report was published on 14 March 2018.<a class="fn" id="fnref-5" href="#fn-5">5</a> The Government accepted that the current DoLS system should be replaced, and broadly
+                     agreed with the model set out in the Commission’s draft Bill. This Act is based on
+                     the Law Commission’s recommendations. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes (see paragraphs 3 to 8 of these Notes). </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 6 sets out the territorial extent of the Act, that is, the jurisdictions in
+                     which the provisions of the Act form part of the law. The extent of the Act can be
+                     different from its application. Application is about where a provision of an Act produces
+                     a practical effect. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Act extends and applies to England and Wales only. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, the
+                     National Assembly for Wales or the Northern Ireland Assembly without the consent of
+                     the legislature concerned.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the National Assembly for Wales, and do not alter the competence of
+                     the Welsh Government except in a way that is consequential, supplementary or incidental
+                     to the subject matter of the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Safeguards</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Deprivation of liberty: authorisation of arrangements enabling care and
+                        treatment</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Section 1(4) inserts the new Schedule AA1 into the MCA. This Schedule contains the
+                        new administrative scheme for authorising arrangements enabling the care and treatment
+                        of persons who lack capacity to consent to those arrangements, which give rise to
+                        a deprivation of liberty (referred to in these Notes as the Liberty Protection Safeguards).
+                        It will replace Schedules A1 and 1A to the MCA, with those Schedules being repealed
+                        under paragraph 2 of Schedule 2 to the Act. More information on the contents of Schedule
+                        AA1 can be found in paragraphs 28-80 of these Notes.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Section 1(2) amends section 4A of the MCA so as to refer to the new Schedule AA1.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Subsection (3) inserts a new section 4C, “Carrying out of authorised arrangements
+                        giving rise to deprivation of liberty”. This provides a person carrying out arrangements
+                        that are authorised under Schedule AA1 with a defence to civil and criminal liability
+                        in relation to non-negligent acts done while carrying out the authorised arrangements.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Authorisation of steps necessary for life-sustaining treatment or vital
+                        act</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Section 2 amends section 4B of the MCA so as to provide express authority for a person
+                        to take steps to deprive another person of their liberty if four conditions are met
+                        (see subsections (2) to (6)). Broadly speaking, section 4B as amended gives authority
+                        to take steps to deprive a person of their liberty in three circumstances (see subsections
+                        (6) and (7)): (1) where a decision relevant to whether there is authority to deprive
+                        the person of liberty is being sought from a court; (2) where a responsible body is
+                        determining whether to authorise arrangements under Schedule AA1; or (3) in an emergency.
+                        An “emergency” is defined in subsection (9).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>In each situation the person must reasonably believe that the person to be deprived
+                        of liberty lacks the capacity to consent to the steps being taken (see subsection
+                        (5)). The deprivation of liberty must also be necessary either to provide the person
+                        with life-sustaining treatment or to prevent a serious deterioration in their condition
+                        (see subsections (2) to (4)). The authority in subsection (7)(b) to deprive a person
+                        of liberty while an authorisation is being sought under Schedule AA1 takes the place,
+                        in part, of the current provision within the DoLS system for urgent authorisations.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Powers of the court to determine questions</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Section 3 inserts a new section 21ZA “Powers of court in relation to Schedule AA1”
+                        into the MCA. It replaces section 21A of the MCA, which will be repealed under paragraph
+                        2 of Schedule 2 to the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>The new section 21ZA sets out the powers of the Court of Protection in relation to
+                        arrangements authorised under Schedule AA1.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Deprivation of liberty: Code of Practice</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Section 4(2) amends section 42 of the MCA to specify that guidance must be included
+                        in one or more MCA Codes of Practice about what kind of arrangements for enabling
+                        the care or treatment of a person would give rise to a deprivation of their liberty.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Section 4(3) sets out that the Lord Chancellor must review the guidance in the Codes
+                        for people exercising functions under Schedule AA1 of the Act and a report of this
+                        review must be laid before Parliament. The first review must take place within 3 years
+                        of the subsection coming into force and subsequent reviews must take place within
+                        5 years from when the report of the previous review was laid before Parliament.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>General</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 5: Consequential provision etc</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Section 5 grants the Secretary of State a regulation making power to make provision
+                        that is consequential on any provision of the Act. This includes the power to amend,
+                        repeal or revoke primary or secondary legislation. The regulation making power must
+                        be exercised by statutory instrument. The regulations will be subject to the negative
+                        procedure (annulment in pursuance of a resolution of either House of Parliament),
+                        save where the Secretary of State proposes to make changes to primary legislation,
+                        in which case the affirmative procedure applies (where a draft of the instrument must
+                        be laid before and approved by a resolution of each House of Parliament). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Section 5(6) highlights that minor and consequential amendments are made in Schedule
+                        2.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Extent, commencement and short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Section 6 sets out that the Act extends to England and Wales only.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Section 5 (except subsection (6)) and section 6 come into force on the day the Act
+                        is passed. All other provisions of the Act will come into force on a date determined
+                        by the Secretary of State by regulations. Section 6(5) grants the Secretary of State
+                        a regulation making power to make transitional and saving provision.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Schedules</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Schedule 1: Schedule to be inserted as Schedule AA1 to the Mental Capacity Act 2005</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Overview</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Schedule 1 inserts Schedule AA1 into the MCA. This will replace Schedules A1 and 1A
+                        to the MCA. Schedule AA1 provides for the new administrative scheme for the authorisation
+                        of arrangements enabling care or treatment of a person who lacks capacity to consent
+                        to the arrangements, which give rise to a deprivation of that person’s liberty (referred
+                        to as the “Liberty Protection Safeguards”). Under Schedule AA1, a responsible body
+                        (defined in paragraph 6) will be able to authorise arrangements giving rise to a deprivation
+                        of a person’s liberty in any setting.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Before a responsible body can authorise the arrangements, it must be satisfied that
+                        three authorisation conditions are met (see paragraph 13): (1) the person who is the
+                        subject of the arrangements lacks the capacity to consent to the arrangements; (2)
+                        the person has a mental disorder; and (3) the arrangements are necessary and proportionate
+                        to prevent harm to the person and proportionate in relation to the likelihood and
+                        seriousness of harm to the person. In all cases, a person who is not involved in the
+                        day-to-day care of, or in providing any treatment to, the person, and who does not
+                        have a prescribed connection with a care home (see paragraph 24), must carry out a
+                        pre-authorisation review to determine whether the authorisation conditions are met
+                        or whether it is reasonable for the responsible body to conclude that they are met.
+                        In certain cases (including where the person is objecting to the proposed arrangements,
+                        and where the arrangements provide for the person to receive care or treatment mainly
+                        in an independent hospital) an Approved Mental Capacity Professional (see paragraph
+                        24(2)) must carry out the pre-authorisation review.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Once an authorisation has been given, there are a number of safeguards put in place
+                        for the person. These include regular reviews of the authorisation by the responsible
+                        body or care home manager (see paragraph 38), and the right to challenge the authorisation
+                        before the Court of Protection (under section 21ZA of the MCA, as inserted by section
+                        3).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>The effect of Part 5 is that the person may be represented and supported either by
+                        an “appropriate person” or an Independent Mental Capacity Advocate (IMCA) when an
+                        authorisation is being proposed and while an authorisation is in place. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Part 7 of Schedule AA1 sets out the interface between the Liberty Protection Safeguards
+                        scheme and the Mental Health Act 1983. Broadly speaking, patients who are detained
+                        under the Mental Health Act 1983 or who are objecting to a hospital admission for
+                        mental health treatment or an assessment, cannot be made subject to an authorisation
+                        under Schedule AA1 for the purposes of that treatment or assessment. In the community,
+                        a person could be subject to an authorisation under Schedule AA1 and a community Mental
+                        Health Act power (for example guardianship or a Community Treatment Order), so long
+                        as the authorisation does not conflict with any requirement contained in the power.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 1: Introductory and interpretation</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Paragraph 1 describes the contents of Schedule AA1. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Paragraph 2 sets out the arrangements and the persons that are within the scope of
+                        the Schedule. Schedule AA1 applies to the arrangements for enabling the care or treatment
+                        of a “cared-for person” which give rise to a deprivation of that person’s liberty,
+                        and are not mental health arrangements under Part 7. A “cared-for person” is defined
+                        in sub-paragraph (2) as a person who is aged 16 or over, lacks capacity to consent
+                        to the arrangements and has a mental disorder. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Schedule AA1 applies to arrangements enabling care or treatment to be provided, rather
+                        than to the direct delivery of the care and treatment.  The delivery of the person’s
+                        care and treatment would be governed by section 5 of the MCA. Schedule AA1 could be
+                        used to authorise arrangements which enable that care or treatment to be given. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Paragraph 2(3) provides examples of what kind of arrangements could be authorised,
+                        such as arrangements for the person to reside in and receive care or treatment at
+                        a particular place. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Paragraph 3 sets out key definitions for the purposes of Schedule AA1. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Paragraph 4 sets out the meaning of “local authority” for the purposes of Schedule
+                        AA1. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Paragraph 5 sets out the meaning of “NHS hospital” and “independent hospital”</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Paragraph 6 identifies the responsible body in the case of a particular individual.
+                        The effect of paragraph 6 is that the “hospital manager” (as further defined in paragraph
+                        7) is responsible for authorising arrangements carried out mainly in an NHS hospital.
+                        If the arrangements are being carried out mainly in an independent hospital, the responsible
+                        body will be the responsible local authority (in England) or Local Health Board (in
+                        Wales). In the case of arrangements carried out through NHS continuing health care
+                        (but not mainly in a hospital), the responsible body is the relevant clinical commissioning
+                        group (in England) or Local Health Board (in Wales). A local authority is the responsible
+                        body in all other cases, including where care is arranged by the local authority,
+                        and where care is provided to people paying for their own care (self-funders).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Paragraph 6(2) specifies that if an independent hospital is located in the area of
+                        two or more Local Health Boards, the Local Health Board in whose area the greatest
+                        part of the hospital is situated will be responsible.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Paragraph 7 defines a “hospital manager” in relation to an NHS hospital for the purposes
+                        of paragraph 6. This is the NHS body that manages an NHS hospital or, in certain cases,
+                        the Secretary of State or Welsh Ministers. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Paragraph 8 provides that the meaning of “NHS continuing healthcare” should be construed
+                        in accordance with standing rules under section 6E of the National Health Service
+                        Act 2006.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Paragraph 9 identifies which local authority is the responsible local authority if
+                        the arrangements are being carried out mainly in an independent hospital in England.
+                        Paragraph 10 identifies which local authority is the responsible local authority for
+                        the purposes of paragraph 6(1)(e). Paragraph 10(1) defines “responsible local authority”
+                        in relation to people aged over 18, and sub-paragraph (3) defines “responsible local
+                        authority” in relation to people aged 16 and 17. For most people who fall within paragraph
+                        6(1)(e), the responsible body will be the local authority in which the individual
+                        is ordinarily resident for social care purposes.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Paragraphs 11 and 12 define “English responsible body” and “Welsh responsible body”
+                        respectively.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 2: Authorisation of arrangements</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Paragraph 13 sets out three authorisation conditions which must be satisfied before
+                        a responsible body may authorise arrangements. The authorisation conditions are that:
+                        (1) the person lacks capacity to consent to the arrangements; (2) the person has a
+                        mental disorder; and (3) the arrangements are necessary to prevent harm to the person
+                        and proportionate in relation to the likelihood and seriousness of harm to the person.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Paragraphs 14 and 15 require responsible bodies to publish information about authorisation
+                        of arrangements under the Schedule and to take steps at the outset of the authorisation
+                        process (where arrangements are proposed) to ensure that the cared-for person and
+                        any appropriate person understand the process. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Paragraph 16 requires, after the arrangements are authorised, the responsible body
+                        to arrange without delay for a copy of the authorisation record to be given or sent
+                        to the cared-for person and any specified representatives. If this has not been done
+                        within 72 hours, the responsible body must review and record why not.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Paragraph 17 sets out that a responsible body may authorise arrangements in accordance
+                        with paragraph 18 where the conditions in that paragraph are met. However, where the
+                        arrangements are “care home arrangements”, the responsible body can decide whether
+                        to authorise arrangements in accordance with either paragraph 18 or paragraph 19.
+                        “Care home arrangements” are defined in paragraph 3 as arrangements in relation to
+                        a person 18 or over, which are carried out wholly or partly in a care home. Both paragraph
+                        18 and paragraph 19 set out conditions which must be satisfied before an authorisation
+                        can be given. The conditions in paragraph 19, which apply to care home arrangements,
+                        include a role for the care home manager (defined in paragraph 3). In summary, the
+                        care home manager arranges the assessments and must provide a statement to the responsible
+                        body. Paragraph 20 provides further detail of what the care home manager’s statement
+                        to the responsible body under paragraph 19(a) must contain. The requirements under
+                        paragraph 20 largely mirror those under paragraph 18. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Paragraph 21 requires a determination to be made, following a capacity and medical
+                        assessment, that the person lacks the capacity to consent to the arrangements, and
+                        has a mental disorder, for the purposes of paragraph 13(a)-(b). Sub-paragraph (2)
+                        clarifies that the person who completed the determination can be someone different
+                        from the person who completes the assessment. Sub-paragraph (3) provides a power to
+                        make regulations setting out requirements which must be met for a person to make a
+                        determination or carry out an assessment. The requirements will relate to matters
+                        such as knowledge and experience. Different requirements may be set out for a person
+                        making a determination than a person carrying out an assessment. Sub-paragraph (5)
+                        sets out that a person with a prescribed connection with a care home may not undertake
+                        the assessments if the authorisation is being determined in accordance with paragraph
+                        19.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Paragraph 21(8) permits a responsible body or care home manager in making determinations
+                        or submitting a statement for that purpose to rely upon assessments carried out previously,
+                        including those prepared for another purpose, so long as it is reasonable to do so.
+                        Sub-paragraph (9) sets out the factors that the responsible body or care home manager
+                        must have regard to when considering whether it is reasonable to rely upon an existing
+                        assessment. The intention is that an existing assessment can be relied on, provided
+                        that it gives a reliable indication of the person’s current situation. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Paragraph 22 requires a determination to be made that the arrangements are necessary
+                        to prevent harm to the person and proportionate in relation to the likelihood and
+                        seriousness of harm to the person, for the purposes of paragraph 13(c). If the arrangements
+                        are care home arrangements being authorised in accordance with paragraph 19, the assessment
+                        must not be carried out by a person who has a prescribed connection with a care home
+                        (sub-paragraph (3)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Paragraph 23 sets out who the responsible body or care home manager must consult in
+                        order for arrangements to be authorised under Schedule AA1. Sub-paragraph (3) sets
+                        out that the main purpose of the consultation is to ascertain the person’s wishes
+                        and feelings in relation to the arrangements. Sub-paragraph (4) sets out that this
+                        duty to consult only applies to the extent that it is practicable and appropriate
+                        to do so. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Paragraph 24 sets out the process for the pre-authorisation review, which must be
+                        arranged by the responsible body and carried out in all cases. This provides the degree
+                        of independence as required by case law arising from Article 5 of the ECHR. Sub-paragraph
+                        (1) excludes people involved in the day-to-day care or treatment of the person or
+                        someone who has a prescribed connection with a care home from carrying out the pre-authorisation
+                        review (see paragraph 18(e) and 19(d)). Sub-paragraph (2) sets out that the review
+                        must be carried out by an Approved Mental Capacity Professional where it is reasonable
+                        to believe that the person does not wish to reside or receive care or treatment in
+                        the place provided for by the arrangements, and sub paragraph (3) provides that the
+                        views of any relevant person must be considered in making that determination. Sub
+                        paragraph (2) also sets out that the review must be carried out by an Approved Mental
+                        Capacity Professional where the arrangements provide for the cared-for person to receive
+                        care or treatment mainly in an independent hospital, or the case is referred by the
+                        responsible body to an Approved Mental Capacity Professional and that person accepts
+                        the referral.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Paragraph 25 sets out that the Approved Mental Capacity Professional must review the
+                        information relied on by the responsible body and determine whether the conditions
+                        in paragraph 13(a) to (c) have been met. Sub-paragraph (2) sets out that the Approved
+                        Mental Capacity Professional must meet with the person if it is appropriate and practicable
+                        to do so. The Approved Mental Capacity Professional must also consult with any person
+                        listed in paragraph 23(2) and take any other action so far as they consider appropriate
+                        in order to make the determination. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Paragraph 26 requires that where the pre-authorisation review is not carried out by
+                        an Approved Mental Capacity Professional, the person carrying out the review must
+                        review the information relied on by the responsible body and determine whether it
+                        is reasonable for the responsible body to conclude that the authorisation conditions
+                        are met. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Paragraph 27 sets out what must be contained within an authorisation record. Subparagraph
+                        (3) provides that where a draft authorisation record has been prepared in accordance
+                        with paragraph 18(g) or 20(2)(b)(iii), that draft record becomes the authorisation
+                        record and that it supersedes any earlier authorisation record. The authorisation
+                        record specifies all arrangements authorised for the person; it is intended that,
+                        where different types of arrangements have been included in the authorisation, the
+                        record can travel with them between different settings. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 3: Duration, renewal, variation and review of authorisation</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Paragraph 28 sets out when an authorisation has effect. This is either immediately
+                        or from a later date specified by the responsible body, which can be no later than
+                        28 days later.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Paragraph 29 sets out when an authorisation ceases to have effect. This is either
+                        at the end of period of 12 months or at the end of a shorter period determined by
+                        the responsible body (see sub-paragraphs 1). Sub-paragraph (2) provides that if the
+                        authorisation is renewed under paragraph 29, the authorisation ceases to have effect
+                        at the end of the renewal period. The responsible body may at any time determine that
+                        the authorisation ceases to have effect from any earlier day (sub-paragraph (3)).
+                        An authorisation will cease to have effect if at any time the responsible body believes
+                        or ought reasonably to suspect  that any of the conditions for the authorisation are
+                        not met (sub-paragraph (4)). An authorisation will also cease to have effect in relation
+                        to any arrangements so far as they are not in accordance with mental health requirements
+                        (sub-paragraph (5)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>In the event that an authorisation ceases to have effect (in whole or in part) under
+                        paragraph 29(4) or (5), paragraph 30 requires the responsible body to take reasonable
+                        steps to notify any person who is likely to be carrying out the arrangements that
+                        the arrangements are no longer authorised. Paragraph 31 further specifies that where
+                        an authorisation ceases to have effect under paragraph 29(4) or (5), the arrangements
+                        are to be treated as authorised for the purposes of section 4C of the MCA unless the
+                        person carrying out the arrangements knew or ought to have known that the arrangements
+                        were no longer authorised, any of the conditions were not met or the arrangements
+                        were not in accordance with mental health conditions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Paragraph 32(1) sets out the renewal period for authorisations. It allows a first
+                        renewal for up to 12 months, and subsequent renewals for up to three years at a time.
+                        Paragraph 33 sets out that a responsible body may renew an authorisation in accordance
+                        with paragraph 34 where the conditions in that paragraph are met. However, where the
+                        arrangements are “care home arrangements”, the responsible body can decide whether
+                        to renew the authorisation in accordance with either paragraph 34 or paragraph 35.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Paragraph 34(a)(ii) requires that the responsible body must be satisfied that it is
+                        unlikely that there will be any significant change in the person’s condition during
+                        the renewal period which would affect whether the authorisation conditions are met
+                        under paragraph 13). This is to ensure that longer-term renewals are only used in
+                        the case of persons whose condition and circumstances are likely to be long-term and
+                        stable. The responsible body must also carry out consultation in accordance with paragraph
+                        23. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Paragraph 35(a) sets out that for care home arrangements being renewed in accordance
+                        with paragraph 35, the care home manager must provide the responsible body with a
+                        statement (see paragraph 36) before the authorisation can be renewed. The requirements
+                        for the statement under paragraph 36 largely mirror the requirements under paragraph
+                        34. The statement must confirm that the authorisation conditions (see paragraph 13)
+                        continue to be met and that it is unlikely that there will be any significant change
+                        in the person’s condition during the renewal period which would affect whether the
+                        authorisation conditions would be met. The care home manager must also provide the
+                        responsible body with evidence that they have consulted in accordance with paragraph
+                        23. The responsible body may renew the authorisation in reliance on that statement.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Paragraph 37 permits the responsible body to vary an authorisation where consultation
+                        in accordance with paragraph 23 has taken place and it is reasonable to make the variation.
+                        This will give responsible bodies some ability to make variations but only in limited
+                        circumstances. A review must be held before the variation, or if it is not practicable
+                        or appropriate to do so, as soon as practicable afterwards (paragraph 35(3)(a)) and
+                        (4)).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Paragraph 38(2) requires a responsible body to specify a programme of regular reviews.
+                        The review must be carried out by a reviewer, who is defined under sub-paragraph (1)
+                        as the responsible body. In relation to care home arrangements, the responsible body
+                        can also decide that the care home manager will be the reviewer.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Paragraph 38(3) provides that the reviewer must review an authorisation if any of
+                        the conditions specified apply, including: on a variation under paragraph 37; if a
+                        reasonable request is made by a someone with an interest in the arrangements; if the
+                        person becomes subject to mental health arrangements or different Mental Health Act
+                        requirements; or in some cases where the person objects to the arrangements and the
+                        pre-authorisation review was not carried out by an Approved Mental Capacity Professional.
+                        A review will also be triggered where there is a significant change in the person’s
+                        condition or circumstances.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Paragraph 38(4) requires that a review under sub-paragraph (3)(a) must be carried
+                        out before an authorisation is varied or, if that is not practicable or appropriate,
+                        as soon as practicable afterwards.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Sub-paragraphs (5) and (10) require a referral to an Approved Mental Capacity Professional
+                        in circumstances where the reviewer becomes aware that a case now calls for such a
+                        referral (for example in cases where the person subsequently objects to the arrangements).
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Sub-paragraphs (7) and (8) set out that a review can be triggered if an objection
+                        has been raised on behalf of the person by someone who is engaged with caring for
+                        the cared-for person or a person who has an interest in the cared-for person’s welfare,
+                        and the cared-for person makes a reasonable request.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Sub-paragraph (11) provides, where sub-paragraph (7) applies, for the reviewer to
+                        refer the case to an Approved Mental Capacity Professional. If the Approved Mental
+                        Capacity Professional accepts the referral, they will determine whether the authorization
+                        conditions are met.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Sub-paragraph (12) sets out what the Approved Mental Capacity Professional must do
+                        when a case is referred to them for review. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 4: Approved Mental Capacity Professionals</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>Paragraph 39 requires each local authority to make arrangements for the approval of
+                        persons to act as Approved Mental Capacity Professionals. Each local authority is
+                        also required to make arrangements to ensure that there are sufficient numbers of
+                        persons approved as Approved Mental Capacity Professionals for its area. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>Paragraph 40 enables the Secretary of State and Welsh Ministers to prescribe in regulations
+                        the criteria for approval as an Approved Mental Capacity Professional, matters which
+                        a local authority must or may take into account when deciding whether or not to approve
+                        a person as an Approved Mental Capacity Professional, and provide for a prescribed
+                        body to approve training for Approved Mental Capacity Professionals. Sub-paragraph
+                        (2) provides that the regulations may include criteria relating to qualifications,
+                        training or experience. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Sub-paragraph (3) provides that if the regulations made by the Secretary of State
+                        under paragraph 40(1) provide for Social Work England to approve the training for
+                        Approved Mental Capacity Professionals, then the regulations may grant Social Work
+                        England the power to charge fees for approval.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 5: Appointment of IMCA</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>The effect of paragraphs 41 to 43 of Schedule AA1 is that from the point that arrangements
+                        are proposed under the Schedule to the point when the authorisation comes to an end,
+                        if the relevant criteria apply, the person must be represented and supported either
+                        by an “appropriate person” (see paragraph 42(5)) or an Independent Mental Capacity
+                        Advocate (“IMCA”). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>A responsible body must take all reasonable steps to appoint an IMCA if either of
+                        paragraph 42(2) or (3) apply, unless there is an appropriate person who would be suitable
+                        to represent and support the person, who consents to being appointed and is not engaged
+                        in providing care or treatment to the person in a professional role (sub-paragraph
+                        (5)). Sub-paragraph (2) applies if the person has capacity to consent to being represented
+                        by an IMCA, and makes a request for one. Sub-paragraph (3) applies if the person lacks
+                        the capacity to consent, unless the responsible body is satisfied that the appointment
+                        of an IMCA would not be in the person’s best interests. Paragraph 43 sets out the
+                        circumstances in which the appropriate person must themselves be provided with an
+                        IMCA. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 6: Monitoring and reporting</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">77 </span></h2>
+                     <p>Paragraph 44 gives the Secretary of State and Welsh Ministers regulation-making powers
+                        to make provision for monitoring and reporting on the operation of Schedule AA1. The
+                        regulations could prescribe one or more body to undertake this function. The regulations
+                        could also confer authority to visit places where arrangements authorised under Schedule
+                        AA1 are carried out, to meet with persons and to require the disclosure of information.
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 7: Excluded arrangements: mental health</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">78 </span></h2>
+                     <p>Paragraphs 45 to 57 set out that Schedule AA1 cannot be used to authorise “mental
+                        health arrangements” (paragraphs 45(a) and 46 to 56) or where arrangements that would
+                        be not in accordance with any mental health requirements (paragraphs 45(b) and 57).
+                        These provisions are intended to replicate to a large extent the current effect of
+                        Schedule 1A to the MCA. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">79 </span></h2>
+                     <p>Paragraphs 45(a), 47 and 53 provide that patients detained under the Mental Health
+                        Act 1983 cannot be made subject to an authorisation under Schedule AA1 for the purpose
+                        of mental health assessment or treatment in hospital. Paragraph 50 also sets out that
+                        where an individual who could be detained under the Mental Health Act and objects
+                        (and a Court appointed deputy or donee of a Lasting Power of Attorney has not consented),
+                        they cannot be made subject to an authorisation under Schedule AA1 for the purpose
+                        of mental health assessment or treatment in hospital.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">80 </span></h2>
+                     <p>Paragraph 45(b) read together with paragraph 57 permits individuals who are not detained
+                        under the Mental Health Act but are living in the community and subject to requirements
+                        imposed under the Mental Health Act, to be subject to an authorisation under Schedule
+                        AA1 so long as the authorised arrangements are in accordance with those mental health
+                        requirements. For example, where a person is subject to guardianship under the Mental
+                        Health Act, an authorisation could not be granted under Schedule AA1 which provided
+                        for a person to reside in a different place to that specified by the guardian. </p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 2: Minor and consequential amendments</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 1: Amendments to the Mental Capacity Act 2005</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">81 </span></h2>
+                     <p>Part 1 of Schedule 2 to the Act makes a number of minor and consequential amendments
+                        to the MCA.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 2: Amendments to other legislation</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">82 </span></h2>
+                     <p>Part 2 of Schedule 2 to the Act makes minor and consequential amendments to other
+                        legislation.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Law Commission report: Mental Capacity and Deprivation of Liberty, Law Com No 372,
+                        (2017), available at: <a href="https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2017/03/lc372_mental_capacity.pdf"><u>https://s3-eu-west-2.amazonaws.com/lawcom-prod-storage-11jsxou24uy7q/uploads/2017/03/lc372_mental_capacity.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Mental Capacity (Amendment) Bill: JCHR memorandum (2018), available at: <a href="https://publications.parliament.uk/pa/bills/2018.07.03%20-%20JCHR%20memo%20-to%20committee.pdf"><u>https://publications.parliament.uk/pa/bills/2018.07.03%20-%20JCHR%20memo%20-to%20committee.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Mental Capacity (Amendment) Bill: Impact assessment (2018), available at: <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0117/mental-capacity-IA.pdf"><u>https://publications.parliament.uk/pa/bills/lbill/2017-2019/0117/mental-capacity-IA.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Mental Capacity (Amendment) Bill: Delegated powers memorandum (2018), available at:
+                        <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0117/18117-DPM.pdf"><u>https://publications.parliament.uk/pa/bills/lbill/2017-2019/0117/18117-DPM.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Report of the House of Lords Select Committee on the Mental Capacity Act 2005 (2014),
+                        available at: <a href="https://publications.parliament.uk/pa/ld201314/ldselect/ldmentalcap/139/139.pdf"><u>https://publications.parliament.uk/pa/ld201314/ldselect/ldmentalcap/139/139.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.75in">
+                        <col style="width:0.68in">
+                        <col style="width:0.68in">
+                        <col style="width:0.93in">
+                        <col style="width:0.82in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p>Section 3</p>
+                              <p>Section 4</p>
+                              <p>Section 5</p>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>11 December 2018</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 December 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-12-18/debates/BB6FE0AA-895A-4FA4-AC45-9A3E86D833FC/MentalCapacity(Amendment)Bill(Lords)">
+                                    <u>Vol. [651] Col. [726]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>15 January 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-01-15/debates/6e4c7598-febb-47fe-9144-2972818d5938/MentalCapacity(Amendment)Bill(Lords)(FirstSitting)">
+                                    <u>Col. [1]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-02-12/debates/B197E819-39D9-4B8E-9AE9-18C33C96CEC8/MentalCapacity(Amendment)Bill(Lords)">
+                                    <u>Vol. [654] Col. [792]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>3 July 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-07-03/debates/3DB8045B-4C4F-4791-B87E-EF500F50C256/MentalCapacity(Amendment)Bill(HL)">
+                                    <u>Vol. [792]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 July 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-07-16/debates/7B729E36-43F2-4D5D-9DCD-8CF46C5F383B/MentalCapacity(Amendment)Bill(HL)">
+                                    <u>Vol. [792] Col [1059]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>5 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-09-05/debates/63587B2C-716F-470D-BAE1-12A952E3AF30/MentalCapacity(Amendment)Bill(HL)">
+                                    <u>Vol. [792] Col. [1810]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>21 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-11-21/debates/B771D015-94C1-4602-B977-C65606C44163/MentalCapacity(Amendment)Bill(HL)">
+                                    <u>Vol. [794] Col. [249]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>11 December 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-12-11/debates/3F731AF3-A2C8-4710-B170-39B0D26DF29F/MentalCapacity(Amendment)Bill(HL)">
+                                    <u>Vol. [794] Col [1423]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                              <p>Commons Consideration of Lords Amendments</p>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>26 February 2019</p>
+                              <p></p>
+                              <p>2 April 2019</p>
+                              <p></p>
+                              <p>24 April 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-02-26/debates/A42A19EA-B3DF-4212-9948-656D701164AB/MentalCapacity(Amendment)Bill(HL)">
+                                    <u>Vol. [796] Col. [102] </u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-04-02/debates/4846991B-8AAB-44E8-9504-EB095723BBB9/MentalCapacity(Amendment)Bill(Lords)">
+                                    <u>Vol. [657] Col. [963]</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-04-24/debates/9559EF20-61B3-4AD9-8A68-9195A845FE1C/MentalCapacity(Amendment)Bill(HL)">
+                                    <u>Vol. [797] Col. [612]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>16 May 2019</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2019-05-16/debates/1D2155C9-02B2-4BEC-944B-D5AAE6DA4333/TopicalQuestions"><u>Vol. [660] Col. [367]</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Commons/2019-05-16/debates/1D2155C9-02B2-4BEC-944B-D5AAE6DA4333/TopicalQuestions"><u>Vol. [660] Col. [367]</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C – Progress of Act Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Act through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.lawcom.gov.uk/project/mental-capacity-and-deprivation-of-liberty"><u><a href="https://www.lawcom.gov.uk/project/mental-capacity-and-deprivation-of-liberty">https://www.lawcom.gov.uk/project/mental-capacity-and-deprivation-of-liberty</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  [2004] ECHR 471.  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  In reference to the decision of the House of Lords in the same matter: <i>R v Bournewood Community and Mental Health Trust </i>[1999] AC 458.  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.supremecourt.uk/decided-cases/docs/UKSC_2012_0068_Judgment.pdf"><u><a href="https://www.supremecourt.uk/decided-cases/docs/UKSC_2012_0068_Judgment.pdf">https://www.supremecourt.uk/decided-cases/docs/UKSC_2012_0068_Judgment.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="http://qna.files.parliament.uk/ws-attachments/861932/original/180314%20Response%20to%20Law%20Commission%20on%20DoLS%20-%20final.pdf"><u><a href="http://qna.files.parliament.uk/ws-attachments/861932/original/180314%20Response%20to%20Law%20Commission%20on%20DoLS%20-%20final.pdf">http://qna.files.parliament.uk/ws-attachments/861932/original/180314%20Response%20to%20Law%20Commission%20on%20DoLS%20-%20final.pdf</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

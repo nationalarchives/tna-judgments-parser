@@ -1,0 +1,1691 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NUCLEAR SAFEGUARDS</b>
+               <b>
+                  </b>
+               <b>ACT 2018</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Nuclear Safeguards Act 2018 (c. 15) which received
+                  Royal Assent on 26 June 2018.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business, Energy
+                  and Industrial Strategy in order to assist the reader in understanding the Act. They
+                  do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Nuclear Safeguards Act creates the legal framework for a domestic nuclear safeguards
+                     regime to operate in the United Kingdom. This regime will replace the current legal
+                     framework provided principally by the United Kingdom’s membership of the European
+                     Atomic Energy Community (“Euratom”). Nuclear safeguards arrangements enable the United
+                     Kingdom to meet international nuclear safeguards standards and engage in certain international
+                     civil nuclear activities, including trade and research and development.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Nuclear safeguards primarily involve reporting and verification processes by which
+                     the United Kingdom demonstrates to the international community that civil nuclear
+                     material is not diverted into military or weapons programmes. Nuclear safeguards procedures
+                     can include accountancy and reporting on civil nuclear material holdings and development
+                     plans, verification (including inspections of nuclear facilities by international
+                     inspectors), containment measures and surveillance (including cameras in selected
+                     facilities). Nuclear safeguards are distinct from nuclear safety (the prevention of
+                     nuclear accidents) and nuclear security (physical protection measures), which are
+                     the subject of independent regulatory provisions and have separate purposes under
+                     the Energy Act 2013 (“the 2013 Act”)<a class="fn" id="fnref-1" href="#fn-1">1</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Nuclear Safeguards Act amends the 2013 Act to replace the existing nuclear safeguards
+                     purposes of the Office for Nuclear Regulation (“ONR”). The ONR is the United Kingdom’s
+                     nuclear regulator. The ONR has five purposes which define its areas of responsibility
+                     and where it is able to exercise its functions. Currently, the nuclear safeguards
+                     purposes of the ONR are defined by reference to Euratom and existing agreements with
+                     the International Atomic Energy Agency (“IAEA”) (which also depend on membership of
+                     Euratom). The new nuclear safeguards purposes of the ONR as provided for in this Act
+                     will require it to ensure compliance with nuclear safeguards regulations (made by
+                     the Secretary of State) and to ensure compliance of the United Kingdom with international
+                     agreements relating to nuclear safeguards.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Nuclear Safeguards Act provides powers to the Secretary of State to make nuclear
+                     safeguards regulations, which will set out the detail of the domestic regime for nuclear
+                     safeguards. The regulation-making power may also be used to implement the new international
+                     agreements the United Kingdom envisages concluding (for example, with the IAEA).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Nuclear Safeguards Act also provides a regulation-making power to the Secretary
+                     of State to amend certain legislation (including primary legislation, as set out below)
+                     which make reference to parts of the existing agreements on nuclear safeguards between
+                     the IAEA and the United Kingdom. These references will need to be updated when the
+                     existing agreements with the IAEA are replaced with new ones (which were signed on
+                     7 June 2018 and, at the time of Royal Assent of the Nuclear Safeguards Act, are pending
+                     ratification).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>In addition, the Nuclear Safeguards Act places a requirement on the Secretary of State
+                     to prepare and lay before Parliament periodic reports providing information about
+                     nuclear safeguards covering the year after the Act is passed. The Nuclear Safeguards
+                     Act also requires the Secretary of State to make a request to the European Council
+                     for corresponding Euratom arrangements to continue to have effect in relation to the
+                     United Kingdom if certain conditions are not satisfied 28 days before exit day. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>On 1 July 1968, the United Kingdom signed the Treaty on the Non-Proliferation of Nuclear
+                     Weapons (“NPT”). Under the NPT, the nuclear weapon states (China, France, Russia,
+                     the United Kingdom and the United States of America) undertake not to transfer nuclear
+                     weapons or any other nuclear explosives devices, and not to support the manufacture
+                     or acquisition of such weapons or devices by non-nuclear weapon states. Non-nuclear-weapon
+                     states undertake not to acquire or produce nuclear weapons or nuclear explosive devices
+                     and to accept international monitoring of their nuclear material by the IAEA pursuant
+                     to “full-scope or comprehensive safeguards agreements” entered into with the IAEA.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The IAEA is the UN-associated body responsible for oversight of the global nuclear
+                     non-proliferation regime and nuclear safeguards arrangements. A fundamental principle
+                     of the global non-proliferation and nuclear safeguards regime is that the oversight
+                     of nuclear safeguards is independent of the country, thereby providing reassurance
+                     to international partners that materials from civil nuclear programmes are not used
+                     otherwise than for civil activities (and therefore not for weapons purposes). As such,
+                     the nuclear weapon states have voluntarily accepted international monitoring of their
+                     civil nuclear material, with exemptions for defence purposes, through IAEA safeguards.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>On 1 January 1973, the United Kingdom became a member of Euratom and of the European
+                     Community (which has since evolved to become today’s European Union). One of Euratom’s
+                     functions is to implement a system of safeguards to control the use of nuclear materials
+                     within EU member states. Consequently, the United Kingdom’s current safeguards regime
+                     and its main international agreements on nuclear safeguards with the IAEA are fundamentally
+                     underpinned by the United Kingdom’s membership of Euratom. The United Kingdom’s current
+                     arrangements with the IAEA are between the United Kingdom, Euratom and the IAEA. New
+                     bilateral agreements between the United Kingdom and the IAEA were signed on 7 June
+                     2018 and are being put into place for when Euratom nuclear safeguards arrangements
+                     no longer apply to the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The European Union (Notification of Withdrawal) Act 2017 received Royal Assent on
+                     16 March 2017.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>On 29 March 2017, the Prime Minister gave notification to the European Commission
+                     of the withdrawal of the United Kingdom from the European Union and from Euratom under
+                     section 1(1) of the European Union (Notification of Withdrawal) Act 2017<a class="fn" id="fnref-2" href="#fn-2">2</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Following this notification, the Government set out its intention to legislate to
+                     put in place a domestic nuclear safeguards regime operated by the existing nuclear
+                     regulator, the ONR. The ONR currently performs inspections on United Kingdom nuclear
+                     facilities for a range of safety and security purposes (and it has a complementary
+                     role supporting Euratom’s and the IAEA’s work in respect of nuclear safeguards).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The new domestic nuclear safeguards regime will replace the current regime operated
+                     by Euratom that will cease to have effect in the United Kingdom following the United
+                     Kingdom’s withdrawal. The Queen’s Speech on 21 June 2017 included a Nuclear Safeguards
+                     Bill. The Government said:</p>
+                  <p class="@name">
+                     
+                     <section class="level">
+                        <p>
+                           <i>“The Bill will establish a UK nuclear safeguards regime as we leave the European Union
+                              and Euratom. The Bill will give the Office for Nuclear Regulation powers to take on
+                              the role and responsibilities required to meet our international safeguards, and nuclear
+                              non-proliferation, obligations.”</i>
+                           </p>
+                     </section>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Once Euratom arrangements no longer apply to the United Kingdom, the United Kingdom’s
+                     main agreements with the IAEA will become ineffective (as they are based on Euratom
+                     membership) and will need to be renegotiated to provide for the United Kingdom’s future
+                     safeguards obligations. A new domestic nuclear safeguards regime is therefore essential
+                     to ensure the United Kingdom is able to meet the future obligations that are to be
+                     (or, in some cases, have been) negotiated with the IAEA and other states.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Members of the public were not formally consulted on the contents of the Nuclear Safeguards
+                     Act. This is because the aim of the Act is to create a legal framework to ensure that
+                     the United Kingdom is able to continue to meet its international nuclear non-proliferation
+                     and nuclear safeguards obligations. There will, however, be a full consultation on
+                     the new domestic safeguards regime when this is set out in draft regulations which
+                     will detail the scope of the future regime, including specific reporting requirements.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Energy Act 2013 established the ONR as the United Kingdom’s independent nuclear
+                     regulatory body in 2014 (with certain functions having previously rested with the
+                     Health and Safety Executive). The 2013 Act sets out the purposes of the ONR, which
+                     defines the five areas of regulatory responsibility: those relating to nuclear safety,
+                     nuclear health and safety, nuclear security, nuclear safeguards, and the transportation
+                     of radioactive material. In addition, section 74 of the 2013 Act provides for the
+                     Secretary of State to make regulations (known as “nuclear regulations”) for four of
+                     the ONR’s purposes, including for nuclear safeguards purposes.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Under section 72 of the 2013 Act the “nuclear safeguards purposes” means the purposes
+                     of (a) ensuring the United Kingdom’s compliance with the safeguards obligations and
+                     (b) the development of any future safeguards obligations. The “safeguards obligations”
+                     are defined in section 93(2) of the 2013 Act as comprising the following:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>articles 77 to 85 of the Treaty establishing the European Atomic Energy Community,
+                        signed in Rome on 25 March 1957 (“the Euratom Treaty”)<a class="fn" id="fnref-3" href="#fn-3">3</a>;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>the agreement made on 6 September 1976 between the United Kingdom, the European Atomic
+                        Energy Community and the IAEA for the application of safeguards in the United Kingdom
+                        in connection with the Treaty on the Non-Proliferation of Nuclear Weapons (“the Voluntary
+                        Offer Agreement”)<a class="fn" id="fnref-4" href="#fn-4">4</a>;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>the protocol signed in Vienna on 22 September 1998 additional to the agreement mentioned
+                        in paragraph (b) (“the Additional Protocol”)<a class="fn" id="fnref-5" href="#fn-5">5</a>; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>such other obligations, agreements or arrangements relating to nuclear safeguards
+                        as may be specified in a notice given to the ONR by the Secretary of State.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The details of most of the United Kingdom’s current safeguards regime is set out in
+                     Commission Regulation (Euratom) No. 302/2005 of 8 February 2005 (“the Euratom Regulation”)<a class="fn" id="fnref-6" href="#fn-6">6</a>, made under the Euratom Treaty. The Euratom Regulation imposes the detailed technical
+                     requirements on those holding civil nuclear material and takes effect automatically
+                     in United Kingdom law by virtue of the European Communities Act 1972 (without specific
+                     domestic implementing legislation).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>As a result, the United Kingdom’s nuclear safeguards regime generally, and the ONR’s
+                     nuclear safeguards purposes specifically, are fundamentally underpinned by the United
+                     Kingdom’s membership of Euratom. Euratom is a party to the United Kingdom’s two main
+                     agreements with the IAEA (and many of the United Kingdom’s obligations to the IAEA
+                     are discharged by virtue of its membership of Euratom). As such, the United Kingdom’s
+                     existing nuclear safeguards regime will become ineffective when Euratom arrangements
+                     no longer apply to the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>This Act confers a regulation-making power which will enable the Secretary of State
+                     to put in place the detailed requirements that are necessary for a domestic nuclear
+                     safeguards regime, including by imposing obligations on those who hold nuclear materials.
+                     The regulation-making power under the Nuclear Safeguards Act may also be used to implement
+                     the new international agreements the United Kingdom envisages concluding, for example,
+                     with the IAEA. The power can also be used to impose domestic standards through regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The Nuclear Safeguards Act amends the ONR’s nuclear safeguards purposes to reflect
+                     the fact that the obligations it will be responsible for ensuring compliance with
+                     will be contained within domestic regulations and new international agreements rather
+                     than the Euratom Regulation. The ONR, rather than the European Commission, will become
+                     the UK’s nuclear safeguards regulator.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The nature of safeguards regimes is such that the substantive provisions are detailed
+                     and technical in nature and this is reflected in the pre-consultation draft regulations
+                     published on 19 January 2018<a class="fn" id="fnref-7" href="#fn-7">7</a>. This will be the case for the domestic safeguards regime put in place under the
+                     powers in the Nuclear Safeguards Act. The majority of this detail will be laid out
+                     in regulations which will, on first use, be subject to the affirmative resolution
+                     procedure (and the Nuclear Safeguards Act amends section 113 of the 2013 Act to this
+                     effect). These regulations will place obligations on those responsible for “qualifying
+                     nuclear material”, “qualifying nuclear facilities” and “qualifying nuclear equipment”;
+                     the pre-consultation draft provide further detail. Further detail in respect of the
+                     scrutiny procedures that apply to the powers under the Nuclear Safeguards Act are
+                     set out in the Delegated Powers and Regulatory Reform Committee Memorandum for the
+                     Bill<a class="fn" id="fnref-8" href="#fn-8">8</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>In addition to the provisions of the 2013 Act, there are additional pieces of legislation
+                     (i.e. the Nuclear Safeguards and Electricity (Finance) Act 1978, the Nuclear Safeguards
+                     Act 2000 and the Nuclear Safeguards (Notification) Regulations 2004) that implement
+                     the United Kingdom’s existing nuclear safeguards obligations. These will not operate
+                     properly after Euratom arrangements no longer apply to the United Kingdom due to their
+                     detailed references to provisions of the United Kingdom’s existing safeguards agreements
+                     with the IAEA. Section 2 of the Nuclear Safeguards Act therefore also contains the
+                     power to make consequential amendments to these pieces of legislation in the light
+                     of future agreements between the United Kingdom and the IAEA (which were signed on
+                     7 June 2018 and, at the time of at the time of Royal Assent of the Nuclear Safeguards
+                     Act, are pending ratification).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The provisions of the Nuclear Safeguards Act extend to the whole of the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Her Majesty may by Order in Council under section 117 of the 2013 Act provide that
+                     the provisions of the 2013 Act as amended by this Act apply, so far as specified,
+                     in relation to persons, premises, activities, articles, substances or other matters,
+                     outside the United Kingdom as they apply within the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>The power under section 2 of the Nuclear Safeguards Act includes power to amend the
+                     Nuclear Safeguards and Electricity (Finance) Act 1978 (“1978 Act”) and the Nuclear
+                     Safeguards Act 2000 (“2000 Act”). Section 12(4) of the 2000 Act enables Her Majesty
+                     by Order in Council to direct that provisions of the 1978 or 2000 Acts extend to any
+                     of the Channel Islands, the Isle of Man or any British overseas territory. Section
+                     5(3) of the Nuclear Safeguards Act ensures that the power under section 12(4) of the
+                     2000 Act may be exercised in relation to any amendment or repeal of the 1978 or 2000
+                     Act made by regulations under section 2.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Nuclear safeguards are not devolved; the provisions of the Nuclear Safeguards Act
+                     are not within the legislative competence of the Scottish Parliament, the National
+                     Assembly for Wales or the Northern Ireland Assembly. Accordingly, the Government has
+                     not sought legislative consent motions from any of the devolved legislatures.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The table in Annex A provides a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Nuclear safeguards</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Substitution of section 72</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Subsection (1) of section 1 provides a new definition of the ONR’s nuclear safeguards
+                     purposes (found in section 72 of the Energy Act 2013) to reflect the domestic safeguards
+                     regime that will be put in place once Euratom arrangements no longer apply to the
+                     United Kingdom. The new nuclear safeguards purposes are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>ensuring compliance with the nuclear safeguards regulations (to be made under the
+                        new section 76A, considered below);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>ensuring compliance by the United Kingdom with international agreements relating to
+                        nuclear safeguards to which the United Kingdom is a party and which may be specified
+                        in regulations (“relevant international agreements”: see paragraph 42 below); and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>the development of any future obligations relating to nuclear safeguards.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>New section 76A</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Subsection (2) of section 1 inserts a new section 76A to the 2013 Act. Section 76A
+                     provides the Secretary of State with new powers to make regulations relating to nuclear
+                     safeguards.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsection (1) of section 76A states that regulations may be made for the purposes
+                     of:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>ensuring that qualifying nuclear material, facilities or equipment are only available
+                        for use for civil activities (whether in the United Kingdom or elsewhere); or</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>giving effect to the provisions of a relevant international agreement (see paragraph
+                        41 below).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Subsection (2) of section 76A sets out examples of the obligations that may be imposed
+                     through nuclear safeguards regulations. They may, for example, make provision relating
+                     to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>record-keeping or accounting;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the provision or publication of information;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>inspection or monitoring;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>imports or exports;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the design of qualifying nuclear facilities or equipment; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the production, processing, use, handling, storage or disposal of qualifying nuclear
+                        material or equipment.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection (3) of section 76A applies certain provisions of the existing regulation-making
+                     powers in sections 74, 75, 76 of, and Schedule 6 to, the 2013 Act, to the power under
+                     section 76A(1). These include the provisions which allow obligations imposed by the
+                     regulations to be enforced by the creation of a criminal offence or civil liability.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Subsection (4) of section 76A provides an exemption from the nuclear safeguards regulations
+                     in relation to anything done in the United Kingdom for defence purposes. Under section
+                     70 of the 2013 Act, “defence purposes” are the purposes of the Secretary of State
+                     with responsibility for defence. Separate and distinct regimes apply to nuclear materials
+                     required for national security.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Subsection (5) of section 76A provides that the power to make consequential and transitional,
+                     etc., provision in section 113(7) of the 2013 Act can be exercised to modify retained
+                     EU law (which will have the meaning given in the European Union (Withdrawal) Act 2018).
+                     This will allow laws relating to nuclear safeguards that become ineffective when Euratom
+                     arrangements no longer apply to the United Kingdom to be repealed and replaced by
+                     the new domestic regime.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsection (6) of section 76A defines the meaning of “civil activities”, “qualifying
+                     nuclear equipment”, “qualifying nuclear facility” and “qualifying nuclear material”
+                     (as used in subsection (1)). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Subsection (7) provides the Secretary of State with a regulation-making power to specify
+                     fissionable material for the purposes of the definition of “qualifying nuclear material”
+                     in subsection (6).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Subsection (8) of section 76A sets out a requirement for the Secretary of State to
+                     consult the ONR and such other persons as the Secretary of State considers appropriate,
+                     before making regulations under section 76A. By virtue of subsection (9), the requirement
+                     to consult the ONR does not apply if the regulations concerned give effect to proposals
+                     submitted by the ONR under new section 81(1)(ia) without modification (see paragraph
+                     65(a) below).</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>New section 76B</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Section 1 also inserts a new section 76B into the 2013 Act. Subsection (1) of this
+                     new section 76B provides the Secretary of State with a regulation-making power to
+                     authorise or require the ONR to make payments towards compliance costs. Subsection
+                     (2) defines “compliance costs” as the costs of complying with the nuclear safeguards
+                     regulations, or specific provisions within those regulations. This power means the
+                     ONR could reimburse the costs incurred by persons complying with the nuclear safeguards
+                     regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Subsection (3) of new section 76B specifies that regulations may provide that payments
+                     by the ONR are only authorised or required to be made under certain circumstances.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Amendments to section 112</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Subsection (3) of section 1 amends section 112 of the 2013 Act (interpretation) by
+                     inserting five new subsections (1A-1E).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Subsection (1A) of section 112 provides a definition of “relevant international agreement”.
+                     Relevant international agreements are those to which the United Kingdom is a party,
+                     which relate to nuclear safeguards and which are specified in regulations made by
+                     the Secretary of State (under subsection (1B)). This definition is relevant, amongst
+                     other things, to the ONR’s nuclear safeguards purposes (in section 72(b) as amended)
+                     and the regulation-making power in section 76A(1)(b). Such regulations will always
+                     be subject to the affirmative procedure and the Nuclear Safeguards Act amends section
+                     113 of the 2013 Act to this effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Under subsection (1C) of section 112, undertakings given by the United Kingdom to
+                     the IAEA in respect of guidance (or any other document) issued by the IAEA are treated
+                     as “relevant international agreements” for the purposes of the Nuclear Safeguards
+                     Act, so long as they are specified in regulations under subsection (1B).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Subsection (1D) of section 112 specifies that before making regulations under subsection
+                     (1B), the Secretary of State is required to consult the ONR and such other persons
+                     (if any) as the Secretary of State considers appropriate. The Secretary of State is
+                     not required to consult the ONR if the regulations reflect proposals submitted by
+                     the ONR to the Secretary of State (subsection (1E)) without modification.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Supplementary provisions under section 1</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Subsection (4) of section 1 provides that consultation before this Act is passed may
+                     satisfy the consultation requirements mentioned above.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Subsection (5) of section 1 introduces the Schedule to this Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Power to amend legislation relating to nuclear safeguards</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Section 2 provides a power for the Secretary of State to amend, by regulations, the
+                     Nuclear Safeguards and Electricity (Finance) Act 1978 (“the 1978 Act), the Nuclear
+                     Safeguards Act 2000 (“the 2000 Act”) and the Nuclear Safeguards (Notification) Regulations
+                     2004 (S.I. 2004/1255) (“the 2004 Regulations”), in consequence of any “relevant safeguards
+                     agreement”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Subsection (2) specifies that a “relevant safeguards agreement” means an agreement,
+                     whether or not ratified, relating to nuclear safeguards between the UK and the IAEA.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Subsection (3) states that the power to make regulations under this section includes
+                     the power to make consequential, supplementary or incidental provision or transitional,
+                     transitory or saving provision.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Subsection (5) specifies that regulations made under this section are subject to the
+                     affirmative resolution procedure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Subsection (6) is a 'sunset' provision which specifies that the power under section
+                     2 will expire after a period of 5 years from the day on which the section comes into
+                     force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>This section enables the Secretary of State to amend the 1978 Act, the 2000 Act and
+                     the 2004 Regulations in such a way as to prevent them becoming ineffective when the
+                     UK’s new safeguards agreements with the IAEA, the Voluntary Offer Agreement and Additional
+                     Protocol, come into force. The power allows the legislation to be amended as a consequence
+                     of those new agreements with the IAEA. This section does not confer discretion on
+                     the Secretary of State to change the substance of what is permitted by the 1978 Act,
+                     2000 Act or the 2004 Regulations.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Report on nuclear safeguards</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Section 3 requires the Secretary of State to prepare a report for Parliament containing
+                     information about nuclear safeguards for each three month period in the year after
+                     the Act is passed. Each report must be laid before Parliament after the three month
+                     period to which it relates. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Subsection (2) provides that information about nuclear safeguards includes information
+                     about international arrangements and domestic arrangements in the United Kingdom.
+                     For example, reports could include information on the development of the domestic
+                     operational arrangements required for the new domestic safeguards regime, such as
+                     those being put in place by the Office for Nuclear Regulation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Subsection (3) provides that the reports may also include information on future arrangements
+                     with Euratom including on nuclear research and development and the import and export
+                     of qualifying nuclear material.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Request for continuation of existing agreements</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Section 4 requires the Secretary of State to make a relevant request (as defined in
+                     subsection (4)) to the European Council if neither of two conditions is met at the
+                     beginning of the period of 28 days ending with exit day (as defined in the European
+                     Union (Withdrawal) Act 2018.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Subsection (2) sets out the first condition (Condition 1), namely that all of the
+                     principal international agreements (as defined in subsection 5) have been signed.
+                     This includes bilateral agreements with the IAEA that relate to nuclear safeguards,
+                     as well as agreements relating to nuclear safeguards between the UK and, respectively,
+                     the governments of Australia, Canada, Japan and the United States of America.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Subsection (3) sets out the second condition (Condition 2), namely that for any principal
+                     international agreements that have not been signed, arrangements for the corresponding
+                     Euratom arrangements (as defined in subsection (6)) to continue to have effect in
+                     relation to the UK have been made or will be made before exit day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Subsection (4) sets out the detail of the relevant request to the European Council
+                     which the Secretary of State is required to make if neither of Conditions 1 and 2
+                     is met. Specifically, the request is, in respect of any principal international agreements
+                     for which Conditions 1 and 2 are not satisfied, for the corresponding Euratom arrangements
+                     to continue to have effect in relation to the UK after exit day until one of the conditions
+                     specified in subsection (4) is satisfied.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Subsection (7) defines the meaning of “exit day” (as used in subsection (1)), “the
+                     Safeguards Agreement” and “the Additional Protocol” (as used in subsection (6)), and
+                     “signed” (as used in subsection (2)).</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Extent</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>The Nuclear Safeguards Act extends to England and Wales, Scotland and Northern Ireland,
+                     and amendments made by this Act to the 2013 Act have the same extent within the United
+                     Kingdom as the provision they have amended. More information about the extent of the
+                     Nuclear Safeguards Act can be found in paragraphs 24 to 28 above.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Commencement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Section 6 provides for sections 3, 5, 6 and 7 to commence on Royal Assent. The main
+                     provisions of the nuclear Safeguards Act, under sections 1, 2, 4 and the Schedule,
+                     will be commenced on such day or days appointed by the Secretary of State in regulations.
+                     The Secretary of State may appoint different days for different purposes and the regulations
+                     may include transitional, transitory or saving provision (subsection (3)) and specify
+                     a particular time of day (subsection (4)).</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p> Section 7 is self-explanatory.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule: Minor and consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>The Schedule contains minor and consequential amendments to ensure that the United
+                     Kingdom’s new domestic civil nuclear safeguards regime will be able to operate properly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>All of the amendments contained in the Schedule, apart from the last amendment, relate
+                     to the 2013 Act. They include:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>allowing the ONR to make proposals to the Secretary of State about regulations under
+                        section 76A (paragraph 3);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>ensuring that the ONR must make adequate arrangements for the enforcement of nuclear
+                        safeguards regulations (paragraph 4);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>adding nuclear safeguards regulations to the definition of “relevant statutory provisions”
+                        in section 82(2) (also paragraph 4);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>removing the duty of the ONR in relation to nuclear safeguards contained in section
+                        93 because the effect of the duty is replicated by section 72(b) and section 78 (paragraph
+                        6);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>extending the duty of employers at work to help persons subject to obligations under
+                        nuclear safeguards regulations to comply with them (the amendments to sections 102
+                        and 104 in paragraphs 7 and 8);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>setting out the parliamentary scrutiny procedures that will govern regulation-making
+                        powers inserted by the Act (paragraph 9);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>extending the review period for Part 3 of the 2013 Act from 5 years to 7 years - without
+                        this change the duty to review Part 3 would arise shortly before the United Kingdom
+                        withdrew from Euratom and before the changes made by the Act would come into force
+                        (paragraph 10);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">h.</span></h2>
+                     <p>extending the power for inspectors appointed by the ONR to issue improvement notices
+                        to non-compliance in relation to nuclear safeguards (paragraph 11);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">i.</span></h2>
+                     <p>updating the information sharing gateway that applies in relation to nuclear safeguards
+                        as a consequence of the changes made by the Act (paragraph 12); and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">j.</span></h2>
+                     <p>changing the reference in the 2000 Act from “colony” to “British overseas territory”
+                        (paragraph 13).</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>Sections 3, 5, 6 and 7 come into force on the day this Act is passed. The main provisions
+                     of the Nuclear Safeguards Act will be commenced on such day (or time of day) as the
+                     Secretary of State may appoint in regulations.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations
+                     online:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Impact Assessment <a href="https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html"><u>https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Delegated Powers and Regulatory Reform Committee Memorandum <a href="https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html"><u>https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Delegated Powers and Regulatory Reform Committee Thirteenth Report <a href="https://publications.parliament.uk/pa/ld201719/ldselect/lddelreg/77/7702.htm"><u>https://publications.parliament.uk/pa/ld201719/ldselect/lddelreg/77/7702.htm</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Draft Regulations (“The Nuclear Safeguards (Civil Activities, Fissionable Material
+                        and Relevant International Agreements) Regulations 20--” and “The Nuclear Safeguards
+                        Regulations 20--”) and Explanatory Note <a href="https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations"><u>https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Euratom Treaty <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT"><u>http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Euratom Regulation No 302/2005 <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302"><u>http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>IAEA Voluntary Offer Agreement <a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf"><u>https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>IAEA Additional Protocol <a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf"><u>https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Treaty on the Non-Proliferation of Nuclear Weapons <a href="https://web.archive.org/web/20070807060917/http://www.iaea.org/Publications/Documents/Infcircs/Others/infcirc140.pdf"><u>https://web.archive.org/web/20070807060917/http://www.iaea.org/Publications/Documents/Infcircs/Others/infcirc140.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Nuclear Safeguards and Electricity (Finance) Act 1978 <a href="http://www.legislation.gov.uk/ukpga/1978/25/contents"><u>http://www.legislation.gov.uk/ukpga/1978/25/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Nuclear Safeguards Act 2000 <a href="http://www.legislation.gov.uk/ukpga/2000/5/contents"><u>http://www.legislation.gov.uk/ukpga/2000/5/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Nuclear Safeguards (Notification) Regulations 2004 <a href="http://www.legislation.gov.uk/uksi/2004/1255/made"><u>http://www.legislation.gov.uk/uksi/2004/1255/made</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.88in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.19in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>1 Nuclear Safeguards</p>
+                              <p>2 Power to amend legislation relating to nuclear safeguards</p>
+                              <p>3 Report on nuclear safeguards</p>
+                              <p>4 Request for continuation of existing agreements</p>
+                              <p>5 Extent</p>
+                              <p>6 Commencement</p>
+                              <p>7 Short title</p>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Yes*</p>
+                              <p>Yes*</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes*</p>
+                              <p>Yes*</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes*</p>
+                              <p>Yes*</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes*</p>
+                              <p>Yes*</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="level">
+                  <p>
+                     <span class="tab">&nbsp;</span>*See Sections 5(2) and 5(3) of the Act</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.33in">
+                        <col style="width:1.15in">
+                        <col style="width:1.26in">
+                        <col style="width:2.54in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Bill Print &amp; Explanatory Notes</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="2">
+                              <p></p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>11 October 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/cbill_2017-20190109_en_1.htm">
+                                    <u>HC Bill 109</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/en/18109en01.htm">
+                                    <u>Bill 109-EN 2017-19</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2017-10-11/debates/A347D32A-A6C1-47DE-B7F5-7F15E49C439C/HigherEducationFunding?highlight=nuclear%20safeguards">
+                                    <u>Vol. 629 No. 31 Col. 344</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 October 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/cbill_2017-20190109_en_1.htm">
+                                    <u>HC Bill 109</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/en/18109en01.htm">
+                                    <u>Bill 109-EN 2017-19</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-10-16/debates/84828D23-EAA6-4855-99D0-4C47BD5D3633/NuclearSafeguardsBill">
+                                    <u>Vol.629 No. 33 Col. 617</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>31 October 2016</p>
+                              <p>2 November 2018</p>
+                              <p>14 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/cbill_2017-20190109_en_1.htm">
+                                    <u>HC Bill 109</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/en/18109en01.htm">
+                                    <u>Bill 109-EN 2017-19</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-10-31/debates/cc3a2463-d2cc-48b3-9226-90c4f2fa42b3/NuclearSafeguardsBill(FirstSitting)">
+                                    <u>1</u>
+                                    <u>st</u>
+                                    <u> sitting PBC (Bill 109) 2017 - 2019</u>
+                                    </a>
+                                 <u> Col. 1</u>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-10-31/debates/087cdbcc-40b0-4681-902f-160a1559ce07/NuclearSafeguardsBill(SecondSitting)">
+                                    <u>2</u>
+                                    <u>nd</u>
+                                    <u> sitting PBC (Bill 109) 2017 - 2019 Col. 23</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-11-02/debates/544dfe0d-17ff-4eaf-ae2f-38a011f7abcb/NuclearSafeguardsBill(ThirdSitting)">
+                                    <u>3</u>
+                                    <u>rd</u>
+                                    <u> sitting PBC (Bill 109) 2017 – 2019 Col. 45</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-11-02/debates/aa04f115-1e7e-4797-9029-cfa235005afc/NuclearSafeguardsBill(FourthSitting)">
+                                    <u>4</u>
+                                    <u>th</u>
+                                    <u> sitting PBC (Bill 109) 2017 – 2019 Col. 67</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-11-14/debates/a4bc72b5-66bb-4367-a9a9-5f7fc65edc91/NuclearSafeguardsBill(FifthSitting)">
+                                    <u>5</u>
+                                    <u>th</u>
+                                    <u> sitting PBC (Bill 109) 2017 - 2019 Col. 99</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-11-14/debates/78f4747d-d5c5-4fd1-8e51-5a1e41a7383a/NuclearSafeguardsBill(SixthSitting)">
+                                    <u>6</u>
+                                    <u>th</u>
+                                    <u> sitting PBC (Bill 109) 2017 – 2019 Col. 125</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 January 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/cbill_2017-20190109_en_1.htm">
+                                    <u>HC Bill 109</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0109/en/18109en01.htm">
+                                    <u>Bill 109-EN 2017-19</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-01-23/debates/0EFF18F1-2B91-4710-AF19-B8BBB47385DB/NuclearSafeguardsBill">
+                                    <u>Vol. 635 No.84 Col. 161</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="2">
+                              <p></p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>24 January 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/lbill_2017-20190081_en_1.htm">
+                                    <u>HL Bill 81</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/18081en01.htm">
+                                    <u>HL Bill 81 Explanatory Notes</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-01-24/debates/39D21D9E-4018-4BE9-8335-CA88A2B4C5F0/NuclearSafeguardsBill">
+                                    <u>Vol. 788 No. 85 Col. 1023</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>7 February 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/lbill_2017-20190081_en_1.htm">
+                                    <u>HL Bill 81</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/18081en01.htm">
+                                    <u>HL Bill 81 Explanatory Notes</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-02-07/debates/BF177CCC-53E3-4CBB-A11B-B7C9CE6A1688/NuclearSafeguardsBill">
+                                    <u>Vol. 788 No. 94 Col. 2022</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>22 February 2018</p>
+                              <p>1 March 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/lbill_2017-20190081_en_1.htm">
+                                    <u>HL Bill 81</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/18081en01.htm">
+                                    <u>HL Bill 81 Explanatory Notes</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-02-22/debates/731FB6FB-A8E9-4516-999A-E2BB20B3AB25/NuclearSafeguardsBill">
+                                    <u>1</u>
+                                    <u>st</u>
+                                    <u> sitting Vol. 789 No. 98 Col. 282</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-02-22/debates/0501899F-512D-4904-919D-908CC09B0CC1/NuclearSafeguardsBill">
+                                    <u>1</u>
+                                    <u>st</u>
+                                    <u> sitting - continued Vol. 789 No. 98 Col. 282</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-03-01/debates/854942E3-6842-424F-A8A2-E46966C067DA/NuclearSafeguardsBill">
+                                    <u>2</u>
+                                    <u>nd</u>
+                                    <u> sitting Vol. 789 No. 103 Col. 771</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>20 March 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/lbill_2017-20190081_en_1.htm">
+                                    <u>HL Bill 81</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0081/18081en01.htm">
+                                    <u>HL Bill 81 Explanatory Notes</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-03-20/debates/D9AA8D05-9139-4F56-B0B8-8419F540042F/NuclearSafeguardsBill">
+                                    <u>Vol. 790 No. 113 Col. 189</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>27 March 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0091/lbill_2017-20190091_en_1.htm">
+                                    <u>HL Bill 91</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-03-27/debates/A7D1FB93-C3CC-4C4F-9645-945D73732684/NuclearSafeguardsBill">
+                                    <u>Vol. 790 No. 118 Col. 729</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>8 May 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0194/18194.1-4.html">
+                                    <u>Bill 194 2017-19 (Lords Amendments)</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0194/en/18194en01.htm">
+                                    <u>Bill 194 EN 2017-19</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-05-08/debates/A29CB452-8ECD-424B-B27E-0C06F8569342/NuclearSafeguardsBill">
+                                    <u>Vol. 640 No. 134 Col. 600</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendment in lieu</p>
+                           </td>
+                           <td>
+                              <p>6 June 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0103/18103.1-4.html">
+                                    <u>HL Bill 103 Commons amendment in lieu</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-06-06/debates/B6B8C15D-3D59-4F28-B684-471A7BF2C69D/NuclearSafeguardsBill">
+                                    <u>Vol. 791 No. 148 Col. 1317</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>26 June 2018</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-06-26/debates/DE87C0BD-96E5-4888-BDD0-65544B90A555/Prayers">
+                                    <u>House of Commons Vol. 643 Col. 735</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-06-26/debates/D13B3A5F-B212-4575-90CA-92DB2C0AB3DB/RoyalAssent">
+                                    <u>House of Lords Vol.792 Col. 95</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.39in">
+                        <col style="width:1.48in">
+                        <col style="width:1.45in">
+                        <col style="width:1.58in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1 Nuclear Safeguards</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 </p>
+                           </td>
+                           <td>
+                              <p>Clause 1 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2 Power to amend legislation relating to nuclear safeguards</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 </p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3 Report on nuclear safeguards</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4 Request for continuation of existing arrangements</p>
+                              <p>(introduced at Commons Consideration of Lords Amendments)</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5 Extent</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6 Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7 Short Title</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  See sections 68 and 70 of the 2013 Act.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  In accordance with Article 50(2) of the Treaty on European Union and Article 50 as
+                  applied by Article 106a of the Treaty Establishing the European Atomic Energy Community.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT"><u><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT">https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf"><u><a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf">https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf"><u><a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf">https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302"><u><a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302">http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  7 <a href="https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations"><u><a href="https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations">https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html"><u><a href="https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html">https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

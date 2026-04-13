@@ -1,0 +1,856 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NATIONAL INSURANCE CONTRIBUTIONS (INCREASE OF THRESHOLDS) ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the National Insurance Contributions (Increase of
+                  Thresholds) Act 2022 which received Royal Assent on 31 March 2022 (c. 16).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by HM Revenue and Customs (HMRC) in order
+                  to assist the reader in understanding the Act. They do not form part of the Act and
+                  have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act deals with the following matters:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Increase in the Primary Threshold (PT) for Class 1 National Insurance contributions
+                        (NICs).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Increase in Lower Profits Limit (LPL) for Class 4 NICs.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Regulation making power to ensure the threshold for paying Class 2 NICs is equivalent
+                        to the LPL, and to make provisions for people whose profits for a tax year are at
+                        or less than the LPL to be treated as having made Class 2 contributions. </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Government’s ultimate ambition has been to align the NICs starting thresholds
+                     with the income tax personal allowance. For the 2020-21 tax year the PT and LPL were
+                     raised by over £800 to £9,500, representing a tax cut for 31 million workers. For
+                     2021-22, the PT and LPL were increased by the Consumer Price Index (CPI) to £9,568.
+                     The current legislated position for 2022-23 is a further increase by CPI to £9,880
+                     from 6 April 2022.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>At Spring Statement 2022 the Government announced that it will meet this ambition
+                     by aligning the starting thresholds from July 2022 and, alongside this, from 6 April
+                     2022, self-employed individuals with profits between the Small Profit Threshold and
+                     LPL will continue to be able to build up National Insurance credits but will not pay
+                     any Class 2 NICs. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Legislation relating to the existing system of NICs and social security benefits is
+                     set out in a combination of primary and subordinate legislation. The relevant provisions
+                     are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The Social Security Contributions and Benefits Act 1992 (SSCBA 1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>The Social Security Contributions and Benefits (Northern Ireland) Act 1992 (SSCB(NI)A
+                        1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>The Social Security Administration Act 1992 (SSAA 1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>The Social Security Administration (Northern Ireland) Act 1992 (SAA(NI)A 1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>The Social Security (Contributions) Regulations 2001 (SI 2001/1004).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>These provisions will continue to be the main legislation dealing with NICs.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Act extends to England and Wales, Scotland and Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, Senedd
+                     Cymru or the Northern Ireland Assembly without consent of the legislature concerned.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Scotland</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act does not contain any provisions relating to matters which are within the legislative
+                     competence of the Scottish Parliament and therefore no Legislative Consent Motion
+                     is being sought in relation to any provisions of the Act. If the Government introduces
+                     or accepts amendments relating to the legislative competence of the Scottish Parliament
+                     consent will be sought for them.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Wales</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act does not contain any provisions relating to matters within the legislative
+                     competence of Senedd Cymru and therefore no Legislative Consent Motion is being sought
+                     in relation to any provisions of the Act. If there are amendments which relate to
+                     such matters, consent will be sought for them.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Northern Ireland</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Under the provisions of Schedule 2 to the Northern Ireland Act 1998 NICs are an excepted
+                     matter. The Act therefore applies to the relevant Northern Ireland legislation relating
+                     to NICs, where stated. If there are amendments which relate to non-excepted matters,
+                     consent of the Northern Ireland Assembly will be sought for them.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Increase of primary threshold</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 1(1) introduces amendments to SI 2001/1004.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 1(2) amends regulation 10(c) by replacing the weekly amount of the PT of £190
+                     with £242.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Prescribed equivalents ensure that the threshold is reflective of an employment pay
+                     period. Section 1(3) amends regulation 11(3) by replacing the monthly and annual prescribed
+                     equivalents of the PT as follows:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>in sub-paragraph (a), the monthly prescribed equivalent of £823 is replaced with £1,048.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>in sub-paragraph (b), the annual prescribed equivalent of £9,880 is to be replaced
+                        with £12,570.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 1(4) specifies that the amendments made by subsections (2) and (3) come into
+                     force on 6 July 2022.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Increase in lower limit of profit for Class 4 contributions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 2(1) amends sections 15(3) and 18(1) and (1A) SSCBA 1992 and SSCB(NI)A 1992
+                     by replacing the amount specified for the LPL as £9,880 with £11,908.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 2(2) specifies the amendment by subsection (1) is treated as coming into force
+                     on 6 April 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 2(3) and 2(4) specifies that the amount of £11,908 (as substituted by subsection
+                     (1)) is to be replaced by £12,570 from 6 April 2023.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Equivalent provisions for Class 2 contributions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 3(1) requires the Treasury to make regulations to ensure that the threshold
+                     for paying Class 2 NICs is equivalent to the LPL threshold.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 3(2) specifies that those regulations may treat individuals whose profit is
+                     below the LPL as having made Class 2 contributions, that the regulations may have
+                     effect from 6 April 2022 and may amend an Act of Parliament.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Transitional and consequential provisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 4(1) ensures that the calculation for the annual maximum amount of Class 1
+                     NICs that individuals with more than one employment pays during the 2022-23 tax year
+                     uses the equivalent to the annual threshold for employees across the 2022-23 tax year
+                     (£11,908).  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 4(2) provides that the primary threshold for weekly and annual earnings periods
+                     for directors, referenced in regulation 8 of SI 2001/1004, are set at £229 and £11,908
+                     respectively.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 4(3) provides that the modification made by subsections (1) and (2) has effect
+                     for the 2022-23 tax year.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 4(4) provides the Treasury with regulation making powers to amend SI 2001/1004
+                     as the Treasury considers appropriate. This power may have retrospective effect, but
+                     from no earlier than 6 April 2022. </p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Regulations</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Section 5(1) provides that regulations made under the powers in this Act are to be
+                     made by statutory instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Section 5(2) applies section 175(3) and (4) of the Social Security Contributions and
+                     Benefits Act 1992 (SSCBA) to any regulations under this Act. This allows for supplemental,
+                     transitional, or consequential provisions. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Section 5(3) specifies that the power in section 3 (equivalent provisions for Class
+                     2 contributions) are subject to the draft affirmative procedure where they amend an
+                     Act of Parliament. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Section 5(4) specifies that any other regulations made under this Act are subject
+                     to the negative procedure. </p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Section 6 gives the short title of the Act as National Insurance Contributions (Increase
+                     of Thresholds) Act 2022.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The Act came into force on 6 April 2022.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>National Insurance Contributions (Increase of Thresholds) Act – Draft Legislation
+                        and Explanatory Notes at <a href="https://bills.parliament.uk/bills/3142"><u>https://bills.parliament.uk/bills/3142</u></a>.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Tax Information and Impact Note at <a href="https://www.gov.uk/government/publications/national-insurance-primary-threshold-and-the-lower-profits-limit-increase-and-associated-class-2-changes-in-2022-to-2023-tax-year/national-insurance-increase-to-primary-threshold-and-the-lower-profits-limit-and-reduction-in-class-2-liability-of-those-earning-between-the-small-pr"><u>https://www.gov.uk/government/publications/national-insurance-primary-threshold-and-the-lower-profits-limit-increase-and-associated-class-2-changes-in-2022-to-2023-tax-year/national-insurance-increase-to-primary-threshold-and-the-lower-profits-limit-and-reduction-in-class-2-liability-of-those-earning-between-the-small-pr</u></a>. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Spring Statement 2022 Main Document, policy costings and Scorecard at <a href="https://www.gov.uk/government/publications/spring-statement-2022-documents"><u>https://www.gov.uk/government/publications/spring-statement-2022-documents</u></a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.43in">
+                        <col style="width:3.12in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>Stage</p>
+                           <p>Date</p>
+                           <p>Hansard Reference</p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>24 03 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-03-24/debates/1C2C6F32-ED1D-4DD4-BCA7-67678B29A49D/PointsOfOrder">
+                                    <u>Vol. 711 Col. 458</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>24 03 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-03-24/debates/94F3AB16-B637-4897-AE3B-8B983CD3D47F/NationalInsuranceContributions(IncreaseOfThresholds)Bill">
+                                    <u>Vol. 711 Col. 462-511</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>24 03 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-03-24/debates/57B21D86-2300-4436-A8E0-18D08BB07F70/NationalInsuranceContributions(IncreaseOfThresholds)Bill">
+                                    <u>Vol. 711 Col. 512-525</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 03 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-03-24/debates/57B21D86-2300-4436-A8E0-18D08BB07F70/NationalInsuranceContributions(IncreaseOfThresholds)Bill">
+                                    <u>Vol. 711 Col. 512-525</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>25 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-25/debates/2BCEA4CD-6955-465C-BFB6-87AD36C2FA50/NationalInsuranceContributions(IncreaseOfThresholds)Bill">
+                                    <u>Vol. 820 Col. 1226</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-30/debates/6EDE619D-D088-409A-B63B-5642BA0E9515/NationalInsuranceContributions(IncreaseOfThresholds)Bill">
+                                    <u>Vol. 820 Col. 1611-1626</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>30 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-30/debates/544E87E5-C918-4256-97DD-312F4146A30E/NationalInsuranceContributions(IncreaseOfThresholds)Bill">
+                                    <u>Vol. 820 Col. 1651-1659</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>30 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-30/debates/544E87E5-C918-4256-97DD-312F4146A30E/NationalInsuranceContributions(IncreaseOfThresholds)Bill">
+                                    <u>Vol. 820 Col. 1651-1659</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>31 March 2022</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2022-03-31/debates/B4FF5FA6-079D-439B-9C1C-0E94D2B3E5A8/RapeAsAWeaponOfWarInUkraine"><u>Vol. 711 Col. 997</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2022-03-31/debates/FD2574EE-9558-43D3-A7E1-037F2257E98E/RoyalAssent"><u>Vol. 820 Col. 1675</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>This Annex shows how each section of the Act was numbered during the passage of the
+                     Bill through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.01in">
+                        <col style="width:0.95in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the </b>
+                              </p>
+                           <p>
+                              <b>Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as </b>
+                              </p>
+                           <p>
+                              <b>Introduced in </b>
+                              </p>
+                           <p>
+                              <b>the commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended </b>
+                              </p>
+                           <p>
+                              <b>in Committee in </b>
+                              </p>
+                           <p>
+                              <b>the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as </b>
+                              </p>
+                           <p>
+                              <b>introduced in the </b>
+                              </p>
+                           <p>
+                              <b>Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended </b>
+                              </p>
+                           <p>
+                              <b>in Committee in </b>
+                              </p>
+                           <p>
+                              <b>the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended </b>
+                              </p>
+                           <p>
+                              <b>on Report in the </b>
+                              </p>
+                           <p>
+                              <b>Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

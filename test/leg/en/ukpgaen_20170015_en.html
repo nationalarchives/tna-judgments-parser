@@ -1,0 +1,735 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NATIONAL CITIZEN SERVICE ACT 2017</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the National Citizen Service Act 2017 (c. 15) which
+                  received Royal Assent on 27 April 2017.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Culture, Media and
+                  Sport in order to assist the reader in understanding the Act. They do not form part
+                  of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act will create a statutory framework for the National Citizen Service (‘NCS’),
+                     with the aim of ensuring proper oversight of the management of public funding for
+                     the service. It should be read alongside the Royal Charter (‘the Charter’) that incorporates
+                     the body that will deliver NCS, to be known as the NCS Trust. The Act and the Charter
+                     work together, and the Act makes provision about the NCS Trust.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The NCS has been available since 2011, and consists of courses for young people in
+                     England and Northern Ireland, mostly aged 16 and 17. The courses take place during
+                     school holidays and are partly residential. They comprise a mixture of activities
+                     – adventures, life skills and social action – which encourage young people to engage
+                     with their community and develop for the future.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The programme is currently administered by a community interest company, also called
+                     the NCS Trust (company registration number 08235117, ‘the Company’). The Company contracts
+                     with providers in different parts of England to deliver the programme. The Company
+                     is grant-funded on an annual basis by the Cabinet Office.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The NCS is intended to enable the young people who attend to meet people from different
+                     backgrounds, enhancing their life skills and increasing their employability. It is
+                     also intended to encourage community cohesion. An increase in funding for the NCS
+                     was announced in the 2015 spending review to fulfil the government's aspiration that
+                     attendance on the NCS become a ‘rite of passage’ for all young people.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Act aims to help fulfil the government’s objectives in two ways. First, the Act
+                     (in combination with the Charter) will reform the legal framework for the NCS. In
+                     particular the combination of the Act and Charter:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">●</span></h2>
+                     <p>Incorporates the new NCS Trust as a Charter body and creates a legislative mechanism
+                        to transfer the business of the Company to the new Trust. This creates a legislative
+                        framework for the NCS, with the aim of making it a national institution while preserving
+                        its independent ethos;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">●</span></h2>
+                     <p>Aims to secure that the administrative and funding arrangements for the NCS Trust
+                        are appropriate for the increased level of public funds the Trust will manage, with
+                        proper accountability to government and Parliament; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Aims to impose on the NCS Trust an appropriate level of government control for a body
+                        in receipt of public funds.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Secondly, the Act enables HMRC to send information about the Trust and its work to
+                     those young people who are eligible for NCS (and their parents and carers) and invite
+                     them to take part in the NCS. This will allow HMRC to assist the Trust to promote
+                     its programmes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Detailed provisions on the constitution, procedure and powers of the NCS Trust are
+                     contained in the Charter. These include matters such as: the Trust’s functions and
+                     objectives; the methods by which its members and chief executive are to be appointed;
+                     remuneration of members and employees; delegation of functions; regulation of procedure;
+                     and the powers of the Trust, for example, to enter into agreements, invest money and
+                     accept gifts.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The majority of the relevant legal background is explained in the policy background
+                     section of these notes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>As explained in that section, the NCS is currently administered by the Company. The
+                     Company was incorporated in October 2012 under the name NCS Trust. As a community
+                     interest company it is subject to the provisions of the Companies (Audit, Investigations
+                     and Community Enterprise) Act 2004.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 13 sets out the territorial extent of the Act; that is, the jurisdictions
+                     of which the Act forms part of the law. The extent of an Act can be different from
+                     its application. Application is about where an Act produces a practical effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>This Act extends to England and Wales but applies in England only (except for consequential
+                     amendments to other enactments, which have the same extent as the provisions being
+                     amended).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>There is a convention that Westminster will not normally legislate with regard to
+                     matters that are within the legislative competence of the Scottish Parliament, the
+                     National Assembly for Wales or the Northern Ireland Assembly without the consent of
+                     the legislature concerned.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>While the Act includes provisions that are within the legislative competence of the
+                     Scottish Parliament, the National Assembly for Wales and the Northern Ireland Assembly,
+                     the Act applies in England only, so no legislative consent motion is being sought
+                     in relation to any provision of the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>See Annex A for a summary of the position regarding territorial extent and application
+                     in the United Kingdom</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: National Citizen Service Trust</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: National Citizen Service Trust</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Section 1 refers to the NCS Trust, the body that will be established by the Charter.
+                        It describes the Trust’s functions, which are the functions to be conferred on it
+                        by article 3 of the Charter.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2 and Schedule 1: Transfer schemes</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Section 2 introduces Schedule 1, which confers power on the Secretary of State to
+                        make a scheme providing for the transfer of the staff, property, rights and liabilities
+                        of the Company to the NCS Trust. This allows the Secretary of State, once the Trust
+                        has come into existence, to transfer the business and assets of the Company to the
+                        Trust. This is intended to allow an orderly transfer, which will preserve continuity
+                        and, where appropriate, protect the rights of NCS staff and interested third parties.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Under paragraph 5 of Schedule 1 the Secretary of State must consult those likely to
+                        be affected by a transfer scheme and have regard to the results of the consultation.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Finance</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Section 3 gives the Secretary of State the power to fund the NCS Trust through grants
+                        out of money provided by Parliament.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Accounts and audit </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Section 4 sets out the accounting and audit requirements to which the NCS Trust is
+                        subject. It requires that the Trust’s accounts must be examined by the National Audit
+                        Office and laid before Parliament. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Business plan</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Section 5 places a requirement on the NCS Trust to publish and lay before Parliament
+                        an annual business plan setting out its main priorities and activities for the year
+                        ahead. This will provide a yardstick against which government, Parliament and the
+                        public can assess the Trust’s performance. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Annual report</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Section 6 requires the NCS Trust to give the Secretary of State an annual report,
+                        detailing the extent to which it has met its strategic priorities for the year. The
+                        annual report must also address the quality of the Trust’s programmes, amongst other
+                        matters. This is intended to enable effective monitoring of the Trust’s performance
+                        from one year to the next. Combined with the business plan, this ensures government,
+                        Parliament and the public have oversight of how far the Trust has achieved its objectives
+                        for the year. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Notification of financial difficulties and criminal conduct</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Section 7 requires the NCS Trust to notify the Secretary of State promptly if: (a)
+                        anyone supplying the Trust with goods or services to support the Trust’s main functions
+                        is in serious financial difficulty or in breach of contract with serious consequences
+                        for the Trust; (b) a member of staff of the Trust or one of its suppliers commits
+                        fraud or is in breach of his or her employment contract with serious consequences
+                        for the Trust, or (c) there is a police investigation into an allegation of criminal
+                        conduct by a member of staff of the NCS Trust or one of its providers, where that
+                        investigation could have serious consequences for the NCS Trust. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>This is intended to ensure the government is kept informed of anything that poses
+                        a serious risk to delivery of the programme or the performance of the Trust. It does
+                        not require notification of, for example, minor breaches of contract or breaches of
+                        contract by suppliers providing goods or services that do not directly support the
+                        Trust’s main functions, such as cleaning or stationery providers. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 8: Fees</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>The Company currently charges a small fee for attendance on its programmes. The fee
+                        does not represent the cost of the programmes; it is an incentive to ensure attendance.
+                        Section 8 enables the NCS Trust to continue this practice if appropriate. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 9: HMRC functions</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Section 9 allows HMRC to assist the NCS Trust in performing its function of promoting
+                        its programmes by sending out communications to young people and their parents and
+                        carers. The communications may contain information about the Trust’s work and invite
+                        the young people concerned to participate in NCS programmes. The Trust must determine
+                        the content of the communications. This is intended to help the Trust get its message
+                        across to the majority of eligible young people.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 2: General</b>
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Sections 10 to 15 and Schedule 2: miscellaneous provisions</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Sections 10 to 15 make provision relating to definitions; consequential amendments;
+                        transitional arrangements; extent; commencement; and short title.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Section 11 introduces Schedule 2, which makes consequential amendments to other legislation
+                        in relation to the NCS Trust. The consequential amendments mean that the chair of
+                        the Trust is disqualified from standing for election to the House of Commons, and
+                        that the Trust is subject to the requirements of the Public Records Act 1958, the
+                        Freedom of Information Act 2000 and the Equality Act 2010.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Paragraph 1 of Schedule 2 concerns eligibility for election to the House of Commons.
+                        In the government’s view it therefore does not fall within the legislative competence
+                        of the Scottish Parliament, the National Assembly for Wales or the Northern Ireland
+                        Assembly. Schedule 2 to the Act does not, therefore, deal solely with devolved matters.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The provisions of the Act will come into force as provided for by section 14 of the
+                     Act. Section 14 itself (Commencement) comes into force on Royal Assent. Sections 1
+                     (National Citizen Service Trust), 10 (Definitions), 12 (Transitional Provision), 13
+                     (Extent) and 15 (Short title) also come into force on Royal Assent. The remaining
+                     measures in the Act will be brought into force by regulations.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <i>The Conservative Party Manifesto 2015</i>, April 2015<br><a href="https://web.archive.org/web/20150615055241/https:/www.conservatives.com/manifesto"><u>https://web.archive.org/web/20150615055241/https://www.conservatives.com/manifesto</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">●</span></h2>
+                     <p>Queen’s Speech, May 2016<br><a href="https://www.gov.uk/government/speeches/queens-speech-2016"><u>https://www.gov.uk/government/speeches/queens-speech-2016</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Prime Minister’s speech on life chances, January 2016<br><a href="https://www.gov.uk/government/speeches/prime-ministers-speech-on-life-chances"><u>https://www.gov.uk/government/speeches/prime-ministers-speech-on-life-chances</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>The Act extends to England and Wales but applies in England only, save for the consequential
+                     amendments to other enactments, which have the same extent as the provisions being
+                     amended.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>14 December 2016</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 January 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2017-01-16/debates/694D3D6B-7045-4740-B836-0BE2611DD608/NationalCitizenServiceBill(Lords)?highlight=national%20citizen%20service%20act">
+                                    <u>Vol. 619 Col. 687</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>24 January 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2017-01-24/debates/9438844b-5d0d-4b96-bbd0-68cee1ef8ce6/NationalCitizenServiceBill(Lords)(FirstSitting)">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>15 March 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2017-03-15/debates/5EB4877A-6E51-4136-8523-BC1B793FBE73/NationalCitizenServiceBill(Lords)?highlight=national%20citizen%20service%20act">
+                                    <u>Vol. 623 Col. 444</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>11 October 2016</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2016-10-11/debates/CF7ECD70-9415-4E3F-976D-C3B1730B7B08/NationalCitizenServiceBill(HL)">
+                                    <u>Vol. 774 Col. 1779</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>25 October 2016</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2016-10-25/debates/852502E1-03E9-405D-A9FE-A7E0105936E3/NationalCitizenServiceBill(HL)">
+                                    <u>Vol. 776 Col. 112</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>16 November 2016</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2016-11-16/debates/97DFD628-08E5-4E74-91D8-057B00EAC308/NationalCitizenServiceBill(HL)">
+                                    <u>Vol. 776 Col. 119GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>7 December 2016</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2016-12-07/debates/8EB273DC-438C-4C52-8820-D055A5A8D524/NationalCitizenServiceBill(HL)">
+                                    <u>Vol. 777 Col. 727</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>14 December 2016</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2016-12-14/debates/01894F1D-AAF8-403E-BAEA-980606DFF952/NationalCitizenServiceBill(HL)">
+                                    <u>Vol. 777 Col. 1247</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>4 April 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2017-04-04/debates/CF60212C-4BF6-4B14-9F90-A3701113E7DA/NationalCitizenServiceBill(HL)">
+                                    <u>Vol. 782 Col. 935</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>27 April 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2017-04-27/debates/106E08CF-AF3A-4A3C-AE8E-1C7364A3C4D3/RoyalAssent?highlight=national%20citizen%20service%20act%20assent">
+                                    <u>House of Commons Vol. 624 Col. 1230</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2017-04-27/debates/D2F2B78C-6AFC-499A-A386-3804E0141713/RoyalAssent">
+                                    <u>House of Lords Vol. 782 Col. 1528</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,853 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NHS FUNDING ACT 2020</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the NHS Funding Act 2020 (c. 5) which received Royal
+                  Assent on 16 March 2020.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department of Health and Social
+                  Care to assist the reader of the Act. They do not form part of the Act and have not
+                  been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act sets out in legislation the current long-term funding settlement for the NHS,
+                     as set out in the NHS Long Term Plan (LTP), published January 2019.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act makes two main provisions to:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Place a duty on the Secretary of State to ensure that the sums paid to NHS England
+                     for revenue spending do not fall below the amounts specified in the LTP Funding Settlement
+                     for the remaining financial years of that settlement, up to and including the financial
+                     year 2023/24.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Place a legal duty on the Treasury to ensure that the annual Supply Estimates for
+                     the Department of Health and Social Care (DHSC) are consistent with the amounts of
+                     NHS England funding for each financial year.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>These provisions cease to have effect at the end of the financial year 2023/24.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>The role of the Department of Health and Social Care in NHS funding</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>NHS England (NHSE) receives its funding from the Department of Health and Social Care
+                     (DHSC). Under section 13A of the National Health Service Act 2006 (the “2006 Act”),
+                     the Secretary of State must publish and lay before Parliament a “Mandate” before the
+                     start of each financial year.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Under section 223D of the 2006 Act, the Secretary of State must set limits on the
+                     total capital and revenue resource use of NHSE (which includes capital and revenue
+                     resource for use of Clinical Commissioning Groups (CCGs)) for each financial year.
+                     These limits must be specified in the mandate. NHSE is under a duty to ensure that
+                     its and CCGs’ revenue and capital resource use does not exceed these limits (section
+                     223D(2) and (3) of the 2006 Act). The Secretary of State may also specify such limits
+                     for subsequent financial years (section 13A(4) of the 2006 Act). </p>
+               </section>
+               <section class="level">
+                  <p>The role of Her Majesty’s Treasury in NHS funding</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Crown is charged with the management of all the revenue of State, and with all
+                     the payments for public service. Departments (as representatives of the Crown) are
+                     required to present to Parliament their requirements for the financing of public services,
+                     which they do by presenting estimates of their expenditure, known as “Supply Estimates”.
+                     Parliament will then vote on whether to authorise that expenditure and therefore provide
+                     the ways and means to meet it. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Under a long-standing convention, departmental Supply Estimates must be approved by
+                     the Treasury before they are presented to Parliament and must be fully consistent
+                     with Treasury budgetary controls.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Most departments’ Estimates (including DHSC’s) are then presented to Parliament by
+                     the Treasury as a single publication(<a class="fn" id="fnref-1" href="#fn-1">1</a>). The Commons then considers the Estimates put forward by the government and confirms
+                     authorisation of the amounts in the Estimates through passing Supply and Appropriation
+                     Acts annually which grant the supply of funding from the Consolidated Fund to Departments.</p>
+               </section>
+               <section class="level">
+                  <p>The Long Term Plan funding settlement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>In June 2018, the Government announced its intention to work with the NHS in England
+                     to develop a ten-year plan for the health service, underpinned by an increase in funding
+                     for the NHS in England amounting to a £33.9 billion per year increase in cash terms
+                     by the financial year 2023/24. This funding settlement was set out at Autumn Budget
+                     2018.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>This long-term funding commitment aimed to provide the NHS with financial certainty
+                     allowing it to plan for the next decade. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The NHS Long Term Plan was published in January 2019. It sets out how the NHS will
+                     develop over the next 10 years, including a move to more integrated care, a greater
+                     focus on prevention and changes to ensure financial sustainability. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The table below sets out NHS England’s revenue funding for each year up to (and including)
+                     2023-24. These figures include the Government’s funding settlement for the Long Term
+                     Plan.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.23in">
+                        <col style="width:0.86in">
+                        <col style="width:0.86in">
+                        <col style="width:0.86in">
+                        <col style="width:0.86in">
+                        <col style="width:0.86in">
+                        <col style="width:0.86in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>NHS England revenue budget</p>
+                           </td>
+                           <td>
+                              <p>2018-2019</p>
+                           </td>
+                           <td>
+                              <p>2019-2020</p>
+                           </td>
+                           <td>
+                              <p>2020-2021</p>
+                           </td>
+                           <td>
+                              <p>2021-2022</p>
+                           </td>
+                           <td>
+                              <p>2022-2023</p>
+                           </td>
+                           <td>
+                              <p>2023-2024</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Total budget (£bn) in cash terms </p>
+                           </td>
+                           <td>
+                              <p>114.6</p>
+                           </td>
+                           <td>
+                              <p>120.8</p>
+                           </td>
+                           <td>
+                              <p>127.0</p>
+                           </td>
+                           <td>
+                              <p>133.3</p>
+                           </td>
+                           <td>
+                              <p>140.0</p>
+                           </td>
+                           <td>
+                              <p>148.5</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 2 sets out the territorial extent of the Act, which describes the jurisdictions
+                     in which the Act forms part of the law. The extent of an Act can be different from
+                     its application. Application is about where an Act produces a practical effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Healthcare is a devolved matter. The Act extends to England and Wales but will apply
+                     only to the NHS in England.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act </b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Funding Settlement for the Health Service in England</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (1) sets out the duty on the Secretary of State to allot to NHSE, as a
+                     minimum, the amount of funding for each financial year set out in the table below.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.97in">
+                        <col style="width:1.77in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>Financial Year</p>
+                           </td>
+                           <td>
+                              <p>Amount</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Ending with 31st March 2021</p>
+                           </td>
+                           <td>
+                              <p>£127,007,000,000</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Ending with 31st March 2022</p>
+                           </td>
+                           <td>
+                              <p>£133,283,000,000</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Ending with 31st March 2023</p>
+                           </td>
+                           <td>
+                              <p>£139,990,000,000</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Ending with 31st March 2024</p>
+                           </td>
+                           <td>
+                              <p>£148,467,000,000</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The funding settlement, announced in January 2019, referred only to revenue spending
+                     for NHSE. It is the intention that this Act also only covers NHS England revenue spending.
+                     As such subsection (2) confers a duty on the Secretary of State to ensure this funding
+                     is only used as revenue resource, rather than as capital resource. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The 2006 Act (section 13A) states that NHSE is subject to an annual “mandate”, which
+                     the Secretary of State must publish and lay before Parliament before the start of
+                     each financial year. The mandate must specify the limits that the Secretary of State
+                     has decided on NHSE’s capital and revenue resource use for that financial year as
+                     set out in section 223D of the 2006 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (2) requires the Secretary of State to specify such limits on capital and
+                     revenue resource use under section 223D of the 2006 Act as the Secretary of State
+                     considers necessary to ensure that the amounts specified in the table in subsection
+                     (1) are used only as revenue resource. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Estimates are the documents presented to Parliament by the Treasury setting out the
+                     Government’s plans for spending for the relevant year. Estimates take into account
+                     Departments’ proposed Departmental Expenditure Limits, Annually Managed Expenditure
+                     and Total Managed Expenditure grouping the planned expenditure for each department
+                     in accordance with these categories. The Treasury lays the Estimates before Parliament
+                     for its approval and once approved the relevant limits are subsequently set out in
+                     Supply and Appropriation Acts which provide statutory authority for the amounts of
+                     resources sought in the Estimates and therefore for most departmental expenditure.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (3) puts a duty on the Treasury to ensure that the Department of Health
+                     and Social Care Estimates laid before Parliament are consistent with the amounts of
+                     revenue resource funding for NHSE for the relevant year, as set out in the table in
+                     subsection (1). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Subsection (4) defines an “allotment to the health service in England” as an allotment
+                     under section 223B(2) of the National Health Service Act 2006 or a new allotment under
+                     section 223B(3) of the National Health Service Act 2006. This ensures that the duty
+                     in subsection (1) on the Secretary of State applies to any allotment in the relevant
+                     financial years.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 223B(1) of the 2006 Act provides that the Secretary of State must pay to NHSE
+                     sums not exceeding the amount allotted for that year towards meeting the expenditure
+                     of NHSE.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement, expiry and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (1) sets out the territorial extent of the Act, that is the jurisdictions
+                     within which the Act forms part of the law.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>The Act extends to England and Wales only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (2) provides that the provisions of the Act come into force on the day
+                     that the Act is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (3) provides that the legislation will expire at the end of 31st March
+                     2024. This reflects the fact that the Act makes provision in relation to NHSE funding
+                     for the financial years 2020/21 to 2023/24 only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (4) states the Act’s short title as the ‘NHS Funding Act 2020’.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The Act comes into force on the day on which it is passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>National Health Service Act 2006: <a href="https://www.legislation.gov.uk/ukpga/2006/41/contents"><u>https://www.legislation.gov.uk/ukpga/2006/41/contents</u></a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>National Health Service Long Term Plan: <br><a href="https://www.longtermplan.nhs.uk/wp-content/uploads/2019/08/nhs-long-term-plan-version-1.2.pdf"><u>https://www.longtermplan.nhs.uk/wp-content/uploads/2019/08/nhs-long-term-plan-version-1.2.pdf</u></a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>The Act extends to England and Wales but will apply only to the NHS in England.  No
+                     provisions of the Act have effect outside England.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.41in">
+                        <col style="width:0.95in">
+                        <col style="width:1.07in">
+                        <col style="width:1.1in">
+                        <col style="width:1.51in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1: Funding Settlement for the Health Service in England</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2:Extent, commencement, expiry and short title</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>15 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-01-15/debates/F2243A8C-3A0A-4E7E-94F7-233EE3DFD95B/PointsOfOrder#contribution-BF5C2089-3DA8-49E2-9585-E2F9AC80F167">
+                                    <u>Vol. 669 Col. 1027</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>27 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-01-27/debates/0F5A52C9-4334-4E34-B689-0AF71BF31E8B/NHSFundingBill?highlight=nhs%20funding%20act%202020#contribution-53E360E2-B93B-40EE-A967-E64B2630E0C2">
+                                    <u>Vol. 670 Col. 559</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>04 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-02-04/debates/A3B1554C-FB48-4F9B-A6EA-B78AD05D0E02/NHSFundingBill">
+                                    <u>Vol. 671 Col. 212</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>04 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-02-04/debates/A3B1554C-FB48-4F9B-A6EA-B78AD05D0E02/NHSFundingBill#contribution-B9D53C9B-1AFB-4C1A-A58C-5F187FEFACCA">
+                                    <u>Vol. 671 Col. 277</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>05 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-02-05/debates/E5A4DF24-DEBC-4919-963C-F7C40204C937/NHSFundingBill">
+                                    <u>Vol. 801 Col. 1855</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>26 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-02-26/debates/CD1B3BAE-E93E-4444-B775-65742E1DFF73/NHSFundingBill(MoneyBill)">
+                                    <u>Vol. 802 Col. 215</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>26 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-02-26/debates/CD1B3BAE-E93E-4444-B775-65742E1DFF73/NHSFundingBill(MoneyBill)">
+                                    <u>Vol. 802 Col. 215</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>26 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-02-26/debates/CD1B3BAE-E93E-4444-B775-65742E1DFF73/NHSFundingBill(MoneyBill)">
+                                    <u>Vol. 802 Col. 215</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-02-26/debates/CD1B3BAE-E93E-4444-B775-65742E1DFF73/NHSFundingBill(MoneyBill)">
+                                    <u>Vol. 802 Col. 215</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <i>Royal Assent</i>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>16 March 2020</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2020-03-16/debates/0A151609-7821-45D4-9677-FC9886FC59B3/RoyalAssent"><u>Vol. 802 Col.1269</u></a></p>
+                              <p>House of Commons  <a href="https://hansard.parliament.uk/Commons/2020-03-16/debates/1506ECC8-F5CB-4757-A868-E002637BC80F/Prayers?highlight=nhs%20funding%20assent#contribution-A6B30858-4160-440E-A0A4-88926CF5D8B6"><u>Vol. 673</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> (?)<span class="tab">&nbsp;</span>This year’s estimates can be found at: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/800671/main_estimates_2019-20_web.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/800671/main_estimates_2019-20_web.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/800671/main_estimates_2019-20_web.pdf</a></u></a>. Separate figures in relation to NHSE are included at page 129. </p>
+               <p></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,2060 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NON-DOMESTIC RATING (MULTIPLIERS AND PRIVATE SCHOOLS) ACT 2025 </b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Non-Domestic Rating (Multipliers and Private
+                  Schools) Act 2025 which received Royal Assent on 3 April 2025 (c. 12)</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Ministry of Housing, Communities
+                  and Local Government in order to assist the reader to understand the Act. They do
+                  not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act amends the non-domestic rating system in England to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>enable the introduction of new multipliers (i.e. tax rates). The Act introduces powers
+                        to create new lower multipliers for qualifying retail, hospitality and leisure properties
+                        and higher multipliers for high value properties, and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>removes the eligibility of private schools that are charities for charitable business
+                        rate relief.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Business Rates</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Part 3 of the Local Government Finance Act 1988 (“the 1988 Act”) deals with non-domestic
+                     rating in England and Wales (often known as “business rates”). Business rates are
+                     a property tax paid by occupiers and owners of non-domestic properties. Units of property
+                     subject to business rates are called “hereditaments”.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Liability for business rates is based upon the rateable value of the hereditament
+                     which, broadly speaking, is its annual rental value. Rateable values are set by the
+                     Valuation Office Agency (VOA) and appear on non-domestic rating lists. There is a
+                     rating list for each billing authority and a central rating list held by the Secretary
+                     of State (typically containing network hereditaments which span many billing authority
+                     areas).<a class="fn" id="fnref-1" href="#fn-1">1</a> A business rates bill is determined by multiplying the rateable value of the hereditament
+                     by the applicable business rates multiplier. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>As business rates is devolved, multipliers are set by the UK Government in England,
+                     and by the Scottish and Welsh Governments in Scotland and Wales respectively.<a class="fn" id="fnref-2" href="#fn-2">2</a> In Northern Ireland, the Northern Ireland Executive and the district councils set
+                     separate rating multipliers, with the full rate collected by the Land and Property
+                     Services. The provisions in this Act concern England only.   </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Prior to the changes made by this Act coming into effect from April 2026, in England
+                     there were two non-domestic rating multipliers – the non-domestic rating multiplier
+                     and the small business non-domestic rating multiplier. The non-domestic rating multiplier
+                     is applicable to hereditaments with a rateable value of £51,000 and above and for
+                     2024/25 is set at 0.546. The small business non-domestic rating multiplier is applicable
+                     to hereditaments with a rateable value of £50,999 and under and for 2024/25 is set
+                     at 0.499. This Act enables the introduction of new additional multipliers from April
+                     2026.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Ratepayers in England may be eligible for a range of different reliefs from business
+                     rates such as small business rate relief, improvement relief and retail, hospitality
+                     and leisure relief.<a class="fn" id="fnref-3" href="#fn-3">3</a> Some reliefs are mandatory and provided for in legislation, whereas others are given
+                     at the discretion of the billing authority. One such mandatory relief is for charities
+                     which are entitled to 80% relief on occupied properties and 100% relief on unoccupied
+                     properties, including private schools where they are charities.    </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In addition, a hereditament, or part of a hereditament, may be exempt from business
+                     rates and as such excluded from paying business rates altogether. Exemptions exist
+                     for hereditaments such as agricultural land and places of religious worship.<a class="fn" id="fnref-4" href="#fn-4">4</a> Exemptions are applied by the VOA. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>One such exemption is for hereditaments or parts of a hereditament used wholly for
+                     the training or welfare of disabled people. Under this exemption, schools or dedicated
+                     parts of schools, including private schools, which are adapted and catering specifically
+                     for disabled people may be exempt from business rates.   </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Additional Multipliers for England</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>At the Autumn Budget on 30 October 2024 the Chancellor of the Exchequer announced
+                     that the government will create a fairer business rates system that protects the high
+                     street, supports investment, and is fit for the 21st century.<a class="fn" id="fnref-5" href="#fn-5">5</a>&nbsp;As a first step the government announced:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>an intention to introduce through primary legislation permanently lower multipliers
+                        for qualifying retail, hospitality and leisure properties under £500,000 rateable
+                        value from April 2026/27,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>an intention to fund this sustainably by introducing through primary legislation higher
+                        multipliers on properties with rateable value £500,000 or more, which includes the
+                        majority of large distribution warehouses including those used by online giants,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>support for qualifying retail, hospitality and leisure properties in the interim period
+                        leading up to the new permanent multipliers by providing 40% relief to such businesses
+                        on their business rates in 2025/26, up to a cash cap of £110,000 per business (delivered
+                        using existing legislation), and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>protection of the smallest properties by freezing the small business multiplier in
+                        2025/26, protecting over a million properties from inflationary bill increases (delivered
+                        using existing legislation). </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Accordingly, this Act creates powers to enable the introduction of additional multipliers:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>new lower multipliers for qualifying retail, hospitality and leisure hereditaments,
+                        and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>new higher multipliers for hereditaments with a rateable value of £500,000 or more.
+                        </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Removal of relief for private schools in England</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>On 29 July, the government announced that, as of 1 January 2025, all education, boarding,
+                     and vocational training provided for a charge by a private school in the UK will be
+                     subject to VAT at the standard rate of 20 per cent. Any fees paid from 29 July 2024
+                     relating to the term starting in January 2025 onwards will be subject to VAT. The
+                     government also announced that schools in England with charitable status would lose
+                     their eligibility for business rates charitable rate relief from April 2025, subject
+                     to Parliamentary passage of the legislation.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Full details were set out in a technical consultation that was published on 29 July
+                     2024 which noted the removal of the charitable rate relief for eligible private schools
+                     would come into effect from April 2025.<a class="fn" id="fnref-6" href="#fn-6">6</a> A response to this consultation was published by the Government on 30 October 2024.<a class="fn" id="fnref-7" href="#fn-7">7</a> The Act implements the government’s policy to end the charitable rate relief for
+                     eligible private schools (i.e. those that are charities).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>In the technical consultation the government recognised that some pupils have special
+                     educational needs that can only be met in a private school and that they would consider
+                     how to address the potential impact of the removal of charitable rate relief on such
+                     schools. The government therefore confirmed in its response to the technical consultation
+                     that private schools wholly or mainly concerned with the provision of education to
+                     children with an Education, Health and Care Plan will, where charities, retain their
+                     charitable rate relief.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Part 3 of the 1988 Act concerns non-domestic rating. Sections 41 and 52 of the 1988
+                     Act require new local and central rating lists to be compiled and maintained by Valuation
+                     Officers. Sections 42 and 53 require those rating lists to show hereditaments and
+                     their rateable values. Sections 43 (and Schedule 4ZA), 45 (and Schedule 4ZB) and 54
+                     (and Schedule 5A) concern the liability for non-domestic rates. Section 47 allows
+                     billing authorities to use their discretionary relief powers to set a lower chargeable
+                     amount. Schedule 7 concerns the calculation of multipliers.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Business rates policy is fully devolved. A common legal framework for business rates,
+                     in the form of the 1988 Act, extends to England and Wales. The provisions of the Act
+                     extend to England and Wales but apply to England only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Additional multipliers for England</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 1: Determination of additional multipliers</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 1 of the Act amends Part A1 of Schedule 7 to the 1988 Act to enable new non-domestic
+                     rating multipliers Prior to the changes made by this Act coming into effect from April
+                     2026, there  are two multipliers (i.e. tax rates) for non-domestic rating in England:
+                     the non-domestic rating multiplier and the small business non-domestic rating multiplier.
+                     Rules for the calculation of these multipliers are in Part A1 of Schedule 7 to the
+                     1988 Act. Section 1(1) of the Act provides for Part A1 to be amended by Section 1
+                     to enable the introduction of additional multipliers. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 1(2) amends Part A1 of Schedule 7 to the 1988 Act to enable provision to be
+                     made in Regulations for the calculation of additional multipliers under powers in
+                     a new Chapter 3A. Provisions concerning the application of those multipliers to particular
+                     hereditaments appear later in the Act at Section 3. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Section 1(3) introduces the new Chapter 3A into Part A1 of Schedule 7 which contains
+                     powers for the Treasury to set higher and lower multipliers. Under the three charging
+                     Schedules to the 1988 Act, the chargeable amount is found by multiplying the rateable
+                     value for the hereditament (or in relation to the central list the ratepayer) by the
+                     relevant multiplier.<a class="fn" id="fnref-8" href="#fn-8">8</a> Multipliers are therefore expressed as a number – for example the small business
+                     non-domestic rating multiplier for 2024/25 is 0.499.<a class="fn" id="fnref-9" href="#fn-9">9</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The new paragraph A6A(1)(a) of Schedule 7 contains a power for the Treasury, by regulations,
+                     to introduce multipliers which are higher than the non-domestic rating multiplier
+                     for that year but not more than 0.1 higher. There is no limit on the number of higher
+                     multipliers. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The new paragraph A6A(1)(b) contains a power for the Treasury to make provision for
+                     additional multipliers which are lower than the non-domestic rating multiplier for
+                     that year but not more than 0.2 lower than the small business non-domestic rating
+                     multiplier for that year. The new paragraph A6A(2)(a) provides that there cannot be
+                     more than two lower multipliers. However, the new paragraph A6A(2)(b) provides that
+                     these multipliers may be adjusted to vary in level for properties which are occupied
+                     (and therefore whose bills are determined under Schedule 4ZA of the 1988 Act), unoccupied
+                     (Schedule 4ZB of the 1988 Act) or on the central rating list (Schedule 5A). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 1(4) amends Chapter 4 of Schedule 7 to the 1988 Act to ensure that existing
+                     provisions concerning how multipliers should be calculated and the giving of notice
+                     of those multipliers apply to the additional multipliers.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 1(5) amends chapter 6 of Schedule 7 to the 1988 Act to set the parliamentary
+                     process for approving the regulations made under the powers introduced by Section
+                     1. Regulations making provision for the higher multipliers cannot be made unless a
+                     draft has been approved by the House of Commons (i.e. affirmative resolution Commons
+                     only procedure).  Regulations making provision for the lower multipliers are subject
+                     to annulment in pursuance of a resolution of the House of Commons (i.e. negative resolution
+                     Commons only procedure).</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Special authority multipliers</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Section 2 makes provision for additional multipliers in a special authority. Part
+                     2 of Schedule 7 to the 1988 Act concerns the multipliers set by a special authority.
+                     A special authority is defined in section 144(6) to the 1988 Act as one which on 1
+                     April 1986 had a population of less than 10,000 and a total rateable value per population
+                     number of more than £10,000. In practice only the City of London Corporation meets
+                     this test and is a special authority. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Section 2 amends Part 2 of Schedule 7 to the 1988 Act to allow for the additional
+                     multipliers in the City of London. Section 2(2) amends Part 2 of Schedule 7 to insert
+                     the new paragraph 9B. This provides a new power for the Treasury to make provision
+                     about additional multipliers in the City of London where they have exercised the same
+                     powers (as provided in Section 1) in respect of the rest of England. These powers
+                     for the City of London are, in effect, subject to the same limits as those in England:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>the new sub paragraph 9B(1)(a)(i) provides that higher multipliers in the City of
+                        London cannot be more than 0.1 higher than the City of London’s non-domestic rating
+                        multiplier, and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>the new sub-paragraph 9B(1)(a)(ii) provides that the lower multipliers in the City
+                        of London cannot be more than 0.2 lower than the City of London’s small business non-domestic
+                        rating multiplier.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>The parliamentary procedures for these powers in Section 2 in respect of the City
+                     of London also replicate those for the powers in England in Section 1. Under the new
+                     sub-paragraph 9B(3) regulations making provision for higher multipliers in the City
+                     of London cannot be made unless a draft has been approved by the House of Commons
+                     (i.e. affirmative resolution Commons only procedure). Under the new sub-paragraph
+                     9B(4) regulations making provision for the lower multipliers in the City of London
+                     are subject to annulment in pursuance of a resolution of the House of Commons (i.e.
+                     negative resolution Commons only procedure).  </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Application of multipliers</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Section 3 makes provision for the application of the additional multipliers. Whilst
+                     the provisions for setting multipliers are in Schedule 7 to the 1988 Act, provisions
+                     regarding the hereditaments to which those multipliers are applied are found in the
+                     three charging schedules. Section 3(1) provides that Section 3 amends the charging
+                     Schedules to make provision for the application of the additional multipliers.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Section 3(2) amends Schedule 4ZA to provide rules and powers for determining when
+                     the additional multipliers should apply to occupied hereditaments on local rating
+                     lists:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Section 3(2)(a) amends paragraph 10(9) of Schedule 4ZA to add to the existing powers
+                        which allows the Treasury to determine when the two existing multipliers should apply.
+                        As a result, Treasury is able to determine by regulations when the additional multipliers
+                        apply for calculating chargeable amounts for occupied hereditaments on local rating
+                        lists,</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Section 3(2)(b) inserts into paragraph 10 of Schedule 4ZA:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>the new sub-paragraph 9B which provides that the higher multipliers can only apply
+                           to hereditaments with a rateable value of £500,000 or above and that the lower multipliers
+                           can only apply to qualifying retail, hospitality and leisure hereditaments, and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">ii.</span></h2>
+                        <p>the new sub-paragraph 9C provides a power for the Treasury to define the meaning of
+                           qualifying retail, hospitality and leisure hereditament. The government intends to
+                           define qualifying retail, hospitality and leisure hereditament to broadly align with
+                           the definition in the current Retail, Hospitality and Leisure Relief Scheme.<a class="fn" id="fnref-10" href="#fn-10">10</a></p>
+                     </section>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Section 3(2)(c) amends paragraph 10(10) of Schedule 4ZA to make clear that those regulations
+                        may make reference to the description of the hereditament in the local non-domestic
+                        rating list in addition to the other factors already listed at paragraph 10(10).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Section 3(3) makes the same provision as Section 3(2) only in respect of Schedule
+                     4ZB concerning unoccupied hereditaments on local rating lists. Section 3(4) makes
+                     the same provision as Section 3(2) only in respect of hereditaments on the central
+                     rating list.    </p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Section 4 makes consequential amendments to the 1988 Act.  </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Removal of relief for private schools in England</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Removal of relief</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Section 5 of the Act amends Part 3 of the 1988 Act to remove certain private schools
+                     from any entitlement to charitable rate relief. Subsection 5(2) removes the relief
+                     for occupied private schools and subsection 5(3) removes the relief for unoccupied
+                     private schools.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The rules for charitable rate relief for occupied hereditaments are found in paragraph
+                     2 of Schedule 4ZA to the 1988 Act. These provide that hereditaments occupied by a
+                     charity and wholly or mainly used for charitable purposes are entitled to 80% rate
+                     relief. Subsection 5(2) of the Act amends paragraph 2 of Schedule 4ZA to insert new
+                     sub-paragraphs (3) to (7).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>The new sub-paragraph 2(3) of Schedule 4ZA excludes from charitable rate relief a
+                     hereditament wholly or mainly used for the purposes of carrying on a private school.
+                     This includes hereditaments which are themselves being directly used for education
+                     at a private school (such as classrooms, halls and sports facilities) but also hereditaments
+                     used for administrative and ancillary uses (such as offices or storage) provided they
+                     are also used for the purpose of carrying on a private school.    </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>The meaning of private school is defined in the new sub-paragraph 2(4) of Schedule
+                     4ZA and comprises two parts covering schools for pupils of compulsory school age (sub-paragraph
+                     2(4)(a)) and institutions for pupils over compulsory school age and under 19 (sub-paragraph
+                     2(4)(b)).        </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>For compulsory school age provision, the sub-paragraph 2(4)(a) of Schedule 4ZA defines
+                     a private school as a school where full-time education is provided for pupils of compulsory
+                     school age, fees or other consideration are payable for that education and it is not
+                     a nursery school. This test of fees or other consideration being payable for that
+                     education follows the test adopted in the Finance Act 2025 in respect of removing
+                     the Value Added Tax exemption that private schools benefitted from in respect of education,
+                     vocational training and boarding services.<a class="fn" id="fnref-11" href="#fn-11">11</a> This includes consideration for education such as gifts, bequests and other referrals
+                     of value. The fees or other consideration may be payable by private individuals or
+                     bodies or the state but does not include block grant (such as are paid by the Department
+                     for Education to fund Academies).  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>The definition of private school excludes nursery schools which are defined in the
+                     Education Act 1996 as a school wholly or&nbsp;mainly for the purpose of providing education
+                     for children who have attained the age of two but are under&nbsp;compulsory school age.<a class="fn" id="fnref-12" href="#fn-12">12</a> This exclusion ensures that standalone private nurseries are not be affected by the
+                     Act even if they have a few pupils of compulsory school age. However, private schools
+                     providing education to pupils of compulsory school age which also incorporate some
+                     nursery classes will lose their entitlement to charitable rate relief entirely.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>For education provision for persons over compulsory school age but under 19, the new
+                     sub-paragraph 2(4)(b) of Schedule 4ZA defines a private school as an institution providing
+                     education for such persons provided that the institution:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>is wholly or mainly concerned with education suitable to the requirements of such
+                        persons. Typically, this will be A levels, BTEC Level 3, T levels or equivalent courses
+                        of the type provided at, for example, a sixth form college, </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>is providing full-time education to persons over compulsory school age but under 19,
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>provides education to the persons in (b) which is wholly or mainly funded by fees
+                        or other consideration. As discussed above, institutions where the persons referred
+                        to in (b) above are wholly or mainly funded by block grants from the state, such as
+                        state funded Colleges of Further Education, are therefore outside of scope and will
+                        retain any charitable rate relief, and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>is not an independent training or learning provider. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>The new sub-paragraph 2(5) of Schedule 4ZA excludes from the definition of private
+                     school, an institution which is wholly or mainly concerned with providing full-time
+                     education to pupils with an Education, Health and Care Plan (“EHC Plan”).    </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>The new sub-paragraph 2(6) of Schedule 4ZA defines independent training or learning
+                     provider for the purposes of its exclusion, in the new sub-paragraph 2(4)(b)(iv),
+                     from the meaning of a private school. Independent training or learning providers supply
+                     state funded training and education to those above compulsory school age and are,
+                     therefore, akin to state funded colleges of further education. They are therefore
+                     defined in sub-paragraph 2(6) as an institution providing such education or training
+                     under contract with the Secretary of State where the Secretary of State pays the fees.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>The new sub-paragraph 2(7) of Schedule 4ZA defines for the purposes of sub-paragraph
+                     2(4) and (5) “compulsory school age”, “EHC Plan”, “nursery school”, “pupil” and “school”
+                     by reference to their meaning in the Education Act 1996.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>The rules for charitable rate relief for unoccupied hereditaments are found in paragraph
+                     2 of Schedule 4ZB to the 1988 Act. These provide that a hereditament owned by a charity
+                     which it appears that when next in use will be wholly or mainly used for charitable
+                     purposes is entitled to 100% rate relief. Section 5(3) of the Act amends paragraph
+                     2 of Schedule 4ZB to insert new sub-paragraphs 2A and 2B. Sub-paragraph 2A provides
+                     that charitable rate relief does not apply to an unoccupied hereditament if it appears
+                     that when next in use the hereditament will be wholly or mainly used for the purposes
+                     of carrying on a private school. Sub-paragraph 2B provides that the meaning of “private
+                     school” has the same meaning as in paragraph 2 of Schedule 4ZA – i.e. the same meaning
+                     as applicable for occupied hereditaments.  </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Final provisions</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Commencement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Section 6(1) provides that the provisions for additional multipliers take effect from
+                     1 April 2026. This does not prevent regulations being made before 1 April 2026 under
+                     a power in sections 1 to 4. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Section 6(2) provides that the removal of charitable relief for private schools comes
+                     into force on 1 April 2025.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Section 7 provides for the short title of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>The Act received Royal Assent on 3 April 2025. The amendments made by sections 1 to
+                     4 (to provide for additional multipliers) have effect for financial years from 1 April
+                     2026 and Section 5 (removal of relief for private schools) for financial years from
+                     1 April 2025. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>VAT on Private School Fees &amp; Removing the Charitable Rates Relief for Private Schools.
+                        Consultation and Government response<br><a href="https://www.gov.uk/government/publications/vat-on-private-school-fees-removing-the-charitable-rates-relief-for-private-schools"><u>https://www.gov.uk/government/publications/vat-on-private-school-fees-removing-the-charitable-rates-relief-for-private-schools</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Transforming Business Rates. A policy paper<br><a href="https://www.gov.uk/government/publications/transforming-business-rates"><u>https://www.gov.uk/government/publications/transforming-business-rates</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1in">
+                        <col style="width:1.14in">
+                        <col style="width:0.92in">
+                        <col style="width:1.03in">
+                        <col style="width:1.41in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>Provision</p>
+                           <p>Extends to E &amp; W and applies to England?</p>
+                           <p>Extends to E &amp; W and applies to Wales?</p>
+                           <p>Extends and applies to Scotland?</p>
+                           <p>Extends and applies to Northern Ireland?</p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Additional multipliers for England</p>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p>Section 3</p>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Removal of relief for private schools in England</p>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.85in">
+                        <col style="width:1.19in">
+                        <col style="width:1.86in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>House of Commons</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>13 November 2024</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>25 November 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-11-25/debates/29F43B00-A1ED-4E22-8AF1-1D2B405EB793/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 575 Col. 552-606</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee – 1st Sitting</p>
+                           </td>
+                           <td>
+                              <p>11 December 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-12-11/debates/3bb783a1-2a08-42f9-aedf-94eea9fb77a1/Non-DomesticRating(MultipliersAndPrivateSchools)Bill(FirstSitting)">
+                                    <u>Col. 1-34</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee – 2nd Sitting </p>
+                           </td>
+                           <td>
+                              <p>11 December 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-12-11/debates/c55ecf37-3f08-47bf-b27b-1fe4831c6ff6/Non-DomesticRating(MultipliersAndPrivateSchools)Bill(SecondSitting)">
+                                    <u>Col. 35-80</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee – 3rd Sitting</p>
+                           </td>
+                           <td>
+                              <p>12 December 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-12-12/debates/09f0d2cd-6b8b-40d2-b4f5-fb7cc460833b/Non-DomesticRating(MultipliersAndPrivateSchools)Bill(ThirdSitting)">
+                                    <u>Col. 81-114</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>15 December 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-01-15/debates/E5F574BF-05C0-45E0-9C44-24D0DCB4A281/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 760 Col. 397-446</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>House of Lords</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>16 January 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-01-16/debates/FAAB096A-6840-4E6B-84FD-88B4B4B44B02/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 842</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 January 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-01-29/debates/6E51CF81-EE3D-46B0-9702-6670A51A0314/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 843 Col. 302-335</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee – Day 1</p>
+                           </td>
+                           <td>
+                              <p>24 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-02-24/debates/41EB69B4-887D-490E-ADC5-CD312B761F8C/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 843 Col. 432GC-486GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee – Day 2</p>
+                           </td>
+                           <td>
+                              <p>27 February 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-12-11/debates/c55ecf37-3f08-47bf-b27b-1fe4831c6ff6/Non-DomesticRating(MultipliersAndPrivateSchools)Bill(SecondSitting)">
+                                    <u>Vol.843 Col. 530GC-586GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>18 March 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-03-18/debates/34B09EF2-3D23-42A3-8B4E-66915AE7460F/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 844 Col. 1126-1189</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 March 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2025-03-24/debates/F7B13D76-CA1F-49A5-9F6B-8331959832E6/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 844 Col. 1456-1459</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments (1)</p>
+                           </td>
+                           <td>
+                              <p>25 March 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-03-25/debates/1022F6EB-D355-46BB-9C0C-5CA7D857B042/Non-DomesticRating(MultipliersAndPrivateSchools)Bill(ChangedToNon-DomesticRating(Multipliers)Bill)">
+                                    <u>Vol. 764 Col. 832-868</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons amendments and reasons (1)</p>
+                           </td>
+                           <td>
+                              <p>26 March 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-03-26/debates/9B1E0DC9-29EE-4023-8408-5B9EC8EEAC04/Non-DomesticRating(MultipliersAndPrivateSchools)Bill)">
+                                    <u>Vol. 844 Col. 1690-1718</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments (2)</p>
+                           </td>
+                           <td>
+                              <p>31 March 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2025-03-31/debates/994D610D-F412-454C-882A-D4A30C369F70/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 765 Col. 55-77</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons amendments and reasons (2)</p>
+                           </td>
+                           <td>
+                              <p>1 April 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-04-01/debates/E8628A24-6A4A-47C4-83F7-95BEDF86A415/Non-DomesticRating(MultipliersAndPrivateSchools)Bill">
+                                    <u>Vol. 845 Col. 130-135</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>3 April 2025</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2025-04-03/debates/DC00B132-6ABD-4B99-A08D-5DC784DF80C8/RoyalAssent">
+                                    <u>House of Commons Vol.  765</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2025-04-03/debates/032D0180-71FC-422D-9DD7-3054F84FCAC8/RoyalAssent">
+                                    <u>House of Lords Vol. 845</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.63in">
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons – 1st Reading</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons – 2nd Reading</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in Committee in the Commons – 1st Sitting</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in Committee in the Commons – 2nd Sitting</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in Committee in the Commons – 3rd Sitting</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced at Report Stage in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons – 3rd Reading</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Links and Reference</p>
+                           </td>
+                           <td>
+                              <p>The Bill introduced to the Commons: <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0129/240129.pdf"><u>Non-Domestic Rating (Multipliers and Private Schools) Bill</u></a></p>
+                              <p></p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/3887/stages/19273">
+                                    <u>Non-Domestic Rating (Multipliers and Private Schools) Bill 1st reading 13/11/2024</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://commonslibrary.parliament.uk/research-briefings/cbp-10142/">
+                                    <u>Briefing Paper</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://committees.parliament.uk/committee/749/nondomestic-rating-multipliers-and-private-schools-bill/work/3/?committeebusinesstypeslug=legislative-scrutiny">
+                                    <u>Committee Businesses</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0129/amend/nondom_day_pbc_1211.pdf">
+                                    <u>Committee Amendment Paper</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://committees.parliament.uk/event/22685/formal-meeting/">
+                                    <u>11 December 2024 - Non-Domestic Rating (Multipliers and Private Schools) Bill - Formal
+                                       meeting - Committees - UK Parliament</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://committees.parliament.uk/event/22686/formal-meeting/">11 December 2024 - Further to consider the Bill - Oral evidence - Committees - UK
+                                    Parliament</a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0129/amend/nondom_rpro_pbc_1212.pdf">
+                                    <u>Commons Committee Decisions</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0129/amend/nondom_rpro_pbc_1212.pdf">
+                                    <u>All proceedings up to 12.12.2024 at Public Bill Committee</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0129/amend/nondom_rpro_rep_0115.pdf">
+                                    <u>Report Stage proceedings as at 15 January</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.67in">
+                        <col style="width:1.03in">
+                        <col style="width:1.03in">
+                        <col style="width:1.03in">
+                        <col style="width:1.03in">
+                        <col style="width:1.03in">
+                        <col style="width:1.03in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords – 1st Reading</b>
+                              </p>
+                           <p></p>
+                           <p>
+                              <b>Bill as introduced in the Lords – 2nd Reading</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced at Committee in the Lords – 1st Sitting </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced at Committee in the Lords – 2nd Sitting </b>
+                              </p>
+                           <p>
+                              <b>Bill as amended at Report Stage in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended at the Lords Third Reading </b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments </p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>New Clause 5 – Review: threshold effect</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Review: threshold effect</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Use Class for retail services from fulfilment warehouses</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Use Class for retail services from fulfilment warehouses</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Commencement </p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Commencement </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 8 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 8 – Short title</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Hansard Link and Reference</p>
+                           </td>
+                           <td>
+                              <p>The Bill introduced to the Lords: <a href="https://bills.parliament.uk/publications/57783/documents/5635"><u>Non-Domestic Rating (Multipliers and Private Schools) Bill</u></a></p>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=149490&amp;sectionId=40&amp;businessPaperDate=2025-01-16">
+                                    <u>First Reading - House of Lords Business - Minutes</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://lordslibrary.parliament.uk/research-briefings/lln-2025-0006/">
+                                    <u>Lords - Briefing Paper</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=149758&amp;sectionId=40&amp;businessPaperDate=2025-01-29">
+                                    <u>Second Reading - House of Lords Business - Minutes</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=150936&amp;sectionId=40&amp;businessPaperDate=2025-02-24">
+                                    <u>Grand Committee (day 1) - House of Lords Business - UK Parliament</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/59099/documents/6018">
+                                    <u>Marshalled List of Amendments</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=151442&amp;sectionId=40&amp;businessPaperDate=2025-02-27">
+                                    <u>Grand Committee (subsequent day) - House of Lords Business - UK Parliament</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/59161/documents/6039">
+                                    <u>Second Marshalled List of Amendments</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>The Bill as amended at Lords Report: <a href="https://bills.parliament.uk/publications/59829/documents/6239"><u>Non-Domestic Rating (Multipliers and Private Schools) Bill</u></a></p>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=152322&amp;sectionId=40&amp;businessPaperDate=2025-03-18">
+                                    <u>Report Stage (1st Day) - House of Lords Business - UK Parliament</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=152719&amp;sectionId=40&amp;businessPaperDate=2025-03-24">
+                                    <u>Third Reading - House of Lords Business - Minutes</u>
+                                    </a>
+                                 </p>
+                              <p>The Lords Amendments made to the Bill: <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0209/240209.pdf"><u>Lords Amendments Marshalled List</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.78in">
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                        <col style="width:1.21in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Commons Consideration of Lords amendments (1)</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended at Lords Consideration of Commons amendments and reasons (1)</b>
+                              </p>
+                           <p>
+                              <b>Commons Consideration of Lords amendments (2)</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended at Lords Consideration of Commons amendments and reasons (2)</b>
+                              </p>
+                           <p>
+                              <b>Royal Assent </b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 1 – Determination of additional multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 2 – Special authority multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                           <td>
+                              <p>Clause 3 – Applications of multipliers</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments </p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments </p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments </p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 4 – Consequential Amendments</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>New Clause – Review: threshold effect</p>
+                           </td>
+                           <td>
+                              <p>New Clause – Review: threshold effect</p>
+                           </td>
+                           <td>
+                              <p>New Clause – Review: threshold effect</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of relief</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Use Class for retail services from fulfilment warehouses</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of Relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 – Removal of Relief</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 6 – Commencement</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Commencement </p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Commencement </p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Commencement </p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 7 – Short title</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8 </p>
+                           </td>
+                           <td>
+                              <p>Clause 8 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 8 – Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 8 – Short title</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Hansard Link and Reference</p>
+                           </td>
+                           <td>
+                              <p>Commons Reasons: <a href="https://bills.parliament.uk/publications/59962/documents/6277"><u>Non-Domestic Rating (Multipliers and Private Schools) Bill</u></a></p>
+                              <p></p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0209/amend/nondom_day_ccla_0325.pdf">
+                                    <u>Commons Consideration of Lords Amendments as at 25 March 2025</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0209/reason_for_disagreeing_to_lord_amendments.pdf">
+                                    <u>Reasons Committee</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>Lords Non-Insistence, Amendments In Lieu And Amendments To The Words So Restored To
+                                 The Bill: <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0215/240215.pdf"><u>Non-Domestic Rating (Multipliers and Private Schools) Bill</u></a></p>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=153015&amp;sectionId=40&amp;businessPaperDate=2025-03-26">
+                                    <u>Consideration of Commons Amendments and/or Reasons - House of Lords Business - Minutes</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/59989/documents/6278">
+                                    <u>Marshalled list for Consideration of Commons Reasons</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>Commons Reasons: <a href="https://bills.parliament.uk/publications/60098/documents/6299"><u>Non-Domestic Rating (Multipliers and Private Schools) Bill</u></a></p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0215/amend/nondom_day_cclm_0331.pdf">
+                                    <u>Commons Consideration of Lords Message as at 31 March 2025</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0215/CCLM_Selection_List_NDR_Bill_310325.pdf">
+                                    <u>Amendment Grouping 31 March 2025</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/59-01/0215/amend/nondom_pro_cclm_0331.pdf">
+                                    <u>Proceedings on Consideration of Lords Message as at 31 March 2025</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=153432&amp;sectionId=40&amp;businessPaperDate=2025-04-01">
+                                    <u>Consideration of Commons Amendments and/or Reasons - Minutes</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/60111/documents/6301">
+                                    <u>Marshalled List of Amendments for Consideration of Commons Reasons </u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://www.legislation.gov.uk/ukpga/2025/12/contents/enacted">
+                                    <u>Non-Domestic Rating (Multipliers and Private Schools) Act 2025</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The Billing Authorities will vary by the type of local government structure in the
+                  area. They are district councils (in areas with county councils), metropolitan boroughs,
+                  London boroughs and unitary councils.    </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  As discussed under Section 2 of the Act below, the City of London Corporation is
+                  a special authority and has powers to set its own non-domestic rating multiplier.
+                  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  A full list of reliefs is available at <a href="https://www.gov.uk/apply-for-business-rate-relief"><u><a href="https://www.gov.uk/apply-for-business-rate-relief">https://www.gov.uk/apply-for-business-rate-relief</a></u></a>.   </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Further information about exemptions from business rates can be found at <a href="https://www.gov.uk/apply-for-business-rate-relief/exempt-properties"><u><a href="https://www.gov.uk/apply-for-business-rate-relief/exempt-properties">https://www.gov.uk/apply-for-business-rate-relief/exempt-properties</a></u></a>.   </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  See paragraph 2.43 at <a href="https://assets.publishing.service.gov.uk/media/672232d010b0d582ee8c4905/Autumn_Budget_2024__web_accessible_.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/672232d010b0d582ee8c4905/Autumn_Budget_2024__web_accessible_.pdf">https://assets.publishing.service.gov.uk/media/672232d010b0d582ee8c4905/Autumn_Budget_2024__web_accessible_.pdf</a></u></a>. See also the policy paper <i>Transforming Business Rates</i> published alongside Autumn Budget 2024 at <a href="https://www.gov.uk/government/publications/transforming-business-rates"><u><a href="https://www.gov.uk/government/publications/transforming-business-rates">https://www.gov.uk/government/publications/transforming-business-rates</a></u></a>.      </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  VAT on Private School Fees &amp; Removing the Charitable Rates Relief for Private Schools
+                  <a href="https://www.gov.uk/government/publications/vat-on-private-school-fees-removing-the-charitable-rates-relief-for-private-schools"><u><a href="https://www.gov.uk/government/publications/vat-on-private-school-fees-removing-the-charitable-rates-relief-for-private-schools">https://www.gov.uk/government/publications/vat-on-private-school-fees-removing-the-charitable-rates-relief-for-private-schools</a></u></a>.   </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <i>Go</i><i>vernment Response to the Technical Note on Applying VAT to Private School Fees and
+                     Removing the Business Rates Charitable Rate Relief</i>. See Chapter 4 regarding business rates. <a href="https://assets.publishing.service.gov.uk/media/6734864af6920bfb5abc7a29/Government_Response_to_the_Technical_Note_on_Applying_VAT_to_Private_School_Fees_and_Removing_the_Business_Rates_Charitable_Rate_Relief.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/6734864af6920bfb5abc7a29/Government_Response_to_the_Technical_Note_on_Applying_VAT_to_Private_School_Fees_and_Removing_the_Business_Rates_Charitable_Rate_Relief.pdf">https://assets.publishing.service.gov.uk/media/6734864af6920bfb5abc7a29/Government_Response_to_the_Technical_Note_on_Applying_VAT_to_Private_School_Fees_and_Removing_the_Business_Rates_Charitable_Rate_Relief.pdf</a></u></a>.  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  The charging Schedules to the 1988 Act are Schedules 4ZA (occupied hereditaments),
+                  4ZB (unoccupied hereditaments) and 5A (hereditaments on the central rating list).
+                  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  The multiplier is often also presented as “pence in the pound” such that the small
+                  business non-domestic rating multiplier for 2024/25 of 0.499 may often be presented
+                  as 49.9 pence in the pound. The notice of multipliers for 2024/25 can be found at
+                  <a href="https://www.gov.uk/government/publications/12024-confirmation-of-business-rates-multipliers-and-relief-information/12024-confirmation-of-business-rates-multipliers-and-relief-information"><u><a href="https://www.gov.uk/government/publications/12024-confirmation-of-business-rates-multipliers-and-relief-information/12024-confirmation-of-business-rates-multipliers-and-relief-information">https://www.gov.uk/government/publications/12024-confirmation-of-business-rates-multipliers-and-relief-information/12024-confirmation-of-business-rates-multipliers-and-relief-information</a></u></a>.   </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  Published on 15 December 2023 and found at <a href="https://www.gov.uk/guidance/business-rates-relief-202425-retail-hospitality-and-leisure-scheme"><u><a href="https://www.gov.uk/guidance/business-rates-relief-202425-retail-hospitality-and-leisure-scheme#part-2-eligibility-for-the-retail-hospitality-and-leisure-relief-scheme">https://www.gov.uk/guidance/business-rates-relief-202425-retail-hospitality-and-leisure-scheme#part-2-eligibility-for-the-retail-hospitality-and-leisure-relief-scheme</a></u></a>.   </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Further information about the VAT provisions can be found at <a href="https://www.gov.uk/government/publications/vat-on-private-school-fees"><u><a href="https://www.gov.uk/government/publications/vat-on-private-school-fees">https://www.gov.uk/government/publications/vat-on-private-school-fees</a></u></a> and in the Finance Act 2025 at <a href="https://www.legislation.gov.uk/ukpga/2025/8/section/47/enacted"><u><a href="https://www.legislation.gov.uk/ukpga/2025/8/section/47/enacted">https://www.legislation.gov.uk/ukpga/2025/8/section/47/enacted</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  Section 6 of the Education Act 1996.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

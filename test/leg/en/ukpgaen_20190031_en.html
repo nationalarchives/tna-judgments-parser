@@ -1,0 +1,1716 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>HISTORICAL INSTITUTIONAL ABUSE (NORTHERN IRELAND) ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Historical Institutional Abuse (Northern Ireland)
+                  Act 2019 (c. 31) which received Royal Assent on 5 November 2019. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Northern Ireland Office in order
+                  to assist the reader of the Act. They do not form part of the Act and have not been
+                  endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Historical Institutional Abuse (Northern Ireland) Act (“the HIA Act”) will provide
+                     the legal framework for delivering two of the recommendations contained in the Report
+                     of the Historical Institutional Abuse Inquiry: establishing a Historical Institutional
+                     Abuse Redress Board (“the Redress Board”) to administer a publicly funded compensation
+                     scheme and the creation of a statutory Commissioner for Survivors of Institutional
+                     Childhood Abuse (“the Commissioner”).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The HIA Act includes the following:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Powers to establish a Redress Board which will be responsible for receiving and processing
+                        applications for, and making payments of, compensation to victims and survivors of
+                        historical institutional abuse.  </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Provisions for the composition and management of the Redress Board.  These allow for
+                        the appointment of judicial and non-judicial Redress Board members to form panels
+                        to make determinations on applications and for the administrative functions of the
+                        Redress Board to be managed by a designated department.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Provisions relating to entitlement to claim compensation, how an application for compensation
+                        is to be determined and the amounts of compensation that can be awarded.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Powers for the Redress Board to compel the giving of evidence where it is considered
+                        necessary in the interests of justice to do so.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Powers for the President of the Redress Board to issue a restriction order to prevent
+                        the disclosure of information or a person’s identity where it is in the public interest
+                        to do so.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Powers for The Executive Office to make procedural rules subject to the approval of
+                        the Lord Chief Justice of Northern Ireland.  </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Powers to establish the Commissioner who will be responsible for the co-ordination
+                        and availability of services and promote the interests of those who suffered abuse.
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Duty for the Commissioner to appoint an advisory panel comprising only victims and
+                        survivors of abuse.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Powers which include enabling the Commissioner to undertake or commission research
+                        into matters concerning the interests of victims and survivors. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Duties for the Commissioner to encourage the provision and co-ordination of provision
+                        of relevant services in Northern Ireland to victims and survivors and to monitor the
+                        operation of specialist facilities.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Duties for the Commissioner to publicise the role of the Redress Board, provide advice
+                        and assistance to individuals making an application to the Redress Board and monitor
+                        the operation of the Redress Board.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>On 29 September 2011 the Northern Ireland Executive announced that it intended to
+                     set up an Inquiry into abuse in residential homes in Northern Ireland and on 31 May
+                     2012, the First Minister and deputy First Minister announced the agreed Terms of Reference
+                     for the Historical Institutional Abuse Inquiry.  The Terms of Reference are available
+                     online at: <a href="https://www.hiainquiry.org/terms-reference"><u>https://www.hiainquiry.org/terms-reference</u></a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Inquiry examined if there were systemic failings by institutions or the state
+                     in their duties towards those children in their care between the years of 1922-1995.
+                     For the purposes of the Inquiry, a child meant any person under 18 years of age and
+                     an institution meant any body, society or organisation with responsibility for the
+                     care, health or welfare of children in Northern Ireland, other than a school (but
+                     including a training school or borstal), which took decisions about and made provision
+                     for the day to day care of children.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Terms of Reference required the Inquiry to make recommendations and findings on
+                     the following matters:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>an apology – by whom and the nature of the apology; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>findings of institutional or state failings in their duties towards the children in
+                        their care and if these failings were systemic;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>recommendations as to an appropriate memorial or tribute to those who suffered abuse;
+                        and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the requirement or desirability for redress to be provided by the institution or the
+                        Executive to meet the particular needs of victims</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Inquiry Report and Findings were published on 20 January 2017 and as per the Terms
+                     of Reference, it was for the Northern Ireland Executive to decide whether to accept
+                     the recommendations.  The collapse of the Executive shorty after publication however
+                     meant the Executive did not have an opportunity to consider the report nor was it
+                     laid before the NI Assembly by the First Minister and deputy First Minister.  The
+                     report is available online at: <a href="https://www.hiainquiry.org/historical-institutional-abuse-inquiry-report-chapters"><u>https://www.hiainquiry.org/historical-institutional-abuse-inquiry-report-chapters</u></a>. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Given the continued uncertainty for victims and survivors created by the absence of
+                     the Northern Ireland Executive and Assembly, the Head of the Civil Service, David
+                     Sterling, wrote to Sir Jonathan Stephens, Permanent Secretary at the Northern Ireland
+                     Office, noting that decisions on recommendations would ultimately be for NI Ministers
+                     but setting out proposals for The Executive Office to commence work on preparing draft
+                     legislation in respect of two of the recommendations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Establishing a Commissioner for Survivors of Institutional Childhood Abuse (COSICA);
+                        and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Establishing a Redress Board responsible for receiving and processing applications
+                        for, and making payments of, compensation to victims and survivors of historical institutional
+                        abuse.     </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The legislation was drafted as far as practicable in accordance with the recommendations
+                     outlined in the Inquiry Report. Following an extended public consultation on the draft
+                     legislation (19 November 2018 – 10 March 2019), The Executive Office published the
+                     Report on Responses to the consultation on 13 May 2019.  The report is available online
+                     at: <a href="https://www.executiveoffice-ni.gov.uk/sites/default/files/publications/execoffice/hia-public-consultation-response-report.pdf"><u>https://www.executiveoffice-ni.gov.uk/sites/default/files/publications/execoffice/hia-public-consultation-response-report.pdf</u></a>. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The consultation identified a number of issues requiring ministerial decisions which,
+                     at the request of the Secretary of State for Northern Ireland, were discussed and
+                     jointly resolved by six NI political parties.  Following this, the draft Acts were
+                     amended in light of the parties’ recommendations and codified into one Act in preparation
+                     for passage through the UK Parliament.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>This Act makes provision for the establishment of a Redress Board and a statutory
+                     Commissioner.  The role of the Commissioner is to act as an advocate for those who
+                     were subject to abuse by ensuring the co-ordination and availability of services and
+                     identifying suitable means whereby such services can be made available to those who
+                     need them. Specifically, the Inquiry report recommended that the office of the Commissioner
+                     should be created by statute, allocated a separate budget and required to report once
+                     a year to the NI Assembly.  This will ensure that the office is independent and adequately
+                     resourced.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The purpose of the Redress Board is to oversee payments of compensation to those who
+                     had been abused in residential children’s homes within the Inquiry’s Terms of Reference.
+                     Specifically, the Inquiry report recommended that the Board should have the necessary
+                     powers to compel institutions or individuals to provide information relating to a
+                     claim for compensation, particularly if the alleged abuse occurred in an institution
+                     that was not investigated by the Inquiry.  In this regard, establishing the Board
+                     on a statutory basis gives the Board this requisite power and reduces the risk of
+                     legal challenge.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 32 sets out the territorial extent of the Act, that is the jurisdiction of
+                     which the Act forms part. The Act will extend to Northern Ireland only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>This Act makes provision relating to matters which are within the devolved (transferred
+                     competence) of the Northern Ireland Assembly.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: The Historical Institutional Abuse Redress Board</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Establishment of the Board</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>This section establishes the Historical Abuse Redress Board (“the Board”).  Further
+                        detail about the functions and structure of the Board is contained in Schedule 1.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Entitlement to claim compensation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>This section sets out who can submit an application for compensation to the Board.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>An application for compensation can be made by or in respect of a person who suffered
+                        abuse while a child i.e. aged under 18 and while resident in an institution between
+                        1922 and 1995, both dates inclusive.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>The institutions acted <i>in loco parentis</i> and were, therefore, responsible for any abuse suffered by children in their care,
+                        whether they were resident in the institution, or absent from an institution but still
+                        under its care (for example staying with a family). Regardless of whether the abuser
+                        was connected to the institution or not, the institution is still responsible for
+                        failing to properly safeguard the child from abuse.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>The term 'abuse' includes physical, sexual and emotional abuse, neglect, and maltreatment.
+                        The term 'maltreatment' is considered to cover the ‘unacceptable practices’ referred
+                        to in the Inquiry Report (for example, unpaid labour). The definition of abuse also
+                        includes those who have witnessed abuse of other children, or who experienced a harsh
+                        environment within an institution, as the Report makes clear that these are also forms
+                        of abuse. Finally, suffering abuse also refers to those who were sent to Australia
+                        under the programme commonly known as the “Child Migrants Programme”.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Restrictions on entitlement to claim compensation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>This section deals with applications relating specifically to abuse suffered under
+                        the ‘Child Migrants Programme’ and the Independent Inquiry into Child Sexual Abuse
+                        (IICSA) scheme.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Subsections (1), 2(a) and (2)(b) relate to applications in respect of deceased persons.
+                        An application can be made to the Board in respect of a person who died on or after
+                        1 April 1953 and before 1 March 2018.  An application can also be made to the Board
+                        in respect of a person who died on or after 1 March 2018 if compensation has not already
+                        been awarded, or an application for compensation is not pending, under the IICSA scheme.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Subsection (2)(c) provides that a person who has not received an award, nor has an
+                        application for compensation pending under the IICSA scheme, can apply to the Board.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Subsection (3) means that a person may withdraw an application under the IICSA scheme
+                        and apply to the Board instead.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsection (4) defines the IICSA scheme.  Under the IICSA scheme, a former child migrant
+                        sent away from anywhere in the UK and Crown Dependencies can claim a £20,000 compensation
+                        award. This is the same amount that will be awarded by the Board.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Exclusions from entitlement to claim compensation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>This section sets out the circumstances in which a person cannot make an application
+                        to the Board for compensation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsections (1)(a) and (1)(b) mean that an application may not be made by or in respect
+                        of a person if a court has previously dismissed a claim for compensation in a relevant
+                        mater or if there are proceedings on a relevant matter pending before a court.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (2) clarifies that a relevant matter is abuse suffered in an institution
+                        during the relevant period as defined in Section 2.    </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection (3) means that a person can apply for compensation if, under subsection
+                        (1)(a), a court dismissed the claim solely because the proceedings were not brought
+                        within the timeframe for bringing such a claim. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (4) means if a person withdraws a claim from court under subsection (1)(b)
+                        an application can then be made to the Board.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Subsection (5) provides that a person can make an application to the Board despite
+                        subsection (1) if the application relates to abuse suffered in an institution which
+                        was managed by a different body, society or organisation than that against which the
+                        previous claim was made.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Application for compensation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>This section provides that an application for compensation must be made before the
+                        end of the five year period starting from when the establishment of the Board is publicised
+                        in the Belfast Gazette.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Subsection (3) provides that only one application for compensation can be made to
+                        the Board but it may relate to abuse suffered in more than one institution.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Subsections (4) and (5) mean that rules will provide further detail on how an application
+                        to the Board must be made and that these rules must allow for the option of audio
+                        or video recordings to be submitted as part of an application.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Entitlement to claim compensation in respect of a deceased person</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>This section means that an application can be made to the Board in respect of a person
+                        who would have been entitled to apply for compensation but died on or after 28 April
+                        1953.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Under subsection (1) only the deceased’s surviving spouse, civil partner, cohabiting
+                        partner or children can make an application for compensation if they are a residuary
+                        beneficiary of the deceased’s estate.  A residuary beneficiary is a person who receives
+                        anything by a will that is not left specifically to that person or someone else. 
+                        For example, if Paul makes a will leaving an amount of money to Mark and the remainder
+                        of his property to Jane, then Jane is the residuary beneficiary of Paul.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Subsection (2) provides for a panel appointed on behalf of the Board, to receive applications
+                        from surviving spouse or children who are beneficiaries but not <u>residuary</u> beneficiaries of the deceased’s estate, where they consider it is in the interests
+                        of justice to so.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Subsection (3) means that the application may be made jointly by two or more persons,
+                        for example a surviving spouse and two children.  Any reference to a ‘person’ making
+                        an application under this part of the Act therefore also refers to persons who have
+                        applied jointly.   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Subsection (4) allows for Rules to make provision for what happens when an applicant
+                        dies before the Board has made a determination on the application. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Subsection (5) sets out the definition of a surviving co-habiting partner for the
+                        purposes of this section.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Subsection (6) defines residuary beneficiary as a person entitled to the residuary
+                        estate under a will or if the person has died without leaving a valid will, under
+                        the law of intestacy.  When a person dies without leaving a valid will, their property
+                        (the estate) must be shared out according to certain rules. These are called the rules
+                        of intestacy.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">
+                           <b>40 </b>
+                           </span></h2>
+                     <p>Subsection (7) means that the reference to “a beneficiary of the deceased’s estate”
+                        (in section 6(2)) is to be read in light of the definition of “residuary beneficiary”
+                        in subsection (6).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Subsection (8) sets out the definition of a child for the purposes of this section.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Subsection (9) defines the composition of the panel referred to in subsection (2).
+                        </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Priority of applications</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>This section places a duty on the President of the Board to decide the order of priority
+                        in which applications will be dealt with.  In deciding the order, the President must
+                        take into account the age of the applicant and, if the information is made available
+                        in the application, the health of the applicant.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 8: Appointment of panel</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>This section gives the President of the Board the power to appoint a Panel to make
+                        a determination on an application.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Subsection (2) sets out that a Panel will be made up of one judicial member and two
+                        non-judicial members.  The judicial member will chair a panel.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsection (3) means that the Panel must decide if compensation should be awarded
+                        and if so, the amount of the award.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Subsection (4) means that a panel may also determine an application which it agreed
+                        to receive under section 6(2).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 9: Procedure</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>This section sets out how the Panel will make a determination on an application.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Subsection (1) lists the range of material a Panel can consider when making its determination
+                        on an application.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (2) means that where it is practicable, a Panel must request information
+                        from the appropriate body, society or organisation which managed the institution to
+                        which the application relates to verify the accuracy of the information provided in
+                        the application. Subsection (8) provides that a Panel does not have to request this
+                        information if the applicant already provided evidence to the Inquiry. Subsection
+                        (9) confirms that having provided evidence to the Inquiry does not include the Acknowledgement
+                        Forum. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Subsection (3) provides a Panel with the power to allow fresh evidence to be admitted
+                        and direct an oral hearing to be held, if it considers it is necessary in the interests
+                        of justice to do so.  Subsection (4) also allows a Panel to hold an oral hearing in
+                        public where it considers it in the interests of justice to do so.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Subsection (5) means that the Public Record Office of Northern Ireland must allow
+                        a Panel access to records of the Inquiry where these are required for the determination
+                        of an application.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Subsection (6) confirms that a person’s entitlement to compensation is not affected
+                        by three factors.  First, whether or not any matters to which the application relates
+                        were reported to the police.  Second, whether or not the person by or in respect of
+                        whom the application is made engaged with the Inquiry; and third, whether or not the
+                        person by or in respect of whom the application is made, has been convicted of an
+                        offence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Subsection (7) means that the Secretary to the Board must notify the applicant in
+                        writing of a Panel’s determination and this must include a summary of the reasons
+                        underpinning the panel’s decision. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 10: Power to compel giving of evidence</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>This section provides a panel with the power to compel the provision of evidence in
+                        order to assist in the determination of an application.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Subsection (1) allows a Panel to issue a written notice requesting a person to provide
+                        records, documents or other items of evidence or to attend a hearing to give oral
+                        evidence under oath.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Subsection (2) provides for a person to make a claim to a panel that he or she is
+                        unable to comply with a notice.  Subsection (3) allows a panel in response, to confirm,
+                        revoke or vary the notice.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Subsection (4) means that if a person is required to provide documents or records
+                        to a panel and this involves disclosing information about another person which is
+                        irrelevant to the determination of the application, then the material must be provided
+                        in a redacted form.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Subsections (5) and (6) provide that a person may refuse to comply with a notice if,
+                        in proceedings before the High Court, the person would be entitled to refuse to comply
+                        with the requirement.  In all other circumstances, the notice must be complied with.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Subsections (7) and (8) set out that it will be an offence if a person fails to comply
+                        with a requirement of a notice or intentionally carries out actions which will obstruct
+                        or alter the provision of information as may be required under a notice.  Subsection
+                        (9) provides that a person found guilty of an offence under subsections (7) or (8)
+                        will be liable on summary conviction to imprisonment or a fine.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 11: Advisors</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>This section means the Board may appoint advisors to provide expert advice and that
+                        such appointments can be terminated by the Board at any time. For example, a panel
+                        may wish to obtain the views of a child trauma expert to assist in its determination
+                        of a complex application. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 12: Assessment of compensation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>This section sets out the amounts of compensation that can be awarded by a Panel.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Subsection (1) provides that a panel will determine what amount of compensation is
+                        to be awarded.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Subsection (2) sets out the amounts that can be awarded.  An award may range from
+                        the minimum payment of £10,000 rising up to a maximum of £80,000 depending on the
+                        severity of the abuse suffered. A separate amount of £20,000 may also be awarded to
+                        a person who was sent to Australia under the ‘Child Migrants Programme’.  Subsection
+                        (3) confirms the maximum amount of compensation that can be awarded.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Subsection (4) means that a person entitled to compensation for being sent to Australia
+                        can also claim for compensation if he or she suffered abuse in an institution in Northern
+                        Ireland, prior to being sent to Australia.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Subsection (5)(a) makes provision for how compensation is to be shared out where there
+                        is more than one recipient of the award, as may arise under section 6.  Subsection
+                        5(b) allows a panel the power to allocate the shares of an award differently to the
+                        approach set out in paragraph (a) if it deems it would be in the interests of justice
+                        to do.</p>
+                     <table>
+                        <colgroup>
+                           <col style="width:4.66in">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <p>Example (1)</p>
+                                 <p>£18,000 is awarded to a spouse and child.</p>
+                                 <p>The spouse, child and a sibling were the residuary beneficiaries of the deceased’s
+                                    estate.  The spouse received 60% of the residuary estate, the child 30% and the sibling
+                                    10%.  </p>
+                                 <p>Setting the sibling’s share aside, the spouse and child together received 90% of the
+                                    residuary estate and their proportionate share of this is two thirds (60%) to the
+                                    spouse and one third (30%) to the child.  </p>
+                                 <p>In this scenario, the spouse and child would therefore receive £12,000 and £6,000.</p>
+                                 <p>Example (2)</p>
+                                 <p>£45,000 is awarded to a spouse and two children.</p>
+                                 <p>The spouse and two children were the three residuary beneficiaries of the deceased’s
+                                    estate. The spouse received 50% of the residuary estate and the two children, 25%
+                                    each. </p>
+                                 <p>In this scenario, the spouse would therefore receive £22,500 and each child, £11,250.</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Subsection (6) means that that where an application relates to more than one institution,
+                        only one amount of compensation will be paid.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Subsection (7) provides that the Board may arrange for a person who has been awarded
+                        compensation to have access to advice in respect of how to best to manage it.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Subsection (8) provides The Executive Office with the power by order to increase the
+                        amount of compensation that may be awarded.  Subsection (10) confirms that any such
+                        order must be approved by the Northern Ireland Assembly.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 13: Actuarial adjustment of award</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Subsection (3) provides a panel with the power to adjust the amount of compensation
+                        it has determined in respect of an application.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Subsection (1) sets out that the panel may make such an adjustment if the person making
+                        the claim has previously been paid compensation for the same abuse considered by the
+                        Panel and the Panel’s determination is in excess of this. Subsection 2 defines what
+                        is meant by compensation previously paid as referenced in subsection (1)(b).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>Subsections (4) and (5) outline the steps involved in making the adjustment.  First,
+                        the GDP calculator will be used to establish the present day value of the award previously
+                        paid to the applicant e.g. a previous award of £13,000 is revalued at £21,000. If
+                        the panel has decided the applicant should be awarded £24,000 compensation, then the
+                        net amount to be paid to the applicant will be £3,000 (£24,000 less £21,000).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 14: Initial payment of award</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>This section provides a panel with the power to order an initial payment of £10,000
+                        on an application.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Subsection (1) means that the power to order an initial payment of £10,000 does not
+                        apply to a claim for abuse relating to having being sent to Australia under the Child
+                        Migrants Programme.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>Subsection (2) provides a panel with the power, where it considers it appropriate
+                        to do so, to order the minimum amount of compensation £10,000 to be paid to a person
+                        before it has made its final determination on the application.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>Subsection (3) provides that when a panel makes its final determination on the total
+                        compensation to be awarded, it must order for the additional amount above £10,000
+                        to be paid to the applicant.   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">77 </span></h2>
+                     <p>Subsection (4) confirms that where an award of compensation has been adjusted under
+                        section 13, it is this amount which is the total compensation referred to in subsection
+                        (3).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 15: Status etc. of award</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">78 </span></h2>
+                     <p>This section details a number of matters relating to the compensation award.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">79 </span></h2>
+                     <p>Subsection (1) provides for the award to be paid as one lump sum payment or two lump
+                        sum payments as may be necessary under section 14.   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">80 </span></h2>
+                     <p>Subsection (2) means that a person will not have to pay tax or national contributions
+                        on the award.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">81 </span></h2>
+                     <p>Subsections (3), (4) and (5) provide that the award is to be disregarded in assessing
+                        a person’s eligibility to receive means-tested social security benefits, in assessing
+                        a person’s liability for paying towards the cost of their residential accommodation
+                        and in assessing a person’s eligibility for access to publicly funded legal services
+                        i.e. Legal Aid in Northern Ireland.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">82 </span></h2>
+                     <p>Subsection (6) means that a person awarded compensation by the Board may not, at a
+                        later date, claim for compensation through civil proceedings for any matters to which
+                        the application to the Board related.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 16: Right to appeal</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">83 </span></h2>
+                     <p>This section sets out arrangements for appealing against a determination on compensation.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">84 </span></h2>
+                     <p>Subsection (1) provides that a person may appeal against a decision not to award compensation
+                        or against the amount of compensation that has been determined.  Subsection (2) sets
+                        out that a person must explain in writing, the reasons why an appeal is being made.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">85 </span></h2>
+                     <p>Subsection (3) provides that rules may set out more detail on the method and procedure
+                        for bringing an appeal.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">86 </span></h2>
+                     <p>Subsections (4) and (5) provide that the President will appoint a single judicial
+                        member to determine an appeal and this cannot be the chair of the panel which made
+                        the determination on the application to which the appeal relates.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">87 </span></h2>
+                     <p>Subsection (6) means that the single judicial member will make a determination on
+                        the appeal subject to the same procedures used by the panel in making the original
+                        determination on the application (after having fully re-considered all the facts and
+                        details provided).   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">88 </span></h2>
+                     <p>Subsection (7) means that the provisions in section 14 are only applicable to an appeal
+                        where the appeal is against a determination that no compensation should be awarded.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">89 </span></h2>
+                     <p>Subsection (8) confirms that an appeal against the amount of compensation refers to
+                        the amount of compensation before any actuarial adjustment may have been made under
+                        section 13. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">90 </span></h2>
+                     <p>Subsection (9) allows for the single judicial member to confirm or reverse the original
+                        decision or increase or decrease the amount of compensation.  This decision will be
+                        final as provided for in subsection (11).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 17: Restrictions on public access</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">91 </span></h2>
+                     <p>This section enables the President of the Board to impose restrictions, by order.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">92 </span></h2>
+                     <p>Subsection (1) sets out that the purpose of such an order is to restrict disclosure
+                        or publication of any evidence or documents given, produced or provided to the Board
+                        and to restrict the disclosure of a person’s identity.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">93 </span></h2>
+                     <p>Subsection (2) means that a panel or single judicial member may also impose a restriction
+                        order. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">94 </span></h2>
+                     <p>Subsections (3) and (4) set out matters which the President, panel or judicial member
+                        must take account of when determining the scope of a restriction order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">95 </span></h2>
+                     <p>Subsection (<a href="https://www.legislation.gov.uk/nia/2013/2/section/8/5">5</a><b>) </b>provides for the President, panel or judicial member to vary or revoke a restriction
+                        order. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">96 </span></h2>
+                     <p>Subsection (6) means that the restrictions will remain in force indefinitely unless
+                        the President, panel or judicial member specifies an expiry date within the order,
+                        or the order is varied or revoked. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 18: Information about legal advice and assistance</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">97 </span></h2>
+                     <p>This section places a duty on the Secretary of the Board, when requested by the Department
+                        of Justice to provide it with the names and addresses of applicants to the Board who
+                        have received legal advice and assistance and the details of the solicitors who have
+                        provided the advice and assistance.  This is to allow the Legal Services Agency Northern
+                        Ireland to check that there is no duplication of advice being offered to applicants
+                        through legal advice and assistance arrangements under the Act and advice and assistance
+                        provided under the statutory legal aid scheme in Northern Ireland.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 19: Rules</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">98 </span></h2>
+                     <p>This section allows the Executive Office to make procedural rules.   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">99 </span></h2>
+                     <p>Subsections (2), (3) and (4) list the provisions that may be contained in the rules.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 20: Rules Procedure</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">100 </span></h2>
+                     <p>Subsection (1) means the rules must be approved by the Lord Chief Justice of Northern
+                        Ireland and under subsection (2) these will be subject to the negative resolution
+                        procedure in the Northern Ireland Assembly.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 2: The Commissioner for Survivors of Institutional Childhood Abuse</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 21: Establishment of the Commissioner</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">101 </span></h2>
+                     <p>This section provides for the establishment of an officer known as the Commissioner
+                        for Survivors of Institutional Childhood Abuse (the Commissioner) and who will be
+                        appointed by the Executive Office.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 22: Principal aim of the Commissioner</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">102 </span></h2>
+                     <p>This section deals with the principal aim of the Commissioner in exercising their
+                        functions. It confers upon the Commissioner the duty to promote the interests of any
+                        persons who were abused as children (persons under 18 years old) in residential institutions
+                        in Northern Ireland between 1922 and 1995 (inclusive).  These persons are referred
+                        to in the Act as 'victims and survivors'. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 23: The Advisory Panel</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">103 </span></h2>
+                     <p>This section confers upon the Commissioner the duty to select and appoint an Advisory
+                        Panel consisting of individuals who are HIA victims and survivors.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">104 </span></h2>
+                     <p>It will be the role of the Advisory Panel to enable consultation and discussion between
+                        the Commissioner and HIA victims and survivors; and enable HIA victims and survivors
+                        to give expression to diverse views and opinions regarding matters relevant to them.
+                        This is similar to the role of the Victims and Survivors Forum which assists the Commissioner
+                        for Victims and Survivors of the conflict (The Victims and Survivors (Northern Ireland)
+                        Order 2006). </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 24: General duties of the Commissioner</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">105 </span></h2>
+                     <p>This paragraph sets out a series of important duties which the Commissioner must perform.
+                        These include:- </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the duty to provide advice to the Executive Committee of the Assembly, and any other
+                           body or persons providing services to HIA victims and survivors on matters pertaining
+                           to HIA victims and survivors;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the duty to take reasonable steps to ensure that HIA victims and survivors are made
+                           aware of the Commissioner, his/her location and the ways in which they may <br>communicate with the Commissioner.</p>
+                     </section>
+                  </section>
+                  <section class="level">
+                     <p>Section 25: Powers of the Commissioner</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">106 </span></h2>
+                     <p>This gives the Commissioner powers to do a number of things to help them fulfil an
+                        advocacy role for HIA victims and survivors. These powers enable the Commissioner
+                        to carry out a wide range of activities, including being able to influence the actions
+                        of many organisations and individuals that affect HIA victims and survivors' lives
+                        in many different ways. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">107 </span></h2>
+                     <p>The general powers include: </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the power to undertake research, compile information, and provide advice on matters
+                           concerning the interests of HIA victims and survivors;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the power to publish matters relating to their interests, including the outcome of
+                           any research and any advice provided by the Commissioner;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>the power to make representations or recommendations to any persons about matters
+                           concerning the interests of HIA victims and survivors. It is envisioned that this
+                           power will enable the Commissioner to make recommendations to the Regulation and Quality
+                           Improvement Authority (“RQIA”) and Northern Ireland Social Care Council (“NISCC”)
+                           as recommended by Hart, as well as any other relevant body. The Inquiry Report recommended
+                           that the RQIA and NISCC in particular should have regard to any recommendations made
+                           to them, by the Commissioner, about practice issues relating to residential care.
+                           It is considered that it would be reasonable, in accordance with the usual principles
+                           of administrative law, to expect bodies involved with regulating residential care
+                           to have regard to recommendations made by the Commissioner (or any other expert body)
+                           and it is unnecessary to explicitly set this out in statute.</p>
+                     </section>
+                  </section>
+                  <section class="level">
+                     <p>Section 26: Co-ordination of service provision etc.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">108 </span></h2>
+                     <p>The Commissioner must encourage the provision, and the co-ordination of the provision,
+                        of relevant services to HIA victims and survivors. This includes services relating
+                        to physical and mental health, to overcome addiction, to provide counselling, to improve
+                        literacy and numeracy, to provide education or training, and access opportunities
+                        for work.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">109 </span></h2>
+                     <p>In carrying out these duties the Commissioner must take account of the current provision
+                        of relevant services to HIA victims and survivors and identify any gaps therein.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">110 </span></h2>
+                     <p>The Commissioner must also provide, or secure the provision of, advice and information
+                        to HIA victims and survivors on the relevant services that are available to them and
+                        the facilities that are available for the provision of those services, and how to
+                        obtain those services and access those facilities. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">111 </span></h2>
+                     <p>The Commissioner must, on becoming aware of a matter which comes within the area of
+                        responsibility of the Commissioner for Children and Young People in Northern Ireland,
+                        consult that Commissioner.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 27: Monitoring specialist facilities</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">112 </span></h2>
+                     <p>The Commissioner must on an ongoing basis monitor the operation of any specialist
+                        facilities in Northern Ireland which provide support for HIA victims and survivors.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">113 </span></h2>
+                     <p>The term 'specialist facilities' means facilities providing services solely for the
+                        use of HIA victims and survivors, on any of the following issues:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>general counselling services for those who have suffered abuse as children in residential
+                           institutions in Northern Ireland, supported by appropriate links to the health service
+                           and to other relevant housing, education and employment services; and </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>practical help with literacy and numeracy, education, employment, housing and benefits
+                           advice tailored to the needs of individual HIA victims and survivors of institutional
+                           abuse.</p>
+                     </section>
+                  </section>
+                  <section class="level">
+                     <p>Section 28: Functions relating to the Board, etc.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">114 </span></h2>
+                     <p>This section provides that the Commissioner must make arrangements for publicising
+                        the role of, and must monitor the operation of the Historical Institutional Abuse
+                        Redress Board ("the Redress Board").</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">115 </span></h2>
+                     <p>Where a person is considering whether to make an application to the Redress Board
+                        for compensation, the Commissioner must provide the person with general advice and
+                        information on making the application and, if the person wishes to obtain information
+                        relating to any period spent as a resident in an institution while under the age of
+                        18, such assistance in obtaining that information as it is reasonable for the Commissioner
+                        to provide. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">116 </span></h2>
+                     <p>The Commissioner must also monitor the operation of the Redress Board.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">117 </span></h2>
+                     <p>The Commissioner may establish or facilitate establishing a panel of solicitors who
+                        have the necessary expertise to provide legal advice and assistance to persons making
+                        an application for compensation to the Redress Board.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 29: Independent Review</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">118 </span></h2>
+                     <p>This section places a duty on the First Minister and deputy First Minister to commission
+                        an independent review of the operation of the Commissioner every five years. The review
+                        may be commissioned more frequently if the First Minister and deputy First Minister
+                        choose to do so. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">119 </span></h2>
+                     <p>The report must include an assessment of whether there continues to be a need for
+                        the Commissioner; and the First Minister and deputy First Minister acting jointly
+                        must, in light of that assessment, determine whether the office of the Commissioner
+                        is to continue.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 30: Defamation: privilege</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">120 </span></h2>
+                     <p>This section provides that for the purposes of the law of defamation, publication
+                        of any matter under this Act by the Commissioner is absolutely privileged.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 3: General</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 31: Interpretation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">121 </span></h2>
+                     <p>This section sets out definitions of commonly used terms in the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>Sections 32 -34: Commencement, extent and short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">122 </span></h2>
+                     <p>This section sets out that the provisions of the Act will come into force (i.e. begin
+                        to have an effect) as determined under order by The Executive Office.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Schedules</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Schedule 1: The Historical Institutional Abuse Redress Board</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">123 </span></h2>
+                     <p>Paragraph 1 sets out that the Redress Board is a body corporate and paragraph 2 means
+                        that the Executive Office must ensure the establishment of the Board is advertised
+                        in the Belfast Gazette.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">124 </span></h2>
+                     <p>Paragraph 3 requires The Executive Office to designate a department to exercise the
+                        administrative functions of the Board.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">125 </span></h2>
+                     <p>Paragraph 4 means that the Board or any member acting on its behalf must have regard
+                        to the Inquiry Report in exercising its functions.  This duty does not apply to any
+                        functions which differ from recommendations made in the Inquiry Report.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">126 </span></h2>
+                     <p>Paragraph 5 sets out arrangements for the appointment and remuneration of staff. The
+                        Lord Chief Justice will appoint a President of the Board and, subject to the approval
+                        of the Executive Office as to numbers, other judicial members of the Board as the
+                        President considers necessary. The Executive Office will appoint other members of
+                        the Board from health or social care professions as it considers necessary.  The Department
+                        will be responsible for remunerating and reimbursing members of the Board for expenses
+                        reasonably incurred.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">127 </span></h2>
+                     <p>Paragraph 6 requires the Department to provide administrative staff and this must
+                        include a secretary to the Board.  The Department must also provide office accommodation
+                        and equipment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">128 </span></h2>
+                     <p>Paragraph 7 allows the President of the Board to delegate any of his functions to
+                        another judicial member of the Board.  The Board may also establish committees to
+                        which it may delegate functions or to provide advice to the Board or President.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">129 </span></h2>
+                     <p>Paragraph 8 means that the President’s signature or that of his authorised staff authenticates
+                        or forms the seal of the Board.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">130 </span></h2>
+                     <p>Paragraph 9 sets out that any document signed by the Board or on behalf of the Board
+                        (i.e. with the ‘Seal’ of the Board will be permissible as documentary evidence in
+                        a court of Law/Judicial or administrative proceedings.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">131 </span></h2>
+                     <p>Paragraph 10 provides that the Department will receive funds from The Executive Office
+                        through the relevant standard procedures.  Annual grants to the department will form
+                        part of The Executive Office’s budget and the department will be invited to submit
+                        a budget bid to the Office for each financial year.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">132 </span></h2>
+                     <p>Paragraph 11 means the Board is required to report back annually to The Executive
+                        Office on the exercise of its functions and on the use of financial resources at its
+                        disposal.  The Executive Office must ensure a copy of each annual report is laid before
+                        the Northern Ireland Assembly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">133 </span></h2>
+                     <p>Paragraph 12 adds the Board to the list of bodies in Part 2 of Schedule 1 to the Northern
+                        Ireland Assembly Disqualification Act (1975), so ensuring that any judicial member
+                        (once in post) cannot also hold membership of the Northern Ireland Assembly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">134 </span></h2>
+                     <p>Paragraph 13 means the Board is added to the list of public authorities in Part 7
+                        of Schedule 1 to the Freedom of Information Act 2000.  It will, therefore, fall within
+                        the scope of the Act, but only in relation to its administrative functions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">135 </span></h2>
+                     <p>Paragraph 14 adds the Board to the list of tribunals whose administrative functions
+                        are subject to investigation by the Public Services Ombudsman in Northern Ireland.
+                        The principal purpose of the Ombudsman is to investigate alleged maladministration
+                        in government and public bodies.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 2: The Commissioner for Survivors of Institutional Childhood Abuse</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">136 </span></h2>
+                     <p>The Commissioner has an independent legal status distinct from the sponsoring department
+                        of The Executive Office and permits the post to pass from one Commissioner to the
+                        next successor-in-office.  The Commissioner would not be regarded as a servant or
+                        agent of the Crown and would not enjoy any status, immunity or privilege of the Crown.
+                        Arrangements for the Commissioner reflect those for other statutory bodies and Commissions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">137 </span></h2>
+                     <p>Paragraph 2 provides the Commissioner with a general power to do anything related
+                        to his or her functions, unless it is specifically prohibited within this or other
+                        legislation. The Commissioner will be enabled to co-operate with other bodies in the
+                        UK and elsewhere. This will enable the Commissioner to build relationships, avoid
+                        duplication and cooperate well with other bodies in order to provide a strategic approach
+                        to addressing those issues of interest to or affecting victims and survivors. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">138 </span></h2>
+                     <p>The term of office for the Commissioner will be for 5 years with the opportunity for
+                        reappointment for one further term only. The Commissioner can be removed from office
+                        by the Executive Office on the grounds of misconduct or incapacity including specifically
+                        if the Commissioner has been convicted of a criminal offence, become bankrupt, failed
+                        to discharge his or her functions for a continuous period of 3 months, or become unable
+                        or unfit to carry out his or her functions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">139 </span></h2>
+                     <p>The Commissioner is a full-time salaried appointment funded by TEO. Importantly, there
+                        is no compulsory retirement age for the Commissioner. This paragraph also makes provision
+                        for the payment of compensation, under special circumstances, to a person who no longer
+                        holds office as Commissioner.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">140 </span></h2>
+                     <p>The Commissioner has the power to employ staff as he or she considers necessary, subject
+                        to the approval of TEO as to numbers.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">141 </span></h2>
+                     <p>The Commissioner has the power to delegate his or her role of Commissioner and any
+                        or all of his or her accompanying functions to a member of staff within the Commission.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">142 </span></h2>
+                     <p>The Commissioner's signature or that of his or her authorised staff authenticates
+                        or forms the seal of the Commissioner's office on any documentation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">143 </span></h2>
+                     <p>Any document signed by the Commissioner or that of his or her staff (i.e. with the
+                        'Seal' of the Commissioner's office) will be permissible as documentary evidence in
+                        a court of Law/Judicial or administrative proceedings.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">144 </span></h2>
+                     <p>Paragraph 9 allows property, for example the offices of the Commissioner, to be transferred
+                        to his/her successor.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">145 </span></h2>
+                     <p>The Commissioner's office is to receive funds through the standard procedures for
+                        all non-Departmental public bodies and office holders in Northern Ireland. Annual
+                        grants to the Commissioner will form part of the TEO budget and the Commissioner would
+                        be invited to submit a budget bid to the Department for each financial year.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">146 </span></h2>
+                     <p>This paragraph sets out the arrangements for the financial accountability and audit
+                        requirements for the Commissioner's office. The Commissioner is required to keep proper
+                        accounting records and to prepare an annual financial statement of accounts in accordance
+                        with directions given by The Executive Office and in keeping guidance from the Department
+                        of Finance. The Commissioner's office is required to submit the annual statement of
+                        accounts, by financial year, to both the Office and to the Comptroller and Auditor
+                        General for examination, who will then report back on the statement of accounts to
+                        the Office. The Executive Office will be responsible for laying a copy of the annual
+                        statement of accounts and the Comptroller and Auditor General's report on these before
+                        the Assembly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">147 </span></h2>
+                     <p>The Commissioner is required to report back annually to the appointing authority,
+                        that is to the Executive Office, on how he/she is carrying out the role of Commissioner
+                        and on the use of the financial resources at his or her disposal. This report should
+                        contain details of the steps taken by the Commissioner that year to comply with his
+                        or her duties, to make HIA victims and survivors aware of his or her functions, the
+                        location of the office and how HIA victims and survivors can communicate with the
+                        Commissioner, and the Commissioner's monitoring of specialist facilities as per section
+                        7. TEO is required to lay a copy of the annual report before the Assembly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">148 </span></h2>
+                     <p>The Commissioner is required to report back annually to the Executive Office, on how
+                        he or she is carrying out the role of Commissioner and on the use of the financial
+                        resources at his or her disposal. The Executive Office is required to lay a copy of
+                        the annual report before the Assembly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">149 </span></h2>
+                     <p>This paragraph adds the Commissioner to The Northern Ireland Assembly Disqualification
+                        Act (1975), so ensuring that the Commissioner and any member of his or her staff (once
+                        in post) cannot also hold membership of the Northern Ireland Assembly.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">150 </span></h2>
+                     <p>The Commissioner is added to Schedule 1 to the Freedom of Information Act 2000 and
+                        so is bound by its requirements, including the obligation to provide information through
+                        a publication scheme and in response to requests made under the general right of access.
+                        However the same exemptions (e.g. regarding personal data and information provided
+                        in confidence) will apply as with other public bodies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">151 </span></h2>
+                     <p>This paragraph ensures that the Commissioner is added to the list of bodies that are
+                        subject to investigation by the Public Services Ombudsman in Northern Ireland.  The
+                        principal purpose of the Ombudsman is to investigate alleged maladministration in
+                        government or public bodies.  Further, the Commissioner would also be automatically
+                        bound by the statutory equality duty set out in section 75 of the Northern Ireland
+                        Act 1998, which requires public authorities to have due regard to the need to promote
+                        equality of opportunity and good relations. Inclusion in the Public Services Ombudsman
+                        Act also brings the Commissioner under the Commissioner for Public Appointments who
+                        will then regulate, monitor and report on the appointment process of the Commissioner.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">152 </span></h2>
+                  <p>Sections 31 to 34 come into force on Royal Assent. The remaining provisions will be
+                     brought into force by Statutory Rules made by the Executive Office.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">153 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.hiainquiry.org/terms-reference">
+                           <u>https://www.hiainquiry.org/terms-reference</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.hiainquiry.org/historical-institutional-abuse-inquiry-report-chapters">
+                           <u>https://www.hiainquiry.org/historical-institutional-abuse-inquiry-report-chapters</u>
+                           </a>. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.executiveoffice-ni.gov.uk/sites/default/files/publications/execoffice/hia-public-consultation-response-report.pdf">
+                           <u>https://www.executiveoffice-ni.gov.uk/sites/default/files/publications/execoffice/hia-public-consultation-response-report.pdf</u>
+                           </a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">154 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:3.72in">
+                        <col style="width:1.01in">
+                        <col style="width:1.67in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>16 October</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-10-16/debates/8232E99D-B69F-49D9-9976-4D63FB67037A/HistoricalInstitutionalAbuse(NorthernIreland)Bill(HL)">
+                                    <u>Vol. 800</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>28 October</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-28/debates/008F392C-2AE3-4E0F-9E3C-7A693D2B92FB/HistoricalInstitutionalAbuse(NorthernIreland)Bill(HL)">
+                                    <u>Vol. 800 Col. 783</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee </p>
+                           </td>
+                           <td>
+                              <p>31 October</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-31/debates/9F084196-6382-42F0-BECE-8565282A567B/HistoricalInstitutionalAbuse(NorthernIreland)Bill(HL)">
+                                    <u>Vol. 800 Col. 1080</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>31 October</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-31/debates/9F084196-6382-42F0-BECE-8565282A567B/HistoricalInstitutionalAbuse(NorthernIreland)Bill(HL)">
+                                    <u>Vol. 800 Col. 1080</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons </i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>4 November</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second reading</p>
+                           </td>
+                           <td>
+                              <p>5 November</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-11-05/debates/CCC5DFA0-67BC-4FD2-B869-3222DCEECCAF/HistoricalInstitutionalAbuse(NorthernIreland)Bill(Lords)">
+                                    <u>Vol. 667 Col. 668</u>
+                                    </a>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-11-05/debates/4F4D67A5-D75C-4EE1-B99A-D2A9944CFFD1/ValedictoryDebate"></a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>5 November</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-11-05/debates/CCC5DFA0-67BC-4FD2-B869-3222DCEECCAF/HistoricalInstitutionalAbuse(NorthernIreland)Bill(Lords)">
+                                    <u>Vol. 667 Col. 682</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>5 November</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-11-05/debates/CCC5DFA0-67BC-4FD2-B869-3222DCEECCAF/HistoricalInstitutionalAbuse(NorthernIreland)Bill(Lords)">
+                                    <u>Vol. 667 Col. 683</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendment</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>5 November</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-11-05/debates/85E22524-6E33-48A3-B07F-1E30A24D1007/RoyalAssent">
+                                    <u>Vol. 800 Col. 1192</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

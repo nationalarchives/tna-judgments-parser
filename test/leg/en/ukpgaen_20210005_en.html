@@ -1,0 +1,1000 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>MINISTERIAL AND OTHER MATERNITY ALLOWANCES ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Ministerial and other Maternity Allowances Act
+                  2021 (c. 5) which received Royal Assent on 1 March 2021.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have prepared by the Cabinet Office in order to assist the
+                  reader of the Act. They do not form part of the Act and have not been endorsed by
+                  Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>Women may be put off seeking high office due to inadequate maternity support. The
+                     Ministerial and other Maternity Allowances Act 2021 (the Act) provides for the Prime
+                     Minister, relying on the prerogative power to make appointments, to advise the Sovereign
+                     to appoint a current Government Minister to the position of ‘Minister on Leave’ for
+                     a time-limited period for six months under certain circumstances, namely to enable
+                     the Minister in question to take paid maternity leave.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The payment and office will not count for the salary and headcount limits specified
+                     in the Ministerial and other Salaries Act 1975 and the House of Commons Disqualification
+                     Act 1975. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act also makes provision allowing for time-limited payments to be made to individuals
+                     who are providing cover for certain offices in Her Majesty’s Official Opposition (those
+                     listed in Schedule 2 to the Ministerial and other Salaries Act 1975) on the basis
+                     that the office holder in question is on maternity leave. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Background and Current Framework</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>The current statutory framework relating to the issue of Ministerial appointments
+                        and pay, including the limits and restrictions applicable in this area, consists of
+                        three main Acts of Parliament</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>The Ministerial and other Salaries Act 1975, which sets out what Ministers are to
+                           be paid at different ranks, and imposes cumulative limits on the number of salaries
+                           that can be paid at each rank. It also sets out the salary for named Opposition office
+                           holders.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>The House of Commons Disqualification Act 1975, which places a limit on the number
+                           of ministerial office holders who are entitled to sit and vote in the House of Commons.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>The Ministerial and other Pensions and Salaries Act 1991, which makes provision for
+                           certain payments and allowances, including notably a loss of office payment of one
+                           quarter of an office holder's annual salary, at the point at which they cease to hold
+                           office, subject to certain conditions.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>In addition to those Acts, the Constitutional Reform and Governance Act 2010 makes
+                        provision for the creation of a pension scheme for Ministers and certain other office
+                        holders in Parliament, including Opposition offices.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>Successive Governments have operated at or close to the salary and headcount limits
+                        provided for in the Ministerial and other Salaries Act 1975 and the House of Commons
+                        Disqualification Act 1975 in appointments to their administrations. Prime Ministers
+                        may not make appointments that exceed these limits. If a woman holding high office
+                        were to want to take maternity leave, the Prime Minister does not normally have the
+                        flexibility to allow them to remain a salaried member of the Government in addition
+                        to appointing another Minister to fulfil their role for the period of their leave.
+                        The Opposition operates under similar constraints in terms of salaries for its office
+                        holders. Such constraints are a potential barrier to the full participation of women
+                        in public life.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>Ministers are public office holders. They are appointed by the Sovereign on the advice
+                        of the Prime Minister of the day under the powers of the Royal Prerogative. Their
+                        status and constitutional position means that they are not treated as workers or employees
+                        and as such have none of the rights or entitlements that many others working in the
+                        UK are afforded under employment legislation. In particular they have no rights in
+                        relation to maternity leave.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>In 2014, the All Parliamentary Party Group on Women in Parliament produced a report
+                        which made the following recommendation in relation to payment to Ministers for parental
+                        leave:</p>
+                     <p class="@name">
+                        
+                        <section class="level">
+                           <p>“We note also that while Ministers are now entitled to take maternity and paternity
+                              leave, and their work is covered by Ministerial colleagues, there is no additional
+                              funding to pay the covering Ministers for their additional responsibilities. We believe
+                              that a system of paid cover for Ministers on parental leave should be considered.”</p>
+                        </section>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>In 2019 the Ministerial Code was updated to insert provisions allowing for ministers
+                        to take a leave of absence from their post. Those provisions describe how ministers
+                        can take temporary “leave” for maternity, reflecting recent practice. Desk notes have
+                        been developed for departments to reflect the practical arrangements they should take
+                        to support Ministers while on maternity leave, keeping them in touch with developments
+                        and making arrangements for a supported return. In practice, under these arrangements,
+                        the functions and responsibilities of Ministers on maternity leave have been covered
+                        by other Ministers already serving elsewhere in Government. A number of women have
+                        used this approach, including in this Parliament.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>Where it is an individual office or very senior office, these arrangements are particularly
+                        difficult to apply. This is because of the statutory limits on ministerial salaries
+                        and numbers set out in the legislation referred to above, and because the legal exercise
+                        of functions of such roles cannot be 'covered' by another Minister. The result is
+                        that a Minister in such a role who wished to take extended maternity leave would need
+                        to resign their office.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>This Act seeks to address this issue by providing for Ministers to be able to take
+                        paid maternity leave. The current arrangements already provide the mechanism for Ministers
+                        to take a short leave of absence for paternity leave. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>The Act, in providing for a Minister to be designated as a Minister on Leave, allows
+                        a Minister to take an extended period of maternity leave while remaining a member
+                        of the Government. As such, they would continue to be bound by the Ministerial Code
+                        and the principle of collective responsibility. While designated as a Minister on
+                        Leave, the office holder will have no specific duties or responsibilities, or exercise
+                        any powers in relation to their previous office. They will not be expected to account
+                        before Parliament on issues of Government policy while on leave. The Minister on Leave
+                        would be able to access papers they were able to access in their previous role (including
+                        Cabinet papers if they were a Cabinet Minister) and be kept updated on work going
+                        on in respect of their former role, but they could not commission work or take decisions.
+                        Ministers exercising powers (i.e. not designated as ‘Minister on Leave’) will remain
+                        accountable to Parliament.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>In order to be designated as a Minister on Leave, the Minister would be appointed
+                        to a new ministerial office and no longer hold their previous office. It would be
+                        for the Prime Minister to advise the Sovereign on the appointment of a person to fill
+                        the role vacated by the person designated a Minister on Leave, and that person so
+                        appointed would then hold that office in full and without condition. In this way ministerial
+                        accountability and clarity in the exercise of the ministerial functions associated
+                        with that office will be maintained.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Approach Taken in the Act</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>This Act provides a mechanism whereby specific office holders (namely Ministers and
+                        certain members of Her Majesty’s Opposition) who wish to take maternity leave are
+                        able, subject to certain conditions and at the discretion of the Prime Minister or
+                        the Leader of the Opposition, to take up to six months leave at full pay, analogous
+                        to the situation applicable to the first six months of maternity leave for most Members
+                        of the Armed Forces and Civil Servants. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>In relation to Ministers, the objective of the Act is to enable any Minister (holding
+                        whichever office in the Government) to take a period of paid maternity leave, whilst
+                        remaining a member of the Government. It seeks to minimise any impact on wider constitutional
+                        issues by creating an ability to pay an allowance to a Minister appointed to the designated
+                        ministerial office as a ‘Minister on Leave’; and for that office not to count towards
+                        the statutory limits on ministerial salaries and numbers. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>A designation as a ‘Minister on Leave’ would automatically terminate after six months.
+                        An appointment to this office could be brought to an end sooner by either: </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the individual being appointed to another ministerial office (including being appointed
+                           to their previous role); </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>the individual being dismissed (the prerogative power to dismiss Ministers is maintained);
+                           or</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>the individual resigning (e.g. as a result of losing their seat in an election held
+                           during the six month period, or if there was a change of Government). </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Except where the Minister is appointed to another ministerial role, the Minister would
+                        be entitled to retain the payment in respect of the remaining duration of the six
+                        month period. They would also be entitled to the standard loss of office payment,
+                        equivalent to three months’ salary, payable under section 4 of the Ministerial and
+                        other Pensions and Salaries Act 1991. Any residual payment would be made as a lump
+                        sum. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>The Act does not give or imply a right on the part of a Minister wishing to take maternity
+                        leave to be appointed as a Minister on Leave. Any appointment to such a role would
+                        remain a prerogative power on advice from the Prime Minister, as would appointment
+                        to the Minister's former ministerial office (or a new ministerial office) at the end
+                        of the maternity leave.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>The Act also covers the six Opposition offices whose salary is paid for under the
+                        ministerial salary legislation referred to above. They are the Leaders of the Opposition
+                        and the Chief Opposition Whips in each House, and two Assistant Opposition Whips in
+                        the House of Commons. To take account of the fact that such office holders are not
+                        appointed by the Prime Minister and do not have statutory functions, the Act adopts
+                        a different approach for these offices. The office holder who is to take maternity
+                        leave would stay in post and the Act instead authorises a payment to the person (at
+                        the discretion of the Leader of the Opposition in the relevant House) who covers their
+                        role, on similar terms as outlined above for Ministers. The arrangement may last for
+                        up to six months and the eligibility criteria are the same. There is no provision,
+                        on termination of the covering person’s appointment before the end of six months,
+                        for them to receive any lump sum (as they are providing cover rather than taking the
+                        time off).</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     notes. Further information on the legislation amended by this Act is also contained
+                     in the commentary on the individual Act sections.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 7 sets out the territorial extent of the Act; that is the legal jurisdictions
+                     of which the provisions in the Act are intended to form part of the law. The extent
+                     of an Act can be different from its application. Application is about where an Act
+                     produces a practical effect. In this Act, the application and extent are both to the
+                     whole of the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Payment of maternity allowance: Ministerial office</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p> This section sets out that the Prime Minister can designate a holder of ministerial
+                        office as a ‘Minister on Leave’ for the purpose of paying them an allowance and the
+                        conditions which must be satisfied before a designation can take place.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsection (1) provides the basis for a mother or expectant mother designated as a
+                        Minister on Leave to be paid an allowance under the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Subsection (2) specifies that, in order to be designated as a Minister on Leave, the
+                        mother or expectant mother must fulfil the conditions set out in subsection (3) and
+                        that that mother or expectant mother must have ceased to hold their previous ministerial
+                        office (“the first ministerial office”) immediately before appointment to a designated
+                        ministerial office, as Minister on Leave.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (2) further specifies that the mother or expectant mother so designated
+                        by the Prime Minister will remain a member of Her Majesty’s Government for the duration
+                        of their tenure as Minister on Leave, because they continue to hold ministerial office.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (3) sets out the conditions which the mother or expectant mother in question
+                        must satisfy in order to be eligible for designation as a Minister on Leave by the
+                        Prime Minister, specified by reference to the anticipated, or actual, birth date of
+                        a child. These conditions are framed by reference to other legislative provisions
+                        on maternity leave, and provide that the Minister is eligible to be designated as
+                        Minister on Leave if:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>they are pregnant and the due date is no more than 12 weeks away;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>they have given birth within the last 4 weeks.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection (4) provides that a “child” for the purposes of subsection (3)(b) includes
+                        a still-born child within the meaning of section 41(1) of the Births and Deaths Registration
+                        Act 1953. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (5) defines “ministerial office” for the purposes of this Act as any of
+                        the ministerial offices specified in Parts 1 to 4 of Schedule 1 to the Ministerial
+                        and other Salaries Act 1975, as well as the office of Lord Chancellor, which is referred
+                        to elsewhere in that Act. This covers all Government ministers, including whips. It
+                        does not include Parliamentary Private Secretaries as they are not members of the
+                        Government.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Subsection (6) sets out that a designation as Minister on Leave ends either automatically
+                        after a period of six months or earlier if the Minister on Leave ceases to hold the
+                        office, for example because they are appointed to a new ministerial role, resign or
+                        are dismissed. The maximum period for which an allowance may be paid to a Minister
+                        on maternity leave under this Act is therefore six months.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Ministerial leave: amount and payment of allowance</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Section 2 sets out the amount of allowance that is to be paid to a Minister on Leave
+                        and the modalities of the payment of that allowance.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Subsection (1) sets the allowance as being six times the monthly salary that the Minister
+                        on Leave received in their “first ministerial office”, that is, as described in section
+                        1(2)(b), the office they held immediately before being appointed to the designated
+                        ministerial office i.e, before being appointed as ‘Minister on Leave’. It also provides
+                        that the allowance is to be paid in six monthly instalments, subject to subsections
+                        (2) to (4).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Subsection (2) provides that the allowance is only available where the Minister on
+                        Leave was in receipt of a salary in relation to their “first ministerial office”.
+                        A Minister who was previously unpaid will not receive an allowance as a Minister on
+                        Leave.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Subsection (3) states that where the Minister on Leave leaves the Government (i.e.
+                        is no longer a Minister) before the end of the six-month period, they are to receive
+                        the remainder of the allowance as a lump sum. This is because while a right to maternity
+                        leave for a Minister cannot be conferred, certainty of financial support for the duration
+                        of that maternity leave can be provided.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Subsection (4) states that if the Minister on Leave ceases to be designated as such
+                        on account of being appointed to another ministerial office, or dying, the allowance
+                        is no longer payable and is reduced proportionately. In such cases, if there has been
+                        overpayment, subsection (4)(b) allows that any such overpayment may be recovered.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Subsection (5) defines when the ‘6-month period’ for the purposes of this section
+                        begins. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Subsection (6) sets out that the allowance is to be paid from either money provided
+                        by Parliament or is to be charged on and paid out of the Consolidated Fund, depending
+                        on how the payments made in respect of the “first ministerial office” as referred
+                        to in section 1(2)(b) were paid. With the exception of the Lord Chancellor, Ministers
+                        are paid from money provided by Parliament.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 3: Ministerial leave: other provision</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>This section sets out how the arrangements made in this Act interact with the existing
+                        statutory arrangements relating to ministerial offices and ministerial pay.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Subsection (1) provides that during the period of designation the Minister on Leave
+                        does not count for the purposes of the restriction set out in sections 2(1) and (2)
+                        of the House of Commons Disqualification Act 1975, which places a limit on the number
+                        of Ministers who can sit and vote in the House of Commons. Where a Minister is appointed
+                        as a Minister on Leave and this is in excess of the limit, they will not be subject
+                        to the consequences of non-compliance with the provisions of the House of Commons
+                        Disqualification Act 1975.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Subsection (2) re-applies the restriction in the House of Commons Disqualification
+                        Act 1975 at the end of designation. It provides that, if the Minister on Leave loses
+                        the designation by virtue of six months having elapsed, but has not ceased to hold
+                        the office, then they are to be considered to have commenced holding that office when
+                        the designation ended for the purposes of section 2(2) of the House of Commons Disqualification
+                        Act 1975.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Subsection (3) sets out that a Minister on Leave who is paid an allowance under this
+                        Act cannot also receive a salary under the Ministerial and other Salaries Act 1975.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Subsection (4) provides that ceasing to hold the designated ministerial office as
+                        Minister on Leave makes the (former) holder of that office eligible for a loss of
+                        office payment under Section 4 of the Ministerial and other Pensions and Salaries
+                        Act 1991, subject to the conditions specified in that Act. For the purposes of calculating
+                        the amount payable, the relevant salary is the annual salary that the former Minister
+                        received immediately before their appointment to the designated office. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Subsection (5) provides that where a Minister is appointed to the designated ministerial
+                        office and is a Member of the House of Lords, they will not be eligible also to receive
+                        an allowance under section 5(1) of the Ministerial and other Pensions and Salaries
+                        Act 1991 (allowance for ministerial and other office-holders in the House of Lords),
+                        sometimes known as the Lords Office Holder Allowance.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 4: Payment of maternity allowance: Opposition office</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>This section enables payments to be made to a person providing cover for the holders
+                        of certain Opposition offices, where the office holder is on maternity leave. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Subsection (1) provides the basis for the payment of the allowance.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Subsection (2) identifies the Opposition offices for which an allowance may be paid
+                        and defines the term “Leader of the Opposition” in relation to both Houses for the
+                        purposes of this Act by reference to section 2(1) of the Ministerial and other Salaries
+                        Act 1975.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsection (3) specifies that it is for the Leader of the Opposition in the House
+                        of Commons to make an appointment in relation to an office within subsection (2)(a)
+                        and that it is for the Leader of the Opposition in the House of Lords to make an appointment
+                        in relation to an office within the meaning of subsection (2)(b).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Subsection (4) sets out that the initial appointment for the purposes of subsection
+                        (1) can only be made if the person making the appointment considers that the conditions
+                        in subsection (5) are satisfied. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Subsection (5) sets out the conditions which must be satisfied before an appointment
+                        can be made for the purposes of subsection (1). These conditions are the same as those
+                        set out in section 1(3)(a) and (b).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Subsection (6) allows more than one person to provide cover for an Opposition office
+                        holder during maternity leave, provided only one person is providing cover at any
+                        one time and the period of cover is no more than six months in total. It prevents
+                        an appointment for the purposes of subsection (1) from being made after the six-month
+                        period, starting with the day on which the initial appointment is made, has elapsed,
+                        and also prevents concurrent appointments during that period.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (7) states that the reference to “child” for the purposes of subsection
+                        (5)(b) includes a still-born child within the meaning of the Births and Deaths Registration
+                        Act 1953.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Subsection (8) sets out that any appointment under subsection (1) expires automatically
+                        after six months from the initial appointment or, if earlier, when it is terminated
+                        by the person who made the appointment.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 5: Opposition leave: amount and payment of allowance</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p> This section sets out the calculation of the allowance to be paid to a person pursuant
+                        to section 4(1) of this Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Subsection (1) sets the rate of the allowance as being equivalent to the salary which
+                        is being paid to the holder of the Opposition office for whom the person appointed
+                        under this Act is providing cover. The allowance is paid in monthly instalments during
+                        the period of cover.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Subsection (2) provides that the allowance ceases to be payable when the appointment
+                        ends and that any overpayment may be recouped.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Subsection (3) provides that payments under this section are to be charged on and
+                        paid out of the Consolidated Fund. The salaries of these Opposition office holders
+                        are also paid out of the Consolidated Fund, under the Ministerial and other Salaries
+                        Act 1975.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 6: Opposition leave: other provision</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Subsection (1) provides that where an Opposition office holder in the House of Lords
+                        is on maternity leave, that person is not eligible for the Lords Office Holder Allowance
+                        (under section 5(1)(b) of the Ministerial and other Pensions and Salaries Act 1991);
+                        rather it is the person appointed to cover the maternity leave who is eligible for
+                        that allowance.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Subsection (2) states that service as a covering person paid under section 4(1) of
+                        the Act is to be treated as if it were service as an Opposition office holder for
+                        the purposes of the provision in the Constitutional Reform and Governance Act 2010
+                        which allows those offices to be covered by the Ministerial Pension Scheme. No equivalent
+                        provision is needed to allow service as a Minister on Leave to be pensionable since
+                        that scheme is already open to them because of their ministerial status.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 7: Extent, commencement and short title</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Subsection (1) sets out the Act’s territorial extent, which extends to England and
+                        Wales, Scotland and Northern Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Subsection (2) provides that the Act enters into force on the day that it receives
+                        Royal Assent.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Subsection (3) provides that the short title of the Act is the Ministerial and other
+                        Maternity Allowances Act 2021.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>All the provisions of the Act commenced on Royal Assent, in accordance with section
+                     7.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Ministerial Code: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/826920/August-2019-MINISTERIAL-CODE-FINAL-FORMATTED-2.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/826920/August-2019-MINISTERIAL-CODE-FINAL-FORMATTED-2.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Report by the All Parliamentary Party Group on Women in Parliament, ‘Improving Parliament’
+                        (2014): ): <a href="http://www.appgimprovingparliamentreport.co.uk/"><u>http://www.appgimprovingparliamentreport.co.uk/</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>04 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-02-04/debates/4AC33846-AB60-45FD-B23E-7C0DD70CFAB0/Covid-19VaccineUpdate">
+                                    <u>Vol. 688 Col. 1153</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>11 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-02-11/debates/7A3F7A8E-E2A0-4B1C-AB3D-67F8DFA798F7/MinisterialAndOtherMaternityAllowancesBill">
+                                    <u>Vol. 689 Col. 526</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p> 11 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-02-11/debates/138E027F-1190-4F80-8A06-9F5352A873CF/MinisterialAndOtherMaternalAllowancesBill">
+                                    <u>Vol. 689 Col. 561</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p> 11 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-02-11/debates/138E027F-1190-4F80-8A06-9F5352A873CF/MinisterialAndOtherMaternalAllowancesBill">
+                                    <u>Vol. 689 Col. 596</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>11 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=92597&amp;sectionId=40&amp;businessPaperDate=2021-02-11">
+                                    <u>Vol. 810 Col. 602</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>22 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-02-22/debates/EF8A7974-0A9C-4F17-B9DC-B7D26E52D52F/MinisterialAndOtherMaternityAllowancesBill">
+                                    <u>Vol. 810 Col. 635</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>25 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://lordsbusiness.parliament.uk/ItemOfBusiness?itemOfBusinessId=93073&amp;sectionId=40&amp;businessPaperDate=2021-02-25">
+                                    <u>Vol. 810 Col. 924</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>25 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-02-25/debates/DFB70DF3-ABA0-4168-8DBF-DBDA63BA4AEE/Debate">
+                                    <u>Vol. 810 Col. 966</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>25 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-02-25/debates/DFB70DF3-ABA0-4168-8DBF-DBDA63BA4AEE/Debate">
+                                    <u>Vol. 810 Col. 966</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>01 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-03-01/debates/AC381A72-B091-41E4-9388-96CB284F83A5/MinisterialAndOtherMaternityAllowancesBill">
+                                    <u>Vol. 690 Col. 51</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>01 March 2021</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2021-03-01/debates/10FC2F39-A6AB-4AA2-B094-7B9BB61E7844/Pensions"><u>Vol. 690 Col. 82</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2021-03-01/debates/470DE24A-9E37-4C11-867C-7928EC88BFC4/RoyalAssent"><u>Vol. 810 Col. 1056</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

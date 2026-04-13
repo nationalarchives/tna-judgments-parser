@@ -1,0 +1,662 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>CHILDREN ACT 1989 (AMENDMENT) (FEMALE GENITAL MUTILATION) ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Children Act 1989 (Amendment) (Female Genital
+                  Mutilation) Act 2019 (c. 10) which received Royal Assent on 15 March 2019.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been provided by the Ministry of Justice to assist the
+                  reader of the Act.  They do not form part of the Act and have not been endorsed by
+                  Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Purpose and effect of the Act</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act amends section 8(4) of the Children Act 1989 (“the 1989 Act”) to add proceedings
+                     for Female Genital Mutilation Protection Orders (“FGMPOs”) in England and Wales, under
+                     Section 5A of, and Schedule 2 to, the Female Genital Mutilation Act 2003, to the list
+                     of proceedings which are “family proceedings” for the purpose of the 1989 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The effect of the amendment proposed by the Act would be to allow an applicant for
+                     an FGMPO to also apply for a care or supervision order (or other such appropriate
+                     order under the 1989 Act) as part of the same proceedings, rather than having to make
+                     separate applications for such orders as at present.  It will also mean that when
+                     a court is dealing with a FGMPO, it will also have powers available under the Children
+                     Act 1989 to make other orders regarding the welfare of the child. This will increase
+                     the ability of the court to protect children at risk. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Female Genital Mutilation (FGM) is an extremely painful and harmful practice that
+                     blights the lives of many girls and women.  The Government condemns this abusive practice
+                     and seeks to eradicate FGM in this country and abroad. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>FGM has been a specific criminal offence in this country since 1985. Other powers
+                     are available to the courts including Female Genital Mutilation Protection Orders
+                     (FGMPO) which is a civil law measure, designed to protect those at risk of FGM.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The legislation relating to the FGM is contained in the Female Genital Mutilation
+                     Act 2003, as amended, in relation to FGMPOs, by the Serious Crime Act 2015. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Act extends to England and Wales only, as does section 8 of the 1989 Act which
+                     it seeks to amend. The subject matter of the Act is clearly reserved under paragraphs
+                     8 and 179 (and also under paragraphs 177 and 178) of Schedule 7A to the Government
+                     of Wales Act 2006 (inserted by the Wales Act 2017).&nbsp;</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Bill/Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Amendment to the Children Act 1989</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Section 1 amends section 8 of the Children Act 1989 by inserting a reference to Part
+                     1 of Schedule 2 to the Female Genital Mutilation Act 2003 (other than paragraph 3
+                     of that Schedule). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Schedule 2 to the 2003 Act (at Part 2) makes provision for FGMPOs in Northern Ireland,
+                     but the Bill only extends to England and Wales and so it refers only to Part 1 of
+                     Schedule 2, the Part which makes provision for FGMPOs in England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Paragraph 3 of Schedule 2 to the 2003 Act provides for circumstances in which FGMPOs
+                     may be made by the court during criminal proceedings.  The exception in relation to
+                     paragraph 3 of Schedule 2 is to make clear that such criminal proceedings are not
+                     to be defined as “family proceedings” for the purpose of the 1989 Act.   </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 2 provides that the extent of the Bill is England and Wales only. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Act will come into force on the day on which it is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The policy and public interest justification for proposing that the Bill should come
+                     into force on Royal Assent is to ensure that, if any FGMPO proceedings were ongoing
+                     at the time that the legislation was passed, the Family Court and the High Court would
+                     have the power to make care and supervision orders in those proceedings, without separate
+                     applications having to be made, so that the level of immediately available protection
+                     given to any children at risk of significant harm could be increased.&nbsp;</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Financial implications of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>FGM protection orders were introduced on 17 July 2015. Since then, family courts have
+                     dealt with a relatively small frequency of FGM cases each year. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>It is not known how many cases currently need to be adjourned for care proceedings
+                     to commence in the family court. In the 12 months to September 2016, 63 FGMPOs were
+                     made, in the 12 months to September 2017, 98 FGMPOs were made and in the 12 months
+                     to September 2018, 117 orders were made. It is not possible to estimate the proportion
+                     of FGM cases that would be impacted by this policy. However, the relatively low frequency
+                     of cases does imply, that regardless of the proportion of these cases impacted by
+                     care proceedings, the overall volume of cases impacted is likely to be small.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>We expect that there will be one-off familiarisation costs for the agencies involved
+                     in FGM cases in family courts (Local Authorities, LAA, Cafcass, HMCTS, Judges, as
+                     well as others involved in FGMPO proceedings).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>For those cases in which this applies, it is expected that family court hearings would
+                     be reduced as care proceedings would now be able to be heard alongside FGMPO hearings.
+                     This could reduce adjournments and improve timeliness in these cases</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Overall, it is expected that the overall financial impact of this policy is likely
+                     to be minimal, given the relatively low frequency of FGMPO cases in family courts.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Subject matter and legislative competence of devolved legislatures</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The subject matter of the Act is clearly reserved under paragraphs 8 and 179 (and
+                     also under paragraphs 177 and 178) of Schedule 7A to the Government of Wales Act 2006
+                     (inserted by the Wales Act 2017).&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The subject matter of the Act is also devolved in Scotland and Northern Ireland.&nbsp;</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Glossary</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:3.15in">
+                        <col style="width:3.15in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>CAFCASS</p>
+                           </td>
+                           <td>
+                              <p>Children &amp; Family Court Advisory and Support Service</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>FGM</p>
+                           </td>
+                           <td>
+                              <p>Female genital mutilation</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>FGMPO</p>
+                           </td>
+                           <td>
+                              <p>Female genital mutilation protection order</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>HMCTS</p>
+                           </td>
+                           <td>
+                              <p>Her Majesty's Courts &amp; Tribunals Service</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>LAA</p>
+                           </td>
+                           <td>
+                              <p>Legal Aid Agency</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>1989 Act</p>
+                           </td>
+                           <td>
+                              <p>Children Act 1989</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>2003 Act</p>
+                           </td>
+                           <td>
+                              <p>Female Genital Mutilation Act 2003</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard references</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.16in">
+                        <col style="width:1.67in">
+                        <col style="width:2.46in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>3 July 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2017-07-03/debates/07FB0872-4F27-496E-B539-4C3C1EF7456E/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(HL)">
+                                    <u>Vol 783, Col 679 Bill HL 28</u>
+                                    </a>                            (as introduced)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>2nd Reading</p>
+                           </td>
+                           <td>
+                              <p>20 July 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-07-20/debates/DFDB9E26-055F-4B93-8098-F854EDB3F1FD/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(HL)">
+                                    <u>Vol 792, Col 1416</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee </p>
+                           </td>
+                           <td>
+                              <p>26 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-10-26/debates/DDE17518-575B-47AB-A011-30FD17E0BFFC/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(HL)">
+                                    <u>Vol 793, Col 1107</u>
+                                    </a>
+                                 </p>
+                              <p>(Amended in Committee)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report Stage </p>
+                           </td>
+                           <td>
+                              <p>12 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-11-12/debates/D4F6315B-C410-48DD-AE2B-302978E16597/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(HL)">
+                                    <u>Vol 793, Col 1697</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>3rd Reading</p>
+                           </td>
+                           <td>
+                              <p>19 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-11-19/debates/705F1F05-EDB8-4D7C-ADBD-527BEFB91BEC/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(HL)">
+                                    <u>Vol 794, Col 12</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>20 November 2018</p>
+                           </td>
+                           <td>
+                              <p>No debate - HC Bill 294 </p>
+                              <p>(as introduced)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee - </p>
+                              <p>1st sitting</p>
+                           </td>
+                           <td>
+                              <p>25 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-02-25/debates/af5dd9d2-224a-430a-9c58-67c0b1942c66/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(Lords)">
+                                    <u>Vol 655, Col 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee - </p>
+                              <p>2nd sitting </p>
+                           </td>
+                           <td>
+                              <p>26 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-02-26/debates/7AF56966-95B8-49D2-B007-21A8ADECD61C/BusinessWithoutDebate#debate-3705910">
+                                    <u>Vol 655, Col 304</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee - </p>
+                              <p>3rd sitting</p>
+                           </td>
+                           <td>
+                              <p>5 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-03-05/debates/6f63dbaf-fddb-4514-a05f-41c00bf6376d/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(Lords)(FirstSitting)">
+                                    <u>Vol 655, Col 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>11 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-03-11/debates/A5AEF02E-19BF-4569-AF50-0A7F3102BEA7/ChildrenAct1989(Amendment)(FemaleGenitalMutilation)Bill(Lords)">
+                                    <u>Vol 656, Col 91</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>15 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-03-15/debates/FE8474F0-3B39-47A0-B3D3-9530C18AD1A7/Speaker%E2%80%99SStatementNewZealandTerrorAttacks#contribution-9F640DAB-6774-4868-A642-905B6AF9D219">
+                                    <u>Vol 656, Col 665</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

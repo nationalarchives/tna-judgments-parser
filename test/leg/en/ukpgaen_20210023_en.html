@@ -1,0 +1,2304 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>OVERSEAS OPERATIONS (SERVICE PERSONNEL AND VETERANS) ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Overseas Operations (Service Personnel and Veterans)
+                  Act 2021 (c. 23) which received Royal Assent on 29 April 2021.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Ministry of Defence (MOD) in order
+                  to assist the reader of the Act. They do not form part of the Act and have not been
+                  endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice, provide
+                  background information on the development of policy, and provide additional information
+                  on how the Act will affect existing legislation. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes are best read alongside the Act. They are not, and are not
+                  intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Overseas Operations (Service Personnel and Veterans) Act includes the following
+                     provisions: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>
+                        <u>Measures that will apply when decisions are made by prosecutors in relation to the
+                           prosecution of current or former Service personnel for historical offences allegedly
+                           committed overseas.</u>
+                        </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>Firstly, a presumption against prosecution. This provision raises the threshold to
+                           be applied by prosecutors when considering whether a service person or veteran should
+                           be prosecuted in such cases, by stipulating that it is to be exceptional for a prosecutor
+                           to determine that a prosecution should be brought. </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">ii.</span></h2>
+                        <p>Secondly, the prosecutor must give particular weight to the adverse impact of the
+                           particular conditions the person was exposed to and the exceptional demands and stresses
+                           of overseas operations on a Service person (including on their ability to make sound
+                           judgements and on their mental health) and, in cases where there have been previous
+                           investigations and no compelling new evidence has emerged, the public interest in
+                           finality. </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">iii.</span></h2>
+                        <p>Thirdly, if a prosecutor determines that, notwithstanding the presumption, it is appropriate
+                           for a prosecution to be brought, the consent of the Attorney General for England and
+                           Wales or the Advocate General for Northern Ireland will then be required for the prosecution
+                           to proceed.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>These measures apply where the prosecutor’s decision concerns a “relevant offence”.
+                     The definition of “relevant offence” covers all offences, save for those listed in
+                     Schedule 1. <a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>
+                        <u>Restriction of judicial discretion to allow certain civil claims connected with overseas
+                           operations</u>. This further restricts the court’s discretion to extend the normal time limit of
+                        three years for bringing civil claims for personal injury and/or death connected with
+                        historical events outside the UK by requiring the court to have particular regard
+                        to additional factors (in addition to those that already exist) when deciding whether
+                        to allow a claim to proceed beyond the three-year limitation period. Those new factors
+                        include, for example, particular regard to the likely impact of the operational context
+                        on the ability to remember events and the likely impact of any legal proceedings on
+                        the mental health of any service personnel witnesses.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>
+                        <u>Restriction of judicial discretion to allow claims under the Human Rights Act 1998
+                           (HRA) connected with overseas operations</u>. This requires the court to have particular regard to various factors (as set out
+                        in the bullet point above for civil claims for personal injury and/or death) when
+                        considering whether to extend the primary limitation period of one year.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>
+                        <u>Limitation longstop for civil claims connected with operations overseas.</u> There is also an absolute limitation longstop of six years which will prevent claims
+                        being brought more than six years after the date of incident, or more than six years
+                        after the date of knowledge.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>
+                        <u>Changes to private international law rules for personal injury and death claims connected
+                           with overseas operations</u>. The Act amends existing legislation to provide that when the limitation periods
+                        of another country are applied to these claims, there will be an absolute limitation
+                        longstop of six years.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>
+                        <u>Limitation longstop for claims under the HRA connected with overseas operations</u>. This similarly imposes an absolute limitation longstop of six years for bringing
+                        HRA claims connected with overseas operations. This means there is a consistent approach
+                        to the absolute limitation periods for both personal injury and death claims and for
+                        HRA claims connected with overseas operations. The time for the longstop on HRA claims
+                        will be calculated from the date of the act. If the date of knowledge is later than
+                        the date of the incident, then claimants will have an additional one year to make
+                        a claim, provided that one-year period ends more than six years after the date of
+                        the act.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy and legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>This Act aims to provide greater certainty for Service personnel and veterans in relation
+                     to claims and potential prosecution for historical events that occurred in the complex
+                     environment of overseas operations.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>This Act seeks to address issues that have partly arisen from the expansion of the
+                     European Convention on Human Rights (ECHR) to cover overseas military operations where
+                     the UK had assumed that international humanitarian law had primacy. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>It also raises the bar for prosecutions in relation to alleged historical incidents
+                     that occurred on overseas operations, requiring prosecutors to have proper regard
+                     to the uniquely challenging context. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The measures aim to provide greater certainty by reassuring Service personnel and
+                     veterans that prosecution decisions must take into account factors as specified in
+                     the Act and that prosecutions will only go ahead in exceptional cases.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>International humanitarian law was developed to regulate the conduct of combat operations
+                     and recognises the inherent risks and dangers both for Service personnel and for the
+                     local population.  It imposes obligations that are realistic and reasonable to expect
+                     the Armed Forces to meet even when operating in hostile conditions overseas. However,
+                     judgments in Strasbourg and the UK’s domestic courts in relation to operations in
+                     Iraq and Afghanistan confirmed the applicability of ECHR to overseas military operations,
+                     and the actions of the MOD and UK Service personnel. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Operations in Iraq in 2003-2009 (Operation Telic) and Afghanistan in 2002-2017 (Operation
+                     Herrick) gave rise to an unprecedented number of legal claims for damages and non-compliance
+                     with the UK’s obligations under the ECHR. MOD faced approximately 1,400 judicial review
+                     claims and over 900 civil claims for compensation arising from the 2003-09 operations
+                     in Iraq and around 100 claims arising from operations in Afghanistan. In some cases,
+                     the courts found that the UK’s legal obligations were breached: they ruled that detention
+                     processes were flawed and that some practices which constituted inhuman or degrading
+                     treatment were prevalent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>There were also instances of criminal behaviour, where individuals were prosecuted
+                     for serious criminal offences. Nothing in this Act will stop those suspected of committing
+                     criminal acts from being prosecuted, where appropriate. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>UK Service personnel and veterans have been subject to numerous claims – including
+                     those that were ultimately discredited, or were brought in multiple jurisdictions,
+                     or were found to have been encouraged by lawyers pursuing financial gain.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>As announced in the then Defence Secretary's Written Ministerial Statements of 21
+                     May and 22 July 2019, a 12-week public consultation on proposed legal protections
+                     measures for Service personnel and veterans who served in operations outside the UK
+                     was launched on 22 July 2019.&nbsp;The consultation set out three main proposals which
+                     would be beneficial to Armed Forces personnel and veterans:&nbsp;a statutory presumption
+                     against prosecution, a new partial defence to murder, and a time limit on civil litigation
+                     claims for personal injury/death. There were over 4,200 responses to the consultation.
+                     These responses helped to shape the measures in this Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The Act extends to England and Wales, Scotland and Northern Ireland. The effects of
+                     the provisions are substantively the same throughout the UK, but as amendments were
+                     needed to different pieces of legislation in the different jurisdictions, some provisions
+                     of the Act apply to England and Wales only, some to Scotland, and others to Northern
+                     Ireland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: Restrictions on prosecution for certain offences</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Presumption against prosecution</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>Section 1: Prosecutorial decision regarding alleged conduct during overseas operations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">13 </span></h2>
+                        <p>This section sets out when the statutory presumption against prosecution (section
+                           2), and the requirement to give particular weight to specified factors (section 3),
+                           will apply to decisions whether or not to prosecute in criminal cases. The effect
+                           of the section is such that the measures at sections 2 and 3 also apply to decisions
+                           as to whether or not private prosecutions should be allowed to continue.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">14 </span></h2>
+                        <p>This section sets out:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>which groups will be covered by sections 2 and 3 of the Act: the Armed Forces (reserves
+                              and regulars), and members of British Overseas Territory Forces (BOTF) when operating
+                              with UK Armed Forces;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>that the measures only apply to events that took place more than five years ago, with
+                              the start point for calculating this time period being the date that the alleged conduct
+                              occurred. Where an alleged offence continued over more than one day, the start point
+                              for the 5-year time period will be the last day on which the alleged conduct occurred;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>that the measures at sections 2 and 3 only apply to these groups when they are deployed
+                              on relevant overseas operations; and</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>what is meant by "relevant overseas operations".</p>
+                        </section>
+                     </section>
+                     <section class="level">
+                        <p>Section 2: Presumption against prosecution</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">15 </span></h2>
+                        <p>This section explains the effect of the presumption: that it is to be exceptional
+                           for a prosecutor to determine that proceedings should be brought in relation to offences
+                           committed by members of the Armed Forces when deployed on operations outside of the
+                           British Islands more than five years earlier.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 3: Matters to be given particular weight</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">16 </span></h2>
+                        <p>This section sets out specific matters to which a prosecutor must give particular
+                           weight when deciding whether or not to bring proceedings in a particular case. These
+                           matters are:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>Subsection (2)(a) - the demands of overseas military operations, and the adverse effects
+                              that deployment on such operations can have on Service personnel, including on their
+                              capacity to make sound decisions and their mental health (this is further expanded
+                              in 3(3) and 3(4)). </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>Subsection (2)(b) – applies to the situation where there has been a previous investigation
+                              or investigations in relation to alleged criminal conduct and no compelling new evidence
+                              has arisen since any such investigation(s). This section ensures that, in these circumstances,
+                              the public interest in finality being achieved without undue delay is a matter to
+                              which the prosecutor gives particular weight when making a decision.  </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">17 </span></h2>
+                        <p>The requirement to give weight to these matters is limited to where they tend to reduce
+                           the culpability of the accused individual or otherwise tend against prosecution.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 4: Section 3: supplementary</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">18 </span></h2>
+                        <p>This section explains what is meant by "relevant previous investigation" and "new”
+                           evidence. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Consent to prosecution</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>Section 5: Requirement of consent to prosecute</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">19 </span></h2>
+                        <p>This section sets out the requirement that if a prosecutor determines that, notwithstanding
+                           the presumption against prosecution (at section 2) and the requirement to give particular
+                           weight to specified matters (at section 3), it is appropriate to prosecute a current
+                           or former member of the Armed Forces in relation to an alleged offence committed on
+                           overseas operations more than five years ago, the consent of the Attorney General
+                           for England and Wales, or the Advocate General for Northern Ireland, must be obtained
+                           before a prosecution can proceed. The section does not extend to Scotland given that
+                           all criminal prosecution decisions in the public interest in Scotland are taken by,
+                           or on behalf of, the Lord Advocate. This is reflected in the Scotland Act 1998 which
+                           upholds the constitutional role of the Lord Advocate as the head of the systems of
+                           criminal prosecution and investigation of deaths in Scotland.   </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 6: "Relevant offence"</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">20 </span></h2>
+                        <p>The definition of a "relevant offence" includes service offences under section 42
+                           of the Armed Forces Act 2006 and all criminal offences except those that are excluded
+                           by virtue of Schedule 1.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">21 </span></h2>
+                        <p>Any alleged offences committed by the groups identified in section 1 against a member
+                           of the Armed Forces (including BOTF), a Crown Servant or a defence contractor will
+                           not constitute a relevant offence. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 7: General interpretation etc</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">22 </span></h2>
+                        <p>This section provides definitions and supplementary explanations for terminology appearing
+                           in sections 1 to 7. In particular:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>Subsection (1) provides that for murder or any other offence that causes death, where
+                              the victim's death occurred after the date of the injury, the five year time period
+                              will be counted from the day of the alleged conduct (rather than from the date of
+                              death).  </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>Subsection (2) explains what is covered by the term "the British Islands".</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>Subsection (3) defines “relevant prosecutors”; namely, the Director of Service Prosecutions,
+                              together with the public prosecutors in England &amp; Wales, Scotland and Northern Ireland.
+                              </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>Subsection (4) defines a number of other terms used in this Part. In particular, it
+                              identifies the investigating authorities.</p>
+                        </section>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 2: Limitation Periods</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 8: Restrictions on time limits to bring actions: England and Wales</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsection (1) introduces Schedule 2, Part 1 which amends the rules governing the
+                        court’s discretion to disapply the three-year time limit for bringing claims for personal
+                        injuries and deaths as set out in the Limitation Act 1980 (LA); it provides that the
+                        limitation period cannot be extended beyond six years, and specifies additional factors
+                        to which the court must have particular regard when exercising its discretion. These
+                        changes apply only to claims for personal injuries or deaths which are connected with
+                        overseas operations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Subsection (2) explains that Part 2 of Schedule 2 amends the Foreign Limitation Periods
+                        Act 1984. These changes ensure that where foreign limitation periods are to be applied
+                        in personal injury and/or death claims connected with overseas operations which are
+                        brought in England or Wales, claimants will not benefit from more generous time limits
+                        that may be available in that foreign law. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 9: Restrictions on time limits to bring actions: Scotland</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (1) introduces Schedule 3, Part 1 which amends the rules governing the
+                        court’s discretion to override the three-year time limit for bringing claims for personal
+                        injuries and deaths as set out in the Prescription and Limitation (Scotland) Act 1973;
+                        it provides that the limitation period cannot be extended beyond six years, and specifies
+                        factors to which the court must have particular regard when exercising its discretion.
+                        These changes apply only to claims for personal injuries or deaths which are connected
+                        with overseas operations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (2) explains that Part 2 of Schedule 3 amends the Prescription and Limitation
+                        (Scotland) Act 1973 to ensure that where foreign limitation periods are to be applied
+                        in personal injury and/or death claims connected with overseas operations which are
+                        brought in Scotland, claimants will not benefit from more generous time limits in
+                        that foreign law. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 10: Restrictions on time limits to bring actions: Northern Ireland</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection (1) introduces Schedule 4, Part 1 which amends the rules governing the
+                        court’s discretion to disapply the three-year time limit for bringing claims for personal
+                        injuries and deaths as set out in the Limitation (Northern Ireland) Order 1989/1339;
+                        it provides that the limitation period cannot be extended beyond six years, and specifies
+                        additional factors to which the court must have regard when exercising its discretion.
+                        These changes apply only to claims for personal injuries or deaths sustained which
+                        are connected with overseas operations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (2) explains that Part 2 of Schedule 4 amends the Foreign Limitation Periods
+                        (Northern Ireland) Order 1985/754. These changes ensure that where foreign limitation
+                        periods are to be applied in personal injury and/or death claims connected with overseas
+                        operations which are brought in Northern Ireland, claimants will not benefit from
+                        more generous time limits that may be available in that foreign law.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 11: Court’s discretion to extend time in certain Human Rights Act proceedings</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>This section amends the rules governing the court’s discretion to extend the one-year
+                        time limit for bringing claims under the HRA. These changes apply only to proceedings
+                        in connection with overseas operations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Subsection (2) inserts a new section 7A into the HRA.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Section 7A(1) specifies that a court’s exercise of discretion is subject to section
+                        7A(2) and (4). </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Section 7A(2) sets out certain factors to which the court must have particular regard,
+                           when deciding whether to allow a claim to proceed beyond the normal time limit. These
+                           factors are intended to ensure that the court takes proper account of the operational
+                           context (as defined in section 7A(3)), and the likely impact of proceedings on the
+                           mental health of the Service personnel or veterans involved.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Section 7A(4) imposes a rule that claims cannot proceed more than six years after
+                           the act complained of occurred, or more than one year after the date of knowledge
+                           (as defined in section 7A(5)) if that one-year period expires more than six years
+                           after the date of the act. </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Subsection (3) specifies that new section 7A applies to any such claim that is commenced
+                        after that section comes into force. Claims that have been commenced before new section
+                        7A comes into force are unaffected by these amendments.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Section 7A(6) establishes the scope of section 7A; it applies only to claims brought
+                        against the Ministry of Defence or Secretary of State for Defence in connection with
+                        overseas operations (as defined in section 7A(7)). Proceedings will not be “in connection
+                        with” overseas operations if they relate to preparatory work, e.g. training in preparation
+                        for overseas operations.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Sections 7A(8) and (7A)(9) define “the British Islands” and “Her Majesty’s forces”.
+                        </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 3: General</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 12: Power to make consequential provision</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>This section provides the Secretary of State and the Lord Chancellor with the power
+                        to make consequential amendments.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 13: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>This section sets out the territorial extent of the Act. It extends to England and
+                        Wales, Scotland and Northern Ireland, except as specified in this section.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 14: Commencement and application</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>This section makes provision about the coming into force of the provisions of the
+                        Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>None of the provisions in sections 1 to 11 will apply to proceedings started before
+                        the date on which the provisions of the Act come into force.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 15: Short Title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>This section sets out the short title of the Act.</p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 1: Excluded offences for the purposes of section 6</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Schedule 1 details the offences excluded from the scope of the requirements of Sections
+                        2, 3 and 5, and is structured as follows:</p>
+                     <section class="subparagraph">
+                        <p>Part 1 – Criminal conduct etc under Armed Forces legislation. This Part of Schedule
+                           1 excludes sexual offences.</p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>Part 2 – International Criminal Court Act 2001. This Part of Schedule 1 excludes offences
+                           of genocide, crimes against humanity and war crimes under the International Criminal
+                           Court Act 2001 (in the law of England and Wales and Northern Ireland).</p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>Part 3 – International Criminal Court (Scotland) Act 2001. This Part of Schedule 1
+                           excludes the offences of genocide, crimes against humanity and war crimes under the
+                           International Criminal Court (Scotland) Act 2001.</p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>Part 4 – Other offences. This Part of Schedule 1 excludes the offence of torture under
+                           s.134 of the Criminal Justice Act 1988, as well as all offences under section 1(1)
+                           Geneva Conventions Act 1957.</p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>Part 5 – Provisions extending jurisdiction in respect of certain sexual offences.
+                           This Part of Schedule 1 excludes certain sexual offences under provisions that extend
+                           jurisdiction (whereby certain acts, if done outside of the UK, constitute offences
+                           in UK). </p>
+                     </section>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 2: Limitation periods: England and Wales</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 1 – Court’s discretion to disapply time limits</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Part 1 of Schedule 2 amends section 33 of the LA, which sets out the factors that
+                        the court must have particular regard to when exercising its discretion to extend
+                        the normal time limit (set out in section 11 and section 12 of the LA) for bringing
+                        claims for personal injury or death. These amendments do not change the way in which
+                        the time limit is calculated. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Paragraph 1(2) inserts new subsections (1ZA) to (1ZC) into section 33 of the LA. </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Subsection (1ZA) prohibits the court from allowing any claim to proceed if it has
+                           been commenced more than six years after the relevant date (as defined in new subsection
+                           (7)). </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Subsection (1ZB) specifies that these amendments apply only to claims against the
+                           Ministry of Defence or Secretary of State for Defence or members of Her Majesty’s
+                           forces made in connection with overseas operations (as defined in new subsection (7))
+                           where the damage (as defined in subsection (1ZC)) complained of occurred outside the
+                           British Islands.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Paragraph 1(3) inserts new subsections (2A) to (2B) into section 33 of the LA. These
+                        specify the effect of these amendments in relations to section 12 of the LA.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Paragraph 1(4) inserts new subsections (5A) and (5B) into section 33 of the LA. Subsection
+                        (5A) specifies those additional factors to which the court must have particular regard,
+                        when deciding whether to disapply the normal time limit for bringing a personal injury
+                        or death claim. These factors are intended to ensure that the court takes proper account
+                        of the operational context (as defined in subsection (5B)), and the likely impact
+                        of giving evidence on the mental health of the Service personnel or veterans involved.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Paragraph 1(5), which inserts a new subsection (6A) into section 33 of the LA, clarifies
+                        how these amendments will apply in light of the Limitation (Enemies and War Prisoners)
+                        Act 1945.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Paragraph 1(6) substitutes a new subsection (7) into section 33 of the LA. This amends
+                        the definitions used to restrict the effect of these amendments to claims for&nbsp;personal
+                        injuries or deaths connected with overseas operations; and explains how “the relevant
+                        date” is to be calculated.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 2 – Restriction of foreign limitation law</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Part 2 of Schedule 2 amends the Foreign Limitation Periods Act 1984, and ensures that
+                        where foreign limitation periods are applicable to personal injury and/or death claims
+                        connected with overseas operations brought in England or Wales, claimants cannot benefit
+                        from more generous time limits in that foreign law. Those amendments restrict – to
+                        a maximum of six years from the date on which the cause of action arose – the court’s
+                        discretion to extend the normal time limit for bringing claims against the Ministry
+                        of Defence, the Secretary of State for Defence, or members of Her Majesty’s forces
+                        for personal injuries, deaths or false imprisonment that occurred in connection with
+                        an overseas operation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Paragraphs 2(2) and (3) insert a new section (1ZA) into the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Subsection (1ZA)(1) specifies that, for subsection (1ZA)(3) to apply, the conditions
+                        set out in subsections (1ZA)(1) and (1ZA)(2) must be met. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (1ZA)(1) requires that the cause of action has arisen in connection with
+                        an overseas military operation, and is subject to the limitation law of the foreign
+                        country under whose law the tort claim has been brought.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Subsection (1ZA)(2) requires that a period of six years must have elapsed since the
+                        date on which the foreign limitation period began, or when the action could first
+                        have been brought.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>If both those conditions are satisfied, subsection (1ZA)(3) specifies that the defendant
+                        (i.e. Ministry of Defence, the Secretary of State for Defence, or members of Her Majesty’s
+                        forces) will have a complete defence to any such claim. This ensures that no claim
+                        in relation to overseas operations that is brought in reliance on foreign law can
+                        proceed after six years.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Subsection (1ZA)(4) defines the meaning of “overseas armed forces tort action”.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Subsections (1ZA)(5) and (6) specify what should happen in relation to claims where
+                        the limitation period under the applicable foreign law has been suspended, interrupted,
+                        or disregarded, or where the Limitation (Enemies and Prisoners of War) Act 1945 applies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Paragraph 2(4) inserts a new subsection (3A) into section 7 of the Act, and specifies
+                        that new section 1ZA applies to any claim that is commenced after that section comes
+                        into force. Claims that have been commenced before new section 1ZA comes into force
+                        are unaffected by these amendments.</p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 3: Limitation periods: Scotland</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 1 – Court’s power to override time limits</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Part 1 of Schedule 3 amends section 19A of the Prescription and Limitation (Scotland)
+                        Act 1973, which permits the court to override the normal time limit for bringing personal
+                        injury and/or death claims.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Paragraph 1(3) inserts a new section 19AA, which restricts the power in section 19A
+                        in relation to overseas operations.</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>New section 19AA(2) makes the exercise of the discretionary power subject to new section
+                           19AA(3) and 19AA(5) to 19AA(7). </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>New section 19AA(3) specifies the factors to which the court must have particular
+                           regard when deciding whether to disapply the normal time limit for bringing a claim
+                           for personal injury (including delictual protection of liberty i.e. false imprisonment)
+                           or death. These factors are intended to ensure that the court takes proper account
+                           of the operational context (as defined in new section 19AA(4)), and the likely impact
+                           of giving evidence on the mental health of the Service personnel or veterans involved.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>New sections (19AA)(5) and (19AA)(6) prohibit the court from allowing any claim to
+                           proceed if it has been commenced more than six years after the relevant date (as defined
+                           in section 19AA(13)). Section 19AA(7) prohibits the court from allowing a claim under
+                           section 18(4) of the Act to proceed unless the person died within six years of the
+                           relevant date (as defined in section 19AA(13)).</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>New sections 19AA(8) to (10) specify what should happen where periods of time have
+                           been disregarded, or where the Limitation (Enemies and War Prisoners) Act 1945 applies.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>New sections 19AA(11) to (14) provide definitions of the terms used elsewhere in this
+                           section.</p>
+                     </section>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 2 – Restriction of foreign limitation law</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Part 2 of Schedule 3 amends section 23A of the Prescription and Limitation (Scotland)
+                        Act 1973, and ensures that where foreign limitation periods are applicable to personal
+                        injury and/or death claims connected with overseas operations brought in Scotland,
+                        claimants cannot benefit from more generous time limits in foreign law. Those amendments
+                        restrict – to a maximum of six years from the date on which the cause of action arose
+                        – the court’s discretion to extend the normal time limit for bringing claims against
+                        the Ministry of Defence, the Secretary of State for Defence, or members of Her Majesty’s
+                        forces for personal injuries, deaths or false imprisonment that occurred during an
+                        overseas operation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Paragraph 2(1) and (3) insert a new section 23B into the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Section 23B(1) specifies that subsection (3) applies where the conditions set out
+                        in subsections (1) and (2) are met. </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Section 23B(1) requires that the cause of action has arisen in relation to an overseas
+                           operation, and is subject to the limitation law of the foreign country under whose
+                           law the personal injury claim has been brought.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Section 23B(2) requires that a period of six years must have elapsed since the date
+                           on which the foreign limitation period began, or when the action could first have
+                           been brought.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>If both those conditions are satisfied, subsection (3) specifies that the defendant
+                        (i.e. Ministry of Defence, the Secretary of State for Defence, or members of Her Majesty’s
+                        forces) will have a complete defence to any such claim. This ensures that no claim
+                        in relation to overseas operations that is brought in reliance on foreign law can
+                        proceed after six years.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Section 23B(4) defines the meaning of “overseas armed forces personal injury action”.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Sections 23B(5) specifies what should happen in relation to claims where the limitation
+                        period under the applicable foreign law has been suspended, interrupted or disregarded.</p>
+                  </section>
+                  <section class="level">
+                     <p>Schedule 4: Limitation periods: Northern Ireland</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 1 – Court’s discretion to disapply time limits</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Part 1 of Schedule 4 amends article 50 of the Limitation (Northern Ireland) Order
+                        1989 / 1339, which permits the Court to override the normal time limit for bringing
+                        claims for personal injury and/or death.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Paragraph 1(2) inserts new paragraphs (1A) to (1C).</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>New paragraph (1A) prohibits the court from allowing any claim to proceed if it has
+                           been commenced more than six years after the relevant date (as defined in new paragraph
+                           (8)).</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>New paragraph (1B) specifies that these amendments apply only to claims against the
+                           Ministry of Defence or Secretary of State for Defence or members of Her Majesty’s
+                           forces made in connection with overseas operations where the damage (as defined in
+                           paragraph (1C)) complained of occurred outside the British Islands.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Paragraph 1(3) inserts new paragraphs (3A) and (3B), which explain how these amendments
+                        interact with article 9.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Paragraph 1(4) inserts new paragraph (6A). Paragraph (6A) specifies those additional
+                        factors to which the court must have particular regard when deciding whether to disapply
+                        the normal time limit for bringing a personal injury or death claim. These factors
+                        are intended to ensure that the court takes proper account of the operational context
+                        (as defined in paragraph (6B)), and the likely impact of giving evidence on the mental
+                        health of the Service personnel or veterans involved.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Paragraph (1)(5) inserts a new paragraph (7A), which clarifies how these amendments
+                        will apply in light of the Limitation (Enemies and War Prisoners) Act 1945.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Paragraph 1(6) and (7) insert new definitions.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Part 2 – Restriction of foreign limitation law</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Part 2 of Schedule 4 amends the Foreign Limitation Periods (Northern Ireland) Order
+                        1985/754, and ensures that where foreign limitation periods are applicable to personal
+                        injury and/or death claims connected with overseas operations brought in Scotland,
+                        claimants cannot benefit from more generous time limits in foreign law. Those amendments
+                        restrict – to a maximum of six years from the date on which the cause of action arose
+                        – the court’s discretion to extend the normal time limit for bringing claims against
+                        the Ministry of Defence, the Secretary of State for Defence, or members of Her Majesty’s
+                        forces for personal injuries, deaths or false imprisonment that occurred during an
+                        overseas operation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Paragraph 2(1) and (3) insert a new article 3A into the Order.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>Article 3A(1) specifies that, for article 3A(3) to apply, the conditions set out in
+                        paragraphs (1) and (2) must be met. </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Article 3A(1) requires that the cause of action has arisen in relation to an overseas
+                           operation, and is subject to the limitation law of the foreign country under whose
+                           law the tort claim has been brought.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Article 3A(2) requires that a period of six years must have elapsed since the date
+                           on which the foreign limitation period began, or when the action could first have
+                           been brought.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">73 </span></h2>
+                     <p>If both those conditions are satisfied, article 3A(3) specifies that the defendant
+                        (i.e. Ministry of Defence, the Secretary of State for Defence, or members of Her Majesty’s
+                        forces) will have a complete defence to any such claim. This ensures that no claim
+                        in relation to overseas operations that is brought in reliance on foreign law can
+                        proceed after six years.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">74 </span></h2>
+                     <p>Article 3A(4) defines the meaning of “overseas armed forces tort action” for the purposes
+                        of article 3A.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">75 </span></h2>
+                     <p>Article 3A(5) and (6) specifies what should happen in relation to claims where the
+                        limitation period under the applicable foreign law has been suspended, interrupted
+                        or disregarded, or where the Limitation (Enemies and Prisoners of War) Act 1945 applies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">76 </span></h2>
+                     <p>Paragraph 2(4) amends article 8, and specifies that new article 3A applies to any
+                        claim that is commenced after that article comes into force. Claims that have been
+                        commenced before new article 3A comes into force are unaffected by these amendments.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>Section 14 sets out how the different provisions will be commenced.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Public Consultation on Legal Protections for Armed Forces Personnel and Veterans serving
+                        in operations outside the United Kingdom, available <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/919822/20190718-MOD_consultation_document-FINAL.pdf"><u>here</u></a>.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Public Consultation on Legal Protections for Armed Forces Personnel and Veterans serving
+                        in operations outside the United Kingdom: Ministry of Defence Analysis and Response,
+                        available <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/918790/20200907-MOD_Analysis_and_Response-FINAL__accessible_.pdf"><u>here</u></a>. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>House of Commons Defence Committee report, “Drawing a line: Protecting veterans by
+                        a Statute of Limitations”. The full report can be found <a href="https://publications.parliament.uk/pa/cm201719/cmselect/cmdfence/1224/1224.pdf"><u>here</u></a>. The Government’s response can be found <a href="https://committees.parliament.uk/publications/943/documents/7321/default/"><u>here</u></a>.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Joint Committee on Human Rights report on the Overseas Operations (Service Personnel
+                        and Veterans) Act can be found <a href="https://publications.parliament.uk/pa/jt5801/jtselect/jtrights/665/66502.htm"><u>here</u></a>. The Government’s response can be found <a href="https://committees.parliament.uk/publications/4260/documents/43321/default/"><u>here</u></a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">79 </span></h2>
+                  <p>The Act will extend to England and Wales, Scotland and Northern Ireland. The effects
+                     of the provisions are substantively the same throughout the UK, but as amendments
+                     are needed to different pieces of legislation in the different nations, some provisions
+                     of the Act apply to England and Wales only, some to Scotland, and others to Northern
+                     Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">80 </span></h2>
+                  <p>The extent and application of the provisions are summarised in the table below.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.98in">
+                        <col style="width:1.16in">
+                        <col style="width:1.16in">
+                        <col style="width:1.23in">
+                        <col style="width:1.26in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13 </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">81 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.47in">
+                        <col style="width:2.56in">
+                        <col style="width:2.42in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>18 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-03-18/debates/20031829000001/BILLPRESENTED">
+                                    <u>Vol. 673 Col. 1005</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>23 September 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-09-23/debates/BE01763F-2480-4C4B-9FAA-E36AC7158566/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 680 Col. 984</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>6 October 2020</p>
+                              <p></p>
+                              <p>6 October 2020</p>
+                              <p></p>
+                              <p>8 October 2020</p>
+                              <p></p>
+                              <p>8 October 2020</p>
+                              <p></p>
+                              <p>14 October 2020</p>
+                              <p></p>
+                              <p>14 October 2020</p>
+                              <p></p>
+                              <p>20 October 2020</p>
+                              <p></p>
+                              <p>20 October 2020</p>
+                              <p></p>
+                              <p>22 October 2020</p>
+                              <p></p>
+                              <p>22 October 2020</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-10-06/debates/15edfc84-1958-4d58-afbc-c1f834b5f803/OverseasOperations(ServicePersonnelAndVeterans)Bill(FirstSitting)">
+                                    <u>First sitting Vol. 681 Col. 1</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-06/debates/8fc1f42e-4869-491e-b027-be530d1a5b1d/OverseasOperations(ServicePersonnelAndVeterans)Bill(SecondSitting)">
+                                    <u>Second sitting Vol. 681 Col. 31</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-08/debates/0978324f-c831-4b3d-8f09-6f8302b7541d/OverseasOperations(ServicePersonnelAndVeterans)Bill(ThirdSitting)">
+                                    <u>Third sitting Vol. 681 Col .81</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-08/debates/f7a00940-5c69-4b9d-9c03-dbc31feadc8d/OverseasOperations(ServicePersonnelAndVeterans)Bill(FourthSitting)">
+                                    <u>Fourth Sitting </u>
+                                    <u>Vol. 681 Col. 103</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-14/debates/d0073222-0f7c-4136-a541-2ca38b05e4b4/OverseasOperations(ServicePersonnelAndVeterans)Bill(FifthSitting)">
+                                    <u>Fifth sitting </u>
+                                    <u>Vol. 682 Col. 131</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-14/debates/61a41ccd-a513-46ec-bacd-b865adbd6a8e/OverseasOperations(ServicePersonnelAndVeterans)Bill(SixthSitting)">
+                                    <u>Sixth sitting </u>
+                                    <u>Vol. 682 Col. 163</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-20/debates/a16c3d96-fbb4-4487-86a5-adcedb658b31/OverseasOperations(ServicePersonnelAndVeterans)Bill(SeventhSitting)">
+                                    <u>Seventh sitting </u>
+                                    <u>Vol. 682 Col. 211</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-20/debates/1072e425-214d-48fc-aae6-5d045ba88099/OverseasOperations(ServicePersonnelAndVeterans)Bill(EighthSitting)">
+                                    <u>Eighth sitting</u>
+                                    <u> Vol. 682 Col. 243</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-22/debates/5a4ffd37-cc1b-4e0b-ae57-7af214bf3cb5/OverseasOperations(ServicePersonnelAndVeterans)Bill(NinthSitting)">
+                                    <u>Ninth sitting</u>
+                                    <u> Vol. 681 Col. 297</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-22/debates/f88cee46-6088-4ac9-880e-1ac4f96a859c/OverseasOperations(ServicePersonnelAndVeterans)Bill(TenthSitting)">
+                                    <u>Tenth sitting</u>
+                                    <u> Vol. 681 Col. 325</u>
+                                    <u>
+                                       </u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>3 November 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-11-03/debates/FB4C7182-567C-49B9-A7DE-EFE9EC75B9B4/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 683 Col. 201</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>4 November 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-11-04/debates/C35BB610-83F5-46EA-B83E-45DBC28331DE/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 807 Col. 795</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>20 January 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-01-20/debates/3CCFD6D5-5182-484F-8F0C-28DB13339980/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 809 Col. 1170</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>9 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-09/debates/B82D5065-8436-4DC1-8360-ADC61B9B8A05/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 810 Col. 1493</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>13 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-13/debates/44CAE6C7-41C6-4D84-AA8F-39727B660205/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 811 Col. 1167</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>19 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-19/debates/195A73DE-B5C3-4B26-AFA1-50688F5BDC7F/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 811 Col. 1651</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>21 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-04-21/debates/5881B68B-E609-4005-A565-E2BB3404B313/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 692 Col. 1014</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>26 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-26/debates/77C518E2-F5DF-4DFF-8C47-7E6FCC0BB791/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 811 Col. 2089</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords message</p>
+                           </td>
+                           <td>
+                              <p>27 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-04-27/debates/8FE9DB67-14E5-47CD-AD0C-62AC9C0DF22D/OverseasOperations(ServicePersonnelAndVeterans)Bill">
+                                    <u>Vol. 693 Col. 286</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>28 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2727/stages/12920">
+                                    <u>Vol. 811 Col. 2345</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>29 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-04-29/debates/92DD6573-5F72-4D23-8B86-6AF148BEC641/MessageToAttendTheLordsCommissioners">
+                                    <u>House of Commons Vol. 693 Col. 520</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-29/debates/6B29F4C1-4077-4A0D-8A4C-9E0D8324A14B/RoyalAssent">
+                                    <u>House of Lords Vol. 811 Col. 2413</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C – Progress of the Bill table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">82 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.07in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The offences listed in Schedule 1 include sexual offences, torture and offences under
+                  the International Criminal Court Act 2001. </p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

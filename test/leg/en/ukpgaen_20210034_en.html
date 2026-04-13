@@ -1,0 +1,1372 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>RATING (CORONAVIRUS) AND DIRECTORS DISQUALIFICATION (DISSOLVED COMPANIES)</b>
+               <b>
+                  </b>
+               <b>ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Rating (Coronavirus) and Directors Disqualification
+                  (Dissolved Companies) Act 2021 which received Royal Assent on 15 December 2021 (c.
+                  34).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Levelling Up, Housing
+                  and Communities and the Department for Business, Energy and Industrial Strategy in
+                  order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>implements commitments made by the Government on 25 March 2021 to clarify that coronavirus
+                        and the Government’s response to it is not reflected in rateable values on the 2017
+                        rating list,<a class="fn" id="fnref-1" href="#fn-1">1</a> and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>addresses concerns about the abuse of limited liability, by extending the powers of
+                        the Secretary of State and, in Northern Ireland, of the Department for the Economy
+                        to investigate the conduct of company directors to include former directors of dissolved
+                        companies, to commence disqualification proceedings against them where public interest
+                        criteria are met, and to seek compensation where their conduct has caused loss to
+                        creditors.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Determinations in respect of certain non-domestic rating lists</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">2 </span></h2>
+                     <p>Liability for non-domestic rates (known as business rates) is based upon the rateable
+                        value of the hereditament (the property or part of the property which is liable for
+                        business rates). To be assessed as a hereditament a property must meet a number of
+                        tests established by case law including that it is capable of beneficial occupation.<a class="fn" id="fnref-2" href="#fn-2">2</a> Rateable values are set by the Valuation Office Agency and appear on non-domestic
+                        rating lists. There is a rating list for each Billing Authority and also a Central
+                        Rating List held by the Secretary of State (typically containing network hereditaments
+                        which span many billing authority areas).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3 </span></h2>
+                     <p>Business rate bills are calculated from rateable values which, broadly speaking, represent
+                        annual rental values. These rateable values are updated at general revaluations -
+                        the most recent being in 2017 when rateable values were based on the rental market
+                        value at 1 April 2015 (known as the valuation date). The next revaluation is planned
+                        for 1 April 2023 with a valuation date of 1 April 2021. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>It is at these general revaluations that the rateable value of a hereditament, and
+                        therefore rate bills, are updated to reflect changes in economic factors, market conditions
+                        or changes in the general level of rents. Between revaluations the determination of
+                        whether something is a hereditament and their rateable values can only be changed
+                        to reflect “material changes of circumstances” including, for example, physical changes
+                        to the property or the locality. Since the start of the coronavirus pandemic, the
+                        Valuation Office Agency has received a large number of checks (a prerequisite to challenging
+                        rateable values) arguing that interventions concerning the use of property (such as
+                        requirements to close businesses or to maintain social distancing to comply with health
+                        and safety legislation) are a material change of circumstances. If successful, these
+                        checks and subsequent challenges may impact hereditaments shown on the rating lists
+                        and the level of rateable values across a wide range of properties, sectors and regions
+                        ahead of the next revaluation. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>Matters such as the impact on rental values of coronavirus or interventions in response
+                        to coronavirus are part of the general market conditions and, as such, should where
+                        necessary be reflected in updated rateable values at each revaluation. If it were
+                        otherwise, the Valuation Office Agency would have to constantly reassess all hereditaments
+                        and rateable values with every coronavirus-related intervention or change in intervention
+                        regarding the use or enjoyment of property or the locality.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>The Government does not believe that changes to rateable values through challenges
+                        to the rating list or the removal of hereditaments from the rating list is the right
+                        mechanism to help businesses that need support during the pandemic. On 25 March 2021
+                        the Government therefore announced that they would introduce primary legislation with
+                        retrospective effect to clarify that coronavirus and the Government’s response to
+                        it is not an appropriate use of the material change of circumstances provisions.<a class="fn" id="fnref-3" href="#fn-3">3</a> The Government has instead provided support to ratepayers affected by coronavirus
+                        through business rates relief. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>During the passage of the then Bill through Parliament, the Scottish and Welsh Governments
+                        announced their intention to make corresponding provision in respect of Covid-related
+                        business rates appeals. The Government, at the request of the Welsh Government, tabled
+                        amendments to the Bill at Commons Report stage to extend application of Section 1
+                        to non-domestic rating lists compiled for the purposes of business rates in Wales
+                        (as well as lists for England).</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Investigation and disqualification of former directors of dissolved companies</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>The Insolvency Service regularly receives complaints about the conduct of former directors
+                        of companies which have been dissolved, i.e. companies which have ceased to exist
+                        as registered companies through being struck off the register. In most cases those
+                        complaints concern one of the following areas:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Allowing or causing a company to be dissolved, effectively shedding its liabilities,
+                           with a new company continuing its business. Some complaints relate to this happening
+                           multiple times, and this is sometimes known as “phoenixism”;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Use of the company dissolution process to avoid the cost and implications of formal
+                           liquidation proceedings (the process by which a liquidator is appointed, who realises
+                           the company’s assets and distributes them fairly to creditors); or</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>Avoidance of investigation of conduct under the Company Directors Disqualification
+                           Act 1986 (CDDA86).</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>Similar complaints have been received by the Insolvency Service in Northern Ireland,
+                        from creditors of companies which have been dissolved.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>It is not currently possible for the conduct of former directors of dissolved companies
+                        to be investigated without first restoring the company to the register of companies,
+                        which is time consuming and costly, and involves court proceedings. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>Following an investigation of the conduct of directors, the Secretary of State may
+                        apply to the court for an order for their disqualification. The primary role of disqualification
+                        is to protect the business community and members of the public from individuals who
+                        have demonstrated that they are unfit to be concerned in the management of a limited
+                        company. It also acts as a deterrent to directors abusing the privileges of limited
+                        liability. In this respect, extending the disqualification regime to directors of
+                        dissolved companies will discourage the use of the dissolution process as a method
+                        of fraudulently avoiding repayment of Government-backed loans given to businesses
+                        to support them during the coronavirus pandemic, such as loans made under the Bounce
+                        Back Loans Scheme.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>The conduct of a company director may currently be considered by the Secretary of
+                        State or the Department through information obtained using the power to investigate
+                        live companies contained in the Companies Act 1985 (CA85) and the power to investigate
+                        the conduct of directors of insolvent companies under the CDDA86 or the Company Directors
+                        Disqualification (Northern Ireland) Order 2002 (CDD(NI)O02).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>In both situations, if the investigation determines that there is evidence that the
+                        director’s conduct has fallen below the expected standards of probity and competence
+                        which are appropriate for persons fit to be directors of companies, and public interest
+                        criteria are met, then an application may be made to the court by the Secretary of
+                        State, or as the case may be, the Department, for a disqualification order to be made
+                        against them. Such an application would either be made under section 8 of the CDDA86
+                        in the case of a live company, under section 6 in the case of an insolvent company,
+                        or in Northern Ireland Articles 11 and 9 of the CDD(NI)O02 respectively.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Investigations are usually triggered by receipt of a complaint, or in the case of
+                        an insolvent company, by a report on the conduct of the director submitted to the
+                        Secretary of State or the Department by an insolvency practitioner appointed to manage
+                        the affairs of an insolvent company (often referred to as the office-holder), in accordance
+                        with a requirement under section 7A of the CDDA86 or Article 10A of the CDD(NI)O02.
+                        Live company investigations under the provisions of CA85 are undertaken by the Insolvency
+                        Service on behalf of the Secretary of State. Insolvent company investigations are
+                        undertaken by the Insolvency Service in Great Britain and Northern Ireland, on behalf
+                        of the Secretary of State or the Department respectively.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Complaints about the operation or activities of a live company may be made to the
+                        Insolvency Service, whether in Great Britain or Northern Ireland, by members of the
+                        public. Those complaints are considered and reviewed in order to determine whether
+                        an investigation under CA85 is appropriate and in the public interest.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Under the law as it currently stands, however, if a complaint is received about a
+                        dissolved company it is not possible to investigate any further without taking steps
+                        to have the company restored to the register of companies, a process which is complex,
+                        time consuming, and would be at the cost of the public purse.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Complaints regarding dissolved companies often relate to new companies, frequently
+                        started very soon after the previous company was dissolved, taking over the dissolved
+                        companies’ business, using the same assets (such as location or vehicles), with the
+                        same individuals acting as directors. This can be evidence of what is often referred
+                        to as “phoenixism”, where a company ceases trading leaving its creditors unpaid, and
+                        a new company takes over the business without its outstanding liabilities. Evidence
+                        points to a low-level but recurring theme of the dissolution process being used to
+                        shed liabilities, allowing a new company to take over the business without the burden
+                        of its previous debt. The debts avoided in this way often include tax and civil penalties,
+                        liabilities to consumers, or employment tribunal awards.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Other common complaints about dissolved companies are that the dissolution process
+                        has been used as a way of avoiding having to put the company into formal insolvency
+                        proceedings, with the associated costs and scrutiny that that entails, or that it
+                        is used as a way of avoiding investigation of the actions of the directors under the
+                        CDDA86 or the CDD(NI)O02.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>The Act will allow the Secretary of State, the Department, or the official receiver,
+                        to investigate the conduct of former directors of dissolved companies, without it
+                        being necessary to first restore the company to the register. It will not be necessary
+                        for the dissolved company to have been subject to insolvency proceedings in order
+                        for the power to investigate to apply.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>The proposal to create this new investigative power was included in the Insolvency
+                        and Corporate Governance consultation, which ran between March and June 2018. The
+                        Government’s response to the consultation, which was published in August 2018, and
+                        is available online<a class="fn" id="fnref-4" href="#fn-4">4</a>, noted that the majority of respondents had been supportive of the proposal to widen
+                        existing powers to investigate the conduct of former directors of dissolved companies,
+                        and where appropriate to take action against them. The response also noted that whilst
+                        the dissolution process is an important part of maintaining the integrity of the register
+                        of companies, it should not be used as an alternative to formal insolvency proceedings.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>The new powers will have retrospective effect. This will mean that the conduct of
+                        former directors of dissolved companies that took place prior to commencement of the
+                        measure may be investigated, and where appropriate disqualification action may be
+                        taken with regard to that conduct.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Former directors of dissolved companies against whom disqualification proceedings
+                        are taken will have the opportunity to offer disqualification undertakings to the
+                        Secretary of State, or as the case may be, the Department, as is currently the case
+                        for directors of insolvent companies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Where an application for a disqualification order is made to the court in respect
+                        of a former director of a dissolved company, the court will have a duty to make such
+                        an order if it is satisfied that the person has been a director, and that their conduct
+                        makes them unfit to be concerned in the management of a company. This mirrors the
+                        current position where such an application is made in respect of the director of an
+                        insolvent company.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>A disqualification order made against a former director of a dissolved company, or
+                        a disqualification undertaking given by such a person, will be for a minimum period
+                        of 2 years and a maximum period of 15 years. This will mirror the periods currently
+                        prescribed where orders are made or undertakings accepted in the case of directors
+                        of insolvent companies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Sections 8ZA and 8ZB of the CDDA86 (and Articles 11A and 11B of the CDD(NI)O02), which
+                        allows a period of disqualification to be sought where a disqualified director of
+                        an insolvent company was subject to the influence of another person, or was accustomed
+                        to acting under the instructions of another person, will be extended to include disqualified
+                        former directors of dissolved companies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>A disqualification order (or an undertaking which has been accepted by the Secretary
+                        of State or the Department) prohibits the subject from acting in the promotion, formation,
+                        or management of a company for the period of the order or undertaking, without the
+                        leave of the court. Breach of such an order or undertaking is a criminal offence under
+                        section 13 CDDA86 and Article 18 CDD(NI)O02.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>The existing provisions contained in section 15A of the CDDA86, and Article 19A CDD(NI)O02,
+                        which allow the Secretary of State or the Department to seek compensation from directors
+                        subject to disqualification orders or undertakings where their actions can be shown
+                        to have caused loss to creditors of insolvent companies, will be extended to include
+                        former directors of dissolved companies, and will be expanded to include creditors
+                        of those companies. This will have retrospective effect, so that conduct which was
+                        considered in the disqualification proceedings and which took place prior to commencement
+                        of the measure can be considered for compensation.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Determinations in respect of certain non-domestic rating lists</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Part 3 of the Local Government Finance Act 1988 (“the 1988 Act”) concerns non-domestic
+                        rating. Sections 41 and 52 of the 1988 Act require new local and central rating lists
+                        to be compiled and maintained by Valuation Officers. Sections 42 and 53 require those
+                        rating lists to show hereditaments and their rateable values. Section 64 concerns
+                        the meaning of a hereditament and Schedule 6 concerns the determination of rateable
+                        values. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Investigation and disqualification of former directors of dissolved companies</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Provisions for the investigation of companies and company directors are found in the
+                        Insolvency Act 1986 (IA86), the Companies Act 1985 (CA85), and the Company Directors
+                        Disqualification Act 1986 (CDDA86) for Great Britain.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>For Northern Ireland, similar provisions are in the Insolvency (Northern Ireland)
+                        Order 1989 (I(NI)O89) and the Company Directors Disqualification (Northern Ireland)
+                        Order 2002 (CDD(NI)O02). Investigative powers in CA85 extend to Northern Ireland.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Provisions in IA86 and I(NI)O89 relate to the duty of the official receiver to investigate
+                        the affairs of companies subject to compulsory winding-up proceedings, and are found
+                        in section 132 of that Act and Article 112 of that Order respectively.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Section 447 of CA85 contains a power for the Secretary of State to direct a company
+                        to produce such documents and information as are required, and to authorise an investigator
+                        to make those requirements. In this way the affairs of live companies may be investigated.
+                        If an investigation reveals that the conduct of a director has fallen below expected
+                        standards then an application for disqualification may be made under section 8 of
+                        CDDA86 or Article 11 of CDD(NI)O02, if this is in the public interest. As an alternative
+                        the Secretary of State has the power to petition the court that the company be wound
+                        up in the public interest, under section 124A IA86, in which case disqualification
+                        proceedings could be brought under section 6 CDDA86 if the court made a winding-up
+                        order and the company’s assets were insufficient to meet its liabilities and the expenses
+                        of the winding up. A similar power for the Department exists in Article 104A of the
+                        I(NI)O89, which would allow disqualification proceedings to be brought under Article
+                        9.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Both section 6 of CDDA and Article 9 of CDD(NI)O02, specify that the court has a duty
+                        to make a disqualification order where an application is made, if it is satisfied
+                        that the person has been a director of a company which has at any time become insolvent,
+                        and that their conduct makes them unfit to be concerned in the management of a company.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>In Great Britain section 7(1) of CDDA provides the Secretary of State with the power
+                        to make an application for a disqualification order under section 6. The official
+                        receiver may also make an application for disqualification under this subsection,
+                        but only in the case of a company subject to compulsory liquidation proceedings, and
+                        only if directed to do so by the Secretary of State. Section 7(2A) allows the Secretary
+                        of State to accept a disqualification undertaking if it is offered, and it is expedient
+                        in the public interest that they should do so. Similar provisions, giving the Department
+                        the power to make an application for a disqualification order, to direct the official
+                        receiver to do so under certain circumstances, and to accept disqualification undertakings,
+                        are prescribed by Article 10 of the CDD(NI)O02.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Section 7(4) CDDA86 provides the Secretary of State and the official receiver with
+                        a power to require a person to provide information and documents which relate to any
+                        person’s conduct as a director of an insolvent company, and so provides the power
+                        to investigate conduct in those circumstances. The equivalent power in Article 10(5)
+                        of the CDD(NI)O02 allows for the Department to require similar information and documents
+                        from the current or former liquidator, administrator, or administrative receiver of
+                        the company.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Sections 8ZA and 8ZB of CDDA86 allow the Secretary of State to make an application
+                        to the court (or where appropriate to direct the official receiver to make such an
+                        application) for a disqualification order to be made against a person from whom a
+                        disqualified director of an insolvent company was accustomed to receive instructions,
+                        or who was influenced by that person in their conduct as a director. There is an equivalent
+                        power for the Department in Articles 11A and 11B of the CDD(NI)O02.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Section 15A of CDDA86 allows the Secretary of State to seek compensation from a director
+                        who has been disqualified under any section of CDDA86 (whether they are subject to
+                        a disqualification order or undertaking), where it can be shown that the conduct for
+                        which they were disqualified led to losses to creditors of an insolvent company of
+                        which they were a director at any time. Compensation may be sought by way of an application
+                        to the court by the Secretary of State for an order under section 15A(1) CDDA86, or
+                        the Secretary of State may accept an undertaking from the disqualified director to
+                        pay compensation, under section 15A(2). Similar provisions exist in Article 19A of
+                        the CDD(NI)O02.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Business rates policy is fully devolved. Section 1 extends and applies to England
+                     and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Company director disqualification is a matter for which responsibility is reserved
+                     to the UK Parliament with regard to both Scotland and Wales. Section 2 amends certain
+                     sections of CDDA86, which extends and applies to England, Wales and Scotland (though
+                     section 22F, which is amended by section 2(11), extends to England and Wales only).
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Responsibility for company director disqualification is a matter which is transferred
+                     to the Northern Ireland Assembly. Section 3 amends certain sections of CDD(NI)O02,
+                     which extends and applies to Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. The table also summarises the position regarding
+                     legislative consent motions.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 1: Determinations in respect of certain non-domestic rating lists</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Section 1 of the Act makes provision as to what matters attributable to coronavirus
+                        should be taken into account when deciding whether a hereditament ought to appear
+                        in the rating list and determining rateable values on the 2017 rating list. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Section 1(1) provides that the section applies to relevant determinations. Relevant
+                        determinations are defined in sections 1(2) and 1(3). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Section 1(2)(a) provides that a relevant determination is a determination which is
+                        concerned with whether a hereditament ought to appear in the rating list. Whether
+                        something is a hereditament and should appear in the rating list, and therefore be
+                        liable for business rates, is the first question to be addressed by the Valuation
+                        Officer and the Courts. There is established case law on the meaning of a hereditament
+                        including that something must be capable of beneficial occupation to be considered
+                        a hereditament<a class="fn" id="fnref-5" href="#fn-5">5</a>. Hereditament is defined in section 1(8) and ensures that references to a determination
+                        in section 1(2)(a) include a determination of that first question of whether something
+                        is a hereditament. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Section 1(2)(b) provides that a relevant determination is a determination of the rateable
+                        value of a hereditament on the 2017 rating list. Rateable values are determined in
+                        line with rules in Schedule 6 to the 1988 Act. Broadly speaking the rateable value
+                        is the annual rental value of the hereditament. Schedule 6 to the 1988 Act provides
+                        for the rateable value, during the lifetime of a rating list, to be assessed by reference
+                        to two dates: </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Paragraph 2(3)(b) of Schedule 6 to the 1988 Act gives the Secretary of State the power
+                           to specify a day – known as the valuation date – by reference to which the assessment
+                           of rateable value in a rating list is to be made. For the 2017 rating lists, that
+                           day was specified as 1 April 2015.<a class="fn" id="fnref-6" href="#fn-6">6</a> Therefore, rateable values in the 2017 rating lists are made by reference to valuations
+                           as at 1 April 2015. </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>Paragraph 2(6A) of Schedule 6 to the 1988 Act gives the Secretary of State powers
+                           to specify rules for determining the day – known as the material day - by reference
+                           to which certain matters are to be reflected. Those matters are listed in paragraph
+                           2(7) of Schedule 6 to the 1988 Act and include matters such as those affecting the
+                           physical state of the hereditament or mode or category of occupation of the hereditament.
+                           </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Therefore, rateable values in the 2017 rating lists are made by reference to factors
+                        affecting valuations as at 1 April 2015 except for those matters listed in paragraph
+                        2(7) of Schedule 6 which are reflected as at the material day. As a result, where
+                        one of the matters listed in paragraph 2(7) of Schedule 6 changes during the life
+                        of a rating list then the rateable value of existing hereditaments may need to be
+                        amended and that matter may need to be reflected in the rateable value of new hereditaments.
+                        A change in any matter not within the list in paragraph 2(7) of Schedule 6 should
+                        not lead to a change in an existing rateable value, or be reflected in the rateable
+                        value of new hereditaments, before the next rating lists are compiled. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Section 1(3) excludes from the provisions of the section determinations as to whether
+                        a hereditament is non-domestic or domestic (and therefore liable for Council Tax)
+                        or exempt or not exempt from business rates. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Section 1(4) provides that, subject to exceptions in section 1(5), no account is taken
+                        of any matter that is directly or indirectly attributable to coronavirus when making
+                        a relevant determination. This includes matters arising before the passing of the
+                        Act. This ensures, for example, that any checks, challenges or appeals the Valuation
+                        Officer has received seeking either for a hereditament to be deleted from the list
+                        or its rateable value to be reduced will be determined taking no account of matters
+                        attributable to coronavirus. This includes checks, challenges and (in respect of Tribunal
+                        and Courts) appeals lodged before the passing of the Act concerning matters arising
+                        before the passing of the Act. It will also include determinations the Valuation Officer
+                        makes in maintaining the current 2017 rating list in the absence of any check, challenge
+                        or appeal such as the inclusion of a new hereditament in the rating list (including
+                        such determinations with retrospective effect). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Section 1(5) provides exceptions to the effect of section 1(4) for the following matters:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the physical state of the hereditament. This will ensure, for example, that changes
+                           to the physical structure of the hereditament or the extent of the hereditament (such
+                           as structural changes to the internal fabric of the hereditament, a new extension
+                           to the hereditament or a demolition of part of the hereditament) continue to the be
+                           reflected in the rating list when they arise even if they are attributable to coronavirus.
+                           It will also ensure that changes to the mode or category of occupation of the hereditament
+                           (for example from a restaurant to a shop) may still be reflected in the rating list
+                           where this has been affected by the change in the physical state of the hereditament,
+                           and </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>the quantity of minerals or other substances in or extracted from the hereditament
+                           (typically this provision applies to mines and quarries) and the quantity of refuse
+                           or waste permanently deposited on the hereditament (applying to landfill sites). Mines,
+                           quarries and landfill sites are valued for business rates based, in part, on the amount
+                           of minerals extracted each year or, for landfill, the amount of waste deposited.<a class="fn" id="fnref-7" href="#fn-7">7</a> A special rule in paragraphs 2(7)(c) and (cc) of Schedule 6 to the 1988 Act allows
+                           for the rateable value of these hereditaments to vary year to year between revaluations
+                           based on changes in the rates of mineral extraction (or for landfill deposits). Section
+                           1(5)(b) and (c) will preserve that special rule in respect of changes in the minerals
+                           extracted or landfill deposits attributable to coronavirus. </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Section 1(6) provides a non-exhaustive list of matters included in section 1(4). The
+                        section will ensure, for example, that restrictions on the use of a property imposed
+                        by the Government’s Non-Pharmaceutical Interventions (such as rules on social distancing)
+                        will not be taken into account for a relevant determination. For example, in so far
+                        as a hereditament has been forced to close because of the Non-Pharmaceutical Interventions
+                        then no account will be taken of this in determining whether the hereditament ought
+                        to be shown in the rating list or determining its rateable value. It will also ensure,
+                        for example, that where occupiers have decided that in order to comply with health
+                        and safety legislation, they have had to implement social distancing in their buildings,
+                        then this will not be taken into account for relevant determinations. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Section 1(7) provides that determinations falling within section 1(4) include those
+                        which are based upon matters taken at a day which falls before the Act is passed (as
+                        well as a day on or after it is passed). This ensures that section 1(4) applies to
+                        determinations which have a material day before the Act is passed. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Section 1(8) provides for definitions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Section 1(9) revokes The Valuation for Rating (Coronavirus) (England) Regulations
+                        2021 (S.I. 2021/398) which require, with effect from 25 March 2021, that interventions
+                        to control coronavirus should be assumed to have not occurred for the purposes of
+                        determining rateable values. These regulations are superseded by section 1.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 2: Unfit directors of dissolved companies: Great Britain</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Section 2 amends certain sections of CDDA86 to provide a power to the Secretary of
+                        State and the official receiver to investigate the conduct of former directors of
+                        dissolved companies, for the Secretary of State to seek their disqualification where
+                        appropriate, and to seek compensation where their actions have led to losses to creditors
+                        of dissolved companies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Section 6 of CDDA86 is amended to increase its scope to include former directors of
+                        dissolved companies. In particular, section 6(1) is amended so that if the court is
+                        satisfied on application that the person was a director of an insolvent company, or
+                        was a former director of a company which was dissolved without becoming insolvent,
+                        and their conduct as a director of that company (either taken alone or considered
+                        along with their conduct in other companies) makes them unfit to be concerned in the
+                        management of a company, it has a duty to make a disqualification order. Section 6(3)
+                        is amended to provide the court with jurisdiction to make a disqualification order
+                        in a case that concerns a former director of a dissolved company is the court which
+                        would have had jurisdiction to wind it up on the date of dissolution.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Section 7(2) of CDDA86 is amended so that where an application for a disqualification
+                        order is made by the Secretary of State in respect of a former director of a dissolved
+                        company, it may not be made after the period which is 3 years beginning on the day
+                        that the company was dissolved. Section 7(4) is amended so that the Secretary of State
+                        or the official receiver may require any person to provide information or documentation
+                        which relates to the conduct of a person who was a former director of a dissolved
+                        company, as may be reasonably required.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Section 8ZB(2) of CDDA86 is amended so that where a disqualification application is
+                        made by the Secretary of State under section 8ZA (in the circumstances that the person
+                        in respect of whom the disqualification application is made influenced the actions
+                        of a disqualified former director of a dissolved company), the period within which
+                        such an application may be made is 3 years starting with the date on which the company
+                        in question was dissolved.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Section 15A of CDDA86 is amended so that compensation may be sought where a former
+                        director of a dissolved company’s conduct in that company may be considered when seeking
+                        compensation for losses to creditors.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Sections 22A to 22H of CDDA86 apply that Act to:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Building societies within the meaning of the Building Societies Act 1986</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Incorporated friendly societies within the meaning of the Friendly Societies Act 1992</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>NHS foundation trusts</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Registered societies within the meaning of the Co-operative and Community Benefit
+                           Societies Act 2014</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Charitable incorporated organisations</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Further education bodies</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Protected cell companies incorporated under Part 4 of the Risk Transformation Regulations
+                           2017.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Those sections of the CDDA86 are amended so that references to dissolved companies
+                        do not apply when the Act is being applied to those bodies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Section 2 also provides that the conduct which may be investigated and considered
+                        as a result of the amendments to the CDDA86 made by that section, includes that which
+                        occurred in companies which were dissolved prior to commencement, and that which occurred
+                        prior to commencement in companies which were not dissolved at that time.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Section 3: Unfit directors of dissolved companies: Northern Ireland</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Section 3 makes equivalent amendments to certain Articles of CDD(NI)O02 as did section
+                        2 for the CDDA86. The amendments provide a power to the Department and the official
+                        receiver to investigate the conduct of former directors of dissolved companies, for
+                        the Department to seek their disqualification where appropriate, and to seek compensation
+                        where their actions have led to losses to creditors of dissolved companies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Article 9 of CDD(NI)O02 is amended to increase its scope to include former directors
+                        of dissolved companies. In particular, Article 9(1) is amended so that if the court
+                        is satisfied on application that the person was a director of an insolvent company,
+                        or was a former director of a company which was dissolved without becoming insolvent,
+                        and their conduct as a director of that company (either taken alone or considered
+                        along with their conduct in other companies) makes them unfit to be concerned in the
+                        management of a company, it has a duty to make a disqualification order. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Article 10(2) of CDD(NI)O02 is amended so that where an application for a disqualification
+                        order is made by the Department in respect of a former director of a dissolved company,
+                        it may not be made after the period which is 3 years beginning on the day that the
+                        company was dissolved. Article 10(5A) is inserted, giving a power to the Department
+                        or the official receiver to require any person to provide information or documentation
+                        which relates to the conduct of a person who was a former director of a dissolved
+                        company, as may be reasonably required.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Article 11B(2) of CDD(NI)O02 is amended so that where a disqualification application
+                        is made by the Department under Article 11A (in the circumstances that the person
+                        in respect of whom the disqualification application is made influenced the actions
+                        of a disqualified former director of a dissolved company), the period within which
+                        such an application may be made is 3 years starting with the date on which the company
+                        in question was dissolved.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Article 19A of CDD(NI)O02 is amended so that compensation may be sought where a former
+                        director of a dissolved company’s conduct in that company may be considered when seeking
+                        compensation for losses to creditors.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Articles 24D to 25C of CDD(NI)O02 apply that Order to:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Building societies within the meaning of the Building Societies Act 1986</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Incorporated friendly societies within the meaning of the Friendly Societies Act 1992</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Registered societies within the meaning of the Co-operative and Community Benefit
+                           Societies Act (Northern Ireland) 1969</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Credit unions</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Protected cell companies incorporated under Part 4 of the Risk Transformation Regulations
+                           2017.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Those Articles of the CDD(NI)O02 are amended so that references to dissolved companies
+                        do not apply when the Order is being applied to those bodies.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Section 3 also provides that the conduct which may be investigated and considered
+                        as a result of the amendments to the CDD(NI)O02 made by that section, includes that
+                        which occurred in companies which were dissolved prior to commencement, and that which
+                        occurred prior to commencement in companies which were not dissolved at that time.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>Sections 1 and 4 came into force on Royal Assent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>Sections 2 and 3 came into force on Royal Assent for the purposes mentioned in section
+                     4. Sections 2 and 3 come into force&nbsp;for remaining purposes&nbsp;two months after Royal
+                     Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>The Local Government Finance Act 1988 <a href="https://www.legislation.gov.uk/ukpga/1988/41/contents"><u>https://www.legislation.gov.uk/ukpga/1988/41/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Written Ministerial Statement, Luke Hall MP, Minister of State for Regional Growth
+                        and Local Government. 25 March 2021. <a href="https://questions-statements.parliament.uk/written-statements/detail/2021-03-25/hcws901"><u>https://questions-statements.parliament.uk/written-statements/detail/2021-03-25/hcws901</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A </b>
+                     <b>–</b>
+                     <b> Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>The territorial extent and application of the Act is summarised as follows. Section
+                     1 extends and applies to England and Wales. Section 2 extends and applies to England,
+                     Wales and Scotland. Section 3 extends and applies to Northern Ireland. Please see
+                     the table below for further details. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.02in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.18in">
+                        <col style="width:1.41in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>Section 1 of the Act makes provision in relation to local government finance (non-domestic
+                     rating). Local government finance is a devolved matter in Scotland, Wales and Northern
+                     Ireland. Local taxes to fund local authority expenditure are an exception to the fiscal,
+                     economic and monetary policy reservation by virtue of Schedule 7A, Part 2, Section
+                     A1 of the Government of Wales Act 2006 (as amended). Local taxes to fund local authority
+                     expenditure are exceptions to the fiscal, economic and monetary policy reservation
+                     by virtue of Schedule 5, Part 2, Section A1 of the Scotland Act 1998. Local government
+                     finance is not an excepted or reserved matter in Schedule 2 or 3 of the Northern Ireland
+                     Act 1998. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>Section 2 amends certain sections of CDDA86, which extends and applies to England,
+                     Wales and Scotland (though section 22F, which is amended by section 2(11), extends
+                     to England and Wales only). Company director disqualification is a matter for which
+                     responsibility is reserved to the UK Parliament with regard to both Scotland and Wales.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>Section 3 amends certain Articles of CDD(NI)O02, which extends and applies to Northern
+                     Ireland. Responsibility for company director disqualification is a matter which is
+                     transferred to the Northern Ireland Assembly. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B </b>
+                     <b>–</b>
+                     <b> Hansard references</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.1in">
+                        <col style="width:2.1in">
+                        <col style="width:2.1in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>Stage</p>
+                           </td>
+                           <td>
+                              <p>Date</p>
+                           </td>
+                           <td>
+                              <p>Hansard reference</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 May 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-05-12/debates/2A647063-EC4F-48B2-8013-FA0F05482049/PointOfOrder">
+                                    <u>Vol. 695 Col. 693</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>28 June 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-06-28/debates/D7D3CDF9-AC2C-4969-B231-1BD0DF0D0B6C/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 698</u>
+                                    </a>, Col. 62-84</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee – 1st sitting</p>
+                           </td>
+                           <td>
+                              <p>6 July 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-07-06/debates/b0ebd900-e3ef-47ea-a690-a8c5d9ee23c7/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill(FirstSitting)">
+                                    <u>Col. 1-24</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee – 2nd sitting</p>
+                           </td>
+                           <td>
+                              <p>6 July 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-07-06/debates/88397c75-6157-466a-9ca3-4a6733e2d7ae/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill(SecondSitting)">
+                                    <u>Col. 25-56</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee – 3rd sitting</p>
+                           </td>
+                           <td>
+                              <p>8 July 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-07-08/debates/c8cb74cb-d478-46f2-8391-5a4d57ea9326/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill(ThirdSitting)">
+                                    <u>Col. 67-92</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>9 September 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-09-09/debates/9F925460-3097-4F1C-A930-B7DC4652A267/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 700</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>10 September 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-09-10/debates/78D0A16C-D9B5-457F-AFD9-992F54498399/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 814</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 and 21 October 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-10-21/debates/48EEAD97-293F-4C4A-9427-FDAD603CE83C/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 815</u>
+                                    </a>, and</p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-10-19/debates/4FFE756C-F7F4-42F2-AF95-59FF235B7059/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 815</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee</p>
+                           </td>
+                           <td>
+                              <p>10 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-10-19/debates/4FFE756C-F7F4-42F2-AF95-59FF235B7059/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 815</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>1 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-12-01/debates/14A4FD01-AAC5-4850-8C1D-DE93DF21C07C/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 816</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>8 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-12-08/debates/962BFE6D-6F20-481C-9A4A-A2D690DF35CA/Rating(Coronavirus)AndDirectorsDisqualification(DissolvedCompanies)Bill">
+                                    <u>Vol. 816</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>15 December 2021</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://questions-statements.parliament.uk/written-statements/detail/2021-03-25/hcws901"><u>Written statement</u></a> by the Minister of State for Regional Growth and Local Government made on 25 March
+                  2021. </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Broadly speaking a hereditament is a contiguous unit of property in the same occupation.
+                  Guidance on the meaning of a hereditament is available on the Valuation Office Agency’s
+                  website: <a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament"><u><a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament#:~:text=hereditament%20means%20property%20which%20is,item%20in%20the%20valuation%20list%2C&amp;text=Mazars%20%5B2015%5D%20RA%20373%20as%20to%20what%20constitutes%20a%20hereditament">https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament#:~:text=hereditament%20means%20property%20which%20is,item%20in%20the%20valuation%20list%2C&amp;text=Mazars%20%5B2015%5D%20RA%20373%20as%20to%20what%20constitutes%20a%20hereditament</a></u></a>. </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://questions-statements.parliament.uk/written-statements/detail/2021-03-25/hcws901"><u>Written statement</u></a> by the Minister of State for Regional Growth and Local Government made on 25 March
+                  2021</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  BEIS<i>, Insolvency and Corporate Governance: Government Response</i>, 26 August 2018 <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/736163/ICG_-_Government_response_doc_-_24_Aug_clean_version__with_Minister_s_photo_and_signature__AC.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/736163/ICG_-_Government_response_doc_-_24_Aug_clean_version__with_Minister_s_photo_and_signature__AC.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/736163/ICG_-_Government_response_doc_-_24_Aug_clean_version__with_Minister_s_photo_and_signature__AC.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Guidance on the meaning of hereditament and the test needed to be met for entry in
+                  the rating list is available in the VOA’s Rating Manual Section 3 Part 1 <a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament"><u><a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament">https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  The Rating Lists (Valuation Date) (England) Order 2014 No. 2841 </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Guidance in the Valuation Office Agency’s Rating Manual is available on the valuation
+                  of <a href="https://www.gov.uk/guidance/rating-manual-section-6-chhallenges-to-the-rating-list/part-4-mineral-hereditaments"><u>mineral hereditaments</u></a> and <a href="https://www.gov.uk/guidance/rating-manual-section-6-part-3-valuation-of-all-property-classes/section-545-landfill-sites"><u>landfill sites</u></a>.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

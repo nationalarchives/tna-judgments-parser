@@ -1,0 +1,637 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>BUDGET RESPONSIBILITY</b>
+               <b>
+                  </b>
+               <b>ACT 2024</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Budget Responsibility Act 2024 which received
+                     Royal Assent on 10 September 2024 (c. 24). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by HM Treasury in order to assist the reader
+                     in understanding the Act. They do not form part of the Act and have not been endorsed
+                     by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Budget Responsibility Act 2024 ensures that fiscal announcements in respect of
+                     fiscally significant measures made by the Government are subject to an independent
+                     assessment by the Office for Budget Responsibility (OBR). It achieves this by requiring
+                     the OBR to produce an assessment of the fiscal impacts of fiscally significant measures,
+                     without a request from HM Treasury if necessary.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The OBR is an executive non-departmental public body, sponsored by HM Treasury, which
+                     provides independent and authoritative analysis of the UK’s public finances. The OBR
+                     was established under the Budget Responsibility and National Audit Act 2011 (“the
+                     BRNAA”). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Under section 4(3) of the BRNAA, the OBR is required to “on at least two occasions
+                     for each financial year, prepare fiscal and economic forecasts”, including an assessment
+                     of “the extent to which the fiscal mandate has been, or is likely to be, achieved”.
+                     HM Treasury’s Charter for Budget Responsibility (“the Charter”), which sets out its
+                     fiscal policy objectives and is subordinate to the BRNAA, states that the Chancellor
+                     must commission the OBR to produce its forecasts at a particular date, at least twice
+                     a year and one of which will be for the Budget. The Charter also states that OBR forecasts
+                     are to be adopted as the official forecasts for Budget Reports. HM Treasury has agreed
+                     with the OBR, via a published Memorandum of Understanding, to provide them with 10
+                     weeks’ notice for a full forecast/fiscal event. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Under the current legal framework, there is no requirement on HM Treasury to subject
+                     announcements on all fiscally significant measures to independent OBR scrutiny. The
+                     Budget Responsibility Act 2024 therefore ensures that all announcements on fiscally
+                     significant measures made by the Government are subject to an independent assessment
+                     from the OBR. It does this by requiring HM Treasury, ahead of a Minister making a
+                     fiscal announcement to the House of Commons regarding a fiscally significant measure,
+                     to commission an economic and fiscal forecast from the OBR. If the Treasury does not
+                     make this request and the OBR is of the opinion that the measure is fiscally significant,
+                     it places a requirement on the OBR to produce assessments of fiscally significant
+                     measures as soon as reasonably practicable. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>These measures intend to preserve market stability and public trust in announcements
+                     on fiscally significant measures, by ensuring there is independent and transparent
+                     scrutiny of the Government’s fiscal plans.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The statutory framework for the OBR is set out in: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The <b>Budget Responsibility and National Audit Act 2011</b> (“the BRNAA”) - which establishes the OBR on a statutory basis and sets out the OBR’s
+                        statutory duty to examine and report on the sustainability of public finances; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>HM Treasury’s <b>Charter for Budget Responsibility</b> (“the Charter”) – which was introduced in the BRNAA, and which sets out the OBR’s
+                        remit, how it should perform its duties, the required content of key publications,
+                        and arrangements for determining forecast timing. It also sets out the fiscal framework
+                        against which the OBR should assess the Government’s fiscal plans. The Charter is
+                        drafted by HM Treasury, must be laid before Parliament, and does not come into force
+                        until approved by the House of Commons. Any modification to the Charter concerning
+                        guidance as to how the OBR’s duty is to be performed must also be published in draft
+                        28 days before it is laid in Parliament. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In addition, a Memorandum of Understanding (“the MoU”), which is jointly agreed between
+                     HMT, the OBR, HM Revenue and Customs and the Department for Work and Pensions, establishes
+                     the processes and expectations for information sharing, notification of publications,
+                     and working arrangements ahead of fiscal events.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Neither the BRNAA nor the Charter require the OBR’s assent to modify, but they do
+                     require Parliamentary approval:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Amendments to the BRNAA require primary legislation in the usual way; and </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Amendments to the Charter must be laid before Parliament and approved by a vote of
+                        the House of Commons. The updated Charter must be published in draft at least 28 days
+                        before it can be laid before Parliament where i) the Charter is modifying guidance
+                        as to how the OBR’s duty is to be performed, or ii) the Charter is making provision
+                        for the purpose of supplementing the new section 4A of the BRNAA introduced by the
+                        Budget Responsibility Act 2024.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act extends and applies to England, Scotland, Wales and Northern Ireland. This
+                     Act concerns reserved matters in respect of Scotland and Wales and excepted matters
+                     in respect of Northern Ireland.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Section 1: Announcement of fiscally significant measures</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Subsection (1) notes that this Act amends part 1 of the BRNAA, which relates to the
+                     establishment of the OBR.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Subsection (2) amends section 4 of the BRNAA to reflect the additional duties introduced
+                     in this Act, so that section 4(2) will read: “The duty imposed by this section includes,
+                     in particular, the duties imposed on the Office by subsections (3) and (4) and section
+                     4A”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Subsection (3) introduces a new section 4A.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Subsection (1) of section 4A states if a Minister of the Crown plans to make a fiscal
+                     announcement in respect of fiscally significant measures to the House of Commons,
+                     then HM Treasury must request that the OBR prepare a report under section 4(3) of
+                     the BRNAA which will assess these measures. As described in paragraph 3 above, section
+                     4(3) of the BRNAA requires the OBR to produce fiscal and economic forecasts, including
+                     assessments of the extent to which the Government is meeting its fiscal mandate. Subsection
+                     (1) sets out the typical forecast process whereby the Chancellor commissions a forecast
+                     from the OBR to go alongside a Budget (in accordance with the Charter), or a fiscal
+                     event. The typical process is for the Chancellor to commission the OBR, at least twice
+                     per financial year, to publish forecasts of the economy and public finances. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Subsection (2) of section 4A means that, if the OBR deems that a fiscal announcement
+                     in respect of fiscally significant measures has been made to the House of Commons,
+                     and HM Treasury did not request an economic and fiscal forecast to be published alongside
+                     the announcement, it is required to inform the Treasury Committee of its opinion,
+                     and to prepare a report including a costing that assesses the fiscal impact of each
+                     measure. The OBR may, but is not required to, prepare this report as an economic and
+                     fiscal forecast under section 4(3) of the BRNAA. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Subsection (3) of section 4A sets out that a measure or combination of measures is
+                     “fiscally significant” if the measure, or a combination of measures, has a costing
+                     for a specified period that exceeds a specified percentage of gross domestic product
+                     for a specified period – here, “specified” means specified in, or determined in accordance
+                     with, the Charter. Measures seeking to address tax avoidance are not intended to be
+                     within the scope of section 4(A)(2) and (3), as the Charter makes it clear that this
+                     subsection does not cover measures that do not have a policy costing, which tax avoidance
+                     measures would not (paragraph 17 below explains that the Charter can set out further
+                     provision for the meanings of terms, including costing).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (4) of section 4A provides that the need for an independent OBR assessment
+                     (in subsections (1) and (3) of section 4A) does not apply for measures that are intended
+                     to have a temporary effect and which are in response to an emergency. This subsection
+                     is intended to exclude fiscally significant measures that are required in response
+                     to economic or other large shocks, such as was the case during the COVID-19 pandemic
+                     when significant emergency spending was needed very rapidly via the furlough scheme.
+                     This exclusion recognises that it is reasonable for the Government, in response to
+                     economic or other large shocks, to act quickly outside of a fiscal event without an
+                     OBR assessment. As set out in the Charter, in an emergency, the Chancellor may commission
+                     a forecast, or request analysis, from the OBR to follow the measures that need to
+                     be announced or implemented more quickly than such analysis can be produced. It is
+                     not intended to exclude temporary measures where there has not been an emergency in
+                     the usual sense of the word, nor economic or other large shocks, such as the temporary
+                     full expensing policy for capital allowances announced in the Spring 2023 Budget.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subsection (5) of section 4A allows the Charter for Budget Responsibility to include
+                     further detail, definitions or explanations to clarify new section 4A. Subsection
+                     (5) may be exercised so that the Charter includes provision about the meaning of expressions
+                     used in subsection (1) to (4) but which are not defined elsewhere in section 4A or
+                     in other provisions of the BRNAA. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsection (6) of section 4A requires that HM Treasury publish any updates to the
+                     Charter for Budget Responsibility at least 28 days before laying it before Parliament
+                     for approval by the House of Commons. This only applies to the provisions under new
+                     section 4A of the BRNAA.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (7) of section 4A clarifies definitions of terms used in section 1. A “fiscal
+                     announcement” means an announcement in respect of any other matter mentioned in section
+                     1(2)(c) of the BRNAA, i.e. the matters to be included in a Financial Statement and
+                     Budget Report prepared under section 2 of the BRNAA. A “section 4 (3) report” includes
+                     fiscal and economic forecasts and an assessment of the extent to which the fiscal
+                     mandate has been, or is likely to be, achieved.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsection (8) of section 4A makes clear that it does not matter for the purposes
+                     of this section whether or not two or more measures are, or are proposed to be, announced
+                     at the same time or at different times. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (9) of section 4A ensures that the provisions of new section 4A that refer
+                     to the Treasury Select Committee continue to operate as intended if the name of the
+                     Treasury Select Committee changes or its functions are transferred to a different
+                     Committee.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Section 2: Extent, commencement and short title</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Subsection (1) notes that the provisions extend to England, Scotland, Wales and Northern
+                     Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsection (2) provides that the Treasury may commence section 1 by regulations following
+                     Royal Assent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (3) states that section 1 may come into force over different days.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (4) gives the short title of the Act as the Budget Responsibility Act 2024.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Section 1 of the Act comes into force following regulations made by HM Treasury. Section
+                     2 of the Act came into force upon Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Budget Responsibility and National Audit Act 2011: <a href="https://www.legislation.gov.uk/ukpga/2011/4/contents"><u>https://www.legislation.gov.uk/ukpga/2011/4/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Charter for Budget Responsibility (Autumn 2022 update): <a href="https://assets.publishing.service.gov.uk/media/63d15c6cd3bf7f3c4900f11a/Charter_for_Budget_Responsibility_-_AS22_-_FINAL_as_published_in_draft.pdf"><u>https://assets.publishing.service.gov.uk/media/63d15c6cd3bf7f3c4900f11a/Charter_for_Budget_Responsibility_-_AS22_-_FINAL_as_published_in_draft.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>18 July 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-07-18/debates/BD0244AE-DE32-4AB3-B09E-1E3751D5F910/PointsOfOrder">
+                                    <u>Vol. [752] Col. [212]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 July 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-07-30/debates/D06173A9-48EC-4D52-B19F-3B220E128EF9/BudgetResponsibilityBill">
+                                    <u>Vol. [752] Col. [1211]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>04 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-09-04/debates/1BE8D2AA-429A-427F-95E6-230251FCBBC2/BudgetResponsibilityBill">
+                                    <u>Vol. [753] Col. [333]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>04 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-09-04/debates/1BE8D2AA-429A-427F-95E6-230251FCBBC2/BudgetResponsibilityBill">
+                                    <u>Vol. [753] Col. [388]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>05 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-09-05/debates/6DD51E90-3DF5-43AB-94DB-088B1C711553/BudgetResponsibilityBill">
+                                    <u>Vol. [839] Col. [1253]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>09 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-09-09/debates/C8D724F6-9582-4E47-A25E-F306858A05F3/BudgetResponsibilityBill">
+                                    <u>Vol. [839] Col. [1426]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>10 September 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-09-10/debates/5132D7F4-E9C4-43BD-A5EE-569384B39066/PointOfOrder">
+                                    <u>House of Commons Vol. [753] Col. [711]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-09-10/debates/870D2C87-BFFF-4672-81BE-EE2C78B1DDE9/RoyalAssent">
+                                    <u>House of Lords Vol. [839] Col. [1493]</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

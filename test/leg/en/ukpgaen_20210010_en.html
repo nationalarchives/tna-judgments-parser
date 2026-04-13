@@ -1,0 +1,2619 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>TRADE ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Trade Act 2021 which received Royal Assent on
+                     29 April 2021 (c. 10).</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for International Trade
+                     in order to assist the reader in understanding the Trade Act 2021. They do not form
+                     part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act means in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act affects existing legislation in this area.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Trade Act 2021. They are
+                     not, and are not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Trade Act provides key measures that are required as the UK Government develops
+                     its trade policy for the UK now it has left the European Union (EU). These measures
+                     include:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>A power to ensure that the UK can implement procurement obligations that arise from
+                        the UK acceding to the Agreement on Government Procurement (GPA) in its own right
+                        and not as a member state of the EU. The GPA is a plurilateral agreement within the
+                        World Trade Organization (WTO) framework. It mutually opens government procurement
+                        markets and seeks to address trade barriers among its parties. This power allows the
+                        Government and devolved authorities to implement changes to domestic law which are
+                        and will be necessary for the UK to meet and enforce obligations arising from its
+                        status as an independent party to the GPA.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>A power to assist with the implementation of UK trade agreements with partner countries
+                        with which the EU had signed trade agreements as at 31 January 2020. This power allows
+                        the Government and devolved authorities to implement changes to domestic law which
+                        are and will be necessary for the UK to meet obligations flowing from these agreements.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Provisions establishing a new body, the Trade Remedies Authority (TRA), to deliver
+                        the new UK trade remedies framework, and to enable the TRA to provide advice, support
+                        and assistance to the Secretary of State in connection with the conduct of international
+                        disputes, other functions of the Secretary of State relating to trade and functions
+                        of the TRA. The TRA may also provide advice, support and assistance in relation to
+                        international trade and trade remedies to others as it considers appropriate.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>A power to appoint members to the Trade and Agriculture Commission (TAC), and a duty
+                        to seek advice from that Commission under section 42 of the Agriculture Act 2020 on
+                        whether measures in certain free trade agreements applicable to trade in agricultural
+                        products are consistent with the maintenance of UK levels of statutory protection
+                        in relation to animal or plant life or health, animal welfare, and the environment.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>A power for HM Revenue and Customs (HMRC) to collect information on behalf of the
+                        Government to confirm the number of exporters of goods and services there are in the
+                        UK, to enable the Government to identify those exporters for trade promotion purposes.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>A power to establish a data sharing gateway between HMRC and other public and private
+                        bodies, so that those bodies, including the Department for International Trade, can
+                        discharge their public functions and access relevant data for research, monitoring
+                        and evaluation.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Government Procurement Agreement</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">2 </span></h2>
+                     <p>The GPA is a plurilateral agreement which mutually opens up government procurement
+                        markets among its parties within the framework of the WTO. The UK acceded as an independent
+                        party on 1 January 2021. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3 </span></h2>
+                     <p>The GPA consists of (a) the main text of the agreement and (b) schedules of coverage.
+                        The main text establishes rules for transparent and non-discriminatory conditions
+                        of competition in government procurement. These rules apply to procurement activities
+                        that parties have agreed to cover under the GPA. Details of the entities, goods, services
+                        and value thresholds for procurement activities in specific jurisdictions are set
+                        out in the schedules of coverage.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>The Trade Act provides the Government and the devolved authorities with the power
+                        to make the changes to domestic legislation which are necessary to ensure the UK’s
+                        obligations arising from its status as an independent party to the GPA can be fully
+                        implemented. It also ensures that the UK is able to take action against GPA parties
+                        who do not observe their obligations to the UK. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>International trade agreements – maintaining trade arrangements with other countries</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>The EU trade agreements that the UK participated in solely through its membership
+                        of the EU no longer apply to the UK following the end of the transition period. The
+                        Government has sought to ensure continuity in the effects of these trade and investment
+                        relationships as far as possible by working to replicate predecessor EU agreements.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>The Trade Act provides the Government and the devolved authorities with the power
+                        to make the changes to domestic legislation that are necessary to ensure that these
+                        agreements can be fully implemented. This implementation power can only be used to
+                        implement international trade agreements with countries with which the EU already
+                        had signed trade agreements by 31 January 2020. The power cannot be used to implement
+                        a free trade agreement with the USA or China.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Trade Remedies Authority</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>Trade remedies measures protect domestic industries against injury caused by unfair
+                        trading practices, such as dumping and subsidies, and from unforeseen surges in imports.
+                        Investigations, decisions and monitoring of trade remedies measures were performed
+                        by the European Commission on behalf of all Member States when the UK was a member
+                        of the EU. The Trade Act establishes a UK body – the Trade Remedies Authority (TRA)
+                        – to ensure the UK can continue to provide a safety net to domestic industries now
+                        that the UK has left <br>the EU.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>The Act establishes the TRA as a non‐departmental public body. It is responsible for
+                        conducting trade remedies investigations under a statutory framework provided by the
+                        Taxation (Cross-border Trade) Act 2018, and for making impartial recommendations to
+                        the Secretary of State.<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>Measures in the Act also require the TRA, upon request, to provide advice, support
+                        and assistance to the Secretary of State in connection with the Secretary of State’s
+                        trade-related functions, international trade disputes, and the TRA’s functions. This
+                        provision also allows the TRA to provide advice, support and assistance to others
+                        as it considers appropriate in relation to international trade and trade remedies.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Trade and Agriculture Commission</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>Measures in the Trade Act put the Trade and Agriculture Commission on a statutory
+                        footing.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>Section 42 of the Agriculture Act 2020 places a duty on the Secretary of State to
+                        report on whether the measures in certain free trade agreements applicable to trade
+                        in agricultural products are consistent with maintaining UK levels of statutory protection
+                        in relation to animal or plant life or health, animal welfare, and the environment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>The Trade Act empowers the Secretary of State to appoint members to an expert committee
+                        named the Trade and Agriculture Commission, to provide advice under section 42 of
+                        the Agriculture Act 2020. It places the Secretary of State under a duty to seek advice
+                        from the TAC in this respect and to lay any advice received before Parliament, to
+                        aid transparency and Parliamentary scrutiny for new free trade agreements.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>The Trade Act also provides for administrative matters relating to the TAC, and for
+                        reviews of the TAC’s continued operation at least every three years.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Trade information</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Other measures in the Trade Act allow HMRC to collect data on behalf of the Government
+                        to confirm the number of exporters of goods and services in the UK and allow the Government
+                        to identify those exporters for trade promotion purposes.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>The Trade Act also permits HMRC to share data with other bodies so that they can fulfil
+                        their public functions related to trade. This power provides access to information
+                        which the Government and the TRA need to carry out functions that were previously
+                        carried out by the European Commission. That information will inform the Government
+                        in designing and monitoring trade policy, including conducting trade disputes, and
+                        assist the TRA in investigating trade remedy cases. It also enables HMRC to share
+                        data with international organisations that oversee the world trade system (for example
+                        the WTO).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>These data sharing powers are subject to strict safeguards under the Act, the Commissioners
+                        for Revenue and Customs Act 2005 and the Data Protection Act 2018, ensuring appropriate
+                        protection and use of the data.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Equivalent data sharing powers were enacted through sections 1 to 3 of the Trade (Disclosure
+                        of Information) Act 2020 (DOI Act), which received Royal Assent in December 2020 to
+                        facilitate data sharing prior to the end of the Transition Period. Section 4(1) of
+                        the DOI Act contains provision for the expiry of sections 1 to 3 of that Act. The
+                        expiry of these sections is subject to the Secretary of State being of the opinion
+                        that an Act resulting from the Trade Act is passed which contains provisions that
+                        have the same effect as, or similar effect to, sections 1 to 3 of the DOI Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>If the Secretary of State is of this opinion, the Secretary of State must, by regulations
+                        made by statutory instrument, provide for sections 1 to 3 of that Act to expire at
+                        the time that the ‘corresponding provisions’ come into force to any extent.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 17 sets out the territorial extent of the Trade Act. The extent of an Act
+                     can be different from its application. Application is about where an Act produces
+                     a practical effect rather than where it forms part of the law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The Trade Act extends and applies to the whole of the UK. In addition, repeals and
+                     amendments made by the Trade Act have the same territorial extent as the legislation
+                     that they are repealing or amending.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The UK Parliament does not normally legislate with regard to matters that are within
+                     the legislative competence of the Scottish Parliament, Senedd Cymru or the Northern
+                     Ireland Assembly without the consent of the legislature concerned. It is also the
+                     practice of the Government to seek the consent of the devolved legislatures for provisions
+                     which would alter the competence of those legislatures or of the devolved administrations
+                     in Scotland, Wales and Northern Ireland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: Implementation of international trade agreements</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 1: Implementation of the Agreement on Government Procurement</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">23 </span></h2>
+                        <p>The GPA was negotiated and agreed in 1994 following negotiations between likeminded
+                           countries on bringing procurement within the field of international trade. It entered
+                           into force on 1 January 1996. Subsequent negotiations between the parties took place
+                           and a revised version of the GPA was adopted on 30 March 2012 and entered into force
+                           on 6 April 2014 by means of the Protocol Amending the Agreement on Government Procurement
+                           (the 2012 Protocol). All GPA parties have adopted the 2012 Protocol.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">24 </span></h2>
+                        <p>The GPA is a WTO plurilateral agreement. WTO plurilateral agreements are voluntary
+                           and not all WTO members are obliged to join, unlike the WTO multilateral agreements
+                           which are binding on all WTO members. The GPA is between 21 parties within the WTO
+                           membership,<a class="fn" id="fnref-2" href="#fn-2">2</a> including many of the major economies such as the United States, Canada, the EU and
+                           Japan. It aims to mutually open government procurement markets among its parties,
+                           and seeks to address trade barriers, such as preferential treatment of domestic goods
+                           and services, in the government procurement sector.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">25 </span></h2>
+                        <p>The GPA sets out a high-level framework of rules to ensure fair, open and transparent
+                           competition for government procurement covered by the agreement. It also contains
+                           provisions to ensure that GPA parties provide effective review procedures. The market
+                           access offered by each Party is set out in its Annexes, which list the entities and
+                           type of procurement covered by the GPA; this is known collectively as “coverage”.
+                           The Annexes also set out the various financial thresholds over which procurement is
+                           covered under the GPA. Goods, services or entities not addressed in a Party’s annexes
+                           are not covered by the Agreement. This allows parties to decide what level of market
+                           access they provide to other parties, and to include, or exclude, goods, services
+                           or entities from the cover given.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">26 </span></h2>
+                        <p>The power in section 1 of the Act enables the UK and the devolved authorities to make
+                           changes to domestic law necessary for the UK to meet obligations arising from its
+                           independent membership of the GPA.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">27 </span></h2>
+                        <p>Before the GPA can came into force for the UK as an independent party, the UK had
+                           to ensure that the agreement could be implemented domestically. When the UK was an
+                           EU Member State, the UK's obligations under the GPA were implemented by secondary
+                           legislation made under powers in section 2(2) of the European Communities Act 1972
+                           (ECA), the effect of which was saved by the European Union (Withdrawal Agreement)
+                           Act 2020 for the duration of the transition period. The European Union (Withdrawal)
+                           Act 2018, as amended by the European Union (Withdrawal Agreement) Act 2020, preserved
+                           in UK law the EU law existing at the end of the transition period, and allowed it
+                           to be amended to make it work in a UK context. The implementation of the UK's existing
+                           obligations under the GPA was preserved <br>in this way.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">28 </span></h2>
+                        <p>However, this does not enable the UK to give full effect in domestic law to obligations
+                           arising from its independent accession to the GPA. To ensure that the UK's obligations
+                           arising from independent accession to the GPA can be fully implemented, the power
+                           in section 1 of the Act gives the Government and devolved authorities ("appropriate
+                           authorities") the power to make regulations to implement changes to domestic law which
+                           are and will be necessary for the UK to meet its obligations as an independent party
+                           to the GPA.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">29 </span></h2>
+                        <p>The UK currently gives effect to its GPA obligations in domestic public procurement
+                           regulations. For England, Wales and Northern Ireland these include the Public Contracts
+                           Regulations 2015, the Utilities Contract Regulations 2016 and the Concession Contracts
+                           Regulations 2016. For Scotland, these include Scottish procurement regulations, namely
+                           the Public Contracts (Scotland) Regulations 2015, the Utilities Contracts (Scotland)
+                           Regulations 2016 and the Concession Contracts (Scotland) Regulations 2016. These sets
+                           of regulations implement EU Directives 2014/24/EU, 2014/25/EU, 2014/23/EU, 89/665/EEC
+                           and 92/13/EEC.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">30 </span></h2>
+                        <p>In both sets of regulations, contracting authorities and utilities are placed under
+                           an obligation to accord to the goods, services and suppliers of the signatories to
+                           the GPA treatment that is no less favourable than the treatment accorded to the goods,
+                           services and suppliers of the UK.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">31 </span></h2>
+                        <p>Section 1(1) provides a power for appropriate authorities to make regulations for
+                           five purposes:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>Subsection (1)(a) allows an appropriate authority to make regulations for the purpose
+                              of implementing the GPA. An example of how the UK might use this power is to amend
+                              existing secondary legislation to refer to the version of the GPA which reflects the
+                              UK as an independent party, and which includes the UK's coverage schedules.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>Subsection (1)(b)(i) permits an appropriate authority to make regulations to reflect
+                              new parties acceding to the GPA or existing parties withdrawing from GPA. An example
+                              of how the power could be used would be to extend rights and remedies to a newly acceding
+                              party's suppliers once that party accedes.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>Subsection (1)(b)(ii) allows an appropriate authority to make regulations to enforce
+                              the UK’s rights under the GPA in the event of a dispute between the UK and another
+                              GPA party, by suspending concessions or other obligations to that GPA party or to
+                              provide mutually acceptable non-financial compensation should the UK need to increase
+                              concessions or other obligations where it is not able to bring itself into compliance.
+                              An example of how the power could be used would be to amend the Public Contract Regulations
+                              2015 to exclude from public procurement suppliers of goods or services established
+                              in or operating from that GPA party’s territory.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>Subsection (1)(b)(iii) allows an appropriate authority to make regulations, where
+                              required, which are consequential on other parties making modifications to their market
+                              access schedules in their Appendix I to the GPA. Examples of how the power could be
+                              used would be extending market access to suppliers from an expanded territory of a
+                              GPA party, for example if a new member joins the EU, or withdrawing equivalent coverage
+                              from a party where a UK objection to another party’s modification has not been resolved.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">e.</span></h2>
+                           <p>Subsection (1)(b)(iv) allows an appropriate authority to make regulations to reflect
+                              any modifications to the list of central government entities of the UK listed in Annex
+                              1 to the UK’s Appendix I to the GPA. The UK committed to commencing the process for
+                              updating the list of central government entities in its Annex 1 shortly after acceding
+                              to the GPA as an independent party. This subsection allows the UK to implement the
+                              updated list of central government entities in domestic legislation.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">32 </span></h2>
+                        <p>Section 1(2) sets out limitations on when regulations made under Section 1(1) may
+                           come into force:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>Subsection (2)(a) provides that regulations made under subsection (1)(a) may not come
+                              into force before the day on which the UK accedes to the GPA. The wording reflects
+                              the fact that, under Article XXII:2 of the GPA, to accede to the GPA, a party must
+                              deposit with the Director-General of the WTO an instrument of accession that states
+                              the terms which have been agreed. The GPA will then enter into force for that party
+                              on the 30th day following the party depositing its instrument of accession.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>Subsection (2)(b) provides that regulations made under subsection (1)(b)(i) may not,
+                              in the case of a new party joining the GPA, come into force before the day on which
+                              the new party accedes. In the case of a party withdrawing from the GPA, regulations
+                              made under subsection (1)(b)(i) may not come into force before the day on which the
+                              party withdraws from the GPA. The requirement to deposit an instrument of accession
+                              and the 30-day time period described above will apply to parties intending to accede
+                              to the GPA. Withdrawals from the GPA take place either 60 days after the withdrawing
+                              party has notified the WTO Director-General of its withdrawal from the GPA, or immediately
+                              if the party also withdraws from the WTO.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>Subsection (2)(c) provides that regulations made under subsection (1)(b)(iii) and
+                              subsection (1)(b)(iv) may not come into force before modifications to other parties’
+                              Appendix I to the GPA or the modifications to the UK’s Annex 1 list of central government
+                              entities to the GPA or become effective. This reflects the fact that, under Article
+                              XIX:5 of the GPA, modifications made by parties to its schedules become effective
+                              only where certain conditions are met.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>Regulations made under subsection (1)(b)(ii) are not subject to the limitations set
+                              out in section 1(2), since such regulations cannot be made until the UK has acceded
+                              to the GPA. This is because, as described below, the powers under subsection (1)(b)(ii)
+                              cannot be exercised until a dispute has arisen under the GPA between the UK and another
+                              GPA party.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">33 </span></h2>
+                        <p>Section 1(3) establishes what sort of provision may be made by regulations under section
+                           1(1). Regulations may modify retained direct principal EU legislation, as defined
+                           in the European Union (Withdrawal) Act 2018.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">34 </span></h2>
+                        <p>Section 1(4) defines a “dispute” for the purposes of subsection (1)(b)(ii) as a matter
+                           that the UK or another party would be entitled to challenge under the WTO’s Dispute
+                           Settlement Understanding (“DSU”). Article XX of the GPA provides that, where a GPA
+                           party considers that its benefits under the GPA are being blocked or impaired by another
+                           GPA party, it may refer the matter for dispute settlement under the terms of the DSU.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 2: Implementation of international trade agreements</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">35 </span></h2>
+                        <p>International trade agreements are agreements between two or more countries aimed
+                           at reducing the barriers to trade in goods or services between them. The UK was signed
+                           up to many international trade agreements with other countries through its membership
+                           of the EU, and this continued throughout the transition period.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">36 </span></h2>
+                        <p>The Government’s policy has been to seek continuity in the UK’s existing trade relationships
+                           following the UK’s departure from the EU. To achieve this, it has worked to establish
+                           a UK trade agreement with each existing partner country based, as closely as possible,
+                           on maintaining the effects of the trade agreement that that country already had with
+                           the EU.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">37 </span></h2>
+                        <p>Although the Government’s policy intention is to ensure continuity as far as possible
+                           of the effects of the UK’s current trading arrangements, the new UK-partner country
+                           agreements that are implemented using this power will be legally distinct from the
+                           original EU-partner country agreements on which they are based. It may be necessary
+                           to amend the text of the previous EU agreements, for example so that the new agreements
+                           can work in a UK legal context.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">38 </span></h2>
+                        <p>Before an international trade agreement can enter into force, the parties to that
+                           agreement must ensure that the agreement is implemented domestically, to avoid breach
+                           of the agreement on entry into force. This means they must ensure their domestic legislative
+                           framework is consistent with the commitments within the trade agreement. It is a convention
+                           within the UK that an international treaty is not ratified until it has been implemented.
+                           Not all obligations within a trade agreement require a change to the law. It is envisaged
+                           that the main area where a change to UK law is required, for the purposes of the international
+                           trade agreements in the scope of this Act, is in implementing the procurement obligations
+                           of these international trade agreements and mutual recognition agreements.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">39 </span></h2>
+                        <p>Now the UK has left the EU, the ECA 1972 has been repealed, but the effects of sections&nbsp;2(1)
+                           and 2(2) were preserved for the transition period. Following the end of the transition
+                           period the Government needs a legislative framework that enables it to implement obligations
+                           flowing from international trade agreements which the UK is making with countries
+                           with which it had trade agreements via its membership of the EU in domestic legislation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">40 </span></h2>
+                        <p>As a general rule, the European Union (Withdrawal) Act 2018 preserves in UK law the
+                           EU law existing at the point at which the UK left the EU, and allows it to be amended
+                           to make it work in a UK context following the end of the transition period. In most
+                           cases, the implementation of any already existing obligations within these new UK-partner
+                           country trade agreements will have been preserved by the operation of the European
+                           Union (Withdrawal) Act 2018 and the powers under it.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">41 </span></h2>
+                        <p>However, not all obligations in EU-partner country trade agreements had been fully
+                           implemented by the EU in EU law (or by the UK implementing EU obligations into UK
+                           law) by the end of the transition period. In such cases, the European Union (Withdrawal)
+                           Act 2018’s preservation provisions, and its powers to correct deficiencies in retained
+                           EU law arising from the UK’s exit from the EU, do not assist. Section 2 of the Trade
+                           Act is therefore needed to ensure that these trade agreements can be fully implemented
+                           within UK law. The Government expects that these obligations will primarily relate
+                           to procurement, mutual recognition (as a consequence of transitioning Mutual Recognition
+                           Agreements) or in respect of enforcement or compensation provisions should any dispute
+                           or other issues arise.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">42 </span></h2>
+                        <p>It is also possible that adjustments may be required to ensure that the new UK-partner
+                           country trade agreements work outside the original EU context. If implementing those
+                           adjustments requires a change to UK law, section 2 provides a vehicle to make those
+                           legislative changes to ensure that the UK is not in breach of its international obligations.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">43 </span></h2>
+                        <p>In addition, it is important that UK-partner country agreements remain operable and
+                           up to date following the end of the transition period. Where appropriate changes to
+                           the agreement are necessary, it is important that these can be implemented efficiently.
+                           This could include, for example, implementing decisions made by a joint committee
+                           of the parties set up under a trade agreement or implementing the results of an arbitration/alternative
+                           dispute resolution decision.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">44 </span></h2>
+                        <p>To ensure that the UK’s trade agreements with EU partner countries can be fully implemented,
+                           section 2 gives the Government and devolved authorities the power to make regulations
+                           to implement non-tariff provisions in any international trade agreements that the
+                           UK makes with partner countries, provided that those countries had signed a trade
+                           agreement with the EU before 31 January 2020. Section 2 can be used to implement provisions
+                           in the agreement that are mandatory or discretionary in character. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">45 </span></h2>
+                        <p>The section 2 power allows for provisions of trade agreements to be implemented in
+                           the UK through secondary legislation made under the affirmative resolution procedure.
+                           If, for example, a trade agreement requires countries to treat businesses from their
+                           respective countries equally when they bid for government procurement contracts, this
+                           must be reflected in the domestic legislative framework of both countries to enable
+                           that obligation to be met by each. The Government and devolved authorities could use
+                           the section 2 power to make secondary legislation to introduce any appropriate changes.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">46 </span></h2>
+                        <p>Where continuity UK-partner country agreements need ratifying (which means a form
+                           of formal indication that a state intends to be bound by the agreement), they will
+                           be subject to Parliamentary scrutiny in accordance with the Constitutional Reform
+                           and Governance <br>Act 2010.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">47 </span></h2>
+                        <p>The types of agreement that are in scope of this section are ‘international trade
+                           agreements’ signed by the UK. The types of agreements within scope of the definition
+                           of “international trade agreements” are a) free trade agreements (as defined in section
+                           5(1) – see paragraph 55 below) and b) other international agreements which are not
+                           free trade agreements, but which mainly relate to trade. These other agreements which
+                           ‘mainly relate to trade’ include, but are not limited to, ancillary agreements, bilateral
+                           procurement agreements and mutual recognition agreements on product conformity assessment.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">48 </span></h2>
+                        <p>Subsection 2(3) provides that the power cannot be used to implement one of the UK’s
+                           free trade agreements unless the other signatory/ies already had a signed free trade
+                           agreement with the EU immediately before 31 January 2020. Subsection 2(4) similarly
+                           provides that the power cannot be used to implement other international trade agreements
+                           not falling within the definition of a “free trade agreement” unless the other signatory/ies
+                           already had a signed international trade agreement (whether in the form of a free
+                           trade agreement or otherwise) immediately before 31 January 2020. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">49 </span></h2>
+                        <p>Subsections (5) to (8) provide substantive restrictions on which trade agreement provisions
+                           can be implemented using the section 2(1) power. Subsection (5) provides that section
+                           2 can only be used to implement international trade agreements in a way that is consistent
+                           with maintaining UK publicly-funded clinical healthcare services. ‘UK publicly-funded
+                           clinical healthcare services’ is defined in subsection (12).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">50 </span></h2>
+                        <p>Subsections (6) and (7) further provide that section 2 can only be used to implement
+                           international trade agreements in a way that is consistent with maintaining UK levels
+                           of statutory protection in listed areas, including human, animal or plant life or
+                           health; animal welfare; environmental protection; employment and labour; data protection;
+                           and the protection of children and vulnerable adults online.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">51 </span></h2>
+                        <p>The section 2 power will be used only to implement non-tariff provisions. Tariff provisions
+                           – that is, the elements of a trade agreement that set tax and duties on imports and
+                           exports – are addressed separately in the Taxation (Cross-Border Trade) Act 2018.
+                           Subsection (8) specifically provides that regulations made under subsection (1) may
+                           not make provisions that could be made by regulations under section 9 of that Act.
+                           Section 9 allows regulations to be made to give effect to preferential tariff rate
+                           arrangements between the UK and the government of a country or territory outside the
+                           United Kingdom.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">52 </span></h2>
+                        <p>Subsection (9) establishes what sort of provision may be made by regulations under
+                           subsection (1). Regulations may (among other things): modify retained EU law (as defined
+                           in the European Union (Withdrawal) Act 2018) including primary legislation that is
+                           retained EU law and retained direct EU legislation; confer functions on the Secretary
+                           of State, or any other person, including conferring a discretion; provide for the
+                           delegation of functions (other than law-making functions); and provide for civil penalties.
+                           Subsection (9) does not allow for regulations to make or extend criminal offences,
+                           charge fees, amend primary legislation other than retained EU law, or create new public
+                           bodies.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">53 </span></h2>
+                        <p>Subsection (10) makes the power in subsection (1) subject to a sunset requirement.
+                           This means that five years after the end of the transition period the power will cease
+                           to have effect. However, subsections (10)(b) and (11) provide that this period can
+                           be extended by the Government on review, with the approval of both Houses of Parliament
+                           (see Part 4 of Schedule 2 for procedural requirements), for further periods of up
+                           to 5 years at a time.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 3: Free trade agreements and genocide</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">54 </span></h2>
+                        <p>Section 3 ensures that a debate and vote in the Commons would happen following a tiered
+                           process starting with the responsible Commons Committee publishing a report which
+                           states that there exist credible reports of genocide in the territory of a country
+                           with which we are proposing a new bilateral free trade agreement. The Secretary of
+                           State would respond to the Committee in writing and at that point the Committee could
+                           insist on a Parliamentary debate and would set out the wording of a motion to be moved
+                           in the Commons. The Secretary of State would be obliged to make arrangements to debate
+                           and vote on the motion. A take note debate would also take place in the Lords following
+                           a similar tiered process if the responsible Lords Committee published an equivalent
+                           report.”</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 4: Regulations: devolved authorities and general provision</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">55 </span></h2>
+                        <p>Section 4(1) provides for different types of provision that could be made by regulations
+                           under sections 1 and 2 where needed, for example consequential provisions, or transitional
+                           or savings provisions. The section also gives effect to Schedules 1, 2 and 3, which
+                           provide for how regulations under sections 1 and 2 can be made. These Schedules are
+                           discussed further below at paragraphs 105 to 132.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 5: Interpretation of Part 1</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">56 </span></h2>
+                        <p>Section 5 sets out how certain terms within Part 1 of the Trade Act should be interpreted.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">57 </span></h2>
+                        <p>Amongst these definitions, section 5(1) defines an “appropriate authority” as a Minister
+                           of the Crown or a devolved authority for the purpose of making regulations under section
+                           1 (implementation of the GPA) and section 2 (implementation of international trade
+                           agreements). “Minister of the Crown” is defined in section 16. Section&nbsp;5(1) also defines
+                           ”devolved authority” as the Scottish Ministers, the Welsh Ministers or a Northern
+                           Ireland department.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">58 </span></h2>
+                        <p>Section 5(1) defines “free trade agreement” by reference to provisions in GATT and
+                           GATS which concern regional trade agreements. Specifically, the subsection refers
+                           to the requirements in GATT and GATS to notify WTO members when parties have decided
+                           to enter into a regional trade agreement (see GATT Article XXIV:7(a)and GATS Article
+                           V:7(a)). Therefore, the term “free trade agreement” means an agreement which triggers
+                           the notification requirement under those provisions. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">59 </span></h2>
+                        <p>Under GATT, this covers an agreement to enter into a customs union or a free-trade
+                           area or an interim agreement leading to the formation of a customs union or a free-trade
+                           area, as defined in the GATT. For these purposes, in broad terms, a customs union
+                           means where two or more customs territories become one customs territory. Such customs
+                           unions have two main features. One is that duties and other restrictive regulations
+                           of commerce (except those expressly permitted) are eliminated with respect to substantially
+                           all the trade between those customs territories, or at least with respect to substantially
+                           all the trade in products originating in such territories. The other is that substantially
+                           the same duties and other regulations of commerce are applied by each of the members
+                           of the customs union to trade with third countries.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">60 </span></h2>
+                        <p>A free-trade area under GATT broadly means a group of two or more customs territories
+                           in which the duties and other restrictive regulations of commerce (except those expressly
+                           permitted) are eliminated on substantially all the trade between the territories making
+                           up the area in products originating in those territories.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">61 </span></h2>
+                        <p>Regional trade agreements notifiable under GATS Article V:7(a) are known as economic
+                           integration agreements. These liberalise trade in services between the parties to
+                           the agreements, and must have substantial sectoral coverage and provide for the absence
+                           or elimination of substantially all discrimination between the parties in the sectors
+                           covered.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">62 </span></h2>
+                        <p>Section 5(2) provides for references in Part 1 of the Act to being a “signatory” to
+                           an international trade agreement to be read, in addition to signature, as also covering
+                           a party doing anything that would amount to a consent to be bound by the agreement
+                           as a matter of international law.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">63 </span></h2>
+                        <p>Section 5(3) defines what is meant by a reference in Part 1 to a draft of regulations
+                           being laid before each House of Parliament and before the Scottish Parliament, the
+                           Senedd Cymru, and the Northern Ireland Assembly, respectively.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">64 </span></h2>
+                        <p>Section 5(4) explains that references in Part 1 of the Act to anything which is retained
+                           EU law by virtue of section 4 of the European Union (Withdrawal) Act 2018 (directly
+                           effective Treaty rights etc.) includes modifications of the rights, powers, liabilities,
+                           obligations, restrictions, remedies or procedures concerned, as well as the rights
+                           etc. themselves.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 2: Trade Remedies Authority</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 6: The Trade Remedies Authority</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">65 </span></h2>
+                        <p>This section establishes a new non-departmental public body, the TRA.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">66 </span></h2>
+                        <p>Subsection (2) introduces Schedule 4, which contains further provisions regarding
+                           the governance and accountability of the TRA.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">67 </span></h2>
+                        <p>Subsection (3) introduces Schedule 5, which makes provision about schemes for the
+                           transfer of staff in connection with the establishment of the TRA.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 7: Provision of advice, support and assistance by the TRA</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">68 </span></h2>
+                        <p>This section sets out the circumstances in which the TRA can apply its expertise more
+                           widely in relation to international trade and trade remedies.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">69 </span></h2>
+                        <p>It provides that, when requested to do so, the TRA must provide the Secretary of State
+                           with advice, support and assistance in connection with the conduct of international
+                           trade disputes, the Secretary of State’s trade-related functions, and the TRA’s functions.
+                           Before making such a request, the Secretary of State is required to consult the TRA
+                           and to have regard to the TRA’s expertise and the need to protect its operational
+                           independence and impartiality.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">70 </span></h2>
+                        <p>The TRA may also provide such advice, support and assistance as it considers appropriate
+                           to others in relation to international trade and trade remedies.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 3: The Trade and Agriculture Commission</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 8: Trade and Agriculture Commission</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">71 </span></h2>
+                        <p>Section 8 provides that the Secretary of State may appoint members to the TAC, and
+                           that the purpose of the TAC is to provide advice under section 42 of the Agriculture
+                           Act 2020. This advice concerns whether, and to what extent, new free trade agreement
+                           measures applicable to international trade in agricultural products are consistent
+                           with maintaining UK statutory protections in relation to animal and plant life or
+                           health, animal welfare, and the&nbsp;environment. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">72 </span></h2>
+                        <p>Subsection 3 provides that when appointing members to the TAC, the Secretary of State
+                           must have regard to the desirability of ensuring that the members collectively have
+                           expertise in UK animal and plant health standards, UK animal welfare standards, UK
+                           environmental standards and international trade law and policy.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 9: Trade and Agriculture Commission: advisory functions</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">73 </span></h2>
+                        <p> Section 42 of the Agriculture Act 2020 places a duty on the Secretary of State to
+                           report on whether the measures in certain free trade agreements applicable to trade
+                           in agricultural products are consistent with maintaining UK levels of statutory protection
+                           in relation to animal or plant life or health, animal welfare, and the environment.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">74 </span></h2>
+                        <p>Subsection 9(2) of the Trade Act amends section 42 of the Agriculture Act 2020 to
+                           impose a duty on the Secretary of State to request advice from the TAC on these matters,
+                           except in relation to human life or health. This advice will be used to inform the
+                           section 42 report. It also requires the Secretary of State to publish the request
+                           for advice and any accompanying guidelines, and to lay any advice received pursuant
+                           to such a request before Parliament before the section 42 report (ie before laying
+                           the relevant free trade agreement before Parliament under Part 2 of the Constitutional
+                           Governance and Reform Act 2010).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">75 </span></h2>
+                        <p>Subsection 9(4) amends the Agriculture Act 2020 to provide for a review of the operation
+                           of the TAC at least once every three years, the first review of which is to take place
+                           on or before 11pm on 31 December 2023. It also provides for the Secretary of State
+                           to make regulations repealing section 9’s amendments to the Agriculture Act 2020 via
+                           the affirmative resolution procedure, so long as such regulations do not come into
+                           force before 11pm on 31 December 2023.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 10: Trade and Agriculture Commission: further provision</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">76 </span></h2>
+                        <p>Section 10 makes provision about administrative matters relating to the TAC. It provides
+                           that TAC members are not to be regarded as servants or agents of the Crown.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">77 </span></h2>
+                        <p>It also ensures that the TAC is provided with the necessary resources to provide its
+                           advice, including to form a secretariat, and enables the Secretary of State to provide
+                           for the payment of expenses to a member of the TAC incurred in relation to the preparation
+                           of the TAC’s advice.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 11: Trade and Agriculture Commission: repeal</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">78 </span></h2>
+                        <p>This clause empowers the Secretary of State to repeal the provisions relating to the
+                           TAC if the duty to seek advice under section 42 of the Agriculture Act is repealed.
+                           This would need to be done via a statutory instrument using the draft affirmative
+                           resolution procedure; that is to say, the TAC cannot be removed without agreement
+                           from Parliament. </p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 4: Trade information</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 12: Collection of exporter information by HMRC</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">79 </span></h2>
+                        <p>This section introduces a new function for HMRC, namely, to collect information on
+                           behalf of the Government which will assist the Government in identifying companies,
+                           partnerships and sole traders that export goods and services.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">80 </span></h2>
+                        <p>Section 12(1) creates a new function for HMRC to request information from any person
+                           in order to assist the Secretary of State to establish the number of exporters of
+                           goods and services in the UK and to be able to identify those exporters for trade
+                           promotion purposes. Compliance with such a request is entirely voluntary and the Act
+                           does not provide for the imposition of any sanctions in the event of non-compliance.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">81 </span></h2>
+                        <p>Section 12(2) defines export of goods and services as supply to a person who is outside
+                           of the United Kingdom.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">82 </span></h2>
+                        <p>Section 12(3) provides the Treasury with the power to specify in regulations the type
+                           of information to be collected and how it will be requested, whether in the tax return
+                           or some other method of collection.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">83 </span></h2>
+                        <p>Section 12(4) provides that regulations made under subsection (3) can modify (i.e.
+                           amend or repeal) primary legislation. This power is needed so that amendments can
+                           be made to the tax Acts, as necessary, in order to allow corporation and personal
+                           tax returns to be amended to include the request for exporter information.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">84 </span></h2>
+                        <p>Section 12(5) provides that any regulations made under subsection (3) which amend
+                           or repeal an Act of Parliament are subject to the affirmative procedure. Subsection
+                           (6) provides that any other regulations made under subsection (3) are subject to the
+                           negative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 13: Disclosure of information by HMRC</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">85 </span></h2>
+                        <p>Following the UK’s exit from the EU and the transition period, several bodies will
+                           need to have access to HMRC data to enable them to carry out functions relating to
+                           trade which were previously fulfilled by the European Commission. For example, the
+                           Department for International Trade and the TRA require information to conduct trade
+                           disputes on behalf of the UK or impose trade remedies. Access to the information is
+                           also required in order to produce trade statistics and for trade research and analysis
+                           purposes which can both inform the development of evidence-based trade policy and
+                           be used to monitor and evaluate its effectiveness. Section 13 allows HMRC to share
+                           data with those bodies in order that they can fulfil such functions.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">86 </span></h2>
+                        <p>This provision is needed in addition to the disclosure of information power in section
+                           25 of the Taxation (Cross-border Trade) Act 2018 because that power is limited to
+                           matters related to customs duty purposes, which does not cover the full scope of the
+                           Government’s activities.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">87 </span></h2>
+                        <p>Section 13(1) allows HMRC to share data with public or private bodies in order that
+                           they can fulfil their public functions as they relate to trade. This includes powers
+                           to share data, when needed, with international organisations that oversee the world
+                           trade system (for example the WTO) as well as with other departments, including the
+                           Cabinet Office, and the devolved authorities.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">88 </span></h2>
+                        <p>Section 13(2) provides a non-exhaustive list of functions connected with the border
+                           which are part of wider Minister of the Crown functions relating to trade, in particular
+                           those of the Minister for the Cabinet Office.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">89 </span></h2>
+                        <p>Section 13(3) ensures that information can only be used by the recipient for the purpose
+                           for which it was disclosed by HMRC and prohibits any onward sharing of the data beyond
+                           the bodies with which sharing has been agreed unless expressly permitted by HMRC Commissioners.
+                           Permission can be granted on an individual disclosure basis or on a more general basis,
+                           where ongoing disclosure is required for the same purpose and with the same organisation.
+                           These restrictions mirror the restrictions in the Commissioners for Revenue and Customs
+                           Act 2005.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">90 </span></h2>
+                        <p>Section 13(4) applies the penalties under section 19 and 20 of the Commissioners for
+                           Revenue and Customs Act 2005 in respect of any unauthorised sharing of information
+                           received under this power.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">91 </span></h2>
+                        <p>Section 13(5) confirms that this data sharing section does not limit or constrain
+                           data sharing powers in the Commissioners for Revenue and Customs Act 2005 or in any
+                           other enactment or rule of law. In effect this means that any restrictions on the
+                           sharing of data under this provision are limited to the scope of this Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">92 </span></h2>
+                        <p>Section 13(6) confirms that nothing in the section permits the disclosure of information
+                           which is not also permitted under the Data Protection Act 2018 or the Investigatory
+                           Powers <br>Act 2016.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 14: Disclosure of information by other authorities</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">93 </span></h2>
+                        <p>Having left the EU, Government departments with trade functions (in particular the
+                           Department for International Trade and Cabinet Office) need to have access to data
+                           held by other public authorities to assist them to carry out their functions relating
+                           to trade. For example, information is required by the Cabinet Office so that, through
+                           its Border and Protocol Delivery Group, it can analyse and promote efficiencies in
+                           the flow of traffic, goods and services in and out of the United Kingdom. Section
+                           14 allows specific public authorities to share data with Government departments with
+                           trade functions in order that they can fulfil those functions.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">94 </span></h2>
+                        <p>Section 14(1) allows specific public authorities to share data for the purpose of
+                           facilitating the exercise by a Minister of the Crown of the Minister’s function as
+                           they relate to trade. In particular, this section will enable data sharing with the
+                           Department for International Trade and the Cabinet Office. The data sharing power
+                           is permissive so the public authority sharing the information must satisfy itself
+                           that sharing the data is for the purpose relating to trade. Section 14(3) lists the
+                           specific public authorities who are able to disclose information under section 14(1).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">95 </span></h2>
+                        <p>Section 14(2) provides a non-exhaustive list of functions connected with the border
+                           which are part of wider Minister of the Crown functions relating to trade. Listing
+                           these functions will enable the specific public authorities to more readily satisfy
+                           themselves that these functions connected with the border are functions for which
+                           disclosure would be permitted under section 14(1).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">96 </span></h2>
+                        <p>Section 14(4) ensures that information can only be used by the recipient for the purpose
+                           for which it was disclosed, that is, to facilitate the exercise by a Minister of the
+                           Crown of the Minister’s functions relating to trade (or, if the information has been
+                           further disclosed under section 14(5) to another public authority, to facilitate the
+                           exercise of that public authority’s functions relating to trade). Functions in relation
+                           to trade include the functions listed in section 14(2).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">97 </span></h2>
+                        <p>Section 14(5) provides a power enabling the recipient to further disclose the information
+                           if it receives the consent of the public authority that disclosed the information
+                           under section 14(1). Permission can be granted on an individual disclosure basis or
+                           on a general basis. The recipient of information under section 14(5) is subject to
+                           the restrictions on use in <br>section 14(4).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">98 </span></h2>
+                        <p>Section 14(6) confirms that this section does not limit or constrain data sharing
+                           powers in any other enactment or rule of law. In effect this means that any restrictions
+                           on the sharing of data under this provision are limited to the scope of this Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">99 </span></h2>
+                        <p>Certain information held by specific public authorities are subject to constraints
+                           on disclosure. To enable sharing of this information, section 14(7) provides a general
+                           disapplication of these restrictions. As a result, disclosure under this section does
+                           not breach any obligation of confidence owed by a person disclosing information, or
+                           any other restriction on the disclosure of information. This means that any information
+                           held by the specific public authorities can be disclosed, should the purpose in section
+                           14(1) be satisfied.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">100 </span></h2>
+                        <p>Section 14(8) confirms that nothing in this section permits the disclosure of information
+                           which is not also permitted under the data protection legislation (principally the
+                           Data Protection Act 2018 and the GDPR) or the Investigatory Powers Act 2016.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">101 </span></h2>
+                        <p>Section 14(9) provides the Minister of the Crown with the power to add or remove public
+                           authorities from the list of specified public authorities in section 14(3) who can
+                           disclose information under subsection (1). Subsection (10) provides that any regulations
+                           made under section 14(9) are subject to the affirmative procedure.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 15: Offences related to disclosure under section 14</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">102 </span></h2>
+                        <p>This section provides that an offence is committed where a person discloses information
+                           in contravention of section 14 which relates to a person whose identity is specified
+                           in the disclosure, or can be deduced from it. Section 15(2) sets out the defence for
+                           a person charged with an offence under this section. Section 15(3) sets out that prosecution
+                           for an offence under this section may only be brought in England and Wales with consent
+                           of the Director of Public Prosecutions, and may only be brought in Northern Ireland
+                           with the consent of the Director of Public Prosecutions for Northern Ireland. Section
+                           15(4) sets out the penalties which may be imposed where a person is found guilty of
+                           an offence.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">103 </span></h2>
+                        <p>Section 15 was amended to aid interpretation and confirm what is meant for the purposes
+                           of this Act by the term “devolved authority”.</p>
+                     </section>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 5: General</b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 16: Interpretation</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">104 </span></h2>
+                        <p>Section 16 sets out the general interpretative provisions for the Act, including definitions
+                           of “devolved authority”, “Minister of the Crown” and “modify”.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b> Section 17: Extent</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">105 </span></h2>
+                        <p>Section 17 provides that the Act extends to England and Wales, Scotland and Northern
+                           Ireland.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 18: Commencement</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">106 </span></h2>
+                        <p>Section 18 sets out the commencement provisions for the Act. It provides that Part
+                           5 comes into force on the day of Royal Assent, and that the remaining provisions come
+                           into force at the time(s) appointed by a Minister of the Crown by statutory instrument.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Section 19: Short title</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">107 </span></h2>
+                        <p>Section 19 establishes that the short title of this Act is the Trade Act 2021.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Schedules</b>
+                           </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 1: Restrictions on devolved authorities</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">108 </span></h2>
+                        <p>The Schedule describes the circumstances in which a devolved authority (defined in
+                           section 5 as the Scottish Ministers, Welsh Ministers or a Northern Ireland department)
+                           can use the powers in sections 1 and 2 to make regulations.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>No power to make provision outside devolved competence</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">109 </span></h2>
+                        <p>Paragraph 1 provides that a devolved authority may not make provision under sections
+                           1 or 2 unless the provision is within the devolved authority’s devolved competence.
+                           Devolved competence is defined in paragraphs 6 to 8 of the Schedule (see paragraph
+                           111 below).</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Requirement for consultation in certain circumstances</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">110 </span></h2>
+                        <p>Paragraph 2 sets out the requirement for the devolved authorities to consult the Government
+                           prior to making regulations in certain circumstances. These circumstances are where
+                           regulations under sections 1 or 2 were commenced prior to the end of the transition
+                           period, or where regulations under section 2 make provision about any quota arrangements
+                           or are incompatible with such quota arrangements. Quota arrangements are defined in
+                           sub-paragraph (3).</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Requirement for consent where it would otherwise be required</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">111 </span></h2>
+                        <p>Paragraph 3 sets out that consent of a Minister of the Crown is required if a devolved
+                           authority is making a provision using the powers in sections 1 or 2 and the provision
+                           would otherwise require consent if it were being made under other powers. That could
+                           be where the relevant devolved legislature’s legislative powers were subject to a
+                           consent requirement, or where the devolved authority would normally require consent
+                           to make such a provision via secondary legislation. This requirement for consent will
+                           not apply if the devolved authority already has power to make such provision using
+                           secondary legislation without needing the consent of the Minister of the Crown.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Requirement for joint exercise where it would otherwise be required</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">112 </span></h2>
+                        <p>Paragraph 4 sets out that, where a devolved authority would normally only be able
+                           to make legislation jointly with the UK Government, the devolved authority will still
+                           have to make such legislation jointly when exercising the powers in sections 1 or
+                           2.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Requirement for consultation where it would otherwise be required</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">113 </span></h2>
+                        <p>Paragraph 5 requires consultation with the Government on legislation made by a devolved
+                           authority in the exercise of the powers in sections 1 or 2, where the devolved authority
+                           would normally be required to consult with the Government when making those kind of
+                           changes in legislation.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Meaning of devolved competence</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">114 </span></h2>
+                        <p>Paragraphs 6 to 8 define devolved competence for the purposes of exercising the power
+                           in sections 1 or 2. The definition of “legislative competence” for the purposes of
+                           exercising these powers disapplies the normal restriction on the devolved legislatures’
+                           competence which prevents them from legislating in a way that is incompatible with
+                           EU law. This disapplication is necessary to enable devolved authorities to make all
+                           necessary regulations under this power in devolved areas. This is because exercise
+                           of these powers will inevitably require some changes that would be incompatible with
+                           EU law and therefore would be outside the normal legislative competence of the devolved
+                           legislatures.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Interpretation</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">115 </span></h2>
+                        <p>Paragraph 9 defines “Northern Ireland devolved authority” for the purpose of the Schedule.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 2: Regulations under Part 1</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">116 </span></h2>
+                        <p>Part 1 of the Schedule provides that the powers to make regulations under Part 1 of
+                           the Act are exercisable by statutory instrument, and makes corresponding provision
+                           for the devolved authorities and for a Minister of the Crown acting jointly with a
+                           devolved authority.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">117 </span></h2>
+                        <p>Parts 2, 3, 4 and 5 of the Schedule provide for scrutiny by the UK Parliament and
+                           the devolved legislatures of regulations made under sections 1 and 2.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Scrutiny of regulations made by Minister of the Crown or devolved authority acting
+                                 alone</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">118 </span></h2>
+                        <p>Paragraph 2 provides that the negative procedure applies to regulations made by a
+                           Minister of the Crown or a devolved authority acting alone under section 1(1).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">119 </span></h2>
+                        <p>Paragraph 4 provides that the affirmative procedure applies to regulations made by
+                           a Minister of the Crown or a devolved authority acting alone under section 2(1).</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>
+                              <u>Scrutiny of regulations made by Minister of the Crown and devolved authority acting
+                                 jointly</u>
+                              </b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">120 </span></h2>
+                        <p>Paragraph 3 provides for the negative procedure to apply to regulations made jointly
+                           by a Minister of the Crown and a devolved authority under section 1(1).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">121 </span></h2>
+                        <p>Paragraph 5 provides for the affirmative procedure to apply to regulations made jointly
+                           by a Minister of the Crown and a devolved authority under Section 2(1).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">122 </span></h2>
+                        <p>Part 4 of the Schedule provides for scrutiny by the UK Parliament of regulations made
+                           under section 2(10)(b) to extend the time during which the section 2 power may be
+                           exercised. The affirmative procedure applies to such regulations.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 3: Exceptions to restrictions in the devolution settlements</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">123 </span></h2>
+                        <p>Schedule 3 modifies the test for executive competence of the devolved authorities.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">124 </span></h2>
+                        <p>Paragraph 1 makes provision in relation to the existing limit in section 57 of the
+                           Scotland Act 1998 (as amended by the European Union (Withdrawal) Act 2018 and European
+                           Union (Withdrawal Agreement) Act 2020). It provides that the constraint on modification
+                           of retained EU law in that section does not apply to the making of regulations under
+                           sections 1 or 2.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">125 </span></h2>
+                        <p>Paragraphs 2 and 3 make equivalent provision in respect of the Government of Wales
+                           Act 2006 and the Northern Ireland Act 1998.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">126 </span></h2>
+                        <p>Paragraph 4 provides that the restrictions on the devolved executives making secondary
+                           legislation that is incompatible with EU law found in section 57(2) of the Scotland
+                           Act 1998, section 80(8) of the Government of Wales Act 2006 and section 24(1)(b) of
+                           the Northern Ireland Act 1998 do not apply to regulations made under sections 1(1)
+                           and 2(1).</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 4: The Trade Remedies Authority</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">127 </span></h2>
+                        <p>This Schedule sets out further provision on the composition of the TRA, established
+                           by section 6, and how it is to operate. Much of its content is self-explanatory.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">128 </span></h2>
+                        <p>The Schedule makes detailed provision for the membership and staffing of the TRA,
+                           and how the terms and conditions of its members and employees (including remuneration)
+                           are to <br>be determined.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">129 </span></h2>
+                        <p>The Secretary of State is responsible for appointing non-executive members, including
+                           a Chair. The Chair is responsible for appointing executive members, including a Chief
+                           Executive. The appointment of the Chief Executive is subject to the approval of the
+                           Secretary of State. The Secretary of State may also appoint the first Chief Executive,
+                           but only in <br>certain circumstances.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">130 </span></h2>
+                        <p>The Secretary of State will be responsible for determining remuneration and terms
+                           and conditions of appointment for non-executive members, who are not employees of
+                           TRA. The Chair will be responsible for determining remuneration and terms and conditions
+                           of employment of employees who are executive members, which will be subject to the
+                           approval of the Secretary of State. For other employees who are not executive members,
+                           the TRA will determine their remuneration and terms and conditions of employment.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">131 </span></h2>
+                        <p>The TRA will be funded by the Secretary of State. It will be required to keep proper
+                           records and accounts, and to provide a report on its activities to the Secretary of
+                           State every financial year. The report, which includes a statement of accounts, must
+                           be laid before Parliament.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">132 </span></h2>
+                        <p>The Secretary of State may publish guidance to which the TRA must have regard when
+                           exercising its functions. Before doing so, the Secretary of State must consult the
+                           TRA and must also have regard to the TRA’s expertise, independence and impartiality.
+                           The Secretary of State may not publish guidance in relation to specific trade remedies
+                           investigations.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">133 </span></h2>
+                        <p>The Schedule also amends various pieces of existing legislation so as to apply their
+                           provisions to the TRA. These include the Freedom of Information Act 2000 and the Equality
+                           Act 2010.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 5: Transfer Schemes</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">134 </span></h2>
+                        <p>This Schedule contains provisions enabling the Secretary of State to create staff
+                           transfer schemes in connection with the establishment of the TRA, including making
+                           provision which is the same as, or similar to, the Transfer of Undertakings (Protection
+                           of Employment) Regulations 2006 (TUPE Regulations). This has enabled the TRA to be
+                           fully staffed and operational for the end of the transition period.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Schedule 6: Trade and Agriculture Commission: Public Authorities Legislation</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">135 </span></h2>
+                        <p>Schedule 6 amends various pieces of existing legislation so as to apply their provisions
+                           to the TAC. Among others, these include the Public Records Act 1958 and the Freedom
+                           of Information Act 2000.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">136 </span></h2>
+                  <p>Section 18 provides for the commencement of the provisions in the Trade Act. The general
+                     provisions in Part 5 will come into force on the day on which the Act becomes an Act
+                     of Parliament. The specific provisions in Parts 1, 2, 3 and 4 will come into force
+                     on days appointed by a Minister of the Crown by commencement regulations.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Equalities</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">137 </span></h2>
+                  <p>During the passage of the European Union (Withdrawal) Act 2018 through the House of
+                     Commons, the Government committed to providing a statement on the impact of EU-exit
+                     primary legislation on either the Equality Act 2006 or the Equality Act 2010.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">138 </span></h2>
+                  <p>The Trade Act does not amend, repeal or revoke any provision of the Equality Act 2006
+                     or any subordinate legislation made under that Act or the Equality Act 2010.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">139 </span></h2>
+                  <p>The Trade Act amends the Equality Act 2010 only to the extent of adding the TRA and
+                     the TAC to the list of public authorities in Part 1 of Schedule 19 to that Act (by
+                     paragraph 40 of Schedule 4 and paragraph 6 of Schedule 6, respectively). The effect
+                     of these amendments is to make the TRA and the TAC subject to the Public Sector Equality
+                     Duty, which means that the TRA and the TAC must, in the exercise of their functions,
+                     have due regard to the need to (a) eliminate discrimination, harassment, victimisation
+                     and any other conduct that is prohibited by or under the Equality Act 2010; (b) advance
+                     equality of opportunity between persons who share a relevant protected characteristic
+                     and persons who do not share it; and (c) foster good relations between persons who
+                     share a relevant protected characteristic and persons who do not share it (see section
+                     149 of the Equality Act 2010). The relevant protected characteristics are defined
+                     in section 4 of the Equality Act 2010 and comprise age, disability, gender reassignment,
+                     marriage and civil partnership, pregnancy and maternity, race, religion or belief,
+                     sex and sexual orientation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">140 </span></h2>
+                  <p>In relation to the policy which is given effect by the Act, the Secretary of State
+                     for International Trade has had due regard to the need to eliminate discrimination,
+                     harassment, victimisation and any other conduct that is prohibited by or under the
+                     Equality Act 2010.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">141 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.56in">
+                        <col style="width:1.28in">
+                        <col style="width:2.42in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>19 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-03-19/debates/71E712D1-F20F-414D-AA69-DDE7124167B4/PointsOfOrder">
+                                    <u>Vol. 673 Col. 1189</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>20 May 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-05-20/debates/8B57D65C-0194-4EEA-B447-05C2921C3443/TradeBill">
+                                    <u>Vol. 676 Col. 611</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>16 June 2020</p>
+                              <p>16 June 2020</p>
+                              <p>18 June 2020</p>
+                              <p>18 June 2020</p>
+                              <p>23 June 2020</p>
+                              <p>23 June 2020</p>
+                              <p>25 June 2020</p>
+                              <p>25 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-16/debates/2e9c1e7b-e480-461b-b4cb-14d82c708eae/TradeBill(FirstSitting)">
+                                    <u>First Sitting Vol. 677 Col. 1</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-16/debates/6078a39c-56bb-4bd1-8c41-c93358b99d55/TradeBill(SecondSitting)">
+                                    <u>Second Sitting Vol. 677 Col. 23</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-18/debates/8c0e92f5-83e2-442e-bbdc-4dfe6be1c8c2/TradeBill(ThirdSitting)">
+                                    <u>Third Sitting Vol. 677 Col. 63</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-18/debates/685680ab-7a7c-43c7-aa40-1d8c3884da1a/TradeBill(FourthSitting)">
+                                    <u>Fourth Sitting Vol. 677 Col. 87</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-23/debates/1ca7f399-f886-4884-9728-4e71e8452e9c/TradeBill(FifthSitting)">
+                                    <u>Fifth Sitting Vol. 677 Col. 139</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-23/debates/8c7fb4ef-d875-402d-b982-d26f54ff8747/TradeBill(SixthSitting)">
+                                    <u>Sixth Sitting Vol. 677 Col. 175</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-25/debates/d431ea95-d414-4b49-9a6b-885518911b1e/TradeBill(SeventhSitting)">
+                                    <u>Seventh Sitting Vol. 677 Col. 247</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-06-25/debates/24f16400-76a3-4e0c-bfea-2ebe215f51c5/TradeBill(EighthSitting)">
+                                    <u>Eighth Sitting Vol. 677 Col. 271</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>20 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-07-20/debates/D5201166-082F-458F-9016-60B1D01CE750/TradeBill">
+                                    <u>Vol. 678 Col. 1870</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>21 July 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-07-21/debates/550975C0-C21A-422E-8E65-E227A0B2ECF0/TradeBill">
+                                    <u>Vol. 804 Col. 2200</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>8 September 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-09-08/debates/5BADA7DC-AC31-4745-9BA6-11C87010ABCA/TradeBill">
+                                    <u>Vol. 805 Col. 672</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>29 September 2020</p>
+                              <p>1 October 2020</p>
+                              <p>6 October 2020</p>
+                              <p>8 October 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-09-29/debates/E38E14A1-4E66-4774-97A5-BAF3CB5F27CD/TradeBill">
+                                    <u>First Sitting Vol. 806 Col. GC1</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-10-01/debates/DB45BE7F-D38D-4AEF-AE39-1CA6D81FEA5C/TradeBill">
+                                    <u>Second Sitting Vol. 806 Col. GC73</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-10-06/debates/49FC7A66-631F-45E9-9785-6D14AB62A18D/TradeBill">
+                                    <u>Third Sitting Vol. 806 Col. GC145</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-10-08/debates/1FF754F6-DF26-4BD1-B257-97B8507D9D6E/TradeBill">
+                                    <u>Fourth Sitting Vol. 806 Col. GC205</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>13 October 2020</p>
+                              <p>15 October 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-10-13/debates/EE70A907-14EC-4EFE-8833-CE1F2FE82580/TradeBill">
+                                    <u>Fifth Sitting Vol. 806 Col. 956</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-10-15/debates/7942A20F-05FD-448D-B56A-6052478E8313/TradeBill">
+                                    <u>Sixth Sitting Vol. 806 Col. 1214</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>7 December 2020</p>
+                              <p>15 December 2020</p>
+                              <p>6 January 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-12-07/debates/5D794716-8635-4759-9739-2DCD263F86DE/TradeBill">
+                                    <u>Vol. 808 Col. 965</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-12-15/debates/54B3F3E1-BB83-43B3-A8BB-1C1A76F4F04B/TradeBill">
+                                    <u>Vol. 808 Col. 1555</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-01-06/debates/487B9A63-A844-4486-BBDB-78C6CB5DCC7C/TradeBill">
+                                    <u>Vol. 809 Col. 162</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>18 January 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-01-18/debates/9F7111CE-7707-4227-A18E-9A53E9BDAE8B/TradeBill">
+                                    <u>Vol. 809 Col. 996</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>19 January 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-01-19/debates/140EC114-B1A8-4581-94A1-0AF4447BA9DE/TradeBill">
+                                    <u>Vol. 687 Col. 792</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>2 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-02-02/debates/9D66EB6F-1F7A-429F-A49A-5AD37A8FA5F7/TradeBill">
+                                    <u>Vol. 809. Col. 2063</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>9 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-02-09/debates/B90C6685-479F-466D-9802-2E5C56045D06/TradeBill">
+                                    <u>Vol. 689 Col. 216</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>23 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-02-23/debates/8F92FB28-D51A-4996-8471-7CCAB472F224/TradeBill">
+                                    <u>Vol. 810 Col. 722</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>22 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-03-22/debates/BD70E5C2-9163-4FB8-9B9B-2D451586A01B/TradeBill">
+                                    <u>Vol. 691 Col. 665</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>23 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-23/debates/66EF8105-87C3-45B3-A61F-23AD6E092CDB/TradeBill">
+                                    <u>Vol. 811 Col. 744</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>29 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-04-29/debates/92DD6573-5F72-4D23-8B86-6AF148BEC641/MessageToAttendTheLordsCommissioners">
+                                    <u>House of Commons Vol. 693 Col. 520</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-29/debates/6B29F4C1-4077-4A0D-8A4C-9E0D8324A14B/RoyalAssent">
+                                    <u>House of Lords Vol. 811 Col. 2413</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">142 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <i>Inserted during ping-pong</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                           <td>
+                              <p>Schedule 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 5</p>
+                           </td>
+                           <td>
+                              <p>Schedule 5</p>
+                           </td>
+                           <td>
+                              <p>Schedule 5</p>
+                           </td>
+                           <td>
+                              <p>Schedule 5</p>
+                           </td>
+                           <td>
+                              <p>Schedule 5</p>
+                           </td>
+                           <td>
+                              <p>Schedule 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 6</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Schedule 6</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Since the implementation of trade remedies measures impacts upon the financial privilege
+                  of the House of Commons, the TRA’s functions in relation to trade remedies cases will
+                  be conferred by provisions in the Taxation (Cross-border Trade) Act 2018.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The 21 GPA parties are Armenia, Australia, Canada, the EU, Hong Kong, Iceland, Israel,
+                  Japan, Republic of Korea, Liechtenstein, Moldova, Montenegro, the Netherlands with
+                  respect to Aruba, New Zealand, Norway, Singapore, Switzerland, Chinese Taipei, Ukraine,
+                  the United States and the UK.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

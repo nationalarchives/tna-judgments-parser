@@ -1,0 +1,638 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>EDUCATION (GUIDANCE ABOUT COSTS OF SCHOOL UNIFORMS)</b>
+               <b>
+                  </b>
+               <b>ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Education (Guidance about Costs of School Uniforms)
+                     Act 2021 which received Royal Assent on 29 April 2021 (c. 20).</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for Education, with the
+                     consent of Mike Amesbury MP, in order to assist the reader in understanding the Act.
+                     They do not form part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes should be read alongside the Act. They are not, and are not
+                     intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act imposes a duty on the Secretary of State to issue statutory guidance on the
+                     cost aspects of school uniform, to which relevant schools must have regard. The guidance
+                     will apply to relevant state-funded schools in England (namely, maintained schools
+                     (including maintained special schools); academies (including special academies and
+                     alternative provision academies); non-maintained special schools; and pupil referral
+                     units).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>At present, school uniform policy, including its cost, is a matter for a school’s
+                     governing body or academy trust. The Department for Education has published non-statutory
+                     guidance on school uniform. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Department for Education’s non statutory guidance was last updated in 2013 to
+                     give extra emphasis to the importance of cost considerations. It makes clear that
+                     schools should give high priority to the consideration of cost and value for money
+                     for parents. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>In November 2015, the Government published the ‘A Better Deal:’ plan. This included
+                     a commitment to put the Department for Education’s existing school uniform guidance
+                     on costs on a statutory footing: </p>
+                  <p class="@name">
+                     
+                     <section class="level">
+                        <p>“The government wants to ensure that effective competition is used to drive better
+                           value for money and will therefore put existing best practice guidance for school
+                           uniform supply in England on a statutory footing”.</p>
+                     </section>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>This Act enables the Department for Education to make guidance on the cost considerations
+                     of school uniform statutory.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>There is no existing primary legislation specifically relating to school uniform or
+                     other aspects of appearance. Decisions about individual schools’ uniform policies
+                     are a matter for the school’s governing body or academy trust. However, as set out
+                     above, the Department for Education publishes non-statutory guidance on school uniform
+                     to support schools with this.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Act inserts new section 551A into Chapter III (Other Provisions about Schools)
+                     of Part X (Miscellaneous and General) of the Education Act 1996. This new section
+                     imposes a statutory duty on the Secretary of State to issue guidance to the appropriate
+                     authorities of relevant schools in England on the costs aspects of school uniform
+                     policies, to which those authorities must have regard (see definitions under ‘Commentary
+                     on provisions of Act’ below).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act extends to England and Wales and applies to England only.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Guidance about the costs of school uniforms: England</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>This section inserts new section 551A into Chapter III (Other Provisions about Schools)
+                     of Part X (Miscellaneous and General) of the Education Act 1996.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Sub-section (1) imposes a statutory duty on the Secretary of State to issue guidance
+                     to the appropriate authorities of relevant schools on the costs aspects of school
+                     uniform policies. This duty only applies to schools in England.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Sub-section (2) provides a broad definition of the costs aspects of school uniform
+                     policies. It provides that the ‘costs aspects of school uniform policies’ means ‘any
+                     aspects of school uniform policies that the Secretary of State considers relevant
+                     to the costs of school uniforms’.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Sub-section (3) sets out who has to comply with the guidance issued by the Secretary
+                     of State – namely the appropriate authority of a relevant school. The meaning of ‘appropriate
+                     authority’ is set out in sub-section (6) (see paragraph 15 below) and the meaning
+                     of ‘relevant school’ is set out in paragraph 14 below. The requirement imposed on
+                     the appropriate authority by sub-section (3) is to have regard to the guidance issued
+                     by the Secretary of State when developing and implementing its school uniform policy.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Sub-section (4) allows the Secretary of State to revise the guidance from time to
+                     time.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Sub-section (5) explains which schools are covered by the Act. They are: Academy schools
+                     (including special academies), alternative provision Academies, maintained schools
+                     (which include community, foundation or voluntary schools and community or voluntary
+                     special schools not in a hospital), non-maintained special schools and pupil referral
+                     units. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Sub-section (6) explains what ‘appropriate authority’ means in the Act – for Academy
+                     schools, alternative provision Academies and non-maintained special schools, the proprietor,
+                     for maintained schools, the governing body and for pupil referral units, the local
+                     authority.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 2 covers extent and commencement. The Act extends to England and Wales and
+                     applies to England only. It will come into force two months after Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The Act comes into force on 29 June 2021; two months after the day on which it received
+                     Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The following document is relevant to the Education (Guidance about Costs of School
+                     Uniforms) Act 2021 and can be read at the stated location:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Current School Uniform Guidance (updated September 2013) <a href="https://www.gov.uk/government/publications/school-uniform"><u>https://www.gov.uk/government/publications/school-uniform</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph">
+                  <p>The Act extends to England and Wales and applies to England only.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.19in">
+                        <col style="width:1.07in">
+                        <col style="width:1.07in">
+                        <col style="width:1.07in">
+                        <col style="width:1.47in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>05 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-02-05/debates/74BAB0C2-631C-4246-8BD4-DE588D33EC45/PointsOfOrder">
+                                    <u>Vol. 671 Col. 315</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>13 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-03-13/debates/5B43E213-2C7C-44F7-85BD-C275A27F8B14/Education(GuidanceAboutCostsOfSchoolUniforms)Bill">
+                                    <u>Vol. 673 Col. 549</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>16 September 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-09-16/debates/e4f9bb02-dbd9-4101-a5ca-5dd8c86d5a26/Education(GuidanceAboutCostsOfSchoolUniforms)Bill(FirstSitting)">
+                                    <u>Col. 1-14 of the Education (Guidance About Costs of School Uniforms) Public Bill Committee.</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-03-12/debates/0CA4681D-17AE-4482-AFE1-DEEF30FD08A4/HouseOfCommons">
+                                    <u>Vol. 630 Col. 1137</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-12/debates/19B998CB-E7DA-4B23-9107-DC77D45F7BBE/Education(GuidanceAboutCostsOfSchoolUniform)Bill">
+                                    <u>Vol. 810 Col. 1984</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-19/debates/7E479B75-DE4A-4E77-9ACA-0D49E88B58A0/Education(GuidanceAboutCostsOfSchoolUniforms)Bill">
+                                    <u>Vol. 811 Col. 537</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House </p>
+                           </td>
+                           <td>
+                              <p>16 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-16/debates/F020558B-7E79-4697-93C7-134479A9A69A/Education(GuidanceAboutCostsOfSchoolUniforms)Bill">
+                                    <u>Vol. 811 Col. 1607</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>22 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-22/debates/E1ABCCEA-EF77-400A-8C33-A1C5E6C19C79/Education(GuidanceAboutCostsOfSchoolUniforms)Bill">
+                                    <u>Vol. 811 Col. 1987</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>28 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-04-28/debates/F32BCC8D-CF32-4F06-AC2F-09A249CE2CAE/Education(GuidanceAboutCostsOfSchoolUniforms)Bill">
+                                    <u>Vol. 811 Col. 2249</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>29 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-04-29/debates/92DD6573-5F72-4D23-8B86-6AF148BEC641/MessageToAttendTheLordsCommissioners">
+                                    <u>House of Commons Vol. 693 Col. 519</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-29/debates/6B29F4C1-4077-4A0D-8A4C-9E0D8324A14B/RoyalAssent">
+                                    <u>House of Lords Vol. 811 Col. 2413</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

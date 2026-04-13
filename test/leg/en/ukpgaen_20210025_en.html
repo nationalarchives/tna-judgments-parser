@@ -1,0 +1,2811 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NATIONAL SECURITY AND INVESTMENT</b>
+               <b> ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the National Security and Investment Act 2021 which
+                  received Royal Assent on 29 April 2021 (c. 25).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business, Energy
+                  and Industrial Strategy in order to assist the reader in understanding the Act. They
+                  do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act establishes a statutory regime for Government scrutiny of, and intervention
+                     in, investments for the purposes of protecting national security. The regime makes
+                     provision for:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>a power to issue “call-in” notices that the Secretary of State may use to call in
+                        acquisitions of control over qualifying entities or assets (“trigger events”) to undertake
+                        a national security assessment whether or not they have been notified to the Government;
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>the Secretary of State to publish a statement on how he or she expects to use the
+                        power to give a call-in notice;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>a mandatory notification system requiring proposed acquirers of certain shares or
+                        voting rights in specified qualifying entities to obtain clearance from the Secretary
+                        of State for their acquisitions before they take place;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>powers which enable the Secretary of State to amend by regulations the acquisitions
+                        which fall within scope of the mandatory notification system;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>a voluntary notification system which is intended to encourage notifications from
+                        parties who consider that their trigger event may raise national security concerns;
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>the statutory process that is to be used to assess specific trigger events for national
+                        security concerns; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>remedies to address risks to national security, sanctions for non-compliance with
+                        the regime and the mechanism for legal challenge; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">h.</span></h2>
+                     <p>interaction with the Competition and Markets Authority.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>In addition, Section 59 of the Act amends the overseas disclosure gateway in the Enterprise
+                     Act 2002 removing the restriction on UK public authorities disclosing information
+                     that comes to them in connection with a merger investigation under that gateway. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Government published a review of its powers to scrutinise and intervene in investments
+                     as a Green Paper on 17 October 2017, “<a href="https://www.gov.uk/government/consultations/national-security-and-infrastructure-investment-review"><u>National Security and Infrastructure Investment Review</u></a>”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Green Paper explained that, until now, the UK has used the Enterprise Act 2002
+                     as the legislative basis to examine mergers for the purposes of national security
+                     and other areas of public concern. The Green Paper found that there was a case for
+                     reforming the Government’s powers. It therefore proposed short and long-term measures
+                     to do so and held a public consultation, which closed on 17 November 2017.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Enterprise Act 2002 (Share of Supply Test) (Amendment) Order 2018 (<a href="https://www.legislation.gov.uk/ukdsi/2018/9780111167441/contents"><u>S.I. 2018/578</u></a>) and the Enterprise Act 2002 (Turnover Test) (Amendment) Order 2018 (<a href="http://www.legislation.gov.uk/uksi/2018/593/contents/made"><u>S.I. 2018/593</u></a>) were made on 14 May 2018 to implement the short-term measures proposed in the Green
+                     Paper. These orders amended the “share of supply” and “turnover” thresholds to enable
+                     the Secretary of State to intervene in more mergers on public interest grounds in
+                     three sectors of the economy: military or dual-use goods which are subject to export
+                     control; computer processing units; and quantum technology. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Building on the Green Paper’s proposals for long-term reform, the White Paper, “<a href="https://www.gov.uk/government/consultations/national-security-and-investment-proposed-reforms"><u>National Security and Investment: A consultation on proposed legislative reforms</u></a>”, was published on 24 July 2018 along with a draft “Statement of Policy Intent”.
+                     The White Paper set out detailed proposals for how the Government proposes to reform
+                     its powers to protect national security from hostile actors using the ownership of,
+                     or influence over, businesses and assets to harm the country.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Following the 2019 General election, the <a href="https://www.gov.uk/government/speeches/queens-speech-december-2019"><u>Queen’s Speech of December 2019</u></a> outlined the Government’s intention to <i>“… work closely with international partners to help solve the most complex international
+                        security issues and promote peace and security globally. It will stand firm against
+                        those who threaten the values of the United Kingdom…”</i> (Queen’s Speech, December 2019). The <a href="https://www.gov.uk/government/publications/queens-speech-2019-background-briefing-notes"><u>briefing pack</u></a> accompanying the Queen’s Speech detailed the ambitions of the National Security and
+                     Investment Bill. The briefing stated that the purpose of the Bill is: <i>“[to] Strengthen the Government’s powers to scrutinise and intervene in business transactions
+                        (takeovers and mergers) to protect national security; and, provide businesses and
+                        investors with the certainty and transparency they need to do business in the UK.”</i></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>On 26 February 2020, the Government outlined its intention to overhaul its approach
+                     to foreign, defence, security and development policy. The Government indicated its
+                     intention of considering “the totality of global opportunities and challenges the
+                     UK faces and determining how the whole of government can be structured, equipped and
+                     mobilised to meet them.” (<a href="https://www.gov.uk/government/news/pm-outlines-new-review-to-define-britains-place-in-the-world"><u>Integrated Review</u></a>, 26 February 2020).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Two Orders, the Enterprise Act 2002 (Share of Supply Test) (Amendment) Order 2020
+                     (<a href="https://www.legislation.gov.uk/uksi/2020/748/contents/made"><u>S.I. 2020/748</u></a>) and the Enterprise Act 2002 (Turnover Test) (Amendment) Order 2020 (<a href="https://www.legislation.gov.uk/uksi/2020/763/contents/made"><u>S.I. 2020/763</u></a>) were made on 20 July 2020 to expand on the 2018 measures (see paragraph 5). These
+                     orders expanded the “share of supply” and ”turnover” thresholds to enable the Secretary
+                     of State to intervene in mergers on public interest grounds in three additional sectors
+                     of the economy where the amended share of supply and turnover thresholds are met:
+                     artificial intelligence (AI), cryptographic authentication technologies and advanced
+                     materials. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Government published its response to the National Security and Investment White
+                     Paper consultation on 11 October 2020. The Government stated that it had decided to
+                     make changes to the proposals it put forward in 2018, including the addition of a
+                     mandatory notification system for some transactions in specified sectors of the economy.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>A draft Impact Assessment on the incoming regime was published on 11 November 2020.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Legal background for Government intervention in mergers on national security grounds</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The current legislative framework for the assessment of United Kingdom (“UK”) mergers
+                     between enterprises (which include outright acquisitions) is contained in Part 3 of
+                     the Enterprise Act 2002 (the “Act”), which has been in force since 20 June 2003. Along
+                     with investigation of competition issues, this provides for Government intervention
+                     on public interest grounds in three types of case: public interest cases; special
+                     public interest cases; and European merger cases. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Public interest cases</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 42 of the Act allows the Secretary of State to intervene in a completed or
+                     anticipated merger where he or she has reasonable grounds to suspect it may be, or
+                     may if it comes to fruition become, a “relevant merger situation” (see the next paragraph)
+                     and believes that one or more of the public interest considerations specified in section
+                     58 of the Act may be relevant to the case. Section 58 currently specifies national
+                     security, media plurality (an umbrella term covering a number of media-related considerations),
+                     the stability of the UK financial system, and the need to maintain in the UK the capability
+                     to combat, and to mitigate the effects of, public health emergencies, as public interest
+                     considerations. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 23 of the Act provides that a “relevant merger situation” arises where two
+                     or more enterprises cease to be distinct, and at least one of the following thresholds
+                     is met:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>the enterprise taken over has a UK turnover of more than £70 million (the “turnover
+                        test”); or </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>the merger has resulted in the creation or enhancement of at least a 25% share of
+                        supply or purchase in, or in a substantial part of, the UK of goods or services of
+                        any description (the “share of supply test”).  </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The Enterprise Act 2002 (Share of Supply Test) (Amendment) Order 2018 (<a href="https://www.legislation.gov.uk/ukdsi/2018/9780111167441/contents"><u>S.I. 2018/578</u></a>) and the Enterprise Act 2002 (Turnover Test) (Amendment) Order 2018 (<a href="http://www.legislation.gov.uk/uksi/2018/593/contents/made"><u>S.I. 2018/593</u></a>), both of which came into force on 11 June 2018, amended the share of supply test
+                     and the turnover test, respectively. The turnover threshold was lowered from £70 million
+                     to £1 million for takeovers of “relevant enterprises”, i.e., those active in any of
+                     the following sectors: military or dual-use goods subject to export control; computer
+                     processing units; or quantum technology. The share of supply test was amended so that
+                     the test is additionally met if the takeover is of a “relevant enterprise” that already
+                     had at least a 25% share of supply or purchase in, or in a substantial part of, the
+                     UK of goods or services before the merger. The goods or services must be connected
+                     to the activities by virtue of which it qualifies as a “relevant enterprise”. The
+                     Enterprise Act 2002 (Share of Supply Test) (Amendment) Order 2020 (<a href="https://www.legislation.gov.uk/uksi/2020/748/contents/made"><u>S.I. 2020/748</u></a>) and the Enterprise Act 2002 (Turnover Test) (Amendment) Order 2020 (<a href="https://www.legislation.gov.uk/uksi/2020/763/contents/made"><u>S.I. 2020/763</u></a>), both of which came into force on 21 July 2020, amended the list of “relevant enterprises”
+                     to include those active in any of the following sectors: artificial intelligence;
+                     cryptographic authentication technology; or advanced materials. These changes were
+                     made to enable the Secretary of State to intervene in additional mergers which might
+                     give rise to national security implications.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Pursuant to section 42(2) of the Act, the Secretary of State intervenes in a merger
+                     by giving an intervention notice (commonly known as a “public interest intervention
+                     notice”) to the Competition and Markets Authority (“CMA”). This requires the CMA to
+                     investigate the merger (commonly known as a “Phase 1 investigation”) and to provide
+                     a report to the Secretary of State containing its advice on jurisdictional, and, if
+                     any arise, competition, issues. In national security cases the CMA is also required
+                     to provide to the Secretary of State a summary of any national security-related representations
+                     it has received about the case, including from other Government departments. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>After issuing an intervention notice, the Secretary of State may pursuant to paragraph
+                     2 of Schedule 7 to the Act make an interim order prohibiting or restricting any pre-emptive
+                     action, that is, any action which might prejudice the intervention or impede any remedial
+                     action that might be taken on it.   </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Once he or she has the received the CMA’s Phase 1 report, the Secretary of State may
+                     pursuant to section 45 of the Act make a “reference” to the CMA requiring it to carry
+                     out a more in-depth investigation (commonly known as a “Phase 2 investigation”), if
+                     he or she believes that the merger may be, or may if it comes to fruition become,
+                     a “relevant merger situation” and that it might operate against the public interest.
+                     In making this decision, section 46 of the Act requires the Secretary of State to
+                     accept the advice of the CMA on jurisdictional and competition matters as set out
+                     in its report. He or she must also treat a competition issue identified by the CMA
+                     as being contrary to the public interest unless this is outweighed by other public
+                     interest considerations. Alternatively, pursuant to paragraph 3 of Schedule 7 to the
+                     Act, in lieu of making a Phase 2 reference the Secretary of State may accept whatever
+                     undertakings (commonly known as “undertakings-in-lieu”) he or she considers appropriate
+                     from the parties to address the public interest issues identified. Under paragraph
+                     5 of Schedule 7, where he or she considers that undertakings-in-lieu have not or will
+                     not be fulfilled, or where he or she considers that they were accepted on the basis
+                     of false or misleading information, the Secretary of State has the power to replace
+                     them with an order imposing remedies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>If a Phase 2 reference is made, section 50 of the Act requires the CMA to prepare
+                     a further report for the Secretary of State. Once he or she has received this report,
+                     the Secretary of State must pursuant to section 54 of the Act make a final decision
+                     on whether the merger is against the public interest, and, if he or she does so, he
+                     or she may pursuant to section 55 of the Act take whatever remedial action in his
+                     or her power he or she considers reasonable and practicable to address the public
+                     interest issues identified. This may be in the form of final undertakings accepted
+                     from the parties, as provided for by paragraph 9 of Schedule 7 to the Act, or in the
+                     form of an order imposing remedies, pursuant to paragraph 11 of Schedule 7. Under
+                     paragraph 10 of Schedule 7, the Secretary of State has an equivalent power to that
+                     in relation to undertakings-in-lieu to replace final undertakings with an order imposing
+                     remedies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Pursuant to paragraph 20 of Schedule 8 to the Act, an order may make such provision
+                     as the Secretary of State considers to be appropriate in the interests of national
+                     security. Such provision may, in particular, include provision requiring a person
+                     to do, or not to do, particular things.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Special public interest cases</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 59 of the Act allows the Secretary of State to intervene in a limited number
+                     of mergers of special public interest on the basis of the public interest considerations
+                     specified in section 58 of the Act (which, as already stated, include national security)
+                     where the standard jurisdictional thresholds relating to turnover and share of supply
+                     are not satisfied. These include for example, mergers involving Government defence
+                     contractors authorised to hold or receive confidential information. The subsequent
+                     process is similar to the public interest intervention procedure set out above, except
+                     that there is no competition assessment.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>European merger cases</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The European Council Merger Regulation (No 139/2004) gives the European Commission
+                     exclusive jurisdiction within the European Union (“EU”) to assess mergers (which include
+                     outright acquisitions) with an EU dimension (i.e., those in which the parties meet
+                     certain global and EU-wide turnover thresholds) for any competition issues. This Regulation
+                     still applies in the UK in respect of merger reviews that the European Commission
+                     started before the end of the transition period, in accordance with Article 92 of
+                     the Withdrawal Agreement (“live EU cases”). Before the end of the transition period
+                     the Act provided a mechanism whereby, so long as the standard jurisdictional thresholds
+                     were met (see paragraphs 14-16 above), the Secretary of State was able to intervene
+                     in EU mergers on the basis of the public interest considerations specified in section
+                     58 of the Act (other than the stability of the UK financial system, which is expressed
+                     as not applying in these cases), including national security. This mechanism has been
+                     repealed but has been preserved for any live EU cases by the Competition (Amendment
+                     etc.) (EU Exit) Regulations 2019 (as amended). This would allow the Secretary of State
+                     to give the CMA a European intervention notice (“EIN”) under section 67 of the Act
+                     in respect of any live EU case. The subsequent process is similar to the public interest
+                     intervention procedure set out above, except that it does not involve any competition
+                     assessment by the CMA, this being left to the European Commission<a class="fn" id="fnref-1" href="#fn-1">1</a>. </p>
+               </section>
+               <section class="level">
+                  <p>Legal background for Section 59 (Overseas information disclosure)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Part 9 of the Enterprise Act 2002 imposes a restriction on the disclosure of information
+                     that comes to a public authority in connection with, among other things, a merger
+                     investigation under Part 3 of the Enterprise Act 2002 or an antitrust investigation
+                     under the Competition Act 1998 (“specified information”). The restriction applies
+                     where the information relates to the affairs of an individual, during the lifetime
+                     of the individual, or any business of an undertaking, while the undertaking continues
+                     in existence, unless the disclosure is permitted by one of the disclosure gateways
+                     in Part 9. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>A public authority may disclose specified information to an overseas public authority
+                     in the following circumstances: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>where the public authority has obtained the necessary consents (section 239(1));</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>to comply with an EU obligation (section 240)<a class="fn" id="fnref-2" href="#fn-2">2</a>; or</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>for the purpose of facilitating the exercise by the public authority of its statutory
+                        functions (section 241(1)).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>In addition, section 243(1), (2) and (12) of the Act, permits the disclosure of specified
+                     information to an overseas public authority where the disclosure is to facilitate
+                     the performance of an overseas public authority’s functions. This gateway does not
+                     currently apply to information that comes to a public authority in connection with
+                     a merger investigation under Part 3 of the Enterprise Act 2002 (section 243(3)(d)).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Section 66 sets out the territorial extent of the Act. The extent of an Act can be
+                     different from its application. Application is about where an Act produces a practical
+                     effect rather than where it forms part of the law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>The Act extends and applies to the whole of the United Kingdom. In addition, repeals
+                     and amendments made by the Act have the same territorial extent as the legislation
+                     that they are repealing or amending.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The matters to which the provisions of the Act relate are not within the legislative
+                     competence of the Scottish Parliament, Senedd Cymru or the Northern Ireland Assembly,
+                     and no legislative consent motion was sought in relation to any provision of the Act.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Background: Overview of the National Security and Investment Regime</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>National Security and Investment framework</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>The National Security and Investment regime replaces the Secretary of State’s ability
+                        to scrutinise mergers which give rise to a national security consideration under the
+                        Enterprise Act 2002.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>The Act provides powers for the Secretary of State to scrutinise and, where necessary,
+                        impose proportionate remedies on specific acquisitions of control of qualifying entities
+                        and assets. It also sets out a statutory process for the exercise of these powers.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>The Secretary of State may scrutinise specific acquisitions of control of qualifying
+                        entities and assets by issuing “call-in notices”. The acquisitions which are within
+                        scope of this function are collectively known as “trigger events”. The Secretary of
+                        State may issue a call-in notice up to 5 years after a trigger event has taken place,
+                        so long as that 5 years does not reach back before 12 November 2020 (the first day
+                        after the Bill was introduced in Parliament). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>The Act provides for the Secretary of State to publish a statement setting out how
+                        he or she expects to exercise the call-in power. The Secretary of State will not be
+                        able to call in any trigger events until such a statement has been published. Nothing
+                        in the statement will limit the Secretary of State’s exercise of the call-in power.</p>
+                  </section>
+                  <section class="level">
+                     <p>Mandatory notification</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>The Act provides for a mandatory notification requirement for acquisitions of certain
+                        shares or voting rights in the qualifying entities to be specified in regulations
+                        made by the Secretary of State, which are termed “notifiable acquisitions”. Proposed
+                        acquirers must notify the Secretary of State of notifiable acquisitions before they
+                        take place in order to obtain clearance to go ahead. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>A notifiable acquisition that is completed before being approved by the Secretary
+                        of State is void and of no legal effect. Additionally, the acquirer may be subject
+                        to criminal or civil penalties for completing the acquisition without clearance. The
+                        Secretary of State may retrospectively validate a notifiable acquisition. Regulations
+                        will specify how to notify the Secretary of State of notifiable acquisitions.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>The Act provides a power for the Secretary of State to amend the acquisitions which
+                        are notifiable through regulations. The Secretary of State may also make regulations
+                        exempting acquisitions from the mandatory notification regime on the basis of the
+                        characteristics of the acquirer. These powers collectively allow the regime to reflect
+                        changing national security risks.</p>
+                  </section>
+                  <section class="level">
+                     <p>Voluntary notification regime</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Businesses and other entities who do not meet the criteria for mandatory notification
+                        may submit a notification to the Secretary of State if they consider that their trigger
+                        event could raise national security concerns. To help inform their assessment as to
+                        whether a voluntary notification should be issued, they make reference to the statutory
+                        statement about the exercise of the call-in power. </p>
+                  </section>
+                  <section class="level">
+                     <p>National security assessment</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>The Secretary of State may give a call-in notice in respect of a trigger event that
+                        has taken place or is in progress or contemplation. The notice may be given up to
+                        5 years after the trigger event took place, subject to this being done within 6 months
+                        of the Secretary of State becoming aware of the trigger event. While a trigger event
+                        is being assessed, the Secretary of State will be able to impose interim remedies
+                        in order to ensure that the effectiveness of the national security assessment or subsequent
+                        remedies is not prejudiced by action taken by the parties. For example, the Secretary
+                        of State might prohibit activities which would result in the integration of two businesses,
+                        or act to safeguard assets, until the national security assessment is complete.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>To facilitate assessments, the Secretary of State will have powers for gathering information.
+                        There will be safeguards on the use and disclosure of such information.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>If, following an assessment, the Secretary of State determines that a risk to national
+                        security has arisen or would arise from the trigger event, the Secretary of State
+                        has the power to impose proportionate remedies in a final order to prevent, remedy
+                        or mitigate that risk. Breach of any requirement in a final order may lead to a civil
+                        or criminal sanction. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Civil and criminal sanctions will also be available in the event of non-compliance
+                        with interim orders and information requests. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Decisions under the Act will be subject to judicial review or appeal. The Government
+                        will be able to apply for a closed material procedure to protect sensitive matters
+                        in these proceedings.</p>
+                  </section>
+                  <section class="level">
+                     <p>Comparison between current framework and the National Security and Investment regime</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>The National Security and Investment regime will be separate from the processes and
+                        practice of the <a href="https://www.gov.uk/government/publications/mergers-guidance-on-the-cmas-jurisdiction-and-procedure"><u>CMA’s mergers framework</u></a> under the <a href="https://www.legislation.gov.uk/ukpga/2002/40/contents"><u>Enterprise Act 2002</u></a>. The mergers framework will continue to exist once the new regime has been implemented,
+                        but it will only apply to competition, media plurality, financial stability and public
+                        health emergency considerations; national security implications will be addressed
+                        entirely through the new legal framework.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>The table below summarises and compares the Enterprise Act 2002 framework for national
+                        security public interest interventions and the new National Security and Investment
+                        regime. Further detail on the current framework for national security interventions
+                        under the Enterprise Act can be found on the legislation.gov.uk site and in CMA guidance
+                        (<a href="https://www.gov.uk/government/publications/mergers-guidance-on-the-cmas-jurisdiction-and-procedure"><u>CMA2, Mergers: Guidance on the CMA’s jurisdiction and procedure</u></a>). Detail on the National Security and Investment Regime is contained in the “Commentary
+                        on Provisions” section.</p>
+                     <table>
+                        <colgroup>
+                           <col style="width:1.26in">
+                           <col style="width:2.56in">
+                           <col style="width:2.76in">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <p>
+                                 <b>Table 1: Comparison between national security interventions under the Enterprise Act
+                                    2002 and the National Security and Investment Regime</b>
+                                 </p>
+                           </tr>
+                           <tr>
+                              <p></p>
+                              <p>
+                                 <b>Current system under the Enterprise Act 2002</b>
+                                 </p>
+                              <p>
+                                 <b>National Security and Investment regime</b>
+                                 </p>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>
+                                    <b>Acquisitions within scope</b>
+                                    </p>
+                              </td>
+                              <td>
+                                 <p>The Secretary of State may intervene in qualifying mergers between enterprises which
+                                    raise specified public interest concerns, including on national security grounds.
+                                    Further detail on this is available in the” Legal Background section”.</p>
+                                 <p></p>
+                              </td>
+                              <td>
+                                 <p>The Secretary of State may intervene where they reasonably suspect that a “trigger
+                                    event” has taken place or is in progress or contemplation, and this has given rise
+                                    to, or may give rise to, a national security risk.</p>
+                                 <p>Trigger events include acquisitions of certain shares or voting rights in a qualifying
+                                    entity; acquisition of material influence over such an entity; the acquisition of
+                                    a right or an interest in a qualifying asset enabling the acquirer to use the asset
+                                    or to control or direct how it is used.</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>
+                                    <b>Notification to Government</b>
+                                    </p>
+                              </td>
+                              <td>
+                                 <p>Parties may submit a merger notice to the CMA to notify them about a relevant merger
+                                    situation. </p>
+                                 <p>Under the Public Interest Regime, the Secretary of State may intervene in a merger
+                                    whether or not there has been a notification. </p>
+                                 <p>Following receipt and acceptance of a complete merger notice, the CMA must decide
+                                    whether the duty to refer the merger for a Phase 2 investigation applies within 40
+                                    working days.</p>
+                              </td>
+                              <td>
+                                 <p>Pre-notification to the Secretary of State required for certain acquisitions, via
+                                    a mandatory notice. Where this does not apply, parties to trigger events may submit
+                                    a voluntary notice to the Secretary of State. </p>
+                                 <p>The Secretary of State may intervene in a completed or anticipated trigger event whether
+                                    or not there has been a notification.</p>
+                                 <p>Following receipt and acceptance of a complete mandatory or voluntary notice, the
+                                    Secretary of State must decide whether to issue a call-in notice within 30 working
+                                    days.</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>
+                                    <b>Government assessment</b>
+                                    </p>
+                              </td>
+                              <td>
+                                 <p>If a merger situation meets the criteria for intervention on the grounds of national
+                                    security, the Secretary of State may issue a” Public Interest Intervention Notice”
+                                    (PIIN) to the CMA to initiate a Phase 1 investigation. Following receipt of the CMA’s
+                                    report on the merger, the Secretary of State has the option to clear the merger, clear
+                                    the merger subject to undertakings offered by the parties to address the national
+                                    security risks (see cell below on interventions and remedies), or refer the merger
+                                    for a Phase 2 investigation. </p>
+                                 <p>A Phase 2 investigation is undertaken by an Inquiry Group formed by the CMA. Following
+                                    the completion of the investigation they would provide their recommendations to the
+                                    Secretary of State. The Secretary of State would then have the option to clear the
+                                    merger, clear the merger subject to undertakings offered by the parties to address
+                                    the national security risks or an order imposing remedies, or to block/unwind the
+                                    merger. </p>
+                                 <p>The Secretary of State must make the decision to refer a merger for a Phase 2 investigation
+                                    or to accept undertakings instead of making the reference within four months of the
+                                    merger completing or, if it is completed without being made public, within four months
+                                    of the merger being made public.  </p>
+                                 <p></p>
+                              </td>
+                              <td>
+                                 <p>The Secretary of State will call in trigger events to undertake a national security
+                                    assessment. The Secretary of State will use this process to determine whether to clear
+                                    the trigger event either outright or subject to remedies, or (where this is necessary
+                                    and proportionate) block or unwind it.</p>
+                                 <p>The Secretary of State has an initial 30 working days to conduct a national security
+                                    assessment. This may be extended by the Secretary of State by 45 working days if certain
+                                    conditions are met. If further assessment is required, the Secretary of State may
+                                    agree an additional voluntary period with the acquirer if certain conditions are met.</p>
+                                 <p></p>
+                                 <p></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>
+                                    <b>Intervention and remedies</b>
+                                    </p>
+                              </td>
+                              <td>
+                                 <p>After intervening in a national security case, the Secretary of State may issue an
+                                    interim order (by means of a statutory instrument subject to the negative resolution
+                                    procedure) to prevent or reverse “pre-emptive action” by the parties which might prejudice
+                                    the intervention. Such an order can come into force with immediate effect, where justified
+                                    for the protection of national security. The CMA also has power to make a pre-emptive
+                                    action order.</p>
+                                 <p>The Secretary of State or the CMA (as the case may be) may subsequently grant derogations
+                                    from a pre-emptive action order on application by the parties.</p>
+                                 <p>As part of a Phase 1 investigation, if the national security concerns arising from
+                                    a relevant merger situation are such that the Secretary of State would otherwise refer
+                                    the merger for a Phase 2 investigation, the Secretary of State may accept undertakings
+                                    as a remedy for the national security issues in lieu of making the reference.</p>
+                                 <p>Following a Phase 2 investigation, the Secretary of State may accept undertakings
+                                    or impose remedies by order, including blocking/unwinding the merger, to address a
+                                    national security risk.</p>
+                              </td>
+                              <td>
+                                 <p>A notifiable acquisition must be approved by the Secretary of State before completing.
+                                    A notifiable acquisition that is completed without prior approval is void and of no
+                                    legal effect.</p>
+                                 <p>The Secretary of State may during a national security assessment issue an interim
+                                    order for the purpose of preventing or reversing action that might prejudice the exercise
+                                    of his or her functions under the Act. Interim orders will not necessarily be made
+                                    public.</p>
+                                 <p>The Secretary of State must before the end of the assessment period either notify
+                                    the parties that no further action will be taken, or, where a national security risk
+                                    has been identified, make a final order for the purpose of preventing, remedying,
+                                    or mitigating that risk. </p>
+                                 <p>The Secretary of State must keep all orders under review and may vary or revoke them.
+                                    Parties subject to an order may request that it be reviewed by the Secretary of State.</p>
+                                 <p>When the Secretary of State makes, varies, or revokes a final order, the Secretary
+                                    of State must publish certain information about the trigger event and the order.</p>
+                                 <p></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>
+                                    <b>Judicial review</b>
+                                    </p>
+                              </td>
+                              <td>
+                                 <p>Litigants may apply to the Competition Appeal Tribunal (CAT) if aggrieved by a decision
+                                    of the Secretary of State as part of the merger review process. The CAT will review
+                                    the decision by applying the same principles as the High Court on an application for
+                                    judicial review.</p>
+                                 <p>Cases must be brought within four weeks of the date on which the applicant was notified
+                                    of the disputed decision, or the date of publication if earlier.</p>
+                              </td>
+                              <td>
+                                 <p>Litigants may apply to the High Court for judicial review, with a closed material
+                                    procedure available to ensure sensitive information is protected. </p>
+                                 <p></p>
+                                 <p>Claims will need to be brought not more than 28 days after the grounds to make the
+                                    claim first arose unless the court gives permission for the claim to be brought after
+                                    the expiry of this time limit.</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>Part 1: Call-in for national security</b>
+                        </p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Chapter 1: Call-in power</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">44 </span></h2>
+                        <p>Sections 1 and 2 collectively provide for the “call-in power”. The call-in power may
+                           be used by the Secretary of State in relation to a trigger event which has given rise
+                           to, or may give rise to, a risk to national security (see Chapter 2 for details on
+                           trigger events). Sections 3 and 4 provide for the publication of a statement which
+                           sets out how the Secretary of State expects to exercise the call-in power and the
+                           parliamentary procedure for the statement. The Secretary of State must publish the
+                           statement before giving a call-in notice and must have regard to it when exercising
+                           the call-in power.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">45 </span></h2>
+                        <p>The Secretary of State will be able to call in any trigger event that raises national
+                           security concerns, including those which have not been notified to him or her. He
+                           or she will be able to do this when the trigger event is in contemplation or progress,
+                           or within a prescribed period of up to 5 years after a trigger event has taken place
+                           (but a call-in notice may not be given after the end of the period of 6 months beginning
+                           with the day on which the Secretary of State became aware of the trigger event where
+                           the trigger event has already occurred). </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 1: Call-in notice for national security purposes</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">46 </span></h2>
+                        <p>Section 1 enables the Secretary of State to give a call-in notice in relation to a
+                           trigger event (see Chapter 2) which the Secretary of State reasonably suspects has
+                           taken place or is in progress or contemplation, and which they reasonably suspect
+                           has given rise to or may give rise to a risk to national security.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">47 </span></h2>
+                        <p>Subsection (1) provides for the test which much be met for the Secretary of State
+                           to issue a call-in notice.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">48 </span></h2>
+                        <p>Subsection (2) specifies that, for the purposes of the Act, the effect of section
+                           13(1) must be disregarded when considering whether a trigger event has taken place
+                           or will take place.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">49 </span></h2>
+                        <p>Subsection (4) details the persons who must be given copies of the call-in notice.
+                           These include the acquirer and, if the acquisition relates to an entity, the entity
+                           itself. In addition, the Secretary of State may consider it appropriate to give a
+                           call-in notice to, for example, the seller or sellers, a significantly affected third
+                           party, or a relevant regulator.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">50 </span></h2>
+                        <p>Subsections (6) to (8) provide that the Secretary of State must publish and have regard
+                           to the statement provided for by section 3 before exercising the call-in power, but
+                           this power is not limited by anything contained in the statement.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 2: Further provision about call-in notices</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">51 </span></h2>
+                        <p>Section 2 concerns matters relating to the limits on the exercise of the call-in power.
+                           The power may only be exercised once per trigger event. Where the call-in notice is
+                           given in relation to a trigger event that has already taken place, it may only be
+                           exercised up to 5 years after the trigger event has taken place and up to 6 months
+                           after the Secretary of State has become aware of the trigger event, unless the Secretary
+                           of State has been given false or misleading information (see section 22). The 5-year
+                           limit does not apply to notifiable acquisitions which have been completed without
+                           the approval of the Secretary of State (see section 13).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">52 </span></h2>
+                        <p>Call-in notices may be served in relation to trigger events which take place from
+                           the day after the date of introduction of the Act. Section 2(4) sets out the time
+                           periods within which the Secretary of State may serve a call-in notice in relation
+                           to trigger events that take place between 12 November and the commencement of section
+                           2.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 3: Statement about exercise of call-in power</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">53 </span></h2>
+                        <p>Section 3 concerns the statement which sets out how the Secretary of State expects
+                           to exercise the call-in power. While the Secretary of State is not obliged to publish
+                           a statement, the Secretary of State must do so before being able to exercise the call-in
+                           power, as stated in section 1(6). </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 4: Consultation and parliamentary procedure</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">54 </span></h2>
+                        <p>Section 4 sets out the procedure that must be followed before the Secretary of State
+                           is able to publish the statement about the exercise of the call-in power. Before the
+                           statement may be published, the Secretary of State must carry out such consultation
+                           as the Secretary of State thinks appropriate in relation to a draft of the statement,
+                           make any changes to the draft that appear to the Secretary of State to be necessary
+                           in view of the responses to the consultation, and lay the statement before Parliament,
+                           where it is subject to annulment by either House within a period of 40 sitting days.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">55 </span></h2>
+                        <p>Subsections (2) to (4) provide that either House of Parliament may annul a statement
+                           before the expiry of the 40 sitting day limit. The consequence of the annulment is
+                           that the statement must be withdrawn. The annulment of a statement does not affect
+                           the validity of any call-in notice given prior to its withdrawal, nor does it affect
+                           the publication of a new statement.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Chapter 2: Interpretation</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>Trigger events in relation to qualifying entities and qualifying assets</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">56 </span></h2>
+                        <p>Sections 5-12 provide the criteria for the acquisitions of control over entities or
+                           assets that qualify for assessment by the Secretary of State under the national security
+                           regime. These acquisitions in scope of the call-in power (section 1) are described
+                           as “trigger events”.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">57 </span></h2>
+                        <p>Section 6 describes those acquisitions which are “notifiable acquisitions”. A notifiable
+                           acquisition takes place when a person acquires certain shares or voting rights in
+                           a qualifying entity specified in regulations by the Secretary of State. Notifiable
+                           acquisitions must be approved by the Secretary of State before completing, lest they
+                           be legally void.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 5: Meaning of “trigger event” and “acquirer”</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">58 </span></h2>
+                        <p>Section 5 provides that a “trigger event” occurs when a person gains control of either
+                           a qualifying entity or a qualifying asset. Subsection (2) provides for the definition
+                           of “acquirer”.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 6: Notifiable acquisitions</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">59 </span></h2>
+                        <p>Section 6 describes those acquisitions which are “notifiable acquisitions”. A notifiable
+                           acquisition takes place when a person acquires control of a qualifying entity specified
+                           in regulations by the Secretary of State in any of the circumstances described in
+                           subsections (2), (5) or (6) of section 8. The Secretary of State may by regulations
+                           amend the acquisitions which are to be notifiable, or exempt acquisitions on the basis
+                           of the characteristics of the acquirer.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">60 </span></h2>
+                        <p>Section 63 provides for the parliamentary procedures to be used for regulations under
+                           the Act. Regulations under section 6 must be laid in draft before Parliament and approved
+                           by both Houses of Parliament before they may be made. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 7: Qualifying entities and assets</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">61 </span></h2>
+                        <p>Section 7 defines a “qualifying entity” as any entity that is not an individual. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">62 </span></h2>
+                        <p>However, an entity which is formed or recognised under the law of a country or territory
+                           outside the United Kingdom is only a “qualifying entity” if it carries on activities
+                           in, or supplies goods or services to, the United Kingdom. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">63 </span></h2>
+                        <p>Subsection (4) defines a “qualifying asset”. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">64 </span></h2>
+                        <p>Subsection (5) provides examples of assets included in the category of “ideas, information
+                           or techniques which have industrial, commercial or other economic value” under subsection
+                           (4)(c). </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">65 </span></h2>
+                        <p>Subsection (6) limits the definition of a “qualifying asset” in respect of land or
+                           moveable property situated outside the United Kingdom or the territorial sea adjacent
+                           to the United Kingdom, or assets within subsection (4)(c), to assets with a nexus
+                           to the United Kingdom. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 8: Control of entities</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">66 </span></h2>
+                        <p>Section 8 defines the circumstances in which a person gains control of a qualifying
+                           entity for the purposes of the Act. This constitutes a “trigger event” and may be
+                           subject to assessment under the national security regime if the call-in test is met.
+                           This section also makes clear when the additional acquisition of shareholdings or
+                           rights in an entity will constitute a “trigger event”.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">67 </span></h2>
+                        <p>There are four cases in which a person gains control of a qualifying entity, which
+                           are summarised below:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>a person increasing the percentage of shares that they hold in the entity by a specified
+                              proportion (section 8(2));</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>a person increasing the voting rights that they hold in the entity by a specified
+                              proportion (section 8(5)); </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>a person acquiring voting rights in the entity which give powers to secure or prevent
+                              the passage of any resolution governing the affairs of that entity (section 8(6)),
+                              for instance in the case of an entity that does not conform to the thresholds for
+                              passing or blocking resolutions in Schedule 1A to the Companies Act 2006; or,</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>a person acquiring a right or interest in, or relation to, the entity which enables
+                              them to materially influence the policy of that entity (section 8(8)). </p>
+                        </section>
+                     </section>
+                     <section class="level">
+                        <p>Section 9: Control of assets</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">68 </span></h2>
+                        <p>Section 9 defines the circumstances in which a person gains control of a qualifying
+                           asset for the purposes of the Act. This constitutes a “trigger event” and may be subject
+                           to assessment under the national security regime if the call-in test is met. A person
+                           gains control of a qualifying asset where they acquire a right or interest in, or
+                           in relation to, the asset and, as a result, are able either to:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>use the asset, or use it to a greater extent than prior to the acquisition, or, </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>direct or control how the asset is used, or direct or control how the asset is used
+                              to a greater extent than prior to the acquisition. </p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">69 </span></h2>
+                        <p>Any right or interest in a qualifying asset, including a part-share in the asset or
+                           outright ownership, would be captured if they provide the ability to use, or direct
+                           or control how the asset is used. References to the use of an asset include references
+                           to its exploitation, alteration, manipulation, disposal or destruction.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 10: Holding and acquiring interests and rights: supplementary and Schedule
+                           1: Trigger events: holding of interests and rights</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">70 </span></h2>
+                        <p>Section 10 introduces Schedule 1 which provides for particular cases in which a person
+                           is to be treated as holding an interest or a right for the purposes of the Act. Subsection
+                           (2) provides for the occurrence of circumstances set out in Schedule 1 to be treated
+                           as acquisitions for the purposes of the Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">71 </span></h2>
+                        <p>Schedule 1 sets out further details as to how interests and rights are deemed to be
+                           held and therefore provides further explanation of the mechanisms through which control
+                           of entities and assets may be acquired.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">72 </span></h2>
+                        <p>Paragraph 2 of Schedule 1 provides that parties acting through joint arrangements
+                           are treated as holding the collective interests and rights that each party of that
+                           arrangement holds individually.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">73 </span></h2>
+                        <p>Paragraph 3 provides for interests or rights held indirectly to be in scope of the
+                           regime. This means that a person holding an interest or right in a parent entity of
+                           an entity or a chain of entities is, depending on the circumstances in sub-paragraph
+                           (2)(a) or (2)(b) being satisfied, treated as holding the interest or right in the
+                           entity at the bottom of the chain. If an entity is part of a chain of entities, a
+                           person will exercise the right indirectly if each entity in the chain has a majority
+                           stake in the entity immediately below it in the chain, and the last entity in the
+                           chain has the right in question (sub-paragraph (2)(b)). Sub-paragraph (3) defines
+                           “majority stake” by reference to a majority of voting rights, dominant influence or
+                           control, and the right to appoint or remove a majority of the board of directors.</p>
+                        <table>
+                           <colgroup>
+                              <col style="width:4.99in">
+                           </colgroup>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <p>Example A: Indirect holdings</p>
+                                    <p>Party A acquires 100% of votes and shares of Company B. </p>
+                                    <p>Company B owns 51% of votes and shares of a subsidiary, Company C. </p>
+                                    <p>As Company B holds a majority stake in Company C, Party A has acquired indirect control
+                                       over Company C through the acquisition of Company B. </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">74 </span></h2>
+                        <p>Paragraph 5 provides that a person who controls a right, as established in paragraph
+                           5(2), is deemed to hold that right. This means that the controller of the right -
+                           and not the holder unless they are also the controller - will be considered to hold
+                           the right. Paragraph 5(2) sets out that control can be held through an arrangement
+                           between a person and others. The definition of an arrangement in paragraph 12 provides
+                           that there needs to be a degree of stability about it.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">75 </span></h2>
+                        <p>Paragraphs 6 and 7 provide for rights that are exercisable only in certain circumstances
+                           and rights attached to shares held by way of security respectively and replicate corresponding
+                           provisions in Schedule 1A to the Companies Act 2006.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">76 </span></h2>
+                        <p>Paragraphs 8-10 provide for the circumstances in which two or more persons are deemed
+                           to be connected persons by virtue of their relationship to one another. Each connected
+                           person is deemed to be holding the combined interests or rights of both or all of
+                           the connected persons. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">77 </span></h2>
+                        <p>Paragraph 11 provides for the circumstances in which two or more persons are deemed
+                           to be acting with common purpose and are therefore each deemed to be holding the collective
+                           interests and rights that each person holds individually.</p>
+                        <table>
+                           <colgroup>
+                              <col style="width:4.99in">
+                           </colgroup>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <p>Example B: Common purpose</p>
+                                    <p>Party A owns 20% of votes and shares of Company D.</p>
+                                    <p>Party B owns 20% of votes and shares of Company D.</p>
+                                    <p>Party C acquires 20% of votes and shares of Company D.</p>
+                                    <p>Parties A, B and C co-ordinate the use of their votes, in practice meaning that they
+                                       collectively use their votes to attempt to achieve a shared aim. In such circumstances,
+                                       Party C’s acquisition would be a trigger event through which Parties A, B and C would
+                                       be deemed to have each acquired 60% of the votes and shares in Company D.</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </section>
+                     <section class="level">
+                        <p>Section 11: Exceptions relating to control of assets</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">78 </span></h2>
+                        <p>Section 11 provides for exceptions from the definition of a “trigger event” in relation
+                           to assets. Subsection (1) provides that a person is not to be regarded as gaining
+                           control of a qualifying asset by reason of an acquisition made by an individual for
+                           purposes that are wholly or mainly outside the individual’s trade, business or craft.
+                           Such acquisitions are therefore not within scope of the call-in power.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">79 </span></h2>
+                        <p>Subsection (2) provides that these exceptions do not apply where the acquired asset
+                           is land or falls within specified export control provisions.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">80 </span></h2>
+                        <p>Subsection (3) provides that the Secretary of State may by regulations amend the list
+                           of assets in subsection (2).</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 12: Trigger events: supplementary</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">81 </span></h2>
+                        <p>Section 12 contains supplementary provisions in relation to determining when a trigger
+                           event that takes place over more than one day is to be treated as taking place (subsection
+                           (1)), and determining whether a trigger event is in progress or contemplation in circumstances
+                           where a person has entered into an agreement or arrangement which enables them to
+                           do something in the future that would result in a trigger event taking place (subsection
+                           (2)). </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Chapter 3: Approval of notifiable acquisition</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">82 </span></h2>
+                        <p>Chapter 3 of Part 1 provides for the consequences of a notifiable acquisition completing
+                           without the approval of the Secretary of State.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 13: Approval of notifiable acquisition</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">83 </span></h2>
+                        <p>Section 13 provides that notifiable acquisitions which are completed without the approval
+                           of the Secretary of State are void. Subsection (2) sets out the ways in which the
+                           Secretary of State may approve a notifiable acquisition. Subsection (3) provides that
+                           a notifiable acquisition is void where it has been completed in a manner which is
+                           different to the stipulations of a final order (see section 26) made by the Secretary
+                           of State.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Chapter 4: Procedure</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">84 </span></h2>
+                        <p>Chapter 4 of Part 1 provides for two routes for persons to notify acquisitions to
+                           the Secretary of State in order to receive a call-in decision. Section 14 is a mandatory
+                           notification route which applies to notifiable acquisitions (as defined in section
+                           6). Section 18 is a voluntary notification route for trigger events which fall outside
+                           the mandatory notification regime. Sections 15, 16 and 17 provide for retrospective
+                           validation of notifiable acquisitions which have completed without the approval of
+                           the Secretary of State (see section 13).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">85 </span></h2>
+                        <p>Chapter 4 of Part 1 also provides for two mechanisms by which the Secretary of State
+                           may obtain information to assist him or her in carrying out his or her functions under
+                           the Act. Section 19 allows the Secretary of State to issue an information notice requiring
+                           specified information to be provided. Section 20 permits the Secretary of State to
+                           issue an attendance notice requiring a person to attend at a specified time and place
+                           and to give evidence to the Secretary of State. These powers may be used before or
+                           after a trigger event has been called in. Section 22 provides that the Secretary of
+                           State may reconsider a decision made under this Act, and affirm, vary or revoke it,
+                           if the decision is materially affected by false or misleading information.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 14: Mandatory notification procedure</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">86 </span></h2>
+                        <p>Section 14 requires notifiable acquisitions (see section 6) to be notified to the
+                           Secretary of State and describes the procedure for doing so. Pursuant to subsection
+                           (1) a person who is to make a notifiable acquisition must give a mandatory notice
+                           to the Secretary of State prior to the acquisition taking place.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">87 </span></h2>
+                        <p>Subsection (4) provides that the Secretary of State may by regulations prescribe the
+                           form and content of a mandatory notice.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">88 </span></h2>
+                        <p>Subsection (5) provides that, as soon as reasonably practicable after receiving a
+                           mandatory notice, the Secretary of State must decide whether to reject or accept the
+                           notice.  </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">89 </span></h2>
+                        <p>Subsection (6) sets out the grounds on which the Secretary of State may reject a mandatory
+                           notice. Subsection (7) provides that, if a mandatory notice is rejected, the Secretary
+                           of State must, as soon as practicable, provide reasons in writing for that decision
+                           to the person who gave the notice.  </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">90 </span></h2>
+                        <p>Subsection (8) provides that, if a mandatory notice is accepted, the Secretary of
+                           State must, as soon as practicable, notify each relevant person, and, before the end
+                           of the review period (see the next paragraph), either give a call-in notice in relation
+                           to the proposed notifiable acquisition (see section 1), or notify each relevant person
+                           that no further action will be taken under the Act in relation to the acquisition.
+                           Subsection (10) defines “relevant person” as the person who gave the mandatory notice
+                           and such other persons as the Secretary of State considers appropriate.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">91 </span></h2>
+                        <p>Subsection (9) provides that the review period lasts 30 working days beginning with
+                           the day on which the Secretary of State notifies the person who gave the mandatory
+                           notice that it has been accepted.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 15: Requirement to consider retrospective validation without application</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">92 </span></h2>
+                        <p>Section 15 applies to notifiable acquisitions which were not approved by the Secretary
+                           of State before they were completed, and which are consequently void. Where the Secretary
+                           of State becomes aware of a void notifiable acquisition, subsection (2) requires the
+                           Secretary of State to either give a call-in notice (see section 1) or a validation
+                           notice in relation to the acquisition, within 6 months. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">93 </span></h2>
+                        <p>Pursuant to subsection (3) the effect of a validation notice is that the notifiable
+                           acquisition in question is to be treated as having been completed with the approval
+                           of the Secretary of State, and it is therefore not void. A validation notice must
+                           be given to the person who was required to give a mandatory notice to the Secretary
+                           of State in relation to the notification (see section 14) and such other persons as
+                           the Secretary of State considers appropriate. The Secretary of State must also notify
+                           those persons that no further action is to be taken under the Act in relation to the
+                           acquisition.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 16: Application for retrospective validation of notifiable acquisition</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">94 </span></h2>
+                        <p>Section 16 provides for validation applications: any person who has been materially
+                           affected by the voiding of a notifiable acquisition may apply to the Secretary of
+                           State for a validation notice (see section 15) in relation to the acquisition. Pursuant
+                           to subsection (3) the Secretary of State may by regulations prescribe the form and
+                           content of a validation application. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">95 </span></h2>
+                        <p>Subsection (4) provides that, as soon as reasonably practicable after receiving a
+                           validation application, the Secretary of State must decide whether to reject or accept
+                           the application (but, pursuant to subsection (8), he or she is not required to consider
+                           an application if, in his or her opinion, there has been no material change in circumstances
+                           since a previous application was made).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">96 </span></h2>
+                        <p>Subsection (5) sets out the grounds on which the Secretary of State may reject a validation
+                           application. Subsection (6) provides that, if a validation application is rejected,
+                           the Secretary of State must, as soon as practicable, provide reasons in writing for
+                           that decision to the person who made the application.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">97 </span></h2>
+                        <p>Subsection (8) provides that, if a validation application is accepted, the Secretary
+                           of State must, as soon as practicable, notify each relevant person, and, before the
+                           end of the review period (see the next paragraph), either give a call-in notice (see
+                           section 1) or a validation notice (see section 16) in relation to the acquisition.
+                           A validation notice must be given to each relevant person, who must also be notified
+                           that no further action will be taken under the Act in relation to the acquisition.
+                           Subsection (9) defines “relevant person” as the person who made the validation application
+                           and such other persons as the Secretary of State considers appropriate.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">98 </span></h2>
+                        <p>Subsection (9) provides that the review period lasts 30 working days beginning with
+                           the day on which the Secretary of State notifies the person who made the validation
+                           application that it has been accepted.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 17: Retrospective validation of notifiable acquisition following call-in</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">99 </span></h2>
+                        <p>Section 17 applies where the Secretary of State has given a call-in notice in relation
+                           to a void notifiable acquisition (see Sections 15 and 16). Subsection (2) provides
+                           that, where a final notification is given in relation to the call-in notice (see section
+                           26), the Secretary must also give a validation notice (see section 15) in relation
+                           to the acquisition. Subsection (3) specifies the persons to whom the validation notice
+                           must be given. Subsection (5) provides that, where a final order is made in relation
+                           to the call-in notice (see section 26), so much of the acquisition as is compatible
+                           with the final order is to be treated as having been completed with the approval of
+                           the Secretary of State and is not therefore void. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 18: Voluntary notification procedure</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">100 </span></h2>
+                        <p>In circumstances where there is no requirement to notify, section 18 provides a mechanism
+                           by which parties may voluntarily notify the Secretary of State of a trigger event
+                           in order to receive a call-in decision.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">101 </span></h2>
+                        <p>Subsection (2) provide that a seller, acquirer or any qualifying entity concerned
+                           may give the Secretary of State a voluntary notice stating that a trigger event has
+                           taken place or that a trigger event is in progress or contemplation.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">102 </span></h2>
+                        <p>Pursuant to subsection (4) the Secretary of State may by regulations prescribe the
+                           form and content of a voluntary notice. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">103 </span></h2>
+                        <p>Subsections (5) to (8) provide for the process the Secretary of State must follow
+                           upon receiving a voluntary notice. In particular, the provisions set out the grounds
+                           on which the Secretary of State may reject a voluntary notice and the procedure which
+                           the Secretary of State must follow in responding to the relevant parties.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">104 </span></h2>
+                        <p>Subsection (9) provides that the Secretary of State has 30 working days to review
+                           a voluntary notice once it has been accepted. Before the end of this period, the Secretary
+                           of State must decide whether to call in the trigger event or whether to take no further
+                           action under the Act and notify relevant parties accordingly. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 19: Power to require information</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">105 </span></h2>
+                        <p>Section 19 provides for investigatory powers which enable the Secretary of State to
+                           obtain information either before or after the call-in power is exercised. The information
+                           must relate to the exercise of the Secretary of State’s functions under the Act. Information
+                           may be required, for example, in order to determine whether a call-in notice should
+                           be given or whether remedies should be imposed. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">106 </span></h2>
+                        <p>Subsection (2) provides a proportionality test for use of this power.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">107 </span></h2>
+                        <p>Subsection (4) provides that the Secretary of State may specify in the notice the
+                           manner in which information is to be provided and the time limit for providing it.
+                           The time limit for providing information may depend on the type of information and
+                           the amount of time required to obtain it. Subsection (4)(c) enables the Secretary
+                           of State to require the person to provide any information within their possession
+                           or power which would enable the Secretary of State to find the information required
+                           by the notice. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 20: Attendance of witnesses</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">108 </span></h2>
+                        <p>Section 20 gives the Secretary of State the power to require the attendance of witnesses
+                           to assist them to carry out their functions under the Act. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 21: Information notices and attendance notices: persons outside the UK</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">109 </span></h2>
+                        <p>Section 21 makes provision in respect of the persons on whom the Secretary of State
+                           may serve an information notice or attendance notice outside the UK. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">110 </span></h2>
+                        <p>Subsection (2) provides that an information notice or attendance notice may be given
+                           to any person outside the UK who is: (a) a UK national; (b) an individual ordinarily
+                           resident in the UK; (c) a body incorporated or constituted under the law of any part
+                           of the UK; or (d) carrying on business in the UK. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">111 </span></h2>
+                        <p>Subsections (3) and (4) also provide the Secretary of State with the power to issue
+                           an information notice or attendance notice to persons outside the UK who have acquired,
+                           or who are in the process of acquiring, qualifying UK entities or assets that are
+                           either located in the UK or otherwise connected to the UK.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 22: False or misleading information</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">112 </span></h2>
+                        <p>Section 22 gives the Secretary of State the power to reconsider a decision they have
+                           made under the Act if it is materially affected by false or misleading information
+                           that has been provided to them. Offences in relation to providing false or misleading
+                           information are set out in section 34.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Part 2: Remedies</b>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">113 </span></h2>
+                        <p>Part 2 of the Act is concerned with the remedies available to the Secretary of State
+                           to address risks to national security and the period in which such remedies are available.
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 23: Meaning of “assessment period”</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">114 </span></h2>
+                        <p>Section 23 provides for the time limits for the assessment of a trigger event after
+                           it has been called in. It provides that the Secretary of State has a period of 30
+                           working days after a trigger event has been called-in to determine whether to issue
+                           a final order imposing remedies or a final notification confirming no further action
+                           is to be taken (“the initial period”).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">115 </span></h2>
+                        <p>This period may be extended by the Secretary of State for a further 45 working days
+                           if they reasonably believe that a national security risk has arisen or would arise
+                           from the trigger event, and reasonably consider the extension is required to assess
+                           the trigger event further (“the additional period”).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">116 </span></h2>
+                        <p>Extensions beyond 75 working days (the initial 30 day period plus the additional period
+                           of 45 working days) may be agreed between the acquirer and the Secretary of State
+                           if the Secretary of State is satisfied a national security risk has arisen or would
+                           arise from the trigger event, and reasonably considers a further period is required
+                           to consider whether to make a final order (see section 26) or what it should contain
+                           (“a voluntary period”).</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 24: Effect of information notice and attendance notice</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">117 </span></h2>
+                        <p>Section 24 provides that, when calculating the assessment period under section 23,
+                           any period of time between the Secretary of State notifying the recipients of the
+                           call-in notice (see section 1) that an information notice (see section 19) or attendance
+                           notice (see section 20) has been issued, and the Secretary of State notifying those
+                           persons that either the requirements of the notice have been complied with or that
+                           the time allowed for compliance has passed, is to be discounted. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 25: Interim orders</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">118 </span></h2>
+                        <p>Section 25 enables the Secretary of State, whilst a national security assessment is
+                           ongoing, to make an interim order for the purpose of preventing or reversing pre-emptive
+                           action or mitigating its effects. “Pre-emptive action” is defined as action which
+                           might prejudice the exercise of the Secretary of State’s functions under the Act in
+                           relation to call-in notices (see section 1), i.e., in relation to national security
+                           assessments. This would include for example actions which might prejudice the imposition
+                           of appropriate remedies as part of a final order under section 26. The Secretary of
+                           State may only make an interim order if they reasonably consider that the provisions
+                           of the order are necessary and proportionate for the permitted purposes. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">119 </span></h2>
+                        <p>Subsection (4) provides that an interim order may amongst other things include provision
+                           requiring persons to do, or not to do, particular things. An interim order may, for
+                           example, prohibit the parties to a trigger event in progress from completing the acquisition,
+                           or require that any existing integration is reversed.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">120 </span></h2>
+                        <p>Subsection (5) sets out the permitted extra-territorial application of interim orders.
+                           An interim order may only apply to a person’s conduct outside the UK or the territorial
+                           sea adjacent to the UK if they are: (a) a UK national; (b) an individual ordinarily
+                           resident in the UK; (c) a body incorporated or constituted under the law of any part
+                           of the UK; or (d) carrying on business in the UK.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 26: Final orders and final notifications</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">121 </span></h2>
+                        <p>Section 26 provides for the Secretary of State’s final decision following a national
+                           security assessment. Before the end of the assessment period (see section 23), the
+                           Secretary of State must either notify the recipients of the call-in notice (see section
+                           1) that no further action will be taken on the assessment under the Act, or, where
+                           he or she is satisfied that a trigger event has taken place or is in progress or contemplation,
+                           and that it has given rise to or would give rise to a national security risk, make
+                           a final order for the purpose of preventing, remedying or mitigating that risk. The
+                           Secretary of State may only make a final order if he or she reasonably considers that
+                           the provisions of the order are necessary and proportionate for the permitted purposes.
+                           Subsection (4) requires the Secretary of State to consider any representations made
+                           to him or her before making a final order.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">122 </span></h2>
+                        <p>Subsection (5) provides that a final order may amongst other things include provision
+                           requiring persons to do or not do particular things. A final order will be in force
+                           for the period specified in or under it, or until it is revoked (subsections (7) and
+                           (8)). </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">123 </span></h2>
+                        <p>Subsection (6) sets out the permitted extra-territorial application of final orders.
+                           A final order may only apply to a person’s conduct outside the UK or the territorial
+                           sea adjacent to the UK if they are: (a) a UK national; (b) an individual ordinarily
+                           resident in the UK; (c) a body incorporated or constituted under the law of any part
+                           of the UK; or (d) carrying on business in the UK.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 27: Review, variation and revocation of orders</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">124 </span></h2>
+                        <p>Section 27 requires the Secretary of State to keep interim orders and final orders
+                           under review, and to consider requests to vary or revoke them. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 28: Orders: supplementary</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">125 </span></h2>
+                        <p>Section 28 makes provision for serving interim orders and final orders, and for serving
+                           notices that such an order has been varied or revoked. Orders, and varied orders,
+                           must be served on anyone who must comply with the order, the recipients of the call-in
+                           notice, and any other person the Secretary of State considers appropriate (for example,
+                           a regulator). The same persons must be given notice of the revocation of an order.
+                           In addition, notice that an order has been varied must be given to any person who
+                           was previously required to comply with the order but is no longer required to do so.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">126 </span></h2>
+                        <p>Subsection (4) prescribes the required contents of orders or accompanying explanatory
+                           material. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 29: Publication of notice of final order</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">127 </span></h2>
+                        <p>Section 29 requires that, when the Secretary of State makes, varies or revokes a final
+                           order, he or she must publish notice of that fact. Subsection (2) prescribes the required
+                           contents of such notices.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 30: Financial assistance</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">128 </span></h2>
+                        <p>Section 30 provides that the Secretary of State may, with the consent of the Treasury,
+                           give financial assistance to or in respect of an entity, through a loan, guarantee
+                           or indemnity or any other form of financial assistance. The financial assistance must
+                           be given as a consequence of him or her making a final order (see section 26). </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">129 </span></h2>
+                        <p>If during any financial year the amount given under this section totals £100 million
+                           or more, the Secretary of State must lay a report of the amount before the House of
+                           Commons. Where during any financial year in which such a report has been laid the
+                           Secretary of State provides any further financial assistance under this section, he
+                           or she must lay a further report of the amount. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 31: Interaction with CMA functions under Part 3 of Enterprise Act 2002</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">130 </span></h2>
+                        <p>Section 31 provides for situations where a trigger event considered under this Act
+                           for national security reasons is also subject to consideration by the CMA under the
+                           merger control regime in Part 3 of the Enterprise Act 2002. It gives the Secretary
+                           of State the power, if a final order is in force or a final notification has been
+                           given under this Act (see section 26), to direct the CMA to do, or not to do, anything
+                           under the merger control regime in relation to the trigger event. This power will
+                           allow the Secretary of State to ensure that, when a risk to national security has
+                           been addressed via a final order under the Act, the CMA does not inadvertently undermine
+                           this through any action it takes. The Secretary of State will also be able to use
+                           this power to ensure that a person is not subject to contradictory remedies under
+                           the two regimes. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">131 </span></h2>
+                        <p>Subsections (2) to (4) impose requirements for the use of this power, namely that
+                           the Secretary of State must reasonably consider that the direction is necessary and
+                           proportionate for the purpose of preventing, remedying or mitigating a risk to national
+                           security, that the CMA and such other persons as the Secretary of State considers
+                           appropriate must first be consulted, and that the Secretary of State’s direction must
+                           be published.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Part 3: Enforcement and appeals</b>
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>Sections 32-36: Offences</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">132 </span></h2>
+                        <p>The table below summarises the offences set out in Sections 32-35.</p>
+                        <table>
+                           <colgroup>
+                              <col style="width:2.49in">
+                              <col style="width:4in">
+                           </colgroup>
+                           <tbody>
+                              <tr>
+                                 <p>
+                                    <b>Offence</b>
+                                    </p>
+                                 <p>
+                                    <b>Penalty</b>
+                                    </p>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>Section 32: Completing, without reasonable excuse, a notifiable acquisition without
+                                       approval</p>
+                                 </td>
+                                 <td>
+                                    <p>
+                                       <b>Criminal Penalty</b>
+                                       </p>
+                                    <p>On summary conviction in England and Wales: imprisonment for a term not exceeding
+                                       12 months, or a fine (or both).</p>
+                                    <p>On summary conviction in Scotland: imprisonment for a term not exceeding 12 months,
+                                       or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On summary conviction in Northern Ireland: imprisonment for a term not exceeding 6
+                                       months, or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On conviction on indictment: imprisonment for a term not exceeding 5 years, or a fine
+                                       (or both). </p>
+                                    <p>
+                                       <b>Civil Penalty</b>
+                                       </p>
+                                    <p>The amount of the penalty is to be such amount as the Secretary of State considers
+                                       appropriate, not exceeding the permitted maximum as per section 41.</p>
+                                    <p>The penalty must be a fixed amount only.</p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>Section 33: Failing, without reasonable excuse, to comply with an order</p>
+                                    <p></p>
+                                 </td>
+                                 <td>
+                                    <p>
+                                       <b>Criminal Penalty </b>
+                                       </p>
+                                    <p>On summary conviction in England and Wales: imprisonment for a term not exceeding
+                                       12 months, or a fine (or both).</p>
+                                    <p>On summary conviction in Scotland: imprisonment for a term not exceeding 12 months,
+                                       or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On summary conviction in Northern Ireland: imprisonment for a term not exceeding 6
+                                       months, or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On conviction on indictment: imprisonment for a term not exceeding 5 years, or a fine
+                                       (or both). </p>
+                                    <p>
+                                       <b>Civil Penalty </b>
+                                       </p>
+                                    <p>The amount of the penalty is to be such amount as the Secretary of State considers
+                                       appropriate, not exceeding the permitted maximum as per section 41.</p>
+                                    <p>The penalty may be a fixed amount, a daily rate penalty or a combination of a fixed
+                                       penalty and a daily rate penalty.</p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>Section 34(1)(a): </p>
+                                    <p>Failing, without reasonable excuse, to comply with an information notice or attendance
+                                       notice.</p>
+                                 </td>
+                                 <td>
+                                    <p>
+                                       <b>Criminal Penalty </b>
+                                       </p>
+                                    <p>On summary conviction in England and Wales: imprisonment for a term not exceeding
+                                       12 months, or a fine (or both).</p>
+                                    <p>On summary conviction in Scotland: imprisonment for a term not exceeding 12 months,
+                                       or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On summary conviction in Northern Ireland: imprisonment for a term not exceeding 6
+                                       months, or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On conviction on indictment: imprisonment for a term not exceeding 2 years, or a fine
+                                       (or both). </p>
+                                    <p>
+                                       <b>Civil Penalty </b>
+                                       </p>
+                                    <p>The amount of the penalty is to be such amount as the Secretary of State considers
+                                       appropriate, not exceeding the permitted maximum as per section 41. </p>
+                                    <p>The penalty may be a fixed amount, a daily rate penalty or a combination of a fixed
+                                       penalty and a daily rate penalty.</p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>Section 34(1)(b): </p>
+                                    <p>Intentionally or recklessly altering, suppressing or destroying any information required
+                                       by an information notice, or causing or permitting its alteration, suppression or
+                                       destruction. </p>
+                                 </td>
+                                 <td>
+                                    <p>
+                                       <b>Criminal Penalty </b>
+                                       </p>
+                                    <p>On summary conviction in England and Wales: imprisonment for a term not exceeding
+                                       12 months, or a fine (or both).</p>
+                                    <p>On summary conviction in Scotland: imprisonment for a term not exceeding 12 months,
+                                       or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On summary conviction in Northern Ireland: imprisonment for a term not exceeding 6
+                                       months, or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On conviction on indictment: imprisonment for a term not exceeding 2 years, or a fine
+                                       (or both). </p>
+                                    <p>
+                                       <b>Civil Penalty </b>
+                                       </p>
+                                    <p>The amount of the penalty is to be such amount as the Secretary of State considers
+                                       appropriate, not exceeding the permitted maximum as per section 41.</p>
+                                    <p>The penalty must be a fixed amount only. </p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>Section 34(2): </p>
+                                    <p>Intentionally obstructing or delaying the making of a copy of information provided
+                                       in response to an information notice. </p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                 </td>
+                                 <td>
+                                    <p>
+                                       <b>Criminal Penalty </b>
+                                       </p>
+                                    <p>On summary conviction in England and Wales: imprisonment for a term not exceeding
+                                       12 months, or a fine (or both).</p>
+                                    <p>On summary conviction in Scotland: imprisonment for a term not exceeding 12 months,
+                                       or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On summary conviction in Northern Ireland: imprisonment for a term not exceeding 6
+                                       months, or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On conviction on indictment: imprisonment for a term not exceeding 2 years, or a fine
+                                       (or both). </p>
+                                    <p>
+                                       <b>Civil Penalty </b>
+                                       </p>
+                                    <p>The amount of the penalty is to be such amount as the Secretary of State considers
+                                       appropriate, not exceeding the permitted maximum as per section 41.</p>
+                                    <p>The penalty must be a fixed amount only.</p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>Section 34(3) and (4): </p>
+                                    <p>Supplying information that is false or misleading in a material respect to the Secretary
+                                       of State (or to another person, knowing that the information is be used for the purpose
+                                       of supplying information to the Secretary of State) in connection with any of the
+                                       functions of the Secretary of State under the Act, that the person knows to be false
+                                       or misleading in a material respect or is reckless as to whether this is the case.
+                                       </p>
+                                 </td>
+                                 <td>
+                                    <p>
+                                       <b>Criminal Penalty </b>
+                                       </p>
+                                    <p>On summary conviction in England and Wales: imprisonment for a term not exceeding
+                                       12 months, or a fine (or both).</p>
+                                    <p>On summary conviction in Scotland: imprisonment for a term not exceeding 12 months,
+                                       or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On summary conviction in Northern Ireland: imprisonment for a term not exceeding 6
+                                       months, or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On conviction on indictment: imprisonment for a term not exceeding 2 years, or a fine
+                                       (or both). </p>
+                                    <p>
+                                       <b>Civil Penalty </b>
+                                       </p>
+                                    <p>The amount of the penalty is to be such amount as the Secretary of State considers
+                                       appropriate, not exceeding the permitted maximum as per section 41. </p>
+                                    <p>The penalty must be a fixed amount only.</p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <p>Section 35: Unauthorised use or disclosure of information. </p>
+                                    <p>It is a defence for a person charged with an offence under Section 35 to prove that
+                                       they reasonably believed that the use or disclosure was lawful, or that the information
+                                       had already and lawfully been made available to the public.</p>
+                                 </td>
+                                 <td>
+                                    <p>
+                                       <b>Criminal Penalty </b>
+                                       </p>
+                                    <p>On summary conviction in England and Wales: imprisonment for a term not exceeding
+                                       12 months, or a fine (or both).</p>
+                                    <p>On summary conviction in Scotland: imprisonment for a term not exceeding 12 months,
+                                       or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On summary conviction in Northern Ireland: imprisonment for a term not exceeding 6
+                                       months, or a fine not exceeding the statutory maximum (or both).</p>
+                                    <p>On conviction on indictment: imprisonment for a term not exceeding 2 years, or a fine
+                                       (or both). </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">133 </span></h2>
+                        <p>The maximum sentence of imprisonment on summary conviction will be 6 months in England
+                           and Wales until paragraph 24(2) of Schedule 22 to the Sentencing Act 2020 is brought
+                           into force.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">134 </span></h2>
+                        <p>Section 55(2) provides that section 19 of the Commissioners for Revenue and Customs
+                           Act 2005 (offence of wrongful disclosure) applies to the unauthorised disclosure of
+                           personal information from Her Majesty’s Revenue and Customs. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 36: Offences by bodies corporate etc</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">135 </span></h2>
+                        <p>Section 36 provides that, where a body (for instance, a body corporate such as a company)
+                           commits an offence under this Act, an officer of the body will also be guilty of the
+                           offence if it is attributable to their consent or connivance, or to their neglect.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">136 </span></h2>
+                        <p>Subsection (5) provides that the Secretary of State may by regulations provide for
+                           the modification of this section in its application to a body corporate or unincorporated
+                           association formed or recognised under the law of a country or territory outside the
+                           United Kingdom.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 37: Prosecution</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">137 </span></h2>
+                        <p>Section 37 provides for which enforcement agencies are responsible for prosecuting
+                           offences under this Act. It provides that in England and Wales prosecutions must be
+                           brought by the Director of Public Prosecutions, and in Northern Ireland, the Director
+                           of Public Prosecutions for Northern Ireland. In Scotland, the Procurator Fiscal handles
+                           all prosecutions in the public interest and there is therefore no need for the kind
+                           of provision made in this section in Scotland.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 38: Proceedings against partnerships etc</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">138 </span></h2>
+                        <p>Section 38 makes provision about, and in connection with, bringing proceedings for
+                           offences under this Act against partnerships or other unincorporated associations.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 39: Offences: penalties</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">139 </span></h2>
+                        <p>Section 39 sets out the available penalties on conviction for persons who commit offences
+                           under this Act. These are set out in the table after paragraph 135 above.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">140 </span></h2>
+                        <p>Subsection (3) provides that, in relation to offences committed before paragraph 24(2)
+                           of Schedule 22 to the Sentencing Act 2020 is brought into force, the maximum term
+                           of imprisonment which may be imposed on summary conviction in England and Wales is
+                           6 months.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 40: Power to impose monetary penalties</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">141 </span></h2>
+                        <p>Section 40 enables the Secretary of State to impose a monetary penalty on a person
+                           where they are satisfied beyond reasonable doubt that the person has committed an
+                           offence under Sections 32, 33 or 34. Subsection (6) provides that the amount of the
+                           penalty must be such amount as the Secretary of State considers appropriate, but it
+                           may not exceed the maximum penalty for the offence as set out in section 41. Subsection
+                           (7) requires the Secretary of State to have regard to various factors when determining
+                           the amount of a monetary penalty, including the seriousness of the offence and the
+                           ability of the penalised person to pay the penalty. Further information on the monetary
+                           penalties is set out in the table after paragraph 135 above. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 41: Permitted maximum penalties</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">142 </span></h2>
+                        <p>Subsections (1) to (7) of section 41 set out the maximum monetary penalties that the
+                           Secretary of State may impose for different offences under the Act. They specify the
+                           maximum fixed penalty and, if applicable, the maximum daily rate penalty. In relation
+                           to the offences of completing a notifiable acquisition without approval and failing
+                           to comply with an order, there are different maximum penalties for businesses and
+                           non-businesses. In relation to businesses, the maximum penalties are, depending on
+                           the offence, either a specified amount or a percentage of the worldwide turnover of
+                           the business and of any businesses it owns or controls.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">143 </span></h2>
+                        <p>Pursuant to subsections (8) and (9) the Secretary of State may by regulations specify
+                           how to calculate the maximum penalty applicable in any case (for example, how to determine
+                           the turnover of a business), or amend any of the maximum penalty amounts or percentage
+                           rates specified in subsections (1) to (7). </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">144 </span></h2>
+                        <p>Section 63 provides for the parliamentary procedure to be used for regulations under
+                           the Act. Regulations under section 41 must be laid in draft before Parliament and
+                           approved by both Houses of Parliament before they may be made.</p>
+                     </section>
+                     <section class="level">
+                        <p>Sections 42-47: Monetary penalties and cost recovery</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">145 </span></h2>
+                        <p>Sections 42 and 46 require the Secretary of State to keep under review a monetary
+                           penalty and a requirement to pay costs respectively. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">146 </span></h2>
+                        <p>Section 43 ensures that a person may not be subject to both a monetary penalty and
+                           a criminal sanction for the same offence.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">147 </span></h2>
+                        <p>Sections 44 and 45 deal with monetary penalties and cost recovery respectively. They
+                           set out the procedure for recovering unpaid penalties and costs and provide for interest
+                           to be incurred on the unpaid balance.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">148 </span></h2>
+                        <p>Section 47 enables the Secretary of State to issue a notice requiring a person issued
+                           with a monetary penalty to also pay the Secretary of State’s costs incurred in imposing
+                           the penalty.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 48: Enforcement through civil proceedings</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">149 </span></h2>
+                        <p>Section 48 provides that the duty of a person to comply with a requirement under or
+                           by virtue of an information notice, an attendance notice, an interim order or a final
+                           order is enforceable through civil proceedings by the Secretary of State for an injunction,
+                           or for specific performance of a statutory duty under section 45 of the Court of Session
+                           Act 1988, or for any other appropriate relief or remedy. This applies whether or not
+                           the person is in the UK. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 49: Procedure for judicial review of certain decisions</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">150 </span></h2>
+                        <p>Section 49 provides that claims for judicial review of certain decisions under this
+                           Act must be brought within 28 days beginning with the day after the day on which the
+                           grounds to make the claim first arose, unless the court considers that exceptional
+                           circumstances apply. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 50: Appeals against monetary penalties</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">151 </span></h2>
+                        <p>Section 50 enables any person on whom a monetary penalty or variation in penalty is
+                           imposed to appeal against the penalty or variation. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 51: Appeals against costs</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">152 </span></h2>
+                        <p>Section 51 enables any person on whom costs are imposed, or on whom a variation in
+                           costs is imposed, to appeal against the costs or variation. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 52: Extra-territorial application and jurisdiction to try offences</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">153 </span></h2>
+                        <p>Section 52(1) provides that the offences set out in Sections 32, 33, 34 and 35 may
+                           be committed by conduct that occurs inside or outside the UK irrespective of the offender’s
+                           nationality or, if a body, country of formation or recognition. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">154 </span></h2>
+                        <p>Subsection (2) provides that, where an offence under the Act is committed outside
+                           the UK, proceedings for the offence may be taken at any place in the UK and may be
+                           treated for all incidental purposes as having been committed at any such place.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">155 </span></h2>
+                        <p>Subsection (3) specifies that in the application of subsection (2) to Scotland, any
+                           such proceedings may be taken in any sheriff court district in which the person is
+                           apprehended or in custody, or in such sheriff court district as the Lord Advocate
+                           may determine. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">156 </span></h2>
+                        <p>Subsection (4) defines “sheriff court district” by reference to the definition in
+                           section 307(1) of the Criminal Procedure (Scotland) Act 1995.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Part 4: Miscellaneous</b>
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 53: Procedure for service, etc</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">157 </span></h2>
+                        <p>Section 53 enables the Secretary of State to make regulations prescribing the procedure
+                           for service of documents under this Act. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">158 </span></h2>
+                        <p>The regulations may in particular specify the manner in which a notice must be given,
+                           or an order served, the address to which a document must be sent, and whether a document
+                           may be sent electronically. They may also specify the date and time a notice or order
+                           is to be regarded as having been given or served (this may be important, for example,
+                           where a time limit begins to run from that date). The regulations may also make provision
+                           for cases where a recipient or sender is not an individual (for example, in the case
+                           of a company) or is outside the United Kingdom. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Information gateways</b>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">159 </span></h2>
+                        <p>Sections 54 and 55 provide the Secretary of State with the power to disclose information
+                           in specified circumstances to public authorities, and vice-versa.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 54: Disclosure of information</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">160 </span></h2>
+                        <p>Section 54 specifies the circumstances in which information may be disclosed.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">161 </span></h2>
+                        <p>Subsection (1) provides an information gateway for public authorities to disclose
+                           information to the Secretary of State for the purpose of facilitating the exercise
+                           of his or her functions under the Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">162 </span></h2>
+                        <p>Subsection (2) permits the Secretary of State to disclose information received under
+                           this Act to any UK or overseas public authority for specified purposes. Subsection
+                           (3) in addition permits disclosure of information to overseas public authorities for
+                           the purpose of the exercise of corresponding functions of overseas public authorities.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">163 </span></h2>
+                        <p>Subsection (4) specifies that any person who receives information under subsection
+                           (2) or (3) of this section may not use it for any purpose other than the purpose for
+                           which it was disclosed, or further disclose it, without the Secretary of State’s consent.
+                           This subsection does not apply to information received from HMRC. In accordance with
+                           section 55(1), any person seeking to use information disclosed by HMRC under section
+                           54 for a purpose other than facilitating the exercise by the Secretary of State of
+                           his or her functions under the Act, or seeking to further disclose such information,
+                           will be required to obtain HMRC consent. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">164 </span></h2>
+                        <p>Subsections (6) and (7) set out considerations the Secretary of State must take into
+                           account when deciding whether to disclose information under this section. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">165 </span></h2>
+                        <p>As the information disclosed under this Section may include information to which a
+                           duty of confidence would attach, subsection (8) overrides any obligation of confidence
+                           owed by a person disclosing information under this section, or any other restriction
+                           that would apply to the disclosure of that information (except as provided by section
+                           57).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">166 </span></h2>
+                        <p>Subsection (9) defines “overseas public authority” and “public authority”. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 55: Disclosure of information held by HMRC</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">167 </span></h2>
+                        <p>Section 55(1) provides that a person (which includes the Secretary of State, another
+                           public authority or an overseas public authority) who receives information which has
+                           been disclosed under section 54 by HMRC, may not use the information for any purpose
+                           other than facilitating the exercise by the Secretary of State of his or her functions
+                           under the Act or disclose the information, without the permission of HMRC. Subsection
+                           (2) applies the criminal offence under section 19 of the Commissioners for Revenue
+                           and Customs Act 2005 (offence of wrongful disclosure) to the unauthorised disclosure
+                           of personal information from HMRC. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">168 </span></h2>
+                        <p>As the information disclosed under this section may include information to which a
+                           duty of confidence would attach, subsection (3) overrides any obligation of confidence
+                           owed by a person disclosing information under this section, or any other restriction
+                           that would apply to the disclosure of that information (except as provided by section
+                           57).</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 56: Duty of the CMA to provide information and assistance</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">169 </span></h2>
+                        <p>Section 56 requires the CMA to give information and assistance to the Secretary of
+                           State to enable him to carry out his or her functions under this Act. This section
+                           largely replicates an existing duty in section 105(5) and (6) of the Enterprise Act
+                           2002. </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 57: Data protection</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">170 </span></h2>
+                        <p>Section 57 provides that information may only be used or disclosed for the purposes
+                           of this Act if this does not contravene the data protection legislation or Parts 1
+                           to 7 of, or Chapter 1 of Part 9 of, the Investigatory Powers Act 2016.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 58 and Schedule 2: Minor and consequential amendments and revocations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">171 </span></h2>
+                        <p>Section 58 and Schedule 2 make amendments to remove the existing national security
+                           screening measures from the Enterprise Act 2002.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 59: Overseas information disclosure</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">172 </span></h2>
+                        <p>Section 59 amends the overseas disclosure gateway in section 243 of the Enterprise
+                           Act 2002, removing the restriction on UK public authorities disclosing information
+                           that comes to them in connection with a merger investigation under that gateway.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 60: Defamation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">173 </span></h2>
+                        <p>Section 60 protects the Secretary of State and the CMA against actions for defamation
+                           as a result of the exercise of functions under or by virtue of the Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 61: Annual report</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">174 </span></h2>
+                        <p>Section 61 requires, after the end of each financial year, the Secretary of State
+                           to prepare an annual report including the information set out at subsection (2), and
+                           to lay a copy of the report before each House of Parliament. </p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Part 5: Final Provisions</b>
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 62: Transitional and saving provision in relation to the Enterprise Act 2002</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">175 </span></h2>
+                        <p>Section 62 is a transitional provision concerning trigger events which take place
+                           after the introduction of this Act but before commencement. It provides for the Secretary
+                           of State’s powers of intervention under sections 42, 59 and 67 of the Enterprise Act
+                           2002 to continue to apply to these trigger events after commencement. However, these
+                           powers do not continue to apply to a trigger event if any action is taken in relation
+                           to it under this Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 63: Regulations under this Act</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">176 </span></h2>
+                        <p>Section 63 makes provision in relation to the regulations that may be made by the
+                           Secretary of State under the Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 64: Financial provision</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">177 </span></h2>
+                        <p>Section 64 deals with the further financial provision necessary as a result of the
+                           Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 65: Interpretation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">178 </span></h2>
+                        <p> Section 65 sets out definitions for terms used in the Act.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 66: Short title, commencement and extent</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">179 </span></h2>
+                        <p> Section 66 provides for the short title, commencement and extent of the Act.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">180 </span></h2>
+                        <p>Subsection (2) provides for certain specified provisions of the Act to come into force
+                           on the day the Act is passed.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">181 </span></h2>
+                        <p>Subsection (3) provides that the other provisions of the Act are to come into force
+                           on such day as the Secretary of State may by regulations appoint.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">182 </span></h2>
+                        <p>Subsection (4) provides that regulations under subsection (3) may appoint different
+                           days for different purposes, or make transitional, transitory or saving provision.
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">183 </span></h2>
+                        <p>Subsection (5) provides that any amendment or repeal made by the Act has the same
+                           extent as the enactment to which it relates and that, subject to that, the provisions
+                           of the Act will extend throughout the United Kingdom. </p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">184 </span></h2>
+                  <p>Section 66 makes provision for certain powers enabling the making of regulations to
+                     come into force on the day of Royal Assent. The remaining provisions of this Act will
+                     come into force on days appointed by the Secretary of State by commencement regulations.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">185 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Enterprise Act 2002, <a href="https://www.legislation.gov.uk/ukpga/2002/40/contents"><u>https://www.legislation.gov.uk/ukpga/2002/40/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Enterprise Act 2002 (Turnover Test) (Amendment) Order 2018, <a href="http://www.legislation.gov.uk/uksi/2018/593/contents/made"><u>http://www.legislation.gov.uk/uksi/2018/593/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Enterprise Act 2002 (Share of Supply Test) (Amendment) Order 2018, <a href="http://www.legislation.gov.uk/uksi/2018/578/contents/made"><u>http://www.legislation.gov.uk/uksi/2018/578/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Enterprise Act 2002 (Turnover Test) (Amendment) Order 2020, <a href="https://www.legislation.gov.uk/uksi/2020/763/contents/made"><u>https://www.legislation.gov.uk/uksi/2020/763/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Enterprise Act 2002 (Share of Supply Test) (Amendment) Order 2020, <a href="https://www.legislation.gov.uk/ukdsi/2020/9780348208795/introduction"><u>https://www.legislation.gov.uk/ukdsi/2020/9780348208795/introduction</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Mergers: Guidance on the CMA's jurisdiction and procedure, <a href="https://www.gov.uk/government/publications/mergers-guidance-on-the-cmas-jurisdiction-and-procedure"><u>https://www.gov.uk/government/publications/mergers-guidance-on-the-cmas-jurisdiction-and-procedure</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>National security and infrastructure investment review (Green Paper), <a href="https://www.gov.uk/government/consultations/national-security-and-infrastructure-investment-review"><u>https://www.gov.uk/government/consultations/national-security-and-infrastructure-investment-review</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>National security and investment: proposed legislative reforms (White Paper), <a href="https://www.gov.uk/government/consultations/national-security-and-investment-proposed-reforms"><u>https://www.gov.uk/government/consultations/national-security-and-investment-proposed-reforms</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Queen’s Speech December 2019, <a href="https://www.gov.uk/government/speeches/queens-speech-december-2019"><u>https://www.gov.uk/government/speeches/queens-speech-december-2019</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Queen’s Speech December 2019 Background Briefing Notes, <a href="https://www.gov.uk/government/publications/queens-speech-2019-background-briefing-notes"><u>https://www.gov.uk/government/publications/queens-speech-2019-background-briefing-notes</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Press release on the Integrated Review of foreign policy (Press release), <a href="https://www.gov.uk/government/news/pm-outlines-new-review-to-define-britains-place-in-the-world"><u>https://www.gov.uk/government/news/pm-outlines-new-review-to-define-britains-place-in-the-world</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">186 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>11 November 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12539">
+                                    <u>Vol. 683 Col. 924</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>17 November 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12540">
+                                    <u>Vol. 684 Col. 205</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>24 November 2020</p>
+                              <p>24 November 2020</p>
+                              <p>26 November 2020</p>
+                              <p>26 November 2020</p>
+                              <p>1 December 2020</p>
+                              <p>1 December 2020</p>
+                              <p>3 December 2020</p>
+                              <p>3 December 2020</p>
+                              <p>8 December 2020</p>
+                              <p>8 December 2020</p>
+                              <p>11 December 2020</p>
+                              <p>11 December 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-11-24/debates/d6fcff86-0b13-4698-804f-a16e9aca2ad4/NationalSecurityAndInvestmentBill(FirstSitting)">
+                                    <u>1st sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-11-24/debates/baf4f10c-493a-49ec-9fca-8079eacb5a1e/NationalSecurityAndInvestmentBill(SecondSitting)">
+                                    <u>2nd sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-11-26/debates/fe8422d9-0d9e-4b31-9a5c-368495dd53b8/NationalSecurityAndInvestmentBill(ThirdSitting)">
+                                    <u>3rd sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-11-26/debates/a1580470-2461-42ca-a62d-a3e37a9868ed/NationalSecurityAndInvestmentBill(FourthSitting)">
+                                    <u>4th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-01/debates/f196b69f-5335-4c33-8723-230b719bd427/NationalSecurityAndInvestmentBill(FifthSitting)">
+                                    <u>5th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-01/debates/b3687593-6e84-4cb4-83dc-f463761e5a3f/NationalSecurityAndInvestmentBill(SixthSitting)">
+                                    <u>6th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-03/debates/b4c32c84-2cb4-4979-af22-77d240822bc0/NationalSecurityAndInvestmentBill(SeventhSitting)">
+                                    <u>7th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-03/debates/8afd0541-d73b-484c-b9d1-03e36c227e95/NationalSecurityAndInvestmentBill(EighthSitting)">
+                                    <u>8th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-08/debates/fe694caa-867b-4142-a959-3c2163c99bf9/NationalSecurityAndInvestmentBill(NinthSitting)">
+                                    <u>9th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-08/debates/0fd79cb2-a43e-493a-ae46-61b4663278f6/NationalSecurityAndInvestmentBill(TenthSitting)">
+                                    <u>10th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-10/debates/5e391e07-3cf6-4b2d-b65a-06d44fa455f6/NationalSecurityAndInvestmentBill(EleventhSitting)">
+                                    <u>11th sitting</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-12-10/debates/873b237f-8e9f-4f9d-908a-fa495c001d00/NationalSecurityAndInvestmentBill(TwelfthSitting)">
+                                    <u>12th sitting</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>20 January 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12685">
+                                    <u>Vol. 687 Col. 988</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>20 January 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12673">
+                                    <u>Vol. 809 Col. 1258</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>4 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12674">
+                                    <u>Vol. 809 Col. 2332</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>2 March 2021</p>
+                              <p>9 March 2021</p>
+                              <p>16 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-02/debates/4EE35C25-1640-4F03-8D51-397702629B70/NationalSecurityAndInvestmentBill">
+                                    <u>Vol. 810 Col. GC 311</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-09/debates/064FF49B-3A17-4501-862E-1830F344A068/NationalSecurityAndInvestmentBill">
+                                    <u>Vol. 810 Col. GC 585</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-16/debates/6122B3B2-BDF5-47B7-88DC-5A2C549D9647/NationalSecurityAndInvestmentBill">
+                                    <u>Vol. 811 Col. 194</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>15 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12841">
+                                    <u>Vol. 811 Col. 1452</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>22 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12873">
+                                    <u>Vol. 811 Col. 1968</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>26 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12901">
+                                    <u>Vol. 693 Col. 150</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>28 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12913">
+                                    <u>Vol. 811 Col. 2252</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>28 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12931">
+                                    <u>Vol. 693 Col. 445</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>28 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12932">
+                                    <u>Vol. 811 Col. 2375</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>29 April 2021</p>
+                              <p>29 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12933">
+                                    <u>House of Commons Vol. 693 Col. 520</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2801/stages/12933">
+                                    <u>House of Lords Vol. 811 Col. 2413</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The Competition (Amendment etc.) (EU Exit) Regulations 2019 (S.I. 2019/93) were amended
+                  by the Competition (Amendment etc.) (EU Exit) Regulations 2020 (S.I. 2020/1343). The
+                  2019 regulations, as amended, make transitional provision which reflects that under
+                  Part 3 of the Withdrawal Agreement the European Commission continues after the end
+                  of the transition period to assess the effects in the UK of mergers with a European
+                  dimension if the European Commission’s merger review is initiated formally before
+                  the end of the transition period in accordance with Article 92 of the Withdrawal Agreement.
+                  The regulations also make transitional provision for an EIN process to continue after
+                  the end of the transition period, if the EIN was issued before the end of the transition
+                  period and the European Commission has retained exclusive competence over the merger
+                  in accordance with Article 92. The CMA will be solely responsible for investigating
+                  the effects in the UK of any merger which meets the UK jurisdictional test and in
+                  respect of which an investigation by the EU Commission has not been initiated before
+                  the end of the transition period.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Section 240 of the Enterprise Act 2002 was repealed by the Competition (Amendment
+                  etc.) (EU Exit) Regulations (S.I. 2019/93), Part 3, Reg.59. The Competition (Amendment
+                  etc.) (EU Exit) Regulations 2020 (S.I. 2020/1343) amend the 2019 regulations in order
+                  to save and modify the effect of section 240 so that the CMA can share information
+                  with the European Commission for the purposes of ongoing antitrust or merger cases
+                  for which the European Commission has continued competence after the end of the transition
+                  period in accordance with Article 92 of the Withdrawal Agreement.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

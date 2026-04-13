@@ -1,0 +1,834 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>HEALTH AND SOCIAL CARE LEVY (REPEAL)</b>
+               <b>
+                  </b>
+               <b>ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Health and Social Care Levy (Repeal) Act 2022
+                  which received Royal Assent on 25 October 2022 (c. 43). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by HM Revenue and Customs (HMRC) in order
+                  to assist the reader in understanding the Act. They do not form part of the Act and
+                  have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Act repeals the Health and Social Care Levy Act 2021. As a&nbsp;consequence,&nbsp;the&nbsp;1.25%
+                     Health and Social Care Levy&nbsp;will not come into&nbsp;force from&nbsp;6 April 2023. It&nbsp;also&nbsp;reduces&nbsp;the
+                     main and additional rates of Class 1, Class 1A, Class 1B and Class 4&nbsp;National Insurance
+                     contributions (NICs)&nbsp;for the 2022-23 tax year,&nbsp;in effect&nbsp;removing the temporary 1.25
+                     percentage point increase&nbsp;legislated in&nbsp;section 5 of&nbsp;the Health and Social Care Levy
+                     Act 2021&nbsp;for the remainder of the current tax year.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>This measure will reverse the 1.25 percentage point increase in NICs for the remainder
+                     of the 2022-23 tax year for employers, employees and the self-employed and will also
+                     reverse the introduction of the Health and Social Care Levy as a separate tax from
+                     April 2023.   </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Legislation relating to the existing system of NICs and social security benefits is
+                     set out in a combination of primary and subordinate legislation. The relevant provisions
+                     are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The Social Security Contributions and Benefits Act 1992 (SSCBA 1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>The Social Security Contributions and Benefits (Northern Ireland) Act 1992.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>The Social Security Administration Act 1992 (SSAA 1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>The Social Security Administration (Northern Ireland) Act 1992 (SAA(NI)A 1992).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>The Social Security (Contributions) Regulations 2001 (S.I. 2001/1004).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>These provisions will continue to be the main legislation dealing with NICs. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Health and Social Care Levy (including the transitional NICs increase for 2022-23)
+                     was introduced by the Health and Social Care Levy Act 2021.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Act extends to England, Wales, Scotland and Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Repeal of the Health and Social Care Levy Act 2021 </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Section 1 repeals the Health and Social Care Levy Act 2021, and therefore the Health
+                     and Social Care Levy will no longer be introduced from April 2023.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Transitional NICs rates for tax year 2022-23 etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 2 provides for transitional arrangements for the 2022-23 tax year to reverse
+                     the temporary increase in the rate of NICs. This measure applies to Great Britain
+                     and Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 2(1) ensures that the higher rates of Class 1 NICs, as set out in section
+                     5 of the Health and Social Care Levy Act 2021, remain in place until 5 November 2022.
+                     At which point, those sections will no longer have effect and the 2021-22 tax year
+                     Class 1 NICs rates will apply from 6 November 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 2(2) amends the main rate of Class 4 NICs and the additional rate of Class
+                     4 NICs for the 2022-23 tax year, as set out in Part 1 of the Social Security Contributions
+                     and Benefits Act 1992, to 9.73% and 2.73% respectively. Class 4 NICs are assessed
+                     on an annual basis, therefore a blended rate has been applied to ensure consistency
+                     and fairness with Class 1 NICs payers who have paid the increased NICs rate since
+                     April 2022. Further, this approach means that the self-employed do not need to apportion
+                     profits mid-way through the tax year. Section 2(3) ensures the changes to Class 4
+                     NICs also apply in Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 2(4) provides for a Schedule to this Act that contains further transitional
+                     provisions and a power to make consequential provisions. </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Short title and interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 3(1) gives the short title of the Act as the Health and Social Care Levy (Repeal)
+                     Act 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 3(2) defines various terms used in the Act.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule: Transitional and consequential provisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Paragraph 1 amends the rate of Class 1A NICs for the 2022-23 tax year that do not
+                     relate to sporting testimonial cash payments or termination awards, as set out in
+                     section 10 of the Social Security Contributions and Benefits Act 1992 and regulation
+                     40C and 40D of the Social Security (Contributions) Regulations 2001 (S.I. 2001/1004),
+                     to 14.53%. Class 1A NICs that do not relate to termination awards and sporting testimonials
+                     cash payments are assessed on an annual basis, therefore a blended rate has been applied
+                     to ensure consistency with Class 1 and 4 NICs.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Paragraph 2 makes provision for the rate of Class 1A NICs for the 2022-23 tax year
+                     that relate to sporting testimonial cash payments and termination awards, as set out
+                     in section 10 of the Social Security Contributions and Benefits Act 1992 (and Northern
+                     Ireland equivalents), so the 2021-22 tax year rate applies from 6 November 2022. Class
+                     1A NICs that relate to termination awards and sporting testimonial cash payments are
+                     assessed based on the rate applicable at the time of payment, therefore a blended
+                     rate is not appropriate. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Paragraph 3 amends the rate of Class 1B NICs for the 2022-23 tax year, as set out
+                     in section 10A of the Social Security Contributions and Benefits Act 1992 (and Northern
+                     Ireland equivalent), to 14.53%. Class 1B is assessed on an annual basis, therefore
+                     a blended rate has been applied to ensure consistency with changes to other NICs rates.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Paragraph 4 reduces the married women and widows reduced rate of primary Class 1 NICs
+                     with effect from 6 November 2022. This removes the temporary increase made by the
+                     Social Security (Contributions) (Amendment No. 2) Regulations 2022 (S.I. 2022/416)
+                     for the remainder of the tax year.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Paragraph 5 reduces the rate of Class 1 NICs for directors to whom regulation 8(2)
+                     to (5) of the Social Security (Contributions) Regulations 2001 applies (which also
+                     applies for Northern Ireland) to a main rate of 12.73% and additional rate of 2.73%
+                     for the 2022-23 tax year. Class 1 NICs paid by directors are assessed on an annual
+                     basis. A blended rate has been applied to ensure consistency and fairness with in-year
+                     changes to other rates of NICs. Paragraph 5 also provides a blended rate of 6.58%
+                     for directors who have elected to pay the married women and widows reduced rate. 
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Paragraph 6 amends the calculation of the annual maximum for the 2022-23 tax year,
+                     as set out in regulations 21 and 100 of the Social Security (Contributions) Regulations
+                     2001 (S.I. 2001/1004). This calculation is assessed on an annual basis, therefore
+                     blended rates have been used to ensure consistency with in-year changes to other rates
+                     of NICs. Paragraph 6 also revokes the Social Security (Contributions) (Amendment)
+                     Regulations 2022 (S.I. 2022/300) which are superseded by this change. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>NICs collected are paid to the National Insurance Fund and the National Health Service
+                     in a proportion set out in Section 162 of the Social Security Administration Act 1992
+                     (and Northern Ireland equivalents). Paragraph 7 ensures that NICs collected on or
+                     after 6 November (or the amount attributed as a result of the blended rate where NICs
+                     is assessed on an annual basis) is allocated in the same proportion as the 2021-22
+                     tax year. The Health and Social Care Levy Act 2021 had previously increased the proportion
+                     to be sent to the NHS. This Act repeals the changes made to the allocation by the
+                     Health and Social Care Levy Act 2021, and Paragraph 7 ensures that the NICs collected
+                     due to the transitional rate is allocated correctly. This paragraph and the Act adjust
+                     the balance of funding between NICs receipts and general taxation following the repeal
+                     of the Health and Social Care Levy Act 2021 and the in-year reduction in NICs rates.
+                     Despite repealing the Levy, the government will maintain overall funding for health
+                     and social care services at the same level as if the Levy was in place, and will be
+                     doing this without the tax increase.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Paragraph 8 ensures that that powers to increase NICs rates by secondary legislation
+                     in sections 143 and 145 of the Social Security Administration Act 1992, which are
+                     limited by reference to the rates in force at the end of the previous tax year, are
+                     not affected by any changes to NICs rates made by this Bill. Paragraph 8 ensures that
+                     the allocation of NICs in the 2023-24 tax year and beyond is consistent with the allocation
+                     in the 2021-22 tax year.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Paragraph 9 provides HM Treasury with a power to make consequential provisions including
+                     amending primary legislation and retrospective provision back to 6 April 2022. Statutory
+                     Instruments made using this power are subject to the negative procedure in the House
+                     of Commons. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>This Act will come into force upon Royal Assent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>A Tax Information Impact Note at <a href="https://www.gov.uk/government/publications/reversal-of-the-health-and-social-care-levy-and-in-year-reductions-for-national-insurance-contributions-rates/cancellation-of-the-health-and-social-care-levy-and-in-year-reductions-in-national-insurance-contributions-rates"><u>https://www.gov.uk/government/publications/reversal-of-the-health-and-social-care-levy-and-in-year-reductions-for-national-insurance-contributions-rates/cancellation-of-the-health-and-social-care-levy-and-in-year-reductions-in-national-insurance-contributions-rates</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Delegated Powers Memorandum at <a href="https://bills.parliament.uk/publications/47840/documents/2283"><u>https://bills.parliament.uk/publications/47840/documents/2283</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:1.2in">
+                        <col style="width:1.28in">
+                        <col style="width:1.56in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>England</b>
+                              </p>
+                           <p>
+                              <b>Wales</b>
+                              </p>
+                           <p>
+                              <b>Scotland</b>
+                              </p>
+                           <p>
+                              <b>Northern Ireland</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p></p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p>Section 3</p>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>22 September 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-09-22/debates/35B8A6B1-BE1D-48BB-A521-86616FC74CE4/PointOfOrder">
+                                    <u>Vol. 719 Col. 853</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>11 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-10-11/debates/8FA8A4C7-115E-45A4-800F-4534A93B883A/HealthAndSocialCareLevy(Repeal)Bill">
+                                    <u>Vol. 720 Col. 56</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>11 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-10-11/debates/D1EBF560-977B-46A5-9A1C-047AA6C07A9B/HealthAndSocialCareLevy(Repeal)Bill">
+                                    <u>Vol. 720 Col. 86</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>11 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-10-11/debates/D1EBF560-977B-46A5-9A1C-047AA6C07A9B/HealthAndSocialCareLevy(Repeal)Bill">
+                                    <u>Vol. 720 Col. 100</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-10-12/debates/6CB7AC91-1A44-432D-A6EB-65A12D431937/HealthAndSocialCareLevy(Repeal)Bill">
+                                    <u>Vol. 824 Col. 789</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>17 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-10-17/debates/A1B2BCBA-825D-4B05-A46C-91DE49976F44/HealthAndSocialCareLevy(Repeal)Bill">
+                                    <u>Vol. 824 Col. 967</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment discharged</p>
+                           </td>
+                           <td>
+                              <p>17 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-10-17/debates/A1B2BCBA-825D-4B05-A46C-91DE49976F44/HealthAndSocialCareLevy(Repeal)Bill">
+                                    <u>Vol. 824 Col. 991</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>17 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-10-17/debates/A1B2BCBA-825D-4B05-A46C-91DE49976F44/HealthAndSocialCareLevy(Repeal)Bill">
+                                    <u>Vol. 824 Col. 991</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>25 October 2022</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2022-10-25/debates/246DE276-1887-475F-8016-DB81309C6D81/RetainedEULaw(RevocationAndReform)Bill"><u>Vol. 721 Col. 247</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2022-10-25/debates/ED267D0D-7ED2-4A99-8923-886EE6944254/RoyalAssent"><u>Vol. 824 Col. 1465</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

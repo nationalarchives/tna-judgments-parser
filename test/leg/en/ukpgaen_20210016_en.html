@@ -1,0 +1,692 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>EDUCATION AND TRAINING (WELFARE OF CHILDREN)</b>
+               <b>
+                  </b>
+               <b>ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Education and Training (Welfare of Children)
+                  Act 2021 which received Royal Assent on 29 April 2021 (c. 16).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been provided by the Department for Education, with the
+                  consent of Mary Kelly Foy MP, in order to assist the reader in understanding the Act.
+                  They do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes should be read alongside the Act. They are not, and are not
+                  intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>There is an existing duty on local authorities, the governing bodies of maintained
+                     schools and the governing bodies of institutions within the FE sector to make arrangements
+                     in regard to the welfare of children which can be found in section 175 of the Education
+                     Act 2002 (“the 2002 Act”). The Education and Training (Welfare of Children) Act 2021
+                     (“the Act”) extends the duty to other providers of publicly funded post-16 education
+                     and training in relation to safeguarding and promoting the welfare of children receiving
+                     education or training at the institution, as well as having regard to any guidance
+                     given by the Secretary of State.  </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>It is Government policy that all providers of education and training should be subject
+                     to a duty to safeguard and promote the wellbeing of children receiving education and
+                     training at that provider. The further education provider market has changed in recent
+                     years and new providers are entering into the market. The Department ensures that
+                     providers have appropriate safeguarding arrangements in place through the terms of
+                     funding that apply to these providers. The Act ensures that there is alignment across
+                     all providers and places a specific obligation on 16-19 Academies, as well as placing
+                     an obligation on the Secretary of State to ensure that funding provided to special
+                     post-16 institutions (SPIs) and independent learning providers (ILPs) is provided
+                     subject to the safeguarding duties set out in the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act includes a requirement for providers to have regard to statutory guidance
+                     issued by the Secretary of State. The current version of statutory guidance issued
+                     by the Secretary of State is <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835733/Keeping_children_safe_in_education_2019.pdf"><u>Keeping Children Safe in Education</u></a>. The Act brings 16-19 Academies, SPIs and ILPs in scope of the guidance. This will
+                     provide clarity for all providers in terms of how the safeguarding duties apply to
+                     them as the statutory guidance will be developed to cover all providers rather than
+                     only being drafted to cover those subject to the previous statutory duties. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>16-19 Academies are not legally classified as a school or a college and are therefore
+                     not captured by the statutory safeguarding duties in section 175 of the 2002 Act.
+                     Recently there has been an increase in the number of 16-19 Academies as around 20
+                     sixth form colleges have converted to academies and that number is expected to rise.
+                     It is appropriate that as a provider of education to children, 16-19 Academies should
+                     be subject to the same statutory duties as other similar institutions.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>SPIs provide specialist provision to those with complex special educational needs.
+                     Most of these providers have a long history of providing this provision and are spread
+                     across the country. While safeguarding obligations are included in the funding agreements
+                     that they enter into with the Secretary of State, the Act puts an obligation on the
+                     Secretary of State to ensure that terms of funding provided to SPIs include the safeguarding
+                     duties. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>ILPs are responsible for providing a range of education and training to children,
+                     including further education provision for 16-19 year-olds. There are around 125 ILPs
+                     which have a funding agreement for this provision with the Secretary of State. There
+                     are also around 1,000 ILPs that receive funding for the delivery of apprenticeship
+                     training to 16-19 year-olds (both levy and non-levy funded). Where these providers
+                     are delivering further education to 16-19 year-olds, it is expected that the safeguarding
+                     duties would apply in the same way as to other providers of further education. For
+                     those providers delivering apprenticeships it is expected that the duties would apply
+                     to any education or training delivered as part of an apprenticeship.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Any providers funded to deliver T Levels are expected to be captured by the duties.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act seeks to ensure there is consistency and clarity over how the safeguarding
+                     duties apply across all post-16 providers irrespective of provider type or the type
+                     of provision being delivered. It does not look to alter the nature of the safeguarding
+                     duties nor change the way in which the safeguarding duties are assessed or enforced.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act amends section 175 (previously “Duties of local authorities and governing
+                     bodies in relation to welfare of children”) of the 2002 Act and makes a consequential
+                     amendment to section&nbsp;16 of that Act. Section 16 of the 2002 Act enables the Secretary
+                     of State to provide financial assistance on any terms that the Secretary of State
+                     considers appropriate. Section 175 of the 2002 Act imposes duties on local education
+                     authorities, the governing bodies of maintained schools and the governing bodies of
+                     FE sector institutions to make arrangements in regard to the welfare of children.
+                     The duties relate to safeguarding and promoting the welfare of children as well as
+                     having regard to any guidance issued by the Secretary of State in deciding what arrangements
+                     they must make to comply with their duties. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act also amends section 101 of the Apprenticeships, Skills, Children and Learning
+                     Act 2009 (“ASCLA 2009”) to insert a new section 101A into that act. Section 100 of
+                     ASCLA 2009 (which is referred to in the Act) enables the Secretary of State to provide
+                     funding to providers of apprenticeship training as well as institutions involved in
+                     the delivery of T&nbsp;Levels. Section 101 of ASCLA 2009 enables the Secretary of State
+                     to set conditions on the provision of funding provided under section 100 of that Act.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Act extends to England and Wales and applies to England only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Welfare of children: 16 to 19 Academies and further education</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 1 of the Act inserts new section 175(3A) into section 175 of the 2002 Act.
+                     Section 175(3A) extends the safeguarding duties to 16-19 Academies. The proprietor
+                     of the Academy must ensure that they have appropriate arrangements in place to safeguard
+                     and promote the welfare of children receiving education or training at the Academy.
+                     A proprietor is the Academy Trust that is responsible for the running of the Academy.
+                     Section 175(4) (as amended) requires the proprietor to take into account any guidance
+                     issued by the Secretary of State. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 1 also brings providers who receive funding from the Secretary of State for
+                     the provision of further education within scope of the safeguarding duties. This covers
+                     SPIs as well as ILPs providing further education. The providers have been identified
+                     as either those that enter into agreements with the Secretary of State for the provision
+                     of further education (new section 175(3B)(a)), or those that are provided with financial
+                     assistance for the provision of further education by the Secretary of State (new section
+                     175(3B)(b)). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Subsection (3B) does not restrict the Secretary of State's power to enter into an
+                     agreement with, or give financial assistance to, an institution to which subsections
+                     (3) or (3A) apply. Subsections (3) and (3A) make respective provision themselves for
+                     the institutions to which they apply to make arrangements to ensure that functions
+                     relating to the conduct of the institution are exercised with a view to safeguarding
+                     and promoting the welfare of children receiving education or training at the institution.
+                     This, in effect, prevents duplication of the duties that apply to those institutions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Secretary of State is obliged to ensure that the terms of the agreement with the
+                     proprietor of the institution, or the terms of the financial assistance provided,
+                     require the proprietor to comply with the safeguarding duties. The proprietor will
+                     be those that are responsible for the management of that institution. The proprietor
+                     must make arrangements to ensure that its functions relating to the conduct of the
+                     institution are exercised with a view to safeguarding and promoting the welfare of
+                     children, having regard to any guidance issued by the Secretary of State. This includes,
+                     for example, ensuring they have appropriate recruitment, security and reporting policies
+                     and procedures in place to support the safety and wellbeing of children receiving
+                     education and training. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Welfare of children: apprenticeships and technical education</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 2 inserts into the 2009 Act new section 101A, which extends the safeguarding
+                     duties to apprenticeship training providers (which receive funding under section 100(1A))
+                     and providers of education or training associated with a T Level or approved technical
+                     education qualification (which receive funding under section 100(1B)). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The obligation is on the Secretary of State to ensure that the terms of the financial
+                     resources provided to these providers contain the safeguarding duties. The safeguarding
+                     duties will be contained within the funding agreement that the provider enters into
+                     with the Secretary of State. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The provider must make arrangements to safeguard and promote the welfare of children
+                     receiving education or training as part of an apprenticeship or T Level. They must
+                     also have regard to any guidance by the Secretary of State in considering what arrangements
+                     are required.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 3(1) sets out the territorial extent of the Act, that is, the legal jurisdictions
+                     of which the Act forms part of the law. The extent of an Act can be different from
+                     its application. Application is about where an Act produces a practical effect rather
+                     than where it forms part of the law. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The provisions of this Act extend to England and Wales and apply only to England.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 3(3) provides that the short title of the Act is the Education and Training
+                     (Welfare of Children) Act 2021. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>This Act came into force on 29th June, two months after the day on which it received
+                     Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The Act extends to England and Wales and applies to England only.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.34in">
+                        <col style="width:0.97in">
+                        <col style="width:1.21in">
+                        <col style="width:1.12in">
+                        <col style="width:1.24in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>5 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-02-05/debates/74BAB0C2-631C-4246-8BD4-DE588D33EC45/PointsOfOrder">
+                                    <u>Vol. 671 Col. 318</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>13 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-03-13/debates/40CD2B4C-B7F9-4617-8F04-52DA70E318C1/EducationAndTraining(WelfareOfChildren)Bill">
+                                    <u>Vol. 673 Col. 610</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>14 October 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-10-14/debates/d8c3ec82-80cc-4f33-a69f-5203ace30708/EducationAndTraining(WelfareOfChildren)Bill">
+                                    <u>Col. 1-8 of the Education and Training (Welfare of Children) Public Bill Committee</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-03-12/debates/B65C1585-1C80-40BD-8733-6AC5E98094BB/EducationAndTraining(WelfareOfChildren)Bill">
+                                    <u>Vol. 690 Col. 1190</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-12/debates/34C6BE71-A2E7-4837-94AF-E8400B321516/EducationAndTraining(WelfareOfChildren)Bill">
+                                    <u>Vol. </u>
+                                    <u>810</u>
+                                    <u> Col. </u>
+                                    <u>198</u>
+                                    <u>4</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-19/debates/8C4E8636-831C-415E-A1BB-B30222CB6F68/EducationAndTraining(WelfareOfChildren)Bill">
+                                    <u>Vol. 811 Col. 577</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>15 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2021-04-15/debates/9A2FD0C0-C027-4B77-8676-3FC21F58C02C/EducationAndTraining(WelfareOfChildren)Bill">
+                                    <u>Vol. 811 Col. 1451</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-26/debates/2219BA59-B7F2-4F14-8F1C-50CAA59E4D7F/EducationAndTraining(WelfareOfChildren)Bill">
+                                    <u>Vol. 811 Col. 2</u>
+                                    <u>088</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>29 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-04-29/debates/92DD6573-5F72-4D23-8B86-6AF148BEC641/MessageToAttendTheLordsCommissioners">
+                                    <u>House of Commons Vol. 693 Col. 519</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-29/debates/6B29F4C1-4077-4A0D-8A4C-9E0D8324A14B/RoyalAssent">
+                                    <u>House of Lords Vol. 811 Col. 2407</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

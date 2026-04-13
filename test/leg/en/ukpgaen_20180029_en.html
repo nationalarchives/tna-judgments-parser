@@ -1,0 +1,1691 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>CIVIL LIABILITY ACT 2018</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Civil Liability Act 2018 (c. 29) which received
+                  Royal Assent on 20 December 2018.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Ministry of Justice in order to
+                  assist the reader in understanding the Act. They do not form part of the Act and have
+                  not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Act is to reform the claims process for road traffic accident related
+                     whiplash injuries, and to make changes to the way in which the personal injury discount
+                     rate, applied to lump sum awards of damages for future loss, is set.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act is in 3 parts:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Part 1 concerns claims for whiplash injuries, where the duration of the injury (or
+                        injuries) does not exceed two years. It provides a definition of a “whiplash injury”,
+                        which may be amended by regulations, and subjects damages for pain, suffering and
+                        loss of amenity arising from such injuries to a tariff. It also requires medical evidence
+                        to be obtained before a whiplash injury claim may be settled.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Part 2 makes provision regarding the personal injury discount rate. It introduces
+                        a requirement for regular reviews of the rate and specifies whom the Lord Chancellor,
+                        who sets the rate, must consult in conducting a review. It also changes, for the purpose
+                        of setting the rate, the level of risk that an investor of damages is assumed to be
+                        willing to take in investing his or her lump sum award of damages for future financial
+                        loss from “very low” to “low”.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Part 3 contains general provisions that apply to the Act: it makes provision to enable
+                        the Treasury to specify that insurers provide information to the Financial Conduct
+                        Authority about the effects of Parts 1 and 2 of the Act on individual customers in
+                        England and Wales who have purchased insurance policies which include cover for personal
+                        injury. It also makes the necessary legal provision for the short title of the Act,
+                        the extent, orders, regulations and parliamentary procedures, and powers to make consequential,
+                        incidental etc. provision.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>In June 2017, the Conservative party formed a Government with a manifesto commitment
+                     to “reduce insurance costs for ordinary motorists by tackling the continuing high
+                     number and cost of whiplash claims”. The Act contains measures that give effect to
+                     policies outlined in previous Government consultation responses regarding whiplash
+                     injuries arising from road traffic accidents<a class="fn" id="fnref-1" href="#fn-1">1</a> and on the framework through which the personal injury discount rate is set<a class="fn" id="fnref-2" href="#fn-2">2</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>This Act contains provisions outlined in the Queen’s Speech in June 2017 to help reduce
+                     motor insurance premiums<a class="fn" id="fnref-3" href="#fn-3">3</a>.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Whiplash</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The previous Government consulted between November 2016 and January 2017 on a package
+                     of measures to tackle the continuing high number and cost of whiplash claims and their
+                     impact on motor insurance premiums. The Government published its response on 23 February
+                     2017<a class="fn" id="fnref-4" href="#fn-4">4</a>, and measures were originally taken forward within the Prisons and Courts Bill 2017.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Government has set out its concern that the volume of road traffic accident related
+                     personal injury claims. There were around 650,000 RTA related personal injury claims
+                     made in 2017/18 (nearly 190,000 more than in 2005/06). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The continuing high number of whiplash claims increases the cost of motor insurance
+                     premiums, paid by motorists in England and Wales.&nbsp;The Government has set out its view
+                     that the level of compensation paid to claimants for these claims is also out of proportion
+                     to the level of injury suffered, and that it intended to introduce measures to reduce
+                     the costs of civil litigation whilst ensuring genuinely injured claimants continue
+                     to receive a proportionate amount of compensation. These measures disincentivise minor,
+                     exaggerated and fraudulent claims. Part 1 of this Act addresses these matters.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Personal Injury Discount Rate</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Personal injury damages are intended to compensate the claimant for all the losses,
+                     past and future, caused by the injury (“the 100% rule”). Damages for future financial
+                     loss (e.g. loss of income and costs of care) can be paid by a lump sum or a stream
+                     of future payments under a Periodical Payments Order (“PPO”), or a mixture of both.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The calculation of a lump sum for future financial loss includes applying a discount
+                     rate which represents the rate of return that claimants are expected to earn when
+                     investing it. The discount rate is intended to ensure that the opportunity to invest
+                     does not result in either over or under compensation. At present, following the leading
+                     House of Lords case of <i>Wells v Wells</i><a class="fn" id="fnref-5" href="#fn-5">5</a> the rate is calculated on the basis that the claimant is a very risk averse investor.
+                     The rate has, in accordance with this principle, been set by reference to yields on
+                     Index Linked Gilts (“ILGs”) since 1998. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>A discount rate could, in theory, be individually set on a case-by-case basis. However,
+                     to simplify the administration of justice, the practice has been for the court to
+                     refer to a single rate unless persuaded in the proceedings that another rate should
+                     apply (since 2001 no court is thought to have departed from the standard rate). This
+                     rate was originally set by the courts. Section 1 of the Damages Act\ 1996 (“the 1996
+                     Act”) gives the Lord Chancellor power to set a rate, which the court is to apply unless
+                     the court is persuaded another rate is more appropriate for the case before it. The
+                     power under section 1 extends to setting different rates for different classes of
+                     cases (although only single rates, covering all cases, have been prescribed to date).
+                     The power can be exercised from time to time, with no provision for specific intervals
+                     between reviews. Before setting the rate, the Lord Chancellor must consult the Government
+                     Actuary and HM Treasury. Section 1 does not specify the methodology to be applied
+                     in the setting of the rate – this is largely governed by principles set down in case
+                     law by the courts (in particular, the decision of the House of Lords in <i>Wells v Wells</i>). Even small changes in the rate can make a significant difference to the size of
+                     an individual award.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Lord Chancellor is under a continuing legal duty to ensure that the rate prescribed
+                     is not inappropriate by reference to the requirements of the law. The rate prescribed
+                     by the Lord Chancellor applies only to England and Wales (separate provision being
+                     made in section 1 for specifying the rate in relation to Scotland<a class="fn" id="fnref-6" href="#fn-6">6</a> and Northern Ireland). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The Lord Chancellor’s power has only been exercised twice. The rate was set at 2.5%
+                     in June 2001 and at minus 0.75% in March 2017. Both rates are “real”, that is to say
+                     representing a return over inflation as measured by the Retail Price Index, and a
+                     lower discount rate means higher awards . </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>In announcing the setting of the rate at minus 0.75% on 27 February 2017 the then
+                     Lord Chancellor said: </p>
+                  <p class="@name">
+                     
+                     <section class="level">
+                        <p>
+                           <i>“There will clearly be significant implications across the public and private sector.
+                              The Government has committed to ensuring that the NHS Litigation Authority has appropriate
+                              funding to cover changes to hospitals’ clinical negligence costs. The Department of
+                              Health will also work closely with General Practitioners (GPs) and Medical Defence
+                              Organisations to ensure that appropriate funding is available to meet additional costs
+                              to GPs, recognising the crucial role they play in the delivery of NHS care.” </i>
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>She added that:</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <i>“The Government will review the framework under which I have set the rate today to
+                              ensure that it remains fit for purpose in the future. I will bring forward a consultation
+                              before Easter that will consider options for reform including: whether the rate should
+                              in future be set by an independent body; whether more frequent reviews would improve
+                              predictability and certainty for all parties; and whether the methodology – which
+                              in effect assumes that claimants would invest only in index-linked gilts – is appropriate
+                              for the future. Following the consultation, which will consider whether there is a
+                              better or fairer framework for claimants and defendants, the Government will bring
+                              forward any necessary legislation at an early stage.” </i>
+                           </p>
+                     </section>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Following this commitment, a consultation paper, “<i>The personal injury discount rate: how it should be set in future”</i>, was published on 30 March 2017.<a class="fn" id="fnref-7" href="#fn-7">7</a> This considered options on how, when and by whom the discount rate should be set.
+                     The consultation closed on 11 May 2017. A summary of the responses to the consultation
+                     has been published. In the light of the responses, and the further research undertaken,
+                     the Government has decided it is right that the present law on the setting of the
+                     discount rate should be changed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The principal proposals to be given effect by the Act are that:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The rate is to be set by reference to “low risk” rather than “very low risk” investments
+                        as at present. This will have the effect of increasing the expected rate of return
+                        compared to what it would have been under the present law. Lump sum payments of damages
+                        for future loss can thus be expected to be lower than they would have been had the
+                        law remained unchanged.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>The rate is initially to be reviewed promptly after the legislation comes into force
+                        and, thereafter, at least every five years, with that period being re-set when a review
+                        is concluded. Reviews will be carried out and completed within specified periods.
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>The rate is to be set by the Lord Chancellor who will consult the Government Actuary
+                        on the first review and an independent expert panel chaired by the Government Actuary
+                        on subsequent reviews. HM Treasury will, as at present, also be a statutory consultee
+                        at every review.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The following paragraphs explain the current legal background.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Whiplash</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>There are currently no legislative provisions that seek to regulate damages for pain,
+                     suffering and loss of amenity for road traffic accident related (“RTA”) whiplash injuries.
+                     The assessment and award of such damages is a matter for the court by reference to
+                     the facts of the case, including the severity of the injuries and previous awards
+                     for similar injuries. Guidance on damages is provided in the Judicial College Guidelines
+                     for the Assessment of General Damages in Personal Injury Cases.<a class="fn" id="fnref-8" href="#fn-8">8</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>There are currently no legislative provisions which ban inviting and the offer, paying
+                     and acceptance of settlements in RTA related whiplash claims by regulated persons
+                     prior to the receipt of medical evidence. Sections 6 to 9 of the Act, however, adopt
+                     a similar approach to provisions in sections 56 to 60 of the Legal Aid, Sentencing
+                     and Punishment of Offenders Act 2012, which ban the payment and acceptance of referral
+                     fees and sections 57 to 61 of the Criminal Justice and Courts Act 2015 which ban the
+                     offer of inducements in respect of personal injury claims. In both cases, the ban
+                     is applied to “regulated persons” (for example, solicitors and barristers), and is
+                     monitored and enforced by the relevant regulator (for example, the Law Society and
+                     Bar Council) who may make provision in regulations for that purpose. The Lord Chancellor
+                     may add to the lists of both regulated persons to whom the ban should apply and relevant
+                     regulators.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Personal Injury Discount rate</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The relevant legal background is explained in paragraphs 6-13 of these Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 13 sets out the extent of the provisions in the Act.  The extent of an Act
+                     can be different from its application. Application refers to the matter of where an
+                     Act produces a practical effect.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Part 1</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The provisions concerning whiplash injuries and damages extend and apply to England
+                     and Wales only.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Part 2</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The provisions concerning the discount rate extend and apply to England and Wales
+                     only. This is with the exception of some very minor consequential amendments to the
+                     1996 Act (see Annex A of these Notes).</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <u>Part 3</u>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 11 in Part 3 of the Act extends and applies to England and Wales only. This
+                     is with the exception of some very minor consequential amendments to the Financial
+                     Services and Markets Act 2000 in section 11(10) to enable the Financial Conduct Authority
+                     to use its existing powers to ensure firms under its supervision comply with the requirements
+                     in section 11. Sections 12 to 15 extend to England and Wales, Scotland and Northern
+                     Ireland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>Part 1: Whiplash</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Part 1 makes changes to the law of England and Wales.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Chapter 1: Whiplash injuries</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 1: “Whiplash injury” etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>This section specifies those road traffic accident (‘RTA’) related whiplash injuries,
+                     and the circumstances in which such injuries are incurred, which are subject to the
+                     provisions in this Part. Subsection (1) defines “whiplash injury” as an injury of
+                     soft tissue in the neck, back or shoulder of a description specified in subsection
+                     (2) of this section, but which is not excepted by subsection (3).  A minor psychological
+                     injury or injuries sustained in addition to the whiplash injury will also be subject
+                     to the provisions under this part. Subsection (4) provides that these provisions will
+                     apply in those cases where, a person, because of their negligence while using a motor
+                     vehicle on a road or other public place in England and Wales, causes another person,
+                     whether a driver, or a passenger riding in or on a motor vehicle, to suffer a whiplash
+                     injury. The effect of subsection (5) is to include cases where a driver has caused
+                     an RTA by their negligence, but the acts constituting the negligence could also be
+                     relied on to establish another cause of action, such as a breach of statutory duty,
+                     against them or somebody else.</p>
+               </section>
+               <section class="level">
+                  <p> Section 2: Power to amend section 1</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>This section allows the Lord Chancellor to amend the definition of ‘whiplash injury’
+                     in section 1 by regulations. Subsection (1) limits any such amendments to soft tissue
+                     injuries in the neck, back or shoulder. Subsection (2) requires the Lord Chancellor,
+                     before making regulations, to prepare, publish and lay in Parliament a report of each
+                     review, to include a decision on whether or not amend the definition. Subsection (3)
+                     specifies those whom the Lord Chancellor must consult before making regulations, after
+                     laying the report. Subsections (4) and (5) deal with the timeframes for the first
+                     and subsequent reviews. Regulations made under this section would subject to the affirmative
+                     resolution procedure.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Chapter 2: Damages</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Damages for whiplash injuries</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>This section enables the Lord Chancellor to specify in regulations, in the form of
+                     a tariff, the damages that a court may award for pain, suffering and loss of amenity
+                     (“PSLA”) for whiplash injuries specified in section 1. Regulations may specify damages
+                     in those cases where the duration of the injury does not exceed or is not expected
+                     to exceed, two years, or, but for the failure of the claimant to take reasonable steps
+                     to mitigate the effect of the injury, would not have exceeded or be likely to exceed
+                     two years. The tariff will provide for an ascending scale of fixed sum payments with
+                     the relevant tariff amount for a particular case identified by reference to the duration
+                     of the injury. Regulations may specify different sums for different durations of injury:
+                     it is intended that the power will enable the Lord Chancellor to (a) specify particular
+                     durations of injury in the tariff; and (b) set the amount of the fixed sum payment
+                     for each duration of injury specified. The Lord Chancellor may amend the specified
+                     durations, and/or the amount of the payments and may increase or decrease the amounts.
+                     The Lord Chancellor may also include within, or in addition to, the specified sums,
+                     an additional sum for minor psychological injuries (often referred to as ‘travel anxiety’)
+                     arising from the same accident. The Lord Chancellor is required to consult the Lord
+                     Chief Justice before making regulations under this section. Regulations made under
+                     this section would be subject to the affirmative resolution procedure.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Review of regulations under section 3</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>This section requires the Lord Chancellor to carry out triennial reviews of regulations
+                     made under section 3 which specify the damages that the court may award. Subsections
+                     (2) and (3) deal with the timing of the first and subsequent reviews. Subsections
+                     (4) and (5) require the Lord Chancellor to prepare, publish and lay in Parliament
+                     a report of each review.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Uplift in exceptional circumstances</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>This section enables the Lord Chancellor to provide in regulations that the court
+                     may, increase the sums prescribed under the tariff, if satisfied both that the degree
+                     of pain suffering or loss of amenity makes it appropriate to do so, and either one
+                     or more of the whiplash injuries is exceptionally severe, or the injured party’s circumstances
+                     which increase the pain, suffering or loss of amenity caused by their injuries are
+                     exceptional. Regulations must specify, by reference to a percentage of the prescribed
+                     sum, the maximum increase that might be applied and may increase or decrease the maximum
+                     uplift. Regulations made under this section would be subject to the affirmative resolution
+                     procedure. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Chapter 3: Settlement of whiplash claims</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Rules against settlement before medical report</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>This section bans regulated persons (as defined in section 9) from making or accepting
+                     a payment in settlement of, or inviting, or offering to settle an RTA related whiplash
+                     claim without appropriate medical evidence. It also enables the Lord Chancellor to
+                     specify in regulations what constitutes appropriate medical evidence and those who
+                     may provide it. The ban will apply to any material benefit including (but not limited
+                     to) a cash payment. Regulations made under this section would be subject to the affirmative
+                     resolution procedure. </p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Effect of rules against settlement before medical report</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>This section requires relevant regulators (as defined in section 9) to have arrangements
+                     in place to monitor and enforce the ban on settling or seeking to settle relevant
+                     whiplash injury claims when not in receipt of appropriate medical evidence. This section
+                     enables the relevant regulators to make new rules to supplement any existing rules
+                     for this purpose.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Regulation by the Financial Conduct Authority</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Where the relevant regulator is the Financial Conduct Authority (FCA), this section
+                     provides for HM Treasury to make regulations to enable the FCA to monitor and enforce
+                     the ban on settling whiplash claims when not in receipt of appropriate medical evidence.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>This section lists both the regulators who are required to monitor and enforce the
+                     ban on settling whiplash claims without medical evidence (including the General Council
+                     of the Bar, the Law Society and the Chartered Institute of Legal Executives) and those
+                     legal service providers to whom the ban would apply (‘regulated persons”, namely barristers,
+                     legal executives, solicitors and alternative business structures). By virtue of provision
+                     in the final and penultimate entries in the table in this section, the Lord Chancellor
+                     has the power by regulation (subject to the negative procedure for statutory instruments)
+                     to extend to other regulators and regulated persons both the ban and the duty to monitor
+                     and enforce it through secondary legislation.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 2: Personal Injury Discount Rate</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Part 2 makes changes to the law of England and Wales.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 10: Assumed rate of return on investment of damages.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>This section revokes section 1 of the Damages Act 1996 for England and Wales and replaces
+                        it for England and Wales with a new provision: section A1. It also inserts a new schedule
+                        A1 into the Damages Act 1996, providing the detail about how the Lord Chancellor is
+                        to approach the review and setting of the discount rate. The new schedule makes changes
+                        to the methodology according to which the discount rate is set; provides for an initial
+                        review of the rate to start within 90 days of Royal Assent and to be completed within
+                        140 days of starting and, thereafter, for reviews to take place at least once every
+                        five years; and makes provision for the establishment of an independent expert panel
+                        that the Lord Chancellor must consult in setting the rate on all reviews following
+                        the first review. </p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Section A1</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Subsection (1) inserts the new section A1. The new section sets out the power of the
+                        Lord Chancellor to set the rate. It is for the Lord Chancellor to decide whether to
+                        set a rate and what that rate should be. He or she may set different rates for different
+                        classes of case. If the Lord Chancellor sets a rate the court must have regard to
+                        it in deciding the return a claimant is expected to receive from investing damages
+                        for future financial loss (the court must consider this when calculating the size
+                        of an award of such damages to be paid by way of a lump sum). In fulfilling its obligations,
+                        the court must comply with the rules of court made for the purposes of section A1.
+                        No such rules of court have been made pursuant to section 1 of the 1996 Act to date
+                        and none are presently proposed to be made for the new section A1. Subsection (4)
+                        makes clear that the power in subsection (3) to prescribe different rates of return
+                        for different classes of case includes the power to set separate rates for different
+                        sorts of future loss (for example, one rate for loss of future earnings and another
+                        for the cost of future care) or for different durations of award (for example, one
+                        rate for damages in respect of costs to be incurred during the first ten years from
+                        the making of the award and another rate to damages in respect of costs to be incurred
+                        during subsequent years). Subsection (5) of the new section A1 is also new, and provides
+                        for the new Schedule A1 (see “Schedule A1” below) to have effect. Subsection (6) of
+                        the new section specifies how the statutory instrument setting the discount rate is
+                        to be made, and is drafted in the same terms as the equivalent provision in section
+                        1(4) of the Damages Act 1996. In summary, the only substantive differences between
+                        section 1(1)-(4) of the Damages Act 1996 and the new section A1(1)-(6) are clarification
+                        as to the provision for prescribing different rates of return for different classes
+                        of case; the introduction of the new Schedule; and the omission of the requirement
+                        to consult the Government Actuary and the Treasury before setting the rate. The new
+                        consultation requirements are set out in the new Schedule A1. Regulations made under
+                        this section will be subject to the negative procedure.</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Schedule A1</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Section 10(2) contains the new Schedule A1 which is inserted into the Damages Act
+                        1996.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Matters dealt with in the new schedule are as follows: paragraphs 1 and 2 introduce
+                        a requirement for the Lord Chancellor to start a review of the discount rate within
+                        90 days beginning with the day on which the Act is passed (see section 14 and related
+                        commentary) and thereafter to start a review at least once every five years from the
+                        conclusion of the previous review. The objective of every review is to decide whether
+                        the rate should be retained or changed (see paragraph 9(2)-(4) of new Schedule A1
+                        and related commentary as to the interpretation of this requirement where there is
+                        or will be no rate). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>In conducting the first review and determining the rate of return the Lord Chancellor
+                        is required to consult the Government Actuary within 20 days of the start of the review
+                        and the Government Actuary must respond within 80 days of being consulted. Paragraph
+                        3 requires the Lord Chancellor for subsequent reviews to obtain the advice of an expert
+                        panel, which will be chaired by the Government Actuary. The expert panel must respond
+                        within 90 days of the Lord Chancellor’s request. The Lord Chancellor must also consult
+                        HM Treasury. If the office of Government Actuary is vacant, the Deputy Government
+                        Actuary is to act instead.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>The first review must be completed within 140 days of its commencement and subsequent
+                        reviews within 180 days (in both cases the date of commencement will be decided by
+                        the Lord Chancellor). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Paragraph 4 contains provisions relating to the core principles and assumptions to
+                        be applied by the Lord Chancellor in determining the rate. Paragraph 4(2) provides
+                        that the rate to be set is the rate of return that in the Lord Chancellor’s opinion
+                        could reasonably be expected to be achieved by a claimant investing a lump sum of
+                        relevant damages (defined in paragraph 4(7)) with the objective of covering all the
+                        expected costs and losses caused by the injury at the right time when they arise;
+                        and, with the further objective that when this has been achieved, there is no money
+                        left from the lump sum and the income it generated during the period of the award.
+                        In forming this opinion, the Lord Chancellor is required to make certain assumptions
+                        (and may make others) and to take certain factors into account (which does not rule
+                        out taking other factors into account). The specified assumptions are set out in paragraph
+                        4(3). They include that the recipient of the relevant damages receives proper investment
+                        advice; invests in a diversified portfolio of investments; and has a low-risk investment
+                        profile. This profile means the recipient is assumed to be willing to take more risk
+                        than the very cautious investor envisaged under the present law relating to the setting
+                        of the discount rate, but less risk than would ordinarily be taken by a prudent and
+                        properly advised individual investor who does not have the same investment objectives
+                        as the recipient of relevant damages. The intention is that the level of risk assumed
+                        in the setting of the discount rate will therefore be higher than is assumed under
+                        the present law. The specified factors are set out in paragraph 4(5). This sub-paragraph
+                        requires the Lord Chancellor to have regard to: the actual returns available from
+                        such diversified portfolios, the actual investments made by investors of relevant
+                        damages; and to make appropriate allowances for taxation, inflation and investment
+                        management costs. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>On concluding a review, the Lord Chancellor is required to give reasons for his or
+                        her decision on the rate and to publish such information about the response, on the
+                        first review, of the Government Actuary, and, on subsequent reviews, of the expert
+                        panel established for the relevant review, as he or she thinks appropriate. Paragraphs
+                        6 and 7 contain provisions relating to the establishment of an independent expert
+                        panel which the Lord Chancellor is to consult in setting the rate. The paragraphs
+                        provide for the panel to be chaired by the Government Actuary, and to contain four
+                        other members, namely members with experience respectively as an actuary, as an economist,
+                        in managing investments, and in relation to consumer financial investments. The panel
+                        is to be appointed for each review; but serving on the panel in relation to one review
+                        will not disqualify an appointee from serving on the panel for another review. The
+                        panel dissolves when it has responded to the Lord Chancellor’s consultation. The cost
+                        of the panel will be met by the Lord Chancellor, who may enter into arrangements with
+                        other government departments so that they can assist, such as by providing a secretariat
+                        to the panel. Meetings of the panel will not be quorate unless there are four members
+                        present, including the Government Actuary (or if that post is vacant, the Deputy Government
+                        Actuary). As there may be more than one review ongoing at any time (see paragraph
+                        8 of new Schedule A1 and related commentary) provision is made for individuals to
+                        be members of more than one panel.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Paragraph 8 contains provisions as to how the Schedule should apply if two or more
+                        discount rates are prescribed as a result of a review. Different rates might, for
+                        example, be prescribed for different durations of loss (see paragraph 30 above). The
+                        requirements as to when and how a review is conducted will apply separately to each
+                        rate. This enables the Lord Chancellor to carry out reviews of different rates separately
+                        at different times, but different rates may also be reviewed at the same time (in
+                        the latter case one or more members of the panel for the review of one rate might
+                        also be members of the panel for another rate).</p>
+                  </section>
+                  <section class="level">
+                     <p>
+                        <b>
+                           <u>Supplementary provisions under Section 10</u>
+                           </b>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Section 10(3) provides that the rate in force under the present law when section 10
+                        comes into force (currently, minus 0.75%) will continue in force as if the order setting
+                        the rate had been made under the new provisions. This rate will be reviewed in the
+                        initial review (see Schedule A1, paragraph 2).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Section 10 (4) makes consequential amendments to the Damages Act 1996. This includes
+                        the omission of section 1 for England and Wales and the insertion of Schedule A1,
+                        with consequent renumbering of the present Schedule to the 1996 Act.   </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 3: Miscellaneous and General</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 11: Report on effect of Parts 1 and 2</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsections (1) to (6) of this section enables the Treasury to specify in regulations
+                        information that insurers must provide to the FCA about the effects of Parts 1 and
+                        2 of the Act on individual customers in England and Wales who have purchased insurance
+                        policies which include cover for personal injury. The regulations may specify the
+                        level and type of information to be provided, the period of time for which the requirement
+                        will apply and that the information may be subject to audit. Subsection (7) requires
+                        the Treasury to prepare and lay a report before Parliament which summarises the information
+                        provided and which gives a view on whether and how policy holders have benefitted
+                        from reductions in costs to insurers arising from these reforms. Subsection (10) makes
+                        consequential amendments to the Financial Services and Markets Act 2000 to enable
+                        the Financial Conduct Authority to use its existing powers to ensure firms under its
+                        supervision comply with the requirement. Regulations made under this section are subject
+                        to the affirmative resolution procedure.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 12: Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>This Section provides that regulations under the Act are to be made by statutory instrument.
+                        The section stipulates that where regulations under this Act are subject to the negative
+                        resolution procedure, they are subject to annulment in pursuance of a resolution of
+                        either House of Parliament, and that where regulations made under this Act are subject
+                        to the affirmative resolution procedure, a draft of the regulations must be laid before
+                        Parliament and approved by a resolution of each House of Parliament.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Subsections (4) and (5) provide that where regulations are made under this Act (apart
+                        from Commencement regulations), those regulations may make consequential, supplementary,
+                        incidental, transitional, transitory or savings provision. Subsection (4)(a) also
+                        allows regulations to make different provision for different purposes.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 13: Extent</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Section 13 sets out the extent of the Act (see commentary on individual sections,
+                        paragraphs 18 to 20 above and Annex A for further information). </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 14: Commencement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Part 2 (Personal Injury Discount Rate) and Part 3 (Final Provisions) of the Act will
+                        come into force on the day on which the Act is passed. All other provisions will come
+                        into force on such day as the Secretary of State may by regulations appoint.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Subsection (3) allows for regulations to appoint different days for different purposes
+                        and to make transitional, transitory or savings provision.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 15: Short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>This section confirms the short title of the Act.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Part 2 (Personal Injury Discount Rate) and Part 3 (Miscellaneous and General)) of
+                     the Act will come into force on the day on which the Act is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>The other provisions in the Act will be brought into force by means of regulations
+                     made by the Secretary of State.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.15in">
+                        <col style="width:0.69in">
+                        <col style="width:0.01in">
+                        <col style="width:0.67in">
+                        <col style="width:0.01in">
+                        <col style="width:0.69in">
+                        <col style="width:0.01in">
+                        <col style="width:0.94in">
+                        <col style="width:0.01in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1-2 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No </p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3-5</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No </p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6-8</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No </p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No<a class="fn" id="fnref-9" href="#fn-9">9</a></p>
+                           </td>
+                           <td colspan="2">
+                              <p>No<a class="fn" id="fnref-10" href="#fn-10">10</a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No<a class="fn" id="fnref-11" href="#fn-11">11</a></p>
+                           </td>
+                           <td colspan="2">
+                              <p>No<a class="fn" id="fnref-12" href="#fn-12">12</a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>Yes</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                           <td colspan="2">
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0090/18090.pdf">
+                                    <u>Introduction</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>20 March 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-03-20/debates/80C9E423-9818-4E75-A916-0CA87567E916/CivilLiabilityBill(HL)">
+                                    <u>Vol. 790 Col. 184</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>24 April 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-04-24/debates/9EE297D1-7EB7-481D-ADAF-70F88B5612F0/CivilLiabilityBill(HL)">
+                                    <u>Vol. 790 Col. 1479</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>10 May 2018</p>
+                              <p>15 May 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-05-10/debates/B5FF48CE-EC1E-406A-A898-207E2943FBF8/CivilLiabilityBill(HL)">
+                                    <u>Vol. 791 Col. 256</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-05-15/debates/8BD4BC09-D8E9-4887-BFBD-20045411B341/CivilLiabilityBill(HL)">
+                                    <u>Vol. 791 Col. 610</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/lbill/2017-2019/0110/18110.pdf">
+                                    <u>Report</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>12 June 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-06-12/debates/BAD8CBC4-5E52-48F1-93D8-6992453ABFFB/CivilLiabilityBill(HL)">
+                                    <u>Vol. 791 Col. 1589</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>27 June 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-06-27/debates/A14546BC-30BB-4F5B-A31E-510A6E8B124E/CivilLiabilityBill(HL)">
+                                    <u>Vol. 792 Col. 190</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0240/18024.pdf">
+                                    <u>Introduction</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>28 June 2018</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>04 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-09-04/debates/C5C185BA-C520-4561-B4A9-069335D3E41F/CivilLiabilityBill(Lords)">
+                                    <u>Vol. 646 Col. 77</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/2017-2019/0264/18264.pdf">
+                                    <u>Public Bill Committee</u>
+                                    </a>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>11 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-09-11/debates/893a7a1d-4c73-4f28-bfee-5c2779c1592c/CivilLiabilityBill(Lords)(FirstSitting)">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-10-23/debates/08FEE407-6D41-4294-9098-DA400C53EB83/CivilLiabilityBill(Lords)">
+                                    <u>Vol. 648 Col. 150</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Lords Consideration of Commons Amendments</p>
+                           </td>
+                           <td>
+                              <p>20 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-11-20/debates/2757F05E-9107-44FD-A09B-6C993A9383B2/CivilLiabilityBill(HL)">
+                                    <u>Vol. 794 Col. 123</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>20 December 2018</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2018-12-20/debates/AD31D7A7-A7E9-42DF-8E38-CCB81C984E41/TopicalQuestions"><u>Vol. 651 Col. 987</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2018-12-20/debates/2779639B-5A99-4BB7-8563-714492A4F3FB/RoyalAssent"><u>Vol. 794</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C – Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended n Report in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5 </p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <i>Reforming the soft tissue injury (whiplash) claims process, </i>consultation: <a href="https://www.gov.uk/government/consultations/reforming-the-soft-tissue-injury-whiplash-claims-process"><u><a href="https://www.gov.uk/government/consultations/reforming-the-soft-tissue-injury-whiplash-claims-process">https://www.gov.uk/government/consultations/reforming-the-soft-tissue-injury-whiplash-claims-process</a></u></a><u>; </u></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The personal injury discount rate: how it should be set in future, consultation:</p>
+               <p><a href="https://consult.justice.gov.uk/digital-communications/personal-injury-discount-rate/"><u><a href="https://consult.justice.gov.uk/digital-communications/personal-injury-discount-rate/">https://consult.justice.gov.uk/digital-communications/personal-injury-discount-rate/</a></u></a><u></u></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.gov.uk/government/speeches/queens-speech-2017"><u><a href="https://www.gov.uk/government/speeches/queens-speech-2017">https://www.gov.uk/government/speeches/queens-speech-2017</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/593431/part-1-response-to-reforming-soft-tissue-injury-claims.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/593431/part-1-response-to-reforming-soft-tissue-injury-claims.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/593431/part-1-response-to-reforming-soft-tissue-injury-claims.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  [1999] 1 AC 345</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  The Scottish Government introduced the Damages (Investment Returns and Periodical
+                  Payments) (Scotland) Bill, which contains provision as to how the personal injury
+                  discount rate is to be set in Scotland, into the Scottish Parliament on 14 June 2018
+                  (<a href="http://www.parliament.scot/parliamentarybusiness/Bills/576.aspx).">http://www.parliament.scot/parliamentarybusiness/Bills/576.aspx).</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://www.gov.uk/government/consultations/personal-injury-discount-rate-how-it-should-be-set-in-future"><u><a href="https://www.gov.uk/government/consultations/personal-injury-discount-rate-how-it-should-be-set-in-future">https://www.gov.uk/government/consultations/personal-injury-discount-rate-how-it-should-be-set-in-future</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  14th edition, September 2017; published by the Oxford University Press (ISBN-10:
+                  0198814526 ISBN-13: 978-0198814528)</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  Other than certain minor consequential amendments made by section 10(4)(b) and (c).</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  Other than certain minor consequential amendments made by section 10(4)(b) to (e).</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Other than certain minor consequential amendments made by section 11(10)</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  Other than certain minor consequential amendments made by section 11(10)</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

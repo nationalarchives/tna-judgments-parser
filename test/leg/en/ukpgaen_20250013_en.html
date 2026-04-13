@@ -1,0 +1,671 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>STEEL INDUSTRY (SPECIAL MEASURES)</b>
+               <b>
+                  </b>
+               <b>ACT 2025</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Steel Industry (Special Measures) Act which
+                     received Royal Assent on 12 April 2025 (c. 13).</span></h2>
+               <section class="paragraph">
+                  <p>These Explanatory Notes have been prepared by the Department for Business and Trade
+                     in order to assist the reader in understanding the Act. They do not form part of the
+                     Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph">
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Overview of the Act</u>
+                     </b>
+                  <span class="tab">&nbsp;</span>
+                  <b>3</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Policy background</u>
+                     </b>
+                  <span class="tab">&nbsp;</span>
+                  <b>3</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Legal background</u>
+                     </b>
+                  <span class="tab">&nbsp;</span>
+                  <b>3</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Territorial extent and application</u>
+                     </b>
+                  <span class="tab">&nbsp;</span>
+                  <b>3</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Commentary on provisions of Act</u>
+                        </b>
+                     <span class="tab">&nbsp;</span>
+                     <b>3</b>
+                     </span></h2>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 1 and Section 2: Meaning of ‘steel undertaking’ and Directions about use of
+                        assets</u>
+                     <span class="tab">&nbsp;</span>
+                     3
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 3: Breach of directions: power to take control of assets</u>
+                     <span class="tab">&nbsp;</span>
+                     4
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 4: Offences</u>
+                     <span class="tab">&nbsp;</span>
+                     4
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 5: Injunctions</u>
+                     <span class="tab">&nbsp;</span>
+                     4
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 6: Indemnities</u>
+                     <span class="tab">&nbsp;</span>
+                     4
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 7: Compensation scheme</u>
+                     <span class="tab">&nbsp;</span>
+                     4
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 8: Financial provision</u>
+                     <span class="tab">&nbsp;</span>
+                     4
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <u>Section 9 and 10: Interpretation, Extent, commencement and short title</u>
+                     <span class="tab">&nbsp;</span>
+                     5
+                     </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Commencement</u>
+                     </b>
+                  <span class="tab">&nbsp;</span>
+                  <b>5</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Annex A - Hansard References</u>
+                     </b>
+                  <span class="tab">&nbsp;</span>
+                  <b>6</b>
+                  </p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act introduces a set of new powers for the Secretary of State to make interventions
+                     in relation to steel undertakings in England whose assets are, or are at risk of,
+                     ceasing to be used, whether on a permanent or temporary basis. It provides for the
+                     circumstances in which, and purposes for which, the powers may be exercised. The Act
+                     also creates criminal offences for non-compliance with directions made under the Act
+                     by the Secretary of State. It also includes a mechanism for the Secretary of State
+                     to seek a High Court injunction to secure the continued and safe operation of specified
+                     assets. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Government is committed to continuing the support of steel production in the UK.
+                     This involves preserving current production capacity to ensure resilience in the production
+                     of steel.  This Act enables the Secretary of State to protect steel assets including
+                     blast furnaces to continue producing steel. In addition, it seeks to ensure that economic,
+                     environmental and safety-related policies that are engaged in steel manufacturing
+                     are complied with. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>This Act creates new powers for the Secretary of State to make interventions in relation
+                     to steel undertakings in England whose assets are at risk of ceasing to be used, whether
+                     on a permanent or temporary basis.   </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Act extends to England and Wales and applies to undertakings in England.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1 and Section 2: Meaning of ‘steel undertaking’ and Directions about use of
+                     assets</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Section 1 defines ‘steel undertaking’ as an undertaking in England that manufactures
+                     steel. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Section 2(1) gives the Secretary of State the power to give a notice to a steel undertaking
+                     if it appears to the Secretary of State that the assets have ceased to be used, are
+                     at risk of ceasing to be used, or it is in the public interest that their use should
+                     resume or continue. Where the Secretary of State has given a notice under Section
+                     2(1), the Secretary of State may give directions requiring the steel undertaking and
+                     relevant persons associated with it to use specified assets in a specified way or
+                     to take (or avoid taking) specified steps to ensure the continued and safe use of
+                     the specified assets. This includes the power to direct the undertaking to enter into
+                     agreements, make payments, refrain from taking insolvency proceedings and sharing
+                     information with the Secretary of State.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>A notice or direction by the Secretary of State must be in writing and may be varied
+                     or revoked by a subsequent notice or direction. The undertaking and relevant persons
+                     associated with it must comply with any directions given by the Secretary of State.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The power to issue directions under section 2(3) is a broad one and includes powers
+                     to require the steel undertaking to take (or not to take) specified steps. Section
+                     2(5) gives examples of the steps that a steel undertaking could be required to take
+                     (or not to take). Other steps that a steel undertaking might be required to take (or
+                     not to take) include, for example, rescinding, varying, entering or not entering into
+                     contracts of any description, including contracts of sale, supply or carriage.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Breach of directions: power to take control of assets</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 3 gives the Secretary of State the power to take control of assets if they
+                     consider that a steel undertaking or a relevant person associated with it has failed
+                     or is failing to comply with a direction, or there is a risk the undertaking or the
+                     relevant person might fail to comply or frustrate the purpose for which the direction
+                     was given.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Upon taking control of the steel undertaking, the Secretary of State may do anything
+                     the steel undertaking, or any relevant person, could do to secure the continued and
+                     safe use of the specified assets. This includes entry into the premises, preventing
+                     disposal of or dealing with assets, exercising managerial functions and entering into
+                     contracts. Anything done by the Secretary of State in this regard is deemed as done
+                     by the steel undertaking unless stated otherwise by the Secretary of State in writing.
+                     Expenses incurred by the Secretary of State in connection with, the exercise of powers
+                     under this section are recoverable as a debt due to the Crown from the steel undertaking
+                     or the group undertaking in relation to the steel undertaking.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Offences</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The steel undertaking and relevant associated persons commits an offence if they fail
+                     to comply with a direction from the Secretary of State without a without reasonable
+                     excuse. A group undertaking also commits an offence if it does (or fails to do) something
+                     with the intention of preventing or hindering the steel undertaking or a relevant
+                     person from complying with the Secretary of State’s direction. A person found guilty
+                     of the offence is liable, on conviction, to be imprisoned for up to 2 years or a fine
+                     or both.    </p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Injunctions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 5 gives the Secretary of State power to apply to the High Court for an injunction
+                     if they consider that a steel undertaking, a relevant person or a group undertaking
+                     in relation to the steel undertaking has committed or might commit an offence under
+                     Section 4. The High Court may grant an injunction (or interim injunction) on such
+                     terms as it thinks fit to secure the continued and safe operation of the specified
+                     assets.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Indemnities</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 6 provides an exemption from liability for a person for anything done (or
+                     not done) in in compliance with a direction from the Secretary of State or as a result
+                     of a step taken by the Secretary of State to secure the continued and safe use of
+                     the specified assets. The Secretary of State may pay compensation to any person in
+                     respect of any loss incurred by them as a result of actions taken to comply with directions.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Compensation scheme</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 7 confers a power on the Secretary of State to make regulations providing
+                     for paying compensation to a steel undertaking to which a notice has been given under
+                     Section 2 as a result of the exercise of the Secretary of State’s functions under
+                     the Act. </p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Financial provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 8 provides that any expenses incurred by the Secretary of State under or by
+                     virtue of this Act or any increase under any other Act attributable to this Act is
+                     to be paid out of money provided by Parliament.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9 and 10: Interpretation, Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 9 sets out the key definitions used in the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 10 provides that the Act extends to England and Wales only. The Act came into
+                     force on the day on which it was passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The provisions in the Act came into force on the day the Act was passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.72in">
+                        <col style="width:1.44in">
+                        <col style="width:3.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2025-04-12/debates/9EA1FD8C-D15B-445B-8C2B-14934924EFBD/HouseOfCommons"><u>Vol. 765 Col. 835</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2025-04-12/debates/1F7B8ADD-0705-44A0-8EF5-EFB936CDED25/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 765 Col. 839</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2025-04-12/debates/8CAD60C6-FCAE-4A36-A9C0-09E78160A18E/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 765 Col. 887</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2025-04-12/debates/8CAD60C6-FCAE-4A36-A9C0-09E78160A18E/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 765 Col. 888</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-04-12/debates/A1F20E0A-63EA-4BB3-8D92-AF79A7181EB9/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 845 Col. 528</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-04-12/debates/B483DAFA-C093-499F-A912-7E6D4EDE758E/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 845 Col. 529</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-04-12/debates/EB823451-5BA1-445D-80FE-B227DD26CF17/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 845 Col. 529</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-04-12/debates/C7C94D65-34BC-429C-A2B8-A4D70D8C944A/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 845 Col. 536</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-04-12/debates/76FBF713-6710-473A-9F02-A1C3BD729B7C/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 845 Col. 536</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>12 April 2025</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2025-04-12/debates/8CAD60C6-FCAE-4A36-A9C0-09E78160A18E/SteelIndustry(SpecialMeasures)Bill"><u>Vol. 765 Col. 888</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2025-04-12/debates/59D77A01-E69A-423E-B0C8-AC5E24D3A6EA/RoyalAssent"><u>Vol. Vol. 845 Col. 538</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>In order to provide time for debate in the Lords whilst the Act was being considered
+                     in the Commons, a general take-note debate was held ahead of the formal Lords Second
+                     Reading. A record of this debate can be found at <a href="https://hansard.parliament.uk/Lords/2025-04-12/debates/1A6B4063-E34B-47CB-A142-265E392EF3C3/SteelIndustry"><u>House of Lords Vol. 845 Col. 490</u></a></p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,934 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>PET ABDUCTION ACT 2024</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Pet Abduction Act 2024 which received Royal
+                     Assent on 24 May 2024 (c. 16). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been provided by the Department for Environment, Food
+                     and Rural Affairs (“The Department”) in order to assist the reader of the Act in understanding
+                     the Act. They do not form part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Pet Abduction Act 2024 (“the Act”) introduces new criminal offences in relation
+                     to the taking or detaining of a dog from the lawful control of any person; and the
+                     taking of a cat from the lawful control of any person. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act also introduces an enabling power to amend the Act to apply or replicate the
+                     offences through secondary legislation to other species of animal commonly kept as
+                     pets, when certain conditions are met.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Government set up the Pet Theft Taskforce (“the Taskforce”) to gather evidence
+                     to understand the factors that may be contributing to a perceived or real rise in
+                     pet thefts during the COVID-19 pandemic. The Taskforce was a cross-government initiative
+                     including the Home Office, the Department for Food, Environment and Rural Affairs
+                     and the Ministry of Justice. The Taskforce sought input from experts, law enforcement
+                     and animal welfare organisations to develop a clear evidence base.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Taskforce published their report in September 2021, that included several recommendations
+                     to tackle the issue of pet theft. Whilst noting that it is already a criminal offence
+                     to steal a pet under the Theft Act 1968, the Taskforce recommended that a specific
+                     offence of “pet abduction” should be developed. It was suggested that a pet abduction
+                     offence would more clearly recognise that pets are not mere items of property and
+                     would provide greater recognition of the impact on the animal, in addition to its
+                     owner, when it is unlawfully taken.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Taskforce also noted the difficulties associated with identifying and tracking
+                     cases of pet theft. This is because offences committed that involve the theft of a
+                     pet may be recorded under a range of offences under the Theft Act 1968, depending
+                     on the circumstances of the crime committed. The Taskforce recommended exploring options
+                     which could support improved recording and monitoring of pet theft to better inform
+                     the development of policy to tackle the issue, which this legislation is intended
+                     to contribute to.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Taskforce recommended that the scope of a pet abduction offence should include
+                     dogs, but that the applicability to other animals should be considered as the policy
+                     is developed. The Department considered further views expressed by stakeholders during
+                     the policy development and cats have been included into the scope of the offence introduced
+                     by the Act. The Department recognises that sufficient evidence to extend the offences
+                     to other pet species may be present in the future and the Act allows for such eventuality.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In contrast to the core offence of theft under the Theft Act 1968, the new offences
+                     introduced by the Act do not require the prosecution to prove an intention to permanently
+                     deprive the other of the pet.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>As set out in paragraph 4, in England, it is an offence under the Theft Act 1968 to
+                     steal a pet. The Theft Act 1968 makes it an offence for a person to dishonestly appropriate
+                     property belonging to another with the intention of permanently depriving the other
+                     of it. The term “property” includes kept animals of all descriptions whether kept
+                     as pets, livestock, working animals etc.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Theft Act (Northern Ireland) 1969 provides for a similar offence in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Other legislation referred to in the Act (see section 1) is as follows –</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The Environmental Protection Act 1990 sets out what a person must do if they find
+                        and take possession of a stray dog in England. Any person who takes possession of
+                        a stray dog must either return the dog to its owner or take it to the local authority
+                        for the area in which the dog was found forthwith.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>The Dogs (Northern Ireland) Order 1983 sets out what a person must do if they find
+                        and detain an unaccompanied dog in Northern Ireland. Any person who detains a dog
+                        must give notice to the police or to the district council for the district in which
+                        they reside. An officer of the district council must make arrangements for the collection
+                        of the dog.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>There are currently no statutory provisions in England or Northern Ireland requiring
+                     lost, abandoned or stray cats to be dealt with in a particular manner.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 5 sets out the territorial extent of the Act, which describes the jurisdictions
+                     in which the Act forms part of the law. The territorial extent of the Act is England
+                     and Wales and Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Sections 1 to 3 make it clear that these provisions of the Act apply in relation to
+                     England and Northern Ireland only. Section 4 extends to and applies in Northern Ireland
+                     only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act </b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Dog abduction</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Subsection (1) of this section establishes an offence in relation to the taking or
+                     detaining of a dog for actions that take place in England and Northern Ireland. It
+                     provides that it is an offence for a person to take a dog so as to remove it from
+                     the lawful control of any person, or to detain a dog so as to keep it from the lawful
+                     control of any person who is entitled to have lawful control of it.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (2) provides that no offence is committed where the conditions in (a) to
+                     (d) of that subsection are met, and therefore the offence does not apply in certain
+                     cases involving persons who previously lived together in the same household with the
+                     dog.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subsection (3) sets out that it is a defence for a person to show that they had lawful
+                     authority or a reasonable excuse to take or detain the dog.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsection (4) provides a specific defence in relation to stray dogs in England where
+                     the person has taken all reasonable steps to comply with section 150(1) of the Environmental
+                     Protection Act 1990, which is the legislation dealing with stray dogs. Subsection
+                     (5) provides a similar defence in relation to unaccompanied dogs in Northern Ireland
+                     where the person has complied with Article 24 of the Dogs (Northern Ireland) Order
+                     1983.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (6) provides that the defendant is under an evidential burden of proof
+                     in relation to the defences in subsections (3), (4) and (5), so that if sufficient
+                     evidence of the defence is provided, the burden is then on the prosecution to prove
+                     beyond reasonable doubt that the defence is not true.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsection (7) sets out the penalties for offences under this section, which include,
+                     on conviction on indictment, a maximum of five years imprisonment, a fine, or both.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (8) includes definitions of “taking” and “detaining” for the purposes of
+                     this section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Cat abduction</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Subsection (1) of this section establishes an offence in relation to the taking of
+                     a cat for actions that take place in England and Northern Ireland. It provides that
+                     it is an offence for a person to take a cat so as to remove it from the lawful control
+                     of any person.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsection (2) provides that no offence is committed where the conditions in (a) to
+                     (d) of that subsection are met, and therefore the offence does not apply in certain
+                     cases involving persons who previously lived together in the same household with the
+                     cat.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (3) sets out that it is a defence for a person to show that they had lawful
+                     authority or a reasonable excuse to take the cat.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (4) provides that the defendant is under an evidential burden of proof
+                     in relation to the defences in subsection (3), so that if sufficient evidence of the
+                     defence is provided, the burden is then on the prosecution to prove beyond reasonable
+                     doubt that the defence is not true.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (5) sets out the penalties for the offences under this section, which include,
+                     on conviction on indictment, a maximum of five years imprisonment, a fine, or both.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (6) includes a definition of “taking” for the purposes of this section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Abduction of other animals commonly kept as pets</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (1) confers powers on the appropriate national authority to make regulations
+                     to amend the Act to apply or replicate the offences in section 1 or 2, with or without
+                     modifications, to further species of animal. “Appropriate national authority” is defined
+                     in subsection (6).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Subsection (2) sets out when the power in subsection (1) may be exercised: if the
+                     appropriate national authority considers that animals of the species are commonly
+                     kept as pets, and that there is evidence that the number of incidents involving the
+                     unlawful taking or detaining of animals of that species is significant or rising significantly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Subsection (3) has the effect that regulations replicating or applying the offences
+                     to further species of animal can provide for the offences to have different exceptions
+                     or defences.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsection (4) ensures that regulations replicating or applying the offences cannot
+                     alter the penalties applicable.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Subsection (5) requires the appropriate national authority to consult appropriate
+                     persons prior to making regulations under this section.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection (6) defines “appropriate national authority” in relation to each of England
+                     and Northern Ireland for the purposes of this section.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Subsections (7), (8) and (9) set out the procedure for making regulations under this
+                     section in the UK Parliament and in the Northern Ireland legislature.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Subsection (10) sets out that regulations under this section may make different provision
+                     for different purposes, as well as consequential, supplementary, incidental, transitional
+                     or saving provision.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsection (11) provides specific authority for regulations making consequential,
+                     supplementary, incidental, transitional or saving provision to amend the Magistrates’
+                     Courts (Northern Ireland) Order 1981.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Sections 1 and 2: consequential provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>This section makes a consequential amendment to the Magistrates' Courts (Northern
+                     Ireland) Order 1981, with the effect that a defendant in Northern Ireland charged
+                     with a summary offence under section 1 or 2 cannot claim trial by jury.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Extent</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>This section sets out the territorial extent of the Act (see also Annex A).</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Commencement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Subsections (1), (2) and (3) of this section set out when or how each provision in
+                     the Act comes into force. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Sections 1 (Dog abduction) and 2 (Cat abduction) come into force so far as they extend
+                     to England and Wales at the end of the period of three months beginning with the day
+                     on which the Act is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Sections 1 (Dog abduction) and 2 (Cat abduction), so far as they extend to Northern
+                     Ireland, and section 4 (Sections 1 and 2: consequential provision) come into force
+                     by order on a day appointed by the Department of Agriculture, Environment and Rural
+                     Affairs in Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Sections 3 (Abduction of other animals commonly kept as pets), 5 (Extent), 6 (Commencement)
+                     and 7 (Short title) come into force on the day on which the Act is passed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Subsections (4) and (5) provide powers for the Secretary of State and the Department
+                     for Agriculture, Environment and Rural Affairs in Northern Ireland to make transitional
+                     or saving provisions in connection with commencement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Subsection (6) sets out that regulations or an order under this section may make different
+                     provision for different purposes.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Subsections (7) and (8) establish how the power of the Secretary of State or Department
+                     for Agriculture, Environment and Rural Affairs in Northern Ireland to make regulations
+                     or an order under this section is exercisable.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Short Title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>This section provides that the short title of the legislation is the Pet Abduction
+                     Act 2024.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Section 6 makes provision about when and how the provisions of the Act come into force.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>Pet Theft Taskforce Report, September 2021: <a href="https://www.gov.uk/government/publications/pet-theft-taskforce-report"><u>https://www.gov.uk/government/publications/pet-theft-taskforce-report</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>The Act extends to England, Wales and Northern Ireland, and applies in relation to
+                     England and Northern Ireland.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.18in">
+                        <col style="width:1.18in">
+                        <col style="width:1.18in">
+                        <col style="width:1.18in">
+                        <col style="width:1.18in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>England</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Wales</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Scotland</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Northern Ireland</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1 Dog abduction</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2 Cat abduction</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3 Abduction of other animals commonly kept as pets</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4 Section 1 and 2: consequential provision</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5 Extent</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6 Commencement</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7 Short title</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.96in">
+                        <col style="width:1.9in">
+                        <col style="width:1.93in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>6 December 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-12-06/debates/722E4420-59F4-4E6B-88AD-4E32399DE8D5/PersonalStatement">
+                                    <u>Vol 742 Col 381</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 January 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-01-19/debates/4F338089-BB51-427D-91BF-4B3EEB036C83/PetAbductionBill">
+                                    <u>Vol 743 Col 1164</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>31 January 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-01-31/debates/63604687-21e5-4d2b-8eb2-3dfa345ded08/PetAbductionBill">
+                                    <u>Pet Abduction Bill: Public Bill Committee, Col 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>19 April 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-04-19/debates/0DFCB30F-AA26-4AE7-9D44-23602D85C77E/PetAbductionBill">
+                                    <u>Vol 748 Col 545</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>22 April 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-04-22/debates/47EB3A54-B508-4C98-AF21-FDD5A1595E94/Debate">
+                                    <u>Vol 837 Col 1267</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>10 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-10/debates/662DFB5C-3307-48A5-8EA3-3CFE64CFF934/PetAbductionBill">
+                                    <u>Vol 838 Col 350</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment Discharged</p>
+                           </td>
+                           <td>
+                              <p>24 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-05-24/debates/B4FC1BD3-A232-4CB5-B188-E10B8CC3DD05/PetAbductionBill">
+                                    <u>Vol 838 Col 1272</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-05-24/debates/1D7A1425-8910-4D5A-8885-BC3941BF5921/PetAbductionBill">
+                                    <u>Vol 838 Col 1272</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>24 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2024-05-24/debates/CD3DAA19-3D6D-464F-B60D-9F29033844B3/RoyalAssent">
+                                    <u>Vol 838 Col 1375</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

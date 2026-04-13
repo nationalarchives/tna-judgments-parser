@@ -1,0 +1,1261 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>POST OFFICE (HORIZON SYSTEM) OFFENCES</b>
+               <b>
+                  </b>
+               <b>ACT 2024</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Post Office (Horizon System) Offences Act 2024
+                  which received Royal Assent on 24 May 2024 (c. 14).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Business and Trade
+                  in order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Post Office (Horizon System) Offences Act 2024 will quash the convictions of sub-postmasters
+                     and others who worked, including on a voluntary basis, in post office branches (all
+                     referred to below as “postmasters”) who have suffered as a consequence of the Post
+                     Office Horizon IT scandal. It will quash, on a blanket basis, convictions for various
+                     theft, fraud and related offences during the period of the Horizon scandal in England
+                     and Wales. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act contains ten sections. </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 1: Quashing of convictions for relevant offences</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 2: Meaning of “relevant offence”</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 3: Determining when a conviction has been considered by Court of Appeal</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 4: Identification and notification of quashed convictions</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 5: Deletion of cautions for relevant offences: England and Wales</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 6: Deletion of cautions for relevant offences: Northern Ireland </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 7: Consequential provision</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 8: Power of Secretary of State to make further consequential provision</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 9: Power of Department of Justice to make further consequential provision</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 10: Interpretation</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 11: Extent and commencement</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 12: Short title</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Context</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3 </span></h2>
+                     <p>From 1996, the Post Office piloted new Horizon software in some of its branches. This
+                        software was introduced across the network of branches in 2000. The software had faults
+                        which meant that some postmasters’ accounts showed false shortfalls. The Post Office
+                        obliged postmasters to “repay” these false shortfalls. Some postmasters and others
+                        were suspended (generally without pay) and/or dismissed. Others were prosecuted for
+                        dishonesty offences (by the Post Office itself or by the Crown Prosecution Service
+                        (CPS)); some were convicted and imprisoned. Some were made bankrupt (in some cases
+                        on the petition of the Post Office: there are allegations that this was done maliciously).
+                        Some lost their homes. Some suffered mental or physical health problems as a result
+                        of their treatment or of the financial consequences. Some were harried as thieves
+                        by their local communities. Some suffered breakdowns in relationships with their partners,
+                        children or other families and friends. Several died by suicide. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>Following various failed attempts to expose the scandal, in 2016 a group of 555 people
+                        (mostly postmasters (individuals or companies) but also some managers, post office
+                        staff and employees of postmasters) took the Post Office to the High Court in a case
+                        managed pursuant to a Group Litigation Order made in March 2017. This legal action
+                        culminated in two major judgments (on Common Issues<a class="fn" id="fnref-1" href="#fn-1">1</a> and Horizon Issues<a class="fn" id="fnref-2" href="#fn-2">2</a>) which were very critical of the Post Office’s software, its contracts with postmasters
+                        and its general behaviour.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>The Government subsequently announced the launch of a judicial inquiry into the scandal,
+                        which was upgraded to a statutory inquiry in June 2021. This is being chaired by Sir
+                        Wyn Williams. The Inquiry’s scope is defined by the Terms of Reference<a class="fn" id="fnref-3" href="#fn-3">3</a> set by the Secretary of State. Within that, the Inquiry has published a List of Issues<a class="fn" id="fnref-4" href="#fn-4">4</a> on which it is focusing. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>In April 2021 the Court of Appeal in England and Wales overturned<a class="fn" id="fnref-5" href="#fn-5">5</a> the convictions of 39 postmasters whose cases had been referred by the Criminal Cases
+                        Review Commission (CCRC). Further convictions have since been overturned. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>The scandal has had profound impacts on those affected by it. The Horizon Compensation
+                        Advisory Board has produced a paper<a class="fn" id="fnref-6" href="#fn-6">6</a> describing some of these impacts. A number of the cases are over 20 years old, with
+                        some of the victims having passed away. Many others are in declining health or have
+                        lost faith in the system and do not wish to engage further with it. Currently, some
+                        cases are being reviewed on an individual basis by the Court of Appeal. This relies
+                        on postmasters choosing to lodge an appeal, which we know many will not want to do
+                        given their lack of trust in the system. It also relies on there being sufficient
+                        evidence that the conviction is unsafe and in many cases that evidence no longer exists.
+                        Continuing in this way therefore would not achieve the objective of ensuring all wrongful
+                        convictions are quashed. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>On 10 January 2024, the Prime Minister announced that the Government would introduce
+                        new primary legislation to make sure that those convicted as a result of the Horizon
+                        scandal, widely described as the biggest miscarriage of justice in our history, have
+                        their convictions swiftly quashed and can be compensated. This Act gives effect to
+                        that commitment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>Under the Overturned Convictions scheme anyone who was wrongfully convicted as a result
+                        of Horizon evidence is eligible to receive compensation of at least £600,000, but
+                        only once their conviction has been overturned. This means that many postmasters and
+                        others who were wrongfully convicted but have not appealed through the courts are
+                        unable to access the compensation that they deserve. The Act will remove this barrier
+                        to access for those who are entitled to financial redress.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Outline of the Act</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>Section 1 provides that convictions for “relevant offences” were quashed when the
+                        Act came into force, provided that the convictions:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>were made in England, Wales, or Northern Ireland;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>were prosecuted by the Post Office, CPS, Police Service of Northern Ireland, the Director
+                           of Public Prosecutions for Northern Ireland or the Public Prosecution Service for
+                           Northern Ireland;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>have not been considered by the Court of Appeal in England, Wales, or Northern Ireland;
+                           and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>took place before the Act came into force.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>Section 2 defines what is meant by “relevant offence”. It sets out five conditions
+                        that must be met for the conviction to be quashed by the Act:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Condition A - the offence must have been committed between 23 September 1996 and 31
+                           December 2018, covering the period of the Horizon scandal, including the Horizon pilot.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Condition B – the offence was false accounting, fraud, handling stolen goods, money
+                           laundering, theft, or an ancillary offence.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Condition C - at the time the offence occurred, the convicted person was carrying
+                           on a post office business or working for the purposes of such a business.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Condition D – the person was alleged to have committed the offence in connection with
+                           carrying on or working for the purposes of that post office business.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Condition E – either the Horizon system was being used for the purposes of that post
+                           office business at the time of the alleged offence, or the offence was alleged to
+                           have been committed over a period of time and the Horizon system was being used for
+                           the purposes of the post office business for all or part of that period.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>Section 3 provides for how to determine when a conviction has been considered by the
+                        Court of Appeal. It specifies that where permission to appeal has been refused in
+                        respect of a conviction or where an appeal has been dismissed, it will not be quashed.
+                        Nothing in the Act prevents a further appeal against a conviction that has been considered
+                        by the Court of Appeal.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>Section 4 explains the process for identifying those convictions quashed by the Act,
+                        amending the records of those convictions and notifying relevant individuals. The
+                        convicting court must update records of a relevant conviction to record that the conviction
+                        was quashed by this Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Section 5 sets out a process for deletion of cautions for relevant offences in England
+                        and Wales from the official record, where the Secretary of State becomes aware of
+                        them. It also provides for notification of affected individuals.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Section 6 sets out a process for deletion of cautions for relevant offences in Northern
+                        Ireland from the official record, where the Department of Justice becomes aware of
+                        them. It also provides for notification of affected individuals.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Section 7 makes consequential provision.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Section 8 provides a power to the Secretary of State to make further consequential
+                        provision.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Section 9 provides a power to the Department of Justice to make further consequential
+                        provision for transferred Northern Ireland provision.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Section 10 includes definitions and clarifications to support interpretation of the
+                        Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Section 11 provides that the Act came into force on Royal Assent. It also sets out
+                        the territorial extent of the Act. The Act extends to England Wales and Northern Ireland
+                        only.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Section 12 establishes the Act’s short title.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Convictions within the scope of the Act were quashed directly by legislative means
+                     when the Act came into force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>This is an unprecedented and wholly exceptional legal solution to a miscarriage of
+                     justice of unparalleled scale and impact. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The approach to quashing convictions in the Act does not set any constitutional precedent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>The criteria set out in the Act for defining the category of convictions within its
+                     scope are intended to be unambiguous and capable of being applied without any element
+                     of judgment or discretion on the part of those whose job it is to notify those within
+                     scope that their convictions have been quashed. This is to ensure that the Executive
+                     is not empowered to interfere with judicial decisions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Notification under Section 4 of the Act of the convictions that have been quashed
+                     will provide legal certainty, resulting in the convicting court entering in its records
+                     the fact that the relevant convictions have been quashed by the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>By way of further legal background, the law in respect of criminal appeals is set
+                     out in the Magistrates’ Court Act 1980 (“MCA 1980”), Criminal Appeal Act 1968 (“CAA
+                     1968”) and the Criminal Appeal Act 1995 (“CAA 1995”).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Convictions in the criminal courts can be appealed by an appeal to a higher court
+                     by the individual, or&nbsp;reference by the Criminal Cases Review Commission (“CCRC”),
+                     whether on application by an individual, or of its own volition. The two are not mutually
+                     exclusive and, ordinarily, a matter will only be referred by the CCRC where an appeal
+                     by the individual has been unsuccessful. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Section 108 of the MCA 1980 provides that a person convicted by a magistrates’ court
+                     may appeal to the Crown Court either against their sentence if they pleaded guilty
+                     or against their conviction or sentence if they did not plead guilty. The right of
+                     appeal against conviction following summary trial is automatic, meaning that there
+                     is no requirement to obtain leave to appeal. There is no right, automatic or otherwise,
+                     to appeal against a conviction following a guilty plea in the magistrates’ court.
+                     However, a referral may be made by the CCRC regardless of plea.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>An appeal against summary conviction lies to the Crown Court. Appeal against conviction
+                     can be on points of law or fact and appeal is by way of a full rehearing of the case
+                     in the Crown Court. If a decision of the magistrates’ court is confirmed or varied
+                     by the Crown Court, or if the Crown Court substitutes its own decision, the decision
+                     of the Crown Court has “effect as if it had been made by the magistrates’ court against
+                     whose decision the appeal is brought” (section 110 MCA 1980). Rule 34.8(3) of the
+                     Criminal Procedure Rules (“CrPR”) requires the Crown Court officer to serve decision
+                     of an appeal on various persons including the magistrates’ court officer and Rule
+                     5.4 requires the court officer to record acquittals, convictions etc. The combined
+                     effect of these provisions is that once a person is acquitted on appeal in the Crown
+                     Court, the court records must be updated to reflect that fact. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>A person convicted of an offence on indictment in the Crown Court may appeal to the
+                     Court of Appeal against their conviction either with the leave of the Court of Appeal
+                     or where the judge of the court of trial grants a certificate that the case is fit
+                     for appeal within 28 days from the date of the conviction (section 1 of the CAA 1968).
+                     The process is therefore a two stage one: first, leave must be obtained, then the
+                     appeal is heard and either allowed or dismissed. Leave to appeal may be granted by
+                     a single judge in the same manner as by the Court of Appeal and subject to the same
+                     provisions, as provided for by section 31 of the CAA 1968.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The grounds for allowing an appeal are set out in section 2 of the CAA 1968. Section
+                     2(1) provides that the Court of Appeal “shall allow an appeal against conviction if
+                     they think that the conviction is unsafe” and “shall dismiss such an appeal in any
+                     other case”. Per section 2(2), if an appeal is allowed, the Court of Appeal must quash
+                     the conviction. Section 2 also provides that an order by the Court of Appeal quashing
+                     a conviction shall, in all cases except where the Court of Appeal also orders retrial,
+                     be a direction to the court of trial to enter a judgment and verdict of acquittal
+                     in place of the record of conviction. As noted above, Rule 5.4 of the CrPR places
+                     duties on court officers to ensure this happens. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>The powers of the CCRC are provided for by section 8 of the CAA 1995. Under section
+                     11(1) CAA 1995, the CCRC may “at any time” refer a summary conviction to the Crown
+                     Court. In contrast to the right of the individual to appeal, the CCRC is not prevented
+                     from referring a conviction following a guilty plea. Section 11(2) provides that a
+                     reference under section 11(1) “shall be treated for all purposes as an appeal by the
+                     person under section 108(1) [of the MCA 1980] against the conviction”, regardless
+                     of whether the conviction followed plea or trial. Provision for referral by the CCRC
+                     of convictions in the Crown Court is made by section 9. The CCRC may “at any time”
+                     refer the conviction to the Court of Appeal. By virtue of section 9(2), a reference
+                     is treated “for all purposes” as an appeal under section 1 of the CAA 1968. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>The conditions for the making of a reference by the CCRC are set out at section 13.
+                     The Commission must consider that there is a “real possibility that the conviction
+                     would not be upheld” if the reference were to be made (section 13(1)(a)). Ordinarily,
+                     a reference may only be made when an appeal against the conviction has been determined,
+                     or leave to appeal has been refused (section 13(1)(c)), and where there is an argument
+                     available that has not previously been raised in relevant proceedings (section 13(1)(b)(i)).
+                     However, section 13(2) provides an exception ensuring that neither of those requirements
+                     prevents the making of a reference “if it appears to the Commission that there are
+                     exceptional circumstances which justify making [the reference]”. Section 14(1) provides
+                     that the CCRC may make a reference either upon application by the individual to whom
+                     it relates, or on its own volition. Section 14(2) sets out the matters to which the
+                     Commission shall have regard in considering whether to make a reference of a conviction.
+                     Essentially it must consider any representations made to it, whether by the person
+                     concerned or otherwise, and “any other matters which appear to the Commission to be
+                     relevant.” </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Legislative provisions in respect of criminal records are set out in Part V of the
+                     Police Act 1997. The process relies on information about “convictions” (see s.112(3)
+                     of the Police Act 1997 which refers to the definition in s.1(4) of the Rehabilitation
+                     of Offenders Act 1974) The processes needed to remove criminal records when a conviction
+                     is overturned are carried out between the courts and the police.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>The Act also makes separate provision as regards cautions, which are not judicial
+                     in character and so do not raise the same issues noted in paragraph 20ff above.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>The Act also includes power for the Secretary of State to make by statutory instrument
+                     such consequential provision as may be needed. The affirmative procedure is to be
+                     used for any such instrument that amends primary legislation.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Section 9 sets out the territorial extent of the Act, that is the jurisdictions in
+                     which the Act forms part of the law. The extent of an Act can be different from its
+                     application. Application is about where an Act produces a practical effect. All provisions
+                     of the Act (including the consequential provision) are to extend to England, Wales
+                     and Northern Ireland only. Section 5 has no application in relation to Northern Ireland,
+                     and sections 6 and 9 have no application in England and Wales. Otherwise, all provisions
+                     of the Act apply in both jurisdictions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Although postal services are a “reserved” policy, justice and criminal records are
+                     devolved matters in Scotland and Northern Ireland. The decision to extend the Act
+                     to Northern Ireland was taken at Commons Committee on 29 April 2024, following Government
+                     amendments. This decision was taken in recognition of the unique challenges faced
+                     by the Northern Ireland Executive in bringing forward its own legislation to quash
+                     convictions at the same pace as the Act and to reflect the high degree of cross-community
+                     support in Northern Ireland for extension. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>The UK Government believes that the Scottish Government is best placed to legislate
+                     to overturn convictions undertaken in its jurisdiction.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>The scandal did not affect any postmasters in the UK’s Crown Dependencies or Overseas
+                     Territories and hence no provision is required for those jurisdictions.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Quashing of convictions for relevant offences</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Section 1 provides that convictions for “relevant offences” were quashed on the day
+                     on which the legislation came into force. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Subsection 1(2) provides that such convictions in England and Wales will be quashed,
+                     if they were prosecuted by the Post Office or CPS, have not been considered by the
+                     Court of Appeal in England and Wales and took place before the legislation came into
+                     force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Subsection 1(3) provides that such convictions in Northern Ireland will be quashed,
+                     if they were prosecuted by the Police Service of Northern Ireland, the Director of
+                     Public Prosecutions for Northern Ireland or the Public Prosecution Service for Northern
+                     Ireland, have not been considered by the Court of Appeal in Northern Ireland and took
+                     place before the Act came into force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>The Section also sets out where in the Act certain terms are defined and explained.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Meaning of “relevant offence”</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Section 2 gives the meaning of “relevant offence” with reference to several conditions
+                     set out in the subsections. All of the conditions must be satisfied for an alleged
+                     offence to be quashed by this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Subsection 2(2) sets out Condition A which is that the offence was alleged to have
+                     been committed between specified dates. The first date – 23 September 1996 – is the
+                     date on which the Horizon pilot system began to be rolled out to post office branches.
+                     The final date – 31 December 2018 – marks the point at which the rollout of the current
+                     version of the Horizon System (HNG-A) was concluded. The HNG-A system was found in
+                     the Government Litigation Order High Court case to be “relatively robust”. The Department
+                     is not aware of any cases prosecuted by the relevant prosecutors involving the HNG-A
+                     system and therefore has concluded that there is no reasonable case to extend the
+                     period beyond the conclusion of the use of the previous versions of Horizon. This
+                     range of dates therefore encompasses the whole timeframe of the Horizon scandal. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Subsection 2(3) sets out Condition B which is that the offence is one of a list of
+                     specific offences. These are offences of dishonesty which were prosecuted in Horizon-related
+                     cases, and include ancillary offences, which are defined in subsection 2(7). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Subsection 2(4) sets out Condition C which details the relationship between the convicted
+                     individual and the Post Office.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Subsection 2(5) sets out Condition D which is that the acts constituting the offence
+                     were carried out in connection with or working for the purposes of post office business.
+                     This provision therefore excludes unrelated offences which individuals working in
+                     post offices might have coincidentally committed during the relevant time period,
+                     such as theft from an unrelated shop. The relationship conditions outlined in Conditions
+                     C and D are drafted to encompass the range of working and other relationships which
+                     convicted individuals had with the Post Office. They extend to family members or others
+                     who did not have a direct employment or contractual relationship with the Post Office
+                     but were nevertheless carrying on a post office business or working in a post office
+                     branch for the purposes of a post office business.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Subsection 2(6) sets out Condition E which requires that either the Horizon system
+                     was being used for the purposes of that post office business at the time of the alleged
+                     offence, or the offence was alleged to have been committed over a period of time and
+                     the Horizon system was being used for the purposes of the post office business for
+                     all or part of that period.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Subsection 2(7) gives definitions of terms in this section. It defines the offences
+                     listed in subsection 2(3), including reference to the relevant statutes for each offence.
+                     It also provides that “ancillary offence” includes the inchoate versions of those
+                     offences.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Determining when a conviction has been considered by Court of Appeal</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Section 3 provides for when a conviction is to be determined as having been “considered
+                     by the Court of Appeal” for the purposes of Section 1, by reference to three specified
+                     cases set out in subsections 3(2) to 3(4). Where one of the three specified cases
+                     applies, that conviction is not affected by this legislation, thus preserving the
+                     role and independence of the courts. Where cases are in progress but none of the three
+                     cases applies, then the conviction will be quashed by the provisions of Section 1.
+                     Therefore, for example convictions in respect of which applications have been made
+                     for permission to appeal but have not yet been determined and appeals are in progress
+                     but have not been determined will be quashed by the provisions of Section 1. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Applications and appeals that have been abandoned will also all be quashed by the
+                     provisions of Section 1. This is not prevented by Rule 36.13(4)(c) of the Criminal
+                     Procedure Rules which provides that the Registrar must treat an abandoned appeal as
+                     if it had been refused or dismissed. The rule is only about the administrative treatment
+                     of an abandoned appeal. It does not render the application or appeal to have in fact
+                     been refused or dismissed for the purposes of Section 3.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Subsection 3(2) provides for case 1, which applies to convictions where the Court
+                     of Appeal has heard an appeal against the conviction and has dismissed the appeal.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Subsection 3(3) provides for case 2, which applies where the Court of Appeal has refused
+                     to give leave to appeal against the conviction. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Subsection 3(4) provides for case 3 where an appeal has been considered and refused
+                     by a single judge of the Court of Appeal, and the Court of Appeal has not subsequently
+                     given leave to appeal against the conviction. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Subsection 3(5) further protects the role of the courts by making clear that nothing
+                     in this Act prevents a further appeal against a conviction that has already been considered
+                     by the Court of Appeal. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Subsection 3(6) defines what is meant by the Court of Appeal in England, Wales and
+                     Northern Ireland.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Identification and notification of quashed convictions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Section 4 provides for aspects of the administrative process for identifying which
+                     convictions have been quashed by the provisions in Section 1. It also provides that
+                     relevant individuals will be notified following the quashing of their convictions.
+                     Subsection 4(1) places a duty upon the appropriate authority to take all reasonable
+                     steps to identify the convictions to which Section 1 applies and which are therefore
+                     quashed by the provisions in Section 1. Such steps may include, but are not limited
+                     to, reviewing case data from the Police National Computer, court records, records
+                     held by Post Office Limited such as employment records, and CPS data. These steps
+                     will identify many of those cases that meet the conditions set out in Section 2. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Subsection 4(2) sets out the meaning of “the appropriate authority” in this Section.
+                     For convictions in England and Wales this refers to the Secretary of State and for
+                     those in Northern Ireland this refers to the Department of Justice in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Subsection 4(3) places a duty on the appropriate authority to notify the convicting
+                     court of the details of the identified convictions, in order to enable courts to update
+                     their records. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>Subsection 4(4) places a duty on the convicting court to update its record of the
+                     conviction by removing the record of conviction and substituting a record that the
+                     conviction was quashed by this Act. This is similar to the process currently followed
+                     by the court of trial following the quashing of a conviction by the Court of Appeal
+                     and will enable other records (such as those held on the Police National Computer)
+                     to be updated. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>Subsection 4(5) places a further duty on the appropriate authority to notify the relevant
+                     persons that their conviction has been quashed. If the person is no longer alive,
+                     then reasonable steps should be taken to notify their personal representatives. If
+                     it is not possible to notify either the convicted person or, where necessary, their
+                     personal representative, then the appropriate authority must take reasonable steps
+                     to identify another person whom they consider appropriate to notify, and notify that
+                     person. This may be the case, for example, where the relevant person does not wish
+                     to be contacted but it is appropriate to contact a relative or friend on his or her
+                     behalf.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>Subsection 4(6) places a duty on the appropriate authority to consider representations
+                     made by the person to whom the conviction relates, or another person on their behalf,
+                     that a person whom the appropriate authority has not yet identified under 4(1) has
+                     a conviction for a relevant offence which has been quashed. This will ensure that
+                     where an individual’s conviction is not identified by the appropriate authority under
+                     4(1), but the individual believes that their conviction meets the conditions set out
+                     in Section 2, the appropriate authority is obliged to consider representations made
+                     on behalf of that individual that their conviction so meets the conditions, and should
+                     therefore be considered as one to which Section 1 applies. If the appropriate authority,
+                     further to considering these representations, identifies that conviction as one to
+                     which Section 1 applies, the duties in subsections 4(3), 4(4) and 4(5) apply to that
+                     conviction. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>Subsection 4(7) defines what is meant by a ‘convicting court’.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Deletion of cautions for relevant offences: England and Wales</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>This section sets out the process for deleting records of cautions for relevant offences
+                     in England and Wales. Cautions are not ordered by a court and are not “quashed” in
+                     the same way as convictions or recorded in the same way. Where the Secretary of State
+                     becomes aware of cautions for relevant offences issued before the Act came into force,
+                     this Section places on him a duty to notify the police in order to ensure that records
+                     showing the caution are amended administratively. Subsection 5(2) provides that the
+                     police must delete the details of the caution as soon as reasonably practicable after
+                     receiving that notification. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>Subsections 5(3)(a), 5(3)(b) and 5(4) make similar provision to 4(4)(a), 4(4)(b) and
+                     4(5) in relation to notification of relevant persons and information about cautions
+                     provided by persons other than the individual cautioned for the relevant offence.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>Subsection 5(5) sets out definitions for terms used in this section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Deletion of cautions for relevant offences: Northern Ireland</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>This Section sets out the process for deleting records of cautions for relevant offences
+                     in Northern Ireland. It mirrors the approach to cautions in England and Wales, set
+                     out in Section 5. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>Where the Department of Justice in Northern Ireland becomes aware of cautions for
+                     relevant offences issued before the Act came into force, this Section places on that
+                     Department a duty to notify the police to enable records showing those cautions to
+                     be deleted. Subsection 6(2) provides that the police must delete the details of the
+                     caution as soon as reasonably practicable after receiving that notification.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>Subsections 6(3)(a), 6(3)(b) and 6(4) make similar provision to 4(4)(a), 4(4)(b) and
+                     4(5) in relation to notification of relevant persons and information about cautions
+                     provided by persons other than the individual cautioned for the relevant offence.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>Subsection 5(5) sets out definitions for terms used in this Section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Consequential provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>Subsection 7(1) provides that a person whose conviction is quashed by this Act of
+                     Parliament is to be treated, save for as provided for by Section 4 and this section,
+                     as if, on the day on which the Act came into force, the conviction had been quashed
+                     by a court on an appeal. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>Subsection 7(2) provides that subsection (1) does not apply to convictions quashed
+                     by this Act of Parliament for the purposes of paragraph 7(9) of Schedule 3 to the
+                     Crime and Disorder Act 1998 (which provides for the setting aside of convictions of
+                     summary offences where the Court of Appeal allows an appeal against a conviction of
+                     a related indictable offence). This means that, unlike when a conviction for an indictable
+                     offence is quashed by the Court of Appeal and convictions for any related summary
+                     offences are set aside, where a conviction on indictment is quashed by this Act of
+                     Parliament, no related summary convictions will be quashed unless they are also convictions
+                     to which Section 1 applies. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>Subsection 7(3) provides that convictions quashed by this Act of Parliament are to
+                     be treated as “convictions quashed on an appeal out of time” for the purposes of section
+                     133 of the Criminal Justice Act 1988 which deals with eligibility for compensation
+                     for miscarriages of justice. This is to ensure that a person whose conviction is quashed
+                     by this Act of Parliament is not excluded from the compensation for miscarriages of
+                     justice scheme where the criteria for that scheme are met. Although compensation under
+                     section 133 of the Criminal Justice Act 1988 will remain available in principle, it
+                     is expected that it is unlikely that many individuals who have their convictions quashed
+                     under the Act will seek to access this compensation due to the requirement to demonstrate
+                     that the threshold for compensation under section 133 has been met and the fact that
+                     any losses are very likely to be covered by the Overturned Convictions scheme.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Power of Secretary of State to make further consequential provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>Section 8 allows for amendment or modification of any provision of primary or secondary
+                     legislation that is not transferred Northern Ireland provision. This may be required
+                     in order to ensure that the consequences of the quashing of a conviction can be applied
+                     to these convictions quashed by Act of Parliament in the same way as they do to convictions
+                     quashed by a court on appeal. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>Subsection 8(1) confers a power on the Secretary of State to make consequential provision
+                     for the purposes of the Act. Subsection 8(2) details how this power may be exercised
+                     by amending or otherwise modifying any provision made under primary legislation passed
+                     before or in the same session as this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">79 </span></h2>
+                  <p>Subsection 8(3) specifies that this power does not apply to any provision which is
+                     transferred Northern Ireland provision.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">80 </span></h2>
+                  <p>Subsections 8(4) to 8(6) provide for the ways in which regulations are to be made.
+                     Subsection 8(7) defines primary legislation for the purposes of this section. </p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Power of Department of Justice to make further consequential provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">81 </span></h2>
+                  <p>Section 9 allows for amendment or modification of any provision of primary or secondary
+                     legislation that is transferred Northen Ireland provision. As with Section 8, this
+                     may be required to ensure that the consequences of the quashing of a conviction can
+                     be applied to these convictions quashed by Act of Parliament in the same way as they
+                     do to convictions quashed by a court on appeal. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">82 </span></h2>
+                  <p>Subsection 9(1) confers a power on the Department of Justice in Northern Ireland to
+                     make consequential provision for the purposes of the Act. Subsection 9(2) defines
+                     “transferred Northern Ireland provision” for the purposes of the Section.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>Subsection 9(3) details how this power may be exercised by amending or otherwise modifying
+                     any provision made under an Act of Parliament passed before or in the same session
+                     as this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>Subsections 9(5) to 9(7) provide for the ways in which regulations are to be made.
+                     Subsection 9(6) defines primary legislation for the purposes of this section. </p>
+               </section>
+               <section class="level">
+                  <p>Section 10: Interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>This section sets out provisions of interpretation of several terms in the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">86 </span></h2>
+                  <p>Subsection (1) defines “caution” to include youth cautions, conditional cautions,
+                     and other forms of caution. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">87 </span></h2>
+                  <p>It also defines “conviction” as both a conviction before a court and findings in criminal
+                     proceedings that a person has committed an offence or done the act or omission charged.
+                     This can include findings in cases linked with a finding of insanity.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">88 </span></h2>
+                  <p>The subsection defines the Horizon system as versions of the Horizon software excluding
+                     HNG-A (the version currently in use). This definition includes the “Pathway” system,
+                     which was a pilot of Horizon. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">89 </span></h2>
+                  <p>The subsection also defines “postal services”, “post office”, and “post office business”.
+                     These are terms used in the conditions in section 2 of the Act to determine whether
+                     a conviction is for a relevant offence. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">90 </span></h2>
+                  <p>“The Post Office” is also defined with reference to the several different companies
+                     and organisations in relation to whose business individuals were convicted of offences
+                     as part of the Horizon scandal. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">91 </span></h2>
+                  <p>Subsection (2) outlines which provisions do not apply for the purposes of this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">92 </span></h2>
+                  <p>Subsection (3) provides that nothing in this Act is to be taken as affecting the powers
+                     of any court to quash on appeal any conviction, to which this Act does not apply.</p>
+               </section>
+               <section class="level">
+                  <p>Section 11: Extent and commencement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">93 </span></h2>
+                  <p>This section sets out provisions for commencement and territorial extent. Subsection
+                     11(1) provides that the Act extends to England, Wales and Northern Ireland only. Subsection
+                     11(2) provides that the Act came into force on the day it was passed. </p>
+               </section>
+               <section class="level">
+                  <p>Section 12: Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">94 </span></h2>
+                  <p>This section establishes the Act’s short title.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">95 </span></h2>
+                  <p>The Act came into force on the day it received Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">96 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Common Issues Judgment, December 2019<a class="fn" id="fnref-7" href="#fn-7">7</a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Horizon Issues Judgment, December 2019<a class="fn" id="fnref-8" href="#fn-8">8</a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Terms of Reference for the Williams Inquiry set by the Secretary of State, September
+                        2023<a class="fn" id="fnref-9" href="#fn-9">9</a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">97 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.&nbsp;</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.26in">
+                        <col style="width:1.92in">
+                        <col style="width:2.1in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage&nbsp;</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date&nbsp;</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference&nbsp;</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons&nbsp;</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>13 March 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2024-03-13/debates/06A2933F-CE1C-4E8E-BA00-EC037FA59EC2/PostOfficeLegislation"><u>Vol 747 Col. 311</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading&nbsp;&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>20 March 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/commons/2024-03-20/debates/29644DCD-81B4-44C6-9AD3-2CCE2984B110/PostOffice(HorizonSystem)OffencesBill"><u>Vol 747 Col. 956</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House and Remaining Stages</p>
+                           </td>
+                           <td>
+                              <p>29 April 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2024-04-29/debates/F0B53E40-43B6-41D0-B613-4C3156802AFC/PostOffice(HorizonSystem)OffencesBill(Instructions)"><u>Vol 749 Col. 65</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>23 May 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/lords/2024-05-23/debates/C3E676AE-D799-433E-8F74-ADA68D256E8C/PostOffice(HorizonSystem)OffencesBill"><u>Vol 750 Col. 1107</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords&nbsp;</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>30 April 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2024-04-30/debates/37867E6C-E583-43E0-A9D8-F4CF0B28BDB3/PostOffice(HorizonSystem)OffencesBill"><u>Vol 837 Col. 1816</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading </p>
+                           </td>
+                           <td>
+                              <p>13 May 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2024-05-13/debates/4B96D1CB-F6EF-42CA-9A25-A05CA67D5EF0/PostOffice(HorizonSystem)OffencesBill"><u>Vol 838 Col. 421</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the whole House</p>
+                           </td>
+                           <td>
+                              <p>23 May</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-05-23/debates/B8317862-2C8E-4B65-A85C-72DA7174F81E/PostOffice(HorizonSystem)OffencesBill"><u>Vol 838 Col. 1195</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 May 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/lords/2024-05-23/debates/C3E676AE-D799-433E-8F74-ADA68D256E8C/PostOffice(HorizonSystem)OffencesBill"><u>Vol 838 Col. 1256</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>&nbsp;24 May 2024</p>
+                           </td>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2024-05-24/debates/CD3DAA19-3D6D-464F-B60D-9F29033844B3/RoyalAssent"><u>Vol 838 Col. 1375</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Bates and Others v Post Office Limited, [2019] EWHC 606 (QB)</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Bates and Others v Post Office Limited, [2019] EWHC 3408 (QB)</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.gov.uk/government/publications/post-office-horizon-it-inquiry-2020/terms-of-reference"><u><a href="https://www.gov.uk/government/publications/post-office-horizon-it-inquiry-2020/terms-of-reference">https://www.gov.uk/government/publications/post-office-horizon-it-inquiry-2020/terms-of-reference</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.postofficehorizoninquiry.org.uk/publications/completed-list-issues"><u><a href="https://www.postofficehorizoninquiry.org.uk/publications/completed-list-issues">https://www.postofficehorizoninquiry.org.uk/publications/completed-list-issues</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://www.judiciary.uk/judgments/hamilton-others-v-post-office-limited/"><u><a href="https://www.judiciary.uk/judgments/hamilton-others-v-post-office-limited/">https://www.judiciary.uk/judgments/hamilton-others-v-post-office-limited/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  See <a href="https://assets.publishing.service.gov.uk/media/65f04912981227001af612ea/horizon-compensation-advisory-board-paper-on-behaviour-and-psychology.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/65f04912981227001af612ea/horizon-compensation-advisory-board-paper-on-behaviour-and-psychology.pdf">https://assets.publishing.service.gov.uk/media/65f04912981227001af612ea/horizon-compensation-advisory-board-paper-on-behaviour-and-psychology.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://www.judiciary.uk/wp-content/uploads/2019/03/bates-v-post-office-judgment-no3-15-mar-19.pdf"><u><a href="https://www.judiciary.uk/wp-content/uploads/2019/03/bates-v-post-office-judgment-no3-15-mar-19.pdf">https://www.judiciary.uk/wp-content/uploads/2019/03/bates-v-post-office-judgment-no3-15-mar-19.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.judiciary.uk/wp-content/uploads/2019/12/bates-v-post-office-judgment.pdf"><u><a href="https://www.judiciary.uk/wp-content/uploads/2019/12/bates-v-post-office-judgment.pdf">https://www.judiciary.uk/wp-content/uploads/2019/12/bates-v-post-office-judgment.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.gov.uk/government/publications/post-office-horizon-it-inquiry-2020/terms-of-reference"><u><a href="https://www.gov.uk/government/publications/post-office-horizon-it-inquiry-2020/terms-of-reference">https://www.gov.uk/government/publications/post-office-horizon-it-inquiry-2020/terms-of-reference</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

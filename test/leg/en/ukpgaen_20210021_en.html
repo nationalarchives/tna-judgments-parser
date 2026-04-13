@@ -1,0 +1,644 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>ANIMAL WELFARE (SENTENCING) ACT 2021</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Animal Welfare (Sentencing) Act 2021 which received
+                  Royal Assent on 29 April 2021 (c. 21).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Environment, Food
+                  and Rural Affairs in order to assist the reader in understanding the Act. They do
+                  not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act increases the maximum penalty for specific offences related to animal welfare
+                     in England and Wales from 29 June 2021. It does so by extending the maximum penalty,
+                     specified under the Animal Welfare Act 2006, of six months and/or an unlimited fine
+                     to a penalty of five years and/or an unlimited fine. These offences therefore become
+                     triable either way, and may be heard in the Magistrates Court or the Crown Court.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>This Act amends the Animal Welfare Act 2006 (“the 2006 Act”). Ahead of the Act coming
+                     into force on 29 June 2021, the 2006 Act set out a maximum penalty of six months imprisonment
+                     and/or an unlimited fine for the more serious 'prevention of harm' offences. There
+                     are five such offences under section 32(1) of the Animal Welfare Act 2006:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>causing unnecessary suffering (section 4, Animal Welfare Act 2006);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>carrying out a non-exempted mutilation (section 5, Animal Welfare Act 2006);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>docking the tail of a dog except where permitted (section 6(1) and 6(2), Animal Welfare
+                        Act 2006);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>administering a poison to an animal (section 7, Animal Welfare Act 2006); and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>involvement in an animal fight (section 8, Animal Welfare Act 2006).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>There were a number of cases related to these offences in which judges expressed a
+                     desire to impose a higher penalty than that which the 2006 Act provided for, prior
+                     to this Act passing. There was a particular desire to increase the penalties available
+                     in the case of crimes that relate to deliberate, calculating and sadistic behaviour.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Members of Parliament, wider stakeholders and the public also sought to increase maximum
+                     penalties for animal welfare offences so that they exceeded the European average at
+                     the time of 2.04 years. The Act meets both of these aims by increasing the maximum
+                     penalties for the most serious offences under the Animal Welfare Act 2006 to five
+                     years and/or an unlimited fine.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The increase in maximum penalties does not apply to those offences listed in section
+                     32(2) of the Animal Welfare Act 2006: not taking reasonable steps to ensure welfare
+                     (section 9); breach of a licence condition (section 13(6)); and breach of a disqualification
+                     order (section 34(9)). These offences are generally considered less serious, and rarely
+                     receive the existing maximum penalty. Moreover, the level of fine applied to these
+                     offences increased since the Legal Aid, Sentencing and Punishment of Offenders Act
+                     2012, which converted existing level 5 fines into unlimited fines.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The draft sentencing sections were published for public consultation and pre-legislative
+                     scrutiny on 12 December 2017 as part of the Animal Welfare (Sentencing and Recognition
+                     of Sentience) Bill. The consultation closed on 31 January 2018 and the summary of
+                     responses document published on 7 August 2018. The Department for Environment, Food
+                     and Rural Affairs (Defra) received 9,084 direct responses to the consultation. 70%
+                     of respondents agreed with the new maximum penalties. In the summary of responses
+                     document, Government committed to bring forward the sentencing sections in a separate
+                     Bill as recommended by the EFRA Committee's scrutiny report on the Bill.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The majority of the relevant legal background is explained in the policy background
+                     section of these Notes. Two additional legal issues are raised below, one in relation
+                     to the current drafting of section 32(1) of the Animal Welfare Act 2006, and the second
+                     in relation to the requirement to change the mode of trial.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The current drafting of section 32(1) of the Animal Welfare Act 2006 lists the maximum
+                     penalty as imprisonment for a term not exceeding 51 weeks or a fine, as opposed to
+                     the maximum imprisonment for a term not exceeding six months as discussed above. This
+                     discrepancy is explained by section 32(5) of the Animal Welfare Act 2006. Section
+                     32(5) provides that in relation to an offence committed before the commencement of
+                     section 281(5) of the Criminal Justice Act 2003, the reference in section 32(1)(a)
+                     to 51 weeks is to be read as a reference to six months. As at the date of the publication
+                     of the Act, section 281(5) of the Criminal Justice Act 2003 has not been commenced.
+                     The maximum imprisonment term for offences under section 32(1) of the Animal Welfare
+                     Act 2006 therefore remains six months.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Under section 78 of the Powers of Criminal Courts (Sentencing) Act 2000 magistrates'
+                     courts do not have the power to impose penalties greater than six months. As a result
+                     of increasing the maximum penalty available for the offences under section 32(1) of
+                     the Animal Welfare Act 2006 to a period of five years it is necessary for the Act
+                     to make these offences triable either way. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 2 sets out the territorial extent of the Act. This Act both extends and applies
+                     to England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Mode of trial and maximum penalty for certain animal welfare offences</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 32(1) of the Animal Welfare Act 2006 provides that particular offences should
+                     carry a maximum penalty of 51 weeks imprisonment and/or a level 5 fine.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>In practice, this results in a maximum penalty of 6 months and an unlimited fine.
+                     This is because section 32(5) specifies a maximum penalty of 6 months for offences
+                     committed before the commencement of section 281(5) of the Criminal Justice Act 2003.
+                     To date, this section has not been commenced. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>This section changes the maximum penalty available for the following offences only:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>causing unnecessary suffering (section 4, Animal Welfare Act 2006); </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>carrying out a non-exempted mutilation (section 5, Animal Welfare Act 2006);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>docking the tail of a dog except where permitted (section 6(1) and 6(2), Animal Welfare
+                        Act 2006);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>administering a poison to an animal (section 7, Animal Welfare Act 2006); and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>involvement in an animal fight (section 8, Animal Welfare Act 2006.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The existing maximum penalty, outlined above, is retained if the offender is summarily
+                     convicted. However offenders may now receive a higher penalty of up to 5 years imprisonment
+                     and/or an unlimited fine if they are convicted on trial by indictment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Under section 78 of the Powers of Criminal Courts (Sentencing) Act 2000 magistrates'
+                     courts do not have the power to impose penalties greater than six months. Section
+                     154(1) of the Criminal Justice Act 2003 increased the maximum custodial sentence imposable
+                     by a magistrate's court to 12 months. However, to date this section has not been commenced
+                     and the new section 32(4A) of the Animal Welfare Act 2006 inserted by this section
+                     reflects this position.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, Commencement and Short Title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>This section provides that the Act extends to England and Wales; that the Act comes
+                     into force two months after Royal Assent; and that the application of revised maximum
+                     penalties is not retrospective and does not apply to offences committed before the
+                     Act comes into force. This section also specifies the short title of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The Act comes into force on 29 June 2021.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.26in">
+                        <col style="width:1.14in">
+                        <col style="width:1.14in">
+                        <col style="width:1.14in">
+                        <col style="width:1.56in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p></p>
+                              <p>Section 2 </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>5 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2622/stages/11841">
+                                    <u>https://bills.parliament.uk/bills/2622/stages/11841</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>23 October 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-10-23/debates/27FA84A6-0A6D-4F15-9741-322EF5349D61/AnimalWelfare(Sentencing)Bill">
+                                    <u>Vol. 682 Col. 1348</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>5 February 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-02-03/debates/803cce03-d79b-4fac-9476-d1e064c48623/AnimalWelfare(Sentencing)Bill(FirstSitting)">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>12 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-03-12/debates/F778DEE0-1435-40E9-AA54-0B70B6D62359/BusinessWithoutDebate">
+                                    <u>Vol. 690</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>12 March 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-03-12/debates/970E1828-FA82-475F-B66B-57BC6E992AC4/AnimalWelfare(Sentencing)Bill">
+                                    <u>Vol. 810</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>16 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-16/debates/6D25D736-FC11-4550-AE23-AD6153737DDA/AnimalWelfare(Sentencing)Bill">
+                                    <u>Vol. 811 Col. 1582</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment discharged</p>
+                           </td>
+                           <td>
+                              <p>22 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2021-04-22/debates/8DFAD46D-5FB0-4F4F-82A4-CEC9819770E1/AnimalWelfare(Sentencing)Bill">
+                                    <u>Vol. 811</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>28 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2622/stages/12905">
+                                    <u>Vol. 811 Col. 2250</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>29 April 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/bills/2622/stages/12930">
+                                    <u>Vol. 811</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

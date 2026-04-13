@@ -1,0 +1,736 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>ANIMAL WELFARE (LIVESTOCK EXPORTS)</b>
+               <b>
+                  </b>
+               <b>ACT 2024</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Animal Welfare (Livestock Exports) Act 2024
+                     which received Royal Assent on 20 May 2024 (c. 11). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for Environment, Food
+                     and Rural Affairs in order to assist the reader in understanding the Act. They do
+                     not form part of the Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act means in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act affects existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="paragraph">
+               <p>
+                  <b>Table of Contents</b>
+                  </p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Animal Welfare (Livestock Exports) Act 2024 makes provision to prohibit the export
+                     of cattle, sheep, goats, pigs and equines for slaughter, including fattening for subsequent
+                     slaughter, beginning in or transiting through Great Britain to EU member states and
+                     other third countries.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Public concern regarding live animal exports has a long history: there have been a
+                     number of campaigns by animal welfare organisations since the 1990s, aiming either
+                     to end live animal exports for slaughter or to limit how far an animal can be transported
+                     on welfare grounds. The topic was highlighted at the time of the EU referendum as
+                     a benefit of leaving the EU, as the EU free trade rules prevent member states from
+                     banning live exports to other EU countries. In 2017, the animal welfare organisation
+                     Compassion in World Farming launched a petition calling for a ban on live exports
+                     that attracted 100,752 signatures.<a class="fn" id="fnref-1" href="#fn-1">1</a> In September 2023, a further petition with 95,000 signatures was delivered to the
+                     Prime Minister.<a class="fn" id="fnref-2" href="#fn-2">2</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>A ban on live exports for slaughter and fattening was referenced in the Government’s
+                     Action Plan for Animal Welfare, published in May 2021, and provisions for a ban were
+                     previously included in the Animal Welfare (Kept Animals) Bill,<a class="fn" id="fnref-3" href="#fn-3">3</a> introduced into Parliament in June 2021. In May 2023, the Government announced that
+                     the Bill would no longer be progressing. Subsequently, the decision was made to introduce
+                     a single-issue Bill to bring in the live exports ban.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Drawing on the 2019 expert opinion of the Farm Animal Welfare Committee<a class="fn" id="fnref-4" href="#fn-4">4</a> on animal welfare in transport, the Department for Environment, Food and Rural Affairs
+                     (Defra), in partnership with the Welsh Government, published a consultation in December
+                     2020 on the proposal to end the export of live animals for fattening and slaughter<a class="fn" id="fnref-5" href="#fn-5">5</a> and on other improvements to animal welfare in transport. Defra received over 11,000
+                     responses to the consultation, with 87% of respondents agreeing that livestock and
+                     horse export journeys for slaughter and fattening are unnecessary. Defra affirmed
+                     in the summary of responses<a class="fn" id="fnref-6" href="#fn-6">6</a> that the Government would proceed with a ban on the export of livestock (cattle,
+                     sheep, goats and pigs) and horses from England, Wales and Scotland for slaughter and
+                     fattening. The Scottish Government also consulted on improvements to animal welfare
+                     in transport towards the end of 2020<a class="fn" id="fnref-7" href="#fn-7">7</a>, including restrictions on live exports. Although the consultation did not specifically
+                     ask about banning live exports, the summary of responses<a class="fn" id="fnref-8" href="#fn-8">8</a> reports that “a large number of respondents also urge for live export for fattening
+                     and slaughter to be phased out.”</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Assimilated law on the welfare of animals in transport</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>The welfare of animals in transport (including when they are exported) is principally
+                        governed by Council Regulation No 1/2005 on the protection of animals during transport
+                        and related operations. This is supplemented by domestic orders in England, Wales
+                        and Scotland. Under the Retained EU Law (Revocation and Reform) Act 2023, Council
+                        Regulation No 1/2005 has become assimilated legislation in England, Wales and Scotland.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Animal Health Act 1981</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>Sections 40-49 of the Animal Health Act 1981 place certain restrictions on the export
+                        of horses and ponies to protect their welfare and prevent the export of ‘low value’
+                        horses and ponies. These requirements have largely been superseded by Council Regulation
+                        No 1/2005 on the protection of animals during transport and related operations.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Section 7(1) sets out the territorial extent of the Act, which describes the jurisdictions
+                     in which the Act forms part of the law. The Animal Welfare (Livestock Exports) Act
+                     2024 extends and applies to Great Britain, except for section 5(b) and section 6.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Section 5(b) repeals a specific part of the Animal Health Act (1981) that extends
+                     and applies to Scotland only. Accordingly, section 5(b) extends and applies to Scotland
+                     only. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The amendments made by section 6 add the Act to Schedule 7B of the Government of Wales
+                     Act 2006, and thereby exempt it from restrictions on the legislative competence of
+                     Senedd Cymru. These amendments have the same extent as the enactments to which they
+                     relate.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act relates to animal welfare, which is a devolved matter. Apart from section
+                     6, the Act is within the legislative competence of the Scottish Parliament. Apart
+                     from section 6 and section 5(b), the Act is within the legislative competence of Senedd
+                     Cymru.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Prohibition of export of livestock for slaughter</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Subsection (1) of this section prohibits the export of relevant livestock from Great
+                     Britain for slaughter and subsection (2) makes it an offence to contravene this prohibition.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Subsection (3) describes “exports” for the purpose of determining whether a person
+                     has contravened the prohibition in subsection (1). Subsection (4) defines “relevant
+                     livestock” for the purpose of this section, and subsection (5) defines “for slaughter”,
+                     which includes relevant animals being exported for the purpose of being slaughtered
+                     or fattened for slaughter.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Subsection (6) provides that a person who commits an offence under this section in
+                     England and Wales is liable on summary conviction to imprisonment for a term not exceeding
+                     the maximum for summary offences, to a fine or both. In Scotland, a person who commits
+                     an offence under this section is liable on summary conviction to imprisonment for
+                     up to 6 months, to a fine not exceeding level five on the standard scale or both.
+                     Subsection (7) explains that the maximum term for summary offences in England and
+                     Wales is 6 months until section 281(5) of the Criminal Justice Act 2003 comes into
+                     force, from which point the maximum imprisonment term for England and Wales will be
+                     51 weeks.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Regulations about enforcement of section 1</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Subsection (1) of this section empowers the appropriate national authority (the Secretary
+                     of State, Scottish Ministers or Welsh Ministers) to make regulations to provide for
+                     the enforcement of the prohibition on the export of live animals for slaughter. Subsections
+                     (2) and (3) provide non-exhaustive lists of what these regulations may cover, which
+                     include powers of entry, seizure or detention, the creation of criminal offences and
+                     the imposition of civil sanctions. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Subsection (4) permits the enforcement regulations to confer a power of entry in relation
+                     to a private dwelling without the consent of the occupier or with the use of reasonable
+                     force only if the power is exercised under the authority of a warrant.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (5) clarifies the scope of the power in subsection (4) of section 3 to
+                     make provision for the imposition of civil sanctions in regulations relating to the
+                     enforcement of section 1.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subsection (6) clarifies the scope of criminal offences that can be created in relation
+                     to regulations made under subsection (1).</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Section 2: supplementary</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>This section defines “appropriate national authority”, “civil sanction” and “enactment”
+                     for the purposes of section 2. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (3) provides that the Secretary of State may only make enforcement regulations
+                     containing provisions that could be made by Scottish or Welsh Ministers with their
+                     consent.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Enforcement regulations: procedure etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>This section provides that enforcement regulations made under section 2 must be made
+                     by statutory instrument under the affirmative procedure (or equivalent in the Scottish
+                     Parliament and Senedd Cymru) and may include consequential, incidental, transitional
+                     or saving provisions and may include different provisions for different purposes and
+                     areas.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Connected repeals in relation to horses</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>This section repeals sections 40 to 49 of the Animal Health Act 1981 (provisions relating
+                     to the export of horses) and also makes other amendments to that Act that are consequential
+                     to their repeal.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Concurrent functions in Wales</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Section 2 of the Act creates powers that are exercisable concurrently by the Secretary
+                     of State and the Welsh Ministers. Restrictions in Schedule 7B to the Government of
+                     Wales Act 2006 prevent Senedd Cymru from removing a Minister of the Crown function
+                     that is exercised concurrently or jointly with the Welsh Ministers without the consent
+                     of the UK Government. This section disapplies the relevant restrictions in respect
+                     of the concurrent powers in this Act by adding the Act to the lists of enactments
+                     in paragraphs 9(8)(b) and 11(6)(b) of Schedule 7B. This will allow Senedd Cymru to
+                     alter the concurrent arrangements relating to devolved matters without needing the
+                     UK Government’s consent.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsection (1) sets out the territorial extent of provisions in the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (2) provides that section 1 (prohibition of export of livestock for slaughter)
+                     and section 5 (connected repeals in relation to horses) come into force in accordance
+                     with commencement regulations made by the appropriate national authority.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (3) provides that section 2, 3, 4, 6 and 7 come into force at Royal Assent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsections (4) to (8) provide powers for the Secretary of State, Scottish Ministers
+                     and Welsh Ministers to make transitional or saving provisions in regulations that
+                     commence provisions in the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (9) provides that the short title of this Act will be the “Animal Welfare
+                     (Livestock Exports) Act 2024”. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Defra Call for Evidence on controlling live exports and improving animal welfare during
+                        transport: <a href="https://consult.defra.gov.uk/animal-health-and-welfare/live-exports-and-improving-welfare-in-transport/"><u>https://consult.defra.gov.uk/animal-health-and-welfare/live-exports-and-improving-welfare-in-transport/</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Farm Animal Welfare Committee, Opinion on the Welfare of Animals during Transport
+                        (with the systematic review, conducted by Scotland’s Rural University College and
+                        University of Edinburgh, appended): <a href="https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf"><u>https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Action Plan for Animal Welfare: <a href="https://www.gov.uk/government/publications/action-plan-for-animal-welfare"><u>https://www.gov.uk/government/publications/action-plan-for-animal-welfare</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Defra and Welsh Government consultation on improvements to animal welfare in transport:
+                        <a href="https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/"><u>https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Summary of Responses and Government Response to the Defra and Welsh Government consultation
+                        on improvements to animal welfare in transport: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Scottish Government consultation on the welfare of animals during transport: <a href="https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/pages/1/"><u>https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/pages/1/</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Summary of Responses to the Scottish Government consultation on the welfare of animals
+                        during transport: <a href="https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/"><u>https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Impact Assessment of the ban on live exports: <a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0013/LiveAnimalExportFinalStageImpactAssessment.pdf"><u>https://publications.parliament.uk/pa/bills/cbill/58-02/0013/LiveAnimalExportFinalStageImpactAssessment.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament:</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.1in">
+                        <col style="width:2.1in">
+                        <col style="width:2.1in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>4 December 2023</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 December 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-12-18/debates/1BBCDA13-C062-4973-A369-EF8D804679BF/AnimalWelfare(LivestockExports)Bill">
+                                    <u>Vol. 742 Col. 1172</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Programme Motion</p>
+                           </td>
+                           <td>
+                              <p>18 December 2023</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee of the Whole House</p>
+                           </td>
+                           <td>
+                              <p>15 January 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-01-15/debates/C3CADE59-E8E9-4644-9E28-FE6EBB20D958/AnimalWelfare(LivestockExports)Bill%E2%80%82">
+                                    <u>Vol. 743 Col. 622</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>15 January 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2024-01-15/debates/C3CADE59-E8E9-4644-9E28-FE6EBB20D958/AnimalWelfare(LivestockExports)Bill%E2%80%82">
+                                    <u>Vol. 743 Col. 642</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>16 January 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-01-16/debates/EA2915B5-71C4-4B95-86B9-4087899EBCCD/AnimalWelfare(LivestockExports)Bill">
+                                    <u>Vol. 835</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>21 February 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-02-21/debates/9082C4C0-2314-4472-9D94-6BAB4675F7EA/AnimalWelfare(LivestockExports)Bill">
+                                    <u>Vol. 836 Col. 614</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee Stage</p>
+                           </td>
+                           <td>
+                              <p>14 March 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-03-14/debates/398F3FC3-A3E3-422D-BBB5-B8A50D00706B/AnimalWelfare(LivestockExports)Bill">
+                                    <u>Vol. 836 Col. 274GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report Stage</p>
+                           </td>
+                           <td>
+                              <p>8 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-08/debates/68D87571-8364-4350-9663-9F448A1E22ED/AnimalWelfare(LivestockExports)Bill">
+                                    <u>Vol. 838 Col. 132</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>14 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-14/debates/4AE91614-E669-43AA-87BE-1A42545DC0C8/AnimalWelfare(LivestockExports)Bill">
+                                    <u>Vol. 838 Col. 485</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>20 May 2024</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2024-05-20/debates/3779E541-4550-4A01-9CC7-FE0C0539A307/RoyalAssent">
+                                    <u>Vol. 838</u>
+                                    </a>
+                                 <u>
+                                    </u>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://petition.parliament.uk/archived/petitions/200205"><u><a href="https://petition.parliament.uk/archived/petitions/200205">https://petition.parliament.uk/archived/petitions/200205</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.ciwf.org.uk/media/press-releases-statements/2023/09/dame-joanna-lumley-urges-uk-government-to-ban-live-exports"><u><a href="https://www.ciwf.org.uk/media/press-releases-statements/2023/09/dame-joanna-lumley-urges-uk-government-to-ban-live-exports">https://www.ciwf.org.uk/media/press-releases-statements/2023/09/dame-joanna-lumley-urges-uk-government-to-ban-live-exports</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://bills.parliament.uk/bills/2880"><u><a href="https://bills.parliament.uk/bills/2880">https://bills.parliament.uk/bills/2880</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf"><u><a href="https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf">https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://www.gov.uk/government/consultations/live-animal-exports-improvements-to-animal-welfare-in-transport"><u><a href="https://www.gov.uk/government/consultations/live-animal-exports-improvements-to-animal-welfare-in-transport">https://www.gov.uk/government/consultations/live-animal-exports-improvements-to-animal-welfare-in-transport</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/"><u><a href="https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/">https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/"><u><a href="https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/">https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

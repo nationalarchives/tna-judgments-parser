@@ -1,0 +1,2539 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>TENANT FEES ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Tenant Fees Act 2019 (c. 4) which received Royal
+                  Assent on 12 February 2019. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Ministry of Housing, Communities
+                  and Local Government in order to assist the reader in understanding the Act. They
+                  do not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>Through this Act, the Government aims to make renting fairer and more affordable for
+                     tenants by reducing the costs at the outset of a tenancy. This Act also aims to improve
+                     transparency and competition in the private rental market. The Act implements the
+                     commitment to ban letting fees paid by tenants in England and includes other measures
+                     to improve fairness, competition and affordability in the lettings sector.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>This Act seeks to achieve the above by banning landlords and their agents from requiring
+                     tenants and licensees of privately rented housing in England and persons acting on
+                     their behalf or guaranteeing their rent (together referred to as “relevant persons”)
+                     to make any payments in connection with a tenancy with the exception of:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>the rent;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>a refundable tenancy deposit capped at no more than five weeks’ rent where the annual
+                     rent for the property is less than £50,000 and no more than six weeks’ rent where
+                     the annual rent for the property is £50,000 or more;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>a refundable holding deposit (to reserve a property) capped at no more than one week’s
+                     rent; </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>payments in the event of a tenant losing their key, losing a security device giving
+                     access to housing or paying rent more than 14 days late (default payments);</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>certain payments on assignment, novation or variation of a tenancy when requested
+                     by the tenant capped at £50, or reasonable costs incurred if higher;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>payments associated with early termination of the tenancy, when requested by the tenant;
+                     and</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>payments in respect of utilities, communication services, television licence and council
+                     tax.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>In the Act “in connection with a tenancy” includes when the above are required:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>by a landlord in consideration of the grant, renewal, continuance, variation, novation,
+                     assignment or termination of a tenancy;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>by a letting agent in consideration of arranging the grant, renewal, continuance,
+                     variation, novation, assignment or termination of a tenancy;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>on entry into a tenancy agreement containing relevant provisions; </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>pursuant to a provision of a tenancy agreement that requires, or purports to require,
+                     the person to do any of those things in the event of an act or default of the relevant
+                     person or if the tenancy is varied assigned, novated or terminated;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>pursuant to an agreement relating to such a tenancy with a letting agent which requires,
+                     or purports to require, the person to do any of those things in the event of an act
+                     or default of the relevant person or if the tenancy is varied assigned, novated or
+                     terminated;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>as a result of an act or default related to the tenancy or agreement with a letting
+                     agent unless pursuant to, or for breach of, the tenancy agreement or agreement; and
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>in consideration of providing a reference for a former tenant.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The ban applies in relation to assured shorthold tenancies, tenancies of student accommodation
+                     and licences to occupy. In this memorandum “tenant” includes licensees. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Act bans landlords and their agents from requiring tenants and other relevant
+                     persons to secure and pay for services from any third party (other than landlords
+                     in relation to utilities and communication services) or to make a loan. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The definition of ‘relevant persons’ under this Act does not include local housing
+                     authorities, the Greater London Authority, or any person acting on their behalf.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Act requires agents and landlords to refund the holding deposit except in circumstances
+                     where the tenant withdraws, fails a right-to-rent check or fails to take all reasonable
+                     steps to enter into the tenancy when the landlord or agent has done so. The agent
+                     or landlord may also retain the holding deposit if the tenant provides false or misleading
+                     information and the landlord is reasonably entitled to take into account that false
+                     or misleading information or the tenant’s behaviour in providing it in deciding whether
+                     to grant the tenancy because this materially affects their suitability to rent the
+                     property. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Landlords and agents can only accept one holding deposit at any one time unless otherwise
+                     permitted to retain an earlier deposit and must provide reasons in writing to the
+                     tenant or other relevant person if the holding deposit is retained.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Act places a duty on trading standards authorities to enforce the Act but district
+                     councils that are not trading standards authorities will have power to enforce if
+                     they choose to do so. The Act also makes provision for tenants and other relevant
+                     persons to be able to recover unlawfully charged fees through the First-tier Tribunal
+                     and prevents landlords from recovering possession of their property via the procedure
+                     set out in section 21 of the Housing Act 1988 until they have repaid any prohibited
+                     payment or unlawfully retained holding deposit.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>A breach of the fee ban will usually be a civil offence with a financial penalty of
+                     up to £5,000, but if a breach is committed within 5 years of the imposition of a financial
+                     penalty or conviction for a previous breach this will be a criminal offence. The penalty
+                     for the criminal offence, which will be a banning order offence under the Housing
+                     and Planning Act 2016, is an unlimited fine.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Where an offence is committed, local authorities may impose a financial penalty of
+                     up to £30,000 as an alternative to prosecution. In such a case, local authorities
+                     will have discretion about whether to prosecute or impose a financial penalty. Where
+                     a financial penalty is imposed instead of a prosecution this does not amount to a
+                     criminal conviction.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>A breach of the requirement to repay a holding deposit will be a civil offence and
+                     will be subject to a financial penalty of up to £5,000. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Local authorities will be able to retain the money raised through financial penalties
+                     with this money reserved for future local housing enforcement. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The Act makes some amendments to the transparency requirements in Chapter 3 of Part
+                     3 of the Consumer Rights Act 2015, which require an agent in England to display any
+                     relevant fees, the redress scheme of which they are a member and whether they have
+                     client money protection prominently in their office and on their website. The amendments
+                     made will apply those requirements in relation to property portals (e.g. Rightmove,
+                     Zoopla), to make new provision regarding fines in the event of a continuing breach
+                     of the requirements in England and to require letting agents to display the name of
+                     their Client Money Protection scheme.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The Act also amends the client money protection legislation as set out in Part 5 of
+                     the Housing and Planning Act 2016, the Client Money Protection Schemes for Property
+                     Agents (Approval and Designation of Schemes) Regulations 2018 and the Client Money
+                     Protection Schemes for Property Agents (Requirement to belong to a Scheme etc) Regulations
+                     2019.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Finally, the Act makes provision for the Secretary of State or a trading standards
+                     authority designated by the Secretary of State to be a Lead Enforcement Authority
+                     to provide oversight, guidance and support with the enforcement of requirements on
+                     letting agents. This includes the ban on letting fees and related provisions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The proposals to ban letting fees were subject to a public consultation, which ran
+                     for 8 weeks from 7 April until 2 June 2017. The consultation received 4,724 responses
+                     from stakeholders across the private rented sector. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The Act was published in draft on 1 November 2017 and was subject to pre-legislative
+                     scrutiny by the Housing, Communities and Local Government Committee.<a class="fn" id="fnref-1" href="#fn-1">1</a> The Committee published their report and recommendations on 29 March 2018 further
+                     to receiving over 60 written submissions and holding five oral evidence sessions with
+                     a range of stakeholders across the private rented sector.<a class="fn" id="fnref-2" href="#fn-2">2</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Note: In the following sections of these Explanatory Notes “tenancy” refers to assured
+                     shorthold tenancies, tenancies of student accommodation and licences to occupy but
+                     excludes long leaseholds, tenancies of social housing and holiday lets. “Landlord”
+                     and “tenant” have the corresponding meanings.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The private rented sector is an important part of the national housing market. It
+                     houses 4.7 million households in England and now represents 20% of all households.<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Letting agents are engaged by many private landlords to let and manage rental accommodation
+                     on their behalf. Good agents provide a valuable service in ensuring that properties
+                     are safe, compliant and professionally managed; they help landlords comply with their
+                     legal responsibilities and help tenants secure safe and good quality homes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>The duties of letting agents might include finding tenants, collecting rent, and responding
+                     to queries from tenants (for example, in relation to repairs). Landlords pay fees
+                     to letting agents for carrying out these duties on their behalf. Letting agents also
+                     charge fees to tenants for a variety of reasons, including seeking references, inventory
+                     services and contract negotiations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Letting agent fees are not always clearly or consistently explained with the result
+                     that many tenants are unaware of the true costs of renting a property. The competitive
+                     pressure on tenant fees is weak as agents are chosen by landlords. Letting agents
+                     may therefore impose unfair or excessive fees because tenants have a very limited
+                     ability to negotiate or opt-out. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Renters pay an average of £200-£300 in letting fees per tenancy although many pay
+                     significantly more than this. The English Housing Survey 2014-15 found that the mean
+                     average fee paid by a household in 2014-15 was £223, while the median was £200.<a class="fn" id="fnref-4" href="#fn-4">4</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>There is also evidence that letting agent fees paid by tenants have increased significantly
+                     in recent years and that many tenants have experienced problems paying letting agents’
+                     fees. The English Housing Survey 2014-15 reports that median fees charged by agents
+                     increased by 60% between 2009-10 and 2014-15 (14% increase in mean) and that a third
+                     (34%) of private renters said that fees would stop them moving into a new home. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>It is not simple for tenants to understand and compare agent fees since there is significant
+                     variation in the way that agents charge for their services. Further, agents charging
+                     fees to both landlords and tenants increases the risk of unfair practices in the form
+                     of double charging.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>The Government announced at the 2016 Autumn Statement that it would introduce a ban
+                     on letting agent fees paid by tenants in England to improve competition in the private
+                     rental market and give renters greater clarity and control over what they will pay.
+                     The commitment to make renting fairer for tenants was reaffirmed in the 2017 Conservative
+                     Party Manifesto.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>
+                           <u>Letting Fees and Letting Agent Transparency requirements</u>
+                           </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>The existing legislation relevant to letting fees is Chapter 3 of Part 3 of the Consumer
+                     Rights Act 2015 which, in England and Wales, requires a letting agent to display prominently
+                     at its client facing premises and, if it has a website, to publish on its website,
+                     a list of its relevant fees.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>The same provisions also require a letting agent engaging in letting agency or property
+                     management work in relation to housing in England to publish, in the same manner:
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>a statement of whether the agent is a member of a client money protection scheme (if
+                        it holds money on behalf of clients); and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>a statement that indicates that the agent is a member of a redress scheme, including
+                        the name of the scheme (if the agent is required to be a member of a redress scheme
+                        for dealing with complaints in respect of its lettings work).</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>
+                           <u>Holding deposits</u>
+                           </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>There is no legislation on holding deposits.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>
+                           <u>Tenancy deposits</u>
+                           </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Chapter 4 of Part 6 of the Housing Act 2004 makes provision relating to tenancy deposits
+                     for assured shorthold tenancies. Section 213(1) provides that any tenancy deposit
+                     paid to a person in connection with an assured shorthold tenancy must be dealt with
+                     in accordance with an authorised scheme.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>
+                           <u>Client Money Protection</u>
+                           </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Part 5 of the Housing and Planning Act 2016 makes provision relating to client money
+                     protection for property agents in the private rented sector. The Client Money Protection
+                     Schemes for Property Agents (Approval and Designation of Schemes) Regulations 2018
+                     sets out the conditions that scheme providers of client money protection must meet.
+                     The Client Money Protection Schemes for Property Agents (Requirement to belong to
+                     a Scheme etc) Regulations 2019 require property agents belong to an approved client
+                     money protection scheme.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Section 33 sets out the territorial extent of the Act, that is the jurisdictions in
+                     which the Act forms part of the law. The territorial extent of this Act is England
+                     and Wales only apart from Sections 6(6), 7(4), 26(10), 30(12), and 31, 33 to 35 which
+                     extend to the whole of the United Kingdom. Sections 6(6), 7(4) and 26(10) amend Schedule
+                     5 to the Consumer Rights Act 2015 which extends to the whole of the United Kingdom
+                     and the supplementary provisions in Sections 30(12) and 31, 33 to 35 require the same
+                     extent as a result. The extent of an Act can be different from its application. Application
+                     is about where an Act produces a practical effect. The Act will apply in relation
+                     to housing in England only. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Prohibitions applying to landlords</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>This section provides that a landlord of housing in England must not require a tenant
+                     or other relevant person to make a payment or a loan in connection with a tenancy.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>This section also provides that such a landlord must not require, except in the case
+                     of utilities, or communication services, a tenant to secure and pay for services from
+                     any third party in connection with a tenancy, for example a reference provider, an
+                     inventory service or an insurer. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>This section sets out that a landlord is considered to have required a relevant person
+                     to make a payment, a loan or enter into a contract with a third party in connection
+                     with a tenancy if they have:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>required the person to do any of those things in consideration of the grant, renewal,
+                        continuance, variation, assignment, novation or termination of a tenancy;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>entered into a tenancy agreement that requires, or purports to require, the person
+                        to do any of those things;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>required the person to do any of those things pursuant to a provision of a tenancy
+                        agreement in the event of an act or default by a relevant person or if the tenancy
+                        is varied, assigned, novated or terminated; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>required the person to do any of those things as a result of an act or default of
+                        a relevant person relating to the tenancy unless pursuant to, or for the breach of
+                        a tenancy agreement; or </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>charged the person in consideration of providing a reference in relation to occupation
+                        of housing.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>This section provides that a landlord can require a relevant person to make a payment,
+                     enter into a contract or grant a loan if it is an alternative to another requirement
+                     that is not unreasonable or prohibited. It must not simply be a different means of
+                     requiring a relevant person to do any of those things. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>This section and Section 2 apply to a tenant as well as a person acting on behalf
+                     of a tenant and a person guaranteeing a tenant’s rent. Tenants and such persons are
+                     referred to collectively in the Act as “relevant persons”.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Subsection 10 sets out that ‘’relevant persons’’ when used in this Act excludes local
+                     housing authorities, the Greater London Authority or persons acting on their behalf.
+                     Such local authorities and persons can make payments in connection with a tenancy
+                     when acting on behalf of a tenant or guaranteeing their rent. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Prohibitions applying to letting agents</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>This section provides that a letting agent of housing in England must not require
+                     a tenant or other relevant person to make a payment or a loan in connection with a
+                     tenancy.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>This section also provides that such a letting agent must not require a tenant or
+                     other relevant person to secure and pay for services from themselves or any third
+                     party, for example a reference provider, an inventory service or an insurer, in connection
+                     with a tenancy. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>This section sets out that an agent is considered to have required a relevant person
+                     to make a payment, a loan or enter into a contract with themselves or a third party
+                     in connection with a tenancy if they have:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>required the person to do any of those things in consideration of the grant, renewal,
+                        continuance, variation, assignment, novation or termination of a tenancy;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>required the person to do any of those things pursuant to an agreement related to
+                        the tenancy which requires, or purports to require, the person to do any of those
+                        things in the event of an act or default by a relevant person or if the tenancy is
+                        varied, assigned, novated or terminated;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>required the person to do any of those things as a result of an act or default by
+                        a relevant person relating to a tenancy unless pursuant to, or for the breach of an
+                        agreement; or </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>charged the person in consideration of providing a reference in relation to occupation
+                        of housing.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>This section provides that an agent may require a relevant person to make a payment,
+                     enter into a contract or grant a loan if it is an alternative to another requirement
+                     that is not unreasonable or prohibited. It must not simply be a different means of
+                     requiring a relevant person to do any of the prohibited things. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>This section does not apply to a requirement imposed on a tenant or other relevant
+                     person by any agent who provides a service to a tenant, and as part of that service
+                     finds housing which that tenant agrees to rent, provided that the agent does not act
+                     for the landlord with whom the tenancy is agreed (for that or any other housing).
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Prohibited and permitted payments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>This section defines prohibited and permitted payments. The list of permitted payments
+                     is set out in Schedule 1. Any payment that is not a permitted payment is a prohibited
+                     payment.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>This section provides that the Secretary of State may amend the list of permitted
+                     payments described in Schedule 1 by regulations. Regulations are subject to the affirmative
+                     procedure, meaning that they must be approved by a resolution of each House of Parliament
+                     except in the case of an amendment to the maximum amount of permitted payment on assignment,
+                     variation or novation of a tenancy for the purposes only of reflecting changes in
+                     the value of money. If that applies the regulations may be made by negative procedure
+                     meaning that they can be annulled by resolution of either House of Parliament.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule 1: Permitted Payments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>The list of permitted payments set out in this Schedule is exhaustive. Any other payment
+                     a landlord or letting agent requires in connection with a tenancy to themselves or
+                     a third party which is not described in this Schedule is prohibited.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>The permitted payments are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>the rent;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>a refundable tenancy deposit of no more than five weeks’ rent where the annual rent
+                        for the property is less than £50,000 or a refundable tenancy deposit of no more than
+                        six weeks’ rent where the annual rent for the property is £50,000 or more;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>a refundable holding deposit of no more than one week’s rent; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>a payment that is required in the event of a default by the tenant for a lost key,
+                        a lost security device giving access to housing or a payment of rent that is late
+                        by 14 days or more;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>payments on assignment, variation or novation of a tenancy at the tenant’s request,
+                        capped at £50 or the reasonable costs incurred if greater;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>payments in respect of early termination of a tenancy agreement at the tenant’s request
+                        capped at the landlord’s loss;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>payments to a local authority in respect of council tax;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">h.</span></h2>
+                     <p>payments in respect of energy and other utilities;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">i.</span></h2>
+                     <p>payments to the BBC in respect of a television licence; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">j.</span></h2>
+                     <p>payments in respect of communication services.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Paragraph 1 of this Schedule sets out that where any payment of rent is greater than
+                     the amount of rent payable in a later period during the tenancy, the difference is
+                     a prohibited payment. This applies unless the rent has been varied by subsequent agreement
+                     between the landlord and the tenant or in accordance with a rent review section in
+                     the tenancy agreement that enables both an upward or downward variation of the rent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>A tenancy deposit under paragraph 2 is money intended to be held for the duration
+                     of the tenancy as security for performance of any obligations of the tenant and the
+                     discharge of any liability on the part of the tenant arising under or in connection
+                     with the tenancy.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>A holding deposit under paragraph 3 is a payment made by or on behalf of a tenant
+                     to a landlord or agent to ‘reserve’ that property. The holding deposit demonstrates
+                     a tenant’s intention to rent a certain property. Acceptance of a holding deposit confirms
+                     the landlord or letting agent’s intention to accept an individual as a tenant (subject
+                     to the satisfactory completion of reference checks etc.). A landlord or letting agent
+                     may not accept more than one holding deposit for the same housing unless they have
+                     previously had grounds to retain an earlier holding deposit.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Landlords and letting agents may require a tenant to make a payment in the event of
+                     a default.  Such a payment is only a permitted payment in the circumstances of the
+                     loss of a key, a lost security device to give access to housing of for late payment
+                     of rent where that payment has been outstanding for 14 days of more. The amount charged
+                     for a lost key or security device giving access to housing cannot exceed the reasonable
+                     costs incurred by the landlord or agent, which must also be supported by evidence
+                     provided in writing to the person who is liable for the payment. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>In the case of a payment in the event of a default for late payment of rent, landlords
+                     and agents cannot charge interest at more than an annual percentage rate of 3% above
+                     the Bank of England's base rate for each day that the payment is outstanding. Further,
+                     a landlord and agent cannot both require a tenant to pay a payment in the event of
+                     a default for late payment of rent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Paragraph 5 clarifies that the Act does not impact on a landlord or agent's right
+                     to recover damages for breach of contract of a tenancy agreement or agreement with
+                     the letting agent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Landlords and letting agents may require a payment for assignment, variation, or novation
+                     of a tenancy which was at the tenant’s request. Under paragraph 6 this is capped at
+                     either £50 or the reasonable costs incurred if greater.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Landlords and letting agents may also require a payment for an early termination of
+                     the tenancy agreement at the tenant’s request. Under paragraph 7 the payment may not
+                     exceed the loss suffered by the landlord or, if applicable the letting agent’s reasonable
+                     costs.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Landlords and letting agents may require a payment for council tax to the local authority
+                     (paragraph 8).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Landlords and letting agents can require a payment in respect of utilities. Such payments
+                     include electricity, gas or other fuel, water and sewage and payments towards energy
+                     efficiency improvements under a Green Deal plan (paragraph 9).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Landlords and letting agents may require a payment to the BBC in respect of a television
+                     licence (paragraph 10).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Landlords and letting agents may require a payment in respect of communication services
+                     including telephone, internet, cable television and satellite television (paragraph
+                     11).</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Effect of a breach of section 1 or 2</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>This section provides that any term of a tenancy agreement or agreement between a
+                     letting agent and tenant which breaches section 1 or 2, for example, by requiring
+                     a tenant or other relevant person to make a prohibited payment is not binding on the
+                     tenant or relevant person. The rest of the agreement will continue to apply (so far
+                     as practicable).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>This section provides any prohibited loan made by a relevant person is repayable on
+                     demand.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Treatment of holding deposit</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>Schedule 2 makes provision about the treatment of holding deposits.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule 2: Treatment of holding deposit</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>This Schedule imposes requirements on a landlord or letting agent who receives a holding
+                     deposit.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>Paragraphs 3 and 4 require the landlord or letting agent to refund the holding deposit
+                     within 7 days of the parties entering into the tenancy agreement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>Paragraphs 3 and 4 also requires the holding deposit to be refunded if the parties
+                     do not enter into the tenancy agreement for reasons, broadly, under the landlord or
+                     agent’s control.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>If the landlord decides not to rent the property to the tenant, or the landlord and,
+                     if applicable, the agent fails to take reasonable steps to enter into the tenancy
+                     agreement by the deadline for agreement then the holding deposit must be refunded
+                     within 7 days of the date of that decision or the deadline, as applicable. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>“Deadline for agreement” is defined in paragraph 2 and is the day by which the landlord
+                     must enter into an agreement with the tenancy to grant the tenancy. The default deadline
+                     for agreement is 15 days following the receipt of the holding deposit but the landlord
+                     or agent may agree a longer deadline with the tenant.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>Paragraph 5 requires the person who received a holding deposit to refund it if they
+                     believe they are able to retain it under paragraphs 8 to 12 but they do not provide
+                     reasons in writing to the person who paid the deposit within the relevant period as
+                     to why the deposit is being retained. The relevant period to provide reasons within
+                     would be:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>where the landlord decides not to enter into a tenancy agreement before the deadline
+                        for the agreement 7 days beginning with the date on which the landlord decides not
+                        to do so; or</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>if the landlord and tenant fail to enter into a tenancy agreement before the deadline
+                        for the agreement 7 days beginning with the deadline for agreement.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>Paragraph 6 provides that the landlord may, with the consent of the person who paid
+                     the holding deposit, ‘repay’ the holding deposit by deducting the equivalent sum from
+                     the first payment of rent or the tenancy deposit. If the holding deposit is applied
+                     to the tenancy deposit paragraph 7 provides that for the purposes of the deposit protection
+                     requirements of section 213 of the Housing Act 2004 that money is received on the
+                     date of the tenancy agreement. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>Paragraph 8 provides that the landlord or letting agent do not have to refund a holding
+                     deposit if a tenant does not have the right to rent property under the Immigration
+                     Act 2014 provided that the landlord and agent did not know, and could not have been
+                     expected to know that, prior to accepting the deposit.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>Paragraph 9 provides that the landlord or letting agent does not have to refund a
+                     holding deposit if the tenant provides false or misleading information, which the
+                     landlord is reasonably entitled to take into account in deciding whether to grant
+                     the tenancy, because this or their conduct in providing the information materially
+                     affects their suitability to rent the property.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>Paragraphs 10, 11 and 12 provide that the landlord or letting agent does not have
+                     to refund a holding deposit if the tenant decides not to enter into a tenancy agreement
+                     or fails to take all reasonable steps to enter into a tenancy agreement when the landlord
+                     or letting agent have done so. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>Paragraph 13 provides that a holding deposit must be refunded if the landlord or letting
+                     agent imposes a requirement on the tenant or relevant person that breaches the ban
+                     on letting fees as set out under clauses 1 and 2. Paragraph 13 also sets out that
+                     a holding deposit must be refunded if the landlord or letting agent behaves in an
+                     unreasonable way such that it would be unreasonable to expect the tenant to enter
+                     the tenancy</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Enforcement by weights and measures authorities</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>This section provides that enforcement of the prohibitions in Sections 1 and 2 and
+                     requirements relating to holding deposits under Schedule 2 will be the duty of local
+                     weights and measures authorities (trading standards authorities) in England.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>Each local weights and measures authority is responsible for enforcement in its area,
+                     and subsection (3) makes provision for the circumstance where a breach relates to
+                     housing located in more than one authority’s area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>Subsection (4) requires a local weights and measures authority in England to have
+                     regard to any guidance issued by the Secretary of State or the lead enforcement authority
+                     (if that is not the Secretary of State) about how it should carry out its enforcement
+                     duties.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>The investigatory powers available to a local weights and measures authority for the
+                     purposes of enforcing the Tenant Fees Act are set out in Schedule 5 of the Consumer
+                     Rights Act 2015, which this section amends. </p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Enforcement by district councils</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">79 </span></h2>
+                  <p>This section provides that a district council, which is not a local weights and measures
+                     authority, may enforce the prohibitions in Sections 1 and 2 and requirements relating
+                     to holding deposits under Schedule 2. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">80 </span></h2>
+                  <p>Subsection (2) requires a district council to have regard to any guidance issued by
+                     the Secretary of State or the lead enforcement authority (if that is not the Secretary
+                     of State) about how it should carry out its enforcement duties.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">81 </span></h2>
+                  <p>The investigatory powers available to a district council for the purposes of enforcing
+                     the Tenant Fees Act are set out in Schedule 5 of the Consumer Rights Act 2015, which
+                     this section amends.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">82 </span></h2>
+                  <p>Subsection (5) explains that “enforcement authority” refers to both a local weights
+                     and measures authority in England and a district council that is not a local weights
+                     and measures authority.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Financial Penalties</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>This section provides that an enforcement authority may impose a financial penalty
+                     of up to £5,000 on a landlord or letting agent if it is satisfied beyond reasonable
+                     doubt that that person has breached the prohibitions in Section 1 or 2. Similarly,
+                     an enforcement authority may impose a financial penalty of up to £5,000 if satisfied
+                     beyond reasonable doubt that a landlord or letting agent has breached the requirements
+                     relating to holding deposits (Schedule 2).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>This section also provides that an enforcement authority may impose a financial penalty
+                     of up to £30,000 on a landlord or letting agent as an alternative to prosecution if
+                     it is satisfied beyond reasonable doubt that an offence under Section 12 (offences)
+                     has been committed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>An enforcement authority may not impose a financial penalty if the landlord or letting
+                     agent has already been convicted or acquitted of an offence in relation to the conduct,
+                     or criminal proceedings for the offence have been commenced. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">86 </span></h2>
+                  <p>Subsection (5) places restrictions on the imposition of a financial penalty for a
+                     breach of paragraph 3 of Schedule 2. An enforcement authority cannot impose a financial
+                     penalty if the landlord or letting agent failed to return the holding deposit because
+                     of incorrect information provided by the Secretary of State about the tenant’s right
+                     to rent status. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">87 </span></h2>
+                  <p>Where a financial penalty is imposed, only one such penalty may be imposed in respect
+                     of the same breach and only one enforcement authority may impose a penalty for the
+                     same breach. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">88 </span></h2>
+                  <p>This section provides that an enforcement authority may impose a penalty in respect
+                     of a breach that occurs outside of its local area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">89 </span></h2>
+                  <p>Schedule 3 sets out the procedure to be followed by an enforcement authority where
+                     it imposes a financial penalty.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule 3: Financial Penalties</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">90 </span></h2>
+                  <p>This Schedule sets out the procedure to be followed by an enforcement authority where
+                     it imposes a financial penalty on a landlord or letting agent. The same procedure
+                     applies if the authority also requires the landlord or letting agent to repay any
+                     amount to a tenant (or other relevant person).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">91 </span></h2>
+                  <p>Before imposing a financial penalty, the enforcement authority must give the landlord
+                     or letting agent notice of their intention to do so. This notice must be given within
+                     a period of 6 months, beginning with the first day on which the authority has evidence
+                     that the person has breached the prohibitions in Sections 1 or 2 or the requirements
+                     relating to holding deposits (Schedule 2) or, if the breach is a continuing breach,
+                     while the breach is continuing or within 6 months of the last day on which the breach
+                     occurred. The notice of intent must set out the date on which the notice of intent
+                     is served, the amount of the penalty, the reasons for imposing the penalty and information
+                     about the right to make representations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">92 </span></h2>
+                  <p>A person who is given a notice of intent has 28 days to make representations to the
+                     local authority (paragraph 3). After the end of the period for representations, the
+                     enforcement authority must decide whether or not to impose a financial penalty and
+                     if so, the amount of the penalty.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">93 </span></h2>
+                  <p>If the enforcement authority decides to impose a penalty or require the landlord or
+                     letting agent to repay a prohibited payment, holding deposit or an amount paid under
+                     a prohibited contract, it must give the person a final notice. The final notice must
+                     require payment of the penalty within 28 days if the authority has imposed a financial
+                     penalty and if ordered to repay a prohibited payment, holding deposit or an amount
+                     paid under a prohibited contract the period specified in the notice which will be
+                     between 7 to14 days. The notice must set out certain information, including the date
+                     on which the final notice is served, the amount of the penalty, the reasons for imposing
+                     it, how and when to pay, the rights of appeal and consequences of failing to comply
+                     with the notice.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">94 </span></h2>
+                  <p>Under paragraph 5, an enforcement authority may at any time withdraw a notice of intent
+                     or a final notice. The authority may also reduce the amount specified in a notice
+                     of intent or a final notice or amend a notice to remove a requirement to repay a prohibited
+                     payment or holding deposit. The person who has received the notice must be notified
+                     in writing of any such withdrawal, reduction or amendment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">95 </span></h2>
+                  <p>There is a right to appeal to the First-tier Tribunal against a final notice. An appeal
+                     must be brought within 28 days from the day after the final notice was served if appealing
+                     against a financial penalty. If appealing against an order to repay a prohibited payment,
+                     holding deposit or an amount paid under a prohibited contract, the landlord or letting
+                     agent must appeal within the period specified in the final notice as the period within
+                     which that payment, deposit or amount must be repaid. A landlord or letting agent
+                     may appeal against the decision to impose the penalty or the amount of the penalty.
+                     An appeal is to be a re-hearing of the enforcement authority's decision and may take
+                     into account additional evidence of which the enforcement authority was unaware. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">96 </span></h2>
+                  <p>If a landlord or letting agent makes an appeal, the final notice or part of the final
+                     notice which is the subject of the appeal is suspended until the appeal is determined
+                     or withdrawn. On appeal, the First‐tier Tribunal may confirm, vary or quash the final
+                     notice. The maximum penalty that the First-tier Tribunal can impose is the same as
+                     the maximum amount that the enforcement authority could have imposed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">97 </span></h2>
+                  <p>If a landlord or letting agent fails to pay all or part of a financial penalty, the
+                     enforcement authority may recover the outstanding amount on the order of the county
+                     court, as if it were payable under an order of that court.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">98 </span></h2>
+                  <p>Paragraph 8 provides that if the authority requires the landlord or letting agent
+                     to pay an amount to a relevant person and the landlord or letting agent fails pay
+                     all or part of that amount then the relevant person may recover the outstanding amount
+                     on the order of the county court, as if it were payable under an order of that court.
+                     The enforcement authority may help the relevant person to do this (paragraph 9).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">99 </span></h2>
+                  <p>Where an enforcement authority in England imposes a financial penalty it may retain
+                     the proceeds of the penalty and use this money for the purposes of any of its enforcement
+                     functions in relation to the private rented sector. Any excess must be paid to the
+                     Secretary of State (paragraphs 10 to 12).</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Power to amend maximum financial penalties</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">100 </span></h2>
+                  <p>This section provides that the Secretary of State may, where it is considered expedient
+                     to do so, make regulations to amend the maximum amount of the financial penalties
+                     for the purposes of reflecting changes in the value of money. These regulations may
+                     also make transitional, transitory or saving provision to ensure that there is a smooth
+                     transition from one upper limit to another. Regulations under this section are to
+                     be made by negative procedure and can be annulled by resolution of either House of
+                     Parliament.    </p>
+               </section>
+               <section class="level">
+                  <p>Section 10: Recovery by enforcement authority of amount paid</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">101 </span></h2>
+                  <p>This section enables an enforcement authority to require a person who has committed
+                     a breach to pay to the tenant or other relevant person any outstanding prohibited
+                     payment or holding deposit. Similarly, if the landlord or agent required a relevant
+                     person to enter into a contract in breach of Section 1 or 2, they may be required
+                     to pay compensation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">102 </span></h2>
+                  <p>The landlord or letting agent can repay the prohibited payment or holding deposit
+                     by applying it towards a payment of rent under the tenancy or applying it towards
+                     the tenancy deposit. The landlord or letting agent must obtain consent from the tenant
+                     or other relevant person as to how the prohibited payment or holding deposit is to
+                     be repaid.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">103 </span></h2>
+                  <p>An enforcement authority may not require the landlord or letting agent to make such
+                     a payment if the relevant person has made an application to the First-tier Tribunal
+                     to recover the payment.</p>
+               </section>
+               <section class="level">
+                  <p>Section 11: Interest on payments under section 10</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">104 </span></h2>
+                  <p>This section provides that where an enforcement authority requires a landlord or letting
+                     agent to make a payment to a tenant or other relevant person under Section 10, the
+                     enforcement authority may require the landlord or letting agent to pay interest on
+                     that payment.</p>
+               </section>
+               <section class="level">
+                  <p>Section 12: Offences</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">105 </span></h2>
+                  <p>This section provides that a landlord or letting agent who breaches the prohibitions
+                     in Sections 1 and 2, and who has had a financial penalty imposed or been convicted
+                     for a different breach within the last five years, commits an offence and is liable
+                     on summary conviction to an unlimited fine.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">106 </span></h2>
+                  <p>An enforcement authority has discretion to decide whether to impose a financial penalty
+                     or to pursue a prosecution in each individual case. A person cannot be convicted of
+                     an offence if a financial penalty has already been imposed in respect of the same
+                     breach.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">107 </span></h2>
+                  <p>Subsection (6) amends the Housing and Planning Act 2016 to provide that an offence
+                     under this section is a banning order offence for the purposes of Part 2 of that Act.
+                     This means that if a landlord or agent is convicted of such an offence a local housing
+                     authority may apply to the court to ban them from letting housing and/or acting as
+                     a letting agent and/or property manager in England for at least a year. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">108 </span></h2>
+                  <p>If the court makes a banning order on that application, the local housing authority
+                     must make an entry in the database of rogue landlords and property agents under that
+                     Act. An entry may also be made if a person is convicted of a banning offence committed
+                     at the time they are a residential landlord or property agent or if two financial
+                     penalties have been imposed on a person for such an offence in a 12-month period.</p>
+               </section>
+               <section class="level">
+                  <p>Section 13: Offences by bodies corporate</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">109 </span></h2>
+                  <p>This section provides that if an offence under Section 12 is committed by a body corporate
+                     then an officer or member who commits the offence is liable as well as the body corporate.
+                     This is only the case if it is proved that the offence was committed with the approval
+                     or connivance of the officer or member of the body corporate in question or where
+                     the body corporate is managed by its members, a member, or is attributable to that
+                     person's negligence.</p>
+               </section>
+               <section class="level">
+                  <p>Section 14: Duty to notify when taking enforcement action</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">110 </span></h2>
+                  <p>This section makes provision for the circumstances in which an enforcement authority
+                     must notify another body of enforcement action.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">111 </span></h2>
+                  <p>Subsection (1) provides that where a local weights and measures authority proposes
+                     to take enforcement action in respect of a breach that occurs outside of its local
+                     area, it must notify the local weights and measures authority of its intention to
+                     do so. When such a notification is received the latter is relieved of its duty. This
+                     duty is reinstated if the local weights and measures authority is informed that the
+                     enforcing local weights and measures authority has not taken the enforcement action
+                     proposed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">112 </span></h2>
+                  <p>Subsection (3) provides that where a district council proposes to take enforcement
+                     action in respect of a breach, it must notify the local weights and measures authority
+                     of its intention to do so. When such a notification is received the latter is relieved
+                     of its duty. This duty is reinstated if the local weights and measures authority is
+                     informed that the district council has not taken the enforcement action proposed.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">113 </span></h2>
+                  <p>Subsection (6) requires an enforcement authority to notify the lead enforcement authority
+                     as soon as reasonably practicable whenever it imposes a financial penalty. This is
+                     to ensure that when an enforcement authority becomes aware of a breach it is able
+                     to check to see if a financial penalty has been issued previously by another authority.
+                     This will inform whether the breach is dealt with as an offence under Section 12.&nbsp;
+                     The enforcement authority must also notify the lead enforcement authority as soon
+                     as reasonably practicable if it withdraws the financial penalty or it is quashed on
+                     appeal.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">114 </span></h2>
+                  <p>An enforcement authority must also notify the lead enforcement authority whenever
+                     it brings proceedings for an offence under Section 12 and the defendant is convicted
+                     of the offence.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">115 </span></h2>
+                  <p>Subsections (7) and (9) require an enforcement authority to notify the local housing
+                     authority (if that is a different authority) as soon as reasonably practical if it
+                     has imposed a financial penalty or secured a conviction against a person for an offence
+                     under Section 12. Subsections (8) and (10) specify when such notifications must be
+                     made. </p>
+               </section>
+               <section class="level">
+                  <p>Section 15: Recovery by relevant person of amount paid</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">116 </span></h2>
+                  <p>This section enables a tenant or other relevant person to apply to the First-tier
+                     Tribunal for compensation from the landlord or letting agent for payments they have
+                     been required to make because of a breach of Section 1 or 2 and for recovery of a
+                     holding deposit that has been unlawfully withheld.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">117 </span></h2>
+                  <p>Subsection (3) enables a relevant person that has been required to make a prohibited
+                     payment to apply to the First-tier Tribunal to recover their money provided that it
+                     has not already been repaid or with the consent of the relevant person applied to
+                     rent or the tenancy deposit. It also enables a relevant person to apply to the First-tier
+                     Tribunal to recover any holding deposit that has been unlawfully withheld by a landlord
+                     or letting agent and not repaid or with the consent of the relevant person applied
+                     to rent or the deposit.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">118 </span></h2>
+                  <p>Subsection (5) enables a relevant person to apply to the First-tier Tribunal to recover
+                     any sums paid under a contract that they had been unlawfully required to enter into
+                     by a landlord or letting agent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">119 </span></h2>
+                  <p>A relevant person cannot apply to the First Tier Tribunal for compensation if an enforcement
+                     authority has, in relation to the relevant breach, commenced criminal proceedings
+                     or required the landlord or letting agent in question to compensate the relevant person.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">120 </span></h2>
+                  <p>The tribunal may order the landlord or letting agent to compensate the relevant person
+                     within 7 to 14 days. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">121 </span></h2>
+                  <p>If a landlord or letting agent fails to pay the compensation ordered by the tribunal,
+                     the relevant person may recover it on the order of the county court, as if it were
+                     payable under an order of that court.</p>
+               </section>
+               <section class="level">
+                  <p>Section 16: Assistance to recover a prohibited payment or holding deposit</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">122 </span></h2>
+                  <p>This section provides that an enforcement authority may help a tenant or other relevant
+                     person to make an application under Section 15, for example by providing advice or
+                     by conducting proceedings.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">123 </span></h2>
+                  <p>This section also provides that an enforcement authority may help a tenant or other
+                     relevant person to recover all or part of an amount which the First-tier orders to
+                     be paid.</p>
+               </section>
+               <section class="level">
+                  <p>Section 17: Restriction on terminating a tenancy</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">124 </span></h2>
+                  <p>This section provides that a landlord may not give a section 21 notice in relation
+                     to an assured shorthold tenancy if the landlord has previously required a tenant to
+                     make a prohibited payment and failed to repay this payment or apply it, with the consent
+                     of the tenant or other relevant person, to the rent or the deposit.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">125 </span></h2>
+                  <p>Similarly, a landlord may not give a section 21 notice in relation to an assured shorthold
+                     tenancy if the landlord has breached the requirement to repay a holding deposit to
+                     a tenant or relevant person and it has not been applied, with the consent of the tenant
+                     or other relevant person, to the rent or the deposit. A section 21 notice is defined
+                     in subsection (6).</p>
+               </section>
+               <section class="level">
+                  <p>Section 18: Duty to publicise fees on third party websites</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">126 </span></h2>
+                  <p>This section amends section 83 of the Consumer Rights Act 2015 to require a letting
+                     agent of housing in England that advertises on a third party website (such as a property
+                     portal) to, on that website, publish details of any relevant fees and client money
+                     and redress scheme memberships or a link to those details, as well as on its own website
+                     and in its offices.</p>
+               </section>
+               <section class="level">
+                  <p>Section 19: Information about membership of client money protection scheme</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">127 </span></h2>
+                  <p>This section amends section 83 of the Consumer Rights Act 2015 to specify that where
+                     a letting agent of housing in England is required to be a member of a Client Money
+                     Protection Scheme it must give the name of the scheme of which it is a member.</p>
+               </section>
+               <section class="level">
+                  <p>Section 20: Penalties for continuing breach of duty</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">128 </span></h2>
+                  <p>This section amends section 87 of the Consumer Rights Act 2015 to make new provision
+                     enabling a local weights and measures authority in England to impose more than one
+                     financial penalty in respect of a continuing breach of the requirement to publicise
+                     fees etc. in England. An additional penalty may be imposed if 28 days has passed since
+                     the date that the final notice was sent regarding the earlier breach or, if an appeal
+                     is lodged, after that appeal is determined or withdrawn. A financial penalty may not
+                     be imposed if the previous penalty was withdrawn or quashed on appeal.</p>
+               </section>
+               <section class="level">
+                  <p>Section 21: Enforcement of client money protection schemes for property agents</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">129 </span></h2>
+                  <p>This section amends the Housing and Planning Act 2016. Subsection (2) amends section
+                     134 of the Housing and Planning Act 2016 to provide that regulations under this clause
+                     may confer a discretion on the Secretary of State in connection with the approval
+                     or designation of a client money protection scheme, the conditions which must be complied
+                     with by the administrator of such a scheme, the amendment of such a scheme or the
+                     withdrawal of approval or revocation of designation of such a scheme. This amendment
+                     would not give the Secretary of State any additional powers but would provide clarification
+                     on those already in the Housing and Planning Act 2016.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">130 </span></h2>
+                  <p>Subsection (3) amends section 135 of the Housing and Planning Act 2016 to specify
+                     enforcement of the requirement on property agents in the private rented sector to
+                     belong to a client money protection scheme will be undertaken by local weights and
+                     measures authorities. This has the effect of moving client money protection enforcement
+                     from district council to county council level (in non-unitary authorities).</p>
+               </section>
+               <section class="level">
+                  <p>Section 22: Client money protection schemes: approval and designation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">131 </span></h2>
+                  <p>This section amends the Client Money Protection Schemes for Property Agents (Approval
+                     and Designation of Schemes) Regulations 2018 (the Approval Regulations). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">132 </span></h2>
+                  <p>Subsection (2) provides that the definition of client money does not include any money
+                     that has already been protected through a Government approved tenancy deposit scheme.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">133 </span></h2>
+                  <p>Subsection (3) amends Regulation 4 of the Approval Regulations (amendments to an approved
+                     scheme) to clarify that the consent of the Secretary of State would not be required
+                     if the amendment had been made by the scheme administrator in accordance with a notice
+                     served on the scheme administrator by the Secretary of State pursuant to Regulation
+                     8 of the Approval Regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">134 </span></h2>
+                  <p>Subsection (4) (a) to (c) amends Regulation 5 of the Approval Regulations (Conditions
+                     which must be satisfied before approval may be given) to provide that client money
+                     protection schemes can allow limits per individual claimant and scheme aggregate limits
+                     up to such an amount as the Secretary of State considers appropriate, which would
+                     be intended to be no less than the scheme's maximum probable loss. It also provides
+                     that client money protection schemes are not required to provide cover for risks that
+                     the Secretary of State consider it inappropriate for the scheme to insure against.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">135 </span></h2>
+                  <p>Subsection (4)(d) provides that for a transitional period of 12 months until 1 April
+                     2020 property agents are permitted to join a scheme if they are making all efforts
+                     to apply for a client account with a bank or building society authorised by the Financial
+                     Conduct Authority but have not yet obtained one.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">136 </span></h2>
+                  <p>Subsection (5) amends Regulation 8 of the Approval Regulations (conditions with which
+                     scheme administrators must comply) to clarify that a certificate confirming a property
+                     agent's membership of the scheme must be provided as soon as reasonably practicable
+                     after that agent joins a scheme or after the scheme rules are amended. This certificate
+                     includes information on the individual claimant and scheme aggregate limits and details
+                     of where to find information on excluded risks.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">137 </span></h2>
+                  <p>Subsection (5) also provides that the Secretary of State may serve a notice on the
+                     scheme administrator requiring that person to amend the scheme rules to replace the
+                     limits per individual claimant or scheme aggregate limits with such an amount as the
+                     Secretary of State considers appropriate, or to amend the risks covered. Any such
+                     notice needs to be complied with within 30 days or such a longer period as the Secretary
+                     of State may specify.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">138 </span></h2>
+                  <p>Subsection (5)(c) provides that the scheme administrator must maintain insurance that
+                     covers any foreseeable liability and that is appropriate with regard to the size and
+                     number of scheme members and the amount of client money held by these members. It
+                     also clarifies that the Secretary of State must approve the renewal of the scheme's
+                     insurance to ensure continued compliance with the obligation to maintain cover which
+                     is appropriate.</p>
+               </section>
+               <section class="level">
+                  <p>Section 23: Client money protection schemes: requirement to belong to a scheme etc</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">139 </span></h2>
+                  <p>This section amends the Client Money Protection Schemes for Property Agents (Requirement
+                     to belong to a Scheme) Regulations 2019. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">140 </span></h2>
+                  <p>Subsection (2) clarifies that the definition of client money does not include any
+                     money that has already been protected through a Government approved tenancy deposit
+                     scheme.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">141 </span></h2>
+                  <p>Subsection (3) provides that property agents will not be required to ensure that their
+                     membership of a client money protection scheme results in a level of compensation
+                     being available which is no less than the maximum amount of client money that the
+                     agent may from time to time hold. Instead, property agents will be required to belong
+                     to an approved client money protection scheme, which under section 22, would need
+                     to hold a level of insurance that is proportionate to the risk of client money being
+                     lost.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">142 </span></h2>
+                  <p>Subsection (4) clarifies that the requirement on property agents to display a certificate
+                     with information about their client money protection scheme membership only applies
+                     if the scheme administrator had provided such a certificate.</p>
+               </section>
+               <section class="level">
+                  <p>Section 24: Lead enforcement authority</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">143 </span></h2>
+                  <p>This section establishes a lead enforcement authority for the purposes of the relevant
+                     letting agency legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">144 </span></h2>
+                  <p>The lead enforcement authority may be the Secretary of State, or, a local weights
+                     and measures authority with which the Secretary of State makes arrangements to be
+                     the lead enforcement authority. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">145 </span></h2>
+                  <p>This section provides that the lead enforcement authority has enforcement functions
+                     in relation to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>this Act;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Chapter 3 of Part 3 of the Consumer Rights Act 2015 as it applies in relation to housing
+                        in England;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>the requirements on letting agents to be a member of a redress scheme under an order
+                        under section 83(1) or 84(1) of the Enterprise and Regulatory Reform Act 2013; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>the requirements to be a member of a client money protection scheme under regulations
+                        under sections 133 to 135 of the Housing and Planning Act 2016. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">146 </span></h2>
+                  <p>This section also gives the Secretary of State the power, by regulations, to make
+                     transitional or saving provisions when there is a change in lead enforcement authority.</p>
+               </section>
+               <section class="level">
+                  <p>Section 25: General duties of the lead enforcement authority</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">147 </span></h2>
+                  <p>This section sets out the duties of the lead enforcement authority, which are to:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>oversee the operation of relevant letting agent legislation;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>issue guidance to enforcement authorities about the exercise of their functions under
+                     this Act; and</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>provide information and advice to relevant authorities and the public about the operation
+                     of the relevant letting agent legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">148 </span></h2>
+                  <p>If the lead enforcement authority is not the Secretary of State, it must also keep
+                     under review and, as necessary, advise the Secretary of State about the operation
+                     of the relevant letting agent legislation and related market developments. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">149 </span></h2>
+                  <p>Subsection (6) gives the Secretary of State power to direct the lead enforcement authority
+                     (if that is not the Secretary of State) to issue guidance to relevant authorities,
+                     and as to the content of that guidance.</p>
+               </section>
+               <section class="level">
+                  <p>Section 26: Enforcement by the lead enforcement authority</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">150 </span></h2>
+                  <p>This section gives the lead enforcement authority the power to take steps to enforce
+                     the relevant letting agent legislation where necessary or expedient to do so. If such
+                     action is taken the lead enforcement authority may exercise the same powers as the
+                     relevant local authority and must notify that authority. The latter is relieved of
+                     the duty to enforce the breach, but must assist the lead enforcement authority if
+                     it so requires.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">151 </span></h2>
+                  <p>This section also provides that local authorities with enforcement responsibilities
+                     for letting agent legislation in England must report to the lead enforcement authority
+                     when requested to do so. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">152 </span></h2>
+                  <p>The investigatory powers available to the lead enforcement authority are set out in
+                     Schedule 5 of the Consumer Rights Act 2015, which is amended by this section. </p>
+               </section>
+               <section class="level">
+                  <p>Section 27: Meaning of ‘‘letting agent’’ and related expressions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">153 </span></h2>
+                  <p>This section defines “letting agent” and “letting agency work''. The definition of
+                     ''letting agent'' excludes a person who carries out letting agency work under their
+                     employment contract and legal professionals when conducting legal activity on behalf
+                     of a client, provided they are not also instructed in relation to other letting agency
+                     work by that client.</p>
+               </section>
+               <section class="level">
+                  <p>Section 28: Interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">154 </span></h2>
+                  <p>This section explains key terms for the purposes of this Act. Importantly it defines
+                     “tenancy” for the purposes of the Act as an assured shorthold tenancy, a licence to
+                     occupy housing or a tenancy which meets the conditions set out in paragraph 8 (letting
+                     to students) of Schedule 1 to the Housing Act 1988. It does not include a long lease,
+                     a tenancy of social housing, or a licence to occupy holiday accommodation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">155 </span></h2>
+                  <p>This section also excludes certain licences to occupy housing from the Act. These
+                     are defined as an “excluded licence”. An excluded licence is a licence granted to
+                     the licensee by a licensor, who resides in the housing, where particular conditions
+                     surrounding the grant, renewal and continuation of that licence are met. These conditions
+                     are a requirement for a charity or a community interest company to give advice or
+                     assistance to the licensee or licensor in connection with the grant, renewal, or continuation
+                     of the license and where the only consideration provided by the licensee is companionship
+                     or companionship and care or assistance, together with one or more payments in respect
+                     of council tax or utilities for example. </p>
+               </section>
+               <section class="level">
+                  <p>Section 29: Consequential Amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">156 </span></h2>
+                  <p>This section makes amendments consequential on the lead enforcement authority’s enforcement
+                     functions in respect of the relevant letting agency legislation to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>section 87 of the Consumer Rights Act 2015</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>section 85 of the Enterprise and Regulatory Reform Act 2013</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>article 7 of the Redress Schemes for Lettings Agency Work and Property Management
+                        Work (Requirement to Belong to a Scheme etc.) (England) Order</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>section 135 of the Housing and Planning Act 2016</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>regulation 5(1) of the Client Money Protection Schemes for Property Agents (Requirement
+                        to belong to a Scheme etc.) (enforcement) Regulations 2019.</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Section 30: Transitional Provisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">157 </span></h2>
+                  <p>This section provides for how the prohibitions in Sections 1 and 2 will apply in relation
+                     to agreements between landlords or agents and tenants or other relevant persons entered
+                     into before the commencement of those provisions. It also makes transitional provision
+                     in relation to holding deposits.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">158 </span></h2>
+                  <p>Subsections (1) to (6) makes transitional provision for the application of the prohibitions
+                     in Section 1 to certain tenancy agreements, referred to in this note as “pre-commencement
+                     tenancies”. They are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>tenancies entered into before the commencement of Section 1; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>statutory periodic tenancies that arose during the year after commencement when such
+                        a tenancy came to an end.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">159 </span></h2>
+                  <p>For the first year after commencement the prohibitions in Section 1 will not apply
+                     to pre-commencement tenancies. After the end of that period those prohibitions will
+                     apply, but with some modifications in respect of requirements imposed pursuant to
+                     a pre-commencement tenancy agreement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">160 </span></h2>
+                  <p>Subsection (5) provides that the term of a tenancy agreement that would have been
+                     prohibited if the tenancy had been entered into after the commencement date is not
+                     binding on the tenant or other relevant person. Where a landlord or agent accepts
+                     a payment under such a term and does not return it to the relevant within 28 days,
+                     this is a prohibited payment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">161 </span></h2>
+                  <p>Subsections (7) to (10) make transitional provision for the application of Section
+                     2 in relation to pre-commencement agreements between a letting agent and relevant
+                     person.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">162 </span></h2>
+                  <p>The effect of subsection (11) is that the requirements of the Act relating to holding
+                     deposits do not apply to holding deposits paid before the coming into force of Schedule
+                     2.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">163 </span></h2>
+                  <p>Subsection (12) provides that other transitional provision may be made by regulations
+                     to ensure that the provisions of the Act are brought into force smoothly.</p>
+               </section>
+               <section class="level">
+                  <p>Section 31: Financial Provisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">164 </span></h2>
+                  <p>Section 31 recognises that, as a matter of House of Commons procedure, a financial
+                     resolution needed to be agreed for the Bill from which the Act resulted.</p>
+               </section>
+               <section class="level">
+                  <p>Section 32: Crown Application</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">165 </span></h2>
+                  <p>This section provides that the Tenant Fees Act will apply in relation to the tenancies
+                     of those Crown interests that are capable of granting an assured shorthold tenancy
+                     but that the Crown will not be criminally liable for any breach.</p>
+               </section>
+               <section class="level">
+                  <p>Sections 33 to 35: Extent, Commencement, Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">166 </span></h2>
+                  <p>Sections 33-35 are self-explanatory.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">167 </span></h2>
+                  <p>Section 31 (financial provisions) and the provisions about interpretation, extent,
+                     commencement and short title of this Act, together with the powers conferred by the
+                     Act to make secondary legislation come into force on the day the Act is passed. Other
+                     provisions of this Act come into force on such day as the Secretary of State may by
+                     regulations appoint. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Overview of the Act’s passage through Parliament</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">168 </span></h2>
+                  <p>The table below sets out the dates and Hansard References for each stage of the Act’s
+                     passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>2 May 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2018-05-02/debates/70AFDD6B-B56B-47B3-92BF-AE328070F977/PointsOfOrder">
+                                    <u>Vol 640 Col 336</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>21 May 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-05-21/debates/DB98BD9C-0FF1-4D8E-B5AA-8F387D94AD1F/TenantFeesBill#contribution-D3A56987-7D56-473D-BF4A-DA7371E0A8FD">
+                                    <u>Vol 641 Col 641-672</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="3">
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>1st Sitting: 5 June 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-06-05/debates/53a74c01-735d-4faf-a12b-3384bcc08017/TenantFeesBill(FirstSitting)">
+                                    <u>Col 1- 30</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>2nd Sitting: 7 June 2018</p>
+                              <p>3rd Sitting: 7 June 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-06-07/debates/9b8b0f44-b6e8-4931-96a4-4d079c0942e0/TenantFeesBill(SecondSitting)">
+                                    <u>Col 31 - 58</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-06-07/debates/b7304c19-aaf0-4982-a201-654aa48263ae/TenantFeesBill(ThirdSitting)">
+                                    <u>Col 59 - 114</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>4th Sitting: 12 June 2018</p>
+                              <p>5th Sitting: 12 June 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-06-12/debates/21504fdd-0f0b-48f5-99d1-713fb09b5a78/TenantFeesBill(FourthSitting)">
+                                    <u>Col 115 - 150</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-06-12/debates/4a2d42fe-e8a9-4ffd-9472-25674fec6cb1/TenantFeesBill(FifthSitting)">
+                                    <u>Col 151 - 174</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report Stage</p>
+                           </td>
+                           <td>
+                              <p>5 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-09-05/debates/92853076-D53D-4EB7-A525-0C5141FA0726/TenantFeesBill#contribution-8F0180E7-4913-4117-9CD3-3D37D8F91663">
+                                    <u>Vol 646 Col 201 - 247</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>5 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-09-05/debates/92853076-D53D-4EB7-A525-0C5141FA0726/TenantFeesBill#contribution-8F0180E7-4913-4117-9CD3-3D37D8F91663">
+                                    <u>Vol 646 Col 247 - 252</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>First Reading</p>
+                           </td>
+                           <td>
+                              <p>6 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-09-06/debates/A7490F25-E5F1-4DD6-8711-935AAA861251/TenantFeesBill">
+                                    <u>Vol 792</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>10 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-10-10/debates/5D3A29BA-4A41-4930-AD6F-BA58E7F7ED74/TenantFeesBill">
+                                    <u>Vol 793 Col 130 - 162</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>1st Sitting: 5 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-11-05/debates/8C695373-2F28-4051-809E-7ABD4BE3AAFE/TenantFeesBill">
+                                    <u>Vol 793 Col 168GC – 228GC</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>2nd Sitting: 20 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-11-20/debates/B8EC64EB-17C3-464E-976F-DE7B172D9C64/TenantFeesBill">
+                                    <u>Vol 794 Col 143 - 158</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report Stage</p>
+                           </td>
+                           <td>
+                              <p>11 December 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-12-11/debates/245F1064-DD39-4AC2-BADA-797260E365BE/TenantFeesBill">
+                                    <u>Vol 794 Col 1254 - 1284</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>15 January 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-01-15/debates/ADEEF44F-B163-4CBE-9164-67F3B8A7FF71/TenantFeesBill">
+                                    <u>Vol 795 Col 133 - 136</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>23 January 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-01-23/debates/6D711773-F2F6-4671-92DB-EE2631E783CE/TenantFeesBill">
+                                    <u>Vol 653 Col 258 - 281</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>12 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="http://bit.ly/2UUZfcn">
+                                    <u>Vol 654 Col 771</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Progress of Act Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">169 </span></h2>
+                  <p>The table below summarises how each Section of the Act was numbered during its passage
+                     through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:3.91in">
+                        <col style="width:1.32in">
+                        <col style="width:1.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons/Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1: Prohibitions applying to landlords</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2: Prohibitions applying to letting agents</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3: Prohibited and permitted payments</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4: Effect of a breach of section 1 or 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5: Treatment of holding deposit</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6: Enforcement by local weights and measures authorities</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7: Enforcement by district councils</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8: Financial Penalties</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9: Power to amend maximum financial penalties</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10: Recovery by enforcement authority of amount paid</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11: Interest on payments under section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12: Offences</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13: Offences by bodies corporate</p>
+                           </td>
+                           <td>
+                              <p>Clause 13 </p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14: Duty to notify when taking enforcement action</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 15: Recovery by relevant person of amount paid</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                           <td>
+                              <p>Clause 15</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 16: Assistance to recover amount paid</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                           <td>
+                              <p>Clause 16</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 17: Restriction on terminating tenancy</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                           <td>
+                              <p>Clause 17</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 18: Duty to publicise fees on third party websites</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                           <td>
+                              <p>Clause 18</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 19: Information about membership of client money protection scheme</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                           <td>
+                              <p>Clause 19</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 20: Penalties for continuing breach of duty</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                           <td>
+                              <p>Clause 20</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 21: Enforcement of client money protection schemes for property agents</p>
+                           </td>
+                           <td>
+                              <p>Clause 21</p>
+                           </td>
+                           <td>
+                              <p>Clause 21 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 22: Client money protection schemes: approval and designation</p>
+                           </td>
+                           <td>
+                              <p>n/a</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 23: Client money protection schemes: requirement to belong to a scheme etc</p>
+                           </td>
+                           <td>
+                              <p>n/a</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 24: Lead Enforcement Authority</p>
+                           </td>
+                           <td>
+                              <p>Clause 22</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 25: General duties of the lead enforcement authority</p>
+                           </td>
+                           <td>
+                              <p>Clause 23</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 26: Enforcement by the lead enforcement authority</p>
+                           </td>
+                           <td>
+                              <p>Clause 24</p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 27: Meaning of ‘‘letting agent’’ and related expressions</p>
+                           </td>
+                           <td>
+                              <p>Clause 25</p>
+                           </td>
+                           <td>
+                              <p>Clause 27</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 28: Interpretation </p>
+                           </td>
+                           <td>
+                              <p>Clause 26</p>
+                           </td>
+                           <td>
+                              <p>Clause 28</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 29: Consequential amendments</p>
+                           </td>
+                           <td>
+                              <p>Clause 27</p>
+                           </td>
+                           <td>
+                              <p>Clause 29</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 30: Transitional provision</p>
+                           </td>
+                           <td>
+                              <p>Clause 28</p>
+                           </td>
+                           <td>
+                              <p>Clause 30</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 31: Financial provisions</p>
+                           </td>
+                           <td>
+                              <p>Clause 29</p>
+                           </td>
+                           <td>
+                              <p>Clause 31</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 32: Crown application</p>
+                           </td>
+                           <td>
+                              <p>Clause 30</p>
+                           </td>
+                           <td>
+                              <p>Clause 32</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 33: Extent</p>
+                           </td>
+                           <td>
+                              <p>Clause 31</p>
+                           </td>
+                           <td>
+                              <p>Clause 33</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 34: Commencement</p>
+                           </td>
+                           <td>
+                              <p>Clause 32</p>
+                           </td>
+                           <td>
+                              <p>Clause 34</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 35: Short title</p>
+                           </td>
+                           <td>
+                              <p>Clause 33</p>
+                           </td>
+                           <td>
+                              <p>Clause 35</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1: Permitted Payments</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2: Treatment of holding deposit</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 3: Financial penalties etc</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Draft Tenant Fees Act is accessible at: <a href="https://www.gov.uk/government/publications/draft-tenants-fees-bill"><u><a href="https://www.gov.uk/government/publications/draft-tenants-fees-bill">https://www.gov.uk/government/publications/draft-tenants-fees-bill</a></u></a>. </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The Committee’s pre-legislative scrutiny report was published on 29 March 2018 and
+                  is accessible at <a href="https://publications.parliament.uk/pa/cm201719/cmselect/cmcomloc/583/583.pdf"><u><a href="https://publications.parliament.uk/pa/cm201719/cmselect/cmcomloc/583/583.pdf">https://publications.parliament.uk/pa/cm201719/cmselect/cmcomloc/583/583.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  English Housing Survey 2016-17</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/570848/Private_Rented_Sector_Full_Report.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/570848/Private_Rented_Sector_Full_Report.pdf</a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

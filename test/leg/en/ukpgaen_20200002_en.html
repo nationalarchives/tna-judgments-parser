@@ -1,0 +1,1871 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>DIRECT PAYMENTS TO FARMERS (LEGISLATIVE CONTINUITY) ACT 2020</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Direct Payments to Farmers (Legislative Continuity)
+                  Act 2020 (c. 2) which received Royal Assent on 30 January 2020.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Environment, Food,
+                  and Rural Affairs in order to assist the reader of the Act. They do not form part
+                  of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Direct Payments to Farmers (Legislative Continuity) Act provides the legal basis
+                     to continue paying Direct Payments to farmers by ensuring that the scheme continues
+                     in each part of the UK for claim year 2020. This is necessary because under the terms
+                     of the Withdrawal Agreement (WA) the EU Direct Payments legislation will not apply
+                     in the UK for the 2020 claim year. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act domesticates the EU Direct Payments legislation, as it stands on 31 January
+                     2020, into UK law. It includes time-limited powers. It contains a power to make secondary
+                     legislation to make corrections to that body of law to make it operable once the UK
+                     has left the EU. It also contains a discretionary power to enable amendments to be
+                     made, during 2020, to the law this Act domesticates if, for example, there are amendments
+                     to the equivalent European law that the Secretary of State or the devolved administrations
+                     wish to replicate. There is also a power for the Department of Agriculture, Environment
+                     and Rural Affairs (DAERA) to enable them to continue to move towards a uniform unit
+                     value of payment entitlements. The Act also amends the EU Direct Payments legislation
+                     to enable an increase to the Direct Payments financial ceilings for the 2020 scheme
+                     year to take account of the findings of the Bew Review concerning the allocation of
+                     farm support funding in the UK.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Exiting the EU</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3 </span></h2>
+                     <p>On 1 January 1973 the UK joined the European Economic Community, which has since evolved
+                        to become today’s European Union. As part of its membership, the UK became part of
+                        the Common Agricultural Policy (CAP), which has underpinned UK agricultural policy
+                        since. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">4 </span></h2>
+                     <p>On 17 December 2015 the European Union Referendum Act 2015 received Royal Assent.
+                        The Act made provision for holding a referendum in the UK and Gibraltar on whether
+                        the UK should remain a member of the EU. The referendum was then held on 23 June 2016
+                        and resulted in a 52% vote to leave the European Union. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">5 </span></h2>
+                     <p>The European Union (Notification of Withdrawal) Act 2017 received Royal Assent on
+                        16 March 2017. On 29 March 2017, the Prime Minister gave notification of withdrawal
+                        of the United Kingdom from the European Union under Article 50(2) of the Treaty on
+                        European Union. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">6 </span></h2>
+                     <p>In October 2019 the UK and European Council concluded negotiations on the WA. Article
+                        137 of that WA (as was also the case in the November 2018 WA) stipulates that Regulation
+                        (EU) No 1307/2013, which is the basic act governing Direct Payments to farmers, does
+                        not apply in the UK for claim year 2020 (save for Article 13).</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Direct Payments</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7 </span></h2>
+                     <p>UK agriculture receives around £3.2 Action in support from the EU every year via the
+                        CAP. CAP consists of two pillars. Pillar 1 mainly provides Direct Payments, accounting
+                        for ~88% of total payments. Pillar 2 accounts for the remaining ~12%, supporting environmental
+                        outcomes, farming productivity, socio-economic outcomes and rural growth.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">8 </span></h2>
+                     <p>The following direct payment schemes operate in each part of the UK:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a)</span></h2>
+                        <p>the basic payment scheme (BPS), which is the main scheme of Direct Payments to farmers
+                           that offers a basic layer of income support;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b)</span></h2>
+                        <p>the greening payment, which is a top-up payment for agricultural practices beneficial
+                           for the climate and the environment; and </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c)</span></h2>
+                        <p>the young farmer scheme, which is also a top-up payment for young farmers. </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">9 </span></h2>
+                     <p>In addition, in Wales some of the Welsh Direct Payments budget is used to operate
+                        a redistributive payment, in which higher payments are allocated to smaller farms.
+                        In Scotland, some of the Scottish Direct Payments budget is used to fund voluntary
+                        coupled support, which provides support per head of suckler beef and sheep. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">10 </span></h2>
+                     <p>Between 2015/16 and 2017/18 the average profit for all farms in England was £43,400,
+                        with Direct Payments equivalent to the largest share of this (58%).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">11 </span></h2>
+                     <p>The WA disapplies the CAP Direct Payments legislation in the UK for the 2020 claim
+                        year. This is because CAP Direct Payments for the 2020 claim year will be funded from
+                        the EU’s new 2021 multi-annual budget (because CAP Direct Payments are paid in arrears).
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>This means that without new legislation, HM Government and the devolved administrations
+                        (DAs) cannot continue to make Direct Payments to farmers for the 2020 claim year.
+                        The scheme will have no basis in law. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>The principal purpose of the Act is to enable the government and the DAs to continue
+                        the Direct Payments scheme, thereby providing financial support for farmers, via Direct
+                        Payments, for the 2020 claim year. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>In September 2019 the Government accepted the recommendations of the Bew Review concerning
+                        the allocation of farm support funding in the UK. It agreed that a greater share of
+                        the so-called ‘convergence funding’, an uplift of the financial ceiling for Direct
+                        Payments given by the EU to the UK, should in 2020-22 be allocated to Scotland and
+                        Wales, while the corresponding allocations for England and Northern Ireland should
+                        be maintained. The Act enables the Government to implement this decision.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>As the UK has been a member of the EU, UK farmers have been able to claim Direct Payments
+                     under the basic act (Regulation ((EU) No 1307/2013) and the implementing and delegated
+                     acts (Regulation (EU) No 639/2014 and 641/2014). Conditionality, inspections and penalties
+                     are contained in cross cutting regulations (the basic act is Regulation (EU) No 1306/2013
+                     and the implementing and delegated acts under this Regulation include Regulation (EU)
+                     Nos 907/2014, 908/2014, 809/2014 and 640/2014).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Under the terms of the WA, EU law continues to be applicable in the UK during the
+                     implementation period, which is defined in Article 126 as starting on the date of
+                     entry into force of that Agreement and ending on 31 December 2020.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Article 137 of the WA provides that Regulation (EU) No 1307/2013 (which governs Direct
+                     Payments to farmers) shall not apply in the UK for claim year 2020 save for Article
+                     13 of that Regulation (the state aid exemption). Whilst Article 137 of the Withdrawal
+                     Agreement expressly refers to Regulation (EU) 1307/2013, it is also intended to capture
+                     legislation connected to the application of that Regulation, and such legislation
+                     is captured within the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The effect of that Article in the WA therefore means that the law enabling the Direct
+                     Payments scheme to continue and payments to be made for the 2020 claim year will have
+                     no force in law from exit day (as defined in section 20(1) of the European Union (Withdrawal)
+                     Act 2018 (2018 Act) to mean at 11:00pm on 31 January 2020). Consequently, to allow
+                     the scheme to continue for the rest of the 2020 claim year it will need a basis in
+                     law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>By incorporating EU legislation governing Direct Payments to farmers into domestic
+                     law, the Act provides the legislative vehicle required to enable the Direct Payments
+                     scheme to continue for the whole of claim year 2020 and crucially for payments under
+                     that 2020 scheme to be made to farmers. The Act includes powers to make regulations
+                     to amend that body of law to enable it to work effectively. It also provides a power
+                     to enable amendments in 2020 should DEFRA or the devolved administrations need to
+                     replicate any amendments made to the equivalent European body of law. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The Act also amends the Direct Payments basic act (Regulation (EU) No 1307/2013) to
+                     include a discretion to increase the total maximum amount of direct payments for claim
+                     year 2020. This enables the Government to implement its decision which was made following
+                     the Bew Review, within the legislative framework.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 9 sets out the territorial extent of the sections in the Act. The extent of
+                     an Act is the legal jurisdiction where it forms part of the law; application refers
+                     to where it has practical effect. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Agriculture is a devolved matter and within the competence of the devolved administrations.
+                     The Act provides the Secretary of State with the power to make regulations on a UK
+                     wide basis, on behalf of Scotland, Wales and Northern Ireland but only with their
+                     consent. The UK Parliament will not normally legislate for areas within the competence
+                     of the Scottish Parliament, National Assembly for Wales or the Northern Ireland Assembly
+                     without the consent of the legislature concerned. As the provisions of this Act fall
+                     within devolved competence, the consent of the Scottish Parliament, National Assembly
+                     for Wales and Northern Ireland Assembly has been granted through legislative consent
+                     motions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Incorporation of EU legislation governing the CAP direct payment schemes</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>The purpose of Section 1 is to incorporate EU legislation governing the 2020 CAP direct
+                     payment schemes into domestic law. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (1) brings the EU legislation governing the CAP direct payment schemes
+                     for claim year 2020 into domestic law on exit day. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (2) clarifies that the body of law referred to in subsection (1) is the
+                     legislation as it has effect in EU law immediately before exit day in so far as it
+                     is concerned with claim year 2020, excepting any amendments made by the EU before
+                     this time concerned with giving effect to the WA. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (3) specifies the legislation being incorporated into UK law under subsection
+                     (1) and, in particular, specifies that the Horizontal Regulation (Regulation (EU)
+                     No 1306/2013) and regulations made under it will only form part of domestic law as
+                     far as they relate to the CAP direct payment schemes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (4) specifies that the EU legislation being incorporated is in the English
+                     language version.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Subsection (5) excludes the provisions in this section from having any impact on matters
+                     relating to the previous claim year (year 2019) or earlier claim years.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Subsection (6) ensures continuity between January 2020 and the rest of the claim year
+                     in 2020 by treating the incorporated EU legislation as having formed part of domestic
+                     law from 1 January 2020. In relation to the 2020 claim year, farmers will be governed
+                     by EU law for January 2020 and by domestic law thereafter but this provision means
+                     that the timeframe for compliance under the 2020 scheme will be treated as starting
+                     from the beginning of the claim year on 1 January 2020. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsection (7) defines terminology used under this section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Interpretation and status</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Section 2 sets out the rules for interpreting retained EU law governing CAP direct
+                     payment schemes in the domestic courts and makes provision about the status of that
+                     law. This section applies the relevant provisions of the 2018 Act with modifications
+                     for the purposes of this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection (1) applies the law within the 2018 Act governing the interpretation of
+                     retained EU law (set out in section 6 of that Act) for the purposes of this Act in
+                     respect of the retained EU law incorporated by Section 1(1). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Subsection (2) applies section 6 of the 2018 Act but with modifications to certain
+                     expressions in that section. The modifications applied are those set out in subsections
+                     (5) and (6). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Subsection (3) sets out the status of retained EU law for the purposes of this Act.
+                     It applies section 7(2) and (3) of, and specified paragraphs in Schedule 8 to, the
+                     2018 Act but with modifications for the purposes of retained EU law incorporated under
+                     section 1(1) of this Act. Section 7(2) and (3) of the 2018 Act restrict the way in
+                     which retained EU law can be amended by primary and subordinate legislation. Paragraphs
+                     3-8 of Schedule 8 to that Act set out how existing powers relating to subordinate
+                     legislation may operate on retained EU law and paragraphs 10-12 of Schedule 8 to that
+                     Act deals with how future power would operate on retained EU law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsection (4) specifies that the modifications mentioned in subsection (3) are those
+                     listed in the table in subsection (5). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Subsection (5) lists a number of modifications to phrases used within the 2018 Act.
+                     Therefore those provisions are to be read as excluding the words in the left hand
+                     column and instead replacing it with the words in the right hand column.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Subsection (6) provides that, for the purposes of subsection (1) of this section,
+                     the definitions applied in section 6(7) of the 2018 Act are modified to apply for
+                     the purposes of this Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>Subsection (7) provides that, when interpreting subordinate legislation which is both
+                     retained EU law incorporated by section 1(1) of this Act and retained EU law under
+                     section 6 of the 2018 Act, section 6 of the 2018 Act will apply with modifications
+                     made under this section but only insofar as it relates to the CAP direct payment schemes.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Subsection (8) defines the status of legislation listed in section 1 of this Act for
+                     the purposes of the Human Rights Act 1998. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p>Subsection (9) provides that certain terms within subsection (8) are to be interpreted
+                     as they are defined in the Human Rights Act 1998. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Subsection (10) defines terminology used under this section.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Subsection (11) ensures that provisions that are not yet in force and any amendments
+                     made to the European Union (Withdrawal Agreement) Act 2020 will come into force at
+                     the same time as this section comes into force. </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Regulations in connection with the retention of EU legislation under section
+                     1</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Section 3 gives the Secretary of State the power to make necessary operability changes
+                     to make sure that the law works properly for claim year 2020. The powers are also
+                     mirrored for the Devolved Administrations (DAs). The Secretary of State may do so
+                     UK wide but only with the consent of the DAs. There is also a power to make amendments
+                     during 2020 if the equivalent EU law is amended and the UK or DAs similarly wish to
+                     make this amendment. These powers mirror the powers set out in sections 8 and 11 of
+                     the 2018 Act with modifications. There is also a power for DAERA to enable them to
+                     continue to move towards a uniform unit value of payment entitlements.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Subsection (1) provides the Secretary of State with the power to make secondary legislation
+                     to fix any deficiency or failure in retained EU law governing the CAP direct payment
+                     schemes that arises from EU exit, or to keep pace with any changes made to the CAP
+                     direct payments scheme for the claim year 2020 by the EU. A failure of retained EU
+                     law governing the CAP direct payments scheme is a type of deficiency: a failure means
+                     the law doesn’t operate effectively, whereas deficiency covers a wider range of cases
+                     where it does not function appropriately or sensibly. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Subsection (2) places a duty on the Secretary of State to get consent from the DAs
+                     before making UK wide regulations. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Subsection (3) gives power to the devolved authorities in Scotland, Wales and Northern
+                     Ireland to make regulations to fix any deficiencies in the law that arise form EU
+                     exit, or to keep pace with any changes made to the CAP direct payments scheme for
+                     the claim year 2020 by the EU.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Subsection (4) allows (DAERA in Northern Ireland to modify the retained EU law incorporated
+                     by Section 1(1) where it concerns the value of payment entitlements in Northern Ireland,
+                     so that those entitlements may continue to move towards a uniform unit value. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Subsection (5) explains the sorts of deficiencies arising after exit day that may
+                     be corrected using the powers in subsections (1)(a)(ii) and 3(a)(ii). It mirrors some
+                     of the equivalent provisions in the 2018 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Subsection (6) specifies that sections 8(5) to (7), apart from subsection (7)(e),
+                     of the 2018 Act apply in relation to regulations made under the powers in subsections
+                     (1) and (3) and explains how those sections of the 2018 Act are to be read. </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 8(5) of the 2018 Act provides that secondary legislation made under the power
+                        in this section can do anything an Act of Parliament might to deal with deficiencies.
+                        This could include altering Acts of Parliament where appropriate and sub-delegating
+                        the power to a public authority where they are best placed to deal with the deficiencies.
+                        The power is subject to the restrictions set out in Section 8(7) of the 2018 Act.
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 8(6) of the 2018 Act provides, non-exhaustively, for what the secondary legislation
+                        made under this power can do. For example, it can transfer the functions of EU authorities
+                        to UK public authorities. These functions might include the ability to set rules or
+                        create standards, which are currently made by the EU as non-legislative acts (delegated
+                        and implementing acts). The power can be used to repeal, amend or replace parts of
+                        the retained law. There will be other uses of the power necessary to correct deficiencies.
+                        The power could be used to amend law which is not retained EU law where that is an
+                        appropriate way of dealing with a deficiency in retained EU law.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Section 8(7) of the 2018 Act stipulates that regulations cannot be used to impose
+                        or increase taxation or fees, make retrospective provision, create a relevant criminal
+                        offence, establish a public authority, amend the Human Rights Act 1998 or any subordinate
+                        legislation made under it, amend the devolution Acts (except in certain specific and
+                        limited ways), or for the purposes of implementing the WA.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Subsection (7) clarifies that the provisions made by regulations in this section may
+                     apply in relation to matters arising in relation to the CAP direct payment schemes
+                     for the whole of the 2020 claim year. This ensures that provisions can cover matters
+                     arising in January 2020 whilst still under EU law. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Subsection (8) is an important safeguard and makes clear that the powers are temporary
+                     and will expire after 31 December 2020. This does not affect the continuation of regulations
+                     made before that date so, for example, any outstanding payments to farmers in relation
+                     to the 2020 scheme year can continue to be paid after 31 December 2020.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Subsection (9) specifies that the regulation making powers in subsections (1) or (3)
+                     include the ability to make different provision for different purposes, for example
+                     to make amendments to one of the direct payment schemes which only affects certain
+                     farmers. It also specifies that the regulation making powers in subsections (1) or
+                     (3) include powers to make consequential amendments to the regulations, including
+                     the power to re-state any retained EU law governing the CAP direct payment scheme
+                     to make it clearer. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Subsection (10) defines terminology used under this section.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Publication and rules of evidence</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Section 4 makes provision for the domestic publication of certain EU regulations relating
+                     to Direct Payments, ahead of exit day. It also contains provision on rules of evidence.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Subsection (1) exempts the Direct Payments Regulation, and accompanying Delegated
+                     and Implementing Acts, from the publication requirement laid down in the 2018 Act.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Subsection (2) places a duty on the Queen’s printer to publish specified EU regulations
+                     listed in section 1 as they appear in the Official Journal before exit day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Subsection (3) cross refers to the regulations listed in subsection (1) and sub-paragraphs
+                     (i) to (v) of section 1(3)(d).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Subsection (4) exempts from publication anything that is repealed before exit day
+                     and any changes made after that time.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Subsection (5) specifies that retained EU legislation under section 1(1) is a “relevant
+                     matter” for the purposes of paragraph 4 of Schedule 5 to the 2018 Act. Paragraph 4
+                     of Schedule 5 is a power to make provision about judicial notice and admissibility.
+                     Matters which are ‘judicially noticed’ are deemed to already be within the knowledge
+                     of the court, and so are not required to be ‘proved’ to the court. For example, public
+                     Acts of Parliament and the EU Treaties are judicially noticed. Paragraph 4 provides
+                     that a Minister of the Crown can make regulations which provide for judicial notice
+                     to be taken of a relevant matter, and for the admissibility in legal proceedings of
+                     evidence of both a relevant matter and instruments and documents issued by or in the
+                     custody of an EU entity, to ensure that appropriate evidential rules can be put in
+                     place to reflect the new legal landscape after exit.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Power to increase direct payments ceilings for 2020</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Section 5 amends the retained Direct Payments Regulation to allow the Secretary of
+                     State, having regard to the Bew Review, to decide to increase the UK national and
+                     net Direct Payments ceilings for 2020. It also amends regulation-making powers that
+                     already exist in the Direct Payments Regulation (in Articles 6(3) and 7(3)) so as
+                     to widen their scope to enable the 2020 national and net ceilings to be increased
+                     to take account of this decision. This means that where, as a consequence of the Government’s
+                     decision following the Bew Review, the amount of direct payments goes above the limit
+                     set by the national and net ceilings for 2020, these powers can be used to increase
+                     those ceilings to ensure they are not breached and payments can be made within the
+                     legislative framework.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Subsection (1) introduces the amendments to the Direct Payments Regulation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>Subsection (2) amends Article 6(3) of the Direct Payments Regulation so that the regulations
+                     made under the powers provided to the Secretary of State in that paragraph to adapt
+                     the 2020 national ceiling can take into account the decision made in accordance with
+                     the new Article 7A, explained below. The national ceiling comprises, for the UK, the
+                     total value of all allocated payment entitlements, of all national reserves and regional
+                     reserves and of all the financial ceilings calculated with respect to the individual
+                     direct payment schemes. Regulations made according to decisions relating to the 2020
+                     national ceiling will require the consent of all devolved administrations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>Subsection (3) amends Article 7(3) of the Direct Payments Regulation so that the regulations
+                     made under the powers provided to the Secretary of State in that paragraph to adapt
+                     the 2020 net ceiling can take into account the decision made in accordance with the
+                     new Article 7A, explained below. The net ceiling delimits the value of Direct Payments
+                     which can be made in the UK for the 2020 claim year. Regulations made according to
+                     decisions relating to the 2020 net ceiling will require the consent of all devolved
+                     administrations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65 </span></h2>
+                  <p>Subsection (4) inserts Article 7A into the retained Direct Payments Regulation. This
+                     article provides the Secretary of State with the power, having regard to the Bew Review,
+                     to decide to increase the total maximum amount of direct payments that could otherwise
+                     be granted in relation for the claim year 2020. Subsection (1) of the new article
+                     provides the power. Subsection (2) specifies what the Bew Review is. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">66 </span></h2>
+                  <p>Subsection (5) of Section 5 amends paragraph 5 of Article 22 of the Direct Payments
+                     Regulation, so that any increase in national or net ceilings as a result of the exercise
+                     of the powers in new Article 7A will result in a corresponding increase in the value
+                     of payment entitlements. </p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Consequential and transitional provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>Subsection (1) provides the Secretary of State or relevant national authority with
+                     powers to make regulations which he or she considers appropriate as a consequence
+                     of this Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>Subsection (2) clarifies that consequential provision might include modifying both
+                     primary and secondary legislation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>Subsection (3) gives effect to the consequential provisions contained in Schedule
+                     1 to this Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>Subsection (4) gives the Secretary of State or relevant national authority the power
+                     to make transitional, transitory or savings provision by regulations. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">71 </span></h2>
+                  <p>Subsection (5) provides a power to the Secretary of State to make UK wide regulations
+                     but only with the consent of the DAs.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">72 </span></h2>
+                  <p>Subsection (6) clarifies what is meant by “consent”, namely consent of Scottish Ministers,
+                     Welsh Ministers and DAERA.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>Subsection (7) defines “relevant national authority”.</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Regulations</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>Section 7 gives legal effect to Schedule 2.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8: Interpretation</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>Section 8 defines certain terms used throughout the Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 9: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>Subsection (1) provides that the Act extends to the legal jurisdiction of England
+                     and Wales, Scotland and Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">77 </span></h2>
+                  <p>Subsection (2) sets out that section 5 will come into force on exit day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">78 </span></h2>
+                  <p>Subsection (3) sets out the provisions of the Act that will commence on Royal Assent.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>79 </b>
+                        </span></h2>
+                  <p>Subsection (4) establishes the short title of the Act.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule 1 – Consequential provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">80 </span></h2>
+                  <p>Paragraph 1 specifies how references to EU legislation are to be interpreted on or
+                     after exit day.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">81 </span></h2>
+                  <p>Paragraph 2 disapplies paragraph 2 of Schedule 8 of the 2018 Act in relation to EU
+                     legislation listed in section 1(3) incorporated into domestic law by section 1(1).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">82 </span></h2>
+                  <p>Paragraphs 3 – 6 adds definitions to the Interpretation Act 1978 and the equivalent
+                     acts in Wales, Scotland and Northern Ireland for the purposes of this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">83 </span></h2>
+                  <p>Paragraph 7 confirms the status of EU law listed in the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">84 </span></h2>
+                  <p>Paragraph 8 specifies that the effects of paragraphs 3 to 7 do not affect the terms
+                     mentioned in paragraph 3 of the 2018 Act.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule 2 – Regulations under this Act</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">85 </span></h2>
+                  <p>Schedule 2 details the procedures under which regulations can be made and scrutinised.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">86 </span></h2>
+                  <p>Paragraph 1 details the procedure by which the Secretary of State, the Welsh Ministers
+                     and DAERA may make regulations under this Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">87 </span></h2>
+                  <p>Paragraph 2 provides for regulations to be made under the made affirmative procedure
+                     in respect of correcting deficiencies in sections 3(1)(a) or 3(3)(a) , and under the
+                     affirmative procedure in respect of making modifications in sections 3(1)(b), 3(3)(b)
+                     or 3(4).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">88 </span></h2>
+                  <p>Paragraph 3 provides that regulations made under section 6 are subject to the negative
+                     resolution procedure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">89 </span></h2>
+                  <p>Paragraph 4 details the processes for (a) the Secretary of State, (b) the Scottish
+                     Ministers, (c) Welsh Ministers, and (4) DAERA whereby regulations under section 3
+                     are subject to made affirmative resolution procedure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">90 </span></h2>
+                  <p>Paragraph 5 details the conditions of which the period of time in relation to paragraph
+                     4(a) is subject to calculation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">91 </span></h2>
+                  <p>Paragraph 6 details the conditions of which the period of time in relation to paragraph
+                     4(b) or (c) is subject to calculation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">92 </span></h2>
+                  <p>Paragraph 7 details the conditions of which the period of time in relation to paragraph
+                     4(d) is subject to calculation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">93 </span></h2>
+                  <p>Paragraph 8 specifies (a) that regulations that cease in line with the provisions
+                     of paragraph 4 will continue to be valid, and (b) that ceasing of regulations in line
+                     with the provisions of paragraph 4 will not prevent the making of new regulations.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">94 </span></h2>
+                  <p>Paragraph 9 sets out conditions on the making of regulations under this Act which
+                     are subject to the affirmative resolution procedure. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">95 </span></h2>
+                  <p>Paragraph 10 sets out conditions on the making of regulations under this Act which
+                     are subject to the negative resolution procedure. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">96 </span></h2>
+                  <p>Paragraph 11 allows for a combination of regulations to be made together, and lays
+                     down that regulations subject to negative resolution procedure may be made under affirmative
+                     or made affirmative resolution procedure.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">97 </span></h2>
+                  <p>The Act comes into force on Royal Assent save for section 5 which will come into force
+                     on exit day.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Compatibility with the European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">98 </span></h2>
+                  <p>The Government considers that the Act is compatible with the European Convention on
+                     Human Rights (“ECHR”). Accordingly the Secretary of State for Environment, Food and
+                     Rural Affairs and Lord Gardiner of Kimble, Under Secretary of State for Rural Affairs
+                     and Biosecurity the Secretary of State for Environment, Food and Rural Affairs have
+                     made a statements under section 19(1)(a) of the Human Rights Act 1998 to this effect.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">99 </span></h2>
+                  <p>The Act enables Direct Payments to be paid to farmers, depending on the number of
+                     entitlements held. It therefore engages Article 1 of Protocol 1, but as the Act preserves
+                     the status quo, there is no interference.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">100 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Regulation (EU) No 1307/2013 of the European Parliament and of the Council of 17 December
+                        2013 (establishing rules for Direct Payments to farmers under support schemes within
+                        the framework of the common agricultural policy and repealing Council Regulation (EC)
+                        No&nbsp;637/2008 and Council Regulation (EC) No&nbsp;73/2009) <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:32013R1307"><u>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:32013R1307</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Commission Delegated Regulation (EU) No 639/2014 of 11 March 2014 supplementing Regulation
+                        (EU) No 1307/2013 of the European Parliament and of the Council (establishing rules
+                        for Direct Payments to farmers under support schemes within the framework of the common
+                        agricultural policy and amending Annex X to that Regulation) <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014R0639"><u>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014R0639</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Commission Implementing Regulation (EU) No 641/2014 of 16 June 2014 laying down rules
+                        for the application of Regulation (EU) No 1307/2013 of the European Parliament and
+                        of the Council establishing rules for Direct Payments to farmers under support schemes
+                        within the framework of the common agricultural policy <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014R0641"><u>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014R0641</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Regulation (EU) No&nbsp;1306/2013 of the European Parliament and of the Council of 17&nbsp;December
+                        2013 on the financing, management and monitoring of the common agricultural policy
+                        and repealing Council Regulations (EEC) No&nbsp;352/78, (EC) No&nbsp;165/94, (EC) No&nbsp;2799/98,
+                        (EC) No&nbsp;814/2000, (EC) No&nbsp;1290/2005 and (EC) No&nbsp;485/2008 <a href="https://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX%3A32013R1306"><u>https://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX%3A32013R1306</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Commission Delegated Regulation (EU) No 640/2014 of 11 March 2014 supplementing Regulation
+                        (EU) No 1306/2013 of the European Parliament and of the Council with regard to the
+                        integrated administration and control system and conditions for refusal or withdrawal
+                        of payments and administrative penalties applicable to Direct Payments, rural development
+                        support and cross compliance <a href="https://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX%3A32014R0640"><u>https://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX%3A32014R0640</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Commission Implementing Regulation (EU) No&nbsp;809/2014 of 17&nbsp;July 2014 laying down rules
+                        for the application of Regulation (EU) No&nbsp;1306/2013 of the European Parliament and
+                        of the Council with regard to the integrated administration and control system, rural
+                        development measures and cross compliance <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32014R0809"><u>https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32014R0809</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Commission Delegated Regulation (EU) No&nbsp;907/2014 of 11&nbsp;March 2014 supplementing Regulation
+                        (EU) No&nbsp;1306/2013 of the European Parliament and of the Council with regard to paying
+                        agencies and other bodies, financial management, clearance of accounts, securities
+                        and use of euro <a href="https://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX%3A32014R0907"><u>https://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX%3A32014R0907</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Commission Implementing Regulation (EU) No&nbsp;908/2014 of 6&nbsp;August 2014 laying down rules
+                        for the application of Regulation (EU) No&nbsp;1306/2013 of the European Parliament and
+                        of the Council with regard to paying agencies and other bodies, financial management,
+                        clearance of accounts, rules on checks, securities and transparency <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32014R0908"><u>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32014R0908</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy Basic Payment and Support Schemes (England) Regulations
+                        2014 <a href="http://www.legislation.gov.uk/uksi/2014/3259/contents"><u>http://www.legislation.gov.uk/uksi/2014/3259/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy (Control and Enforcement, Cross-Compliance, Scrutiny
+                        of Transactions and Appeals) Regulations 2014 <a href="http://www.legislation.gov.uk/uksi/2014/3263/contents"><u>http://www.legislation.gov.uk/uksi/2014/3263/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy (Direct Payments to Farmers) (Amendment) (EU Exit)
+                        Regulations 2019 <a href="http://www.legislation.gov.uk/uksi/2019/207/contents/made"><u>http://www.legislation.gov.uk/uksi/2019/207/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy (Rules for Direct Payments) (Amendment) (EU Exit) Regulations
+                        2019 <a href="http://www.legislation.gov.uk/uksi/2019/208/contents/made"><u>http://www.legislation.gov.uk/uksi/2019/208/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy and Market Measures (Miscellaneous Amendments) (EU
+                        Exit) Regulations 2019 <a href="http://www.legislation.gov.uk/uksi/2019/812/contents/made"><u>http://www.legislation.gov.uk/uksi/2019/812/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy (Financing, Management and Monitoring Supplementary
+                        Provisions) (Miscellaneous Amendments) (EU Exit) Regulations 2019 <a href="http://www.legislation.gov.uk/ukdsi/2019/9780111181188"><u>http://www.legislation.gov.uk/ukdsi/2019/9780111181188</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy (Financing, Management and Monitoring) (Miscellaneous
+                        Amendments) (EU Exit) Regulations 2019 <a href="http://www.legislation.gov.uk/ukdsi/2019/9780111181133"><u>http://www.legislation.gov.uk/ukdsi/2019/9780111181133</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy and Market Measures (Miscellaneous Amendments) (EU
+                        Exit) Regulations 2019 <a href="http://www.legislation.gov.uk/uksi/2019/812/contents/made"><u>http://www.legislation.gov.uk/uksi/2019/812/contents/made</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Agriculture (Legislative Functions) (EU Exit) Regulations 2019 <a href="http://www.legislation.gov.uk/ukdsi/2019/9780111182529/contents"><u>http://www.legislation.gov.uk/ukdsi/2019/9780111182529/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Common Agricultural Policy and Agriculture and Horticulture Development Board
+                        (Amendment etc.) (EU Exit) Regulations 2019 <a href="http://www.legislation.gov.uk/ukdsi/2019/9780111178843/contents"><u>http://www.legislation.gov.uk/ukdsi/2019/9780111178843/contents</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>UK government response to the independent intra-UK allocations review (Bew Review)
+                        <a href="https://www.gov.uk/government/publications/domestic-farm-support-funding-bew-review-government-response/uk-government-response-to-the-independent-intra-uk-allocations-review-bew-review"><u>https://www.gov.uk/government/publications/domestic-farm-support-funding-bew-review-government-response/uk-government-response-to-the-independent-intra-uk-allocations-review-bew-review</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:3.05in">
+                        <col style="width:0.66in">
+                        <col style="width:0.66in">
+                        <col style="width:0.66in">
+                        <col style="width:0.91in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>Provision </p>
+                           <p>Extends to E &amp; W and applies to England?</p>
+                           <p>Extends to E &amp; W and applies to Wales?</p>
+                           <p>Extends and applies to Scotland?</p>
+                           <p>Extends and applies to Northern Ireland?</p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1 (Incorporation of EU legislation governing the CAP direct payment schemes)</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2 (Interpretation and status)</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3 (Regulations in connection with the retention of EU legislation under section
+                                 1)</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4 (Publication and rules of evidence) </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5 (Power to increase direct payment ceilings for 2020) </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6 (Consequential and transitional provision) </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7 (Regulations)</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8 (Interpretation) </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9 (Extent, Commencement and Short Title)</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1 (Consequential provision) </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2 (Regulations under this Act) </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">101 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>9 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-01-09/debates/C0EB1D8B-1DAE-42E3-837F-0DCC0B9E8F35/AustralianBushfires">
+                                    <u>Vol. 669 Col. 650</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>21 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-01-21/debates/35DD1ED8-A9B2-47CB-B7F8-5C335D63D5ED/DirectPaymentsToFarmers(LegislativeContinuity)Bill">
+                                    <u>Vol. 670 Col. 171</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>28 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-01-28/debates/FDDDBA77-FC11-407C-B0CC-A5781C88C538/DirectPaymentsToFarmers(LegislativeContinuity)Bill">
+                                    <u>Vol 670 Col. 671</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>28 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-01-28/debates/FDDDBA77-FC11-407C-B0CC-A5781C88C538/DirectPaymentsToFarmers(LegislativeContinuity)Bill">
+                                    <u>Vol. 670 Col. 708</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>28 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-01-29/debates/9E6F8C35-7A2E-4853-8A6C-6278D54F3C26/DirectPaymentsToFarmers(LegislativeContinuity)Bill">
+                                    <u>Vol. 801</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-01-29/debates/9E6F8C35-7A2E-4853-8A6C-6278D54F3C26/DirectPaymentsToFarmers(LegislativeContinuity)Bill">
+                                    <u>Vol. 801 Col. 1449</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>29 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-01-29/debates/9E6F8C35-7A2E-4853-8A6C-6278D54F3C26/DirectPaymentsToFarmers(LegislativeContinuity)Bill">
+                                    <u>Vol. 801 Col. 1449</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>29 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-01-29/debates/9E6F8C35-7A2E-4853-8A6C-6278D54F3C26/DirectPaymentsToFarmers(LegislativeContinuity)Bill">
+                                    <u>Vol. 801 Col. 1478</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Commons Consideration of Lords Amendments</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                           <td>
+                              <p>N/A</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>30 January 2020</p>
+                           </td>
+                           <td>
+                              <p>House of Commons <a href="https://hansard.parliament.uk/Commons/2020-01-30/debates/EECA3331-80B3-45C5-B823-95564EE73495/MiddleEastPeacePlan"><u>Vol. 670 Col. 940</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords <a href="https://hansard.parliament.uk/Lords/2020-01-30/debates/707AA843-A737-486C-A5B9-485EB19BF2FF/RoyalAssent"><u>Vol. 801</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">102 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.07in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                           <td>
+                              <p>Clause 4</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                           <td>
+                              <p>Clause 5</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 6</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 7</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 8</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 9</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 13</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 10</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 13</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 14</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 11</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 12</p>
+                           </td>
+                           <td>
+                              <p>Clause 14</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                           <td>
+                              <p>Schedule 3</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

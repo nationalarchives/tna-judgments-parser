@@ -1,0 +1,1107 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NEONATAL CARE (LEAVE AND PAY)</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Neonatal Care (Leave and Pay) Act 2023 which
+                     received Royal Assent on 24 May 2023 (c. 20).</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for Business and Trade
+                     in order to assist the reader in understanding the Act. They do not form part of the
+                     Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        </b>
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Act amends or inserts a number of provisions into the Employment Rights Act 1996
+                     and the Social Security Contributions and Benefits Act 1992, providing powers to make
+                     regulations to create an entitlement to Neonatal Care Leave and Pay for eligible employees
+                     with parental or other personal relationship (these are referred to as parents for
+                     the remainder of this document for brevity) with a child who is receiving, or has
+                     received, neonatal care.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act’s powers allow provision to be made for the following:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Neonatal Care Leave - a right for employed parents to be absent from work for a prescribed
+                        period (to be set at a minimum of one week) in respect of a child who is receiving,
+                        or has received, neonatal care. All employees who meet the eligibility conditions
+                        will be entitled to this leave, regardless of how long they have worked for their
+                        employer. The leave must be taken before the end of a period of at least 68 weeks
+                        beginning with the date of the child’s birth.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Neonatal Care Pay – a right for those eligible parents who meet minimum requirements
+                        relating to continuity of employment (at least 26 weeks with their current employer)
+                        and earnings to be paid during that leave at a prescribed rate. In line with other
+                        entitlements to paid statutory leave, the Act allows provision to be made for employers
+                        to reclaim payments from the Government.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Employment protections – parents taking Neonatal Care Leave will have the same employment
+                        protections as those associated with other forms of family related leave (i.e. Maternity,
+                        Paternity, Adoption, Parental Bereavement and Shared Parental Leave). This includes
+                        protection from dismissal or detriment as a result of having taken leave.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Whilst parents who have a child in neonatal care may be able to make use of other
+                     rights to family-related leave and pay (including maternity leave and pay, paternity
+                     leave and pay, adoption leave and pay, shared parental leave and pay and unpaid parental
+                     leave), there is currently no specific statutory entitlement to leave and/or pay for
+                     parents of children who require neonatal care. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>This has the result that parents of children who go into neonatal care currently have
+                     to spend a proportion of their existing family leave rights caring for the baby in
+                     the hospital. Some mothers report that they have had to leave work because they were
+                     not ready to return at the end of their maternity leave. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>As paternity leave is available for two weeks (and only to those fathers and partners
+                     who meet tests concerning continuity of service and minimum earnings), some fathers
+                     and partners have had to rely on statutory unpaid parental leave or compassionate
+                     leave in order to take time off work when their child was in hospital. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Some fathers and partners have also had to take sickness absence as a result of their
+                     child being admitted to neonatal care. In 2018, Bliss (a charity for premature and
+                     sick babies) conducted a survey which showed that, in circumstances where a baby is
+                     kept in neonatal care for longer than two weeks, around 35% of fathers and partners
+                     were signed off sick. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Conservative Party Manifesto in 2019 stated: “We will legislate to allow parents
+                     to take extended leave for neonatal care, to support those new mothers and fathers
+                     who need it during the most vulnerable and stressful days of their lives”.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Scottish National Party Manifesto in 2019 stated: “In addition, because we know
+                     the extra pressures that a baby in neonatal care creates for families, parents would
+                     receive an extra statutory paid week of leave for every week their baby is in neonatal
+                     care”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Queen’s Speech in December 2019 committed to introducing a new right to Neonatal
+                     Leave. In a section covering the main elements of an Employment Bill, it stated the
+                     Act would include: “Allowing parents to take extended leave for neonatal care…”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Government launched a stakeholder consultation on the introduction of Neonatal
+                     Leave and Pay on 19 July 2019 and the response was published on 16 March 2020.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Act will give eligible employed parents an additional right to time away from
+                     work in respect of their child who is receiving or has received neonatal care. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>It requires Regulations to give employed parents a ‘day one’ right to a minimum of
+                     one week of leave away from work, subject to certain criteria being met. This means
+                     that an employee would be eligible regardless of their length of service with their
+                     current employer.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Employed parents would also be entitled to a statutory pay at a prescribed rate subject
+                     to requirements including that the employee has worked for their employer continuously
+                     for at least 26 weeks by the end of the week before the child’s admission into neonatal
+                     care.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The introduction of a specific, statutory entitlement to Neonatal Care Leave and Pay
+                     will set a minimum standard for employees and employers. The intention of the policy
+                     is to provide certainty for employed parents and employers in relation to parents’
+                     right to time off from work following the admission of a child into neonatal care.
+                     It also gives parents dedicated and protected time to spend with their baby whilst
+                     they are in hospital or other care settings which will be defined in Regulations.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Employment law is reserved for Scotland and Wales but devolved to Northern Ireland.
+                     It will be for the Northern Ireland Assembly to decide whether similar provisions
+                     should apply in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The Sections creating an entitlement to Neonatal Care Leave and Pay will therefore
+                     extend and apply to Great Britain, but the Act itself extends to the whole of the
+                     UK owing to some of its consequential amendments. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>
+                     <b>Section 1</b> of the Act introduces the Schedule, which sets out the amendments to existing legislation
+                     to establish an entitlement to Neonatal Care Leave and Pay.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>
+                     <b>Section 2</b> allows the Secretary of State to make regulations that make consequential amendments
+                     to secondary legislation. These regulations will be subject to the negative procedure.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>
+                     <b>Section 3</b> sets out the extent and short title of the Act and makes provision for commencement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The Schedule consists of three Parts which are explained in more detail below:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Part 1 creates a statutory entitlement to Neonatal Care Leave </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Part 2 creates a statutory entitlement to Neonatal Care Pay; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Part 3 contains related amendments.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 1: Neonatal Care Leave</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Part 1 of the Schedule amends Part 8 of the Employment Rights Act 1996 by inserting
+                        a new Chapter 5, consisting of sections 80EF to 80EI, to provide for an entitlement
+                        to Neonatal Care Leave.  </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 80EF: Neonatal Care Leave</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Section 80EF requires the Secretary of State to make regulations to give an entitlement
+                        to time off work to employed parents with responsibility for a child who is receiving,
+                        or has received, neonatal care. It provides for conditions for that entitlement to
+                        be defined in regulations by reference to the employee having a parental or other
+                        personal relationship with the child.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Regulations must set the duration of leave and how and when the leave can be taken.
+                        The duration of leave must be at least one week; and the Regulations must establish
+                        a period within which the leave may be taken, which must be a minimum of 68 weeks
+                        starting from the date the child’s birth. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Regulations must provide that an employee is entitled to leave only if the neonatal
+                        care continues without interruption for a period of at least seven days beginning
+                        with the day after the day on which the care starts.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Neonatal care is defined as care of a medical or palliative kind specified in the
+                        regulations and must start before the end of a period of 28 days beginning with the
+                        day after the date of the child’s birth. A week is any seven-day period.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 80EG: Rights during and after neonatal care leave</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>80EG requires the Regulations made under 80EF to set out:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>The employee’s rights in relation to retaining their existing terms and conditions
+                           of employment, whilst taking Neonatal Care Leave;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>The employee’s obligations in relation to those terms and conditions;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>The employee’s right to return to work once their leave period has concluded and the
+                           nature of the job to which they are entitled to return, as well as the terms and conditions
+                           applicable on return, and matters such as seniority, pension and similar rights.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>The reference to ’terms and conditions’ in this context is not limited to contractual
+                        terms and conditions but does not include remuneration. Regulations can specify what
+                        things should, or should not be, seen as ‘remuneration’ for this purpose.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 80EH: Special cases</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Section 80EH allows the Regulations to make special provision for the redundancy and
+                        dismissal of employees during or after a period of Neonatal Care Leave, including
+                        whether an employer is required to offer alternative employment, and the consequences
+                        of failing to comply with the regulations.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 80EI Chapter 5: Supplemental</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Section 80EI allows the Regulations made under 80EF to specify circumstances where
+                        neonatal care can be regarded as continuous despite an interruption, this is relevant
+                        for the seven days continuous care condition in paragraph 25 above. Regulations may
+                        set out what notices and evidence must be given by an employee to their employer and
+                        what procedures are to be followed in order to take Neonatal Care Leave as well as
+                        any requirements for record keeping. They can also set out the consequences of not
+                        complying with any of these requirements or procedures.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Regulations can make provision for situations where an employee also has a non-statutory
+                        right to take Neonatal Care Leave (for example, a right arising under their contract
+                        of employment).</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Regulations can also modify the way in which a week’s pay is calculated in Chapter
+                        2 of Part 14 of the Employment Rights Act 1996 to take account of periods of Neonatal
+                        Care Leave. The concept of ‘a week’s pay’ is widely used in that Act, for example
+                        in section 119 which sets out how the basic Employment Tribunal award for unfair dismissal
+                        should be calculated.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Regulations can set out special provision for different cases or circumstances, including;
+                        more than one child (with whom an employee has a parental or other personal relationship),
+                        receiving neonatal care in specified circumstances or a child receiving neonatal care
+                        on two or more separate occasions. This could include making special provision on
+                        the extent and applicability of the entitlement to leave in such circumstances.</p>
+                  </section>
+                  <section class="level">
+                     <p>Parliamentary procedure applying to Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Paragraph 3 of Part 1 of the Schedule adds sections 80EF to the list of powers in
+                        section 236 of the Employment Rights Act 1996 which are subject to the affirmative
+                        parliamentary procedure. That means that any Regulations made under these new powers
+                        would need to be debated and approved in both Houses of Parliament before becoming
+                        law.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 2: Neonatal Care Pay</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Part 2 of the Schedule adds Part 12ZE (containing sections 171ZZ16 to 171ZZ24) to
+                        the Social Security, Contributions and Benefits Act 1992 to create an entitlement
+                        to Neonatal Care Pay.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ16: Entitlement</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Section 171ZZ16 provides that an employee will be eligible for Neonatal Care Pay subject
+                        to meeting certain conditions. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>These conditions include:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>That the employee has a prescribed parental or other personal relationship with the
+                           child who is receiving, or has received, neonatal care (because they meet the conditions
+                           to be set in Regulations); and that the neonatal care continues without interruption
+                           for a period of at least seven days beginning from the day after the day on which
+                           the care starts;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>That the employee must have been continuously working for their employer for at least
+                           26 weeks by the end of the week immediately before the one in which neonatal care
+                           starts (this is known as the end of the ‘relevant week’), or if the employee is entitled
+                           to statutory maternity, paternity or adoption pay, the ‘relevant week’ will instead
+                           align with the week that is already specified as the ‘relevant week’ for that entitlement.
+                           In both cases, the employee must also be legally entitled to be in that employment.</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>That, over an eight-week period ending with the end of the relevant week, the employee’s
+                           normal weekly earnings are not less than the Lower Earnings Limit (whatever this is
+                           at the end of the relevant week). </p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Regulations may also add a further condition that a person will not be entitled to
+                        pay for a particular week or period unless at the start of that week or period they
+                        remain employed by the same employer. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Neonatal care is defined as care of a medical or palliative kind specified in the
+                        regulations and must start before the end of a period of 28 days beginning with the
+                        day after the date of the child’s birth. A week is any seven- day period.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>This section also ensures that the condition requiring someone to be legally entitled
+                        to be in the employment in relation to which they are claiming statutory neonatal
+                        pay will only apply when Section 63(3) of the Welfare Reform Act 2012 (which makes
+                        similar provision for Statutory Maternity Pay, Statutory Adoption Pay, and Statutory
+                        Paternity Pay) comes into force.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ17 Entitlement: Supplementary</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Section 171ZZ17 specifies that, in order to receive payments, an employee must give
+                        notice to their employer of the week or weeks they are intending to take leave. This
+                        must be in writing if the employer requires it.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Regulations may provide for when that notice must be given and can disapply or modify
+                        the requirement for notice in specified circumstances. They can also set out requirements
+                        for evidence relating to proof of entitlement.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Regulations can set out special provision for circumstances where a person meets the
+                        criteria set out in paragraph 37 and paragraph 38 above in respect of more than one
+                        child (with whom an employee has a parental or other personal relationship) or when
+                        a child receives neonatal care on two or more separate occasions. Regulations may
+                        also make special provision on the extent and how the entitlement to pay is applied
+                        in such circumstances.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Regulations may specify that someone employed by the same employer for at least 26
+                        weeks, but under different contracts of service which were not continuous, will nevertheless
+                        meet the test for continuous employment. They can also prescribe circumstances for
+                        other employees in which employment is to be treated as continuous.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>The Regulations can specify how earnings are to be calculated or estimated for the
+                        purposes of deciding whether an employee meets the earnings threshold. This includes
+                        being able to identify particular types of payments which are to be excluded from
+                        the calculation. The Regulations may also provide for amounts earned from the same
+                        employer under two separate contracts to be aggregated for this purpose.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ18: Liability to make payments</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Section 171ZZ18 states that an employer is liable to pay their employee Neonatal Care
+                        Pay, conditional on that employee having at least 26 weeks’ continuous service with
+                        them by the end of the ‘relevant week’, and meeting any criteria set out in regulations
+                        as described in paragraph 36 above. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Regulations must make provision for liability for Neonatal Care Pay in the event that
+                        the employer terminates their employee’s contract to avoid making this payment.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Regulations may also specify conditions where this liability will shift to HM Revenue
+                        and Customs.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ19: Rate and period of pay</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Section 171ZZ19 states that the weekly statutory rate of Neonatal Care Pay will be
+                        set in Regulations, which may include provisions for different rates for different
+                        situations. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Regulations will specify the number of weeks’ entitlement (which must be a minimum
+                        of one week), and the ‘qualifying period’ within which the pay must be claimed (which
+                        must be a minimum of 68 weeks starting from the child’s birth). The employee will
+                        be able to choose the week or weeks for which pay is claimed, in accordance with the
+                        Regulations, and the Regulations may allow pay to be claimed for non-consecutive periods,
+                        which must be blocks of a week or weeks.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Statutory pay is not payable if the employee is working for the employer who is liable
+                        to pay statutory pay. This is regardless of whether or not the work is performed under
+                        an existing contract of service, or a new one. It is also not payable if the employee
+                        is working for another employer who is not liable to pay statutory pay, but Regulations
+                        can prescribe situations where this does not apply for weeks taken as leave.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Regulations may specify further circumstances in which an employer is not required
+                        to pay statutory Neonatal Care Pay.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Employees may choose the start and end point of their statutory pay week. A week is
+                        any period of seven days. If it is necessary to calculate a daily rate of statutory
+                        Neonatal Care Pay (for the purposes of these provisions, or any Regulations), this
+                        should equal one seventh of the weekly rate.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ20: Restrictions on contracting out</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Section 171ZZ20 specifies that Neonatal Care Pay rights cannot be diluted or denied
+                        in an employee’s contract, nor can an employee be required to contribute to the costs.
+                        This does not affect the validity of any agreement allowing the employer to make deductions
+                        from statutory pay, if the employer is also authorised to make the same deductions
+                        from any contractual remuneration which the employer is obliged to pay during the
+                        period (or would be authorised to make those deductions if there was an obligation
+                        to pay contractual remuneration).</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ721: Relationship with Contractual Remuneration</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Section 171ZZ21 states that the entitlement to statutory Neonatal Care Pay does not
+                        affect an employee’s rights to payments associated with their contract of employment.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>However, it allows an employer to offset any contractual remuneration paid to an employee
+                        during a period in which they are entitled to statutory pay, against the liability
+                        to make statutory payments to that employee, and vice versa. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Regulations can specify particular types of payments which are to be regarded (or
+                        not regarded) as contractual remuneration.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ22: Crown Employment</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Section 171ZZ22 provides that persons employed by the Crown will have the same entitlements
+                        to Neonatal Care Pay as those who work for other employers.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ23: Special Classes of Person</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Section 171ZZ23 allows Regulations to set, with the agreement of HM Treasury, how
+                        the right to Neonatal Care Pay applies to persons who are, have been or will be outside
+                        Great Britain, employed on board any ship, vessel, hovercraft or aircraft, or employed
+                        in continental shelf operations.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 171ZZ24: Supplementary</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Section 171ZZ24 defines an employer as someone who is paying secondary Class 1 National
+                        Insurance contributions in relation to any of the earnings of the neonatal parent.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>An employee is defined as someone who is employed in Great Britain, either under a
+                        contract of employment or in an office with earnings.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Regulations can set out exceptions to this, and also circumstances where individuals
+                        who would not be classed as employees according to this definition are nevertheless
+                        to be treated as employees for the purposes of Neonatal Care Pay.   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Regulations may set out when two or more employers, or two or more employment contracts,
+                        should be treated as a single employer or contract.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>A week is defined as a calendar week, except for in relation to section 171ZZ19 which
+                        deals with the weeks in which statutory pay can be claimed; in that case a ‘week’
+                        can start or end on any day of the week. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>An employee’s normal weekly earnings are calculated as the average weekly earnings
+                        that have been paid to them over a set period (to be specified in Regulations) under
+                        their employment contract with the employer liable for Neonatal Care Pay. Regulations
+                        can set a different method for calculating normal weekly earnings in designated circumstances.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Regulations will also specify what is meant by ‘earnings’ and ‘relevant period’. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">67 </span></h2>
+                     <p>Regulations can make provisions for employees working for certain National Health
+                        Service (NHS) bodies whose contracts of employment have been treated as ‘divided’
+                        into more than one contract, following the establishment of NHS trusts, to elect for
+                        all their contracts to be considered as one for the purposes of Neonatal Care Pay
+                        e.g. determining eligibility and pay rate.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">68 </span></h2>
+                     <p>Regulations may also set the conditions that must be satisfied in order for an employee
+                        to be entitled to make this decision. These include the time within which an employee
+                        must make this decision, how notice of this choice must be given and to whom, as well
+                        as how the information that must be provided alongside the notice should be given.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">69 </span></h2>
+                     <p>Regulations can also specify which one of the person’s employer, under these circumstances,
+                        is liable to pay their employee Neonatal Care Pay.</p>
+                  </section>
+                  <section class="level">
+                     <p>Parliamentary procedure applying to Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">70 </span></h2>
+                     <p>Paragraph 6 of the Schedule specifies that sections 171ZZ16 – 171ZZ19 are subject
+                        to the affirmative procedure, meaning that Regulations made under these powers would
+                        need to be debated in both Houses of Parliament before becoming law. </p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Part 3: Further Amendments to do with Neonatal Care Leave and Pay</b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">71 </span></h2>
+                     <p>Part 3 makes consequential amendments to other legislation, including references to
+                        Neonatal Care Leave and Pay where relevant.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">72 </span></h2>
+                     <p>It includes amendments to the following Acts:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security Act 1989</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Finance Act 1989</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security Administration Act 1992 </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security Contributions and Benefits Act 1992</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Employment Rights Act 1996</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security Contributions (Transfer of Functions, etc.) Act 1999</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Finance Act 1999</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Employment Act 2002</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Proceeds of Crime Act 2002</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Income Tax (Earnings and Pensions) Act 2003</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Commissioners for Revenue and Customs Act 2005</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Income Tax Act 2007</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Welfare Reform Act 2007</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Pensions Act 2008</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Corporation Tax Act 2009</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Finance Act 2013</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">73 </span></h2>
+                  <p>HM Revenue &amp; Customs and commercial payroll providers usually require at least 18
+                     months’ lead-in time to implement the changes which enable employers to administer
+                     new statutory payments.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">74 </span></h2>
+                  <p>The Act successfully completed all of its Parliamentary stages and gained Royal Assent
+                     in May 2023; implementation will take place at least 18 months after that date.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related document</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">75 </span></h2>
+                  <p>The following document is relevant to the Act and can be read at the stated location:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://bills.parliament.uk/bills/3190/publications">
+                           <u>Impact Assessment</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">76 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.21in">
+                        <col style="width:3.02in">
+                        <col style="width:1.32in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference </b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>15 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-06-15/debates/10ed5b44-97ae-46cb-ab4c-f87f0aa7c33c/CommonsChamber">
+                                    <u>Vol. 716 Col. 313</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>15 July 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-07-15/debates/9DF87D54-F0C8-4CC9-8B20-3FC560806CE6/NeonatalCare(LeaveAndPay)Bill">
+                                    <u>Vol. 718 Col. 593</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Money Resolution</p>
+                           </td>
+                           <td>
+                              <p>20 July 2022</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee Stage</p>
+                           </td>
+                           <td>
+                              <p>7 September 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-09-07/debates/5831431d-e93e-47ab-acdc-9a75e02f1e5b/NeonatalCare(LeaveAndPay)Bill">
+                                    <u>First sitting: Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>20 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-01-20/debates/0A4DDF2C-C4A3-4C85-823A-33BC6D8788E7/NeonatalCare(LeaveAndPay)Bill">
+                                    <u>Vol. 726 Col. 640</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>23 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-01-23/debates/AF69387D-01AB-48B8-9AA6-4AF40D31FA1C/NeonatalCare(LeaveAndPay)Bill">
+                                    <u>Vol. 827 Col. 20</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>24 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-03-24/debates/4133D788-EE1A-467E-A141-46720A55D0BF/NeonatalCare(LeaveAndPay)Bill">
+                                    <u>Vol. 828 Col. 1978</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Committee Discharged</p>
+                           </td>
+                           <td>
+                              <p>25 April 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-04-25/debates/4D0F743B-4B13-4EBA-BCF6-C2D3F2E80AA6/NeonatalCare(LeaveAndPay)Bill">
+                                    <u>Vol. 829 Col. 1108</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>23 May 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-05-23/debates/D4499982-4DC2-44B8-906E-6A6B41691708/NeonatalCare(LeaveAndPay)Bill">
+                                    <u>Vol. 830 Col. 748</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>24 May 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-05-24/debates/02A7BA3C-6C13-404E-961C-BF62C18A04EE/RoyalAssent">
+                                    <u>Vol. 830 Col. 924</u>
+                                    </a> - Lords</p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-05-24/debates/7B12F8E3-6C97-4C3B-8FD8-716107DF4252/RetainedEULaw(RevocationAndReform)Bill">
+                                    <u>Vol. 733 Col. 371</u>
+                                    </a> - Commons</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

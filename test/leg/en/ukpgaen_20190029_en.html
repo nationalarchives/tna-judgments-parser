@@ -1,0 +1,588 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>EARLY PARLIAMENTARY GENERAL ELECTION</b>
+               <b>
+                  </b>
+               <b>ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Early Parliamentary General Election Act 2019
+                  (c. 29) which received Royal Assent on 31 October 2019.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Cabinet Office in order to assist
+                  the reader of the Act. They do not form part of the Act and have not been endorsed
+                  by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Early Parliamentary General Election Act provides for a parliamentary general
+                     election to be held on 12 December 2019.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Government considers it desirable to hold a general election on the date set out
+                     in the Act. The Government wishes to set out the date that the election will take
+                     place in legislation, in order to provide maximum transparency in relation thereto.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>It is a statutory requirement that Parliament must dissolve 25 working days before
+                     polling day. An election on 9 December 2019 would mean the House dissolving at one
+                     minute past midnight on Friday 1 November. This would require the Early Parliamentary
+                     General Election Act currently before the House to complete passage through the House
+                     of Commons and House of Lords and achieve Royal Assent on Thursday 31 October.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>All Parliamentary business planned that relies on the House sitting next week could
+                     not proceed, for example the election of a new Speaker on 4 November. The Government
+                     would also need to pass the Northern Ireland Budget Act before dissolution to ensure
+                     the NI Civil Service can access the funding it needs to deliver public services and
+                     proper governance in the continued absence of a functioning Executive. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The 9 December would make the polling day a Monday and this places additional burdens
+                     on administrative preparations for polling stations and getting casual staff to work
+                     over the weekend. This could increase the cost of the election. In the modern era
+                     for elections there has never been a Monday election. It is also the case that a 9
+                     December election could lead to two different voter registration deadlines across
+                     Scotland which could be confusing for Scottish electors.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Fixed-term Parliaments Act 2011 (”the 2011 Act”) provides for fixed days for polls
+                     for parliamentary general elections. In accordance with section 1(2) of the 2011 Act,
+                     the polling day for elections is ordinarily the first Thursday in May in the fifth
+                     calendar year following that in which the polling day for the previous parliamentary
+                     general election fell.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The 2011 Act also makes provision for early parliamentary general elections. This
+                     Act provides that the 12 December 2019 be treated as polling day appointed under section
+                     2(7) of the 2011 Act. This means that the provisions in section 3 of the 2011 Act
+                     in respect of the dissolution of Parliament will apply to the early parliamentary
+                     general election. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act extends and applies to the whole of the United Kingdom. It is concerned only
+                     with the Westminster parliamentary elections and will not have an impact on matters
+                     which are devolved in respect of Scotland and Wales, or matters which are transferred
+                     in respect of Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The Parliament of the United Kingdom is a reserved matter under paragraph 1(c) of
+                     Schedule 5 to the Scotland Act 1998 and under paragraph 1(c) of Schedule 7A to the
+                     Government of Wales Act 2006. Elections for membership of the House of Commons, including
+                     the subject-matter of the Representation of the People Act 1983, the Representation
+                     of the People Act 1985 and the Parliamentary Constituencies Act 1986, so far as those
+                     enactments apply, or may be applied, in respect of such membership are reserved matters
+                     under reservation B3 of Schedule 5 to the Scotland Act 1998 and under reservation
+                     B1 of Schedule 7A to the Government of Wales Act 2006. The provisions of the Act will
+                     not have an impact on matters which are devolved. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Parliament of the United Kingdom and parliamentary elections, including the franchise
+                     and disqualifications for membership of that Parliament, are an excepted matter under
+                     paragraph 2 of Schedule 2 to the Northern Ireland Act 1998. The provisions of the
+                     Act will not have an impact on matters which are transferred.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. The table also summarises the position regarding
+                     legislative consent motions and matters relevant to Standing Orders Nos. 83J to 83X
+                     of the Standing Orders of the House of Commons relating to Public Business.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Early parliamentary general election</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>
+                     <i>Section 1</i> provides for a parliamentary general election to be held on 12 December 2019. This
+                     is to be treated as a polling day appointed under <i>section 2(7)</i> of the 2011 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>
+                     <i>Subsection (3)</i> provides that the early parliamentary general election is to be treated as taking
+                     place in accordance with <i>section</i><i>2</i> of the 2011 Act for the purposes of the specified provisions in the two listed Acts
+                     (<i>section</i><i>96A(9)</i> of the Welfare Reform Act 2012, and <i>section 23(8)</i> of the Small Business, Enterprise and Employment Act 2015). In respect of the former,
+                     the provision has the effect of disapplying a requirement to review the benefit cap
+                     'in each Parliament'. In respect of the latter, the provision has the effect of amending
+                     the time for compliance with certain reporting requirements. The amendments are necessary
+                     in order that the periods specified for the review and reporting requirements will
+                     work correctly given the changes to the period of the Parliament that will result
+                     from the holding of an early parliamentary general election.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>
+                     <i>Subsection (4)</i> amends the Representation of the People (Scotland) Regulations 2001 to align the
+                     registration deadline for Scotland with the registration deadline in the rest of the
+                     United Kingdom by discounting the St. Andrew’s Day bank holiday from the registration
+                     timetable.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>
+                     <i>Section 2</i> provides that the Act will come into force on the day it is passed and deals with
+                     its short title.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Act will come into force on the day it is passed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>The Act extends and applies to the whole of the United Kingdom, including Northern
+                     Ireland.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.01in">
+                        <col style="width:1.24in">
+                        <col style="width:1.24in">
+                        <col style="width:1.24in">
+                        <col style="width:1.71in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.44in">
+                        <col style="width:3.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>29 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-10-29/debates/84C49DB8-B0ED-4BF0-A75A-064864FDD024/PointsOfOrder">
+                                    <u>Vol. 667 Col. 216</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-10-29/debates/DDAEFDD2-1872-45C6-8553-8B5B3786F50B/EarlyParliamentaryGeneralElectionBill">
+                                    <u>Vol. 667 Col. 233</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>29 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-10-29/debates/663DAF1C-CCE3-4E0E-BE8A-687643A76309/EarlyParliamentaryGeneralElectionBill">
+                                    <u>Vol. 667 Col. 290</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>29 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2019-10-29/debates/663DAF1C-CCE3-4E0E-BE8A-687643A76309/EarlyParliamentaryGeneralElectionBill">
+                                    <u>Vol. 667 Col. 328</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>29 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-10-29/debates/786F83C1-86D1-41B1-9A1C-96758450FB1C/EarlyParliamentaryGeneralElectionBill">
+                                    <u>Vol. 800 Col. 942</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>30 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-30/debates/37AAC81F-A393-44B3-9985-22A76FA1D3D1/EarlyParliamentaryGeneralElectionBill">
+                                    <u>Vol. 800 Col. 961</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee (and remaining stages)</p>
+                           </td>
+                           <td>
+                              <p>30 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-30/debates/E1BDD564-B642-4D86-A5DC-3EC807BF25DA/EarlyParliamentaryGeneralElectionBill">
+                                    <u>Vol. 800 Col. 995</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>31 October 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-10-31/debates/6FAFCC9A-A3BD-4C59-9F61-956DF2E26E3A/CivilPartnership">
+                                    <u>Vol. 667 Col. 592</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-10-31/debates/E095C72C-6D9D-489F-BD54-CB67D51A195E/RoyalAssent">
+                                    <u>Vol. 800 Col. 1079</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NORTHERN IRELAND (INTERIM ARRANGEMENTS) ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Northern Ireland<b></b>(Interim Arrangements) Act 2023 which received Royal Assent on 24 May 2023 (c. 21).
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Northern Ireland Office in order
+                  to assist the reader of the Act and help inform debate on it. They do not form part
+                  of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>In summary, this Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>provides for a continuation of existing powers allowing the senior officers of Northern
+                        Ireland departments to exercise the functions of those departments when in the public
+                        interest, notwithstanding the ongoing lack of Northern Ireland Ministers;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>confers on the Secretary of State the power to commission advice or request information
+                        from Northern Ireland departments, for the purpose of developing options for raising
+                        more public revenue in Northern Ireland or otherwise improving the sustainability
+                        of public finances in Northern Ireland;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>confers on the Secretary of State the power to direct Northern Ireland departments
+                        to carry out consultations, for the purpose of developing options for raising more
+                        public revenue in Northern Ireland or otherwise improving the sustainability of public
+                        finances in Northern Ireland; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>requires certain accounts, reports and other financial documents that must be laid
+                        in the Northern Ireland Assembly to also be laid in Parliament when the Northern Ireland
+                        Assembly is not functioning.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Northern Ireland Assembly elections were held on 5 May 2022, as five years had passed
+                     since the previous Assembly was elected. Prior to the election, there was no functioning
+                     Executive due to the resignation of the First Minister on 4 February 2022. The First
+                     Minister’s resignation meant that the deputy First Minister also ceased to hold office
+                     and that there was no longer any functioning Executive Committee.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>As a result of the election on 5 May, 90 Members of the Legislative Assembly were
+                     elected, forming a new Assembly. The Northern Ireland Act 1998 requires that the Assembly
+                     first meets within 8 days of a poll, and that meeting commences the period for filling
+                     Ministerial offices.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Northern Ireland (Ministers, Elections and Petitions of Concern) Act 2022 implemented
+                     changes agreed within New Decade, New Approach (NDNA), the agreement that restored
+                     the devolved institutions in 2020. These changes include provision for a longer period
+                     of time in which to form an Executive, and allowed for an initial period of 6 weeks
+                     from the date that the Assembly first meets, followed by 3 successive periods of 6
+                     weeks (i.e. 24 weeks in total), unless the Assembly resolves (with cross-community
+                     support) that the period should not be further extended. During this time, Northern
+                     Ireland Ministers who were in post before the election were allowed to remain so in
+                     a caretaker capacity.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The period for filling Ministerial offices after the Assembly election in May 2022
+                     initially came to an end on 27 October 2022, with Northern Ireland Ministers ceasing
+                     to hold office on 28 October 2022. As those offices were not filled, the Secretary
+                     of State for Northern Ireland fell under a duty to propose a date for a further Assembly
+                     election as soon as practicable to take place within 12 weeks.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Parliament subsequently passed the Northern Ireland (Executive Formation etc) Act
+                     2022 (NIEFA 2022), providing for powers that allow the senior officers of Northern
+                     Ireland departments to exercise the functions of those departments when in the public
+                     interest, notwithstanding the ongoing lack of Northern Ireland Ministers. NIEFA 2022
+                     also retrospectively extended the period for Executive formation from when it ended
+                     on 27 October until 8 December 2022, and for the powers to be extended until 19 January
+                     2023 by regulations. The Secretary of State exercised that power on 7 December, thereby
+                     extending the period for Executive formation until 19 January 2023. The period was
+                     further extended until 18 January 2024 by the Northern Ireland (Executive Formation
+                     and Organ and Tissue Donation) Act 2023.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>To date, the UK Government has made limited interventions to ensure financial stability
+                     and respond to the governance situation in Northern Ireland including NIEFA 2022,
+                     legislating to set the level of regional rates for 2022-23, giving indicative budget
+                     allocations and providing a full Northern Ireland Budget for 2022-23, and enabling
+                     a reduction in pay for Members of the Northern Ireland Assembly. These have largely
+                     been direct legislative interventions, rather than transferring to UK Ministers powers
+                     normally exercised by Northern Ireland Ministers, with the exception of the power
+                     to issue guidance and to make specified public appointments under NIEFA 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>In the context of ongoing political instability in Northern Ireland, and the expiry
+                     of the senior official decision-making powers on 5 June 2023, further legislation
+                     is required to manage the governance gap in Northern Ireland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Decision-making</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>In 2018, the case of <i>Buick</i><a class="fn" id="fnref-1" href="#fn-1">1</a>, which concerned the approval of planning permission for a major waste disposal incinerator
+                     by the Department for Infrastructure, the Court of Appeal upheld the High Court’s
+                     judgment that powers exercisable by departments in the absence of Ministers are subject
+                     to limitations. In particular – and for the purposes of that appeal – it held that
+                     departments may not exercise functions in respect of matters that would normally be
+                     required to be referred to the Executive Committee of the Assembly because they are
+                     cross-cutting, significant or controversial. It also observed that Northern Ireland
+                     departments cannot take decisions that would normally, as a matter of convention or
+                     otherwise, go before a Northern Ireland Minister for approval.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The conclusions of <i>Buick </i>were considered again in the case of <i>JR80</i><a class="fn" id="fnref-2" href="#fn-2">2</a> which considered whether the Secretary of State for Northern Ireland was legally
+                     obliged to establish a scheme of redress for victims of historical institutional abuse
+                     as recommended by the independent inquiry during the then ongoing collapse of the
+                     devolved institutions. The Court of Appeal confirmed the court’s findings in Buick
+                     as to the limitations on decisions that can be made by Northern Ireland departments
+                     in the absence of Ministers, subject to the effect of the primary legislation passed
+                     in response to that case.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The effect of<i> Buick</i> and <i>JR80</i> meant that legislation was required to clarify that departments could continue to
+                     exercise functions in the absence of Ministers where it is in the public interest
+                     to do so. This was considered necessary so as to ensure the continued delivery of
+                     public services in Northern Ireland and to provide clarity and certainty about decision
+                     making while efforts are made to restore the Executive. NIEFA 2022 therefore clarified
+                     that a senior officer of a Northern Ireland department is not prevented from exercising
+                     functions of the department, where it is in the public interest to do so, during the
+                     period for Executive formation or 6 months from the day on which NIEFA 2022 was passed.
+                     Given these existing senior officer decision-making provisions expire on 5 June 2023,
+                     this Act therefore will provide for the continuation of these arrangements during
+                     the current period where there is no Executive and will continue to require the Secretary
+                     of State to publish guidance about the exercise of departments’ functions.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Advice, information and consultation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Northern Ireland departments operate under the direction and control of their Ministers,
+                     and in the absence of those Ministers, the Government considers it necessary to make
+                     provision for the Secretary of State to request advice and information on developing
+                     options for a sustainable approach to public finances, including revenue raising.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The Act therefore provides that the Secretary of State may direct Northern Ireland
+                     departments to provide advice and information, and to carry out consultations, for
+                     the purpose of developing options for raising more public revenue in Northern Ireland
+                     or otherwise improving the sustainability of public finances in Northern Ireland.
+                     These powers will expire on the formation of a Northern Ireland Executive.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Consistent with the approach taken to other advice to Ministers, the Act does not
+                     provide for a direction for the provision of advice or information given to a Northern
+                     Ireland Department by the Secretary of State to be published or for public notification
+                     to be given. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Accounts and reports</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>In periods where the Northern Ireland Assembly is not functioning, relevant Assembly
+                     Committees cannot conduct the normal scrutiny of accounts, reports, and other documents
+                     laid before the Assembly by Northern Ireland departments. This is despite those accounts
+                     continuing to be laid by Northern Ireland departments in accordance with their legal
+                     duties.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The Government considers that transparency and scrutiny is important to the good management
+                     of public money, and the operation of the system of accountability that governs that
+                     expenditure by public authorities. The Act would therefore require the Secretary of
+                     State to lay the accounts of Northern Ireland departments before the House of Commons
+                     in periods where there is no functioning Assembly.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Similar provision has been made in law previously for periods in which the Northern
+                     Ireland institutions have been suspended, including under the Northern Ireland Act
+                     2000. However, at present, there is no requirement for the House of Commons to be
+                     informed of the accounts and reports of Northern Ireland departments and for scrutiny
+                     to be conducted in accordance with the Standing Orders.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>House of Commons Standing Order 148 provides for the House of Commons Public Accounts
+                     Committee to scrutinise accounts laid before Parliament as the Committee may think
+                     fit. It will be a matter for the Public Accounts Committee to consider whether they
+                     wish to do so in respect of Northern Ireland departments.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Under the terms of this provision, if the Northern Ireland Assembly is sitting, then
+                     reports and the accounts of Northern Ireland Departments will only be laid before
+                     the Assembly. If the Northern Ireland Assembly is not sitting, accounts, reports and
+                     other relevant documents may be laid in duplicate before the House of Commons and
+                     the Assembly.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The relevant legal background is explained in the Policy Background and Decision-making
+                     Powers sections of these Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>This Act extends to England and Wales, Scotland and Northern Ireland, but only applies
+                     in Northern Ireland. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of the Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Exercise of functions by Northern Ireland departments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>This section extends existing provisions in NIEFA 2022 which clarify the exercise
+                     of Northern Ireland departmental functions by senior officers. This provision will
+                     continue to apply during the current period where there is no Executive, until the
+                     NI Ministerial offices are next filled.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>This ensures that the absence of Ministers does not prevent a senior officer of a
+                     Northern Ireland department from exercising a function of the department if she or
+                     he is satisfied that it is in the public interest to do so until an Executive is next
+                     formed. The Secretary of State remains under a requirement to publish guidance about
+                     the exercise of these departmental functions, including guidance as to the principles
+                     to be taken into account in deciding whether or not to exercise a function, and senior
+                     officers of departments are required to have regard to that guidance. </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Power to direct departments to provide advice and information, and to carry
+                     out consultations</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Section 2 confers powers on the Secretary of State to direct Northern Ireland departments
+                     to provide advice and information, and/or to carry out consultations, for the purpose
+                     of developing options for raising more public revenue in Northern Ireland or otherwise
+                     improving the sustainability of public finances in Northern Ireland, during the current
+                     period in which there is no Executive.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>A direction for advice or information under this section may include provision about
+                     the manner or form in which such advice or information is to be provided, or the timing
+                     of doing so. Where a direction is given to provide information that is not within
+                     a Northern Ireland department’s possession, the provision requires the department
+                     to take reasonable steps to obtain the information for the purpose of complying with
+                     the direction.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>A direction to carry out a consultation may include provision about who is to be consulted,
+                     how the consultation is to be carried out, the content of the consultation (including
+                     provision requiring the approval of the Secretary of State to whatever is consulted
+                     on), and the consultation timetable. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>The power in section 2 may be exercised so as to require two or more Northern Ireland
+                     departments to provide joint advice or collate information.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Section 2 provides that a direction under this section would lapse at the end of the
+                     current period in which there is no Executive, and provides that disclosures from
+                     Northern Ireland departments under must not contravene relevant data protection legislation.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Exception to assembly power to call for witnesses and documents</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>This section disapplies the Assembly’s power in s.44 of the Northern Ireland Act 1998
+                     to require a person to provide evidence in respect of Ministers of the Crown or those
+                     in Crown employment (which includes Northern Ireland civil servants) in connection
+                     with the exercise of certain functions conferred under this Act. Specifically, the
+                     exercise of functions in connection with the giving of a direction to a Northern Ireland
+                     department to provide advice or information or launch a consultation; or the exercise
+                     of a function in accordance with any such direction.  </p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Accounts etc to be laid before House of Commons</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Section 4 requires that the Secretary of State be sent a copy of any minutes, accounts,
+                     reports, or other documents that would be laid before the Assembly under the terms
+                     of relevant provisions in law, during a period in which the Assembly is not functioning.
+                     The relevant provisions are contained within the Government Resources and Accounts
+                     Act (Northern Ireland) 2001 and the Financial Provisions (Northern Ireland) Order
+                     1993.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Section 4 also places the Secretary of State under a legal duty to lay before the
+                     House of Commons any documents received under the terms of this provision.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>This Act will come into force on Royal Assent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>The following documents are relevant to the Northern Ireland (Interim Arrangements)
+                     Act:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/nisi/1993/1252/contents">
+                           <u>Financial Provisions (Northern Ireland) Order 1993</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/ukpga/1998/47/contents">
+                           <u>The Northern Ireland Act 1998</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/nia/2001/6/contents">
+                           <u>Government Resources and Accounts Act (Northern Ireland) 2001</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/ukpga/2022/48/contents/enacted">
+                           <u>The Northern Ireland (Executive Formation etc Act) 2022</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/nia/2022/6/contents/enacted">
+                           <u>The Budget Act (Northern Ireland) 2022</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/ukpga/2023/3/contents/enacted">
+                           <u>Northern Ireland Budget Act 2023</u>
+                           </a>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.legislation.gov.uk/ukpga/2023/4/enacted">
+                           <u>Northern Ireland (Executive Formation and Organ and Tissue Donation) Act 2023</u>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <i>House of Commons</i>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Introduction</p>
+                           <p>27 April 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-04-27/debates/90B6E141-5FA7-47CB-887E-EE4CCA5DC8B8/PointOfOrder">
+                                 <u>Vol. 731. Col. 987</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Second Reading</p>
+                           <p>10 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2023-05-10/debates/83441A56-FD0B-4F2E-91DA-06CA79E6934D/NorthernIreland(InterimArrangements)Bill">
+                                 <u>Vol. 732 Col. 359</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Committee of the Whole House</p>
+                           <p>10 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-05-10/debates/0CA23B83-59BC-4910-BC9B-3EE45526424D/NorthernIreland(InterimArrangements)Bill">
+                                 <u>Vol. 732. Col. 395</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Third Reading</p>
+                           <p>10 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-05-10/debates/0CA23B83-59BC-4910-BC9B-3EE45526424D/NorthernIreland(InterimArrangements)Bill">
+                                 <u>Vol. 732. Col. 406</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <i>House of Lords</i>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Introduction</p>
+                           <p>11 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-05-11/debates/FC637F8F-1FD0-4F08-9BB6-AB56D5301B5A/NorthernIreland(InterimArrangements)Bill">
+                                 <u>Vol. 829. Col. 1948</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Second Reading</p>
+                           <p>18 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2023-05-18/debates/D2192342-7102-46FC-86B0-6A77138D1228/NorthernIreland(InterimArrangements)Bill">
+                                 <u>Vol. 830 Col. 380</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Committee of the Whole House</p>
+                           <p>23 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2023-05-23/debates/AABBD006-8561-45DA-9AC1-8087D8C55C9D/NorthernIreland(InterimArrangements)Bill">
+                                 <u>Vol. 830 Col. 748</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Third Reading</p>
+                           <p>23 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-05-23/debates/AABBD006-8561-45DA-9AC1-8087D8C55C9D/NorthernIreland(InterimArrangements)Bill">
+                                 <u>Vol. 830 Col. 764</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Royal Assent</p>
+                           <p>24 May 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-05-24/debates/7B12F8E3-6C97-4C3B-8FD8-716107DF4252/RetainedEULaw(RevocationAndReform)Bill">
+                                 <u>House of Commons Vol. 733 Col. 371</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-05-24/debates/02A7BA3C-6C13-404E-961C-BF62C18A04EE/RoyalAssent">
+                                 <u>House of Lords Vol. 830 Col. 924</u>
+                                 </a>
+                              </p>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.judiciaryni.uk/judicial-decisions/2018-nica-26"><u>Buick's (Colin) Application as Chair Person of NOARC 21 [2018] NICA 26</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.judiciaryni.uk/judicial-decisions/2019-nica-58"><u>JR80's Application [2019] NICA 58</u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

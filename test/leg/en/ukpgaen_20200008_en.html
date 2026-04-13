@@ -1,0 +1,527 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>WINDRUSH COMPENSATION SCHEME (EXPENDITURE)</b>
+               <b>
+                  </b>
+               <b>ACT 2020</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Windrush Compensation Scheme (Expenditure) Act
+                  2020 (c. 8) which received Royal Assent on 8 June 2020.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been provided by the Home Office in order to assist the
+                  reader in understanding the Act. They do not form part of the Act and have not been
+                  endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act affects existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Windrush Compensation Scheme (Expenditure) Act is to establish
+                     the financial authority (necessary for regularity reasons) to enable the Home Office
+                     to make compensation awards for a specific compensation scheme (the Windrush Compensation
+                     Scheme). Further information on the scheme itself, including details of eligibility,
+                     how to claim and rates of compensation can be found online at <a href="http://www.gov.uk/guidance/windrush-compensation-scheme"><u>http://www.gov.uk/guidance/windrush-compensation-scheme</u></a>. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Windrush Compensation Scheme was launched on 3 April 2019. It is intended to provide
+                     redress for certain losses and detriment experienced by those who came to the UK legally
+                     many years ago and are entitled to live and work here, but who were unable to evidence
+                     those rights. This inability to evidence those rights arose primarily from measures
+                     put in place over time to tackle illegal immigration and protect taxpayer money. These
+                     measures were not intended to have negative impacts on British Citizens or those who
+                     are lawfully resident in the UK. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Measures to tackle illegal immigration and protect taxpayer money were introduced
+                     by successive governments over many years, including immigration enforcement powers
+                     and measures on access to work, benefits and services. The first NHS treatment charges
+                     for overseas visitors and illegal migrants were introduced in 1982. Right to work
+                     checks were first introduced in 1997, measures on access to benefits in 1999, civil
+                     penalties for employing illegal migrants in 2008, and the most recent measures in
+                     the Immigration Acts of 2014 and 2016 introduced checks by landlords before property
+                     is rented and checks by banks on account holders. Although these measures were designed
+                     to tackle illegal migration, they have had an unintended and sometimes devastating
+                     impact on people residing in the United Kingdom legally yet who have struggled to
+                     get the documentation to prove their status. Those most affected are often referred
+                     to as the ‘Windrush generation’ (in reference to the ‘Empire Windrush’, one of the
+                     first ships that brought men and women from the Caribbean to the United Kingdom in
+                     1948, in response to labour shortages following the Second World War).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Government has taken a number of steps to give redress to those members of the
+                     Windrush generation who have been affected. On 10 May 2018, the Government launched
+                     a ‘call for evidence’ from members of the Windrush generation, followed on 19 July
+                     2018 by a consultation process that ran until 16 November 2018. The responses to the
+                     call for evidence and the consultation influenced the design of the Windrush Compensation
+                     Scheme.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Almost everyone originally from a Commonwealth country who arrived before 1 January
+                     1973 is included in the eligibility criteria for the Scheme, which can be viewed online
+                     at <a href="http://www.gov.uk/guidance/windrush-compensation-scheme"><u>www.gov.uk/guidance/windrush-compensation-scheme</u></a>. Those who are lawfully in the United Kingdom (or are now a British citizen) and
+                     arrived to live in the UK on or before 31 December 1988 will also be eligible to apply
+                     regardless of nationality on arrival - even if not a Commonwealth citizen. The scheme
+                     is also open to (i) children and grandchildren of Commonwealth citizens in certain
+                     circumstances; (ii) the estates of those who are now deceased but who would have otherwise
+                     been eligible to claim compensation; and, (iii) close family members of eligible claimants,
+                     where there has been a significant impact on their life or where there is evidence
+                     of certain direct financial costs.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The scheme is open to claims until 2 April 2023, with the possibility of extension.
+                     Government expenditure needs to meet the expectations of financial regularity in relation
+                     to the 1932 Concordat and <i>Managing Public Money</i><a class="fn" id="fnref-1" href="#fn-1">1</a>. This Act ensures awards made under the scheme meet those expectations. It does not
+                     make any changes to the operation of the scheme. The Secretary of State for the Home
+                     Office already has powers under common law to make awards under the scheme, which
+                     derive from the Crown’s status as a corporation possessing legal personality under
+                     long established principles for the conduct of government business.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Home Office first published information on the operation of the scheme, including
+                     on the number of claims submitted, the number of claims paid, and the overall amount
+                     paid under the scheme, on 27 February 2020. That information can be found here: <a href="https://www.gov.uk/government/publications/windrush-compensation-scheme-data-february-2020"><u>https://www.gov.uk/government/publications/windrush-compensation-scheme-data-february-2020</u></a>. The Home Office will continue to publish this data on a quarterly basis. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The relevant legal background is explained in the policy background section of these
+                     Notes.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>As set out in section 2, the provisions in the Act extend and apply to England and
+                     Wales, Scotland, and Northern Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>No provisions touch on matters that are devolved to Scotland or Wales, or transferred
+                     to Northern Ireland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Expenditure on the Windrush Compensation Scheme</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>This section provides Parliamentary authority for expenditure (from money provided
+                     by Parliament) under or in connection with the Windrush Compensation Scheme. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>This section also defines the scheme as being the scheme published by the Home Office
+                     on 3 April 2019 that provides compensation for certain categories of persons in recognition
+                     of difficulties arising out of an inability to demonstrate lawful immigration status.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 2 describes the extent, commencement and short title.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 2(2) sets out that the provisions of the Act commenced on Royal Assent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Impact Assessment for the Windrush Compensation Scheme  <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/864199/Windrush_compensation_policy_Impact_Assessment.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/864199/Windrush_compensation_policy_Impact_Assessment.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Managing Public Money</p>
+                     <section class="subparagraph">
+                        <p>
+                           <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742189/Managing_Public_Money__MPM__with_annexes_2018.pdf">
+                              <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742189/Managing_Public_Money__MPM__with_annexes_2018.pdf</u>
+                              </a>
+                           </p>
+                     </section>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Windrush Compensation Scheme guidance</p>
+                     <section class="subparagraph">
+                        <p>
+                           <a href="http://www.gov.uk/guidance/windrush-compensation-scheme">
+                              <u>www.gov.uk/guidance/windrush-compensation-scheme</u>
+                              </a>
+                           </p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of this
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.35in">
+                        <col style="width:2.46in">
+                        <col style="width:2.26in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <b>House of Commons</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction and First Reading</p>
+                           </td>
+                           <td>
+                              <p>8 January 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-01-08/debates/5338BBC9-4028-42FF-97C4-214B19D7C9ED/PointsOfOrder">
+                                    <u>Vol. 669 Col. 388</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>10 February 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2020-02-10/debates/2689E446-2379-4EFE-8B10-8E1E0CEC7466/WindrushCompensationScheme(Expenditure)Bill">
+                                    <u>Vol. 671 Cols. 618-670</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee Stage, Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>24 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2020-03-24/debates/08EDEF46-F8BF-45C7-A211-6372BDDC1FB4/WindrushCompensationScheme(Expenditure)Bill">
+                                    <u>Vol. 674 Cols. 299-314</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <b>House of Lords</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction and First Reading</p>
+                           </td>
+                           <td>
+                              <p>25 March 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2020-03-25/debates/10C4FFD5-90CA-4406-979B-1D137777C288/WindrushCompensationScheme(Expenditure)Bill">
+                                    <u>Vol. 802</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading, Committee Stage, Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>21 April 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-04-21/debates/7BD70343-8A9B-4A43-BF15-6EFBD97E91F0/WindrushCompensationScheme(Expenditure)Bill">
+                                    <u>Vol. 803 Cols. 23-48</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>8 June 2020</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2020-06-08/debates/E1794007-55D3-4CD6-96E8-73F7D7E510CE/RoyalAssent">
+                                    <u>Lords: Vol. 803 Col. 1541</u>
+                                    </a>
+                                 </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The 1932 Concordat is an agreement, made by way of correspondence and minute between
+                  the Public Accounts Committee and HM Treasury, that departments would not spend without
+                  adequate authorities in place. Where this concerns continuing functions, particularly
+                  functions expected to extend beyond a year, it is normally the case that those powers
+                  and duties to be exercised will be defined by a specific statute. Further information
+                  can be found online at Annex 2.3 of <i>Man</i><i>a</i><i>ging Public Money </i>at <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742189/Managing_Public_Money__MPM__with_annexes_2018.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742189/Managing_Public_Money__MPM__with_annexes_2018.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742189/Managing_Public_Money__MPM__with_annexes_2018.pdf</a></u></a>.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

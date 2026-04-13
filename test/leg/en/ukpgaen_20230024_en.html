@@ -1,0 +1,820 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>CHILD SUPPORT COLLECTION (DOMESTIC ABUSE)</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Child Support Collection (Domestic Abuse) Act
+                  2023 which received Royal Assent on 29 June 2023 (c. 24).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Work and Pensions
+                  in order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act means in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act affects existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The primary purpose of this Act is to provide additional legislative protection for
+                     victims of domestic abuse who use the Child Maintenance Service (CMS) by allowing
+                     for the collection of child maintenance payments by the Secretary of State or the
+                     Department for Communities (DfC) in Northern Ireland on behalf of the Non-Resident
+                     Parent (NRP) or the Person with Care (PWC) where the Secretary of State or DfC is
+                     satisfied that there is evidence of behaviour of a parent that amounts to domestic
+                     abuse against the other parent or children in their household, and that it is appropriate
+                     to make the arrangements. The Act provides that regulations will set out the evidence
+                     required for the condition to be met.&nbsp;</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>All parents have a legal responsibility to support their children financially until
+                     they are 16 years old and, in some circumstances, until they are 20. This can be through
+                     voluntary arrangements between separated parents, arrangements made by way of a court
+                     order, or by way of child maintenance calculated and enforced under the statutory
+                     child maintenance scheme run by DWP (or by the Department for Communities in Northern
+                     Ireland) and administered by the CMS (or the Child Maintenance Service in Northern
+                     Ireland).&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The statutory child maintenance scheme was introduced by the Child Support Act 1991
+                     (the 1991 Act) and has been in operation since 1993.  The current scheme was introduced
+                     in December 2012 and all applications since November 2013 have been calculated under
+                     the “2012 rules”. (The two previous schemes, the “1993 rules” and the “2003 rules”
+                     are now closed.)  Under the statutory scheme, the CMS is responsible for calculating
+                     child maintenance payments and, in some cases, collecting and enforcing them. A PWC
+                     cannot enforce child maintenance payments calculated by the CMS.  Child maintenance
+                     legislation provides a comprehensive set of powers and obligations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The CMS manages cases through one of two service types: direct pay and collect and
+                     pay. In direct pay cases, the CMS calculates how much maintenance should be paid,
+                     issues a payment schedule, and the NRP pays the maintenance to the PWC. For collect
+                     and pay, CMS calculates how much maintenance should be paid, collects the money from
+                     the NRP and pays it to the PWC.&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>There are collection charges set out in regulations for the use of the collect and
+                     pay service: 20% on top of the liability for the NRP, and 4% of the maintenance received
+                     for the PWC.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>&nbsp;&nbsp;Under previous legislation, the Secretary of State had the power to collect maintenance
+                     payments (under the collect and pay service) only where:&nbsp;</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the NRP agrees to the arrangements, or&nbsp;&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the CMS is satisfied that without the arrangements child support maintenance is unlikely
+                        to be paid in accordance with the calculation. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Therefore, under previous legislation, direct pay was the default option, unless the
+                     NRP agreed to collect and pay, or was deemed ‘unlikely to pay’ by demonstrating an
+                     unwillingness to pay their liability. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>This power has been introduced to further strengthen the existing support for domestic
+                     abuse victims.&nbsp;The Act creates an additional power to collect maintenance payments.
+                     This allows the Secretary of State (or the DfC in Northern Ireland) to place a child
+                     maintenance case onto the collect and pay service when the Secretary of State or DfC
+                     is satisfied that there is evidence of behaviour of a parent that amounts to domestic
+                     abuse as set out in the Domestic Abuse Act 2021 (or the Domestic Abuse and Civil Proceedings
+                     Act (Northern Ireland) 2021 in Northern Ireland), against the other parent or children
+                     in their household, and that it is appropriate to make the arrangements. The evidence
+                     requirements will be set out in secondary legislation.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Under section 4 of the Child support Act 1991 (“the 1991 Act”), either parent (or
+                     a child in Scotland under section 7) may apply for a maintenance calculation to be
+                     made.&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Liability for child maintenance is calculated under section 11 and in accordance with
+                     Schedule 1 of the 1991 Act.&nbsp;&nbsp;&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>When the Secretary of State (through the CMS) exercises any discretionary power in
+                     the 1991 Act, they are obliged to consider the welfare of any child affected by the
+                     decision (section 2 of the 1991 Act).&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Under section 4(2)(a) of the 1991 Act, the CMS had the power to collect maintenance
+                     payments (under the collect and pay service) where:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the NRP agrees to the arrangements (section 4(2A)(a) of the 1991 Act); or&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the CMS is satisfied that without the arrangements child support maintenance is unlikely
+                        to be paid in accordance with the calculation (section 4(2A)(b) of the 1991 Act).&nbsp;</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Sections 7(3) and 7(3A) of the 1991 Act provide this power in Scotland when the child
+                     maintenance application has been made by a child.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Article 7 of the Child Support (Northern Ireland) Order 1991 provides for corresponding
+                     provisions in Northern Ireland to section 4 of the Child Support Act 1991.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 5 of the Act sets out the territorial extent. Section 1 extends and applies
+                     to England and Wales and Scotland. Section 2 extends and applies to Scotland. Section
+                     4 extends and applies to Northern Ireland.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: Collection of maintenance in England and Wales and Scotland: cases involving
+                     domestic abuse</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 1 amends section 4 of the 1991 Act to make provision for the collection of
+                     maintenance in England and Wales and Scotland in cases involving domestic abuse.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsection (2) expands the circumstances in which arrangements may be made to collect
+                     maintenance. It inserts subsection (3A) into section 4 of the 1991 Act which gives
+                     the Secretary of State the power to place a child maintenance case onto the collect
+                     and pay service when the Person with Care or the Non-Resident Parent applies, and
+                     the Secretary of State is satisfied on the basis of evidence of a prescribed kind
+                     relating to relevant domestic abuse that it is appropriate for such arrangements to
+                     be made. It inserts subsection (3B) which defines relevant domestic abuse for the
+                     purposes of the subsection.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (3) amends section 4 (4) of the 1991 Act to expand the power to make regulations
+                     about the provision of information to cover applications on the basis of domestic
+                     abuse.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Further provision about collection of maintenance in Scottish cases involving
+                     domestic abuse</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Section 2 amends section 7 of the 1991 Act to make provision for the collection of
+                     maintenance in Scotland in cases involving domestic abuse. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (2) expands the circumstances in which arrangements may be made to collect
+                     maintenance. It inserts subsection (4A) into section 7 of the 1991 Act which gives
+                     the Secretary of State the power to place a child maintenance case onto the collect
+                     and pay service when the Person with Care or the Non-Resident Parent or the child
+                     concerned applies and the Secretary of State is satisfied on the basis of evidence
+                     of a prescribed kind relating to relevant domestic abuse that it is appropriate for
+                     such arrangements to be made. It inserts subsection (4B) which defines relevant domestic
+                     abuse for the purposes of the subsection.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Subsection (3) amends section 7(5) of the 1991 Act to expand the power to make regulations
+                     about the provision of information to cover applications on the basis of domestic
+                     abuse.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 3: Minor and consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Section 3 sets out minor and consequential amendments relating to England and Wales
+                     and Scotland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (2) amends section 29 of the 1991 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (3) amends section 41D of the 1991 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>Subsection (4) amends section 49A of the 1991 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (5) amends section 52 of the 1991 Act.</p>
+               </section>
+               <section class="level">
+                  <p>Section 4: Collection of maintenance in Northern Ireland: cases involving domestic
+                     abuse</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Section 4 amends article 7 of the Child Support (Northern Ireland) Order 1991 to make
+                     provision for the collection of maintenance in Northern Ireland in cases involving
+                     domestic abuse.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>Subsection (2) inserts a new paragraph (3A) into Article 7 which expands the circumstances
+                     in which&nbsp;arrangements may be made to collect maintenance. It gives the Department
+                     the power to place a child maintenance case onto the collect and pay service when
+                     the Person with Care or the Non-Resident Parent applies and the Department is satisfied
+                     on the basis of evidence of a prescribed kind relating to relevant domestic abuse
+                     that it is appropriate for such arrangements to be made. It inserts a second new paragraph
+                     (3B) into Article 7 which defines relevant domestic abuse for the purposes of the
+                     first paragraph.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Subsection (2)(b) amends Article 7(4) which expands the power to make regulations
+                     about the provision of information to cover applications on the basis of domestic
+                     abuse. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Subsection (3) sets out minor and consequential amendments. It amends Article 29 and
+                     Article 48 of the Child Support (Northern Ireland) Order 1991. </p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>The provisions under this section are self-explanatory. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>Sections 1, 2 and 3 (except Section 3(4)) come into force on such day or days as the
+                     Secretary of State may by regulations appoint.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Section 3(4) comes into force at the same time as section 34 of the Child Maintenance
+                     and Other Payments Act 2008.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Section 4 comes into force at the same time as Article 127(2)(b) of the Welfare Reform
+                     (Northern Ireland) Order 2015.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Section 5 comes into force on the day on Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A </b>
+                     <b>–</b>
+                     <b> Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.09in">
+                        <col style="width:1.27in">
+                        <col style="width:1.45in">
+                        <col style="width:1.27in">
+                        <col style="width:1.27in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>Provision&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>Extends to E &amp; W and applies to England?&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>Extends to E &amp; W and applies to Wales?&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>Extends and applies to Scotland?&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>Extends and applies to Northern Ireland?&nbsp;</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3&nbsp;</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph">
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.25in">
+                        <col style="width:1.34in">
+                        <col style="width:2.16in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>House of Commons</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>15 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0032/220032.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-06-15/debates/10ed5b44-97ae-46cb-ab4c-f87f0aa7c33c/CommonsChamber">
+                                    <u>Vol. 716 col. 316</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>28 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-10-28/debates/2C6AD7CB-3D6B-4200-9E13-26FF67074F41/ChildSupportCollection(DomesticAbuse)Bill">
+                                    <u>Vol. 721 col. 555</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>14 December 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-12-14/debates/7d176492-d9ae-42bd-bc9d-4602d564174e/ChildSupportCollection(DomesticAbuse)Bill">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report Stage</p>
+                           </td>
+                           <td>
+                              <p>3 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-03-03/debates/478D8CEF-DA78-4DF7-B9AF-ED17ADA393E9/ChildSupportCollection(DomesticAbuse)Bill">
+                                    <u>Vol. 728 col. 1000</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>3 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-03-03/debates/478D8CEF-DA78-4DF7-B9AF-ED17ADA393E9/ChildSupportCollection(DomesticAbuse)Bill">
+                                    <u>Vol. 728 col. 1003</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>House of Lords</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>6 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/50134/documents/3063">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-03-06/debates/E5339793-9948-4A2B-9F17-7B1BFCFF1069/ChildSupportCollection(DomesticAbuse)Bill">
+                                    <u>Vol. 828 col. 574</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>21 April 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-04-21/debates/4BC55B9C-41BB-49B2-BF1F-F0844C11D7A7/ChildSupportCollection(DomesticAbuse)Bill">
+                                    <u>Vol. 829 col. 916</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>24 May 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-05-24/debates/2cc16701-0e2d-4179-9c1c-ca8300caa03c/LordsChamber">
+                                    <u>Vol. 830 col. 873</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>16 June 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-06-16/debates/C3D4A4F0-60DE-4CE5-A94B-D2EB605F28BC/ChildSupportCollection(DomesticAbuse)Bill">
+                                    <u>Vol. 830 col. 2201</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>29 June 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Commons: <a href="https://hansard.parliament.uk/Commons/2023-05-02/debates/18871A6E-741C-4C6F-A229-6559FADCF6DA/Prayers"><u>Vol. 732 col. 1</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords: <a href="https://hansard.parliament.uk/lords/2023-05-02/debates/A65FE493-41F9-4603-974D-20ABBFDDBD71/RoyalAssent"><u>Vol. 829 col. 1391</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>SOCIAL SECURITY (ADDITIONAL PAYMENTS) ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Social Security (Additional Payments) Act 2022
+                  which received Royal Assent on 28 June 2022 (c. 38).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department for Work and Pensions
+                  in order to assist the reader in understanding the Act. They do not form part of the
+                  Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Social Security (Additional Payments) Act 2022 makes provisions for the Means-tested
+                     Additional Payments and the Disability Additional Payment. The first is a £650 payment,
+                     paid in two payments, to those receiving at least 1p of a qualifying means-tested
+                     benefit. The Disability Additional Payment is a £150 payment for each individual who
+                     is receiving a qualifying disability benefit.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act consists of eleven Sections:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Providing for the Secretary of State or HMRC to make two Means-tested Additional Payments
+                        amounting to £650 to those who have a qualifying entitlement to a social security
+                        benefit or tax credit.&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Defining the qualifying entitlement to social security benefits or tax credits for
+                        the Means-tested Additional Payments, including the requirement for a minimum payment
+                        made in respect of the qualifying day.&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Dealing with the situation where there may be a qualifying entitlement to more than
+                        one social security benefit and/or tax credit.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Defining the qualifying entitlement to tax credits for the Means-tested Additional
+                        Payments, including situations where HMRC finds that a person should have been entitled
+                        to an additional payment retrospectively.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Providing for the Secretary of State to make a £150 Disability Additional Payment
+                        to an eligible person and dealing with the situation where a person may have a qualifying
+                        entitlement to more than one disability benefit.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The administration of Additional Payments in reference to the social security benefit,
+                        tax credits, or disability benefit which conferred eligibility for the Additional
+                        Payment.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Providing for the necessary sharing of information between the Secretary of State,
+                        HMRC, Scottish Ministers and Department for Communities in relation to Additional
+                        Payments.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Providing that no account is taken of an Additional Payment in considering a person’s
+                        liability to tax, entitlement to a benefit under an enactment relating to social security
+                        or entitlement to tax credit.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Interpretation of certain terms.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Providing for regulations to be made which will be subject to the negative procedure
+                        of either House of Parliament.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The extent, commencement, and short title of the Act.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Chancellor of the Exchequer announced a package of measures on 3 February 2022
+                     to support households across the income distribution in the context of the April increase
+                     in the energy price cap, as well as further measures at the Spring Statement 2022.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Through a package of further measures announced on 26 May 2022, the Government will
+                     provide over £15&nbsp;billion of additional support, particularly focused on those with
+                     the greatest need. This includes Additional Payments to over 8 million people across
+                     the United Kingdom in receipt of eligible means-tested benefit payments and over 6
+                     million people who receive eligible disability benefit payments to help with the particular
+                     extra costs disabled people may face.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>The Act requires the Secretary of State or HMRC to make the additional payments to
+                     an eligible person.&nbsp;</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The Means-tested Additional Payments and the Disability Additional Payments are new
+                     Social Security Payments created by this legislation. Eligibility for these additional
+                     payments requires entitlement to qualifying means-tested or disability benefits, as
+                     determined under the legislation for the relevant qualifying benefit. Further details
+                     of the relevant legislation for the qualifying benefits are set out below in the Section
+                     commentary as required. The existing legislation for the qualifying benefits remains
+                     unchanged.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>These payments will be delivered by the Department for Work and Pensions (DWP), Her
+                     Majesty’s Revenue and Customs (HMRC) and the Ministry of Defence (MoD). This will
+                     require data sharing in order to avoid duplication of payments. In addition, data
+                     sharing with the Scottish Government and the Northern Ireland Executive will be needed
+                     in order to ensure these payments are delivered to recipients there. DWP and HMRC
+                     are expected to cooperate in exercising their functions in relation to additional
+                     payments through existing data sharing provisions. This Act does apply some modifications
+                     to provisions as required to enable data sharing for the purpose of delivering these
+                     new payments. Modifications to s.127 of the Welfare Reform Act 2012 enable data sharing
+                     between HMRC and DWP. Modifications to s.3 of the Social Security Act 1998 allow data
+                     sharing between DWP, MoD, HMRC and the Department for Communities (DfC) in Northern
+                     Ireland. Section 34 of the Scotland Act 2016 is modified to allow data sharing between
+                     DWP and the Scottish Ministers for the purpose of delivering these new payments.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>These additional payments are being legislated for as a new benefit reserved in Great
+                     Britain. Social Security is reserved in Scotland, but there are some exceptions to
+                     this reservation which are set out in Schedule 5 to the Scotland Act 1998. Neither
+                     of the Additional Payments falls within any of the exceptions and they are therefore
+                     reserved. While some of the disability benefits are devolved in Scotland, the Disability
+                     Additional Payments themselves are not, as they are new payments for the purpose of
+                     responding to increases in cost of living.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Social Security is a transferred matter in Northern Ireland (NI) (except for tax credits
+                     which is an excepted matter) but in the absence of a fully functional Assembly, Parliament
+                     will legislate for Northern Ireland to provide parity of availability to these Additional
+                     Payments for means-tested and disability benefit recipients in Northern Ireland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Act extends to England and Wales, Scotland and Northern Ireland. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Means-tested additional payments</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Means-tested additional payments: main payments</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">12 </span></h2>
+                     <p>Subsection (1) provides that the Secretary of State makes two Means-tested Additional
+                        Payments of £326 and £324 to a person with a qualifying eligible entitlement. Eligibility
+                        for the Means-tested Additional Payment is defined by a person having a qualifying
+                        entitlement to a social security benefit in respect of the first qualifying day for
+                        the first payment and the second qualifying day for the second payment.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">13 </span></h2>
+                     <p>Subsection (2) provides for HMRC to make two Means-tested Additional Payments of £326
+                        and £324 to an eligible person. Eligibility for the Means-tested Additional Payment
+                        is defined by a person having a qualifying entitlement to Child Tax Credit or Working
+                        Tax Credit but not to a social security benefit in respect of the first qualifying
+                        day for the first payment and the second qualifying day for the second payment.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">14 </span></h2>
+                     <p>Subsection (3) defines the social security benefits as:&nbsp;</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>Universal Credit under the Welfare Reform Act 2012 or the Welfare Reform (Northern
+                           Ireland) Order 2015 (S.I 2015/2006 (N.I. 1));&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>State Pension Credit under the State Pension Credit Act 2002 or the State Pension
+                           Credit Act (Northern Ireland) 2002;&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>An Income-Based Jobseeker’s Allowance under the Jobseekers Act 1995 or the Jobseekers
+                           (Northern Ireland) Order 1995 (S.I. 1995/2705 (N.I. 15));&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>An Income-Related Employment and Support Allowance under Part 1 of the Welfare Reform
+                           Act 2007 or Part 1 of the Welfare Reform Act (Northern Ireland) 2007;&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>Income Support under section 124 of the Social Security Contributions and Benefits
+                           Act 1992 or section 123 of the Social Security Contributions and Benefits (Northern
+                           Ireland) Act 1992.&nbsp;</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">15 </span></h2>
+                     <p>Subsection (4) provides that the second qualifying day will be no later than 31 October
+                        2022. It also provides that the Secretary of State will specify the second qualifying
+                        date in regulations.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">16 </span></h2>
+                     <p>Subsection (5) provides that the second qualifying day specified in regulations can
+                        be on a day before the regulations come into force.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">17 </span></h2>
+                     <p>Subsection (6) defines that a person is an individual or a couple (but not each member
+                        of a couple separately).&nbsp;</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2: Qualifying entitlements</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">18 </span></h2>
+                     <p>Subsection (1) defines what is meant as a qualifying entitlement to a social security
+                        benefit by reference to a qualifying day:&nbsp;</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>For Universal Credit, a person must have an entitlement to a payment of at least 1p
+                           in respect of an assessment period that ends during the period of one month ending
+                           with the qualifying day,&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>For State Pension Credit, an Income-Based Jobseeker’s Allowance, an Income Related
+                           Employment and Support Allowance or Income Support, a person must have an entitlement
+                           to a payment of at least 1p in respect of any day during the period of one month ending
+                           with the qualifying day.&nbsp;</p>
+                        <table>
+                           <colgroup>
+                              <col style="width:4.66in">
+                           </colgroup>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <p>Example 1: Qualifying entitlement to Universal Credit for the first Means-tested Additional
+                                       Payment&nbsp;</p>
+                                    <p>To be eligible for the first Means-tested Additional Payment a person must have an
+                                       entitlement to a Universal Credit payment of at least 1p in respect of an assessment
+                                       period that ends within the month ending on 25 May 2022 (26 April 2022 to 25 May 2022
+                                       inclusive).&nbsp;</p>
+                                    <p>Example (2): Qualifying Entitlement to Income Support for the first Means-tested Additional
+                                       Payment.&nbsp;</p>
+                                    <p>To be eligible for the first Means-tested Additional Payment a person must have an
+                                       entitlement to an Income Support payment of at least 1p on any day in the period 26
+                                       April 2022 to 25 May 2022.&nbsp;</p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">19 </span></h2>
+                     <p>Subsection (2) defines what is meant by the qualifying entitlement to Child Tax Credit
+                        or Working Tax Credit by reference to a qualifying day. A person must have received
+                        a payment or have an award in respect of any day in the period of one month ending
+                        with the qualifying day. The payment or award must be expected to total at least £26
+                        for the tax year 2022-23.</p>
+                     <table>
+                        <colgroup>
+                           <col style="width:4.66in">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <p>Example (3): Qualifying entitlement to Child Tax Credit for the first Means-tested
+                                    Additional Payment.</p>
+                                 <p>To be eligible for the first Means-tested Additional Payment a person must have a
+                                    payment or an award of Child Tax Credit of at least £26 for the tax year 2022-23,
+                                    and have received a payment or have an award on any day within the month ending on
+                                    25 May 2022 (26 April 2022 to 25 May 2022 inclusive).</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">20 </span></h2>
+                     <p>Subsection (3) clarifies that a person will not be eligible for the Means-Tested Benefit
+                        Payments if they have received a payment or an award made as a result of fraud.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Applicable benefits or tax credits</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">21 </span></h2>
+                     <p>Subsection (1) provides that where a person has a qualifying entitlement to Universal
+                        Credit and to another social security benefit in respect of a qualifying day, the
+                        Means-tested Additional Payment is to be paid in reference to entitlement of Universal
+                        Credit.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Subsection (2) provides that where a person has a qualifying entitlement to Child
+                        Tax Credit and to Working Tax Credit in respect of a qualifying day, the Means-tested
+                        Additional Payment is to be paid in reference to entitlement of Child Tax Credit.
+                        This means that the payment will be made in the same manner as, and to the same recipient
+                        of, the Child Tax Credit.&nbsp;</p>
+                     <table>
+                        <colgroup>
+                           <col style="width:4.66in">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <p>Example (3): A person with a qualifying entitlement to more than one social security
+                                    benefit</p>
+                                 <p>An individual reaches State Pension age on 17 May and is entitled to a Universal Credit
+                                    payment of at least 1p in respect of an assessment period ending on 21 May. With effect
+                                    from 17 May, they also now have an entitlement to a State Pension Credit payment of
+                                    at least 1p. They will be eligible for the Means-tested Additional Payment as a result
+                                    of their qualifying entitlement to Universal Credit because Universal Credit takes
+                                    precedence over other social security benefits as set out in Section 3(1).&nbsp;</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Means-tested additional payments: final payments</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsections (1) and (2) provide that, where a person has an award or payments of tax
+                        credits totalling at least £26 for the tax year 2022-23, and did not receive payments
+                        or an award in respect of the qualifying day for the first and/or second Mean-tested
+                        Additional Payment, but HMRC subsequently finds that the person should have received
+                        payments or an award for that eligibility period, then HMRC must pay them the respective
+                        Additional Payment if they have not already received it.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Subsection (3) provides that where a person is entitled under this section to Child
+                        Tax Credit and Working Tax Credit, the Means-tested Additional Payment is to be paid
+                        in reference to entitlement of Child Tax Credit.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (4) clarifies that person will not be eligible for payments made under
+                        this section if they are awarded or have received a payment because of fraud.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Disability additional payments</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (1) provides that the Secretary of State makes a single Disability Additional
+                        Payment of £150 to each individual who is entitled to a qualifying payment of a disability
+                        benefit that is payable in respect of 25 May 2022.&nbsp;</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection (2) defines the qualifying disability benefits as:&nbsp;</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>A Disability Living Allowance under section 71 of the Social Security Contributions
+                           and Benefits Act 1992 or section 71 of the Social Security Contributions and Benefits
+                           (Northern Ireland) Act 1992;&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>A Personal Independence Payment under the Welfare Reform Act 2012 or Part 5 of the
+                           Welfare Reform (Northern Ireland) Order 2015;&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>An Attendance Allowance under section 64 of the Social Security Contributions and
+                           Benefits Act 1992 or section 64 of the Social Security Contributions and Benefits
+                           (Northern Ireland) Act 1992;&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">d.</span></h2>
+                        <p>A Constant Attendance Allowance under section 104 of the Social Security Contributions
+                           and Benefits Act 1992 or section 104 of the Social Security Contributions and Benefits
+                           (Northern Ireland) Act 1992;&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">e.</span></h2>
+                        <p>An Adult Disability Payment under the Disability Assistance for Working Age People
+                           (Scotland) Regulations 2022 (S.S.I. 2022/54);&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">f.</span></h2>
+                        <p>A Child Disability Payment under the Disability Assistance for Children and Young
+                           People (Scotland) Regulations 2021 (S.S.I 2021/174);&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">g.</span></h2>
+                        <p>An Armed Forces Independence Payment under article 24A of the Armed Forces and Reserve
+                           Forces (Compensation Scheme) Order 2011 (S.I. 2011/517);&nbsp;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">h.</span></h2>
+                        <p>A Constant Attendance Allowance under:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">i.</span></h2>
+                           <p>Article 14 or 43 of the Personal Injuries (Civilians) Scheme 1983 (S.I. 1983/686);&nbsp;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">ii.</span></h2>
+                           <p>Article 8 of the Naval, Military and Air Forces etc. (Disablement and Death) Service
+                              Pensions Order 2006 (S.I. 2006/606);&nbsp;</p>
+                        </section>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">i.</span></h2>
+                        <p>A Mobility Supplement under:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">i.</span></h2>
+                           <p>Article 25A or 48A of the Personal Injuries (Civilians) Scheme 1983;&nbsp;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">ii.</span></h2>
+                           <p>Article 20 of the Naval Military and Air Forces etc. (Disablement and Death) Service
+                              Pensions Order 2006.&nbsp;</p>
+                        </section>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (3) provides that where an individual is entitled to a payment of more
+                        than one disability benefit that is payable in respect of 25 May 2022, the Disability
+                        Additional Payment is to be paid in reference to the disability benefit that comes
+                        first in the list in subsection (2) which the individual has a qualifying entitlement
+                        to.&nbsp;</p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <b>Administration etc</b>
+                           </span></h2>
+                     <section class="level">
+                        <p>Section 6: Administration of additional payments</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">29 </span></h2>
+                        <p>Subsection (1) provides that for the purposes of administration of the additional
+                           payments, any provisions applying in relation to a social security benefit, tax credit
+                           or disability benefit which the Additional Payment is paid in reference to, will apply
+                           as if the Additional Payment were a payment or award of the social security benefit,
+                           tax credits or disability benefit in question.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">30 </span></h2>
+                        <p>Subsection (2) provides that in subsection (1), the provisions relating to the social
+                           security benefit, tax credit or disability benefit that will apply will include:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>Overpayment and recovery.</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>Appeals relating to overpayment and recovery.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">31 </span></h2>
+                        <p>Subsections (1) and (2) do not include provisions relating to appeals or reviews about
+                           entitlement to the social security benefit, tax credit or disability benefit in question.
+                           The provisions relating to the social security benefit, tax credit or disability benefit
+                           will be subject to any necessary modifications.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">32 </span></h2>
+                        <p>Subsection (3) provides that the provisions in subsection (1) equally apply to purported
+                           additional payments which were not in fact made in compliance with the duties under
+                           section (1) and (4).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">33 </span></h2>
+                        <p>Subsection (4) provides that subsection (1) (including with respect to subsection
+                           (3)) is subject to regulations made by the Secretary of State, the Treasury or HMRC
+                           under subsection (5).</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">34 </span></h2>
+                        <p>Subsection (5) provides that regulations may be made in relation to the Additional
+                           Payments by the Secretary of State, the Treasury or HMRC to apply or disapply, with
+                           or without modifications, any provision applying in relation to a social security
+                           benefit, tax credit or disability benefit.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">35 </span></h2>
+                        <p>Subsection (6) provides that regulations made under subsection (5) may have effect
+                           from the day the Act comes into force.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 7: Cooperation etc between the Secretary of State and HMRC</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">36 </span></h2>
+                        <p>Subsection (1) requires cooperation between the Secretary of State and HMRC in the
+                           delivery of these payments.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">37 </span></h2>
+                        <p>Subsections (2), (3) and (4) make provisions for data sharing between HMRC, the Secretary
+                           of State, Department for Communities in Northern Ireland and Scottish Ministers.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">38 </span></h2>
+                        <p>Subsection (2) modifies s.3 of the Social Security Act 1998 to allow for disclosure
+                           of information in relation to the Additional Payments between HMRC, Secretary of State
+                           for Work and Pensions and Secretary of State for Defence and Department for Communities.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">39 </span></h2>
+                        <p>Subsection (3) modifies s. 127 of the Welfare Reform Act such that Secretary of State
+                           and HMRC are able to share and use information in relation to the Additional Payments.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">40 </span></h2>
+                        <p>Subsection (4) modifies section 34 of the Scotland Act 2016 to allow disclosure in
+                           relation to the Additional Payments between the Secretary of State and Scottish Ministers.&nbsp;</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">41 </span></h2>
+                        <p>Subsections (5) and (6) make provisions for instances where it is found that a payment
+                           has been made by HMRC that should have been made by the Secretary of State, or vice
+                           versa. In such cases, providing that no duplicate payment has been made, the payment
+                           shall be treated as having been made in accordance with the applicable duty, and therefore
+                           is not recoverable. This ensures that a payment does not have to be recovered and
+                           reissued by the correct body.&nbsp;</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 8: Payments to be disregarded for the purposes of tax and social security</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">42 </span></h2>
+                        <p>The content of this section is self-explanatory.</p>
+                     </section>
+                     <section class="level">
+                        <p>
+                           <b>Final provisions</b>
+                           </p>
+                     </section>
+                     <section class="level">
+                        <p>Section 9: Interpretation</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">43 </span></h2>
+                        <p>The content of this section is self-explanatory.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 10: Regulations</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">44 </span></h2>
+                        <p>The content of this section is self-explanatory.</p>
+                     </section>
+                     <section class="level">
+                        <p>Section 11: Extent, commencement and short title.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">45 </span></h2>
+                        <p>The content of this section is self-explanatory.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Section 11(2) sets out the provisions of the Act commence on Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Press release published the 15 June 2022; Over eight million households to get new
+                     cost-of-living payment from 14 July:&nbsp;&nbsp;</p>
+                  <section class="subparagraph">
+                     <p>
+                        <a href="http://www.gov.uk/government/news/over-eight-million-households-to-get-new-cost-of-living-payment-from-14-july">
+                           <u>www.gov.uk/government/news/over-eight-million-households-to-get-new-cost-of-living-payment-from-14-july</u>
+                           </a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.44in">
+                        <col style="width:3.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>15 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0013/220013.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>22 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-06-22/debates/3D43BBAF-3A19-40DC-A3F4-759F9A9CBE21/SocialSecurity(AdditionalPayments)Bill">
+                                    <u>Vol. 716 Col. 882</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Act Committee</p>
+                           </td>
+                           <td>
+                              <p>22 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-06-22/debates/87DA1130-9175-4FA7-AE00-870BEC7391F6/SocialSecurity(AdditionalPayments)Bill">
+                                    <u>Vol. 716 Col. 913</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>22 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-06-22/debates/87DA1130-9175-4FA7-AE00-870BEC7391F6/SocialSecurity(AdditionalPayments)Bill">
+                                    <u>Vol. 716 Col. 924</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>23 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0013/220013.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-06-23/debates/F4332A27-F257-4E85-9A17-328CDB804F85/SocialSecurity(AdditionalPayments)Bill">
+                                    <u>Vol. 823</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>27 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2022-06-27/debates/4076EBF0-513E-4F76-A3C1-A349B5B025AB/SocialSecurity(AdditionalPayments)Bill">
+                                    <u>Vol. 823 Col. 472</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>27 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-06-27/debates/4076EBF0-513E-4F76-A3C1-A349B5B025AB/SocialSecurity(AdditionalPayments)Bill">
+                                    <u>Vol. 823 Col. 488</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>28 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-06-28/debates/6AF2A17B-6B22-4757-9122-86C5E40E2D3E/RoyalAssent">
+                                    <u>Vol. 823</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

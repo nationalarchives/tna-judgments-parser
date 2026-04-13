@@ -1,0 +1,1712 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p class="center">
+               <i>These notes relate to the Prisoners (Early Release) (Scotland) Act 2025 (asp 1)</i>
+               <br>
+               <i>which received Royal Assent on 22 January 2025</i>
+               </p>
+            <p class="center">
+               <b>PRISONERS (EARLY RELEASE) (SCOTLAND) ACT 2025</b>
+               </p>
+            <p class="center">
+               <b>EXPLANATORY NOTES</b>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>INTRODUCTION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.</span></h2>
+               <p>These Explanatory Notes have been prepared by the Scottish Government in order to
+                  assist the reader of the Prisoners (Early Release) (Scotland) Act 2025. They do not
+                  form part of the Act and have not been endorsed by the Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.</span></h2>
+               <p>These Notes should be read in conjunction with the Act. They are not, and are not
+                  meant to be, a comprehensive description of the Act. So where a section or schedule,
+                  or a part of a section or schedule, does not seem to require any explanation or comment,
+                  none is given.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>OVERVIEW OF ACT</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.</span></h2>
+               <p>The Act is concerned with the automatic early release of prisoners: that is, the point
+                  in their sentence at which those imprisoned in Scotland by a Scottish court (“Scottish
+                  prisoners”) will be automatically released from prison without a decision as to their
+                  release being required from the Parole Board for Scotland. It makes similar provision
+                  in relation to children detained following criminal proceedings as it does in relation
+                  to prisoners. It also makes provision for those sentenced to a term of imprisonment
+                  or detention outwith the United Kingdom but transferred to Scotland to serve their
+                  sentence.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.</span></h2>
+               <p>The Act does two things in relation to automatic early release—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>It changes the automatic early release point for some short-term Scottish prisoners
+                     so that it will apply at the point of them having served 40% of their sentence in
+                     prison instead of applying at the previous 50% point.  However, those serving sentences
+                     for sexual or domestic abuse offences are excluded from this change by the Act (while
+                     those serving terrorism sentences are excluded under the existing law).  A similar
+                     change is made for children detained following criminal proceedings.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>It grants the Scottish Ministers a power to make future changes to automatic early
+                     release points for both short-term and long-term Scottish prisoners by subordinate
+                     legislation (subject to the approval of the Scottish Parliament).  This expands upon
+                     an existing power of this nature, as discussed further below.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>CROWN APPLICATION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>
+                  <a href="https://www.legislation.gov.uk/asp/2010/10/section/20">
+                     <u>Section 20 of the Interpretation and Legislative Reform (Scotland) Act 2010</u>
+                     </a> provides that the Crown will be bound by an Act of the Scottish Parliament or Scottish
+                  statutory instrument unless the provision expressly exempts it.  As such, technically
+                  this Act applies to the Crown in the same way as it applies to everyone else.&nbsp;However,
+                  the substantive provisions of the Act will predominantly be inserted into the Prisoners
+                  and Criminal Proceedings (Scotland) Act 1993. The 1993 Act is an Act of the UK Parliament
+                  and did not bind the Crown when enacted, so the amendments of it made by the Prisoners
+                  (Early Release) (Scotland) Act 2025 will also not bind the Crown.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>INTERPRETATION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.</span></h2>
+               <p>In these Notes, the following abbreviations are used—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>“1993 Act” means the Prisoners and Criminal Proceedings (Scotland) Act 1993,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>“1995 Act” means the Criminal Procedure (Scotland) Act 1995,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>“automatic early release” means a prisoner being released automatically upon a certain
+                     point being reached, without there being a decision-making mechanism; this contrasts
+                     with release on licence authorised by the Parole Board for Scotland, which is not
+                     something to which there is an entitlement in the same way,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>“long-term prisoner” means a person serving a sentence of imprisonment for a term
+                     of 4 years or more (see section 27(1) of the 1993 Act),</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>“prisoner” is used to include persons on whom detention in a young offenders institution
+                     has been imposed (and this result is achieved in the 1993 Act as a result of section
+                     6 of that Act),</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>“release on licence” means release from prison subject to specified licence conditions,
+                     and with the risk of the person being recalled to prison if the terms of the licence<a class="fn" id="fnref-1" href="#fn-1">1</a> are breached,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>“short-term prisoner” means a person serving a sentence of imprisonment for a term
+                     of less than 4 years (see section 27(1) of the 1993 Act).</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.</span></h2>
+               <p>The Act’s freestanding text (that is, any provision which is not a textual amendment
+                  of another piece of legislation) is to be interpreted in accordance with the <a href="https://www.legislation.gov.uk/asp/2010/10/contents"><u>Interpretation and Legislative Reform (Scotland) Act 2010</u></a>. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.</span></h2>
+               <p>Text that an Act inserts into other enactments is to be interpreted in accordance
+                  with the interpretation legislation that applies to that enactment. As such, text
+                  inserted by the Act into the 1993 Act or the 1995 Act is to be interpreted in accordance
+                  with the <a href="https://www.legislation.gov.uk/ukpga/1978/30/contents"><u>Interpretation Act 1978</u></a>.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>DETAIL OF PROVISIONS</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Automatic early release</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 1 – extension of automatic early release for certain short-term prisoners</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Previous position</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.</span></h2>
+               <p>The automatic early release of short-term prisoners is provided for primarily in section
+                  1(1) of the 1993 Act.  However, short-term prisoners who are sentenced to 6 months’
+                  imprisonment or more for an offence listed in schedule 3 of the Sexual Offences Act
+                  2003 (i.e. one where sex offender notification requirements apply upon conviction)
+                  are dealt with separately under section 1AA of the 1993 Act.  Terrorist prisoners
+                  are also dealt with separately and are provided for in section 1AB of the 1993 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.</span></h2>
+               <p>The effect of section 1(1) of the 1993 Act prior to this Act was that, subject to
+                  the exception of the categories of prisoner noted above, the Scottish Ministers<a class="fn" id="fnref-2" href="#fn-2">2</a> were required to release a short-term prisoner after the prisoner had served one-half
+                  (i.e. 50%) of their sentence.  Release was normally unconditional, although this was
+                  subject to any supervised release order which applied in a particular case<a class="fn" id="fnref-3" href="#fn-3">3</a>, and any prisoners who were subject to an extended sentence were to be released on
+                  licence instead<a class="fn" id="fnref-4" href="#fn-4">4</a>. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>New position</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.</span></h2>
+               <p>Section 1 of the Act modifies section 1(1) of the 1993 Act so as to impose a new automatic
+                  early release point for the short-term prisoners to whom it applies.  The effect is
+                  as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>No changes are made to the release of short-term terrorist prisoners.  Such prisoners
+                     continue to be dealt with under section 1AB of the 1993 Act.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>No changes are made to the release of short-term prisoners who are sentenced to 6&nbsp;months’
+                     imprisonment or more for an offence where sex offender notification requirements apply.
+                     Such prisoners continue to be dealt with under section 1AA of the 1993 Act.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under new section 1(1)(a) of the 1993 Act, a short-term prisoner serving a sentence
+                     of imprisonment for a domestic abuse offence, or a sentence of less than 6 months
+                     for a listed sexual offence (which therefore falls outwith the category immediately
+                     above), will be automatically released after serving one-half (i.e. 50%) of their
+                     sentence.  Although the separate categorisation of this cohort is new, the outcome
+                     is the same as applied to these prisoners previously.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under new section 1(1)(b) of the 1993 Act, any other short-term prisoner not mentioned
+                     above will be automatically released after serving two-fifths (i.e. 40%) of their
+                     sentence.  This is a reduction from the 50% level that applied to them previously.
+                     This change will apply regardless of when their sentence was imposed.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.</span></h2>
+               <p>In the same way as applied under the previous law, short-term prisoners who are covered
+                  by and released under new section 1(1) of the 1993 Act will normally be released unconditionally.
+                  However, this default position continues to be subject to any supervised release order
+                  which applies to a particular prisoner, and where an extended sentence applies to
+                  the prisoner then the prisoner will still be released on licence instead.  In short,
+                  no changes are made by the Act to the type of release which applies upon a short-term
+                  prisoner reaching the point of automatic early release – the only change is to the
+                  point at which the prisoner is released.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.</span></h2>
+               <p>As noted above, the short-term prisoners who are covered by new section 1(1)(a) and
+                  who therefore do <u>not</u> benefit from any change to their release date under the Act are those who are serving
+                  a sentence for a listed sexual offence<a class="fn" id="fnref-5" href="#fn-5">5</a> or a domestic abuse offence.  The effect of this in practical terms is as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The sexual offences listed (as set out in new section 1(1ZA)(a)) are in practice those
+                     offences which result in sex offender notification requirements applying.  The list
+                     therefore aligns exactly with the offences that are covered by section 1AA of the
+                     1993 Act.  In practice, this means that section 1(1)(a) only covers those sentenced
+                     to less than 6 months’ imprisonment for a sexual offence.  If the sentence is longer
+                     than that, the short-term prisoner’s release will be dealt with under section 1AA
+                     instead.  While the release point is the same under section 1(1)(a) as it is under
+                     section 1AA, section 1AA provides for release on licence rather than unconditional
+                     release.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>A domestic abuse offence is defined in new section 1(10) of the 1993 Act.  It covers
+                     both a domestic abuse offence and a domestic abuse aggravation.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">14.</span></h2>
+               <p>New section 1(1ZA) of the 1993 Act provides that the continuation of the existing
+                  50% rule applies not just where the prisoner is serving a sentence of imprisonment
+                  for a listed sexual offence or a domestic abuse offence.  It also covers the case
+                  where the prisoner is serving a sentence which has been “single-termed” and the single-termed
+                  sentence includes a sentence passed in respect of such an offence.  The concept of
+                  “single-terming” is provided for under section 27(5) of the 1993 Act.  It means that
+                  if two sentences are imposed on a person to operate either wholly or partly concurrently,
+                  they are treated as one single sentence.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">15.</span></h2>
+               <p>In such cases, what will therefore matter are the offences for which the person was
+                  sentenced which together make up the single-term.  Prisoners to whom section 1AA applies
+                  who are serving a single-termed sentence will still be dealt with under section 1AA.
+                  But where a prisoner is serving a single-termed sentence where one of the offences
+                  is a domestic abuse offence, or where it is a sexual offence where the length of sentence
+                  does not trigger section 1AA, the prisoner’s sentence will be dealt with under new
+                  section&nbsp;1 by reference to the higher threshold which applies to cases of sexual offences
+                  or domestic abuse offences.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">16.</span></h2>
+               <p>The Act also alters the automatic early release point which applies under section
+                  5 of the 1993 Act to fine defaulters or those imprisoned for contempt of court.  This
+                  is reduced from 50% to 40% for such short-term prisoners, in line with the changes
+                  above.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">17.</span></h2>
+               <p>It should be noted that although the Act changes the automatic early release point
+                  for prisoners, if a prisoner is in prison both because they are serving a sentence
+                  <u>and</u> because there is a warrant remanding them in custody awaiting trial for a separate
+                  offence, they will not be released upon reaching the automatic early release point
+                  in respect of their sentence.  While the basis for holding the person in prison on
+                  account of their sentence will no longer apply, the person will continue to be held
+                  in prison on the basis of the warrant.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Examples</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">18.</span></h2>
+               <p>A number of examples are provided below to illustrate the effect of the provision
+                  made by section 1 of the Act.  However, it should be noted that these are approximations
+                  only, as release dates are calculated by the Scottish Prison Service in days rather
+                  than weeks/months/years.  Further, under section 27(7) of the 1993 Act, release dates
+                  are brought forward very slightly to avoid releasing prisoners on particular days,
+                  but the effect of that is disregarded for the purpose of these examples.  Finally,
+                  the examples do not rely upon sentencing guidelines in stating a sentence, as insufficient
+                  information is provided to make an assessment about the likelihood of a particular
+                  sentence being imposed in any given case.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Short-term prisoner: listed sexual offence but with sentence of less than 6 months</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">19.</span></h2>
+               <p>Albert was sentenced to 4 months’ imprisonment for causing a young child to see or
+                  hear an indecent communication.  This is a listed sexual offence.  It is dealt with
+                  as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, he would have been released unconditionally under section
+                     1(1) of the 1993 Act after 50% of his sentence, which means after 2 months.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, there is no change.  He continues to be released unconditionally after
+                     2 months under new section 1(1)(a).</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Short-term prisoner: listed sexual offence with sentence of 6 months or more</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">20.</span></h2>
+               <p>Brian was sentenced to 2 years’ imprisonment for sexual exposure to a young child.
+                  This is a listed sexual offence.  It is dealt with as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, he would have been released on licence under section 1AA of
+                     the 1993 Act after 50% of his sentence, which means after 1 year.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, there is no change.  He continues to be released on licence after 1&nbsp;year
+                     under section 1AA of the 1993 Act. </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Short-term prisoner: domestic abuse offence</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">21.</span></h2>
+               <p>Connor was sentenced to 2 years’ imprisonment for domestic abuse towards his partner.
+                  It is dealt with as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, he would have been released unconditionally under section
+                     1(1) of the 1993 Act after 50% of his sentence, which means after 1 year.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, there is no change.  He continues to be released unconditionally after
+                     1 year under new section 1(1)(a).</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Short-term prisoner: an offence other than a sexual offence or a domestic abuse offence</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">22.</span></h2>
+               <p>Diane was sentenced to 3 years’ imprisonment for theft.  It is dealt with as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, she would have been released unconditionally under section
+                     1(1) of the 1993 Act after 50% of her sentence, which means after 1 year and 6 months.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, she is now to be released unconditionally under new section 1(1)(b)
+                     after 40% of her sentence, which means after 1 year and 2.4 months.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Long-term prisoner</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">23.</span></h2>
+               <p>Edward was sentenced to 5 years’ imprisonment for a serious assault.  It is dealt
+                  with as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, as a long-term prisoner who was sentenced on or after 1&nbsp;February
+                     2016, he would have been released on licence under section 1(2A) of the 1993 Act 6&nbsp;months
+                     before his sentence ended, if not released earlier by being granted parole, which
+                     means after 4 years and 6 months.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, there is no change.  He continues to be released on licence after 4&nbsp;years
+                     and 6 months under section 1(2A) of the 1993 Act, if not released earlier by being
+                     granted parole. </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Single-termed short-term prisoner with both domestic abuse and theft convictions –
+                     concurrent sentences</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">24.</span></h2>
+               <p>Frank was sentenced to 12 months’ imprisonment for domestic abuse of his partner and
+                  3 months’ imprisonment for also stealing from his partner. The sentences are to run
+                  wholly concurrently.  As such, the sentences form part of a single-term with a total
+                  sentence of 12 months, which is dealt with as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, he would have been released unconditionally under section
+                     1(1) of the 1993 Act after 50% of his sentence, which means after 6 months.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, there is no change.  Because part of his single-termed sentence relates
+                     to a domestic abuse offence, he is subject to new section 1(1)(a) and continues to
+                     be released unconditionally after 6 months.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Single-termed short-term prisoner with both domestic abuse and theft convictions –
+                     consecutive sentences</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">25.</span></h2>
+               <p>George was sentenced to 12 months’ imprisonment for domestic abuse of his partner
+                  and 3 months’ imprisonment for also stealing from his partner.  The sentences are
+                  to run wholly consecutively.  As such, the sentences form part of a single-term with
+                  a total sentence of 15 months, which is dealt with as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, he would have been released unconditionally under section
+                     1(1) of the 1993 Act after 50% of his sentence, which means after 7.5 months.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, there is no change.  Because part of his single-termed sentence relates
+                     to a domestic abuse offence, he is subject to new section 1(1)(a) and continues to
+                     be released unconditionally after 7.5 months.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>Single-termed short-term prisoner with both common assault and theft convictions –
+                     consecutive sentences</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">26.</span></h2>
+               <p>Hamish was sentenced to 6 months’ imprisonment for theft and a further 12 months’
+                  imprisonment for assault for his part in a pub brawl.  The sentences are to run wholly
+                  consecutively.  As such, the sentences form part of a single-term with a total sentence
+                  of 18 months, which is dealt with as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the previous law, he would have been released unconditionally under section
+                     1(1) of the 1993 Act after 50% of his sentence, which means after 9 months.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Under the Act, he is now to be released after 40% of his sentence.  Because neither
+                     part of his single-termed sentence relates to a domestic abuse or sexual offence,
+                     he is subject to new section 1(1)(b) and is to be released unconditionally after 7.2
+                     months.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 2 – extension of automatic early release for certain detained children</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">27.</span></h2>
+               <p>Section 2 of the Act makes similar provision in relation to children detained in secure
+                  accommodation following proceedings by a criminal court as is made in relation to
+                  prisoners by section 1.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">28.</span></h2>
+               <p>Under section 208 of the 1995 Act, children (i.e. those under 18) who are convicted
+                  on indictment can be sentenced to detention if the court is of the opinion that no
+                  other method of dealing with them is appropriate.  Subsection (2) of section 2 of
+                  the Act provides that where a child is so detained for less than 4 years, they are
+                  to be released automatically on licence after 40% of their sentence has elapsed, rather
+                  than after 50% of their sentence has elapsed.  However, as with prisoners, this is
+                  subject to an exception for those sentenced for sexual offences or domestic abuse
+                  offences. In those cases, the release point remains at 50%.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">29.</span></h2>
+               <p>Under section 44 of the 1995 Act, children who are convicted in summary proceedings
+                  can be sentenced to detention for up to a year.  Subsection (4) of section 2 of the
+                  Act provides that where a child is so detained, they must be released no later than
+                  when 40% of their sentence has elapsed, rather than when 50% of their sentence has
+                  elapsed.  Again, as with prisoners, this is subject to an exception for those detained
+                  in respect of sexual offences or domestic abuse offences.  In those cases, it remains
+                  the case that they must be released no later than when 50% of the period for which
+                  they are detained has elapsed.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 3 – power to modify timing of automatic early release</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Previous position</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">30.</span></h2>
+               <p>The 1993 Act already included (at section 27(2)(b)) a power for the Scottish Ministers
+                  to provide that references to a particular proportion of a prisoner’s sentence in
+                  Part 1 of the 1993 Act are to be construed as references to a different proportion
+                  of a prisoner’s sentence. This existing power would therefore already have allowed
+                  the automatic early release point for some prisoners<a class="fn" id="fnref-6" href="#fn-6">6</a> to be adjusted by secondary legislation, as well as allowing adjustments to other
+                  things which are determined by reference to a proportion of a prisoner’s sentence
+                  too (such as when a prisoner’s sentence is referred to the parole board). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">31.</span></h2>
+               <p>However, the power in section 27(2)(b) of the 1993 Act is limited in a number of ways—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>any change it makes to the law would not be shown on the face of the 1993 Act; </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>it does not allow different provision to be made for different purposes, meaning that
+                     more nuanced changes could not be made for different categories of prisoner (such
+                     as those who are imprisoned for particular offences);</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>because it only allows a reference to a proportion of a sentence to be construed as
+                     referring to a different proportion—</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">◦</span></h2>
+                     <p>it does not allow a proportion to be changed to a fixed period of time, </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">◦</span></h2>
+                     <p>it can no longer be used in relation to those long-term prisoners for whom automatic
+                        early release is, since 2016, calculated by reference to a fixed period of time<a class="fn" id="fnref-7" href="#fn-7">7</a>.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">32.</span></h2>
+               <p>There is also an existing power in section 7(1A)(b) of the 1993 Act which allows the
+                  Scottish Ministers to provide that references to the proportions of sentence referred
+                  to in that section are to be construed as references to different proportions of a
+                  sentence. This power relates to those who were detained as children under section
+                  208 of the 1995 Act (see paragraph 28 of these Notes).  However, this power has many
+                  of the same limitations as the power which exists under section 27(2)(b) of the 1993
+                  Act in respect of prisoners.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>New position</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">33.</span></h2>
+               <p>Section 3(2) of the Act provides the Scottish Ministers with a more flexible power
+                  to make regulations which adjust when the automatic early release of prisoners or
+                  of those detained as children takes place.  This is achieved by inserting a new section
+                  27A into the 1993 Act.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">34.</span></h2>
+               <p>New section 27A(1)(a) allows regulations to modify section 1 or 5 so as to provide
+                  for a different release point to apply for the purposes of the automatic early release
+                  of prisoners.  The power applies to both short-term and long-term prisoners, but it
+                  would not apply to prisoners released under section 1AA of the 1993 Act (i.e. those
+                  who are released on licence after imprisonment for 6 months or more for a sexual offence).
+                  There is no restriction upon how a prisoner’s automatic early release point is expressed,
+                  so the power could, for example, be used to amend existing rules which are framed
+                  by reference to periods which a prisoner has left to serve, or rules which are framed
+                  by reference to the proportion of a prisoner’s sentence which has already elapsed.
+                  New rules could also be expressed in either of those ways.  The power would be exercised
+                  by making a change on the face of the 1993 Act, so that it was immediately apparent
+                  to anyone consulting the relevant section of the 1993 Act what the release point is.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">35.</span></h2>
+               <p>New subsections (1)(b) and (c) of new section 27A similarly allow regulations to be
+                  made modifying the release point in respect of those detained as children. This means
+                  that there is the ability to ensure that they are not put at a disadvantage compared
+                  to adults in the event of a future reduction in the amount of a sentence which needs
+                  to be served in prison (particularly if that reduction was not phrased in terms of
+                  a proportion of sentence and the existing power in section 7(1A)(b) of the 1993 Act
+                  did not therefore cover it).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">36.</span></h2>
+               <p>New section 27A(2) makes further provision about how the new powers will operate.
+                  Paragraph (a) of new section 27A(2) provides that the regulations can make provision
+                  applying to those who began serving their sentence or whose period of detention began
+                  before the regulations come into force. This means that those in prison or detention
+                  at the point of any rule change could be affected by it (in the same way as is the
+                  case with the changes made by sections 1 and 2 of the Act) rather than the new rule
+                  only applying to those who are sentenced from the date of the rule change onwards.
+                  It will also allow transitional provision akin to paragraph 4 of the schedule of the
+                  Act to be made for those who are on licence at the point when the rules change, so
+                  that provision can be made about the date on which their licence ends.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">37.</span></h2>
+               <p>Paragraph (b) of new section 27A(2) enables the usual ability for regulations to include
+                  incidental, supplementary, consequential, transitional, transitory or saving provision.
+                  Section 27A(4) clarifies that provision of this nature can amend new section 27B.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">38.</span></h2>
+               <p>Paragraph (c) of new section 27A(2) then provides that the regulations may make different
+                  provision for different purposes.  This would allow different provision to be made
+                  for different categories of prisoner. For example, this would allow different release
+                  points to be imposed based on the offences committed by different prisoners, or whether
+                  they have an extended sentence, or what date their sentence was imposed, and so on.
+                  It will therefore continue to allow the kind of categorisation that is already provided
+                  for at inserted section 1(1) of the 1993 Act (as adjusted by section 1 of this Act)
+                  but it will allow these categories to be changed or expanded. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">39.</span></h2>
+               <p>However, by dint of new section 27A(3), the ability to make different provision for
+                  different purposes does not apply to the use of the power in respect of long-term
+                  prisoners or those detained as children for four or more years. The only ability of
+                  this nature which is provided for in relation to them is the ability to make different
+                  provision based on when they were imprisoned or detained. It would therefore allow
+                  a change to be made which was not retrospective and which affected only future prisoners/detained
+                  children, but it would not allow different rules to be applied based on other distinguishing
+                  features.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">40.</span></h2>
+               <p>Paragraph (d) of new section 27A(2) provides that the regulations are subject to parliamentary
+                  approval via the affirmative procedure.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">41.</span></h2>
+               <p>New section 27A(5) (as read with the interpretation material in new section 27A(7))
+                  sets out a list of those who must be consulted before Ministers can make regulations
+                  using this power.  The consultees include certain specified consultees as well as,
+                  at paragraph (i), a requirement to consult such other persons as Ministers consider
+                  appropriate.  The consultation required by this subsection could be undertaken as
+                  part of a public consultation or could take the form of more targeted engagement with
+                  the groups and bodies concerned.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">42.</span></h2>
+               <p>New section 27A(6) requires the Scottish Ministers, when draft regulations using this
+                  power are laid before the Parliament for approval, to seek to make a statement to
+                  the Scottish Parliament.  It will then be for the Parliamentary Bureau to determine
+                  the time that is allocated for such a statement.  Any statement that is subsequently
+                  made must cover Ministers’ reasons for proposing the regulations, information about
+                  the consultation they have carried out, and what information will be available to
+                  victims both about the proposed change and specifically about the release of prisoners
+                  under the law as adjusted by the regulations.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">43.</span></h2>
+               <p>Subsection (3) of this section of the Act then adjusts the existing power at section
+                  27(2) of the 1993 Act (discussed at paragraph 30 of these Notes) so as to exclude
+                  from it anything that will now be able to be modified under new section 27A(1) instead.
+                  This avoids the two powers overlapping and ensures that any future changes which can
+                  be made under section 27A(1) are dealt with under that provision, given the greater
+                  accessibility of any changes made that way.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">44.</span></h2>
+               <p>Subsection (4) then simply updates the existing italic heading in the 1993 Act to
+                  accommodate the insertion of the new powers.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 4 – persons transferred to Scotland from outwith the United Kingdom</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">45.</span></h2>
+               <p>This section inserts a new section 27B into the 1993 Act which deals with persons
+                  who are transferred under the Repatriation of Prisoners Act 1984 from outwith the
+                  UK to serve their sentence of detention or imprisonment in Scotland.  This applies
+                  where the UK is a party to international arrangements providing for the transfer of
+                  prisoners and it has been agreed that a person should be transferred to serve the
+                  remainder of their sentence elsewhere (for example, where a Scottish person has been
+                  convicted of and imprisoned for a crime while on holiday).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">46.</span></h2>
+               <p>Inserted subsection (1)(a) allows the Scottish Ministers to determine that where a
+                  person is being repatriated from overseas to serve a sentence for an offence for which
+                  they were convicted as a child, they are to be treated for the purposes of section
+                  7 of the 1993 Act as if they had been detained under section 208 of the 1995 Act.
+                  The effect of this power being exercised is that their release will then take place
+                  in accordance with section 7 of the 1993 Act.  This mechanism will allow for clarity
+                  as to the law to which an individual is subject, and allows those who are detained
+                  abroad as children to be treated in the same way as those detained as children in
+                  Scotland.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">47.</span></h2>
+               <p>Under inserted subsection (1)(b), where an adult or child is transferred to Scotland
+                  from abroad to serve their sentence of imprisonment/detention, the Scottish Ministers
+                  can determine that the person is to be treated for the purposes of sections 1(1) and
+                  7(1)(a) as though they are serving a sentence for a sexual offence or domestic abuse
+                  offence committed in Scotland.  Any prisoner subject to such a determination would
+                  then be automatically released after serving 50% of their sentence (instead of 40%
+                  of their sentence) – i.e. they will be automatically released at the same point that
+                  they would have been released at had the sexual/domestic abuse offence been committed
+                  in Scotland.  However, under inserted subsection (2), such a determination will only
+                  be able to be made where the act, omission or behaviour for which the person was convicted
+                  abroad was something that could, if it had occurred in Scotland, have resulted in
+                  a conviction in Scotland for domestic abuse or a sexual offence.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">48.</span></h2>
+               <p>Inserted subsection (3) provides the Scottish Ministers with a regulation-making power
+                  to enable further provision to be made about or in connection with this process. 
+                  Inserted subsection (4) provides that such regulations would be subject to the affirmative
+                  procedure and the power has the usual ancillary powers attached to it.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">49.</span></h2>
+               <p>New section 27B is relevant only to transfers into Scottish prisons from outwith the
+                  UK. Where a prisoner is transferred to a Scottish prison from within the UK, they
+                  are transferred under different legislation which allows them to be transferred on
+                  the basis that their release point is determined by reference to the law of the part
+                  of the UK in which they were sentenced.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 5 – consequential, transitional and transitory provision</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">50.</span></h2>
+               <p>This section introduces the schedule, which makes consequential and transitional provision.
+                  Commentary on the schedule is located from paragraph 61 of these Notes onwards.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Reporting</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 6 – report on operation of Act</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">51.</span></h2>
+               <p>Subsection (1) of this section requires the Scottish Ministers to carry out a review
+                  of how the changes made to the 1993 Act and 1995 Act have operated.  This must be
+                  carried out as soon as reasonably practicable after the period of 2 years, beginning
+                  with the day on which section 1 comes into force.  The report must be published and
+                  a copy of it laid before the Scottish Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">52.</span></h2>
+               <p>Subsection (2) of this section sets out some things which the report must include
+                  (though it can also include other information about how the changes are operating).
+                  In particular, the report must include information about the prison population throughout
+                  the review period as well as setting out certain information in relation to those
+                  who are released in tranches under the transitional arrangements that are provided
+                  for in paragraph 3(1) of the schedule. Release under paragraph 3(1) (i.e. in the three
+                  tranches that are provided for) will be the biggest release of prisoners under the
+                  changes made by this Act.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">53.</span></h2>
+               <p>In relation to those releases, the report must set out—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>the number of individuals released in each release period (broken down by reference
+                     to the matters set out at subsection (2)(b)(i)(A) to (C)), </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>for each local authority area, the number of individuals released whose last known
+                     address prior to imprisonment was within that area,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>for each health board area, the number of individuals released whose last known address
+                     prior to imprisonment was within that area. </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Final provisions</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 7 – ancillary provision</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">54.</span></h2>
+               <p>This section empowers the Scottish Ministers, by regulations, to make various types
+                  of ancillary provision for the purposes of, in connection with, or to give full effect
+                  to the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">55.</span></h2>
+               <p>Regulations under this section may modify any enactment (including the Act itself).
+                  The word “enactment” is defined in schedule 1 of the Interpretation and Legislative
+                  Reform (Scotland) Act 2010 and includes Acts of the Scottish or UK Parliaments as
+                  well as secondary legislation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">56.</span></h2>
+               <p>If regulations under this section textually amend an Act then they are subject to
+                  the affirmative procedure, but otherwise they are subject to the negative procedure<a class="fn" id="fnref-8" href="#fn-8">8</a>.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 8 – commencement</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">57.</span></h2>
+               <p>This section sets out when the provisions of the Act will come into force (i.e. take
+                  effect).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">58.</span></h2>
+               <p>The final sections (that is, sections 7 to 9) come into force automatically on the
+                  day after the Act receives Royal Assent. The other provisions of the Act (that is,
+                  the substantive provisions) will be commenced in accordance with regulations made
+                  by the Scottish Ministers under this section. Such regulations may include transitional,
+                  transitory or saving provision related to commencement and may make different provision
+                  for different purposes. However, the Act already includes some transitional provision
+                  in relation to the initial release of prisoners following commencement – see paragraph
+                  3 of the schedule.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">59.</span></h2>
+               <p>Regulations under this section will be laid before the Scottish Parliament but will
+                  not be subject to any parliamentary procedure (see <a href="https://www.legislation.gov.uk/asp/2010/10/section/30"><u>section 30 of the Interpretation and Legislative Reform (Scotland) Act 2010</u></a>).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 9 – short title</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">60.</span></h2>
+               <p>This section provides for the Act to be known as the Prisoners (Early Release) (Scotland)
+                  Act 2025.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Schedule – consequential, transitional and transitory provision</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 1 – consequential provision</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Paragraph 1: release of short-term prisoners on licence tied to timing of automatic
+                        early release</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">61.</span></h2>
+               <p>Section 3AA of the 1993 Act deals with the power to release prisoners on licence (known
+                  informally as “home detention curfew”).  It has recently been amended by section 9
+                  of the Bail and Release from Custody (Scotland) Act 2023 (to remove long-term prisoners
+                  from the scope of the section) but that change is not yet in force as at the point
+                  of production of these Notes.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">62.</span></h2>
+               <p>Prior to the changes made by this Act, the rule in relation to short-term prisoners
+                  was that such a prisoner serving more than a 3 month sentence of imprisonment could
+                  be released on licence at any point in the period which began 180 days before they
+                  reached the halfway point of their sentence and which ended 14 days before that point
+                  was reached.  In practice, this correlated with the then-current automatic early-release
+                  point for short-term prisoners, and meant in essence that they may be released up
+                  to 180 days before automatic early release would operate (provided it was not in the
+                  fortnight immediately prior to it).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">63.</span></h2>
+               <p>The provision relating to short-term prisoners is altered by this paragraph of the
+                  Act so as to tie in to the particular prisoner’s release date, rather than being a
+                  set proportion.  This means that the provision will continue to function properly
+                  despite the fact that different release points have now been set for different short-term
+                  prisoners (i.e. 50% for some and 40% for others).  It will therefore continue to be
+                  the case that a short-term prisoner will be able to be released on licence up to 180
+                  days before automatic early release would operate (provided it is not in the fortnight
+                  immediately prior to it).  Without this change, a short-term prisoner’s eligibility
+                  for home detention curfew might only have kicked in a very small amount of time before,
+                  or even after, they would have been given automatic early release after serving 40%
+                  of their sentence, which might have led to a reduction in its use or availability
+                  for use.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Paragraph 2: power to modify timing of automatic early release of certain detained
+                        children</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">64.</span></h2>
+               <p>Paragraph 2 repeals the existing power in section 7(1A)(b) of the 1993 Act which allowed
+                  a reference to a proportion of a detained child’s sentence to be construed as a different
+                  proportion.  This power is redundant in light of the new power at section 3 of the
+                  Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Part 2 – transitional and transitory provision</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Paragraph 3: initial release of individuals when automatic early release changes</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">65.</span></h2>
+               <p>This paragraph makes provision about how the release of individuals is to take place
+                  immediately following the commencement of the new rules in sections 1 and 2, providing
+                  a mechanism for moving from the old regime to the new regime.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">66.</span></h2>
+               <p>Sub-paragraph (1) provides that existing prisoners whose release dates are changed
+                  by the Act and who are listed in the first column of the table in sub-paragraph (2)
+                  are to be released on the date provided for in that table instead of being released
+                  on the new release date which would apply to them under section 1 of the Act.  This
+                  will avoid all prisoners who have served 40% or more of their sentence at the point
+                  of commencement, but less than 50%, all needing to be released on the same day upon
+                  commencement occurring.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">67.</span></h2>
+               <p>Sub-paragraphs (1) and (2) together provide as follows—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>A prisoner whose new release date falls on or before the day that is 30 days before
+                     the commencement date is, as default, to be released in the period running from Tuesday
+                     to Thursday which starts with the first Tuesday after the commencement date.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>A prisoner whose new release date falls in the period starting 29 days before the
+                     commencement date and ending 1 day before the commencement date is, as default, to
+                     be released in the period running from Tuesday to Thursday which starts with the third
+                     Tuesday after the commencement date.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>A prisoner whose new release date falls in the period starting on the commencement
+                     date and ending the day before the final release period is, as default, to be released
+                     in the period running from Tuesday to Thursday which starts with the fifth Tuesday
+                     after the commencement date.  </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">68.</span></h2>
+               <p>The effect of this can be demonstrated as follows, based on an example which assumes
+                  a hypothetical commencement date of Tuesday 18 February 2025—</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Those prisoners who reached the 40% mark on or before 19 January and who fall within
+                     new section 1(1)(b) of the 1993 Act would, as default, be released in the first tranche,
+                     which would take place from Tuesday 25 to Thursday 27 February.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Those prisoners who reached the 40% mark in the period from 20 January to 17&nbsp;February
+                     (inclusive) and who fall within new section 1(1)(b) of the 1993 Act would, as default,
+                     be released in the second tranche, which would take place from Tuesday 11 to Thursday
+                     13 March.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Those prisoners who reached the 40% mark in the period from 18 February to 24&nbsp;March
+                     and who fall within new section 1(1)(b) of the 1993 Act would, as default, be released
+                     in the third tranche, which would take place from Tuesday 25 to Thursday 27 March.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">69.</span></h2>
+               <p>The references above to prisoners being released “as default” in the release period
+                  provided for in the table is because sub-paragraph (3) also provides that if release
+                  under the provisions set out in the table would lead to the prisoner being released
+                  later than their original 50% release date, they are instead to be released on their
+                  original release date.  This will be relevant to those who are already very close
+                  to the 50% point in their sentence at the time of commencement.  For example, if a
+                  prisoner was at the 49% point in their sentence at the time of commencement and reached
+                  their original release date 3 days after commencement, they would be released then
+                  instead of being delayed until the first tranche of releases.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">70.</span></h2>
+               <p>Those prisoners who reach the 40% mark on or after the first day of the release period
+                  for the final tranche and who fall within new section 1(1)(b) of the 1993 Act will
+                  be released under the new rules without any transitional provision applying to them.
+                  In the example above where the final tranche is released in the period from Tuesday
+                  25 to Thursday 27 March, there may also be people being released on any of those days
+                  simply because that is their new release date.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">71.</span></h2>
+               <p>These transitional rules in sub-paragraphs (1) to (3) apply to “prisoners”.  This
+                  is defined in sub-paragraph (5) to include young offenders detained in a young offenders
+                  institution.  This covers both those who are placed in a young offenders institution
+                  in relation to an offence and those who are initially detained in secure accommodation
+                  but who are then moved to a young offenders institution upon reaching the age of 18.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">72.</span></h2>
+               <p>Sub-paragraph (4) makes provision in relation to children who are being detained following
+                  criminal proceedings.  It relates only to those who continue to be children at the
+                  point of commencement.  If their release date is changed by the Act and their new
+                  release date would therefore have arisen prior to the commencement of the change relating
+                  to them, they are to be released on the date on which the change (i.e. section 2 of
+                  the Act) is commenced.  This recognises that their new release date has already passed
+                  and therefore ensures that they are released immediately while providing for their
+                  detention up to that point to continue to have been lawful detention.  Due to the
+                  significantly smaller numbers involved, there is no release in tranches in the same
+                  way as is applied to prisoners.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">73.</span></h2>
+               <p>Sub-paragraph (5) sets out the definitions which apply for the purpose of these transitional
+                  provisions.  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Paragraph 4: short-term prisoners on licence when automatic early release changes</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">74.</span></h2>
+               <p>Paragraph 4 makes transitional provision for short-term prisoners who are on licence
+                  at the point when the change to automatic early release made by section 1 of the Act
+                  takes effect.  This covers both those on home detention curfew under section 3AA of
+                  the 1993 Act and those who have received compassionate release on licence under section
+                  3 of the 1993 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">75.</span></h2>
+               <p>The duration of the licence granted to such short-term prisoners is provided for in
+                  section 11 of the 1993 Act and (other than in the case of short-term terrorism prisoners)
+                  is tied to the point when, had the individual not been released on licence, they would
+                  have been given automatic early release under section 1(1) of the 1993 Act.  Those
+                  who are on licence at the point when section 1 of the 1993 Act is altered as a result
+                  of the change made by this Act will therefore automatically have their licence periods
+                  recalculated: where they would have benefitted from an earlier release had they remained
+                  in prison, their licences will similarly end early.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">76.</span></h2>
+               <p>However, paragraph 4 makes provision to avoid this leading to any retrospective change
+                  to when the licence ends.  It provides for the person’s licence to end (unless revoked
+                  earlier) on the <u>later</u> of the date on which section 1 of the Act comes into force and the date on which
+                  the licence would otherwise have ended.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">77.</span></h2>
+               <p>For example, prior to the Act coming into force, an individual might be on licence
+                  with their licence due to end in February 2025 (on what would have been their automatic
+                  early release date, upon reaching 50% of their sentence).  If that person’s sentence
+                  is now recalculated to find the 40% point, that might occur in December 2024.  If
+                  the Act comes into force in January 2025, that person’s licence will be recalculated
+                  and brought to an end in January (i.e. on the date the changes to automatic early
+                  release take effect).  What this paragraph of the schedule prevents is the individual’s
+                  licence suddenly being viewed after the fact as having ended in December, when they
+                  reached the 40% mark, despite having been in force throughout December prior to the
+                  Act’s changes coming into force. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Paragraph 5: release of short-term prisoners on licence</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">78.</span></h2>
+               <p>Paragraphs 61 to 63 of these Notes discuss the consequential amendment that paragraph
+                  1 of the schedule makes to section 3AA of the 1993 Act to allow home detention curfew
+                  to continue to operate properly despite the changes being made to the automatic early
+                  release point for short-term prisoners.  However, as noted above, a recent change
+                  to section 3AA is due to take effect when section 9 of the Bail and Release from Custody
+                  (Scotland) Act 2023 is commenced and removes long-term prisoners from the scope of
+                  section 3AA.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">79.</span></h2>
+               <p>Until that takes effect, long-term prisoners will continue to need to be referenced
+                  within section 3AA.  This paragraph of the Act therefore makes transitional provision
+                  which sets out how the consequential amendment is to be interpreted until such time
+                  as the removal of long-term prisoners from this section takes effect.  It provides
+                  for the change made by paragraph 1 to take effect immediately but allows the existing
+                  reference to long-term prisoners to continue in place unaltered as a stopgap measure.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PARLIAMENTARY HISTORY</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">80.</span></h2>
+               <p>The following is a list of the proceedings in the Scottish Parliament on the Bill
+                  for the Act and significant documents connected to the Bill published by the Parliament
+                  during the Bill’s parliamentary passage.  The Act was passed under the procedure for
+                  Emergency Bills.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:3.54in">
+                     <col style="width:2.72in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <p>
+                           <b>
+                              <i>Proceedings and reports</i>
+                              </b>
+                           </p>
+                        <p>
+                           <b>
+                              <i>Reference</i>
+                              </b>
+                           </p>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Introduction</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/introduced/bill-as-introduced.pdf">
+                                 <u>SP Bill 53 Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Explanatory Notes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/introduced/explanatory-notes.pdf">
+                                 <u>SP Bill 53-EN Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Policy Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/introduced/policy-memorandum.pdf">
+                                 <u>SP Bill 53-PM Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Financial Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/introduced/financial-memorandum.pdf">
+                                 <u>SP Bill 53-FM Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/introduced/delegated-powers-memorandum.pdf">
+                                 <u>SP Bill 53-DPM Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Statements on Legislative Competence</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/introduced/statements-on-legislative-competence.pdf">
+                                 <u>SP Bill 53-LC Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Emergency Bill motion</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Emergency Bill debate, 20 November 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16108">
+                                 <u>Official report, cols 73 – 85</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Stage 1</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 debate, 21 November 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16110">
+                                 <u>Official report, cols 67 – 115</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Stage 2</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Marshalled list of amendments for Stage 2</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/stage-2/marshalled-list-of-amendments-for-stage-2.pdf">
+                                 <u>SP Bill 53-ML Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Groupings of amendments for Stage 2</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/stage-2/groupings-of-amendments-for-stage-2.pdf">
+                                 <u>SP Bill 53-G Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration of amendments at Stage 2, 26 November 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16121">
+                                 <u>Official report, cols 10 – 80</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill as amended at Stage 2</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/stage-2/bill-as-amended-at-stage-2.pdf">
+                                 <u>SP Bill 53A Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Stage 3</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Marshalled list of amendments for Stage 3</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/stage-3/marshalled-list-of-amendments-for-stage-3.pdf">
+                                 <u>SP Bill 53A – ML Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Groupings of amendments for Stage 3</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/stage-3/groupings-of-amendments-for-stage-3.pdf">
+                                 <u>SP Bill 53A – G Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration of amendments at Stage 3, 26 November 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16121">
+                                 <u>Official report, cols 81 – 89</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 3 debate, 26 November 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=16121">
+                                 <u>Official report, cols 91 – 109</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill as passed</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/prisoners-early-release-scotland-bill/stage-3/bill-as-passed.pdf">
+                                 <u>SP Bill 53B – Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Royal Assent</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Royal Assent – 22 January 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.legislation.gov.uk/asp/2025/1/contents/enacted">
+                                 <u>2025 asp 1</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  For details of common licence terms, see <a href="https://scottishparoleboard.scot/frequently-asked-questions/"><u>Frequently Asked Questions - Parole Board for Scotland. </u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  While the 1993 Act refers to this as being a duty upon the Secretary of State, this
+                  is read as meaning the Scottish Ministers under section 53 of the Scotland Act 1998.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  A supervised release order can be imposed by the court under <a href="https://www.legislation.gov.uk/ukpga/1995/46/section/209"><u>section 209</u></a> of the 1995 Act on a short-term prisoner who is convicted on indictment of a non-sexual
+                  offence if the court considers the order necessary “to protect the public from serious
+                  harm from the offender” on the person’s release.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Extended sentences can be imposed by the court under <a href="https://www.legislation.gov.uk/ukpga/1995/46/section/210A"><u>section 210A</u></a> and <a href="https://www.legislation.gov.uk/ukpga/1995/46/section/210AA"><u>section 210AA</u></a> of the 1995 Act where a person is convicted on indictment of a sexual, violent, terrorism
+                  or abduction offence and the court considers that the period (if any) for which the
+                  offender would otherwise be on licence “would not be adequate for the purpose of protecting
+                  the public from serious harm from the offender”.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  The listed sexual offences are all the Scottish offences listed in schedule 3 of
+                  the Sexual Offences Act 2003. This covers a broad range from common law rape to indecent
+                  assault or voyeurism, as well as an offence where the court specifically determines
+                  that there was a significant sexual aspect to the offender’s behaviour in committing
+                  the offence.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  This power could previously be used in relation to short-term prisoners and to long-term
+                  prisoners sentenced before 1 February 2016.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Under section 1(2A) of the 1993 Act, the automatic early release point is 6 months
+                  prior to the end of the person’s sentence for long-term prisoners who are serving
+                  a sentence imposed on or after 1 February 2016, who are not subject to an extended
+                  sentence, and who have not previously been released on licence in respect of that
+                  sentence.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  See <a href="https://www.legislation.gov.uk/asp/2010/10/part/2/crossheading/parliamentary-scrutiny"><u>sections 28 and 29 of the Interpretation and Legislative Reform (Scotland) Act 2010</u></a><u>.</u></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

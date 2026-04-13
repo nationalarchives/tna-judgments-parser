@@ -1,0 +1,1106 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>ORGAN DONATION (DEEMED CONSENT)</b>
+               <b>
+                  </b>
+               <b>ACT 2019</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Organ Donation (Deemed Consent) Act 2019 (c.
+                  7) which received Royal Assent on 15 March 2019. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department of Health and Social
+                  Care in order to assist the reader in understanding the Act. They do not form part
+                  of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The Human Tissue Act 2004 (“the 2004 Act”), among other things, makes provision with
+                     respect to activities involving human tissue, such as organ transplantation, and authorises
+                     the removal, storage and use of organs and tissues for the purpose of transplantation
+                     if there is “appropriate consent”. The meaning of appropriate consent differs depending
+                     on whether the relevant material is obtained from an adult or child, but, under the
+                     2004 Act the overarching principle was that consent must be given expressly and cannot
+                     be deemed to have been given in the absence of an objection. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act amends the 2004 Act to introduce provisions that would allow for consent to
+                     organ and tissue donation in England to be deemed to have been given by a potential
+                     adult organ donor before their death unless they had expressly stated that they did
+                     not wish to be a donor or an exception applies. This is often referred to as an “opt-out”
+                     system of consent as people may “opt-out” of becoming an organ donor if they do not
+                     consent. The Act does not change rules on consent to organ donation in respect of
+                     children under 18 or people who have expressly made a decision on consent before their
+                     death (either by recording their decision to give or refuse consent or appointing
+                     someone to make that decision on their behalf). This Act also does not change consent
+                     concerning living donations. Further, the Act sets out that deemed consent will not
+                     apply where a person in a qualifying relationship to the deceased (partners, certain
+                     family members or a friend of long standing) provides information that would lead
+                     a reasonable person to conclude that the deceased potential organ donor would not
+                     have consented to be a donor. The Act also provides exceptions applicable to the following
+                     groups of adults, in respect of whom the deemed consent provisions will not apply:
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>people who are short-term visitors or temporarily resident in England for less than
+                        12 months immediately before dying. Examples include overseas workers, students, overseas
+                        Armed Forces personnel; and </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>people who lack the capacity to fully understand the consequences of deemed consent
+                        for a significant period before dying. </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Deemed consent will not apply to all organs and tissues. Organs and tissues that are
+                     to be excluded from deemed consent will be set out in regulations made by the Secretary
+                     of State. These will cover transplants that are currently rare or novel and many may
+                     not regard as normal to donate.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The donation of organs and tissues after death helps to save thousands of lives in
+                     England each year. Just one donor could transform the lives of up to nine other people.
+                     In 2017, national figures confirmed that over 50,000 people are known to be alive
+                     thanks to organ donation and transplantation.<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>There is widespread public support for organ donation, with around 80% of people saying
+                     that they support organ donation ‘in principle’, and would be willing to donate their
+                     organs and tissue after they have died. Over the last 10 years, the number of organ
+                     donors has increased by 75% and deceased transplants have increased by 56%.<a class="fn" id="fnref-2" href="#fn-2">2</a> There are almost 25 million people on the NHS Organ Donor Register. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Despite this, there is a shortage of donors in England, with around 5,100 people waiting
+                     for a transplant. Over half a million people die each year in the UK, but only around
+                     5,000 people die in circumstances or from conditions that mean that their organs could
+                     be considered for transplantation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>Since the introduction of an opt-out system in Wales, consent rates in Wales have
+                     increased from 58% in 2015 to 72% in 2017<a class="fn" id="fnref-3" href="#fn-3">3</a>. However, UK consent rates overall are below the ambitious targets set out in the
+                     current UK strategy. Because of this shortage, three people die each day due to a
+                     lack of suitable organs. The situation is worse for people from black and Asian backgrounds
+                     who, due to genetic differences, are more likely to suffer from an illness that may
+                     lead to them needing a transplant. Due to the shortage of matched donors (i.e. donors
+                     with the same blood and tissue type, usually from the same ethnic group), people from
+                     these communities will wait six months longer on average if they need an organ transplant<a class="fn" id="fnref-4" href="#fn-4">4</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Under the pre-existing rules in England, a person was considered a possible organ
+                     donor following their death only if they actively took steps to consent in their lifetime.
+                     In practice, this was usually a question of whether they have signed the NHS Organ
+                     Donor Register and/or discussed their views with their family. Families can also give
+                     consent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The purpose of the Act is to change the way in which consent is to be given for organ
+                     and tissue donation in England, for the purposes of transplantation. The Act provides
+                     that, in the absence of a deceased adult having made express provision in relation
+                     to consent before their death or having appointed someone to make a decision on consent
+                     for them, the default position in most cases will be that consent will be deemed to
+                     have been given. This means that, after death, a person will be considered to have
+                     consented to organ donation in their lifetime unless: they made specific provision
+                     to the contrary in their lifetime; they appointed someone to make the decision on
+                     their behalf; there is evidence that would lead a reasonable person to conclude that
+                     they would not have consented; or an exception applies. It should be noted that these
+                     changes on the rules of consent do not apply in respect of all people and deemed consent
+                     does not apply to under 18s, as well as certain excepted adults - people who lacked
+                     capacity for a significant period before their death such that they could not understand
+                     that consent could be deemed in the absence of express action being taken, and people
+                     who had not been ordinarily resident in England for at least 12 months immediately
+                     before their death. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The policy underlying many of the provisions in this Act was consulted on in the Government
+                     consulation <a href="https://www.gov.uk/government/consultations/introducing-opt-out-consent-for-organ-and-tissue-donation-in-england/consultation-on-introducing-opt-out-consent-for-organ-and-tissue-donation-in-england"><i><u>Introducing ‘opt-out’ consent for organ and tissue donation in England</u></i></a>, which was launched in December 2017. The consultation sought views on a number of
+                     issues regarding the implementation of the new system of consent. The Government received
+                     more that 17,000 responses from individuals and organisations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>The Government’s response to the consultation, <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/731913/govt-response-organ-donation-consent.pdf"><i><u>New approach to organ and tissue donation in England</u></i></a><i>,</i> was published on 5 August 2018. The Government set out its proposals for implementation.
+                     This includes changes to the Organ Donor Register to make it easier to record a decision,
+                     a 12-month transition period between the passing of this Act and the changes coming
+                     into effect, to allow time for a public awareness campaign and new measures to accommodate
+                     concerns from faith groups.</p>
+               </section>
+               <section class="level">
+                  <p>Section 1: “Appropriate consent” to adult transplantation activities: England</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>This provision amends the 2004 Act to set out when deemed consent amounts to appropriate
+                     consent for transplantation purposes. The policy background to this provision is to
+                     amend the law regarding when consent is considered to have been given to better reflect
+                     the views of 80% of the population that support organ donation in principle by shifting
+                     the default position in relation to consent away from an option to opt-in to an option
+                     to opt-out. There are, of course, people who actively made a decision before they
+                     died as to whether they do or do not consent to organ donation, or who opted to appoint
+                     someone to make that decision on their behalf. In these cases, as in the case of children
+                     and living donors, there is no change to the rules. The provision also provides for
+                     cases where certain people close to the deceased believe that they would not have
+                     consented to being an organ donor, and allows for the presumption of consent to be
+                     overturned. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The Act contains a power to exclude novel transplants from deemed consent. This is
+                     to ensure that the new system of consent is in line with the common understanding
+                     of organ and tissue donation. The list of novel transplants will be detailed in regulations
+                     made by the Secretary of State following consultation. The regulations will be laid
+                     under an affirmative procedure (see section 2(5) and (6)).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Finally, there are exceptions to ensure that certain vulnerable groups and those who
+                     have not been ordinarily resident in England for 12 months are excluded from the opt-out
+                     consent system. This applies in respect of people who lacked capacity to understand
+                     deemed consent for a significant period before their death, and to visitors and short-term
+                     residents in England.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The purpose of these provisions is to ensure that any organs and tissues removed in
+                     England for transplantation purposes can be stored and used wherever needed across
+                     the UK, even where there was deemed rather than express consent to the removal of
+                     the organ. While the current legislative frameworks in respect of Wales and Scotland
+                     already allow for this to happen, without these amendments, only organs and tissues
+                     removed in England with express consent from the deceased, their representative or
+                     a family member or friend could be stored or used in Northern Ireland for transplantation
+                     purposes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>This section also places a duty on the Human Tissue Authority to issue Codes of Practice
+                     to provide practical guidance about how deemed consent will work in practice, including
+                     the information a person in a qualifying relationship (partners, certain family members
+                     or a friend of long standing) would need to provide as evidence that the deceased
+                     person would not have agreed to their organs being donated.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>This section amends the 2004 Act to set out that the delegated power under section
+                     1(5) for the Secretary of State to make regulations to specify relevant material to
+                     which deemed consent will not apply, is subject to the affirmative resolution procedure.
+                     It also sets out with whom the Secretary of State must consult on such regulations.</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>This Act extends to England and Wales and Northern Ireland. However, as is clear from
+                     the text of the amendments to section 3 of the 2004 Act in section 1, the deemed consent
+                     provisions only have practical application in respect of activities carried out in
+                     England for the purposes of transplantation. Section 2(2) and (3) may apply in Northern
+                     Ireland. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Apart from section 3, which comes into force on the day that the Act is passed, the
+                     provisions in this Act will come into force on the day or days that the Secretary
+                     of State appoints through regulations made by statutory instrument.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The 2004 Act, amongst other things, makes provision with respect to activities involving
+                     human tissue. Section 1(1) of the 2004 Act (authorisation of activities for scheduled
+                     purposes) sets out that certain activities are lawful if done with appropriate consent.
+                     Those activities include:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>storing the body of a person who has died for use for certain purposes specified in
+                        Schedule 1 to the 2004 Act (including transplantation – paragraph 7 of Schedule 1);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the use of the body of a person who has died for such a purpose;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the removal of “relevant material”from the body of a person who has died for such
+                        a purpose;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the storage of relevant material that has come from a human body for such a purpose;
+                        and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the use of relevant material that has come from a human body for such a purpose.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>“Relevant material” is defined in section 53 of the 2004 Act. It is any material that
+                     consists of, or includes, human cells other than gametes, embryos outside the human
+                     body, and hair and nail from the body of a living person. Section 54(7) clarifies
+                     that material created outside the human body is not relevant material for the purposes
+                     of the 2004 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>Accordingly, under the 2004 Act it is lawful to remove, store and use organs and human
+                     tissue from a deceased person for the purposes of transplantation provided that appropriate
+                     consent is obtained. Section 2 of the 2004 Act sets out the meaning of appropriate
+                     consent for the purposes of section 1 in respect of children (a person under 18 (section
+                     54(1)). The Act does not make any amendment to this provision and the existing rules
+                     on when appropriate consent is given in respect of a child will continue to apply.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>The meaning of “appropriate consent” for the purposes of section 1 in respect of an
+                     adult is set out in section 3 of the 2004 Act (“appropriate consent”: adults). The
+                     Act amends this section. Further information on the operation of those amendments
+                     is set out in the commentary on section 1 of the Act in these Explanatory Notes. Under
+                     the 2004 Act (as unamended by the Act), if the adult made no decision before death
+                     to either expressly give or refuse consent, a person that they nominated in accordance
+                     with section 4 of the 2004 Act may give or refuse consent. Failing that, someone in
+                     a “qualifying relationship” (as listed in section 54(9) and dealt with further at
+                     section 27(4)) may give consent. Failing that, there is no consent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>This Act extends to England and Wales and Northern Ireland, however, as is clear from
+                     the text of the amendments to section 3 of the 2004 Act in section 1, the deemed consent
+                     provisions only apply in respect of activities carried out in England. Section 2(2)
+                     and (3) are to apply in Northern Ireland.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: “Appropriate consent” to adult transplantation activities: England</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Under section 1(1) of the 2004 Act, the removal, storage and use of organs and tissue
+                     from a deceased person is lawful if there is appropriate consent. Section 1 of the
+                     Act sets out amendments to section 3 of the 2004 Act (“appropriate consent”: adults),
+                     which defines “appropriate consent” in respect of adults for the purposes of section
+                     1. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Section 1 inserts a new paragraph (ba) into section 3(6) of the 2004 Act. This new
+                     provision introduces deemed consent, in the absence of express consent. The amendments
+                     to section 3 of the 2004 Act in section 1 set out that with respect to specific listed
+                     transplantation activities carried out in England, in the absence of an express decision
+                     on consent either by the person before their death or by a person appointed to make
+                     that decision for them, deemed consent will apply unless—</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>a person in a qualifying relationship to the deceased (as listed in section 54(9))
+                        provides information that would lead a reasonable person to conclude that the deceased
+                        would not have consented (new subsection (6B) of the 2004 Act inserted section 1(4)
+                        of the Act);</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the deceased person had not been ordinarily resident in England for a period of at
+                        least 12 months immediately before they died (an “excepted” person under subsection
+                        (5)); or</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>the deceased person had, for a significant period before their death, lacked capacity
+                        to understand that deemed consent would apply (an “excepted” person under subsection
+                        (5)).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>This section also introduces a new term to the 2004 Act, “permitted material”. The
+                     Act proposes that deemed consent will only apply in respect of “permitted material”.
+                     The Act defines “permitted material” as relevant material other than relevant material
+                     of a type specified in regulations made by the Secretary of State. These regulations
+                     are subject to an affirmative resolution procedure that applies to statutory instruments
+                     (as set out in section 2(5) and (6)).   </p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Section 2 makes further amendments to the 2004 Act as a consequence of the amendments
+                     made by section 1 to section 3 of the 2004 Act. Section 2 inserts in the 2004 Act
+                     a new subsection into section 1 after subsection (9B), and amends subsection (10)(c)
+                     to allow for the storage and use in Northern Ireland of relevant material removed
+                     from a human body in England for transplantation purposes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>This section also inserts two new subsections in section 27 of the 2004 Act (provision
+                     with respect to consent). These new provisions place a duty on the Human Tissues Authority
+                     (HTA) to give practical guidance on how deemed consent will work in practice, including
+                     guidance about the provision of information by a family member or friend of the deceased
+                     to override the presumption of consent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>This section amends section 52 of the 2004 Act to set out that the delegated power
+                     in section 1 for the Secretary of State to make regulations to specify relevant material
+                     to which deemed consent will not apply, is subject to the affirmative resolution procedure.
+                     It also sets out with whom the Secretary of State shall consult with on such regulations
+                     (subsections (5) to (7)).</p>
+               </section>
+               <section class="level">
+                  <p>Section 3: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p>Section 3 provides that the Act extends to England, Wales and Northern Ireland, although
+                     section 1, the deemed consent provisions, only apply in respect of activities carried
+                     out in England. It also sets out that apart from section 3 which comes into force
+                     on the day that the Act is passed, the rest of the provisions, section 1 and 2 will
+                     come into force on a date, or dates, appointed in a statutory instrument by the Secretary
+                     of State. The section also sets out the short title for the Act on receiving Royal
+                     Assent as the Organ Donation (Deemed Consent) Act 2019. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>The following documents are relevant to the Act and can be found at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Human Tissue Act 2004 - <a href="http://www.legislation.gov.uk/ukpga/2004/30/contents"><u>http://www.legislation.gov.uk/ukpga/2004/30/contents</u></a>; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Department of Health and Social Care, Introducing an ‘Opt-out’ Consent for Organ and
+                        Tissue Donation in England: consultation document (12 December 2017) - <a href="https://www.gov.uk/government/consultations/introducing-opt-out-consent-for-organ-and-tissue-donation-in-england/consultation-on-introducing-opt-out-consent-for-organ-and-tissue-donation-in-england"><u>https://www.gov.uk/government/consultations/introducing-opt-out-consent-for-organ-and-tissue-donation-in-england/consultation-on-introducing-opt-out-consent-for-organ-and-tissue-donation-in-england</u></a>;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Department of Health and Social Care, The New Approach to Organ and Tissue Donation:
+                        Government response to consultation (5 August 2018) - <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/731913/govt-response-organ-donation-consent.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/731913/govt-response-organ-donation-consent.pdf</u></a>; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Department of Health and Social Care, <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/731915/Organ_donation_impact_assessment.pdf">Impact Assessment: An Opt-out System of Organ and Tissue Donation</a> (5 August 2018) - <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/731915/Organ_donation_impact_assessment.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/731915/Organ_donation_impact_assessment.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.18in">
+                        <col style="width:0.98in">
+                        <col style="width:0.95in">
+                        <col style="width:0.86in">
+                        <col style="width:0.78in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1: “Appropriate consent” to adult transplantation activities: England</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes<br></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No<br><br></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No<br><br></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No<br><br></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2: Consequential amendments</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3: Extent, commencement and short title</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B - Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.71in">
+                        <col style="width:1.45in">
+                        <col style="width:3.13in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>19 July 2017</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2017-07-19/debates/AE667929-DA6E-4938-9928-FE573D5D0F3A/PointsOfOrder">
+                                    <u>Vol. 627 Col. 876</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>23 February 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-02-23/debates/9673B445-2159-4C6C-AA4B-45ACD6A0E2AB/OrganDonation(DeemedConsent)Bill">
+                                    <u>Vol. 636</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>12 September 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-09-12/debates/e930f2bd-06ef-4352-961e-05159c7ba37a/OrganDonation(DeemedConsent)Bill">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2018-10-26/debates/82DBDD22-B516-47F6-BD17-CE003CA2BA62/OrganDonation(DeemedConsent)Bill">
+                                    <u>Vol. 648 Col. 587</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>29 October 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2018-10-29/debates/BB69BCF4-6135-4B31-BC29-744B959B975D/OrganDonation(DeemedConsent)Bill">
+                                    <u>Vol. 793</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>23 November 2018</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2018-11-23/debates/AF8D9D0D-FD77-4FD2-9AF7-000C5B1FA4F0/OrganDonation(DeemedConsent)Bill">
+                                    <u>Vol. 794</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>1 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-02-01/debates/080C3436-312A-45AC-AFD8-332AFE287A20/OrganDonation(DeemedConsent)Bill">
+                                    <u>Vol. 795</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report </p>
+                           </td>
+                           <td>
+                              <p>19 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-02-19/debates/C0DDD81B-8409-4868-B323-69F59EF87556/OrganDonation(DeemedConsent)Bill">
+                                    <u>Vol. 795</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 February 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2019-02-26/debates/3DC103DE-900C-4E3F-95A5-8B335543760D/OrganDonation(DeemedConsent)Bill">
+                                    <u>Vol. 796</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>15 March 2019</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2019-03-15/debates/FE8474F0-3B39-47A0-B3D3-9530C18AD1A7/Speaker%E2%80%99SStatementNewZealandTerrorAttacks">
+                                    <u>House of Commons Vol. 656 Col. 665</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2019-03-15/debates/F019358C-A242-4AE3-A2E7-A90D77D6C7C0/RoyalAssent">
+                                    <u>House of Lords Vol. 796</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>This Annex shows how each section and Schedule of the Act was numbered during the
+                     passage of the Bill through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.04in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                        <col style="width:1.05in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                           <p>
+                              <b>Bill as Introduced in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                           <p>
+                              <b>Bill as amended on Report in the Lords </b>
+                              </p>
+                           <p>
+                              <b>Bill as introduced in the Commons </b>
+                              </p>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                           <td>
+                              <p>Clause 1</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                           <td>
+                              <p>Clause 2</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                           <td>
+                              <p>Clause 3</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.organdonation.nhs.uk/news-and-campaigns/news/more-than-50-000-people-now-alive-thanks-to-organ-donation-and-transplant/"><u><a href="https://www.organdonation.nhs.uk/news-and-campaigns/news/more-than-50-000-people-now-alive-thanks-to-organ-donation-and-transplant/">https://www.organdonation.nhs.uk/news-and-campaigns/news/more-than-50-000-people-now-alive-thanks-to-organ-donation-and-transplant/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.nhsbt.nhs.uk/"><u><a href="https://www.nhsbt.nhs.uk/">https://www.nhsbt.nhs.uk/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.odt.nhs.uk/statistics-and-reports/annual-activity-report/"><u><a href="https://www.odt.nhs.uk/statistics-and-reports/annual-activity-report/">https://www.odt.nhs.uk/statistics-and-reports/annual-activity-report/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.gov.uk/government/publications/race-disparity-audit"><u><a href="https://www.gov.uk/government/publications/race-disparity-audit">https://www.gov.uk/government/publications/race-disparity-audit</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,1238 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p class="center">
+               <i>These notes relate to the Prescription (Scotland) Act 2018 (asp 15) </i>
+               <br>
+               <i>which received Royal Assent on 18 December 2018</i>
+               </p>
+            <p class="center">
+               <b>PRESCRIPTION (SCOTLAND) ACT 2018</b>
+               </p>
+            <p class="center">——————————</p>
+            <p class="center">
+               <b>EXPLANATORY NOTES</b>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>INTRODUCTION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.</span></h2>
+               <p>These Explanatory Notes have been prepared by the Scottish Government in order to
+                  assist the reader of the Prescription (Scotland) Act 2018. They do not form part of
+                  the Act and have not been endorsed by the Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.</span></h2>
+               <p>The Notes should be read in conjunction with the Act. They are not, and are not meant
+                  to be, a comprehensive description of the Act. So where a section, or a part of a
+                  section, does not seem to require any explanation or comment, none is given.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>THE ACT – COMMENTARY ON SECTIONS</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.</span></h2>
+               <p>The Prescription (Scotland) Act 2018 makes changes to the law of negative prescription
+                  to address certain issues which have caused or may cause difficulty in practice. These
+                  changes are designed to increase clarity, certainty and fairness as well as promote
+                  a more efficient use of resources. The Act makes amendments to the Prescription and
+                  Limitation (Scotland) Act 1973 (“the 1973 Act”).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>The structure of the Act</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.</span></h2>
+               <p>Sections 1 to 5 of the Act make provision in relation to the five-year prescription
+                  provided for in section 6 of the 1973 Act, as read with schedule 1 of that Act. The
+                  effect of the five-year prescription is to extinguish certain types of obligations
+                  (and rights) after a period of five years has elapsed, provided that various conditions
+                  are met. Sections 6 to 8 of the Act make provision in relation to the 20-year prescription
+                  in sections 7 and 8 of the 1973 Act. The 20-year prescription, in terms of section
+                  7, currently extinguishes obligations 20 years after the date on which they became
+                  enforceable (other than those which are imprescriptible (obligations that cannot be
+                  extinguished by the law of prescription, such as a real right of ownership in land),
+                  in terms of schedule 3 of the 1973 Act, and those relating to reparation for personal
+                  injury/death and damage caused by defective products). The remaining sections cover
+                  miscellaneous and general matters.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 1 - Obligations to pay damages and delictual obligations</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>Currently, paragraph 1(d) of schedule 1 of the 1973 Act refers to obligations arising
+                  from liability to make reparation. The courts have interpreted “reparation” narrowly
+                  to mean only a claim for the payment of damages arising from a wrongful act. Consequently,
+                  obligations arising from delict other than the obligation to pay damages currently
+                  do not fall within the five-year prescription.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.</span></h2>
+               <p>Section 1 amends paragraph 1 of schedule 1 of the 1973 Act. Subsection (2) inserts
+                  a new sub-paragraph (d). This makes clear that obligations to pay damages fall within
+                  the scope of the five-year prescription regardless of their source; examples are obligations
+                  arising by virtue of any enactment, the common law, delict, breach of contract or
+                  promise.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.</span></h2>
+               <p>Subsection (2) also inserts a new sub-paragraph (da) into paragraph 1 of schedule
+                  1 of the 1973 Act to the effect that the five-year prescription, in addition to applying
+                  to all obligations to pay damages, extends to any obligations arising from the law
+                  of delict which do not fall within any other sub-paragraph of paragraph 1.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.</span></h2>
+               <p>Subsection (3) makes textual changes to section 11 of the 1973 Act to reflect new
+                  sub-paragraph (d) of paragraph 1 of schedule 1 of the 1973 Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 2 - Obligations related to contract</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.</span></h2>
+               <p>This section amends paragraph 1 of schedule 1 of the 1973 Act to bring within the
+                  scope of the five-year prescription two further types of obligation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.</span></h2>
+               <p>Subsection (2) inserts a new sub-paragraph (fa) dealing with the first type of obligation:
+                  any obligation relating to the validity of a contract. Where a contract has been induced
+                  by error or innocent misrepresentation (caused by the debtor innocently or otherwise),
+                  the contract is voidable. In other words, the contract is valid until it is set aside
+                  by the party entitled to avoid it. For example,&nbsp;A is induced to purchase a painting
+                  from B by B’s innocent misrepresentation that the painting is by artist C.&nbsp;When A
+                  discovers the painting is not in fact by C, A can seek to have the contract set aside
+                  on the ground of misrepresentation and recover from B the sum paid. It does not appear
+                  however that the right to reduce a contract on those grounds can in all cases be categorised
+                  as a right arising from contract and hence fall within the ambit of schedule 1, paragraph
+                  1(g) of the 1973 Act. The effect of the provision is that such rights and obligations
+                  relating to the validity of a contract which do not fall within any other sub-paragraph
+                  of paragraph 1 are subject to the five-year prescription. The purpose of the qualification
+                  in the final part of the sub-paragraph is to deal with any potential overlap with
+                  obligations arising from delict, for example in cases of fraud or negligent misrepresentation.
+                  This sub-paragraph is not concerned with a situation where the error is so material
+                  as to preclude consent, meaning that there is no contract at all. Subsection (2) also
+                  inserts a new sub-paragraph (fb) dealing with the second type of obligation to be
+                  brought within the five-year prescription by this section: the obligation to reimburse
+                  expenditure incurred as a result of dealings in anticipation of the coming into existence
+                  of a contract which does not in fact come into being. The situation in which this
+                  would apply would generally be where one party has in good faith incurred expenditure
+                  in reliance on an assurance by the other that there is a binding contract between
+                  them, but the contract does not come into being; in other words, the liability is
+                  pre-contractual in nature. Perhaps the most famous example of this concerned the Melville
+                  Monument in Edinburgh. Development of an estate in Edinburgh owned by W was to include
+                  a monument paid for by subscribers led by M.&nbsp;The subscribers, with W’s consent, carried
+                  out preparatory work on the estate with a view to having the monument erected there.&nbsp;This
+                  disrupted W’s other plans for the estate.&nbsp;Subsequently, the subscribers had the monument
+                  erected in a different place – in St Andrew’s Square. W sued M.&nbsp;The court decided
+                  that W was entitled to recover from M any wasted expenditure incurred as a result
+                  of the monument not having been erected at the agreed location on his estate.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 3 - Statutory obligations</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.</span></h2>
+               <p>This section brings within the scope of the five-year prescription all statutory obligations
+                  to make a payment in so far as they neither fall within any other sub-paragraph of
+                  paragraph 1 of schedule 1 of the 1973 Act, nor are excluded. A statutory obligation
+                  to make a payment should be interpreted broadly so as to include any statutory obligation
+                  to pay something or to repay something.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.</span></h2>
+               <p>Subsection (2)(a) provides for the repeal of provisions of paragraph 1 of schedule
+                  1 of the 1973 Act which relate solely to statutory obligations to make a payment.
+                  This is a rationalisation of paragraph 1, given that these obligations will be covered
+                  by the general provision inserted by subsection (2)(b), discussed below. Those sub-paragraphs
+                  dealing with statutory obligations which do not involve payment, or may involve something
+                  in addition to payment, are unaffected and so remain in place.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.</span></h2>
+               <p>Subsection (2)(b) inserts a new sub-paragraph (h) into paragraph 1 of schedule 1 of
+                  the 1973 Act. Subject to exceptions set out in subsection (3) (on which see below),
+                  new sub-paragraph (h) creates a default rule that all statutory obligations to make
+                  a payment prescribe under the five-year prescription. Statutory obligations to make
+                  a payment that fall within any other sub-paragraph of paragraph 1 will not fall within
+                  the scope of sub-paragraph (h). Moreover, as provided by section 9 of the Act, obligations
+                  to make a payment deriving from statutes with their own provisions on prescription
+                  or limitation will continue to be subject to those provisions, to the exclusion of
+                  the five-year prescription. For example, the one-year limitation period, in terms
+                  of the Carriage of Goods by Sea Act 1971, for claims for loss of or damage to goods
+                  carried at sea.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">14.</span></h2>
+               <p>Subsection (3) amends paragraph 2 of schedule 1 of the 1973 Act which sets out obligations
+                  to which the five-year prescription does <b>not </b>apply. Subsection (3)(a) makes consequential changes to sub-paragraph (e) of paragraph
+                  2 to reflect the addition to paragraph 1 of statutory obligations to make a payment
+                  (sub-paragraph (h)); it also reflects the rationalisation of paragraph 1 as discussed
+                  above. For the avoidance of doubt, that part of the current sub-paragraph (e) which
+                  relates to any obligation of the Keeper of the Registers of Scotland to pay compensation
+                  by virtue of section 77 or 94 of the Land Registration etc. (Scotland) Act 2012 (“the
+                  2012 Act”) has been moved into a separate new sub-paragraph (ea), in order to make
+                  it clear that such obligations of the Keeper in terms of the 2012 Act will continue
+                  to be governed by the 20-year prescription.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">15.</span></h2>
+               <p>Subsection (3)(b) sets out further exceptions to the application of the five-year
+                  prescription to statutory obligations to make a payment. First, notwithstanding sub-paragraph
+                  (h) of paragraph 1 of schedule 1 of the 1973 Act (statutory obligations to make a
+                  payment), obligations to pay taxes and duties recoverable by the Crown (i.e. HM Revenue
+                  and Customs and Revenue Scotland which, as part of the Scottish Administration, is
+                  a Crown body), and any interest, penalty or other sum recoverable as if it were an
+                  amount of such taxes or duties, are not subject to the five-year prescription (new
+                  sub-paragraph (fa)). Secondly, an exception is made for obligations to pay sums recoverable
+                  under certain social security and tax credit legislation (new sub-paragraph (fb)).
+                  Thirdly, an exception is made for any obligation to pay child support maintenance
+                  under the Child Support Act 1991 (new sub-paragraph (fc)). Fourthly, an exception
+                  is made in relation to obligations to pay council tax or non-domestic rates and sums
+                  recoverable in connection with the enforcement of such obligations (new sub-paragraph
+                  (fd)).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 4 - Effect of fraud or error on computation of prescriptive period</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">16.</span></h2>
+               <p>Case law has drawn attention to the fact that the language of section 6(4)(a) of the
+                  1973 Act is not as clear as it might be.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">17.</span></h2>
+               <p>Subsection (2) addresses one of the problems identified in the case law, namely that
+                  the wording seems to imply that the creditor should have formed the intention to make
+                  a claim and then been induced by the debtor not to do so. “Failure to make a claim”
+                  carries no such implications. Subsection (2) therefore clarifies that, for the purposes
+                  of section 6(4), what matters is that the words or conduct of the debtor caused the
+                  failure by the creditor to make a claim for implement or part-implement of the obligation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">18.</span></h2>
+               <p>Subsection (3), which inserts new subsection (4A) into section 6 of the 1973 Act,
+                  clarifies that it is irrelevant for the purposes of section 6(4)(a) whether or not
+                  the debtor <i>intended to </i>cause the failure on the part of the creditor. In other words, the debtor’s own state
+                  of knowledge as to the situation is irrelevant. This relief is available when as a
+                  matter of fact (rather than intention) the cause of the creditor’s failure to make
+                  the claim was the fraud, words or conduct of the debtor or his or her agent.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 5 - Start point of prescriptive period for obligations to pay damages</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">19.</span></h2>
+               <p>Subsections (2) and (3) provide for the replacement of the words “act, neglect or
+                  default” with the words “act or omission” in section 11(1) and (2) of the 1973 Act
+                  respectively. This serves two purposes: it minimises fragmentation by establishing
+                  consistency with the language in section 17 of the 1973 Act; also, by focussing the
+                  test more clearly on matters of fact, it reflects that knowledge of the debtor’s liability
+                  in law is of no relevance in relation to the discoverability formula. This latter
+                  point is put beyond doubt by new subsection (3B).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">20.</span></h2>
+               <p>Subsections (4) and (5) replace the existing discoverability formula for determining
+                  the knowledge which a pursuer must have before the prescriptive period begins to run
+                  where damages are sought for loss or damage which was initially latent. This is currently
+                  set out in section 11(3) of the 1973 Act. This addresses concerns that the decision
+                  of the Supreme Court in <i>David T Morrison &amp; Co Ltd v ICL Plastics Ltd </i>[2014] UKSC 48 has brought forward the start of the five-year prescriptive period
+                  under section 11(3), in a manner that has been perceived to be detrimental to a fair
+                  balancing of the interests of creditor and debtor. In terms of the new formula, the
+                  five-year prescription does not begin to run until the date when the creditor became
+                  aware, or could reasonably have been expected to become aware, of the facts set out
+                  in new subsection (3A) of section 11 of the 1973 Act:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>that loss, injury or damage has occurred;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>that the loss, injury or damage was caused by a person’s act or omission; and</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(c)</span></h2>
+                  <p>the identity of that person.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">21.</span></h2>
+               <p>Under new subsection (3A), in a case where there is more than one debtor in an obligation
+                  but the creditor gains knowledge about the identity of one co-debtor earlier than
+                  that of another co-debtor, the starting point for the running of the prescriptive
+                  period for each of the debtors will be different.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">22.</span></h2>
+               <p>New subsection (3B), for the avoidance of doubt, expressly states the current position
+                  which is that knowledge that any act or omission is or is not actionable as a matter
+                  of law is irrelevant for the purposes of the discoverability formula.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 6 - Obligations: 20-year prescriptive period and extension</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">23.</span></h2>
+               <p>This section amends section 7 of the 1973 Act with a view to ensuring that the 20-year
+                  prescriptive period does function as a long stop. Subsection (2)(a) substitutes a
+                  new subsection (1) into section 7. The 20-year prescriptive period will no longer
+                  be amenable to interruption by a relevant claim or by relevant acknowledgement which
+                  has the effect of a full 20-year period starting again. The amendment is achieved
+                  through omitting any reference to such a claim or acknowledgement.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">24.</span></h2>
+               <p>To complement this amendment, subsection (2)(b) provides for the insertion of new
+                  subsections (3) to (5) into section 7 of the 1973 Act. Although the 20-year prescription
+                  will no longer be amenable to interruption by a relevant claim or by acknowledgement,
+                  it may be extended in certain circumstances. Where a relevant claim, as defined for
+                  the purposes of section 7 of the 1973 Act by section 9 of that Act, has been made
+                  during the prescriptive period of 20 years but, before the end of that period, has
+                  not been finally disposed of and the proceedings in which the claim is made have not
+                  otherwise ended, the extension will run until the claim has been finally disposed
+                  of or until the proceedings otherwise come to an end.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">25.</span></h2>
+               <p>Reference to final disposal and the end of proceedings means that the claimant has
+                  the benefit of the extension only if the claim has not been finally disposed of and
+                  the proceedings in which it is made have not otherwise come to an end. In other words,
+                  if the proceedings have ended by the time the prescriptive period expires, it does
+                  not matter that there has not been a final disposal of the relevant claim; it is enough
+                  that the proceedings have ended. This provision ensures that what is intended to be
+                  a narrow exception from the long-stop prescription is kept within tight bounds. The
+                  words in brackets in new subsection (4)(b) of section 7 of the 1973 Act make clear
+                  that, where a claim has been finally disposed of, the claimant cannot rely on the
+                  fact that proceedings are continuing for other purposes (for example in relation to
+                  the enforcement of a separate obligation under the same contract) in order to seek
+                  an extension of time.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">26.</span></h2>
+               <p>New subsection (5) of section 7 of the 1973 Act is necessary as not all means by which
+                  a relevant claim, as defined for the purposes of section 7 of the 1973 Act by section
+                  9 of that Act, may be made (for example a claim in a sequestration or liquidation)
+                  can be defined as “proceedings”. The circumstances in which a relevant claim will
+                  be taken to be disposed of finally are set out in section 12 of the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">27.</span></h2>
+               <p>Subsection (3) of section 6 of the Act provides for consequential amendments to section
+                  10 of the 1973 Act. These reflect the fact that the 20-year prescriptive period will
+                  also no longer be amenable to interruption by relevant acknowledgement.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 7 - Property rights: 20-year prescriptive period and extension</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">28.</span></h2>
+               <p>In the same way as section 6 of the Act amends section 7 of the 1973 Act with a view
+                  to ensuring that the 20-year prescriptive period functions as a long stop, section
+                  7 so amends section 8 of the 1973 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">29.</span></h2>
+               <p>Section 8 of the 1973 Act deals with the extinction of certain rights relating to
+                  property by a 20-year prescriptive period. Subsection (2) of section 7 of the Act
+                  provides that such a period of prescription will no longer be amenable to interruption
+                  by a relevant claim. (As section 8 contains no reference to relevant acknowledgement,
+                  it is necessary only to amend the section by repealing the reference to interruption
+                  by a relevant claim.)</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">30.</span></h2>
+               <p>Subsection (3) replicates the provision made by section 6 of the Act for the extension
+                  of the prescriptive period in certain circumstances. Where a relevant claim, as defined
+                  for the purposes of section 8 of the 1973 Act by section 9 of that Act, has been made
+                  during the prescriptive period of 20 years but, before the end of that period, has
+                  not been finally disposed of and the proceedings in which the claim is made have not
+                  otherwise ended, the extension will run until the claim has been finally disposed
+                  of or until the proceedings otherwise come to an end. The circumstances in which a
+                  relevant claim will be taken to be disposed of finally are set out in section 12 of
+                  the Act. Where the 20-year prescriptive period is extended to the end of proceedings
+                  raised before the expiry of that period, then at the end of those proceedings where
+                  the relevant claim has been successful, the right is deemed to have been exercised
+                  or enforced at the time when the claim was made. The result is that a new 20-year
+                  prescriptive period starts to run at that time. This deeming provision applies only
+                  where the 20-year prescriptive period is extended by the amendments made by subsection
+                  (3) and only where the claim, as finally disposed of, is successful.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 8 - Start point of prescriptive period for obligations to pay damages</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">31.</span></h2>
+               <p>By virtue of section 11(4) of the 1973 Act, the 20-year prescriptive period for obligations
+                  to pay damages currently runs from the date when loss, injury or damage occurred.
+                  Where time runs from the date of loss or damage, it is quite possible for a very long
+                  period to pass without the prescriptive period even beginning to run. That is capable
+                  of undermining one of the principal rationales of prescription, namely that after
+                  a certain defined period a debtor should be able to arrange his or her affairs on
+                  the assumption that any risk of litigation has passed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">32.</span></h2>
+               <p>Accordingly, this section substitutes a new subsection (4) into section 11 of the
+                  1973 Act. Its effect is to introduce a separate start date for the running of the
+                  20-year prescriptive period, but only in relation to claims involving recovery of
+                  damages. For such claims, time will run from the date of the act or omission giving
+                  rise to the claim or, where there was more than one act or omission or the act or
+                  omission is continuing, from the date of the last act or omission or the date when
+                  it ceased.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">33.</span></h2>
+               <p>Not all obligations subject to prescription under section 7 are obligations to pay
+                  damages, and for them an analysis in terms of act or omission and loss, injury or
+                  damage is inappropriate. For these obligations, the starting date for the 20-year
+                  prescription remains the date on which the obligation giving rise to the claim became
+                  enforceable.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 9 - Saving for other statutory provisions about prescription or limitation</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">34.</span></h2>
+               <p>This section clarifies the interaction between the five-year and 20-year prescriptive
+                  periods provided for in sections 6 and 7 of the 1973 Act and other prescriptive or
+                  limitation provisions set out in other enactments.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">35.</span></h2>
+               <p>Subsection (2) provides for the insertion of a new section 7A in the 1973 Act. This
+                  makes clear that neither the five-year nor 20-year prescriptive periods (under sections
+                  6 and 7 respectively of the 1973 Act) will apply where an enactment other than the
+                  1973 Act expressly provides either for a specific limitation or prescriptive period
+                  or that an obligation is imprescriptible or not subject to any period of limitation.
+                  (It is appropriate for the section to apply to provisions in other statutes which
+                  stipulate that an obligation should be imprescriptible or that proceedings in respect
+                  of it should not be subject to any period of limitation, even though it may be unlikely
+                  that this will be an issue of significance in practice.)</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">36.</span></h2>
+               <p>The reference to making provision in relation to prescription or limitation serves
+                  to focus on express provision in the enactment and directs attention to its effect
+                  rather than the way in which it is worded. Subsection (3) modifies the definition
+                  of “enactment” in section 15(1) of the 1973 Act. “Enactment” includes an enactment
+                  contained in, or in an instrument under, an Act of the Scottish Parliament. This is
+                  necessary to oust the restriction in the definition of “enactment” in the Interpretation
+                  Act 1978, which otherwise applies to the 1973 Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 10 - Definition of “relevant claim”</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">37.</span></h2>
+               <p>Section 9 of the 1973 Act defines “relevant claim” for the purposes of the Act. A
+                  relevant claim is a claim made by or on behalf of the creditor for implement or part-implement
+                  of the obligation, which claim must be made in one of certain specific ways. Although
+                  liquidation is mentioned in section 9(1)(d), it seems an anomaly that neither administration
+                  (process for a company in debt that cannot pay the money it owes) nor receivership
+                  (a receiver is appointed by a party holding a floating charge over some or all of
+                  the company's assets) is.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">38.</span></h2>
+               <p>Accordingly, section 10(2) expands the definition of “relevant claim” to include the
+                  submission of a claim in an administration or receivership, and the acts that trigger
+                  administration or receivership.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">39.</span></h2>
+               <p>Subsection (3) of section 10 inserts the expanded definition of “relevant claim” into
+                  section 22A(3) of the 1973 Act which sets out a separate definition in relation to
+                  the 10-year prescription which applies to obligations to make reparation for damage
+                  caused wholly or partly by a defect in a product.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 11 - Prescriptive periods under sections 6 and 8A: interruption by relevant
+                     claim</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">40.</span></h2>
+               <p>For periods of prescription which are amenable to interruption, in terms of section
+                  6 or section 8A of the 1973 Act, section 11 clarifies the effect of the making of
+                  a relevant claim on the running of prescription. The current law on this matter is
+                  uncertain. On one view, the interruption of prescription takes place at an instant
+                  (the date when the relevant claim is made) from which prescription immediately begins
+                  to run again; on another view, the interruption of prescription endures until the
+                  claim has been finally dealt with.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">41.</span></h2>
+               <p>To clarify the effect of the making of a relevant claim on the running of prescription,
+                  subsection (2) provides for the insertion of new subsection (2A) into section 9 of
+                  the 1973 Act. The effect of the new provision is that the making of a relevant claim
+                  for implement or part-implement of an obligation will interrupt the running of the
+                  five-year prescription, and the two-year prescription (which applies, in terms of
+                  section 8A of the 1973 Act, to extinguish obligations to make contribution between
+                  wrongdoers) until the claim is disposed of finally. Only at that point will a fresh
+                  prescriptive period begin to run. In other words, the claim is to be treated as being
+                  made continuously until it is finally disposed of. “Relevant claim” for these purposes
+                  is not restricted to claims advanced in litigation but includes those made, for example,
+                  in a liquidation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">42.</span></h2>
+               <p>This section applies only to prescription under sections 6 and 8A of the 1973 Act.
+                  (Provision is made in sections 6 and 7 of the Act that the long-stop prescription
+                  under sections 7 and 8 of the 1973 Act should not be amenable to interruption by a
+                  relevant claim. The limited extensions of time provided for cases in which a relevant
+                  claim has been raised before expiry of the long-stop prescriptive period are applicable
+                  only to the long-stop prescription under section 7 or section 8 of the 1973 Act.)</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">43.</span></h2>
+               <p>The various circumstances in which a relevant claim will be taken to be finally disposed
+                  of are set out in section 12 of the Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">44.</span></h2>
+               <p>Subsection (3) updates the title of section 9 of the 1973 Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 12 - Definition of “final disposal” of relevant claim</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">45.</span></h2>
+               <p>Section 12, by inserting a new section 9A into the 1973 Act, provides a definition
+                  of “final disposal” of a relevant claim which applies for the purposes of sections
+                  7, 8 and 9 of the 1973 Act – see new section 9A(1).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">46.</span></h2>
+               <p>New section 9A(2) makes clear that, in the case of an appeal decision, the question
+                  whether or not there is an onward right of appeal from that appeal decision must be
+                  examined in determining whether section 9A(1)(a) applies. For example, disposal of
+                  an appeal in the Inner House of the Court of Session is not necessarily a “final disposal”:
+                  whether it is depends on whether there is a right of appeal from that decision to
+                  the UK Supreme Court.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 13 - Restrictions on contracting out</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">47.</span></h2>
+               <p>Section 13 substitutes a new section 13 into the 1973 Act. It makes clear that agreements
+                  to extend the five-year prescriptive period (section 6), and the two-year prescriptive
+                  period which applies to extinguish obligations to make contribution between wrongdoers
+                  (section 8A), are competent provided that certain conditions are met. Conversely,
+                  it provides that agreements to disapply those periods, or the 20-year prescriptive
+                  periods provided for by sections 7 and 8 of the 1973 Act, or to otherwise alter the
+                  operation of any of such periods, are not competent.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">48.</span></h2>
+               <p>Subsection (1) provides that agreements to lengthen the five-year prescriptive period,
+                  and the two-year prescriptive period which applies to extinguish obligations to make
+                  contribution between wrongdoers, are competent providing certain conditions are satisfied.
+                  These conditions are laid down in subsection (2): the appropriate prescriptive period
+                  must have started to run (but not expired); the extension should be for no more than
+                  one year; and there may only be one extension of an agreement in relation to the same
+                  obligation. The provision refers to “the same obligation” rather than the particular
+                  creditor or debtor in the obligation. This means that it is not possible to get round
+                  the restriction which prevents more than one extension of the prescriptive period
+                  by assigning the obligation to a new creditor or debtor. That is because, even if
+                  there is an assignation, it remains “the same obligation”.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">49.</span></h2>
+               <p>Subsection (3)(a) makes clear that where an agreement is reached for an extension
+                  of a prescriptive period, the prescriptive period will expire on the date set out
+                  in or determined in accordance with the agreement. It also makes clear that the extension
+                  binds only the parties to the agreement: if there are multiple creditors or multiple
+                  debtors, the agreement affects them only if they are party to it.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">50.</span></h2>
+               <p>Subsection (3)(b) clarifies that the extension of the prescriptive period affects
+                  only the length of the prescriptive period. It does not affect the operation of the
+                  remainder of the 1973 Act in relation to either the obligation or the prescriptive
+                  period. Accordingly, the ordinary rules of the 1973 Act about the commencement, interruption
+                  and suspension of prescription continue to apply.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">51.</span></h2>
+               <p>Subsection (4) deals with the disapplication of, or alteration in some other way of
+                  the operation of, the five-year prescriptive period, the two-year prescriptive period
+                  which applies to extinguish obligations to make contribution between wrongdoers and
+                  the 20-year prescriptive periods provided for by sections 7 and 8 of the 1973 Act
+                  (other than by means of agreement to lengthen certain prescriptive periods as discussed
+                  above). Agreements to do so, for example by shortening such periods, are not competent.
+                  The subsection refers to the effect which the provision in the agreement would (apart
+                  from this section) have on the operation of section 6, 7, 8 or 8A of the 1973 Act.
+                  The intention is that it should extend not just to cases where parties have in terms
+                  purported to disapply one of those sections, but also where that is in fact the effect
+                  of their agreement.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">52.</span></h2>
+               <p>This will not impact on the current practice in fields such as conveyancing where
+                  the parties enter into contractual limitation provisions. Such provisions do not extinguish
+                  obligations and, accordingly, are not provisions relating to prescription.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 14 - Burden of proof</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">53.</span></h2>
+               <p>For clarity, section 14 inserts a new section 13A, dealing with the onus of proof,
+                  into the 1973 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">54.</span></h2>
+               <p>Subsection (1) of new section 13A provides that the section applies to any proceedings
+                  for implementation of an obligation to which the five-year, 20-year or two-year prescriptive
+                  periods (as provided for by sections 6, 7 and 8A respectively of the 1973 Act), or
+                  to any proceedings to establish a right to which section 8 (extinction of other rights
+                  relating to property by prescriptive periods of 20 years) applies.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">55.</span></h2>
+               <p>Subsection (2) provides that where there is any question as to whether or not an obligation
+                  or right has been extinguished by prescription, it is for the creditor to prove that
+                  the obligation or right has not been extinguished. The subsection is intended to apply
+                  “if a question arises as to whether the obligation or right has been extinguished
+                  by prescription”. Accordingly, the party seeking to rely on the right or obligation
+                  need not address that issue in the pleadings, unless the other party pleads that the
+                  obligation has prescribed. The subsection refers to the burden resting on the “creditor”
+                  rather than the pursuer, since issues of onus may arise in relation to a counterclaim,
+                  in which it would be the defender who bore the burden of proof.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">56.</span></h2>
+               <p>The subsection refers to the “creditor” in its application to property rights under
+                  section 8, as the 1973 Act already uses “creditor” in relation to the holder of a
+                  property right (section 9(2) is an example).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">57.</span></h2>
+               <p>Subsection (3) extends the provision on burden of proof to proceedings for implementation
+                  of an obligation to make reparation for damage caused wholly or partly by defective
+                  products (section 22A of the 1973 Act).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 15 – Ancillary provision</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">58.</span></h2>
+               <p>This section allows the Scottish Ministers to make ancillary provision by regulations.
+                  Generally, such regulations are subject to negative procedure but any regulations
+                  which add to, replace or omit any part of the text of an Act are subject to the affirmative
+                  procedure.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 16 – Consequential modifications</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">59.</span></h2>
+               <p>This section removes an amendment to the Prescription and Limitation (Scotland) Act
+                  1973 Act (“the 1973 Act”) made in the recent Social Security (Scotland) Act 2018 (“the
+                  2018 Act”) and the provision in the 2018 Act making that amendment. The amendment
+                  inserted a new provision into schedule 1 of the 1973 Act making recovery of devolved
+                  social security overpayments subject to a five-year prescription period. Such recovery
+                  will fall under the general rule contained at section 3.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Section 18 – Short title</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">60.</span></h2>
+               <p>The short title of the Act (i.e. the Prescription (Scotland) Act 2018) is provided
+                  for by this section.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PARLIAMENTARY HISTORY</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">61.</span></h2>
+               <p>The following is a list of the proceedings in the Scottish Parliament on the Bill
+                  for the Act and significant documents connected to the Bill published by the Parliament
+                  during the Bill’s parliamentary passage.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:3.01in">
+                     <col style="width:3.06in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <p>
+                           <b>Proceedings and reports</b>
+                           </p>
+                        <p>
+                           <b>References</b>
+                           </p>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>
+                                 <i>Introduction</i>
+                                 </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill as introduced (09 February 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26S052018.pdf">
+                                 <u>SP Bill 26 (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Policy Memorandum (09 February 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26PMS052018.pdf">
+                                 <u>SP Bill 26-PM (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Explanatory Notes (09 February 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26ENS052018.pdf">
+                                 <u>SP Bill 26-EN (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Financial Memorandum (09 February 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26FMS052018.pdf">
+                                 <u>SP Bill 26-FM (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Statements on Legislative Competence (09 February 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26LCS052018.pdf">
+                                 <u>SP Bill 26-LC (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers Memorandum (09 February 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26DPMS052018.pdf">
+                                 <u>SP Bill 26-DPM (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>SPICe briefing (15 March 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://sp-bpr-en-prod-cdnep.azureedge.net/published/2018/3/15/Prescription--Scotland--Bill/SB18-22.pdf">
+                                 <u>SB 18-22</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>
+                                 <i>Stage 1</i>
+                                 </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <i>Delegated Powers and Law Reform (lead committee)</i>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (27 February 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Delegated_Powers/20180227Minutes.pdf">
+                                 <u>Minutes of proceedings (DPLR/S5/18/6/M)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (06 March 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Delegated_Powers/20180306Minutes.pdf">
+                                 <u>Minutes of proceedings (DPLR/S5/18/7/M)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (20 March 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11432&amp;mode=pdf">
+                                 <u>Official Report (cols. 2 to 15)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (27 March 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11451&amp;mode=pdf">
+                                 <u>Official Report (cols. 2 to 32)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (17 April 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11466&amp;mode=pdf">
+                                 <u>Official Report (cols. 2 to 20)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (24 April 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11486&amp;mode=pdf">
+                                 <u>Official Report (cols. 3 to 18)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Evidence session (01 May 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11500&amp;mode=pdf">
+                                 <u>Official Report (cols. 2 to 24)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (08 May 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Delegated_Powers/20180508Minutes.pdf">
+                                 <u>Minutes of proceedings (DPLR/S5/18/16/M)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (05 June 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Delegated_Powers/20180605Minutes.pdf">
+                                 <u>Minutes of proceedings (DPLR/S5/18/20/M)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (12 June 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Delegated_Powers/20180612Minutes.pdf">
+                                 <u>Minutes of proceedings (DPLR/S5/18/21/M)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 Report (14 June 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://sp-bpr-en-prod-cdnep.azureedge.net/published/DPLR/2018/6/14/Prescription--Scotland--Bill--Stage-1-Report/DPLRS05R32.pdf">
+                                 <u>32</u>
+                                 <u>nd</u>
+                                 <u> Report, 2018 (Session 5) (SP Paper 354)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <i>Whole Parliament</i>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 debate (27 June 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11628&amp;mode=pdf">
+                                 <u>Official Report (cols. 45 to 69)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>
+                                 <i>Stage 2</i>
+                                 </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration in private (11 September 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Delegated_Powers/20180911Minutes.pdf">
+                                 <u>Minutes of proceedings (DPLR/S5/18/26/M)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Consideration of amendments (Delegated Powers and Law Reform Committee, 25 September
+                              2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11686&amp;mode=pdf">
+                                 <u>Official Report ( cols. 2 to 14)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Bill as amended at Stage 2 (26 September 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26AS052018.pdf">
+                                 <u>SP Bill 26A (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Revised Explanatory Notes (04 October 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/S5_Bills/Prescription%20(Scotland)%20Bill/SPBill26AENS052018.pdf">
+                                 <u>SP Bill 26A-EN (Session 5 (2018))</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>
+                                 <i>Stage 3</i>
+                                 </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 3 debate (08 November 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.parliament.scot/parliamentarybusiness/report.aspx?r=11760&amp;mode=pdf">
+                                 <u>Official Report (cols. 68 to 98)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>
+                                 <i>After Passing</i>
+                                 </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Royal Assent (18 December 2018)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="http://www.legislation.gov.uk/asp/2018/15/contents/enacted">
+                                 <u>Prescription (Scotland) Act 2018</u>
+                                 </a>
+                              <u> (asp 15)</u>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>APPROVED PREMISES (SUBSTANCE TESTING)</b>
+               <b>
+                  </b>
+               <b>ACT</b>
+               <b> 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Approved Premises (Substance Testing) Act 2022
+                  which received Royal Assent on 28 April 2022 (c. 27).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Ministry of Justice, in order to
+                  assist the reader in understanding the Act. They do not form part of the Act and have
+                  not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Act is to provide a clear statutory framework for Approved Premises
+                     in England and Wales to test for the use of illicit substances by residents. Approved
+                     Premises provide temporary accommodation for bailees and the highest risk offenders
+                     in the community subject to supervision or rehabilitation. The Act provides staff
+                     in Her Majesty’s Prison and Probation Service (HMPPS) and other agencies with information
+                     to understand the full extent and nature of substance misuse within Approved Premises,
+                     while allowing Offender Managers to take targeted and appropriate action to support
+                     residents to engage with treatment and prevent their reoffending.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The Act makes provision for testing residents in Approved Premises for controlled
+                     drugs, psychoactive substances and prescription only medicines. The Act also contains
+                     an express power to test, on an anonymised basis, samples provided by those residents
+                     in order to better understand the prevalence of substances in Approved Premises.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Approved Premises exist to ensure that bailees and offenders with the highest risk
+                     and most complex needs receive additional residential supervision in the community
+                     and additional rehabilitative support following release from custody. As part of ensuring
+                     Approved Premises are drug-free and safe, residents are presently (prior to the implementation
+                     of this Act) drug tested if requested by staff. Such drug testing is provided for
+                     in the “house rules” of the Approved Premises which each resident is required to accept
+                     as a condition of their residence. Those house rules are made in accordance with Regulation
+                     6 of the Offender Management Act 2007 (Approved Premises) Regulations 2014 (the 2014
+                     Regulations).</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Framework for testing illicit substances</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>While that provides a basis for drug testing, it does not set out a comprehensive
+                     statutory framework for the testing of illicit substances, the scope of substances
+                     which may be tested or the types of samples that may be taken. The Act provides the
+                     statutory framework to allow Approved Premises and HMPPS to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>respond effectively and flexibly to changing patterns of drug misuse; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>improve identification of residents misusing substances to enable robust and appropriate
+                        referrals into treatment together with the development of appropriate targeted care
+                        planning;  </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>better identify elevating or decreasing risk of serious harm to the public based on
+                        a resident’s drug misuse; and </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>support the development of a comprehensive drug strategy and build a body of evidence
+                        on drug misuse within the resident cohort. </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Changes to patterns of drug misuse</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Patterns of drug misuse in both custody and the community are changing. These changes
+                     reflect new products on the drug market including increased prevalence of psychoactive
+                     substances, as well as increased levels of prescription drugs being misused to create
+                     sometimes lethal levels of toxicity. Drug testing technology has developed significantly
+                     in recent years and is now becoming more widely available and affordable. It is now
+                     possible to test simultaneously for a wide range of drugs. The changes to drug testing
+                     in this Act build upon the power of new technology to enable an approach for identifying
+                     and responding to drug misuse trends within the custodial and community environment,
+                     thereby&nbsp;facilitating continuity of support and intervention.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Equipping Approved Premises with clear powers to test residents for a wider range
+                     of drugs, including prescription medicines, improves the ability to identify the misuse
+                     of substances. For those for whom escalating drug-misuse is directly linked to their
+                     offending and risk of harm to the public, improved identification of a range of substances
+                     enables Approved Premises to take appropriate action. This allows for the identification
+                     of those who need support to access appropriate community treatment services and facilitate
+                     the provision of more effective continuity in care at an individual level. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Psychoactive substances and prescription medicines</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In recent years, psychoactive substances have become much more prevalent within the
+                     illicit economy in Approved Premises. Alongside psychoactive substances, prescription
+                     medicines are also abused by some residents and can play a similar role in the illicit
+                     economy. Some residents may also ‘bully’ other residents for those prescription medicines
+                     they have been genuinely prescribed for medical reasons.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Section 13 of the Offender Management Act 2007 (the 2007 Act) makes provision for
+                     the Secretary of State to approve premises, to be known as “Approved Premises”, in
+                     which accommodation is provided for persons granted bail in criminal proceedings (within
+                     the meaning of the Bail Act 1976) and for, or in connection with, the supervision
+                     or rehabilitation of persons convicted of offences (for instance, those on licence
+                     or under community or suspended sentences). The Secretary of State may make regulations
+                     for the regulation, management and inspection of Approved Premises.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>In exercise of that power the Secretary of State has made the 2014 Regulations. Regulation
+                     6(1)(c) provides that a provider of Approved Premises must prepare house rules for
+                     those Approved Premises, governing the conduct of residents, which must comply with
+                     any requirements of the Secretary of State as to the content of such rules. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>Section 2 of the Misuse of Drugs Act 1971 defines “controlled drug” as any substance
+                     or product specified in Part I, II or III of Schedule 2 to that Act or in a temporary
+                     class drug order as a drug subject to temporary control, in accordance with the provisions
+                     of that Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 2 of the Psychoactive Substances Act 2016 defines “psychoactive substance”
+                     as any substance which is capable of producing a psychoactive effect in a person who
+                     consumes it and is not an exempted substance under section 3 of that Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Regulation 2(1) in the Human Medicines Regulations 2012 defines “medicinal product”
+                     and Regulation 5(3) of those Regulations defines “prescription only medicine”.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The provisions of the Act extend to England and Wales only. Commentary on provisions
+                     of Act</p>
+               </section>
+               <section class="level">
+                  <p>Section 1: Substance testing of residents in Approved Premises</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 1 makes provision for substance testing and prevalence testing through amendments
+                     to the Offender Management Act 2007.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 1(3) inserts a new section 13A into the 2007 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Subsection (1) of that new section provides the manager of an Approved Premises may
+                     give an authorisation that sets out when the express power to drug test residents
+                     may be exercised and that such authorisation is in force. Subsection (2) contains
+                     that express power, providing that in accordance with any authorisation given, a member
+                     of Approved Premises staff may require a resident provide a sample of urine for the
+                     purpose of ascertaining whether the resident has in their body a “controlled drug”,
+                     “prescription only medicine” or “psychoactive substance”. Subsection (3) provides
+                     that instead or in addition to a sample of urine, a sample of another description
+                     may be required, provided that is not an “intimate sample”, such as saliva.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subsection (4) makes provision for anonymised prevalence testing by the Secretary
+                     of State of samples provided pursuant to subsection (2) or (3) or voluntarily, which
+                     can be used to test for “controlled drugs”, “medicinal products” and “psychoactive
+                     substances”.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Subsections (5) and (6) provide that in giving an authorisation or exercising the
+                     drug testing power, Approved Premises managers and members of staff (respectively)
+                     must have regard to any guidance issued by the Secretary of State on such matters.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>Subsection (7) defines terms used within that section 13A. Those include “controlled
+                     drug”, defined by reference to the Misuse of Drugs Act 1971, “intimate sample” by
+                     reference to Part 5 of the Police and Criminal Evidence Act 1984, “medicinal product”
+                     and “prescription only medicine” by reference to the Human Medicines Regulations 2012
+                     and “psychoactive substance” by reference to the Psychoactive Substances Act 2016.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsection (8) makes provision in case there is any future change in the Human Medicines
+                     Regulations 2012 or other subordinate legislation relating to human medicines. In
+                     those circumstances, the subsection confers a regulation making power for the Secretary
+                     of State to make such consequential changes as are necessary to section 13A of the
+                     2007 Act. Subsection (9) clarifies that “subordinate legislation” has the same meaning
+                     as in the Interpretation Act 1978.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Section 1(4) makes provision, through amendment to section 36 (orders and regulations)
+                     of the 2007 Act, for any regulations made under the new section 13A(8) to be subject
+                     to the affirmative resolution procedure in Parliament.</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Final Provisions</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>This Section confirms the short title of the Act and makes provision for its coming
+                     into force. Section 2(1) provides that the Act extends to England and Wales only.
+                     </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Section 2(2) makes clear that the provisions in the Act will be brought into force
+                     by means of regulations made by the Secretary of State. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>There are no related documents relevant to the Act. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.89in">
+                        <col style="width:1.38in">
+                        <col style="width:3.02in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>21 June 2021</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 October 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-10-29/debates/E2F46C46-F62C-4BAC-B1E6-5E40D6E89375/ApprovedPremises(SubstanceTesting)Bill">
+                                    <u>Vol. 702 Col.579</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Money Resolution</p>
+                           </td>
+                           <td>
+                              <p>29 November 2021</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee</p>
+                           </td>
+                           <td>
+                              <p>15 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-12-15/debates/bbb7bcf1-98ab-44af-9271-4c8f4fe4e318/ApprovedPremises(SubstanceTesting)Bill(MorningSitting)">
+                                    <u>Morning sitting. Col.1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>21 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-21/debates/1365FC35-38C4-4A40-9A48-D2C9062F2923/ApprovedPremises(SubstanceTesting)Bill">
+                                    <u>Vol. 707 Col. 651</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>24 January 2022</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>25 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-25/debates/5C7F8592-3D01-4CEF-853C-50CCDBA8E05F/ApprovedPremises(SubstanceTesting)Bill">
+                                    <u>Vol. 820 Col. 1250</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment discharged</p>
+                           </td>
+                           <td>
+                              <p>6 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-06/debates/2DE3089B-3EF1-409A-B84E-46A83FDDD553/ApprovedPremises(SubstanceTesting)Bill">
+                                    <u>Vol. 820</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-26/debates/CE514501-7584-47AE-8953-F621E780DEEF/ApprovedPremises(SubstanceTesting)Bill">
+                                    <u>Vol. 821 Col. 133</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>28 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-28/debates/D11DF494-0AB3-4302-AB2D-C113849A137D/RoyalAssent">
+                                    <u>Vol.821 Col. 383</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

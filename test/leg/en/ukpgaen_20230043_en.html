@@ -1,0 +1,608 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>NORTHERN IRELAND BUDGET (NO. 2) ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Northern Ireland Budget (No. 2) Act 2023 which
+                     received Royal Assent on 18 September 2023 (c. 43). </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Northern Ireland Office in order
+                     to assist the reader of the Act. They do not form part of the Act and have not been
+                     endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act will mean in practice, provide
+                     background information on the development of policy and provide additional information
+                     on how the Act will affect existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>This Budget legislation authorises Northern Ireland departments and certain other
+                     bodies to incur expenditure and use resources for the financial year ending on 31
+                     March 2024.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>Ordinarily the passage of a Budget Act to authorise the issue of sums from the Consolidated
+                     Fund of Northern Ireland would be taken through the Northern Ireland Assembly following
+                     the agreement of a budget by the Northern Ireland Executive and its approval by the
+                     Assembly. However, there have been no functioning devolved institutions in Northern
+                     Ireland since 3 February 2022, when the then First Minister of Northern Ireland resigned,
+                     which also resulted in the deputy First Minister ceasing to hold office. The Executive
+                     failed to form after the 5 May 2022 Assembly elections, and the subsequent failures
+                     to elect a Speaker means that the Assembly cannot conduct any business, so it falls
+                     to Parliament to legislate to provide authority for departmental expenditure in Northern
+                     Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>In the continued absence of the Northern Ireland Executive, the Secretary of State
+                     for Northern Ireland set out draft budget allocations for the 2023-24 financial year
+                     (the Budget) in a Written Ministerial Statement to Parliament on 27 April 2023. It
+                     is necessary to introduce legislation to put the budget allocations on a legal footing
+                     and authorise the issue of sums to, and use of resources by, Northern Ireland departments
+                     for the full financial year ending 31 March 2024. It will provide certainty for the
+                     Northern Ireland departments in order to protect public finances and maintain the
+                     delivery of Northern Ireland’s public services. This Budget will require devolved
+                     spending decisions to be made by senior officers of Northern Ireland departments in
+                     respect of which provision is made in the Northern Ireland (Executive Formation etc)
+                     Act 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Northern Ireland Budget Act 2023, which received Royal Assent on 8 February 2023,
+                     included a Vote on Account (VoA) which has allowed Northern Ireland departments and
+                     other bodies to continue to deliver services into the current financial year 2023-24,
+                     up to a limit of approximately 65% of the previous year’s (2022-23) budget. The VoA
+                     ensures that there has been technical access to cash and provides legal authority
+                     for the Northern Ireland Civil Service (NICS) to use this money to deliver public
+                     services pending the passing of a further Northern Ireland Budget Act for the full
+                     2023-24 year.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>This Act is a necessary step to ensure that public services can continue to be provided
+                     in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>No new money will be allocated as a result of the Act. Instead it will appropriate
+                     sums provided to the Consolidated Fund of Northern Ireland through the UK Estimates
+                     process, together with revenue generated within Northern Ireland under the Assembly’s
+                     devolved powers.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>In the continuing absence of a Northern Ireland Executive, and the consequent inability
+                     of the Northern Ireland Assembly to pass a Budget Act, this Act provides the required
+                     authorisations and appropriations, based on the Budget statement announced in Parliament
+                     by the Secretary of State on 27 April 2023. Specific provision is made for the authorisations
+                     and limits set by the Act to take effect as if they were contained in an Act of the
+                     NI Assembly and for estimates laid before Parliament to take effect as if they had
+                     been approved by the Assembly. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The Act extends across the United Kingdom but applies only to Northern Ireland. See
+                     the table in Annex A for a summary of the position regarding territorial extent and
+                     application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act </b>
+                     </span></h2>
+               <section class="level">
+                  <p>Sections 1 and 2: Use of resources and limits on use of resources</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Sections 1 and 2 authorise the use of resources by Northern Ireland departments and
+                     other specified public bodies amounting to £27,403,514,000 in the year ending 31 March
+                     2024 for the purposes specified in Part 2 of the Schedule and subject to the limits
+                     set out in subsections (4) to (7) of Section 2. The authorisations in Sections 1 and
+                     2 supersede those made by sections 8 and 9 of the Northern Ireland Budget Act 2023.</p>
+               </section>
+               <section class="level">
+                  <p>Sections 3 and 4: Issue and use of sums out of the Consolidated Fund (of Northern
+                     Ireland)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The purpose of Sections 3 and 4 is to authorise the Northern Ireland Department of
+                     Finance to issue out of the Consolidated Fund of Northern Ireland the sum of £22,790,893,000
+                     for the purposes set out in Part 2 of the Schedule. The authorisations in Sections
+                     3 and 4 supersede the authorisations made by sections 10 and 11 of the Northern Ireland
+                     Budget Act 2023.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5: Power of the Department of Finance to borrow</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 5 authorises the temporary borrowing by the Northern Ireland Department of
+                     Finance of £11,395,447,000 approximately half the sum covered by Section 3. This is
+                     a normal safeguard against the possibility of a temporary deficiency arising in the
+                     Consolidated Fund of Northern Ireland and any such borrowing is to be repaid by 31
+                     March 2024.</p>
+               </section>
+               <section class="level">
+                  <p>Section 6: Use of Income</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 6 authorises the use of income by Northern Ireland departments and other specified
+                     public bodies from the sources specified in Part 3 of the Schedule, for the purposes
+                     specified in Part 2 of the Schedule in the year ending 31 March 2024. That is subject
+                     to limits on how income may be used set out in subsections (2) to (5).</p>
+               </section>
+               <section class="level">
+                  <p>Section 7: Act to take effect as if it were a Budget Act of the Assembly etc.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>Section 7 provides for the authorisations and limits in the Act to have the same effect
+                     as if they were contained in a Budget Act of the Northern Ireland Assembly. It also
+                     modifies references in other pieces of legislation to the Northern Ireland Estimates
+                     which would normally form part of the Assembly’s supply process, including the consideration
+                     of the estimates by the Assembly’s committees and the approval of the estimates document
+                     by a vote in the Assembly. For those purposes the Estimates document, which was laid
+                     before Parliament on 3 July 2023, is deemed equivalent to those Assembly processes.
+                     Section 7(3) would require the Northern Ireland Audit Office and the Northern Ireland
+                     Public Service Ombudsman to prepare their accounts in accordance with the Estimates
+                     laid before Parliament.</p>
+               </section>
+               <section class="level">
+                  <p>Sections 8 and 9: Interpretation and Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p> These provisions are self-explanatory.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule: Part 1 – Authorised Amounts</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>For each Department, Part 1 of the Schedule sets out the amount of resources authorised
+                     for use by each Northern Ireland department and other public bodies (Sections 1 and
+                     2) and the sums of money granted to each Northern Ireland department and other bodies
+                     (Sections 3 and 4) for the year ending 31 March 2024.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule: Part 2 – Expenditure</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>For each Department, Part 2 of the Schedule sets out the purposes for which resources
+                     (Section 2) and money (Section 4) can be used by each Northern Ireland department
+                     and other bodies for the year ending 31 March 2024.</p>
+               </section>
+               <section class="level">
+                  <p>Schedule: Part 3 – Income</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>For each Department, Part 3 of the Schedule sets out the sources from which income
+                     can be used by each Northern Ireland department and other body for the year ending
+                     31 March 2024.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>The Act will come into force on Royal Assent.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Northern Ireland Finances 2023 - Statement made on 27 April 2023 by the Secretary
+                        of State for Northern Ireland: <a href="https://questions-statements.parliament.uk/written-statements/detail/2023-04-27/hcws748"><u>https://questions-statements.parliament.uk/written-statements/detail/2023-04-27/hcws748</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The Act extends across the United Kingdom but applies only to Northern Ireland. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:0.98in">
+                        <col style="width:0.89in">
+                        <col style="width:0.79in">
+                        <col style="width:0.89in">
+                        <col style="width:1.08in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Sections 1-9</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament. </p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.75in">
+                        <col style="width:1.48in">
+                        <col style="width:3.22in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <i>House of Commons</i>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Introduction</p>
+                           <p>29 June 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2023-06-29/debates/8AD2CB57-7BC3-43F9-945D-E16373A503C5/BusinessOfTheHouse">
+                                 <u>Vol. 735. Col. 438</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Second Reading</p>
+                           <p>10 July 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2023-07-10/debates/535D30A9-7738-4B77-A70D-14D8806BF2A0/NorthernIrelandBudget(No2)Bill">
+                                 <u>Vol. 736 Col. 101</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Committee of the Whole House</p>
+                           <p>4 September 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2023-09-04/debates/B5804B6D-4BA7-4EF6-85A6-F19DD7C5770B/NorthernIrelandBudget(No2)Bill">
+                                 <u>Vol. 737 Col 140</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Third Reading</p>
+                           <p>4 September 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2023-09-04/debates/B5804B6D-4BA7-4EF6-85A6-F19DD7C5770B/NorthernIrelandBudget(No2)Bill">
+                                 <u>Vol. 737 Col 144</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <i>House of Lords</i>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Introduction</p>
+                           <p>5 September 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2023-09-05/debates/F2C6146B-D84D-4539-BBCA-93AABB0E96A1/NorthernIrelandBudget(No2)Bill">
+                                 <u>Vol. 832 Col 323</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Second Reading</p>
+                           <p>14 September 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-09-14/debates/4DB02710-0FCB-4174-AD41-FF66A14B2837/NorthernIrelandBudget(No2)Bill">
+                                 <u>Vol. 832 Col. 1132</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Third Reading</p>
+                           <p>14 September 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2023-09-14/debates/4DB02710-0FCB-4174-AD41-FF66A14B2837/NorthernIrelandBudget(No2)Bill">
+                                 <u>Vol. 832 Col. 1158</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>Royal Assent</p>
+                           <p>19 September 2023</p>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2023-09-18/debates/6EEECE60-7E8E-4F55-8901-32EEE1536F6C/UKAutomotiveIndustry">
+                                 <u>House of Commons Vol. 737 Col. 1155</u>
+                                 </a>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2023-09-18/debates/AE90E920-0456-4461-9CF5-F554EC835F21/RoyalAssent">
+                                 <u>House of Lords Vol. 832 Col. 1319</u>
+                                 </a>
+                              </p>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

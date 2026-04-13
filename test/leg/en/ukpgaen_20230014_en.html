@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>PENSIONS DASHBOARDS (PROHIBITION OF INDEMNIFICATION)</b>
+               <b>
+                  </b>
+               <b>ACT 2023</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Pensions Dashboards (Prohibition of Indemnification)
+                     Act 2023 which received Royal Assent on 2 May 2023 (c. 14).</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for Work and Pensions
+                     in order to assist the reader in understanding the Act. They do not form part of the
+                     Act and have not been endorsed by Parliament.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes explain what each part of the Act means in practice; provide
+                     background information on the development of policy; and provide additional information
+                     on how the Act affects existing legislation in this area. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                     not intended to be, a comprehensive description of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The primary purpose of this Act is to increase protection for pension savers by making
+                     it a criminal offence for pension scheme trustees or managers to reimburse themselves
+                     using the assets of the pension scheme in respect of penalties imposed under pensions
+                     dashboards regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>It achieves this by adding section 238G of the Pensions Act 2004 to the list of statutory
+                     provisions in section 256(1)(b) of that Act. Section 256(1)(b) prohibits any amount
+                     being paid out of the assets of an occupational or personal pension scheme for the
+                     purpose of reimbursing, or providing for the reimbursement of, any trustee or manager
+                     of the scheme in respect of a penalty they are required to pay under or by virtue
+                     of a statutory provision listed in (1)(b).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>Pensions dashboards are an electronic communications service, which will allow individuals
+                     to see their pensions information (including the State Pension) in one place online.
+                     Dashboards will help individuals to be reunited with lost pensions and support people
+                     in better planning for their retirement.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>The Pensions Dashboards Regulations 2022 (“the Regulations”) set out measures that
+                     need to be put in place to enable pensions dashboards to operate effectively. The
+                     Regulations place requirements on trustees or managers of relevant occupational pension
+                     schemes to connect their scheme to the Money and Pensions Service (MaPS) digital infrastructure
+                     for dashboards. Once connected, schemes will be required to respond to requests from
+                     individuals to find and view their pensions information, which must be returned via
+                     the individual’s chosen dashboard in accordance with the Regulations and the relevant
+                     standards. The Financial Conduct Authority has published separate rules for personal
+                     and stakeholder pension schemes.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Pensions dashboard services will be made available to the public at a future date
+                     yet to be determined, known as the Dashboards Available Point (DAP). The Regulations
+                     provide for the Secretary of State for Work and Pensions to publish advance notice
+                     of the DAP.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>If a trustee or manager of an occupational pension scheme fails to comply with the
+                     Regulations, the Pensions Regulator may take enforcement action which could include
+                     a financial penalty. For context, the maximum penalties for a failure or contravention
+                     of the Regulations are £5,000 if the person is an individual or £50,000 if the person
+                     is a body corporate including corporate trustees. The Regulations also allow for multiple
+                     penalty notices to be issued by the Pensions Regulator in the event of multiple compliance
+                     breaches from a single event.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>The Act makes it a specific criminal offence for pension scheme trustees or managers
+                     to reimburse themselves using the assets of the pension scheme in respect of penalties
+                     imposed under the Regulations. It achieves this by amending section 256(1)(b) of the
+                     Pensions Act 2004 (which makes similar provision for other areas of pensions legislation)
+                     to include the relevant pensions dashboards legislation. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>Section 256(1)(b) of the Pensions Act 2004 (No indemnification for fines or civil
+                     penalties) provides that no amount can be paid out of the assets of an occupational
+                     or personal pension scheme for the purpose of reimbursing, or providing for the reimbursement
+                     of, any trustee or manager of the scheme in respect of a penalty which they are required
+                     to pay under or by virtue of a list of specific statutory provisions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>Section 1(1) (No indemnification for penalties under pension dashboards regulations)
+                     of the Act adds section 238G of the Pensions Act 2004 to this list. Section 238G (inserted
+                     into the Pensions Act 2004 by the Pension Schemes Act 2021) is the power under which
+                     compliance provisions can be made in pensions dashboards Regulations i.e. penalty
+                     notices, to ensure certain requirements on trustees or managers of relevant occupational
+                     schemes as to cooperation, connection and the provision of information are complied
+                     with (see paragraph 6 above regarding penalties).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>By virtue of the amendment in section 256(1)(b) of the Pensions Act 2004 by section
+                     1(1) of the Act prohibiting indemnification for penalties under pensions dashboards
+                     regulations, other provisions in section 256 also apply in respect of these dashboards
+                     penalties, including:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">i.</span></h2>
+                     <p>Where a trustee or manager of an occupational pension scheme is reimbursed out of
+                        the assets and knows or has reasonable grounds to believe they have been reimbursed,
+                        unless they have taken all reasonable steps to secure that they are not so reimbursed,
+                        they are guilty of an offence (section 256(4)). A person guilty of an offence is liable
+                        on summary conviction, to a fine not exceeding the statutory maximum and on conviction
+                        on indictment for a term not exceeding two years, or a fine, or both (section 256(5)).</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">ii.</span></h2>
+                     <p>Where any amount is paid out of the assets in contravention of this prohibition, section
+                        10 of the Pensions Act 1995 (civil penalties) applies to any trustee or manager who
+                        has failed to take all reasonable steps to secure compliance (section 256(3)).</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 1(2) of the Act makes corresponding amendments to article 233(1)(b) of the
+                     Pensions (Northern Ireland) Order 2005 (S.I. 2005/255 (N.I.1)) by adding article 215G
+                     of that Order to article 233(1)(b).</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 1(1) extends and applies to England and Wales and Scotland. Section 1(2) extends
+                     and applies to Northern Ireland and section 2 extends and applies to England and Wales,
+                     Scotland and Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1: No indemnification for penalties under pensions dashboards regulations</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Subsection (1) adds section 238G of the Pensions Act 2004 to section 256(1)(b) of
+                     the Pensions Act 2004. Section 238G is the power under which compliance provisions
+                     can be made in regulations regarding pensions dashboards. The effect of which is that
+                     no amount can be paid out of the assets of an occupational or personal scheme for
+                     the purpose of reimbursing or providing for the reimbursement of, any trustee or manager
+                     of the scheme in respect of a penalty which they are required to pay under or by virtue
+                     of the Pensions Dashboards Regulations referred to in paragraph 6 above. Where this
+                     prohibition in section 256(1) is breached, an offence is committed where the provisions
+                     of section 256(4) are satisfied. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Subsection (2) makes corresponding provision for Northern Ireland by amending article
+                     233(1) of the Pensions (Northern Ireland) Order 2005 (N.I.1)), by adding article 215G
+                     of that Order to article 233(1)(b).</p>
+               </section>
+               <section class="level">
+                  <p>Section 2: Extent, commencement and short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>The provisions under this section are self-explanatory. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Section 1(1) comes into force on such day as the Secretary of State may by regulations
+                     appoint. Section 1(2) comes into force on such a day as the Department for Communities
+                     in Northern Ireland may by order appoint.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>Section 2 comes into force on Royal Assent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>The Government’s consultation on the draft Pensions Dashboards Regulations 2022 is
+                     relevant to the Act and can be read at: <a href="https://www.gov.uk/government/consultations/pensions-dashboards-consultation-on-the-draft-pensions-dashboards-regulations-2022"><u>https://www.gov.uk/government/consultations/pensions-dashboards-consultation-on-the-draft-pensions-dashboards-regulations-2022</u></a></p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:1.01in">
+                        <col style="width:0.91in">
+                        <col style="width:0.91in">
+                        <col style="width:0.91in">
+                        <col style="width:1.25in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                              <p>Section 1(1)</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                              <p>Section 1(2)</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p>Yes</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>In Part</p>
+                           </td>
+                           <td>
+                              <p>In Part</p>
+                           </td>
+                           <td>
+                              <p>In Part</p>
+                           </td>
+                           <td>
+                              <p>In Part</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act’s passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.16in">
+                        <col style="width:1.28in">
+                        <col style="width:2.07in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Hansard reference</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>20 June 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0038/220038.pdf">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-06-20/debates/2cf7d8c4-5ae5-448c-a8c5-698b98690c8f/CommonsChamber">
+                                    <u>Vol. 716 col. 587</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>15 July 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-07-15/debates/CA90344D-6950-45D4-A65F-02E72A0AEAC8/PensionsDashboards(ProhibitionOfIndemnification)Bill">
+                                    <u>Vol. 718 col. 656</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>26 October 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-10-26/debates/06fb1d41-650e-48ea-8144-a107557bada1/PensionsDashboards(ProhibitionOfIndemnification)Bill">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>20 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-01-20/debates/BC9095C3-9F03-46D9-970D-F3376C19C386/PensionsDashboards(ProhibitionOfIndemnification)Bill">
+                                    <u>Vol. 726 col. 692</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>23 January 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://bills.parliament.uk/publications/49449/documents/2772">
+                                    <u>Bill as introduced</u>
+                                    </a>
+                                 </p>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-01-23/debates/6D0FD61B-D8F0-4D8A-9A20-7335880CFB13/PensionsDashboard(ProhibitionOfIndemnification)Bill">
+                                    <u>Vol. 827 col. 20</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>3 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-03-03/debates/461C1391-D393-402D-B8E4-0E84C7AADC03/PensionsDashboards(ProhibitionOfIndemnification)Bill">
+                                    <u>Vol. 828 col. 499</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Grand Committee</p>
+                           </td>
+                           <td>
+                              <p>28 March 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-03-28/debates/71C1882C-02F0-47C2-A7AB-E82929F204DD/PensionsDashboards(ProhibitionOfIndemnification)Bill">
+                                    <u>Vol. 829 col. 130</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>21 April 2023</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-04-21/debates/E9401E68-1B11-4680-B290-63AE57AEAC25/PensionsDashboards(ProhibitionOfIndemnification)Bill">
+                                    <u>Vol. 829 col. 906</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>Royal Assent</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>2 May 2023</p>
+                           </td>
+                           <td>
+                              <p>House of Commons: <a href="https://hansard.parliament.uk/Commons/2023-05-02/debates/18871A6E-741C-4C6F-A229-6559FADCF6DA/Prayers"><u>Vol. 732 col. 1</u></a></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>House of Lords: <a href="https://hansard.parliament.uk/lords/2023-05-02/debates/A65FE493-41F9-4603-974D-20ABBFDDBD71/RoyalAssent"><u>Vol. 829 col. 1391</u></a></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

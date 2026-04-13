@@ -1,0 +1,1117 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>ANIMALS (PENALTY NOTICES) ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Animals (Penalty Notices) Act 2022 which received
+                  Royal Assent on 28 April 2022 (c. 19).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Department of Environment, Food
+                  and Rural Affairs in order to assist the reader in understanding the Act. They do
+                  not form part of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The&nbsp;Animals (Penalty Notices)&nbsp;Act (“the Act”)&nbsp;makes provisions&nbsp;for and in connection
+                     with the giving of fixed penalty notices for offences in relation to animals, animal
+                     products and animal by-products.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>This introduces a new system of&nbsp;proportionate,&nbsp;consistent,&nbsp;and targeted financial
+                     penalties for breaches of animal health, biosecurity, and&nbsp;welfare regulations.&nbsp;&nbsp;</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>This Act creates new financial penalties for animal health and welfare offences that
+                     add to and complement the current enforcement regime to support early redirection
+                     through behaviour change to promote compliance. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>This reforms the way we enforce animal health and welfare across all farmed animals
+                     (e.g. on farm, in transport, at market and at time of killing) and kept animals (e.g.
+                     zoos and companion animals) in England with offences under the Dangerous Dogs Act
+                     1991 applying as a reserved power in Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>It safeguards and strengthens animal health and welfare, building on the existing
+                     domestic enforcement framework which had few options beyond prosecution, by widening
+                     the suite of available enforcement tools. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>The enforcement system uses a mix of sanctions, advice, and guidance to deliver high
+                     domestic animal health and welfare standards, enhancing productivity and giving confidence
+                     to consumers and international trading partners.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p> For over 40 years, agricultural strategy and public policy were largely shaped by
+                     the Common Agricultural Policy (CAP). Cross compliance, a system linking CAP payments
+                     to regulatory compliance, became the major vehicle for enforcement of standards on
+                     farms, and its application of payment deductions has been widely regarded as disproportionate.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>As cross compliance is phased out, payments will wind down, resulting in an enforcement
+                     gap between issuing advice and commencing criminal prosecution. As a consequence,
+                     both regulatory breaches and non-compliance in the form of offences have the potential
+                     to slip through the net without appropriate recourse. This opportunity allows for
+                     the improvement of standards on farms and elsewhere through a transparent and measured
+                     response that fills this gap. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The framework for penalty notices in this Act applies across all animal health, welfare
+                     and biosecurity legislation, meaning financial penalties may be used across companion
+                     animal, zoo animal and animal by product enforcement in addition to in respect of
+                     livestock.   </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>This Act forms part of a broader approach to maintaining and enhancing high domestic
+                     animal health and welfare standards, enhancing productivity and giving confidence
+                     to consumers and international trading partners. The government published an Action
+                     Plan for Animal Welfare in May 2021, which sets out a range of legislative and non-legislative
+                     reforms to ensure that the welfare of all animals, whether farm, companion, or wild
+                     animals, builds on the UK’s high standards for animal welfare.</p>
+               </section>
+               <section class="level">
+                  <p>Relevant Offences</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 1(2) states that the Secretary of State may, by regulations, prescribe offences
+                     as relevant offences for the purposes of this Act.&nbsp;This section requires the Secretary
+                     of State to make regulations to ‘switch on’ the penalty notices option through regulations,
+                     for relevant offences under the primary legislation listed in the Act itself and all
+                     secondary legislation made under that primary legislation.</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>The Secretary of State may prescribe an offence only if it is:&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>an offence under regulations made under section 2(2) of the European&nbsp;Communities Act&nbsp;1972
+                        which the Secretary of State considers relates to animals or animal&nbsp;products;&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>an offence under the Dangerous Wild Animals Act&nbsp;1976;&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>an offence under section 19 of the Zoo Licensing Act&nbsp;1981;&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">e.</span></h2>
+                     <p>an offence under the Animal Health Act&nbsp;1981 or an order made under that Act;&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">f.</span></h2>
+                     <p>an offence under the Animal Welfare Act 2006 or under regulations made under section
+                        12 or 13 of that&nbsp;Act;&nbsp;&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">g.</span></h2>
+                     <p>an offence under the Wild Animals in Circuses Act 2019, or</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">h.</span></h2>
+                     <p>an offence under section 1, 3 or 4(8) of the Dangerous Dogs Act 1991.  </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Animal Welfare Act 2006</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>The aim of the Animal Welfare Act 2006 (“the 2006 Act”) is to promote the welfare
+                     of “protected animals”, except animals used in scientific procedures which are subject
+                     to the Animals (Scientific Procedures) Act 1986. Vertebrate animals of a kind commonly
+                     domesticated in the British Islands are deemed to be “protected animals”, whether
+                     they can be said to be under the control of man or not. This ensures that, for example,
+                     stray dogs and feral cats are covered. Animals of a kind not commonly domesticated,
+                     such as wildlife, in the UK are only protected animals to the extent that they are
+                     under the control of man or are not living independently in the wild.&nbsp;</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The 2006 Act makes it an offence for any person who is responsible for a kept animal
+                     to cause the animal unnecessary suffering or to fail to provide for the animal’s welfare
+                     needs. It also provides for additional specific animal welfare protections to be introduced
+                     under secondary legislation and provides for the publication of statutory welfare
+                     codes that enable practical guidance to be provided to keepers on how to care for
+                     their animals. These codes can be used to inform prosecutions (although the codes
+                     themselves are not all legally enforceable).</p>
+               </section>
+               <section class="level">
+                  <p>Animal Health Act 1981</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>The 1981 Act consolidates the Diseases of Animals Act 1935, the Diseases of Animals
+                     Act 1950, the Ponies Act 1969, the Rabies Act 1974, the Diseases of Animals Act 1975,
+                     and certain related enactments.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>The 2002 amendments to the Act have two main purposes. The first is to provide additional
+                     powers to tackle Foot and Mouth Disease (FMD) and for these powers to be extendable
+                     to other animal diseases by order. The second is to provide additional powers to deal
+                     with transmissible spongiform encephalopathies (TSEs) in sheep. The Act also makes
+                     a number of amendments to the enforcement provisions of the Animal Health Act 1981.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>EU retained legislation (European Communities Act and the European Union Withdrawal
+                     Acts 2018 and 2020)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>An offence under regulations made under section 2(2) of the European Communities Act
+                     1972 which the Secretary of State considers relates to animals or animal products.</p>
+               </section>
+               <section class="level">
+                  <p>Dangerous Wild Animals Act 1976</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Certain species of wild animals kept in Great Britain, which are considered to be
+                     dangerous should they escape, fall under the Dangerous Wild Animals Act 1976. This
+                     legislation, which provides for the keeping of some dangerous primates, is primarily
+                     concerned with public safety rather than animal welfare and requires keepers of dangerous
+                     wild animals to be licensed and inspected by the local authority. </p>
+               </section>
+               <section class="level">
+                  <p>Dangerous Dogs Act 1991</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>An Act outlining restrictions on keeping dog breeds bred for fighting and dogs presenting
+                     a serious public danger, in addition to outlining provisions for the proper control
+                     of dogs. This is a UK wide Act and a reserved matter in Wales.  Only a constable can
+                     issue a penalty notice under section 1, 3 or 4(8) of the Dangerous Dogs Act 1991.</p>
+               </section>
+               <section class="level">
+                  <p>Wild Animals in Circuses Act 2019</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>This policy bans the use of wild animals in travelling circuses.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>This Act extends to England and Wales but applies to England only, except for the
+                     Dangerous Dogs Act 1991, which also applies to Wales as a reserved power. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Chapter 1: Fixed penalty notices</b>
+                        </span></h2>
+                  <section class="level">
+                     <p>Section 1: Powers of enforcement authorities</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">22 </span></h2>
+                     <p>Section 1 defines the relevant offences and the role of enforcement authorities in
+                        issuing a fixed penalty notice.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">23 </span></h2>
+                     <p>Subsection (1) sets out the condition that an enforcement authority may issue a fixed
+                        penalty notice if they are satisfied beyond reasonable doubt that a person has committed
+                        a relevant offence in England.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">24 </span></h2>
+                     <p>Subsection (2) defines a ‘relevant offence’ as an offence within subsection (4) that
+                        is prescribed by regulations made by the Secretary of State.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">25 </span></h2>
+                     <p>Subsection (3)(a) to (f) lists the relevant legislation to which fixed penalty notices
+                        may be applied. By listing all legislation, it allows for both the parent act and
+                        any secondary legislation made under it to be considered for penalty notices.  However,
+                        the act of inclusion does not mean that a penalty notice will necessarily be applied
+                        to any or all offences under that legislation. Through the mechanism detailed in section
+                        7(2), they will first be required to be considered and then ‘turned on’ via secondary
+                        legislation.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">26 </span></h2>
+                     <p>Subsection (4) defines ‘enforcement authority’ for a relevant offence as a person
+                        who is specified by regulations made by the Secretary of State. The regulations made
+                        by the Secretary of State may specify more than one person in relation to any relevant
+                        offence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">27 </span></h2>
+                     <p>Subsection (5) states that the persons who may be specified by regulations in relation
+                        to subsection (4) include the Secretary of State, a local authority, or any other
+                        person considered appropriate by the Secretary of State.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">28 </span></h2>
+                     <p>Subsection (6) states that the authority who issued the fixed penalty notice may at
+                        any time withdraw it. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 2:  Power of constables</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">29 </span></h2>
+                     <p>Section 2 outlines the role of constables in issuing fixed penalty notices for offences
+                        relating to dangerous dogs. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">30 </span></h2>
+                     <p>Subsection (1) sets out the condition that a constable may issue a fixed penalty notice
+                        if they are satisfied beyond reasonable doubt that a specified dangerous dogs offence
+                        has been committed in England or Wales.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">31 </span></h2>
+                     <p>Subsection (2) describes a ‘prescribed dangerous dogs offence’ as an offence under
+                        subsection (3) that is specified by regulations made by the Secretary of State. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">32 </span></h2>
+                     <p>Subsection (3) states that the offences within this subsection are offences under
+                        section 1, 3 or 4(8) of the Dangerous Dogs Act 1991.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">33 </span></h2>
+                     <p>Subsection (4) states that the constable, or a constable from the same police force
+                        as the constable who issued the fixed penalty notice under this section, may at any
+                        time withdraw it.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 3: Content and effect of notices</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">34 </span></h2>
+                     <p>Section 3 outlines the structure of fixed penalty notices. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">35 </span></h2>
+                     <p>Subsection (1) determines that this section applies to a fixed penalty notice under
+                        section 1 or 2. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">36 </span></h2>
+                     <p>Subsection (2) explains that a ‘fixed penalty notice’ is a notice issued to a person
+                        to give them an opportunity to pay a specified financial penalty in order to discharge
+                        any liability to conviction for that offence within the relevant period.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">37 </span></h2>
+                     <p>Subsection (3) states that the maximum fixed penalty notice is £5,000, or the maximum
+                        fine the offender could be liable to pay if convicted for the same offence.   </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">38 </span></h2>
+                     <p>Subsection (4) defines ‘relevant period’ as used in this Act as 28 days starting on
+                        the date the fixed penalty notice was issued. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">39 </span></h2>
+                     <p>Subsection (5) outlines the information that will be included in the fixed penalty
+                        notice. This includes a statement that the enforcement authority or constable is satisfied
+                        beyond reasonable doubt that the person committed a relevant offence; the effect of
+                        subsection (6) of this section; when payment may be made; and how.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">40 </span></h2>
+                     <p>Subsection (6) applies when a fixed penalty notice is issued to a person and not withdrawn.
+                        Subsection (6)(a) states that proceedings will not be instituted until after the relevant
+                        period has expired for the person who committed the offence to pay the fixed penalty
+                        notice and thus discharge liability. Subsection (5)(b) details that the person who
+                        committed the offence may not be convicted of the offence if the person pays the fixed
+                        penalty notice in full within the relevant period, or they pay 50% of the fixed penalty
+                        notice within 14 days of the start of the relevant period. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">41 </span></h2>
+                     <p>Subsection (7) specifies that when prosecution is pursued, the window in which to
+                        pursue this starts from the day that the fixed penalty notice relevant period lapsed,
+                        as outlined in section 127(1) of the Magistrates’ Court Act 1980.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 4: Matters to be taken into account</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">42 </span></h2>
+                     <p>Section 4 details the considerations enforcement authorities or constables must apply
+                        before issuing fixed penalty notices.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">43 </span></h2>
+                     <p>Subsection (1) states that an enforcement authority or constable must take into account
+                        the factors mentioned in subsection (2) in deciding (a) whether to issue a fixed penalty
+                        notice to a person under section 1 or 2, and (b) the amount to be specified in the
+                        notice. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">44 </span></h2>
+                     <p>Subsection (2) lists the factors to be considered by an enforcement authority or constable.
+                        These are: (a) the seriousness of the relevant conduct; (b) the duration of the relevant
+                        conduct; (c) any evidence of intention behind the relevant conduct; (d) any evidence
+                        of previous acts or omissions by the relevant person similar to the relevant conduct;
+                        (e) any action taken by the relevant person to eliminate or reduce any risk of harm
+                        resulting from the relevant conduct; (f) any action taken by the relevant person to
+                        remedy or mitigate any harm resulting from the relevant conduct; (g) whether the relevant
+                        person reported the relevant conduct to an enforcement authority or constable; (h)
+                        the conduct of the relevant person after the relevant conduct is drawn to their attention
+                        by an enforcement authority or constable.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">45 </span></h2>
+                     <p>Subsection (3) details that the Secretary of State must give guidance about (a) additional
+                        matters to be taken into account in deciding whether to issue a fixed penalty notice;
+                        (b) additional matters to be taken into account in deciding the amount to be specified
+                        in the notice; and (c) how the factors listed in subsection (2) and any additional
+                        matters detailed in paragraphs (a) or (b) need to be taken into account.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">46 </span></h2>
+                     <p>Subsection (4) establishes that the guidance is to be laid before Parliament and thus
+                        be subject to scrutiny before it is introduced. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">47 </span></h2>
+                     <p>Subsection (5) clarifies that enforcement authorities or constables need to have regard
+                        to the guidance. </p>
+                  </section>
+                  <section class="level">
+                     <p>Section 5: Use of proceeds</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">48 </span></h2>
+                     <p>Section 5 states where the proceeds from fixed penalty notices must be paid. Section
+                        5 recognises that as a matter of House of Commons procedure, a financial resolution
+                        needed to be agreed for the Bill from which the Act resulted.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">49 </span></h2>
+                     <p>Subsection (1) states that funds received by enforcement authorities or chief officers
+                        of police from the receipt of paid fixed penalty notices issued under section 1 or
+                        2 must be paid into the Consolidated Fund.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">50 </span></h2>
+                     <p>Subsection (2) defines the costs that may be deducted by enforcement authorities or
+                        chief officers of police before paying the remaining funds received into the Consolidated
+                        Fund. These are the costs of investigating the offence relevant to the fixed penalty
+                        notice issued and the cost incurred by the enforcement authority or constable to issue
+                        the fixed penalty notice.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 6: Reports</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">51 </span></h2>
+                     <p>Section 6 specifies the reporting required on the use of fixed penalty notices. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">52 </span></h2>
+                     <p>Subsection (1) specifies the responsibility on enforcement authorities or chief officers
+                        of police to submit an annual report to the Secretary of State after the end of each
+                        financial year. The report must include </p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">a.</span></h2>
+                        <p>the number of fixed penalty notices issued; </p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">b.</span></h2>
+                        <p>the financial amounts of the penalties issued; and</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">c.</span></h2>
+                        <p>the reason each fixed penalty notice was issued, i.e. the offence committed.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">53 </span></h2>
+                     <p>Subsection (2)(a) states that the Secretary of State must publish a report containing
+                        the information provided under subsection (1) for each financial year. Subsection
+                        (2)(b) details that a report must also be issued for penalty notices issued by the
+                        Secretary of State during that year, including (i) the number of fixed penalty notices
+                        issued; (ii) the financial amounts of the penalties issued; and (iii) the reason each
+                        fixed penalty notice was issued, i.e. the offence committed.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">54 </span></h2>
+                     <p>Subsection (3) clarifies the meaning of ‘financial year’ as used in this Act as the
+                        period from 01 April until the following 31 March, on a 12-month rolling basis. The
+                        first relevant financial year will run from the day this section of the Act comes
+                        into force until the following 31 March.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 7: Regulations</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">55 </span></h2>
+                     <p>Section 7 states the requirements that must be met when introducing regulations in
+                        relation to this Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">56 </span></h2>
+                     <p>Subsection (1) states that regulations made under section 1 or 2 may contain transitional
+                        provision, which means that an enforcement authority may not start issuing fixed penalty
+                        notices for relevant offences until a statutory instrument names the enforcement authority
+                        in relation to those offences.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">57 </span></h2>
+                     <p>Subsection (2) states that regulations made under section 1 or 2 are to be made by
+                        statutory instrument. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">58 </span></h2>
+                     <p>Subsection (3) establishes that any such statutory instrument would be subject to
+                        the negative procedure, which means that the statutory instrument will become law
+                        on the date stated unless it is annulled by either House within a 40-day period.</p>
+                  </section>
+                  <section class="level">
+                     <p>Section 8: Interpretation</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">59 </span></h2>
+                     <p>Section 8 defines key meanings as they are intended in the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">60 </span></h2>
+                     <p>Section 8 defines the meaning of ‘enforcement authority’; ‘local authority’; and ‘relevant
+                        offence’.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">61 </span></h2>
+                     <p>Section 9: Extent, commencement and short title</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">62 </span></h2>
+                     <p>Section 9 defines the extent that the Act applies, commencement date and the short
+                        title.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">63 </span></h2>
+                     <p>Subsection (1) states that the Act extends only to England and Wales.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">64 </span></h2>
+                     <p>Subsection (2) states that section 1(2) to (5), 2(2) and (3), 4(3) and (4), 7 and
+                        8 and this section of the Act come into force two months after the Act is passed.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">65 </span></h2>
+                     <p>Subsection (3) details that the other provisions of the Act will come into force when
+                        regulations made by statutory instrument are appointed by the Secretary of State.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">66 </span></h2>
+                     <p>Subsection (5) details that the Act may be cited as Animals (Penalty Notices) Act
+                        2022.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">67 </span></h2>
+                  <p>Two months after Royal Assent. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">68 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.gov.uk/government/publications/action-plan-for-animal-welfare">
+                           <u>Our Action Plan for Animal Welfare</u>
+                           </a>, May 2021.&nbsp;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://www.gov.uk/government/publications/agricultural-transition-plan-2021-to-2024">
+                           <u>Agricultural Transition Plan 2021 to 2024</u>
+                           </a>, November 2020. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://bills.parliament.uk/publications/45314/documents/1445">
+                           <u>Delegated Powers Memorandum</u>
+                           </a>, February 2022.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://committees.parliament.uk/publications/9432/documents/161283/default/">
+                           <u>Delegated Powers and Regulatory Reform Committee Report</u>
+                           </a>, March 2022. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <a href="https://committees.parliament.uk/publications/9462/documents/161553/default/">
+                           <u>Government Response to Delegated Powers and Regulatory Reform Committee Report</u>
+                           </a>, March 2022.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A – Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">69 </span></h2>
+                  <p>The Annex below details the territorial extent and the application of the sections
+                     in the Act as relevant to the United Kingdom. The Act extends to England and Wales,
+                     extending to England only except for the offences under the Dangerous Dogs Act 1991,
+                     which extends to Wales as a reserved power.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.14in">
+                        <col style="width:1.14in">
+                        <col style="width:1.14in">
+                        <col style="width:1.14in">
+                        <col style="width:1.14in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                              <p>Section 2</p>
+                              <p>Section 3</p>
+                              <p>Section 4</p>
+                              <p>Section 5</p>
+                              <p>Section 6</p>
+                              <p>Section 7</p>
+                              <p>Section 8</p>
+                              <p>Section 9 </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                              <p>No</p>
+                              <p>Yes</p>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">70 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:2.21in">
+                        <col style="width:1.45in">
+                        <col style="width:2.49in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>16 June 2021</p>
+                           </td>
+                           <td>
+                              <p>[No Hansard entry]</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>29 October 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-10-29/debates/E3F469D8-D3AE-42CB-AB88-95BD66C4ECB9/Animals(PenaltyNotices)Bill">
+                                    <u>Vol. 702, Col. 562</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Money Resolution</p>
+                           </td>
+                           <td>
+                              <p>29 November 2021</p>
+                           </td>
+                           <td>
+                              <p>[No Hansard entry]</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Public Bill Committee</p>
+                           </td>
+                           <td>
+                              <p>08 December 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2021-12-08/debates/6731f9b2-2969-4262-aac4-1fbf5a155692/Animal(PenaltyNotices)Bill">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report and Third Reading</p>
+                           </td>
+                           <td>
+                              <p>04 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-02-04/debates/9BCFB281-21F2-47E2-9243-3475828F9121/Animals(PenaltyNotices)Bill">
+                                    <u>Vol. 708, Col. 577</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>07 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-02-07/debates/33B28C97-37D6-4959-ADDF-FF68680027E0/Animals(PenaltyNotices)Bill">
+                                    <u>Vol. 818</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>18 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-18/debates/8A4EC5B7-ADE6-49D4-B272-A41CAC36D39C/Animals(PenaltyNotices)Bill">
+                                    <u>Vol. 820, Col. 624</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>23 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://data.parliament.uk/DepositedPapers/Files/DEP2022-0273/letter_All_Peers_Penalty_Notices_Second_Reading_Follow_Up.pdf">
+                                    <u>Follow-up Correspondence to Peers</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>23 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://data.parliament.uk/DepositedPapers/Files/DEP2022-0273/Master_Grids_Annex_A.pdf">
+                                    <u>Grids outlining scope of Bill</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Motion to Discharge Committee</p>
+                           </td>
+                           <td>
+                              <p>28 March 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-03-28/debates/E2E30743-696E-4206-87B1-33FB0225CCF4/Animals(PenaltyNotices)Bill">
+                                    <u>Vol. 820, Col. 1278</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>[No Report Stage]</p>
+                           </td>
+                           <td>
+                              <p>[No Report Stage]</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>01 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-01/debates/A436CA58-826B-47B1-8ADA-769E0C06D23D/Animals(PenaltyNotices)Bill">
+                                    <u>Vol. 820, Col. 1791</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>28 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-28/debates/D11DF494-0AB3-4302-AB2D-C113849A137D/RoyalAssent">
+                                    <u>Vol. 821, Col. 382</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

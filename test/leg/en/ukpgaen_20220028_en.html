@@ -1,0 +1,1167 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <b>MARRIAGE AND CIVIL PARTNERSHIP (MINIMUM AGE) ACT 2022</b>
+               </p>
+            <p>EXPLANATORY NOTES</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>What these notes do</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>These Explanatory Notes relate to the Marriage and Civil Partnership (Minimum Age)
+                  Act  which received Royal Assent on 28 April 2022 (c. 28).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes have been prepared by the Ministry of Justice and the Home
+                  Office in order to assist the reader in understanding the Act. They do not form part
+                  of the Act and have not been endorsed by Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide
+                  background information on the development of policy; and provide additional information
+                  on how the Act will affect existing legislation in this area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>These Explanatory Notes might best be read alongside the Act. They are not, and are
+                  not intended to be, a comprehensive description of the Act.</p>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Overview of the Act</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>The purpose of the Act is to address the practice of child marriage in England and
+                     Wales. The Act raises the minimum age of marriage and civil partnership to 18 in England
+                     and Wales. This brings an end to provisions allowing for 16-17-year olds to marry
+                     or enter a civil partnership with parental or judicial consent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>The anticipated effect of this change on the common law means that any marriages which
+                     take place overseas, or in Scotland or Northern Ireland, involving under 18s where
+                     one of the parties is domiciled in England and Wales, will  not be legally recognised
+                     in England and Wales. This change to recognition also applies to civil partnerships.
+                     This does not affect the validity of any marriages or civil partnerships entered before
+                     the Act comes into force.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>The Act also makes it illegal for a person to arrange the marriage of a person under
+                     the age of 18 in England and Wales in those circumstances where that is not already
+                     illegal.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>Prior to the implementation of the Act, people can enter a marriage or civil partnership
+                     at the age of 18, or at 16-17 with parental or judicial consent. Statistics show that
+                     the numbers of people marrying in England and Wales at 16 or 17 were small and continued
+                     to decline. Of nearly 235,000 marriages in 2018, only 134 involved one or both persons
+                     who were aged 16 or 17<a class="fn" id="fnref-1" href="#fn-1">1</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>Before this Act, it was already an offence for a person to force another person of
+                     any age into a marriage, when they used violence, threats or any other form of coercion,
+                     and for a person to arrange the marriage of a person who lacks capacity to consent
+                     to the marriage under the Mental Capacity Act 2005, whether or not they used violence,
+                     threats or any other form of coercion. Both of these provisions encompass any religious
+                     or civil ceremony of marriage, whether or not it is legally binding. However, it is
+                     not currently an offence (prior to the implementation of the Act), for a person to
+                     arrange the marriage of a person under the age of 18, who has capacity to consent
+                     under the Mental Capacity Act 2005, where there has been no use of violence, threats
+                     or any other form of coercion.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>Both the legal marriage of people aged 16 or 17, and the ‘marriage’ in a ceremony
+                     which is not legally binding of a person under the age of 18, represent child marriage.
+                     Moreover, research has shown that child marriage is often associated with leaving
+                     education early, limited career and vocational opportunities, serious physical and
+                     mental health problems, developmental difficulties for the children born to young
+                     mothers, and an increased risk of domestic abuse<a class="fn" id="fnref-2" href="#fn-2">2</a>. Statistics show that girls are more likely to be impacted. In England and Wales
+                     in 2018, 28 boys married legally under the age of 18 compared with 119 girls.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p> The UN Sustainable Development Goals require all countries to “eliminate all harmful
+                     practices, such as child, early and forced marriage and female genital mutilations
+                     by 2030”<a class="fn" id="fnref-3" href="#fn-3">3</a>. The UN Committee on the Rights of the Child also recommends that there should be
+                     no legal way for anyone to marry before they turn 18, even if there is parental consent.
+                     In 2016, the Committee recommended to the UK that it raise the minimum age to 18<a class="fn" id="fnref-4" href="#fn-4">4</a>.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>The anticipated effect on the common law of the change to the minimum age of marriage
+                     means that marriages of under 18s, which take place abroad, will not be legally recognised
+                     in England and Wales if either party is domiciled in England and Wales. The Act establishes
+                     a further obstacle to those seeking to take children abroad to marry. It also offers
+                     clarity to professionals such as teachers and social workers who are uncertain whether
+                     they should report children travelling abroad to marry to the police. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>The changes in the law means there is one less obstacle to children completing their
+                     education. Children will also have more time to grow and mature before entering marriage
+                     or civil partnership; which is a life-long commitment with significant legal and financial
+                     consequences.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Legal background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>The Marriage Act 1949 (“MA 1949”), Marriage (Registrar General’s Licence) Act 1970
+                     and the Matrimonial Causes Act 1973 are the principal statutes on marriage in England
+                     and Wales. The Civil Partnership Act 2004 (“CPA 2004”) relates to the law on civil
+                     partnerships. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>Section 2 of the MA 1949 stipulates that any marriage solemnized between persons either
+                     of whom is under the age of 16 shall be void. Section 3 of the MA 1949 sets out the
+                     consent requirements for a marriage of a child.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>Section 3 of the CPA 2004 stipulates that two people are not eligible to register
+                     as civil partners if either of them is under 16. Section 4 states that those under
+                     18 must have the consent of an appropriate person.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>The Anti-social Behaviour, Crime and Policing Act 2014 (“ASBCPA 2014”) is the principal
+                     statute on forced marriage in England and Wales (and Scotland).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>Section 121 of the ASBCPA 2014 renders it an offence (forced marriage) for a person
+                     to use violence, threats or another form of coercion for the purpose of causing another
+                     person to enter into a marriage, so long as they believe, or ought reasonably to believe,
+                     that the conduct may cause the other person to enter into the marriage without free
+                     and full consent. That section also renders it an offence to carry out any conduct
+                     for the purpose of causing someone who lacks the capacity to consent to marriage (within
+                     the meaning of the Mental Capacity Act 2005) to enter into a marriage (whether or
+                     not the conduct amounts to violence, threats or any other form of coercion). </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>Section 121 specifies that in each case ‘marriage’ means any religious or civil ceremony
+                     of marriage, whether or not it is legally binding. It specifies that an offence is
+                     committed if at the time of the conduct: at least one of the victim or the defendant
+                     is in England or Wales; if neither of them is in England or Wales at the time of the
+                     conduct but one of them is habitually resident in England or Wales; or if neither
+                     of them is in the UK at the time of the conduct but at least one of them is a UK national.
+                     It specifies that the maximum sentence is 12 months imprisonment (six months until
+                     the relevant legislation enabling sentences of up to 12 months is brought into effect),
+                     a fine or both in the magistrates’ court, or seven years imprisonment in the Crown
+                     Court.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Territorial extent and application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>Section 6 sets out the territorial extent of the Act, that is the legal jurisdiction
+                     in which the Act is intended to form part of the law. The extent of an Act can be
+                     different from its application. Application is about where an Act will have a practical
+                     effect. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>Subject to subsections (2) and (3), the extent and application of the Act is England
+                     and Wales only. Subsection (2) provides that the amendment made by Section 4(3) and
+                     Sections 5-8 also extend to Scotland and Northern Ireland. Section 4(3) amends section
+                     217(2) of the CPA 2004 and the recognition of an overseas relationship where one of
+                     the parties was domiciled in England and Wales when the overseas relationship was
+                     registered. This amendment is to align the amendments at sections 1 and 3 of the Act
+                     in relation to a reserved matter (marriage and civil partnership in England and Wales).
+                     Subsection (2) also provides that section 5 relating to the power to make consequential
+                     amendments, section 6 itself, section 7 on commencement, section 8 on saving provision
+                     and section 9 containing the short title, all form part of the law of the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>See the table in Annex A for a summary of the position regarding territorial extent
+                     and application in the United Kingdom. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commentary on provisions of Act</b>
+                     </span></h2>
+               <section class="level">
+                  <p>Section 1 – Marriage: increase of minimum age to 18</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>This section amends the MA 1949.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>Subsection (2) amends the MA 1949 to substitute “18” for “16” to provide that a marriage
+                     solemnised where one party is under the age of 18 is void. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>Subsection (3) omits section 3 of the MA 1949 (the current provision which sets out
+                     consent requirements for those marrying under 18 years). </p>
+               </section>
+               <section class="level">
+                  <p>Section 2 – Offence of conduct relating to marriage of persons under 18</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>This section amends section 121 of the ASBCPA 2014.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>Subsection (2) inserts new subsection (3A) into section 121. This provides that a
+                     person commits an offence under the law of England and Wales if he or she carries
+                     out any conduct for the purpose of causing a child to enter into a marriage before
+                     the child’s eighteenth birthday (whether or not the conduct amounts to violence, threats,
+                     any other form of coercion or deception and whether or not it is carried out in England
+                     and Wales). Following existing subsection (4) of section 121, a marriage is defined
+                     as any religious or civil ceremony of marriage, whether or not it is legally binding.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>Subsection (3) specifies that, for the purpose of the new offence inserted by subsection
+                     (2), a child is a person who is aged under 18 years.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>Subsection (4) amends subsection (6) of section 121. Subsection (6) of section 121
+                     provides that if someone uses violence, threats or any other form of coercion for
+                     the purpose of causing another person to enter into a marriage, as is required for
+                     a person to be convicted of the offence in subsection (1) of section 121, the violence,
+                     threats or other form of coercion need not have been directed at the person whom it
+                     was intended to cause to enter the marriage, but could instead have been directed
+                     at another person. Subsection (4) would make similar provision for the new offence
+                     inserted by subsection (2), meaning that, if a person carries out conduct for the
+                     purpose of causing a child to enter into a marriage before the child’s eighteenth
+                     birthday, that conduct need not have been directed at that child, but could have been
+                     directed at another person.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>Subsection (5) inserts new subsection (7A) into section 121. Subsection (7A) would
+                     provide that an offence under new subsection (3A) (whose content is described in paragraph
+                     23) is committed only if the conduct carried out for the purpose of causing a child
+                     to enter into a marriage before their eighteenth birthday is for the purpose of causing
+                     the child to enter into a marriage in England or Wales; or at the time of the conduct,
+                     at least one of the person carrying out the conduct or  the victim is habitually resident
+                     in England and Wales; or  at the time of the conduct the child is a United Kingdom
+                     national who has at some point been habitually resident in England and Wales and who
+                     is not habitually resident or domiciled in Scotland or Northern Ireland. </p>
+               </section>
+               <section class="level">
+                  <p>Section 3 – Civil partnership: increase of minimum age to 18</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27 </span></h2>
+                  <p>This section amends the CPA 2004.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28 </span></h2>
+                  <p>Subsection (2) amends section 3 of the CPA 2004 to substitute the age of “18” for
+                     “16” in the eligibility requirements. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29 </span></h2>
+                  <p>Subsection (3) omits section 4 (the current provision which requires parental consent
+                     where a proposed civil partner is under 18).</p>
+               </section>
+               <section class="level">
+                  <p>Section 4 – Civil partnerships etc. registered outside England and Wales</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30 </span></h2>
+                  <p>This section amends the CPA 2004.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31 </span></h2>
+                  <p> Subsection 2 amends section 54 (validity of civil partnerships registered outside
+                     England and Wales). It inserts subsections that provide that where two people register
+                     as civil partners in Scotland or Northern Ireland, the partnership will be void if
+                     at time of registration, either of the two people were domiciled in England and Wales
+                     and either under 18.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32 </span></h2>
+                  <p>Subsection 2 (c) also amends section 54 so that if two people convert their marriage
+                     into a civil partnership under Northern Irish regulations, it will be void if either
+                     of them was domiciled in England and Wales and either under 18 when the marriage was
+                     solemnised.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33 </span></h2>
+                  <p>Subsection 3 amends section 217 (person domiciled in a part of the United Kingdom)
+                     which provides for an overseas relationship being registered by a person domiciled
+                     in England and Wales and increases the age under which two people are not to be treated
+                     as formed a civil partnership from 16 to 18. This is the only provision that extends
+                     to Scotland and Northern Ireland and therefore forms part of the law of Scotland and
+                     Northern Ireland.</p>
+               </section>
+               <section class="level">
+                  <p>Section 5 – Power to make consequential amendments</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34 </span></h2>
+                  <p>This section allows the Secretary of State to make regulations by statutory instrument
+                     which make provision consequential on the provisions on the Act, including transitional
+                     or saving provision. Regulations may amend, repeal or revoke provisions made by or
+                     under primary legislation. </p>
+               </section>
+               <section class="level">
+                  <p>Section 6 – Extent</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35 </span></h2>
+                  <p>Section 6 sets out the extent of the Act (see commentary in paras 16 to 19 above and
+                     Annex A for more information). </p>
+               </section>
+               <section class="level">
+                  <p>Section 7 – Commencement</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36 </span></h2>
+                  <p>Subsections (1) and (2) provide that the provisions of the Act will come into force
+                     on such day as the Secretary of State may by regulations appoint and that different
+                     days may be appointed for different purposes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37 </span></h2>
+                  <p>Subsection (3) provides that the Secretary of State may make transitional, transitory
+                     or saving provision in connection with the coming into force of any provision of the
+                     Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38 </span></h2>
+                  <p>Subsection (4) provides that regulations under this section are to be made by statutory
+                     instrument.</p>
+               </section>
+               <section class="level">
+                  <p>Section 8 – Saving Provision</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39 </span></h2>
+                  <p>This section provides that any amendments made by the Act do not affect the validity
+                     of any marriages or civil partnerships entered (or the treatment as a civil partnership
+                     of an overseas relationships registered under the relevant law) before the Act comes
+                     into force. </p>
+               </section>
+               <section class="level">
+                  <p>Section 9 – Short title</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40 </span></h2>
+                  <p>Section 8 sets out the short title of the Act.</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Schedule – Minor and Consequential Amendments</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Paragraph 1 – Marriage Act 1949</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41 </span></h2>
+                  <p> Paragraph 1 makes amendments to the MA 1949, that are consequential on the amendments
+                     made by section 1 of the Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42 </span></h2>
+                  <p>Subparagraphs (2), (3), (4), omit and/or amend sections of the MA 1949 which are no
+                     longer necessary or appropriate because they relate to the marriage of a child which
+                     will not be possible by virtue of section 1. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43 </span></h2>
+                  <p>Subparagraph (5) removes section 30 MA 1949 (forbidding of issue of marriage schedule)
+                     as it will no longer be possible by virtue of section 1. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44 </span></h2>
+                  <p>Subparagraph (6) and (7), omit sections of the MA 1949 which are no longer necessary
+                     or appropriate because they relate to the marriage of a child which will not be possible
+                     by virtue of section 1. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45 </span></h2>
+                  <p>Subparagraph (8) amends section 75 (offences relating to solemnization of marriages)
+                     by omitting the offence consequential upon omitting the forbidding of issue of marriage
+                     schedule under section 30 MA 1949.</p>
+               </section>
+               <section class="level">
+                  <p>Paragraph 2 – Marriage (Registrar General’s Licence) Act 1970</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46 </span></h2>
+                  <p>Paragraph 2 makes amendments to the Marriage (Registrar General’s Licence) Act 1970,
+                     that are consequential on the amendments made by section 1 of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47 </span></h2>
+                  <p>Subparagraph (2) removes the subsection in section 3 (Evidence of capacity, consent
+                     etc. to be produced) relating to consent required for 16-17-year olds.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48 </span></h2>
+                  <p>Subparagraph (3) removes section 6 (marriage of persons under eighteen) as this will
+                     no longer be possible by virtue of section 1.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49 </span></h2>
+                  <p>Subparagraph (4) omits section 7(b) consequential on section 30 MA 1949 being omitted.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>Paragraph 3 – Matrimonial Causes Act 1973</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50 </span></h2>
+                  <p>Paragraph 3 makes amendments to the Matrimonial Causes Act 1973, that are consequential
+                     on the amendments made by section 1 of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">51 </span></h2>
+                  <p>Section 11 (nullity) is amended so that the ground on which a marriage is void is
+                     amended to apply where either party is under the age of eighteen. </p>
+               </section>
+               <section class="level">
+                  <p>Paragraph 4 – Civil Partnership Act 2004</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52 </span></h2>
+                  <p>Paragraph 4 makes amendments to the CPA 2004, that are consequential on the amendments
+                     made by section 3 of the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53 </span></h2>
+                  <p>Subparagraph (2) amends section 5 (types of pre-registration procedure) to remove
+                     provisions applicable for those who are under 18.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54 </span></h2>
+                  <p>Subparagraph (3) amends section 31 (offences relating to civil partnership schedule)
+                     to remove the offence relating to civil partnerships of persons under 18 consequential
+                     on section 3.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">55 </span></h2>
+                  <p>Subparagraph (4) amends section 32 (offence relating to General Registrar’s licence)
+                     consequential on section 49(c) CPA 2004 being omitted. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56 </span></h2>
+                  <p>Subparagraph (5) amends section 33 (offences relating to the recording of civil partnerships)
+                     consequential on section 49(c) CPA 2004 being omitted.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57 </span></h2>
+                  <p>Subparagraph (6) amends section 49 (grounds on which civil partnership is void) to
+                     remove the provision relating to a child and forbidden person, as this will no longer
+                     be relevant.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">58 </span></h2>
+                  <p>Subparagraph (7) amends section 52 (proof of certain matters not necessary to validity
+                     of civil partnership) to omit provisions relating to the requirement of consent for
+                     those under 18.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">59 </span></h2>
+                  <p>Subparagraph (8) amends section 80 (false statements etc. with reference to civil
+                     partnerships) to remove provision relating to the forbidding of a civil partnership
+                     between a child and another person. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60 </span></h2>
+                  <p>Subparagraph (9) removes Schedule 2 which relates to civil partnerships of persons
+                     under 18 in England and Wales, consequential on section 3.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Commencement</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">61 </span></h2>
+                  <p>Section 7 provides for the Act to be brought into force by means of regulations made
+                     by the Secretary of State.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62 </span></h2>
+                  <p>Consequential amendments to secondary legislation will be brought in to coincide with
+                     the commencement of the Act.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Related documents</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">63 </span></h2>
+                  <p>The following documents are relevant to the Act and can be read at the stated locations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Impact Assessment: <a href="https://www.legislation.gov.uk/ukpga/2022/28/pdfs/ukpgaod_20220028_en_001.pdf"><u>https://www.legislation.gov.uk/ukpga/2022/28/pdfs/ukpgaod_20220028_en_001.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Family Impact Test: <br><a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0018/AgeofMarriageBillFamilyImpactTest.pdf"><u>https://publications.parliament.uk/pa/bills/cbill/58-02/0018/AgeofMarriageBillFamilyImpactTest.pdf</u></a></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Equalities Statement: <br><a href="https://publications.parliament.uk/pa/bills/cbill/58-02/0018/AgeofMarriageBillEqualitiesStatement.pdf"><u>https://publications.parliament.uk/pa/bills/cbill/58-02/0018/AgeofMarriageBillEqualitiesStatement.pdf</u></a></p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex A </b>
+                     <b>–</b>
+                     <b> Territorial extent and application in the United Kingdom</b>
+                     </span></h2>
+               <section class="level">
+                  <table>
+                     <colgroup>
+                        <col style="width:0.76in">
+                        <col style="width:1.5in">
+                        <col style="width:1.38in">
+                        <col style="width:1.67in">
+                        <col style="width:1.54in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Provision</b>
+                              </p>
+                           <p>
+                              <b>England</b>
+                              </p>
+                           <p>
+                              <b>Wales</b>
+                              </p>
+                           <p>
+                              <b>Scotland</b>
+                              </p>
+                           <p>
+                              <b>Northern Ireland</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <p>
+                              <b>Extends to E &amp; W and applies to England?</b>
+                              </p>
+                           <p>
+                              <b>Extends to E &amp; W and applies to Wales?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Scotland?</b>
+                              </p>
+                           <p>
+                              <b>Extends and applies to Northern Ireland?</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 3</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 4</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>In part</p>
+                           </td>
+                           <td>
+                              <p>In part</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 5</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 6</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p> No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 7</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 8</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Section 9</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 1</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Schedule 2</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2><span class="heading">
+                     <b>Annex B – Hansard References</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">64 </span></h2>
+                  <p>The following table sets out the dates and Hansard references for each stage of the
+                     Act's passage through Parliament.</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:1.89in">
+                        <col style="width:1.38in">
+                        <col style="width:3.02in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>16 June 2021</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>19 November 2021</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2021-11-19/debates/22B836A2-DCFA-4759-BD71-D978E1192F77/MarriageAndCivilPartnership(MinimumAge)Bill">
+                                    <u>Vol. 703</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Money Resolution</p>
+                           </td>
+                           <td>
+                              <p>15 December 2021</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Committee</p>
+                           </td>
+                           <td>
+                              <p>12 January 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-12/debates/f582cd82-3e97-4e8a-8e4e-8e87b52a0c4c/MarriageAndCivilPartnership(MinimumAge)Bill">
+                                    <u>Col. 1</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Report</p>
+                           </td>
+                           <td>
+                              <p>25 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2022-01-12/debates/f582cd82-3e97-4e8a-8e4e-8e87b52a0c4c/MarriageAndCivilPartnership(MinimumAge)Bill">
+                                    <u>Vol. 709 Col. 600</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>25 February 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2022-02-25/debates/1967704D-1346-4B9D-A47D-BF128CB1FF8A/MarriageAndCivilPartnership(MinimumAge)Bill">
+                                    <u>Vol. 709 Col. 606</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Introduction</p>
+                           </td>
+                           <td>
+                              <p>28 February 2022</p>
+                           </td>
+                           <td>
+                              <p>No debate</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Second Reading</p>
+                           </td>
+                           <td>
+                              <p>1 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-01/debates/7CF2AC16-56E7-4AC8-B9BD-298AAA98D4E2/MarriageAndCivilPartnership(MinimumAge)Bill">
+                                    <u>Vol. 820 Col. 1794</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Order of Commitment discharged</p>
+                           </td>
+                           <td>
+                              <p>7 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-07/debates/F701C4A6-3094-4AD3-8F0A-B42365E8F9C1/MarriageAndCivilPartnership(MinimumAge)Bill">
+                                    <u>Vol. 820</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Third Reading</p>
+                           </td>
+                           <td>
+                              <p>26 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-26/debates/B8CEB3D2-F345-45EF-B53D-1DE2233D8814/MarriageAndCivilPartnership(MinimumAge)Bill">
+                                    <u>Vol 821 Col. 134</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>Royal Assent</p>
+                           </td>
+                           <td>
+                              <p>28 April 2022</p>
+                           </td>
+                           <td>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2022-04-28/debates/D11DF494-0AB3-4302-AB2D-C113849A137D/RoyalAssent">
+                                    <u>Vol 821 Col. 383</u>
+                                    </a>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/marriagecohabitationandcivilpartnerships/adhocs/13745marriagesof16and17yearoldsenglandandwales2016to2019"><u>Marriages of 16 and 17 year olds, England and Wales, 2016 to 2019 - Office for National
+                        Statistics (ons.gov.uk)</u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  World Bank Document   “ECONOMIC IMPACTS OF CHILD MARRIAGE: (CONFERENCE EDITION) JUNE
+                  2017 GLOBAL SYNTHESIS REPORT” page 53-65</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.gov.uk/government/publications/implementing-the-sustainable-development-goals/implementing-the-sustainable-development-goals--2"><u><a href="https://www.gov.uk/government/publications/implementing-the-sustainable-development-goals/implementing-the-sustainable-development-goals--2">https://www.gov.uk/government/publications/implementing-the-sustainable-development-goals/implementing-the-sustainable-development-goals--2</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="http://www.crae.org.uk/publications-resources/un-crc-committees-concluding-observations-2016/"><u>UN CRC Committee's Concluding Observations 2016 - CRAE</u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

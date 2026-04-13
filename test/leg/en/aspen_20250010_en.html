@@ -1,0 +1,2010 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes styles */
+article[data-doc-type='ExplanatoryNotes'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
+	font-size: 13pt;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p class="center">
+               <i>These notes relate to the Scottish Languages Act 2025 (asp 10)</i>
+               <br>
+               <i>which received Royal Assent on 31 July 2025</i>
+               </p>
+            <p class="center">
+               <b>SCOTTISH LANGUAGES ACT 2025</b>
+               </p>
+            <p class="center">
+               <b>EXPLANATORY NOTES</b>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>INTRODUCTION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.</span></h2>
+               <p>These Explanatory Notes have been prepared by the Scottish Government in order to
+                  assist the reader of the Scottish Languages Act 2025. They do not form part of the
+                  Act and have not been endorsed by the Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.</span></h2>
+               <p>These Notes should be read in conjunction with the Act. They are not, and are not
+                  meant to be, a comprehensive description of the Act. So where a section, or a part
+                  of a section, does not seem to require any explanation or comment, none is given.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>CROWN APPLICATION</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.</span></h2>
+               <p>Section 20 of the Interpretation and Legislative Reform (Scotland) Act 2010 provides
+                  that the Crown will be bound by an Act of the Scottish Parliament or Scottish statutory
+                  instrument unless the provision expressly exempts it. As such, this Act applies to
+                  the Crown in the same way as it applies to everyone else. However, where the Act amends
+                  an existing enactment, it makes no change to the application of the enactment to the
+                  Crown.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>OVERVIEW OF THE ACT</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.</span></h2>
+               <p>The Act consists of three Parts. Part 1 is on Gaelic; Part 2 is on Scots and Part
+                  3 contains final provisions. Parts 1 and 2 are each divided into two Chapters.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>Part 1 Chapter 1 is titled “Support for the Gaelic language” and makes provision about
+                  the status of the Gaelic language and the functions of Bòrd na Gàidhlig, as well as
+                  making provision about the functions of the Scottish Ministers and relevant public
+                  authorities in relation to Gaelic.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.</span></h2>
+               <p>Part 1 Chapter 2 is titled “Education” and makes provision about the functions of
+                  the Scottish Ministers and education authorities in relation to Gaelic education,
+                  as well as modifying various enactments relating to education to increase the support
+                  for Gaelic education.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.</span></h2>
+               <p>Part 2 Chapter 1 is titled “Support for the Scots language” and makes provision about
+                  the status of the Scots language, as well as making provision about the functions
+                  of the Scottish Ministers and relevant public authorities in relation to Scots.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.</span></h2>
+               <p>Part 2 Chapter 2 is titled “School education” and makes provision about the functions
+                  of the Scottish Ministers and education authorities in relation to Scots language
+                  education in schools.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.</span></h2>
+               <p>Part 3 is titled “Final provisions” and includes provision for ancillary powers and
+                  commencement.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.</span></h2>
+               <p>In these Notes:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>the “1980 Act” means the Education (Scotland) Act 1980,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>the “2005 Act” means the Gaelic Language (Scotland) Act 2005,</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>the “2016 Act” means the Education (Scotland) Act 2016.</p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>COMMENTARY ON PROVISIONS</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part 1: Gaelic</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Chapter 1: Support for the Gaelic language</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 1: Status of the Gaelic language</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.</span></h2>
+               <p>Section 1 of the Act inserts a new section before section 1 of the 2005 Act, providing
+                  for the status of the Gaelic language. The statement in subsection (1) that the Gaelic
+                  language has official status within Scotland is given legal effect by the provisions
+                  of the 2005 Act conferring functions on Bòrd na Gàidhlig, the Scottish Ministers and
+                  other persons (relevant public authorities, as defined in section 10 of the 2005 Act)
+                  and enactments relating to Gaelic education.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.</span></h2>
+               <p>The terms “Gaelic language” and “Gaelic education” are defined in section 10 of the
+                  2005 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.</span></h2>
+               <p>Subsection (3) provides that subsection (1) does not affect the operation of any other
+                  enactment (as defined in the Interpretation and Legislative Reform (Scotland) Act
+                  2010) or the status of any other language. For example, this provision does not affect
+                  the operation of the Equality Act 2010, modification of which is a reserved matter
+                  under the Scotland Act 1998.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 2: Functions of Bòrd na Gàidhlig</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">14.</span></h2>
+               <p>Section 2 of the Act adjusts the functions of Bòrd na Gàidhlig, the public body established
+                  by the 2005 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">15.</span></h2>
+               <p>Subsection (2)(a) inserts new paragraphs into section 1(2) of the 2005 Act to confer
+                  additional functions on Bòrd na Gàidhlig, and repeals the function of monitoring,
+                  and reporting to the Scottish Ministers on, the implementation of the European Charter
+                  for Regional or Minority Languages dated 5 November 1992 in relation to the Gaelic
+                  language. “Gaelic language”, “Gaelic education” and “Gaelic culture” referred to at
+                  inserted paragraph (ab) are all defined in section 10 of the 2005 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">16.</span></h2>
+               <p>Subsection (2)(b) removes reference to securing the status of Gaelic as an official
+                  language from the description of how Bòrd na Gàidhlig’s functions are to be exercised,
+                  as the status of the Gaelic language is now dealt with by inserted section A1. It
+                  also adjusts the list in section 1(3) of the 2005 Act, which describes how Bòrd na
+                  Gàidhlig’s functions are to be exercised, to make reference to areas of linguistic
+                  significance, introduced by section 4 of the Act .</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">17.</span></h2>
+               <p>New subsections (3A) and (3B) are relocated from sections 8(9) and (10) of the 2005
+                  Act, since the remaining provisions of section 8 are being repealed and so it is clearer
+                  for these provisions to be understood as part of the functions of Bòrd na Gàidhlig.
+                  The reference to section 8(9) in schedule 1 paragraph 11(2) is amended as a result.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">18.</span></h2>
+               <p>New subsection (3C) requires Bòrd na Gàidhlig to provide, or procure the provision
+                  of, advice, assistance and support to any person in the preparation of a plan for
+                  the development or promotion of the Gaelic language, Gaelic education and Gaelic culture
+                  in relation to a community in a particular area. A “person” could include an individual
+                  or a legal person such as an organisation (whether incorporated or not), by virtue
+                  of the definition in schedule 2 of The Scotland Act 1998 (Transitory and Transitional
+                  Provisions) (Publication and Interpretation etc. of Acts of the Scottish Parliament)
+                  Order 1999. The plan could cover any size of area, and any sort of community.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 3: Bòrd na Gàidhlig corporate plan</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">19.</span></h2>
+               <p>Section 3 of the Act amends schedule 1 of the 2005 Act to require Bòrd na Gàidhlig
+                  to prepare a corporate plan and submit this to the Scottish Ministers for approval.
+                  The inserted paragraph 7A sets out the matters which must be included in the corporate
+                  plan and the process by which it will be approved by the Scottish Ministers.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 4: Areas of linguistic significance</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">20.</span></h2>
+               <p>Section 4 of the Act modifies the 2005 Act to insert four new sections.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">21.</span></h2>
+               <p>Inserted section 1A sets out the criteria by which an area may be designated as an
+                  area of linguistic significance under section 1B. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">22.</span></h2>
+               <p>Under subsection (1)(a), an area may be designated if it contains a significant number
+                  of people with Gaelic language skills. Gaelic language skills would include being
+                  able to speak, read or write Gaelic, or being able to understand spoken Gaelic, at
+                  any level of fluency. Under subsection (2), a “significant number” is taken to be
+                  20% of the area’s population. This could be established for example by looking at
+                  census figures. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">23.</span></h2>
+               <p>Under subsection (1)(b), an area which does not contain a significant number of people
+                  with Gaelic language skills may still be designated if it is historically connected
+                  with the use of Gaelic (for example because there have been a significant number of
+                  people with Gaelic language skills in the past), it is one in which teaching and learning
+                  by means of the Gaelic language is provided (for example, through the provision of
+                  Gaelic medium education by the education authority for that area) or it is one in
+                  which significant activity relating to the Gaelic language or Gaelic culture takes
+                  place (for example, the area regularly hosts a significant music festival including
+                  music by Gaelic speaking artists).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">24.</span></h2>
+               <p>An “area” does not have to be a local authority area: it could be a smaller area forming
+                  part of a local authority area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">25.</span></h2>
+               <p>Inserted section 1B sets out the process for a local authority to designate all or
+                  part of its area as an area of linguistic significance, if it considers that the area
+                  falls within the description set out in section 1A(1). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">26.</span></h2>
+               <p>A local authority must actively consider whether all or part of its area meets the
+                  criterion of at least 20% of the population having Gaelic language skills: this consideration
+                  must happen within 1 year of the section coming into force, and subsequently every
+                  5 years. If the local authority considers that the criteria is met, it must consider
+                  submitting a designation in respect of that area. If it decides not to do so, the
+                  local authority must publicise that decision and its reasons for making it.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">27.</span></h2>
+               <p> The local authority must consult interested persons and publicise the proposed designation
+                  before submitting it to the Scottish Ministers for approval. A designation may be
+                  varied or revoked by the local authority, with such variation or revocation being
+                  subject to the same process of consultation, publication and submission for approval.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">28.</span></h2>
+               <p>The Scottish Ministers may give guidance to local authorities relating to their functions
+                  under this section and a local authority must have regard to such guidance. Guidance
+                  under this section may in particular relate to how to determine which areas may be
+                  designated and factors to be taken into account in determining whether an area contains
+                  more than 20% of the population with Gaelic language skills. This could, for example,
+                  provide examples of when census output areas or electoral wards might be appropriately
+                  considered for designation, or set out more detail on what having Gaelic language
+                  skills means, with the potential for this guidance to change over time as circumstances
+                  develop. Guidance could also, for example, set out more detail about the kinds of
+                  activity which would result in an area being capable of designation under section
+                  1A(1)(b).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">29.</span></h2>
+               <p>Inserted section 1C allows Bòrd na Gàidhlig to request a local authority to consider
+                  making a designation as an area of linguistic significance. The Bòrd must make such
+                  a request if the Bòrd considers that there is evidence of demand for designation by
+                  persons residing in the local authority’s area. The local authority must publicise
+                  its decision (and the reasons for making the decision) if it decides not to submit
+                  a proposed designation as a result of the request. The Scottish Ministers may give
+                  guidance to the Bòrd and local authorities about their functions relating to such
+                  requests.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">30.</span></h2>
+               <p>Inserted section 1D allows the Scottish Ministers to intervene if a local authority
+                  decides not to submit a designation when it considers that 20% of an area’s population
+                  has Gaelic language skills, or when Bòrd na Gàidhlig has made a request for it to
+                  consider making a designation. The Scottish Ministers may require the local authority
+                  to reconsider its decision. The local authority must reconsider the decision within
+                  3 months and then either submit a proposed designation or confirm its decision not
+                  to do so. If it confirms its decision not to do so, it must notify the Scottish Ministers
+                  of the reasons for that.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">31.</span></h2>
+               <p>Section 4 also amends section 3(4) of the 2005 Act so that a relevant public authority
+                  (as defined in section 10 of the 2005 Act) must set out the measures to be taken in
+                  relation to the exercise of its functions in an area of linguistic significance in
+                  its Gaelic language plan. Section 4 also expands section 3(8) of the 2005 Act (which
+                  sets out more detail on the regulation-making power in section 3(7)) to allow the
+                  Scottish Ministers to make further provision about the required content of Gaelic
+                  language plans in respect of areas of linguistic significance.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 5: National Gaelic language strategy</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">32.</span></h2>
+               <p>Section 5 of the Act replaces the National Gaelic language plan prepared by Bòrd na
+                  Gàidhlig under section 2 of the 2005 Act with a national Gaelic language strategy
+                  to be prepared by the Scottish Ministers.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">33.</span></h2>
+               <p>Inserted section 2A sets out the required content of the national Gaelic language
+                  strategy, publication requirements and timescales for its preparation and review and
+                  revision. In particular, in preparing the strategy the Scottish Ministers must have
+                  regard to the principle that the Gaelic and English languages should be accorded equal
+                  respect.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">34.</span></h2>
+               <p>The strategy must impose targets on the Scottish Ministers in relation to promoting,
+                  facilitating and supporting the use of the Gaelic language. Subsection (3) sets out
+                  some illustrative examples of matters which may be included in targets. Whilst the
+                  strategy cannot impose targets on other persons, relevant public authorities will
+                  need to have regard to the targets as part of the strategy when exercising its functions
+                  (see inserted section 2B(2)) and preparing a Gaelic language plan (see section 3(5)(aa)
+                  inserted by section 9(2)(b)(ii) of the Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">35.</span></h2>
+               <p>Inserted section 2B requires that the Scottish Ministers must have regard to the strategy
+                  when making policies and exercising their functions, and that a relevant public authority
+                  must have regard to it in exercising the authority’s functions.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">36.</span></h2>
+               <p>Section 2 of the 2005 Act is repealed. Section 2 contains the requirements for the
+                  preparation of a national Gaelic language plan. Because it does not contain any provision
+                  as to the effect of that plan, any plan prepared will continue in effect for the period
+                  it was prepared for, notwithstanding the repeal of section 2.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 6: Gaelic language standards</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">37.</span></h2>
+               <p>Section 6 of the Act inserts a new section 2C into the 2005 Act, giving the Scottish
+                  Ministers a power to make regulations to specify standards and requirements relating
+                  to promoting, facilitating and supporting the use of the Gaelic language which are
+                  to apply to relevant public authorities in exercising their functions.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">38.</span></h2>
+               <p>Regulations under section 2C may in particular make provision about the preparation
+                  of publications and provision of information, make provision about how functions are
+                  to be exercised in areas of linguistic significance and otherwise make different provision
+                  for different areas (including different parts of the area in which the authority
+                  exercises its functions, for example different parts of a local authority area). Regulations
+                  which make provision about how functions are to be exercised in areas of linguistic
+                  significance may in particular include provision about the exercise of functions relating
+                  to the matters listed in section 2C(3). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">39.</span></h2>
+               <p>Regulations under section 2C are subject to the affirmative procedure and the Scottish
+                  Ministers must publish a draft of the standards and requirements to be specified by
+                  the regulations and consult interested parties on those draft standards and requirements
+                  before laying a draft of the regulations before the Scottish Parliament. The Scottish
+                  Ministers must publish the results of that consultation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">40.</span></h2>
+               <p>A draft instrument containing the first set of regulations must be laid before the
+                  Scottish Parliament within 1 year of the section coming into force. If this is approved
+                  by the Scottish Parliament, the Scottish Ministers must make the regulations.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 7: Functions of relevant public authorities</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">41.</span></h2>
+               <p>Section 7 of the Act inserts three new sections into the 2005 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">42.</span></h2>
+               <p>Inserted section 2D requires a relevant public authority to have regard to promoting,
+                  facilitating and supporting the use of the Gaelic language, and developing and encouraging
+                  Gaelic culture, in exercising its functions. “Gaelic language” and “Gaelic culture”
+                  are defined in section 10 of the 2005 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">43.</span></h2>
+               <p>Inserted section 2E gives the Scottish Ministers a power to give guidance to relevant
+                  public authorities relating to their duties under inserted section 2D. In preparing
+                  the guidance, the Scottish Ministers must have regard to the principle that the Gaelic
+                  and English languages should be accorded equal respect. The Scottish Ministers must
+                  consult interested parties and publish the results of that consultation. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">44.</span></h2>
+               <p>Inserted section 2F gives the Scottish Ministers a power to give directions to relevant
+                  public authorities. The power in section 2F could be used, for example, to direct
+                  a relevant public authority to include Gaelic language in its branding or signage.
+                  The Scottish Ministers must consult with a relevant public authority before giving
+                  a direction to that authority. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 8: Reporting on national Gaelic language strategy, standards and duties</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">45.</span></h2>
+               <p>Section 8 of the Act inserts a new section 2G into the 2005 Act, providing that Bòrd
+                  na Gàidhlig must prepare and publish a report every 2 years about the progress made
+                  towards meeting the objectives and targets set out in the national Gaelic language
+                  strategy published under section 2A (inserted by section 5 of the Act).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">46.</span></h2>
+               <p> Section 8 also inserts section 2H into the 2005 Act, requiring Bòrd na Gàidhlig to
+                  prepare and publish reports about the compliance by relevant public authorities (either
+                  generally or specifically) with their duty to have regard to the Gaelic language strategy,
+                  their duty to comply with standards and requirements specified in regulations under
+                  section 2C(1) and the duties imposed by section 2D, and lay these reports before the
+                  Scottish Parliament. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 9: Gaelic language plans</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">47.</span></h2>
+               <p>Section 9 of the Act makes various changes to section 3 of the 2005 Act on Gaelic
+                  language plans, to take account of the new national Gaelic language strategy and to
+                  adjust the process for preparation of Gaelic language plans. A relevant public authority
+                  will be required to have regard to the principle that the Gaelic and English languages
+                  are to be accorded equal respect when preparing its Gaelic language plan. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">48.</span></h2>
+               <p>Section 4 of the 2005 Act is modified to adjust various timescales and to express
+                  these consistently in terms of periods of time. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">49.</span></h2>
+               <p>Section 5 of the 2005 Act is modified to require a relevant public authority to provide
+                  Bòrd na Gàidhlig with any additional information required following submission of
+                  its Gaelic language plan for approval: for example, this could include any background
+                  figures or evidence the authority has used in formulating its Gaelic language plan.
+                  Section 5(5)(c) is replaced: the new paragraph (c) sets out that the duty to refer
+                  the matter to the Scottish Ministers arises on the later of the expiry of two months
+                  of the authority advising that modifications are not agreed, or the date that Bòrd
+                  na Gàidhlig considers that it will not be able to approve the plan. Bòrd na Gàidhlig
+                  can continue to discuss the plan with the authority and need only refer it to the
+                  Scottish Ministers once it considers that it will not be able to approve the plan
+                  either as originally submitted or with agreed modifications. If an authority fails
+                  to respond at all to a request for modifications to its plan, new subsection (5A)
+                  provides that Bòrd na Gàidhlig may either approve the plan as originally submitted
+                  or refer the matter to the Scottish Ministers. Otherwise, the Gaelic language plan
+                  could simply be left unfinished if an authority did not respond to a request for modifications.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">50.</span></h2>
+               <p>Section 6 of the 2005 Act is also modified so that a relevant public authority must
+                  proactively report to Bòrd na Gàidhlig on the implementation of its Gaelic language
+                  plan within 15 months of the plan being approved, and every 12 months thereafter.
+                  Those reports may be published by Bòrd na Gàidhlig. The Bòrd must also report to the
+                  Scottish Ministers where it considers that a relevant public authority is failing
+                  to implement adequately measures in its Gaelic language plan and must publish those
+                  reports. The Scottish Ministers must lay those reports before the Scottish Parliament.
+                  The Scottish Ministers must direct the authority to implement any or all of the measures
+                  in its Gaelic language plan if they accept the Bòrd’s conclusion that the authority
+                  is failing to implement these adequately and they consider it necessary or expedient
+                  to make such a direction. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">51.</span></h2>
+               <p>Section 9 also inserts a new section 7A to the 2005 Act allowing the Scottish Ministers
+                  to give guidance to relevant public authorities on Gaelic language plans. This replaces
+                  the guidance powers of Bòrd na Gàidhlig in section 8 of the 2005 Act, which is repealed.
+                  Section 7A is itself modified by section 16(5) of the Act, which adds provision for
+                  the regulations relating to education inserted by that section.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 10: Financial assistance for the promotion etc. of the Gaelic language</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">52.</span></h2>
+               <p>Section 10 inserts a new section 7B into the 2005 Act, creating a power for the Scottish
+                  Ministers to give financial assistance, including grants and loans, to any person
+                  for the purposes of promoting, facilitating and supporting the use of the Gaelic language,
+                  on such conditions as the Scottish Ministers think fit.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 11: Scottish Ministers’ powers relating to research etc.</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">53.</span></h2>
+               <p>Section 11 inserts a new section 7C into the 2005 Act, creating a power for the Scottish
+                  Ministers to conduct research and inquiries, collect data and publish statistics,
+                  provide training, or encourage or assist other persons to do those things.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 12: Power to enforce duties of relevant public authorities</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">54.</span></h2>
+               <p>Section 12 inserts a new section 9A into the 2005 Act. This gives the Scottish Ministers
+                  a power to make an order (whether in response to a complaint by any person, or otherwise)
+                  declaring a public authority to be default in respect of any duty under the 2005 Act
+                  and requiring it to discharge that duty, with further powers for the Scottish Ministers
+                  to make arrangements for discharging the duty, and for the Court of Session to order
+                  specific performance of the duty by application of the Lord Advocate.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 13: Interpretation: meaning of relevant public authority</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">55.</span></h2>
+               <p>Section 13 modifies section 10 of the 2005 Act to add the bodies listed in section
+                  13(2)(b) to the definition of relevant public authority.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 14: Land rights and responsibilities statement: regard to be had to supporting
+                        Gaelic</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">56.</span></h2>
+               <p>Under section 1 of the Land Reform (Scotland) Act 2016, the Scottish Ministers must
+                  prepare and publish a land rights and responsibilities statement: a statement of principles
+                  for land rights and responsibilities in Scotland. Section 14 of the Act adds the desirability
+                  of promoting, facilitating and supporting the Gaelic language to the list of matters
+                  to which the Scottish Ministers must have regard in preparing the statement.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Chapter 2: Education</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 15: Duty of Scottish Ministers to promote Gaelic education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">57.</span></h2>
+               <p>Section 15 of the Act inserts a new section 6A into the 2016 Act. This imposes a duty
+                  on the Scottish Ministers to promote, facilitate and support the provision in schools
+                  of Gaelic learner education and Gaelic medium education and the teaching of the Gaelic
+                  language in the provision of further education by education authorities. Those terms
+                  are defined in section 18 of the 2016 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">58.</span></h2>
+               <p>The Scottish Ministers must in particular promote, facilitate and support the provision
+                  of education resources in the Gaelic language for use in school education. This could
+                  include resources such as worksheets, reading books and other learning materials.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">59.</span></h2>
+               <p>Section 15 also amends the definition of “Gaelic language” in the 2016 Act so that
+                  it refers to Gaelic being “used” rather than “spoken”, to make the definition consistent
+                  with the definition in the 2005 Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 16: Power for Scottish Ministers to set standards relating to Gaelic education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">60.</span></h2>
+               <p>Section 16 of the Act inserts a new section 6B into the 2016 Act. This gives the Scottish
+                  Ministers power to make regulations to specify the standards and requirements to which
+                  an education authority must conform in discharging its functions in relation to Gaelic
+                  learner education, Gaelic medium education and teaching of the Gaelic language in
+                  its provision of further education. This is modelled on the power to prescribe standards
+                  and requirements in section 2 of the 1980 Act. However, unlike that section, the standards
+                  and requirements will not have to apply to every education authority. This will allow
+                  for the flexibility needed to account for differing levels of provision of Gaelic
+                  education across different education authorities.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">61.</span></h2>
+               <p>In preparing regulations under this section, the Scottish Ministers must consult the
+                  various interested parties listed in subsection (3) and publish the results of that
+                  consultation. The regulations may make different provision for different purposes
+                  and different areas (including different parts of an education authority’s area) and
+                  are subject to the negative procedure by virtue of section 31(4) of the 2016 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">62.</span></h2>
+               <p>Section 16 also modifies section 7A of the 2005 Act, inserted by section 9(6) of the
+                  Act, so that the Scottish Ministers may give directions to an education authority
+                  relating to the application of the standards and requirements specified in these regulations
+                  to the preparation of its Gaelic language plan. A direction may be varied or revoked,
+                  and an education authority must comply with a direction given to it.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 17: Guidance to public authorities relating to Gaelic education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">63.</span></h2>
+               <p>Section 17 of the Act inserts a new section 6C into the 2016 Act, requiring the Scottish
+                  Ministers to give guidance to Scottish public authorities relating to Gaelic learner
+                  education and Gaelic medium education, the teaching of the Gaelic language in the
+                  provision of further education by education authorities, and the development of such
+                  education. The Scottish Ministers must consult the interested parties listed in subsection
+                  (3) in preparing the guidance.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">64.</span></h2>
+               <p>By virtue of schedule 1 of the Interpretation and Legislative Reform (Scotland) Act
+                  2010, “Scottish public authority” has the meaning given to it by section 126(1) of
+                  the Scotland Act 1998, which is “any public body (except the Parliamentary corporation),
+                  public office or holder of such an office whose functions (in each case) are exercisable
+                  only in or as regards Scotland”.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">65.</span></h2>
+               <p>A Scottish public authority having functions relating to education must, to the extent
+                  that the guidance relates to those functions, have regard to the guidance. For example,
+                  this power could be used to give guidance to Scottish public authorities which produce
+                  resources to be used in schools.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">66.</span></h2>
+               <p>This replaces section 9(1) to (2A) of the 2005 Act, which conferred a guidance-making
+                  power on Bòrd na Gàidhlig. Those provisions (and section 16 of the 2016 Act which
+                  inserted them into the 2005 Act) are repealed. References in the 2016 Act to guidance
+                  under section 9 of the 2005 Act are changed to be references to guidance under this
+                  section.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 18: Production of school education resources in Gaelic</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">67.</span></h2>
+               <p>Section 18 of the Act inserts two new sections into the 2016 Act. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">68.</span></h2>
+               <p>Inserted section 6D requires the Scottish Ministers to consider whether to produce
+                  information, guidance or documents for use in school education in Gaelic where that
+                  material is produced in English. If an education authority requests a translation
+                  of such material, including material produced before the section comes into force,
+                  the Scottish Ministers must consider providing that.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">69.</span></h2>
+               <p>The duty applies to material produced by the Scottish Ministers (with subsection (3)
+                  setting out in more detail what “producing material” means) which is used in the delivery
+                  of school education by teachers or is intended for use by pupils when doing their
+                  school work. This might include material relating to topics such as climate change,
+                  road safety, personal health and healthy eating which is for use in the context of
+                  the classroom. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">70.</span></h2>
+               <p>Inserted section 6E requires the Scottish Ministers to keep under review the adequacy
+                  of education resources in Gaelic for use in school education, and to prepare and publish
+                  reports setting out steps they consider necessary to address any issues identified
+                  by the review.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 19: General duty to provide education includes Gaelic education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">71.</span></h2>
+               <p>Section 19 of the Act modifies the 1980 Act so it is clear that the provision of Gaelic
+                  learner education and Gaelic medium education comes within the definition of school
+                  education, and that therefore an education authority’s duty to secure the provision
+                  of adequate and efficient school education for the authority’s area may include Gaelic
+                  learner education and Gaelic medium education (inserting definitions of those terms
+                  into the 1980 Act to be consistent with the 2016 Act). This no longer applies only
+                  in Gaelic-speaking areas (which was not defined in the 1980 Act, resulting in potential
+                  uncertainty). The teaching of the Gaelic language as part of an education authority’s
+                  duty to provide further education also no longer applies only in Gaelic-speaking areas.
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 20: Duty to promote Gaelic education in exercising functions under the Education
+                        (Scotland) Act 1980</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">72.</span></h2>
+               <p>Section 20 of the Act inserts a new section 14A into the 2016 Act. In exercising its
+                  functions under the 1980 Act, an education authority must promote, facilitate and
+                  support Gaelic learner education, Gaelic medium education and the teaching of the
+                  Gaelic language in its provision of further education, and have regard to the needs
+                  and interests of pupils and prospective pupils.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">73.</span></h2>
+               <p>Although section 15 of the 2016 Act imposes a duty to promote and support Gaelic medium
+                  education and learning, that relates only to provision which the education authority
+                  is already making. The duty in inserted section 14A is therefore a broader duty.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 21: Information-sharing about Gaelic education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">74.</span></h2>
+               <p>Section 21 of the Act inserts a new section 16A into the 2016 Act. This allows Bòrd
+                  na Gàidhlig to serve a notice on an education authority requiring it to provide information
+                  about Gaelic learner education, Gaelic medium education or the teaching of the Gaelic
+                  language in its provision of further education. An education authority must comply
+                  with the notice.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 22: Gaelic education delivery planning</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">75.</span></h2>
+               <p>Section 22 modifies section 3 of the 2005 Act, which sets out the requirements for
+                  Gaelic language plans. Where the authority preparing the plan is an education authority,
+                  the plan must set out the authority’s plan for the provision of Gaelic education,
+                  and the authority must consult the interested persons listed in inserted subsection
+                  (6A) on those elements of the plan. The existing power for the Scottish Ministers
+                  to make regulations about the content of Gaelic language plans is expanded to allow
+                  for further provision about the matters which an education authority must include
+                  in its Gaelic language plan under inserted subsection (4A).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">76.</span></h2>
+               <p>Definitions of “Gaelic learner education” and “Gaelic medium education” are added
+                  for the purposes of this section. Gaelic medium education will include Gaelic medium
+                  early learning and childcare, because “education” includes education provided to pre-school
+                  children. The definition in section 46 of the Children and Young People (Scotland)
+                  Act 2014 Act defines early learning and childcare as including such education and
+                  section 1(5)(a)(i) of the 1980 Act includes early learning and childcare in the definition
+                  of school education. Therefore, the education aspects of the Gaelic language plan
+                  will need to include plans for the provision of Gaelic medium early learning and childcare.
+                  Section 7 on review of plans is amended to make sure that the new subsection (6A)
+                  is correctly referenced.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 23: Production of material relating to Gaelic education qualifications</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">77.</span></h2>
+               <p>Section 23 inserts two new sections into the 2016 Act imposing duties on the Scottish
+                  Qualifications Authority (“SQA”).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">78.</span></h2>
+               <p>Inserted section 16B requires that the SQA must ensure that its qualifications include
+                  an appropriate number and range of qualifications available in Gaelic, and must seek
+                  advice from the Scottish Ministers, Bòrd na Gàidhlig and other persons with expertise
+                  or interest.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">79.</span></h2>
+               <p>Inserted section 16C requires the SQA to produce information, guidance or documents
+                  for use in connection with qualifications in Gaelic for Gaelic qualifications, where
+                  equivalent material is produced for English language qualifications. This could include
+                  material such as study guides or marking guidance. The SQA must translate any such
+                  material on request from the Scottish Ministers, whether or not the material was produced
+                  before the section comes into force.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 24: Duty to support access to Gaelic medium education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">80.</span></h2>
+               <p>Section 24 modifies section 15 of the 2016 Act to place an education authority under
+                  a duty to support a child who is resident in its area to access Gaelic medium education
+                  provided in the area of another education authority, so far as reasonably practicable.
+                  This applies both where the home authority does not provide Gaelic medium education,
+                  and where it does but it is not reasonably practicable for the child to access it
+                  (for example, because it is too far to travel).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 25: Duty to establish a catchment area for schools providing Gaelic medium
+                        education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">81.</span></h2>
+               <p>Section 25 inserts a new section 15A into the 2016 Act, requiring an education authority
+                  to establish a catchment area for each Gaelic medium school. For schools which exist
+                  prior to the day this section comes into force, a catchment area must be established
+                  within a period of 2 years of that day. For schools which are established after this
+                  section comes into force, the duty will apply on establishment of the school. The
+                  catchment area may, but need not, be the same as for other schools, or for any English
+                  medium education at the same school. In establishing a catchment area, the education
+                  authority must take account of the need to provide reasonable travel arrangements.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 26: Transport to Gaelic medium education: application of Schools (Consultation)
+                        (Scotland) Act 2010</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">82.</span></h2>
+               <p>Section 26 adds a proposal to discontinue arrangements for transport for pupils in
+                  Gaelic medium education to schedule 1 of the Schools (Consultation) (Scotland) Act
+                  2010, with the effect that an education authority will have to follow the process
+                  set out in that Act for any such relevant proposal. This is not limited to arrangements
+                  for transport within the local authority area and so would apply to any proposal to
+                  discontinue any transport arrangements for pupils in Gaelic medium education, whether
+                  or not that is within the local authority area. New paragraph 7A inserted into schedule
+                  2 provides the list of relevant consultees for such a relevant proposal, and the substitution
+                  of paragraph 11 means that Comann nam Pàrant (Nàiseanta) will also be a relevant consultee
+                  for all proposals affecting Gaelic medium education.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 27: Assessments: power to make different provision for different areas</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">83.</span></h2>
+               <p>Section 27(2)(a) modifies the 2016 Act so that the power in section 9(7) to vary the
+                  number of children which will trigger the requirement for a full assessment of Gaelic
+                  medium primary education provision can apply to different areas within an education
+                  authority’s area.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">84.</span></h2>
+               <p>If the power in section 9(7)(b) were to be used to make different provision for different
+                  parts of an education authority’s area, that could result in a different number being
+                  specified for different parts of a GMPE assessment area (which an education authority
+                  sets under section 8 of the 2016 Act as the basis for assessing need). For example,
+                  if the power was used to set different numbers for rural and urban areas, a GMPE assessment
+                  area which was mostly rural but which included a housing development on the outskirts
+                  of a city could be subject to different numbers of children to satisfy the condition
+                  in section 9(6). Inserted subsection (7A) provides that in that situation, the lowest
+                  number is to be read as applying to the whole of the GMPE assessment area, so that
+                  it is clear whether or not the condition in section 9(6) has been met.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 28: Assessments of requests for Gaelic medium education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">85.</span></h2>
+               <p>Section 28 modifies the 2016 Act with the effect that the process set out for the
+                  assessment of whether to provide Gaelic medium primary education (GMPE) is modified
+                  and extended so that it will also apply to early learning and childcare. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">86.</span></h2>
+               <p>Definitions of “Gaelic medium early learning and childcare” and the abbreviation “GMELC”
+                  are added to section 18 (interpretation) of the 2016 Act and inserted into sections
+                  7, 8, 12 and 13 so that all references to Gaelic medium primary education also extend
+                  to Gaelic medium early learning and childcare.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">87.</span></h2>
+               <p>Section 7 is amended so that a request to an education authority to assess the need
+                  for the provision of GMPE or Gaelic medium early learning and childcare (GMELC) can
+                  be made by Comann nam Pàrant (Nàiseanta) or Bòrd na Gàidhlig, as well as by the parent
+                  of a child who is under school age, has not commenced attendance at a primary school,
+                  and is resident in the education authority’s area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">88.</span></h2>
+               <p>Section 7(2) is repealed. This required a request to include evidence of demand for
+                  GMPE from parents of other children resident in the education authority area and in
+                  the same year group. Instead, while a request may be accompanied by evidence of demand
+                  under subsection (3), it will be for the education authority to provide an opportunity
+                  for this evidence to be submitted to it (see the modifications to section 12 described
+                  below). This means that the definition of “year group” in section 7(4) is no longer
+                  required and is repealed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">89.</span></h2>
+               <p>Section 8 is modified to add a guidance making power for the Scottish Ministers which
+                  specifically relates to the functions of education authorities under sections 8, 12
+                  and 13: that is, designating an assessment area, making an assessment, and taking
+                  action following that assessment. The other changes to section 8 are to extend its
+                  application to GMELC.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">90.</span></h2>
+               <p>Sections 9, 10 and 11 are repealed. Section 9 required an education authority to make
+                  an initial assessment of a request with section 10 imposing duties on the authority
+                  following that assessment. The repeal of sections 9 and 10, and the modification of
+                  section 12 discussed below, means that there will now be a single assessment rather
+                  than the previous two stage process. Section 11 provided a mechanism to avoid repeat
+                  requests: this is now inserted into section 12 as subsection (1A).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">91.</span></h2>
+               <p>Section 12 is amended so that the duty on an education authority in response to a
+                  request is to consider its provision of GMPE or GMELC, and the demand for GMPE or
+                  GMELC in the relevant assessment area, and complete an assessment of the need for
+                  the provision of GMPE or GMELC in the relevant assessment area. The assessment of
+                  demand should take into account projections for future demand, for example if there
+                  is evidence that there is a cohort of pre-school children in the area whose parents
+                  are interested in GMPE. The assessment must be completed within 6 months of receipt
+                  of a request under section 7(1).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">92.</span></h2>
+               <p>New subsections (1A) and (1B) replicate what was section 11 for the new assessment
+                  process: an education authority need not carry out the consideration and assessment
+                  required by subsection (1) if it has within the previous 2 years published a report
+                  of an assessment in respect of the same assessment area and same stage of provision.
+                  Where a request is made to assess the need for GMPE, a request within two years to
+                  assess the need for GMELC will still need to be considered (and vice versa).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">93.</span></h2>
+               <p>The Scottish Ministers may direct an education authority to carry out a repeat assessment
+                  in cases where they consider that appropriate: for example, there might have been
+                  a significant change to school provision or population in the area during that time.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">94.</span></h2>
+               <p>Section 12 is also amended so that the education authority must seek advice on the
+                  assessment from HM Inspectors of Schools, Bòrd na Gàidhlig and Comann nam Pàrant (Nàisenta),
+                  and must publicise arrangements for receiving representations from parents, children
+                  and other persons with expertise or interest in the Gaelic language. The references
+                  to children include both children who are attending school in the area, and children
+                  who are resident in the area, to ensure that this includes for example children who
+                  are attending Gaelic medium education in another area. The authority must have regard
+                  to these representations in deciding whether to secure the provision of GMPE or GMELC
+                  in the assessment area. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">95.</span></h2>
+               <p>Section 13 is amended so that the report of the assessment must be published on the
+                  authority’s website as soon as reasonably practicable after the assessment has been
+                  completed. The other changes to section 13 reflect the changes made to the previous
+                  provisions.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">96.</span></h2>
+               <p>Section 14, which conferred a power to extend Part 2 of the 2016 Act to early learning
+                  and childcare, is repealed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">97.</span></h2>
+               <p>Definitions which are no longer used are repealed from section 18(2) (interpretation
+                  of Part 2).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 29: All-Gaelic schools: viability of establishment</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">98.</span></h2>
+               <p>Section 29 inserts four new sections into the 2016 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">99.</span></h2>
+               <p>Inserted section 13A provides that an education authority must, when requested to
+                  do so, consider provision of and demand for Gaelic medium education in its area and
+                  complete an assessment of whether it would be viable for the authority to establish
+                  an all-Gaelic school in the area specified in the request.  A request for an assessment
+                  of viability can be made by a parent of a child resident in the education authority’s
+                  area, by Comann nam Pàrant (Nàiseanta) or by Bòrd na Gàidhlig. The area specified
+                  in the request need not be the whole of the education authority’s area: it could be
+                  a more specific area within that, although the duty would then be to complete an assessment
+                  of viability in that smaller area. The education authority has 9 months in which to
+                  make an assessment.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">100.</span></h2>
+               <p>The authority need not make an assessment where there has been another request within
+                  the previous 2 years, if that request relates to the same area. A request relates
+                  to the same area if, assuming it had led to the establishment of an all-Gaelic school,
+                  it would have been reasonably practicable for pupils to whom the further request relates
+                  to access that school. For example, another request within two years to make an assessment
+                  for the same small town would not have to be considered, but another request to make
+                  an assessment for an entirely different part of the education authority’s area might
+                  have to be considered, depending on the particular circumstances for travel and other
+                  access.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">101.</span></h2>
+               <p>Inserted section 13B sets out the process for assessments. The education authority
+                  must seek advice from Bòrd na Gàidhlig, Comann nam Pàrant, His Majesty’s Inspectors
+                  of Schools and other education authorities which have established all-Gaelic schools
+                  within their areas. The education authority must consider representations from parents
+                  of children resident or attending schools in its area, children resident or attending
+                  schools in its area and such other persons with expertise or an interest in the Gaelic
+                  language as the authority considers appropriate. Arrangements for receiving representations
+                  from these groups must be publicised.  The authority must also have regard to a range
+                  of relevant factors set out in section 13B(2). It must assess that it would be viable
+                  to establish an all-Gaelic school in the area specified in the request unless, having
+                  regard to those factors, it would be unreasonable to make that assessment. The assessment
+                  may be that it would be viable to establish an all-Gaelic school if certain circumstances
+                  occur.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">102.</span></h2>
+               <p>There is a power for the Scottish Ministers to modify subsections (1) and (2) to adjust
+                  the people whose advice or representations must be sought, or to adjust the list of
+                  things to which the authority must have regard. The regulations will be subject to
+                  the negative procedure by virtue of section 31(4) of the 2016 Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">103.</span></h2>
+               <p>Inserted section 13C sets out the duties of education authorities following assessments.
+                  The authority must publish the assessment, including the result of the assessment,
+                  the evidence considered by the authority and the reasons for the result. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">104.</span></h2>
+               <p>Where the assessment is that it would be viable to establish an all-Gaelic school,
+                  the authority must specify in the assessment the period within which the authority
+                  considers it would be reasonably practicable to do so. It must then take such steps
+                  to establish the school as are reasonably practicable. For example, the authority
+                  would need to formulate a proposal which would then be subject to the process set
+                  out in the Schools (Consultation) (Scotland) Act 2010.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">105.</span></h2>
+               <p>Where the assessment is that it would be viable to establish an all-Gaelic school
+                  if certain circumstances occur, the authority must additionally include in the assessment
+                  details of what those circumstances are and how they will be kept under review. Reviews
+                  must be published. After the circumstances occur, the authority must take such steps
+                  to establish the school as are reasonably practicable.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">106.</span></h2>
+               <p>Inserted section 13D gives the Scottish Ministers a power to direct an authority to
+                  take a step which is required to establish an all-Gaelic school if the authority has
+                  made a positive assessment of viability but failed to take such a step. Before making
+                  a direction, the Scottish Ministers must seek advice from Bòrd na Gàidhlig and HM
+                  Inspectors of Schools and consult the education authority.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">107.</span></h2>
+               <p>Section 29(3) inserts a definition of “all-Gaelic school” into the 2016 Act. It is
+                  a school at which all of the education provided is Gaelic medium education, all other
+                  services related to the provision of education are delivered in Gaelic, and the use
+                  of any shared facilities is separate to the use of those facilities by another school.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 30: Duty to consult and plan on delivery of early learning and childcare</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">108.</span></h2>
+               <p>Section 30 amends section 50 of the Children and Young People (Scotland) Act 2014
+                  so that an education authority is required to consult on whether, and if so how, it
+                  should make Gaelic medium early learning and childcare available.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 31: Conditions of grants to the Scottish Further and Higher Education Funding
+                        Council</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">109.</span></h2>
+               <p>Section 31 amends the Further and Higher Education (Scotland) Act 2005 to insert a
+                  new section 9E. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">110.</span></h2>
+               <p>The Further and Higher Education (Scotland) Act 2005 establishes the Scottish Further
+                  and Higher Education Funding Council. Section 9 allows the Scottish Ministers to make
+                  grants to the Council subject to such terms and conditions as the Scottish Ministers
+                  consider appropriate. New section 9E provides that the Scottish Ministers may impose
+                  terms and conditions for the purpose of enabling, encouraging or increasing participation
+                  in fundable further education and fundable higher education in the Gaelic language
+                  and in Gaelic culture (as defined in subsection (2)). Section 5(1) and (2) of the
+                  Further and Higher Education (Scotland) Act 2005 defines fundable further education
+                  and section 5(3) defines fundable higher education.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">111.</span></h2>
+               <p>Section 31(2) makes consequential amendments to add references to section 9E where
+                  there are other references to terms and conditions.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 32: Review of status of Sabhal Mòr Ostaig</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">112.</span></h2>
+               <p>Section 32 requires the Scottish Ministers to take such action as they consider appropriate
+                  to support the development of Sabhal Mòr Ostaig (that is, the body with company number
+                  SC361752) as the national centre for Gaelic language, education and culture in Scotland.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">113.</span></h2>
+               <p>In exercising that duty, the Scottish Ministers must conduct a review of the status
+                  of Sabhal Mòr Ostaig within 1 year of subsection (4) coming into force. The review
+                  must in particular consider the funding of Sabhal Mòr Ostaig and whether it should
+                  be designated under section 44(1) of the Further and Higher Education (Scotland) Act
+                  1992. That section allows the Scottish Ministers to designate any institution providing
+                  higher education. The review must also consider any other action that may be taken
+                  to support Sabhal Mòr Ostaig. Ministers must publish a report on the review and lay
+                  the report before the Scottish Parliament.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">114.</span></h2>
+               <p>Before the completion of the review, the Scottish Ministers may take any action they
+                  consider appropriate to support the development of Sabhal Mòr Ostaig. Once the report
+                  on the review is published, the duty under subsection (1) to take action to support
+                  the development of Sabhal Mòr Ostaig is discharged by the Scottish Ministers taking
+                  the actions set out in the report.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part 2: Scots</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Chapter 1: Support for the Scots language</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 33: Status of the Scots language</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">115.</span></h2>
+               <p>Section 33 provides for the status of the Scots language. The statement in subsection
+                  (1) that the Scots language has official status within Scotland is given legal effect
+                  by the provisions of the Act conferring functions on the Scottish Ministers and other
+                  persons (primarily relevant public authorities, as defined in section 36(3)).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">116.</span></h2>
+               <p>Subsection (3) provides that subsection (1) does not affect the operation of any other
+                  enactment (as defined in the Interpretation and Legislative Reform (Scotland) Act
+                  2010) or the status of any other language. For example, this provision does not affect
+                  the operation of the Equality Act 2010, modification of which is a reserved matter
+                  under the Scotland Act 1998.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 34: Scots language strategy</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">117.</span></h2>
+               <p>Section 34 requires the Scottish Ministers to prepare a Scots language strategy. The
+                  section sets out the required content of the Scots language strategy, consultation
+                  and publication requirements and timescales for its preparation and review and revision.
+                  In particular, the Scottish Ministers must publicise arrangements for making representations
+                  about the draft strategy and must publish the results of that consultation.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 35: Reporting on Scots language strategy</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">118.</span></h2>
+               <p>Section 35 requires the Scottish Ministers to report on the strategy as soon as reasonably
+                  practicable after the end of the period of 5 years from when the strategy was last
+                  published. The report must be published and laid before the Scottish Parliament.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 36: Effect of Scots language strategy</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">119.</span></h2>
+               <p>Section 36 requires that the Scottish Ministers must have regard to the strategy when
+                  making policies and exercising their functions, and that a relevant public authority
+                  must have regard to it in exercising its functions. Subsection (3) defines relevant
+                  public authority, consistent with the definition in section 10 of the 2005 Act (as
+                  amended by section 13 of the Act).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 37: Power for Scottish Ministers to give guidance</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">120.</span></h2>
+               <p>Section 37 gives the Scottish Ministers a power to give guidance to relevant public
+                  authorities relating to promoting, facilitating and supporting the use of the Scots
+                  language (including different dialects of the Scots language) and developing and encouraging
+                  Scots culture. The Scottish Ministers must consult interested persons in preparing
+                  the guidance. Such persons could include, for example, bodies such as Scots Hoose
+                  and Yaldi Books.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">121.</span></h2>
+               <p>Subsection (5) defines Scots culture in an analogous way to the definition of Gaelic
+                  culture in section 10 of the 2005 Act.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 38: Financial assistance for the promotion etc. of the Scots language</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">122.</span></h2>
+               <p>Section 38 creates a power for the Scottish Ministers to give financial assistance,
+                  including grants and loans, to any person for the purposes of promoting, facilitating
+                  and supporting the use of the Scots language, subject to such conditions as the Scottish
+                  Ministers think fit.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 39: Scottish Ministers’ powers relating to research etc.</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">123.</span></h2>
+               <p>Section 39 creates a power for the Scottish Ministers to conduct research and inquiries,
+                  collect data and publish statistics, provide training, or encourage or assist other
+                  persons to do those things, for the purposes of or in connection with the exercise
+                  of their functions under Part 2 Chapter 1.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Chapter 2: School education</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 40: Scots language education in schools</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">124.</span></h2>
+               <p>Section 40 requires the Scottish Ministers to promote, facilitate and support Scots
+                  language education in schools. The Scottish Ministers must in particular promote,
+                  facilitate and support the provision of adequate education resources in Scots. This
+                  could include resources such as worksheets, reading books and other learning materials.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">125.</span></h2>
+               <p>An education authority must also promote, facilitate and support Scots language education
+                  in the schools under its management. An education authority may discharge its duty
+                  through teaching and learning in the dialect of the Scots language most relevant to
+                  its area: for example, in the north east this could be provided in Doric.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 41: Guidance to education authorities relating to Scots language education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">126.</span></h2>
+               <p>Section 41 gives the Scottish Ministers a power to give guidance to education authorities
+                  relating to Scots language education in schools. The Scottish Ministers must consult
+                  interested persons in preparing the guidance. Such persons could include, for example
+                  bodies such as Scots Hoose and Yaldi Books.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 42: Standards relating to Scots language education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">127.</span></h2>
+               <p>Section 42 gives the Scottish Ministers power to make regulations to specify the standards
+                  and requirements to which an education authority must conform in discharging its functions
+                  in relation to Scots language education in the schools under its management. This
+                  is modelled on the power to prescribe standards and requirements in section 2 of the
+                  1980 Act and the equivalent power in relation to Gaelic education created by section
+                  16 of the Act. Unlike section 2 of the 1980 Act, the standards and requirements will
+                  not have to apply to every education authority, allowing for flexibility across different
+                  education authorities. The Scottish Ministers must consult interested persons in preparing
+                  the regulations.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">128.</span></h2>
+               <p>Regulations under this section may make different provision for different purposes
+                  and different areas (including different parts of an education authority’s area).
+                  Regulations are subject to the negative procedure.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 43: Production of school education resources in Scots</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">129.</span></h2>
+               <p>Section 43 requires the Scottish Ministers to consider whether to produce information,
+                  guidance or documents for use in school education in Scots where that material is
+                  produced in English. If an education authority requests a translation of such material,
+                  including material produced before the section comes into force, the Scottish Ministers
+                  must consider providing that.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">130.</span></h2>
+               <p>The duty applies to material produced by the Scottish Ministers (with subsection (3)
+                  setting out in more detail what producing material means) which is used in the delivery
+                  of school education by teachers or is intended for use by pupils when doing their
+                  school work. This might include material relating to topics such as climate change,
+                  road safety, personal health and healthy eating which is for use in the context of
+                  the classroom. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 44: Review of adequacy of school education resources in Scots</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">131.</span></h2>
+               <p>Section 44 requires the Scottish Ministers to keep under review the adequacy of education
+                  resources in Scots for use in school education, and to prepare and publish reports
+                  setting out steps they consider necessary to address any issues identified by the
+                  review.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 45: Reporting on Scots language education</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">132.</span></h2>
+               <p>Section 45 requires the Scottish Ministers to secure the provision of reports (for
+                  instance from a third party provider) setting out progress made in the delivery of
+                  Scots language education in schools.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 46: Interpretation of Chapter 2</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">133.</span></h2>
+               <p>Section 46 imports defined terms from the 1980 Act for the purposes of this Chapter.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part 3: Final provisions</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 47: Ancillary provision</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">134.</span></h2>
+               <p>This section gives the Scottish Ministers a freestanding regulation-making power to
+                  make any incidental, supplementary, consequential, transitional, transitory or saving
+                  provision that they consider appropriate for the purposes of, or in connection with,
+                  or for giving full effect to, the Act. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">135.</span></h2>
+               <p>Subsection (2) allows such regulations to modify any legislation, including the Act
+                  itself: in doing so the regulations would be subject to the affirmative Parliamentary
+                  procedure. Otherwise they are subject to the negative procedure.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 48: Commencement</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">136.</span></h2>
+               <p>Section 48 provides for Part 3 of the Act to come into force on the day after Royal
+                  Assent. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">137.</span></h2>
+               <p>All other provisions of the Act are to come into force on a day appointed by regulations
+                  made by the Scottish Ministers. These regulations may make transitional, transitory
+                  or saving provision related to commencement and may make different provision for different
+                  purposes. These regulations are also required to be laid before the Parliament under
+                  section 30 of the Interpretation and Legislative Reform (Scotland) Act 2010, but they
+                  are not otherwise subject to any Parliamentary procedure.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Section 49: Short title</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">138.</span></h2>
+               <p>Section 49 provides for the short title to be the Scottish Languages Act 2025.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>PARLIAMENTARY HISTORY</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">139.</span></h2>
+               <p>The following is a list of the proceedings in the Scottish Parliament on the Bill
+                  for the Act and significant documents connected to the Bill published by the Parliament
+                  during the Bill’s parliamentary passage.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:1.18in">
+                     <col style="width:5.31in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <p>Proceedings and reports</p>
+                        <p>
+                           <b>
+                              <i>Reference</i>
+                              </b>
+                           </p>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Scottish Languages Bill as introduced – 29 November 2023</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/introduced/bill-as-introduced.pdf">SP Bill 39 Scottish Languages Bill [as introduced] Session 6 (2023)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Explanatory Notes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/introduced/explanatory-notes-accessible.pdf">SP Bill 39-EN Scottish Languages Bill [explanatory notes] Session 6 (2023)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Policy Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/introduced/policy-memorandum-accessible.pdf">SP Bill 39-PM Scottish Languages Bill [policy memorandum] Session 6 (2023)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Financial Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/introduced/financial-memorandum-accessible.pdf">SP Bill 39-FM Scottish Languages Bill [financial memorandum] Session 6 (2023)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/introduced/delegated-powers-memorandum-accessible.pdf">SP Bill 39-DPM Scottish Languages Bill [delegated powers memorandum] Session 6 (2023)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>Stage 1</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Education, Children and Young People Committee, 1 May 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/lghp-01-05-2024?meeting=15837">SP OR Education, Children and Young People Committee 1 May 2024</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Education, Children and Young People Committee, 8 May 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/lghp-08-05-2024?meeting=15851">SP OR Education, Children and Young People Committee 8 May 2024</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Education, Children and Young People Committee, 15 May 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/lghp-15-05-2024?meeting=15865">SP OR Education, Children and Young People Committee 15 May 2024</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Education, Children and Young People Committee, 22 May 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/lghp-22-05-2024?meeting=15884">SP OR Education, Children and Young People Committee 22 May 2024</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Education, Children and Young People Committee, Stage 1 Report on the Scottish Languages
+                              Bill, 24 July 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://digitalpublications.parliament.scot/Committees/Report/ECYP/2024/7/24/6e362992-b83f-4946-ad36-20c0c9c89a7e">Education, Children and Young People Committee 5th report, 2024, Stage 1 Report on
+                                 the Scottish Languages Bill (SPP Number 634)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers and Law Reform Committee, Report on delegated powers in the Scottish
+                              Languages Bill at Stage 1, 23 April 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://digitalpublications.parliament.scot/Committees/Report/DPLR/2024/4/23/8ddebf72-18ab-4d46-9b5c-a76fc472d413">Delegated Powers and Law Reform Committee 38th report, 2024, Delegated powers in the
+                                 Scottish Languages Bill at Stage 1 (SPP Number 227)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 1 Debate on the Bill, 17 September 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/meeting-of-parliament-17-09-2024?meeting=15995&amp;iob=136557">
+                                 <u>SP OR 17 September 2024</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>Stage 2</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Marshalled List of Amendments for Stage 2</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-2/marshalled-list-of-amendments-for-stage-2.pdf">
+                                 <u>SP Bill 39-ML Scottish Languages Bill [marshalled list of amendments for stage 2]
+                                    Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Groupings of Amendments for Stage 2</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-2/groupings-of-amendments-for-stage-2.pdf">
+                                 <u>SP Bill 39-G Scottish Languages Bill [groupings of amendments for stage 2] Session
+                                    6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Education, Children and Young People Committee, 11 December 2024</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/lghp-11-12-2024?meeting=16158">
+                                 <u>SP OR Education, Children and Young People Committee 11 December 2024</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Scottish Languages Bill as amended</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-2/bill-as-amended.pdf">
+                                 <u>SP Bill 39A Scottish Languages Bill [as amended] Session 6 (2024)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Supplementary Delegated Powers Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-2/supplementary-delegated-powers-memorandum-accessible.pdf">SP Bill 39A-DPM Scottish Languages Bill [supplementary delegated powers memorandum]
+                                 Session 6 (2025)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Supplementary Financial Memorandum</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-2/supplementary-financial-memorandum-accessible.pdf">SP Bill 39A-FM Scottish Languages Bill [supplementary financial memorandum] Session
+                                 6 (2025)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Revised Explanatory Notes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-2/spbill39aens062025accessible.pdf">SP Bill 39A-EN Scottish Languages Bill [revised explanatory notes] Session 6 (2025)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Delegated Powers and Law Reform Committee, Report on delegated powers in the Scottish
+                              Languages Bill (as amended at Stage 2), 26 February 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://digitalpublications.parliament.scot/Committees/Report/DPLR/2025/2/26/8b60d541-2098-4c2e-85da-19f5261979da">Delegated Powers and Law Reform Committee 14th report, 2025, Delegated powers in the
+                                 Scottish Languages Bill (as amended at Stage 2) (SPP Number 228)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p>
+                              <b>Stage 3</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Marshalled List of Amendments for Stage 3</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-3/spbill39amls062025.pdf">SP Bill 39A-ML Scottish Languages Bill [marshalled list of amendments for stage 3]
+                                 Session 6 (2025)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Timed Groupings of Amendments for Stage 3</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-3/spbill39ags062025timed.pdf">SP Bill 39A-G Scottish Languages Bill [timed groupings of amendments for stage 3]
+                                 Session 6 (2025)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Stage 3 consideration of amendments and debate, 17 June 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/meeting-of-parliament-17-06-2025?meeting=16498&amp;iob=140884">SP OR 17 June 2025</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Scottish Languages Bill as passed</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.parliament.scot/-/media/files/legislation/bills/s6-bills/scottish-languages-bill/stage-3/spbill39bs062025.pdf">SP Bill 39B Scottish Languages Bill [as passed] Session 6 (2025)</a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Royal Assent – 31 July 2025</p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://www.legislation.gov.uk/asp/2025/10/contents">
+                                 <u>Scottish Languages Act 2025 (legislation.gov.uk)</u>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>
