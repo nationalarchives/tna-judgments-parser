@@ -100,6 +100,7 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	border: 1px solid black;
 	width: 100%;
 	margin: 6pt 0;
+	table-layout: fixed;
 }
 
 .ia-table th,
@@ -119,7 +120,8 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	height: 4pt;
 }
 
-.ia-table td:empty {
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
 	display: none !important;
 }
 
@@ -214,7 +216,7 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 				<xsl:text> heading</xsl:text>
 			</xsl:if>
 		</xsl:attribute>
-		<xsl:if test="num | heading">
+		<xsl:if test="(num | heading)[normalize-space(.) != '']">
 			<h2>
 				<xsl:apply-templates select="num | heading" />
 			</h2>
