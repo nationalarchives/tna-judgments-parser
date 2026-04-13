@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -157,9 +166,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
          <div class="body">
             <table class="ia-table">
                <colgroup>
-                  <col style="width:2.09in">
-                  <col style="width:2.09in">
-                  <col style="width:2.09in">
+                  <col style="width:33.33%">
+                  <col style="width:33.33%">
+                  <col style="width:33.33%">
                </colgroup>
                <tbody>
                   <tr>
@@ -178,11 +187,11 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
             <section class="level">
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:1.77in">
-                     <col style="width:1.71in">
-                     <col style="width:0.83in">
-                     <col style="width:0.91in">
-                     <col style="width:1.77in">
+                     <col style="width:25.32%">
+                     <col style="width:24.46%">
+                     <col style="width:11.87%">
+                     <col style="width:13.02%">
+                     <col style="width:25.32%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -211,7 +220,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         <td colspan="2">
                            <table class="ia-table">
                               <colgroup>
-                                 <col style="width:2.84in">
+                                 <col style="width:100%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -507,12 +516,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         <td colspan="5">
                            <table class="ia-table">
                               <colgroup>
-                                 <col style="width:4.34in">
-                                 <col style="width:0.76in">
-                                 <col style="width:0.6in">
-                                 <col style="width:0.24in">
-                                 <col style="width:0.44in">
-                                 <col style="width:0.82in">
+                                 <col style="width:60.28%">
+                                 <col style="width:10.56%">
+                                 <col style="width:8.33%">
+                                 <col style="width:3.33%">
+                                 <col style="width:6.11%">
+                                 <col style="width:11.39%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -594,10 +603,10 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:2.95in">
-                     <col style="width:1.41in">
-                     <col style="width:0.78in">
-                     <col style="width:1.13in">
+                     <col style="width:47.05%">
+                     <col style="width:22.49%">
+                     <col style="width:12.44%">
+                     <col style="width:18.02%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -647,12 +656,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:0.54in">
-                        <col style="width:0.55in">
-                        <col style="width:0.62in">
-                        <col style="width:1.04in">
-                        <col style="width:0.98in">
-                        <col style="width:2.46in">
+                        <col style="width:8.72%">
+                        <col style="width:8.89%">
+                        <col style="width:10.02%">
+                        <col style="width:16.8%">
+                        <col style="width:15.83%">
+                        <col style="width:39.74%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -713,12 +722,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </table>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.26in">
-                        <col style="width:1.16in">
-                        <col style="width:0.47in">
-                        <col style="width:1.7in">
-                        <col style="width:1.05in">
-                        <col style="width:0.64in">
+                        <col style="width:20.06%">
+                        <col style="width:18.47%">
+                        <col style="width:7.48%">
+                        <col style="width:27.07%">
+                        <col style="width:16.72%">
+                        <col style="width:10.19%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -970,10 +979,10 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.2in">
-                        <col style="width:1.12in">
-                        <col style="width:1.03in">
-                        <col style="width:2.97in">
+                        <col style="width:18.99%">
+                        <col style="width:17.72%">
+                        <col style="width:16.3%">
+                        <col style="width:46.99%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -1769,9 +1778,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 1: Assumed Mix for Additional Market Mechanism Deployment of Heat Pumps</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.33in">
-                        <col style="width:1.93in">
-                        <col style="width:1.93in">
+                        <col style="width:37.64%">
+                        <col style="width:31.18%">
+                        <col style="width:31.18%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -1895,8 +1904,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 2: Monetised Costs – Option 1 (Central Scenario)</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.36in">
-                        <col style="width:0.97in">
+                        <col style="width:70.87%">
+                        <col style="width:29.13%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -1991,8 +2000,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 3: Monetised Benefits – Option 1 (Central Scenario)</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.36in">
-                        <col style="width:0.97in">
+                        <col style="width:70.87%">
+                        <col style="width:29.13%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2045,8 +2054,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 4: Carbon Savings - Option 1 (Central Scenario)</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.36in">
-                        <col style="width:1.05in">
+                        <col style="width:69.21%">
+                        <col style="width:30.79%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2121,8 +2130,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 5: SNPVs – Option 1 (Central Scenario)</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.36in">
-                        <col style="width:0.97in">
+                        <col style="width:70.87%">
+                        <col style="width:29.13%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2313,9 +2322,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 6: Sensitivity Results for Years 1 And 2 Of the Scheme</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:3.63in">
-                        <col style="width:1.19in">
-                        <col style="width:1.44in">
+                        <col style="width:57.99%">
+                        <col style="width:19.01%">
+                        <col style="width:23%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2741,11 +2750,11 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 7: Annual Admin and Familiarisation Costs </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.11in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
+                        <col style="width:21.06%">
+                        <col style="width:19.73%">
+                        <col style="width:19.73%">
+                        <col style="width:19.73%">
+                        <col style="width:19.73%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2949,8 +2958,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 8: Obligation Costs</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.8in">
-                        <col style="width:1.28in">
+                        <col style="width:68.63%">
+                        <col style="width:31.37%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3008,8 +3017,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 9: Total Direct Cost to Business</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.6in">
-                        <col style="width:1.19in">
+                        <col style="width:68.6%">
+                        <col style="width:31.4%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3052,12 +3061,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 10: Annual Direct Cost to Business</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.51in">
-                        <col style="width:0.95in">
-                        <col style="width:0.95in">
-                        <col style="width:0.95in">
-                        <col style="width:0.95in">
-                        <col style="width:0.95in">
+                        <col style="width:24.12%">
+                        <col style="width:15.18%">
+                        <col style="width:15.18%">
+                        <col style="width:15.18%">
+                        <col style="width:15.18%">
+                        <col style="width:15.18%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3207,10 +3216,10 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 11: Summary of Cost to Business</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.01in">
-                        <col style="width:1.28in">
-                        <col style="width:1.96in">
-                        <col style="width:0.68in">
+                        <col style="width:20.49%">
+                        <col style="width:25.96%">
+                        <col style="width:39.76%">
+                        <col style="width:13.79%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3592,10 +3601,10 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 12: Monitoring Metrics</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.77in">
-                        <col style="width:0.89in">
-                        <col style="width:2.69in">
-                        <col style="width:1.02in">
+                        <col style="width:27.79%">
+                        <col style="width:13.97%">
+                        <col style="width:42.23%">
+                        <col style="width:16.01%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3925,11 +3934,11 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 13: Appliances Characteristics in Central Scenario*</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.18in">
-                        <col style="width:1.18in">
-                        <col style="width:0.83in">
-                        <col style="width:2.32in">
-                        <col style="width:0.75in">
+                        <col style="width:18.85%">
+                        <col style="width:18.85%">
+                        <col style="width:13.26%">
+                        <col style="width:37.06%">
+                        <col style="width:11.98%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4087,10 +4096,10 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>Table 14: Heat demand and HP Capex costs of households installing HPs</p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.06in">
-                        <col style="width:1.2in">
-                        <col style="width:1.2in">
-                        <col style="width:1.2in">
+                        <col style="width:36.4%">
+                        <col style="width:21.2%">
+                        <col style="width:21.2%">
+                        <col style="width:21.2%">
                      </colgroup>
                      <tbody>
                         <tr>

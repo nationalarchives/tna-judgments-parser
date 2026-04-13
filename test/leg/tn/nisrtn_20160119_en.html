@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="TranspositionNote">
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>COMMISSION DIRECTIVE 2014/80/EU of 20 June 2014 amending Annex II to Directive 2006/118/EC
+                     of the European Parliament and of the Council on the protection of groundwater against
+                     pollution and deterioration:</b>
+                  </p>
+            </section>
+            <section class="paragraph">
+               <p>
+                  <b>Transposition note with regard to the Groundwater (Amendment) Regulations (Northern
+                     Ireland) 2016 (S.R 2016/119), </b>
+                  </p>
+               <table>
+                  <colgroup>
+                     <col style="width:8.69%">
+                     <col style="width:48.17%">
+                     <col style="width:27.15%">
+                     <col style="width:15.99%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <th>
+                           <p>
+                              <b>ARTICLE</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>OBJECTIVE</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>IMPLEMENTATION</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>RESPONSIBILITY</b>
+                              </p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>1</p>
+                        </td>
+                        <td>
+                           <p>Annex II to the Groundwater Directive 2006/118/EC is amended in accordance with the
+                              Annex to COMMISSION DIRECTIVE 2014/80/EU.</p>
+                        </td>
+                        <td>
+                           <p>Regulation 1 of the Groundwater (Amendment) Regulations (Northern Ireland) 2016</p>
+                        </td>
+                        <td>
+                           <p>The Department of the Environment</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>2</p>
+                        </td>
+                        <td>
+                           <p>Member States shall bring into force the laws, regulations and administrative provisions
+                              necessary to comply with this Directive by 24 months from the date of entry into force
+                              at the latest. They shall forthwith communicate to the Commission the text of those
+                              provisions.</p>
+                           <p>When Member States adopt those provisions, they shall contain a reference to this
+                              Directive or be accompanied by such a reference on the occasion of their official
+                              publication. Member States shall determine how such reference is to be made.</p>
+                           <p> Member States shall communicate to the Commission the text of the main provisions
+                              of national law which they adopt in the field covered by this Directive.</p>
+                        </td>
+                        <td>
+                           <p>Regulation 3 of the Groundwater (Amendment) Regulations (Northern Ireland) 2016</p>
+                        </td>
+                        <td>
+                           <p>The Department of the Environment. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>3</p>
+                        </td>
+                        <td>
+                           <p>This Directive shall enter into force on the twentieth day following that of its publication
+                              in the Official Journal of the European Union.</p>
+                        </td>
+                        <td>
+                           <p>Regulation 1,2 and Explanatory note of the Groundwater (Amendment) Regulations (Northern
+                              Ireland) 2016</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>The Department of the Environment</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

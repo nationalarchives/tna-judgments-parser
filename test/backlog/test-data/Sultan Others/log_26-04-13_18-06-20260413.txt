@@ -1,0 +1,24 @@
+2026-04-13 18:06:34.295 [Information] Using Parser version: "1.6.1"
+2026-04-13 18:06:34.295 [Information] Using data folder: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\Sultan Others"
+2026-04-13 18:06:34.295 [Information] Using court metadata from: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\Sultan Others\court_metadata.csv"
+2026-04-13 18:06:34.307 [Information] Processing file: "JudgmentFiles\j1243\D 2011 306 Sultan  Others.docx"
+2026-04-13 18:06:34.514 [Information] The document type is {}
+2026-04-13 18:06:34.514 [Warning] The {} uri is null
+2026-04-13 18:06:34.514 [Information] The court is {}
+2026-04-13 18:06:34.514 [Warning] The case citation is null
+2026-04-13 18:06:34.514 [Information] The {} date is {}
+2026-04-13 18:06:34.514 [Information] The {} name is {}
+2026-04-13 18:06:34.515 [Error] Error processing line "1243":
+System.NotSupportedException: Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles
+   at Backlog.Src.BacklogParserWorker.CreateResponse(CsvLine csvLine, String mimeType, Byte[] sourceContent, Boolean isStub) in C:\Users\test\Documents\Projects\tna-judgments-parser\backlog\src\BacklogParserWorker.cs:line 243
+   at Backlog.Src.BacklogParserWorker.GenerateBundle(CsvLine csvLine, Boolean autoPublish) in C:\Users\test\Documents\Projects\tna-judgments-parser\backlog\src\BacklogParserWorker.cs:line 259
+   at Backlog.Src.BacklogParserWorker.Run(Boolean isDryRun, Nullable`1 id, String pathToCourtMetadataFile, Boolean autoPublish, String pathToOutputFolder) in C:\Users\test\Documents\Projects\tna-judgments-parser\backlog\src\BacklogParserWorker.cs:line 75
+2026-04-13 18:06:34.515 [Information] 100% done
+2026-04-13 18:06:34.515 [Information] ---------------------------
+Successfully processed 0 of 1 csv lines, of which:
+  - 0 lines were new
+  - 0 lines were marked in the csv to skip ""
+  - 0 lines were skipped because they had been processed in a previous run
+2026-04-13 18:06:34.515 [Error] ---------------------------
+Failed to process 1 lines, of which:
+"  - 1 lines failed with exception message \"Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles\". Ids affected were: (1243)"

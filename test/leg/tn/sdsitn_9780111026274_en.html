@@ -1,0 +1,1105 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="TranspositionNote">
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>THE EUROPEAN PROTECTION ORDER (SCOTLAND) REGULATIONS 2015</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>DRAFT TRANSPOSITION NOTE ON DIRECTIVE 2011/99 OF THE EUROPEAN PARLIAMENT AND OF THE
+                     COUNCIL ON THE EUROPEAN PROTECTION ORDER</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>The European Protection Order (Scotland) Regulations 2015 (“the Regulations) transposes
+                  EU Directive 2011/99 (“the Directive”) of 13 December 2011 on the European protection
+                  order.</p>
+            </section>
+            <section class="level">
+               <p>The general objective of the Directive is to provide mutual recognition across the
+                  EU of criminal protection orders.  Recital 5 of the Directive states that “a mechanism
+                  should be created to ensure mutual recognition among Member States of decisions concerning
+                  protection measures for victims of crime.”</p>
+            </section>
+            <section class="level">
+               <p>The Directive seeks to allow measures which have been imposed in order to protect
+                  an individual – for example, a restriction on movement of someone who has sought to
+                  harm that person – to be extended to another Member State in which the individual
+                  decides to stay.  Practically this means that protection measures issued in one EU
+                  country will have to be recognised across the entire EU.  In this way, the protection
+                  will travel with the individual.</p>
+            </section>
+            <section class="level">
+               <p>This is to be achieved through a system of European Protection Orders  (“EPOs”), which
+                  will be issued, on request, by the Member State in which the protection measure is
+                  originally adopted.  Upon receipt of the EPO by the receiving Member State, and subject
+                  to various conditions, an equivalent measure under domestic law is to be imposed.</p>
+            </section>
+            <section class="paragraph">
+               <p>Accordingly the Regulations transpose into domestic law the provisions of the Directive
+                  as outlined in the table below.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:16.51%">
+                     <col style="width:39.88%">
+                     <col style="width:43.61%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Directive Article</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Objective(s) of Article</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Transposition in Scotland</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>
+                              <b>1</b>
+                              </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Objective</b>
+                              </p>
+                           <p>The objective of this Article is to set out the rules allowing a judicial authority
+                              in a Member State, in which a protection measure has been adopted with a view to protecting
+                              a person against a criminal act by another person which may endanger his life, physical
+                              or psychological integrity, dignity, personal liberty or sexual integrity, to issue
+                              a European Protection Order enabling a competent authority in another Member State
+                              to continue the protection of the person in the territory of that other Member State,
+                              following criminal conduct, or alleged criminal conduct, in accordance with the national
+                              law of the issuing State.</p>
+                        </td>
+                        <td>
+                           <p>This article sets out the overarching purpose of the framework decision. It does not
+                              require transposition.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>2</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Definitions</b>
+                              </p>
+                           <p>For the purposes of this Directive:</p>
+                           <p></p>
+                           <p>(1)  “European protection order” means a decision, taken by a judicial or equivalent
+                              authority of a Member State in relation to protection measure, on the basis of which
+                              a judicial or equivalent authority of another Member State takes any appropriate measure
+                              or measures under its own national law with a view to continuing the protection of
+                              the protected person;</p>
+                           <p></p>
+                           <p>(2)  “Protection measure” means a decision in criminal matters adopted in the issuing
+                              State in accordance with its national law and procedures by which one or more of the
+                              prohibitions or restrictions referred to in Article 5 are imposed on a person causing
+                              danger in order to protect a protected person against a criminal act which may endanger
+                              his life, physical or psychological integrity, dignity, personal liberty or sexual
+                              integrity;</p>
+                           <p></p>
+                           <p>(3)  “protected person” means a natural person who is the object of the protection
+                              resulting from a protection measure adopted by the issuing State;</p>
+                           <p></p>
+                           <p>(4)  “person causing danger” means the natural person on whom one or more of the prohibitions
+                              or restrictions referred to in Article 5 have been imposed;</p>
+                           <p></p>
+                           <p>(5)  “issuing State” means the Member State in which a protection measure has been
+                              adopted that constitutes the basis for issuing a European protection order;</p>
+                           <p></p>
+                           <p>(6)  “executing State” means the Member State to which a European protection order
+                              has been forwarded with a view to its recognition;</p>
+                           <p></p>
+                           <p>(7)  “State of supervision” means the Member State to which a judgement within the
+                              meaning of Article 2 of Framework Decision 2008/947/JHA, or a decision on supervision
+                              measures within the meaning of Article 4 of Framework Decision 2009/829/JHA, has been
+                              transferred;</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by virtue of new section 254A to be inserted into
+                              the Criminal Procedure (Scotland) Act 1995.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>3</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Designation of competent authorities</b>
+                              </p>
+                           <p>(1)  Each Member State shall inform the Commission which judicial or equivalent authority
+                              or authorities are competent under its national law to issue a European protection
+                              order and to recognise such an order, in accordance with this Directive, when that
+                              Member State is the issuing State or the executing state.</p>
+                           <p></p>
+                           <p>(2)  The Commission shall make the information received available to all Member States.
+                              Member States shall inform the Commission of any change to the information referred
+                              to in paragraph (1).</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article is transposed by the Regulations generally. The Regulations do not expressly
+                              designate competent authorities in Scotland. However, the obligations which are to
+                              be placed on competent authorities in terms of the Directive are, in terms of the
+                              Regulations, placed on the courts in Scotland.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>4</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Recourse to a central authority</b>
+                              </p>
+                           <p>(1)  Each Member State may designate a central authority or, where its legal system
+                              so provides, more than one central authority, to assist its competent authorities.</p>
+                           <p></p>
+                           <p>(2)  A Members State may, if it is necessary as a result of the organisation of its
+                              internal judicial system, make its central authority or authorities responsible for
+                              the administrative transmission and reception of any European protection order, as
+                              well as for all other official correspondence relating thereto.  As a consequence,
+                              all communication, consultations, exchanges of information, enquiries and notifications
+                              between competent authorities may be dealt with, where appropriate, with the assistance
+                              of the designated central authority or authorities of the Member State concerned.</p>
+                           <p></p>
+                           <p>(3)  Member States wishing to make use of the possibilities referred to in this Article
+                              shall communicate to the Commission information relating to the designated central
+                              authority or authorities.  These indications shall be binding upon all the authorities
+                              of the issuing State.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>5</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Need for an existing protection measure under national law</b>
+                              </p>
+                           <p>A European protection order may only be issued when a protection measure has been
+                              previously adopted in the issuing State, imposing on the person causing danger one
+                              or more of the following prohibitions or restrictions:</p>
+                           <p></p>
+                           <p>(a)  a prohibition from entering certain localities, places or defined areas where
+                              the protected person resides or visits;</p>
+                           <p></p>
+                           <p>(b)  a prohibition or regulation of contact, in any form, with the protected person,
+                              including by phone, electronic or ordinary mail, fax or any other means; or</p>
+                           <p></p>
+                           <p>(c)  a prohibition or regulation on approaching the protected person closer than a
+                              prescribed distance.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article has been transposed by virtue of new section 254A to be inserted into
+                              the Criminal Procedure (Scotland) Act 1995. The definition of “protection measures”
+                              in the new section 254A takes account of the provisions of Article 5.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>6</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Issuing of European protection order</b>
+                              </p>
+                           <p>(1)  A European protection order may be issued when the protected person decides to
+                              reside or already resides in another Member State, or when the protected person decides
+                              to stay or already stays in another Member State.  When deciding upon the issuing
+                              of a European protection order, the competent authority in the issuing State shall
+                              take into account, inter alia, the length of the period or periods that the protected
+                              person intends to stay in the executing State and the seriousness of the need for
+                              protection.</p>
+                           <p></p>
+                           <p>(2)  A judicial or equivalent authority of the issuing State may issue a European
+                              protection order only at the request of the protected person and after verifying that
+                              the protection measure meets the requirements  set out in Article 5.</p>
+                           <p></p>
+                           <p>(3)  The protected person may submit a request for the issuing of European protection
+                              order either to the competent authority of the issuing State or to the competent authority
+                              of the executing State.  If such a request is submitted in the executing State, its
+                              competent authority shall transfer this request as soon as possible to the competent
+                              authority of the issuing State.</p>
+                           <p></p>
+                           <p>(4)  Before issuing a European protection order, the person causing danger shall be
+                              given the right to  be heard and the right to challenge the protection measure, if
+                              that person has not been granted these rights in the procedure leading to the adoption
+                              of the protection measure.</p>
+                           <p></p>
+                           <p>(5)  When a competent authority adopts a protection measure containing one or more
+                              of the prohibitions or restrictions referred to in Article 5, it shall inform the
+                              protected person in an appropriate way, in accordance with the procedures under its
+                              national law, about the possibility of requesting  a European protection order in
+                              the case that the person decides to leave for another Member State, as well as of
+                              the basic conditions for such a request.  The authority shall advise the protected
+                              person to submit an application before leaving the territory of the issuing State.</p>
+                           <p></p>
+                           <p>(6)  If the protected person has a guardian or representative, that guardian  or representative
+                              may introduce the request referred to in paragraphs (2) and (3), on behalf of the
+                              protected person.</p>
+                           <p></p>
+                           <p>(7)  If the request to issue a European protection order is rejected, the competent
+                              authority of the issuing State shall inform the protected person of any applicable
+                              legal remedies that are available, under its national law, against such a decision.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article has been transposed by virtue of new section 254B to be added to the
+                              Criminal Procedure (Scotland) Act 1995.</p>
+                           <p></p>
+                           <p>Court rules will cover the procedural aspects in respect of applications.</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table>
+                  <colgroup>
+                     <col style="width:16.51%">
+                     <col style="width:39.88%">
+                     <col style="width:43.61%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>7</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Form and content of the European protection order</b>
+                              </p>
+                           <p>The European protection order shall be issued in accordance with the form set out
+                              in Annex I to this Directive.  It shall, in particular, contain the following information:</p>
+                           <p></p>
+                           <p>(a)  the identity and nationality of the protected person, as well as the identity
+                              and nationality of the guardian or representative if the protected person is a minor
+                              or is legally incapacitated;</p>
+                           <p></p>
+                           <p>(b)  the date from which the protected person intends to reside or stay in the executing
+                              State, and the period or periods of stay, if known;</p>
+                           <p></p>
+                           <p>(c)  the name, address, telephone and fax numbers and e-mail address of the competent
+                              authority of the issuing State;</p>
+                           <p></p>
+                           <p>(d)  identification (for example, through a number and date) of the legal act containing
+                              the protection measure on the basis of which the European protection order is issued;</p>
+                           <p></p>
+                           <p>(e)  a summary of facts and circumstances which have led to the adoption of the protection
+                              measure in the issuing State;</p>
+                           <p></p>
+                           <p>(f)  the prohibitions or restrictions imposed, in the protection measure underlying
+                              the European protection order, on the person causing danger, their duration and the
+                              indication of the penalty, if any, in the event of the breach of any of the prohibitions
+                              or restrictions;</p>
+                           <p></p>
+                           <p>(g)  the use of a technical device, if any, that has been provided to the protected
+                              person or to the person causing danger as a means of enforcing the protection measure;</p>
+                           <p></p>
+                           <p>(h)  the identity and nationality of the person causing danger, as well as that person’s
+                              contact details;</p>
+                           <p></p>
+                           <p>(i)  where such information is known by the competent authority of the issuing State
+                              without requiring further inquiry, whether the protected person and/or the person
+                              causing danger has been granted free legal aid in the issuing State;</p>
+                           <p></p>
+                           <p>(j)  a description, where appropriate, of other circumstances that could have an influence
+                              on the assessment of the danger that confronts the protected person;</p>
+                           <p></p>
+                           <p>(k)  an express indication, where applicable, that a judgement within the meaning
+                              of Article 2 of Framework Decision 2008/947/JHA, or a decision on supervision measures
+                              within the meaning of Article 4 of Framework Decision 2009/829/JHA, has already been
+                              transferred to the State of supervision, when this is different from the State of
+                              execution of the European protection order, and the identification  of the competent
+                              authority of that State for the enforcement  of such a judgement or decision.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by virtue of criminal court rules in accordance with
+                              the forms provided for in the Directive.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>8</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Transmission procedure</b>
+                              </p>
+                           <p>(1)  Where the competent authority of the issuing State transmits the European  protection
+                              order to the competent authority of the executing State, it shall do so by any means
+                              which leaves a written record so as to allow the competent authority of the executing
+                              State to establish its authenticity.  All official communication shall also be made
+                              directly between those competent authorities.</p>
+                           <p>(2)  If the competent authority of either the executing State or the issuing State
+                              is not known to the competent authority of the other State, the latter authority shall
+                              make all the relevant enquiries, including via the contact points of the European
+                              Judicial Network referred to in Council Decision 2008/976/JHA of 16 December 2008
+                              on the European Judicial Network, the National Member of Eurojust or the National
+                              System for the coordination of Eurojust of its State, in order to obtain the necessary
+                              information.</p>
+                           <p></p>
+                           <p>(3)  Where an authority of the executing State which receives a European protection
+                              order has no competence to recognise it, that authority shall, ex officio, forward
+                              the European protection order to the competent authority and shall, without delay,
+                              inform the competent authority of the issuing State accordingly by any means which
+                              leaves a written record.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>New section 254B (5) to  be inserted into the Criminal Procedure (Scotland) Act 1995
+                              places a duty on the issuing court to transmit the EPO to the competent authority
+                              of the executing state. The transmission procedure detailed in Article 8 will be transposed
+                              by both court rules and administrative steps taken by the courts in compliance with
+                              those rules.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>9</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Measures in the executing State</b>
+                              </p>
+                           <p>(1)  Upon receipt of a European protection order transmitted in accordance with Article
+                              8, the competent authority of the executing State shall, without undue delay, recognise
+                              that order and take a decision adopting any measure that would be available under
+                              its national law in a similar case in order to ensure the protection of the protected
+                              person, unless it decides to invoke  one of the grounds for non-recognition referred
+                              to in Article 10.  The executing State may apply, in accordance with its national
+                              law, criminal, administrative or civil measures.</p>
+                           <p></p>
+                           <p>(2)  The measure adopted by the competent authority of the executing State in accordance
+                              with paragraph (1), as well as any other measure taken on the basis of a subsequent
+                              decision as referred to in Article 11, shall to the highest degree possible, correspond
+                              to the protection measure adopted in the issuing State.</p>
+                           <p></p>
+                           <p>(3)  The competent authority of the executing State shall inform the person causing
+                              danger, the competent authority of the issuing State and the protected person of any
+                              measures adopted in accordance with paragraph 11(2).  The address or other contact
+                              details of the protected person shall not be disclosed to the person causing danger
+                              unless such details are necessary in view of the enforcement of the measure adopted
+                              in accordance with paragraph (1).</p>
+                           <p></p>
+                           <p>(4)  If the competent authority in the executing State considers that the information
+                              transmitted with the European protection order in accordance with Article 7 is incomplete,
+                              it shall without delay inform the competent authority of the issuing State by any
+                              means which leaves a written record, assigning a reasonable period for it to provide
+                              the missing information.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by new sections 254C &amp; D to be inserted into the Criminal
+                              Procedure (Scotland) Act 1995.</p>
+                           <p></p>
+                           <p>Court rules will set out the procedure for the notifications and for dealing with
+                              incomplete applications.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>10</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Grounds for non-recognition of a European protection order</b>
+                              </p>
+                           <p>(1)  The competent authority of the executing State may refuse to recognise a European
+                              protection order in the following circumstances:</p>
+                           <p></p>
+                           <p>(a)  the European protection order is not complete or has not been completed within
+                              the time limit set by the competent authority of the executing State;</p>
+                           <p></p>
+                           <p>(b)  the requirements set out in Article 5 have not been met;</p>
+                           <p></p>
+                           <p>(c)  the protection measure relates to an act that does not constitute a criminal
+                              offence under the law of the executing State;</p>
+                           <p></p>
+                           <p>(d)  the protection derives from the execution of a penalty or measure that, according
+                              to the law of the executing State, is covered by an amnesty and relates to an act
+                              or conduct which falls within its competence according to that law;</p>
+                           <p></p>
+                           <p>(e)  there is immunity conferred under the law of the executing State on the person
+                              causing danger, which makes it impossible to adopt measures on the basis of a European
+                              protection order;</p>
+                           <p></p>
+                           <p>(f)  criminal prosecution, against the person causing danger, for the act or the conduct
+                              in relation to which the protection measure has been adopted is statute-barred under
+                              the law of the executing State, when the act or the conduct falls within its competence
+                              under national law;</p>
+                           <p></p>
+                           <p>(g)  recognition of the European protection order would contravene the ne bis in idem
+                              principle;</p>
+                           <p></p>
+                           <p>(h)  under the law of the executing State, the person causing danger cannot, because
+                              of that persons age, be held criminally responsible for the act of the conduct in
+                              relation to which the protection measure has been adopted;</p>
+                           <p></p>
+                           <p>(i)  the protection measure relates to a criminal offence which, under the law of
+                              the executing State, is regarded has having been committed, wholly or for a major
+                              or essential part, within its territory.</p>
+                           <p></p>
+                           <p>(2)  Where the competent authority of the executing State refuses to recognise a European
+                              protection order in application of one of the grounds referred to in paragraph (1),
+                              it shall:</p>
+                           <p></p>
+                           <p>(a)  without undue delay, inform the issuing State and the protected person of this
+                              refusal and of the grounds relating thereto;</p>
+                           <p></p>
+                           <p>(b)  where appropriate, inform the protected person about the possibility of requesting
+                              the adoption of a protection measure in accordance with its national law;</p>
+                           <p></p>
+                           <p>(c)  inform the protected person of any applicable legal remedies that are available
+                              under its national law against such a decision.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by virtue of new section 254C to be inserted into
+                              the Criminal Procedure (Scotland) Act 1995.</p>
+                           <p></p>
+                           <p>Criminal court rules will set out the procedure in relation to notifications.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>11</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Governing law and competence in the executing State</b>
+                              </p>
+                           <p>(1)  The executing State shall be competent to adopt and to enforce measures in that
+                              State following the recognition of a European protection order.  The law of the executing
+                              State shall apply to the adoption and enforcement of the decision provided for in
+                              Article 9 (1), including rules on legal remedies against decisions adopted in the
+                              executing State relating to the European protection order.</p>
+                           <p></p>
+                           <p>(2)  In the event of a breach of one or more of the measures taken by the executing
+                              State following the recognition of a European protection order, the competent authority
+                              of the executing State shall, in accordance with paragraph (1) be competent to:</p>
+                           <p></p>
+                           <p>(a)  impose criminal penalties and take any other measure as a consequence of the
+                              breach, if that breach amounts to a criminal offence under the law of the executing
+                              State;</p>
+                           <p></p>
+                           <p>(b)  take any non-criminal decisions related to the breach;</p>
+                           <p></p>
+                           <p>(c)  take any urgent and provisional measure in order to put an end to the breach,
+                              pending, where appropriate, a subsequent decision by the issuing State.</p>
+                           <p></p>
+                           <p>(3)  If there is no available measure at national level in a similar case that could
+                              be taken in the executing State, the competent authority of the executing State shall
+                              report to the competent authority of the issuing State any breach of the protection
+                              measure described in the European protection order of which it is aware.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by virtue of new section 254D to be inserted into
+                              the Criminal Procedure (Scotland) Act 1995.</p>
+                           <p>
+                              <br>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>12</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Notification in the event of a breach</b>
+                              </p>
+                           <p>The competent authority of the executing State shall notify the competent authority
+                              of the issuing State or of the State of supervision of any breach of the measure or
+                              measures taken on the basis of the European protection order. Notice shall be given
+                              using the standard form set out in Annex II.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by new section 254D(7) to be inserted into the Criminal
+                              Procedure (Scotland) Act 1995. Criminal court rules will set out the procedure in
+                              relation to notifications with reference to the forms contained in the Directive.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>13</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Competence in the issuing State</b>
+                              </p>
+                           <p>(1)  The competent authority of the issuing State shall have the exclusive competence
+                              to take decisions relating to:</p>
+                           <p></p>
+                           <p>(a)  the renewal, review, modification, revocation and withdrawal of the protection
+                              measure and, consequently of the European protection order;</p>
+                           <p></p>
+                           <p>(b)  the imposition of a custodial measure as a consequence of revocation of the protection
+                              measure provided that the protection measure has been applied on the basis of a judgement
+                              within the meaning of Article 2 of Framework Decision 2008/947/JHA, or on the basis
+                              of a decision on supervision measures within the meaning of Article 4 of Framework
+                              Decision 2009/829/JHA.</p>
+                           <p></p>
+                           <p>(2)  The law of the issuing State shall apply to decisions adopted in accordance with
+                              paragraph (1).</p>
+                           <p></p>
+                           <p>(3)  Where a judgement within the meaning of Article 2 of the Framework Decision 2008/947/JHA,
+                              or a decision on supervision measures within the meaning of Article 4 of Framework
+                              Decision 2009/829/JHA, has already been transferred, or is transferred after the issuing
+                              of the European protection order, to another Member State, subsequent decisions, as
+                              provided for by those Framework Decisions, shall be taken in accordance with the relevant
+                              provisions of those Framework Decisions.</p>
+                           <p></p>
+                           <p>(4)  When the protection measure is contained in a judgement within the meaning of
+                              Article 2 of Framework Decision 2008/947/JHA which has been transferred or is transferred
+                              after the issuing State of a European protection order to another Member State, and
+                              the competent authority of the State of supervision has made subsequent decisions
+                              affecting the obligations or instructions contained in the protection measure in accordance
+                              with Article 14 of that Framework Decision, the competent authority of the issuing
+                              State shall renew, review, modify, revoke or withdraw without delay the European protection
+                              order accordingly.</p>
+                           <p></p>
+                           <p>(5)  The competent authority of the issuing State shall inform the competent authority
+                              of the executing State without delay of any decision taken in accordance with paragraph
+                              (1) or (4).</p>
+                           <p></p>
+                           <p>(6)  If the competent authority in the issuing State has revoked or withdrawn the
+                              European protection order in accordance with point (a) of paragraph (1) or with paragraph
+                              (4), the competent authority in the executing State shall discontinue the measures
+                              adopted in accordance with Article 9(1) as soon as it has been duly notified by the
+                              competent authority of the issuing State.</p>
+                           <p></p>
+                           <p>(7)  If the competent authority in the issuing State has modified the European protection
+                              order in accordance with point (a) of paragraph (1) or with paragraph (4), the competent
+                              authority in the executing State shall, as appropriate:</p>
+                           <p></p>
+                           <p>(a)  modify the measures adopted on the basis of the European protection order, acting
+                              in accordance with Article 9; or</p>
+                           <p></p>
+                           <p>(b)  refuse to enforce the modified prohibition or restriction when it does not fall
+                              within the types of prohibition or restrictions referred to in Article 5, or if the
+                              information transmitted with the European protection order in accordance with Article
+                              7 is incomplete or has not been completed within the time limit set by the competent
+                              authority of the executing State in accordance with Article 9(4).</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by virtue of new section 254E to be inserted into
+                              the Criminal Procedure (Scotland) Act 1995.</p>
+                           <p></p>
+                           <p>Criminal court rules will set out the procedures for modifications, revocations and
+                              notifications.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>14</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Grounds for discontinuation of measures taken on the basis of a European protection
+                                 order </b>
+                              </p>
+                           <p>(1)  The competent authority of the executing State may discontinue the measures taken
+                              in execution of a European protection order:</p>
+                           <p></p>
+                           <p>(a)  where there is clear indication that the protected person does not reside or
+                              stay in the territory of the executing State, or has left that territory;</p>
+                           <p></p>
+                           <p>(b)  where, according to its national law, the maximum term of duration of the measures
+                              adopted in execution of the European protection order has expired;</p>
+                           <p></p>
+                           <p>(c)  in the case referred to in Article 13(7)(b); or</p>
+                           <p></p>
+                           <p>(d)  where a judgement within the meaning of Article 2 of Framework Decision 2088/947/JHA,
+                              or a decision on supervision measures within the meaning of Article 4 of Framework
+                              Decision 2009/829/JHA, is transferred to the executing State after the recognition
+                              of the European protection order.</p>
+                           <p></p>
+                           <p>(2)  The competent authority of the executing State shall immediately inform the competent
+                              authority of the issuing State and, where possible, the protected person of such decision.</p>
+                           <p></p>
+                           <p>(3)  Before discontinuing measures in accordance with point (b) of paragraph 1 the
+                              competent authority of the executing State may invite the competent authority  of
+                              the issuing State to provide information as to whether the protection provided for
+                              by the European protection order is still needed in the circumstances of the case
+                              in question.  The competent authority of the issuing State shall, without delay, reply
+                              to such an invitation.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by virtue of new section 254E to be inserted into
+                              the Criminal Procedure (Scotland) Act 1995.</p>
+                           <p></p>
+                           <p>Criminal court rules will set out the procedural aspects.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>15</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Priority in recognition of a European protection order</b>
+                              </p>
+                           <p>A European protection order shall be recognised with the same priority which would
+                              be applicable in a similar national case, taking into consideration any specific circumstances
+                              of the case, including the urgency of the matter, the date foreseen for the arrival
+                              of the protected person on the territory of the executing State and, where possible,
+                              the degree of the risk for the protected person.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>16</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Consultations between competent authorities</b>
+                              </p>
+                           <p>Where appropriate, the competent authorities of the issuing Sate and of the executing
+                              State may consult each other in order to facilitate the smooth and efficient application
+                              of this Directive.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>17</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Languages</b>
+                              </p>
+                           <p>(1)  A European protection order shall be translated by the competent authority of
+                              the issuing State into the official language or one of the official languages of the
+                              executing State.</p>
+                           <p></p>
+                           <p>(2)  The form referred to in Article 12 shall be translated by the competent authority
+                              of the executing State into the official language or one of the official languages
+                              of the issuing State.</p>
+                           <p></p>
+                           <p>(3)  Any Member State may, either when this Directive is adopted or at a later date,
+                              state in a declaration that it shall deposit with the Commission that it will accept
+                              a translation in one or more other official languages of the Union.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by  criminal court rules which will make provision
+                              for the translation of forms.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>18</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Costs</b>
+                              </p>
+                           <p>Costs resulting from the application of this Directive shall be borne by the executing
+                              State, in accordance with its national law, except for the costs arising exclusively
+                              within the territory of the issuing State.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article will be transposed by  criminal court rules which will make provision
+                              in relation to costs.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>19</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Relationship with other agreements and arrangements</b>
+                              </p>
+                           <p>(1)  Member States may continue to apply bilateral or multilateral agreements or arrangements
+                              which are in force upon the entry into force of this Directive, in so far as they
+                              allow the objectives of this Directive to be extended or enlarged and help to simplify
+                              or facilitate further procedures for taking protection measures.</p>
+                           <p></p>
+                           <p>(2)  Member States may conclude bilateral or multilateral agreements or arrangements
+                              after the entry into force date of this Directive, in so far as they allow the objectives
+                              of this Directive to be extended or enlarged and help to simplify or facilitate the
+                              procedures for taking protection measures.</p>
+                           <p></p>
+                           <p>(3)  By 11 April 2012, Member States shall notify the Commission of the existing agreements
+                              and arrangements referred to in paragraph (1) which they wish to continue applying.
+                              Member States shall also notify the Commission of any new agreements or arrangements
+                              referred to in paragraph (2) within three months of the signing thereof.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>20</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Relationships with other instruments</b>
+                              </p>
+                           <p>(1)  This Directive shall not affect the application of Regulation (EC) No 44/2001,
+                              Regulation (EC) No 2201/2003, the 1996 Hague Convention on  Jurisdiction, Applicable
+                              Law, Recognition, Enforcement and Cooperation in respect of Parental Responsibility
+                              and Measures for the Protection of Children, or the 1980 Hague Convention on the Civil
+                              Aspects of International Child Abduction.</p>
+                           <p></p>
+                           <p>(2)  This Directive shall not affect the application of Framework Decision 2008/947/JHA
+                              or Framework Decision 2009/829/JHA.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>21</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Implementation</b>
+                              </p>
+                           <p>(1)  Member States shall bring into force the laws, regulations and administrative
+                              provisions to comply with this Directive by 11 January 2105.  They shall forthwith
+                              inform the Commission thereof.</p>
+                           <p></p>
+                           <p>When Member States adopt those measures, they shall contain a reference to this Directive
+                              or shall be accompanied by such reference on the occasion of their official publication.
+                              The methods of making such references shall be laid down by Member States.</p>
+                           <p></p>
+                           <p>(2)  Member States shall communicate to the Commission the text of the main provisions
+                              of national law which they adopt in the field covered by this Directive.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>The transposition date of 11 January 2015 was unable to be met, however Regulation
+                              1 provides when transposition of the Directive into domestic law will commence.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>22</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Data collection</b>
+                              </p>
+                           <p>Member States shall, in order to facilitate the evaluation of the application of this
+                              Directive, communicate to the Commission relevant data related to the application
+                              of national procedures on the European protection order, at least on the number of
+                              European protection orders requested, issued and/or recognised.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>23</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Review</b>
+                              </p>
+                           <p>By 11 January 2016, the Commission shall submit a report to the European Parliament
+                              and the Council on the application of this Directive.  That report shall be accompanied,
+                              if necessary, by legislative proposals.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>24</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Entry into force</b>
+                              </p>
+                           <p>This Directive shall enter into force on the 20th day following its publication in
+                              the Official Journal of the European Union.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require  transposition.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>25</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Addressees</b>
+                              </p>
+                           <p>This Directive is addressed to the Member States in accordance with the Treaties.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>This Article does not require transposition.</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

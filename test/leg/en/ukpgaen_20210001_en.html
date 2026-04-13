@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -6258,21 +6267,27 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act's passage through Parliament. </p>
                   <table>
                      <colgroup>
-                        <col style="width:1.72in">
-                        <col style="width:1.44in">
-                        <col style="width:3.13in">
+                        <col style="width:27.34%">
+                        <col style="width:22.89%">
+                        <col style="width:49.76%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Stage</b>
-                              </p>
-                           <p>
-                              <b>Date</b>
-                              </p>
-                           <p>
-                              <b>Hansard Reference</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td colspan="3">
@@ -6512,33 +6527,45 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      passage of the Bill through Parliament.</p>
                   <table>
                      <colgroup>
-                        <col style="width:1.04in">
-                        <col style="width:1.05in">
-                        <col style="width:1.05in">
-                        <col style="width:1.05in">
-                        <col style="width:1.05in">
-                        <col style="width:1.05in">
+                        <col style="width:16.53%">
+                        <col style="width:16.69%">
+                        <col style="width:16.69%">
+                        <col style="width:16.69%">
+                        <col style="width:16.69%">
+                        <col style="width:16.69%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Section of the Act</b>
-                              </p>
-                           <p>
-                              <b>Bill as Introduced in the Lords</b>
-                              </p>
-                           <p>
-                              <b>Bill as amended in Committee in the Lords </b>
-                              </p>
-                           <p>
-                              <b>Bill as introduced in the Commons</b>
-                              </p>
-                           <p>
-                              <b>Bill as amended in Committee in the Commons</b>
-                              </p>
-                           <p>
-                              <b>Bill as amended on Report in the Commons</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section of the Act</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as Introduced in the Lords</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as amended in Committee in the Lords </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as introduced in the Commons</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as amended in Committee in the Commons</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as amended on Report in the Commons</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td>

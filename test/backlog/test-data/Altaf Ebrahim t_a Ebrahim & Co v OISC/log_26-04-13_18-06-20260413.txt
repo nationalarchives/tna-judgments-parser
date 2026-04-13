@@ -1,0 +1,21 @@
+2026-04-13 18:06:34.521 [Information] Using Parser version: "1.6.1"
+2026-04-13 18:06:34.521 [Information] Using data folder: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\Altaf Ebrahim t_a Ebrahim & Co v OISC"
+2026-04-13 18:06:34.521 [Information] Using court metadata from: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\Altaf Ebrahim t_a Ebrahim & Co v OISC\court_metadata.csv"
+2026-04-13 18:06:34.539 [Information] Processing file: "JudgmentFiles\j5\2002-010.doc"
+2026-04-13 18:06:34.540 [Information] Finding UUID for "j5\2002-010.doc" in transfer metadata file "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\Altaf Ebrahim t_a Ebrahim & Co v OISC\tdr_metadata\file-metadata.csv"
+2026-04-13 18:06:34.593 [Information] The document type is {}
+2026-04-13 18:06:34.593 [Warning] The {} uri is null
+2026-04-13 18:06:34.593 [Information] The court is {}
+2026-04-13 18:06:34.593 [Warning] The case citation is null
+2026-04-13 18:06:34.593 [Information] The {} date is {}
+2026-04-13 18:06:34.593 [Information] The {} name is {}
+2026-04-13 18:06:34.597 [Information]   Writing to output: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\Altaf Ebrahim t_a Ebrahim & Co v OISC\output\d38c1f29-2ba1-49f9-90e4-a1762a5a1291.tar.gz"
+2026-04-13 18:06:34.598 [Information]   Uploading "d38c1f29-2ba1-49f9-90e4-a1762a5a1291.tar.gz" to S3
+2026-04-13 18:06:34.599 [Information]   success
+2026-04-13 18:06:34.599 [Information] 100% done
+2026-04-13 18:06:34.599 [Information] ---------------------------
+Successfully processed 1 of 1 csv lines, of which:
+  - 1 lines were new
+  - 0 lines were marked in the csv to skip ""
+  - 0 lines were skipped because they had been processed in a previous run
+2026-04-13 18:06:34.599 [Information] No failed lines

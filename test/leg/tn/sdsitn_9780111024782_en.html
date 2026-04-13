@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="TranspositionNote">
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>TRANSPOSITION NOTE</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>The Public Water Supplies (Scotland) Regulations 2014 (“the Regulations”) consolidate
+                  the Water Supply (Water Quality) (Scotland) Regulations 2001 and make new provision
+                  in relation to, among other things, the monitoring of drinking water abstraction points.
+                  </p>
+            </section>
+            <section class="level">
+               <p>The Regulations aim to protect human health from the adverse effects of any contamination
+                  of water supplied by Scottish Water for human consumption purposes by ensuring that
+                  it is wholesome. In so far as the Regulations apply to water supplied by Scottish
+                  Water for human consumption purposes, they continue to apply the measures necessary
+                  to deliver the requirements of Council Directive 98/83/EC on the quality of water
+                  intended for human consumption<a class="fn" id="fnref-1" href="#fn-1">1</a> (“the Directive”) in Scotland. </p>
+            </section>
+            <section class="paragraph">
+               <p>The table below sets out how the Regulations transpose the relevant Articles of the
+                  Directive in so far as it applies to water supplied by Scottish Water for human consumption
+                  purposes.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:14.04%">
+                     <col style="width:26.34%">
+                     <col style="width:59.62%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Article</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Requirement</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Provision </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 1</p>
+                        </td>
+                        <td>
+                           <p>Objective </p>
+                        </td>
+                        <td>
+                           <p>None required</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Definitions </p>
+                        </td>
+                        <td>
+                           <p>Regulation 2(1)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3</p>
+                        </td>
+                        <td>
+                           <p>Exemptions </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Regulation 1(4) </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 4</p>
+                        </td>
+                        <td>
+                           <p>General obligations </p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Regulation 4 </p>
+                           <p>(read with regulations 17 to 23). </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 5</p>
+                        </td>
+                        <td>
+                           <p>Quality standards</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Schedule 1 </p>
+                           <p>(read with regulation 4)</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 6</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Point of compliance </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Regulations 6 and 13 (read with regulation 5)</p>
+                           <p>Regulations 17 to 23 </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 7</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Monitoring</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Regulations 4 to 15 (read with Schedules 1 to 3)</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 8</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Remedial action etc.</p>
+                        </td>
+                        <td>
+                           <p>Regulations 17 to 23 </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 9</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Derogations</p>
+                        </td>
+                        <td>
+                           <p>Regulations 24 to 28</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 10</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Quality assurance etc.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Regulations 33 and 34</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 13</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Information</p>
+                        </td>
+                        <td>
+                           <p>Regulations 37 and 39</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annexes </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Schedules  1 to 3</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <p>Scottish Government</p>
+            </section>
+            <section class="level">
+               <p>October 2014</p>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  OJ L 330, 5.12.98, p.32, as last amended by Regulation (EC) No 596/2009 (OJ L 188,
+                  18.7.2009, p. 14).</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

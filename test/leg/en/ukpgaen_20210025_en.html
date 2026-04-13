@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -697,25 +706,33 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         on Provisions” section.</p>
                      <table>
                         <colgroup>
-                           <col style="width:1.26in">
-                           <col style="width:2.56in">
-                           <col style="width:2.76in">
+                           <col style="width:19.15%">
+                           <col style="width:38.91%">
+                           <col style="width:41.95%">
                         </colgroup>
                         <tbody>
                            <tr>
-                              <p>
-                                 <b>Table 1: Comparison between national security interventions under the Enterprise Act
-                                    2002 and the National Security and Investment Regime</b>
-                                 </p>
+                              <th colspan="3">
+                                 <p>
+                                    <b>Table 1: Comparison between national security interventions under the Enterprise Act
+                                       2002 and the National Security and Investment Regime</b>
+                                    </p>
+                              </th>
                            </tr>
                            <tr>
-                              <p></p>
-                              <p>
-                                 <b>Current system under the Enterprise Act 2002</b>
-                                 </p>
-                              <p>
-                                 <b>National Security and Investment regime</b>
-                                 </p>
+                              <th>
+                                 <p></p>
+                              </th>
+                              <th>
+                                 <p>
+                                    <b>Current system under the Enterprise Act 2002</b>
+                                    </p>
+                              </th>
+                              <th>
+                                 <p>
+                                    <b>National Security and Investment regime</b>
+                                    </p>
+                              </th>
                            </tr>
                            <tr>
                               <td>
@@ -1172,7 +1189,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            control, and the right to appoint or remove a majority of the board of directors.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.99in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -1216,7 +1233,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            interests and rights that each person holds individually.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.99in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -1743,17 +1760,21 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         <p>The table below summarises the offences set out in Sections 32-35.</p>
                         <table>
                            <colgroup>
-                              <col style="width:2.49in">
-                              <col style="width:4in">
+                              <col style="width:38.37%">
+                              <col style="width:61.63%">
                            </colgroup>
                            <tbody>
                               <tr>
-                                 <p>
-                                    <b>Offence</b>
-                                    </p>
-                                 <p>
-                                    <b>Penalty</b>
-                                    </p>
+                                 <th>
+                                    <p>
+                                       <b>Offence</b>
+                                       </p>
+                                 </th>
+                                 <th>
+                                    <p>
+                                       <b>Penalty</b>
+                                       </p>
+                                 </th>
                               </tr>
                               <tr>
                                  <td>
@@ -2445,21 +2466,27 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act's passage through Parliament.</p>
                   <table>
                      <colgroup>
-                        <col style="width:1.72in">
-                        <col style="width:1.45in">
-                        <col style="width:3.13in">
+                        <col style="width:27.3%">
+                        <col style="width:23.02%">
+                        <col style="width:49.68%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Stage</b>
-                              </p>
-                           <p>
-                              <b>Date</b>
-                              </p>
-                           <p>
-                              <b>Hansard Reference</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td colspan="3">

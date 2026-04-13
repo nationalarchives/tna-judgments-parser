@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -605,119 +614,185 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act's passage through Parliament. </p>
                   <table>
                      <colgroup>
-                        <col style="width:1.75in">
-                        <col style="width:1.48in">
-                        <col style="width:3.22in">
+                        <col style="width:27.13%">
+                        <col style="width:22.95%">
+                        <col style="width:49.92%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Stage</b>
-                              </p>
-                           <p>
-                              <b>Date</b>
-                              </p>
-                           <p>
-                              <b>Hansard Reference</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <i>House of Commons</i>
-                              </p>
+                           <th colspan="3">
+                              <p>
+                                 <i>House of Commons</i>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Introduction</p>
-                           <p>27 April 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/Commons/2023-04-27/debates/90B6E141-5FA7-47CB-887E-EE4CCA5DC8B8/PointOfOrder">
-                                 <u>Vol. 731. Col. 987</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Introduction</p>
+                           </th>
+                           <th>
+                              <p>27 April 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-04-27/debates/90B6E141-5FA7-47CB-887E-EE4CCA5DC8B8/PointOfOrder">
+                                    <u>Vol. 731. Col. 987</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Second Reading</p>
-                           <p>10 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/commons/2023-05-10/debates/83441A56-FD0B-4F2E-91DA-06CA79E6934D/NorthernIreland(InterimArrangements)Bill">
-                                 <u>Vol. 732 Col. 359</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Second Reading</p>
+                           </th>
+                           <th>
+                              <p>10 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/commons/2023-05-10/debates/83441A56-FD0B-4F2E-91DA-06CA79E6934D/NorthernIreland(InterimArrangements)Bill">
+                                    <u>Vol. 732 Col. 359</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Committee of the Whole House</p>
-                           <p>10 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/Commons/2023-05-10/debates/0CA23B83-59BC-4910-BC9B-3EE45526424D/NorthernIreland(InterimArrangements)Bill">
-                                 <u>Vol. 732. Col. 395</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Committee of the Whole House</p>
+                           </th>
+                           <th>
+                              <p>10 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-05-10/debates/0CA23B83-59BC-4910-BC9B-3EE45526424D/NorthernIreland(InterimArrangements)Bill">
+                                    <u>Vol. 732. Col. 395</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Third Reading</p>
-                           <p>10 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/Commons/2023-05-10/debates/0CA23B83-59BC-4910-BC9B-3EE45526424D/NorthernIreland(InterimArrangements)Bill">
-                                 <u>Vol. 732. Col. 406</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Third Reading</p>
+                           </th>
+                           <th>
+                              <p>10 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-05-10/debates/0CA23B83-59BC-4910-BC9B-3EE45526424D/NorthernIreland(InterimArrangements)Bill">
+                                    <u>Vol. 732. Col. 406</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <i>House of Lords</i>
-                              </p>
+                           <th colspan="3">
+                              <p>
+                                 <i>House of Lords</i>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Introduction</p>
-                           <p>11 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/Lords/2023-05-11/debates/FC637F8F-1FD0-4F08-9BB6-AB56D5301B5A/NorthernIreland(InterimArrangements)Bill">
-                                 <u>Vol. 829. Col. 1948</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Introduction</p>
+                           </th>
+                           <th>
+                              <p>11 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-05-11/debates/FC637F8F-1FD0-4F08-9BB6-AB56D5301B5A/NorthernIreland(InterimArrangements)Bill">
+                                    <u>Vol. 829. Col. 1948</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Second Reading</p>
-                           <p>18 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/lords/2023-05-18/debates/D2192342-7102-46FC-86B0-6A77138D1228/NorthernIreland(InterimArrangements)Bill">
-                                 <u>Vol. 830 Col. 380</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Second Reading</p>
+                           </th>
+                           <th>
+                              <p>18 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-05-18/debates/D2192342-7102-46FC-86B0-6A77138D1228/NorthernIreland(InterimArrangements)Bill">
+                                    <u>Vol. 830 Col. 380</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Committee of the Whole House</p>
-                           <p>23 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/lords/2023-05-23/debates/AABBD006-8561-45DA-9AC1-8087D8C55C9D/NorthernIreland(InterimArrangements)Bill">
-                                 <u>Vol. 830 Col. 748</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Committee of the Whole House</p>
+                           </th>
+                           <th>
+                              <p>23 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/lords/2023-05-23/debates/AABBD006-8561-45DA-9AC1-8087D8C55C9D/NorthernIreland(InterimArrangements)Bill">
+                                    <u>Vol. 830 Col. 748</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Third Reading</p>
-                           <p>23 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/Lords/2023-05-23/debates/AABBD006-8561-45DA-9AC1-8087D8C55C9D/NorthernIreland(InterimArrangements)Bill">
-                                 <u>Vol. 830 Col. 764</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>Third Reading</p>
+                           </th>
+                           <th>
+                              <p>23 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-05-23/debates/AABBD006-8561-45DA-9AC1-8087D8C55C9D/NorthernIreland(InterimArrangements)Bill">
+                                    <u>Vol. 830 Col. 764</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>Royal Assent</p>
-                           <p>24 May 2023</p>
-                           <p>
-                              <a href="https://hansard.parliament.uk/Commons/2023-05-24/debates/7B12F8E3-6C97-4C3B-8FD8-716107DF4252/RetainedEULaw(RevocationAndReform)Bill">
-                                 <u>House of Commons Vol. 733 Col. 371</u>
-                                 </a>
-                              </p>
+                           <th rowspan="2">
+                              <p>Royal Assent</p>
+                           </th>
+                           <th rowspan="2">
+                              <p>24 May 2023</p>
+                           </th>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Commons/2023-05-24/debates/7B12F8E3-6C97-4C3B-8FD8-716107DF4252/RetainedEULaw(RevocationAndReform)Bill">
+                                    <u>House of Commons Vol. 733 Col. 371</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <a href="https://hansard.parliament.uk/Lords/2023-05-24/debates/02A7BA3C-6C13-404E-961C-BF62C18A04EE/RoyalAssent">
-                                 <u>House of Lords Vol. 830 Col. 924</u>
-                                 </a>
-                              </p>
+                           <th>
+                              <p>
+                                 <a href="https://hansard.parliament.uk/Lords/2023-05-24/debates/02A7BA3C-6C13-404E-961C-BF62C18A04EE/RoyalAssent">
+                                    <u>House of Lords Vol. 830 Col. 924</u>
+                                    </a>
+                                 </p>
+                           </th>
                         </tr>
                      </tbody>
                   </table>

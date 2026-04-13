@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -158,13 +167,13 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
             <section class="level">
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:1.21in">
-                     <col style="width:1.11in">
-                     <col style="width:1.81in">
-                     <col style="width:0.21in">
-                     <col style="width:0.89in">
-                     <col style="width:2.01in">
-                     <col style="width:0.01in">
+                     <col style="width:16.69%">
+                     <col style="width:15.31%">
+                     <col style="width:24.97%">
+                     <col style="width:2.9%">
+                     <col style="width:12.28%">
+                     <col style="width:27.72%">
+                     <col style="width:0.14%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -189,7 +198,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         <td colspan="3">
                            <table class="ia-table">
                               <colgroup>
-                                 <col style="width:2.91in">
+                                 <col style="width:100%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -373,7 +382,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
             <section class="level">
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:7.26in">
+                     <col style="width:100%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -401,7 +410,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
             <section class="level">
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:7.26in">
+                     <col style="width:100%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -431,7 +440,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
             <section class="level">
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:7.26in">
+                     <col style="width:100%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -446,12 +455,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
             <section class="level">
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:4.42in">
-                     <col style="width:0.69in">
-                     <col style="width:0.69in">
-                     <col style="width:0.25in">
-                     <col style="width:0.45in">
-                     <col style="width:0.69in">
+                     <col style="width:61.47%">
+                     <col style="width:9.6%">
+                     <col style="width:9.6%">
+                     <col style="width:3.48%">
+                     <col style="width:6.26%">
+                     <col style="width:9.6%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -518,10 +527,10 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table class="ia-table">
                   <colgroup>
-                     <col style="width:3.42in">
-                     <col style="width:1.63in">
-                     <col style="width:0.91in">
-                     <col style="width:1.31in">
+                     <col style="width:47.04%">
+                     <col style="width:22.42%">
+                     <col style="width:12.52%">
+                     <col style="width:18.02%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -560,12 +569,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:0.98in">
-                        <col style="width:0.98in">
-                        <col style="width:0.78in">
-                        <col style="width:1.25in">
-                        <col style="width:1.26in">
-                        <col style="width:1.82in">
+                        <col style="width:13.86%">
+                        <col style="width:13.86%">
+                        <col style="width:11.03%">
+                        <col style="width:17.68%">
+                        <col style="width:17.82%">
+                        <col style="width:25.74%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -627,12 +636,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </table>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.38in">
-                        <col style="width:1.86in">
-                        <col style="width:0.03in">
-                        <col style="width:1.98in">
-                        <col style="width:1.23in">
-                        <col style="width:0.59in">
+                        <col style="width:19.52%">
+                        <col style="width:26.31%">
+                        <col style="width:0.42%">
+                        <col style="width:28.01%">
+                        <col style="width:17.4%">
+                        <col style="width:8.35%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -876,10 +885,10 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.28in">
-                        <col style="width:1.28in">
-                        <col style="width:1.18in">
-                        <col style="width:3.34in">
+                        <col style="width:18.08%">
+                        <col style="width:18.08%">
+                        <col style="width:16.67%">
+                        <col style="width:47.18%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -1619,9 +1628,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.09in">
-                        <col style="width:2.09in">
-                        <col style="width:2.09in">
+                        <col style="width:33.33%">
+                        <col style="width:33.33%">
+                        <col style="width:33.33%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -1913,14 +1922,14 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      <p>Table 3. Summary of anticipated costs by SI</p>
                      <table class="ia-table">
                         <colgroup>
-                           <col style="width:2.81in">
-                           <col style="width:0.99in">
-                           <col style="width:0.99in">
-                           <col style="width:0.99in">
-                           <col style="width:0.99in">
-                           <col style="width:0.99in">
-                           <col style="width:0.99in">
-                           <col style="width:0.99in">
+                           <col style="width:28.85%">
+                           <col style="width:10.16%">
+                           <col style="width:10.16%">
+                           <col style="width:10.16%">
+                           <col style="width:10.16%">
+                           <col style="width:10.16%">
+                           <col style="width:10.16%">
+                           <col style="width:10.16%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -3929,8 +3938,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:3.13in">
-                        <col style="width:1.69in">
+                        <col style="width:64.94%">
+                        <col style="width:35.06%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4258,8 +4267,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      teams, and that this work will be billed to the firm on a per-minute basis. </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.06in">
-                        <col style="width:2.48in">
+                        <col style="width:45.37%">
+                        <col style="width:54.63%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4302,11 +4311,11 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:1.4in">
-                        <col style="width:0.66in">
-                        <col style="width:1.03in">
-                        <col style="width:1.43in">
-                        <col style="width:1.46in">
+                        <col style="width:23.41%">
+                        <col style="width:11.04%">
+                        <col style="width:17.22%">
+                        <col style="width:23.91%">
+                        <col style="width:24.41%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4352,12 +4361,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.21in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
+                        <col style="width:29.82%">
+                        <col style="width:14.04%">
+                        <col style="width:14.04%">
+                        <col style="width:14.04%">
+                        <col style="width:14.04%">
+                        <col style="width:14.04%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4577,8 +4586,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      deal” scenario. The table below summarises these provisions. </p>
                   <table class="ia-table">
                      <colgroup>
-                        <col style="width:2.85in">
-                        <col style="width:4.55in">
+                        <col style="width:38.51%">
+                        <col style="width:61.49%">
                      </colgroup>
                      <tbody>
                         <tr>

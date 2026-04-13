@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -2134,8 +2143,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      and Safety Executive will take to its new building functions.</p>
                   <table>
                      <colgroup>
-                        <col style="width:0.01in">
-                        <col style="width:5.11in">
+                        <col style="width:0.2%">
+                        <col style="width:99.8%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2215,7 +2224,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2264,7 +2273,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2312,7 +2321,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      improvement was needed across the built environment sector.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2419,7 +2428,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      into the Building Act 1984 by Part 3 of this Act.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2495,7 +2504,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      portal.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2564,7 +2573,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      sector and provide expert advice.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2639,7 +2648,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      improving competence across industry.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -2843,7 +2852,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      a proposal by the Building Safety Regulator to the Secretary of State. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3006,7 +3015,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in decision-making on those buildings.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3075,7 +3084,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3167,7 +3176,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      to the building functions.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3229,7 +3238,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      section ensures that this information is made publicly available.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3304,7 +3313,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      residents in its work.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3386,7 +3395,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.&nbsp;&nbsp;</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3470,7 +3479,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      powers to those persons who are qualified and equipped to exercise them. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3551,7 +3560,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      impersonate staff of the Building Safety Regulator to assist them in doing so.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3621,7 +3630,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of individuals in the building.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3712,7 +3721,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      quicker resolution if alternative dispute resolution procedures are adopted.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3772,7 +3781,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This section is designed to operate in conjunction with section 25.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3972,7 +3981,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      organisation for consideration and action.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4054,7 +4063,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      made under it.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4314,7 +4323,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act, rather than in regulations.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4515,7 +4524,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -4846,7 +4855,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Building Regulations 2010. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -5148,7 +5157,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      carrying out any work on all buildings to ensure compliance with building regulations.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -5260,7 +5269,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in paragraph 2(6) of Schedule 4 to the Building Act 1984.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -5504,7 +5513,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      and Safety at Work etc. Act 1974 and are intended to be used in similar circumstances.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -5638,7 +5647,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      is pursued, the penalties are so small as to be an ineffective deterrent”.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -5723,7 +5732,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      etc. Act 1974.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -5825,7 +5834,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of the regulations.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -6129,7 +6138,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -6326,7 +6335,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      on Approved Inspectors being replaced by registered building control approvers.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -6444,7 +6453,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This section inserts new sections 46A and 54A into the Building Act 1984.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -6563,7 +6572,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      to this power.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -6740,7 +6749,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      is dealt with in section 31.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -6881,7 +6890,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      conflict of interest. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -6956,7 +6965,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      proof of adequate insurance when performing their statutory functions.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7086,7 +7095,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      that it would proceed with these plans. See Part 3 of <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/970325/UPDATED_FINAL_Government_Response_to_Fire_Safety_Consultation.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/970325/UPDATED_FINAL_Government_Response_to_Fire_Safety_Consultation.pdf</u></a>.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7183,7 +7192,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      that this process can happen efficiently in the future.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7352,7 +7361,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      new registered building control approver is adequate.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7468,7 +7477,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      or intending to carry out the work.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7592,7 +7601,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      register/portal.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7671,7 +7680,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      buildings.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7771,7 +7780,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Tribunal in England.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7862,7 +7871,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of Schedule 1 to the Building Act 1984.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -7944,7 +7953,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      new residential developments, unless otherwise excluded.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -8212,7 +8221,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      fire or structural event.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -8323,7 +8332,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>These are new provisions.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -8471,7 +8480,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act, rather than in regulations.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -8591,7 +8600,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -8693,7 +8702,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -8820,7 +8829,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      will analyse data from the operating regime to be able to fulfil this duty.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9018,7 +9027,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in property law. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9116,7 +9125,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of obligations and duties under this part. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9240,7 +9249,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      building for which any Accountable Person is responsible for.  </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9335,7 +9344,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      or at least seven storeys, including when buildings are occupied in phases.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9411,7 +9420,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      then be able to use this for the effective regulation of higher-risk buildings. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9511,7 +9520,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      registration subsequently&nbsp;change.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9598,7 +9607,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      outcome to that assessment</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9691,7 +9700,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      at that time.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9778,7 +9787,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      obligations.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -9909,7 +9918,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -10046,7 +10055,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      ensure that the building remains safe throughout its life cycle.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -10204,7 +10213,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      that the building remains safe throughout its life cycle.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -10416,7 +10425,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      evidence that supports that argument.</p>
                   <table>
                      <colgroup>
-                        <col style="width:6in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -10524,7 +10533,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      application for a Building Assessment Certificate.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -10663,7 +10672,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      This section contributes to the fulfilment of this recommendation. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -10784,7 +10793,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in sections 83-86.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -10930,7 +10939,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in their role in ensuring building safety and holding Accountable Persons to account.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -11047,7 +11056,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      or persons.&nbsp;&nbsp;</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -11488,7 +11497,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in relation to helping to keep their building safe.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -11642,7 +11651,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      this fails the Accountable Person is able to investigate and enforce those duties.&nbsp;</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -11773,7 +11782,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      manage building safety risks and take reasonable steps to minimise them.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -11876,7 +11885,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      at Work etc Act 1974 and are intended to be used in similar circumstances.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -11965,7 +11974,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of action.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -12116,7 +12125,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      for higher-risk buildings under this legislation.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -12162,7 +12171,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      that are created in regulations. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -12228,7 +12237,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      by the Regulator under this legislation.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -12276,7 +12285,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in legislation to enable the county court to enforce those decisions.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -12356,7 +12365,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      occupation regime.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -12417,7 +12426,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -12490,7 +12499,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      obligations by the Accountable Person. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -13240,7 +13249,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      building can be leaseholder-owned. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.51in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -13319,7 +13328,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      were published alongside the Building Safety Bill.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -13464,7 +13473,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      publication of the amendments and the provisions becoming law.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -13638,7 +13647,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      to mirror a power to expand the definition of building safety risk in this section.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -13837,7 +13846,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      in which the test is used.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -14101,7 +14110,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      persons who can apply for a remediation order, should the need to do so become apparent.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -14342,7 +14351,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      so become apparent.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -14500,7 +14509,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      whom an order might be made.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.11in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -14604,7 +14613,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of lists, including in relation to scheme eligibility and scheme membership.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -14757,7 +14766,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      eligible persons to join and remain members of a scheme. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -14862,7 +14871,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      join and remain members of a scheme.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -14997,7 +15006,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      would be insufficient.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15129,7 +15138,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      the Corporation Tax Act 2010.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15246,7 +15255,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      to create regulations to define these persons.&nbsp;&nbsp;</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15416,7 +15425,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      by ensuring other cost recovery routes are appropriately explored.&nbsp;&nbsp;</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15564,7 +15573,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      course of a business. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15656,7 +15665,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      and extend redress provisions for existing buildings.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15758,7 +15767,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      sector, and for social housing residents. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.13in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15864,7 +15873,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      residential sector, and for social housing residents. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -15973,7 +15982,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.14in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -16158,7 +16167,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      a significant gap for purchasers of new build homes. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -16292,7 +16301,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>This is a new provision.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -16410,7 +16419,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      make appropriate warranties available for sale.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -16474,7 +16483,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      home, whichever is the greater.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -16615,7 +16624,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      these products.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -16855,7 +16864,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      169(7). </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17030,7 +17039,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      after the commencement of sections 148 and 149. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17170,7 +17179,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      see section 135).</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17291,7 +17300,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Wales in relation to the new causes of action.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17420,7 +17429,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      this process and making the application to court.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17531,7 +17540,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      circumstances under which appeals can be made to a court or tribunal.&nbsp;</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17711,7 +17720,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      recording their fire risk assessment.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17792,7 +17801,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      cent of respondents to the consultation agreed with this proposal.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17848,7 +17857,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      to assist their recording of their fire safety arrangements. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -17944,7 +17953,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      showed that 90% of respondents were supportive of the proposals. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18029,7 +18038,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Persons in discharging this duty, best practice will be provided in guidance. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18126,7 +18135,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Safety Act. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18189,7 +18198,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      and fire safety.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18263,7 +18272,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      these offences carry a suitable deterrent to discourage non-compliance with the Order.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18326,7 +18335,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      a similar approach to guidance under the Building Safety Act.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18452,7 +18461,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      best practice and gives greater assurance to those procuring and inhabiting buildings.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18517,7 +18526,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      by section 157 have adequate recourse to challenge the Board’s decision. </p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18578,7 +18587,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      additional services. This will be after a full impact assessment and consultation.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18698,7 +18707,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      2019-20, with low support being expressed for the designated person role.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -18912,7 +18921,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      accountabilities, responsibilities, guidance, and the effectiveness of the regulator.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -19363,7 +19372,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of the Building Act 1984.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -19450,7 +19459,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   <p>These provisions are similar to those of other regulatory bodies.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -19504,7 +19513,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      to fulfil that purpose.</p>
                   <table>
                      <colgroup>
-                        <col style="width:5.12in">
+                        <col style="width:100%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -19674,7 +19683,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         to be fined. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.22in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -19808,7 +19817,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         can be taken as tending to negative liability.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.12in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -19934,7 +19943,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         deemed to be unreasonable. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.32in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -20043,7 +20052,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         on application or of its own accord. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -20577,7 +20586,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </p>
                      <table>
                         <colgroup>
-                           <col style="width:4.95in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -20796,7 +20805,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         them.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21071,7 +21080,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         not apply.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.12in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21263,7 +21272,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         its power to apply for a special measures order in a fair and transparent way.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21424,7 +21433,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         risks. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21534,7 +21543,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         accounted for during the term of the special measures order. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21629,7 +21638,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         order coming into effect and pursue third parties. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.05in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21726,7 +21735,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         function under the Building Safety Act. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21813,7 +21822,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         risks are adequately mitigated. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21925,7 +21934,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         give directions in relation to special measures.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -21990,7 +21999,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         order  following its review, where the regulator deems it appropriate. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -22083,7 +22092,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         discharges its power to vary a special measures order in a fair way.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -22203,7 +22212,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         under paragraph 4.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -22273,7 +22282,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         the Building Safety Regulator and the First-tier Tribunal’s consequent decision. </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -22356,7 +22365,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         to a third party to subvert the requirements of the special measures order.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -22683,7 +22692,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         in full.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -22903,7 +22912,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         or where “net worth” is not a relevant concept to that class of persons.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23041,7 +23050,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         charge demands were issued to leaseholders.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23179,7 +23188,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         any service charge demands were issued to leaseholders.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23384,7 +23393,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         lease is to be determined when the most recent sale price cannot be identified.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23486,7 +23495,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         capped leaseholder contributions over time.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23567,7 +23576,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         contribution caps.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23675,7 +23684,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         prior to commencement.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23828,7 +23837,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         leaseholders may have made payments.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -23923,7 +23932,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         be reallocated to other leaseholders in the building.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -24127,7 +24136,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         than a landlord with a superior lease over just one floor.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -24288,7 +24297,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         to execute the certificate.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -24439,7 +24448,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         for creating the relevant defects unless such a certificate is provided.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -24564,7 +24573,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         stake in the lease that the leaseholder had at the qualifying time.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -24741,7 +24750,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         to comply with the regulations made under paragraph 6.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -24865,7 +24874,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         be required to pay more than this Schedule dictates.  </p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -24988,7 +24997,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      <p>These are new provisions.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -25190,7 +25199,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         are not usually covered by consumer protection legislation.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -25306,7 +25315,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         to investigate, enforce against and sanction non-compliance with such regulations.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -25404,7 +25413,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         that do not meet their claimed performance to be withdrawn from the market.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -25505,7 +25514,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         regulations can provide such powers can be exercised by relevant authorities (as defined).</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -25574,7 +25583,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         authority (as defined), to recover some of the costs attributable to this new regime.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -25643,7 +25652,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         products in the UK.</p>
                      <table>
                         <colgroup>
-                           <col style="width:5.11in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -26083,30 +26092,40 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <section class="level">
                   <table>
                      <colgroup>
-                        <col style="width:1.93in">
-                        <col style="width:1.15in">
-                        <col style="width:1.06in">
-                        <col style="width:1.04in">
-                        <col style="width:1.11in">
+                        <col style="width:30.68%">
+                        <col style="width:18.28%">
+                        <col style="width:16.85%">
+                        <col style="width:16.53%">
+                        <col style="width:17.65%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Provision</b>
-                              <a class="fn" id="fnref-8" href="#fn-8">8</a>
-                              </p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to England?</b>
-                              </p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to Wales?</b>
-                              </p>
-                           <p>
-                              <b>Extends and applies to Scotland?</b>
-                              </p>
-                           <p>
-                              <b>Extends and applies to Northern Ireland?</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Provision</b>
+                                 <a class="fn" id="fnref-8" href="#fn-8">8</a>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td colspan="5">
@@ -26758,9 +26777,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act’s passage through Parliament.</p>
                   <table>
                      <colgroup>
-                        <col style="width:2.1in">
-                        <col style="width:2.1in">
-                        <col style="width:2.1in">
+                        <col style="width:33.33%">
+                        <col style="width:33.33%">
+                        <col style="width:33.33%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -27202,13 +27221,17 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <section class="level">
                   <table>
                      <colgroup>
-                        <col style="width:1.99in">
-                        <col style="width:4.31in">
+                        <col style="width:31.59%">
+                        <col style="width:68.41%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>Term</p>
-                           <p>Notes</p>
+                           <th>
+                              <p>Term</p>
+                           </th>
+                           <th>
+                              <p>Notes</p>
+                           </th>
                         </tr>
                         <tr>
                            <td>

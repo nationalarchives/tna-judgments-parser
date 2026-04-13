@@ -1,0 +1,15 @@
+2026-04-13 18:06:34.171 [Information] Using Parser version: "1.6.1"
+2026-04-13 18:06:34.171 [Information] Using data folder: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\MultiLineTest"
+2026-04-13 18:06:34.171 [Information] Using court metadata from: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\MultiLineTest\court_metadata.csv"
+2026-04-13 18:06:34.183 [Information] Processing file: "JudgmentFiles\j102\test3.pdf"
+2026-04-13 18:06:34.183 [Information] Finding UUID for "j102\test3.pdf" in transfer metadata file "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\MultiLineTest\tdr_metadata\file-metadata.csv"
+2026-04-13 18:06:34.190 [Information]   Writing to output: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\MultiLineTest\output\17406c5b-e1ab-4d70-b44b-d27c88541c4d.tar.gz"
+2026-04-13 18:06:34.191 [Information]   Uploading "17406c5b-e1ab-4d70-b44b-d27c88541c4d.tar.gz" to S3
+2026-04-13 18:06:34.192 [Information]   success
+2026-04-13 18:06:34.192 [Information] 100% done
+2026-04-13 18:06:34.192 [Information] ---------------------------
+Successfully processed 1 of 1 csv lines, of which:
+  - 1 lines were new
+  - 0 lines were marked in the csv to skip ""
+  - 0 lines were skipped because they had been processed in a previous run
+2026-04-13 18:06:34.192 [Information] No failed lines

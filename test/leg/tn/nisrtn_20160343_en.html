@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="TranspositionNote">
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>DEPARTMENT FOR INFRASTRUCTURE</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>TRANSPOSITION NOTE</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>REGULATION (EU) NO. 165/2014 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 4 FEBRUARY
+                     2014</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b> on tachographs in road transport, repealing Council Regulation (EEC) No. 3821/85
+                     on recording equipment in road transport and amending Regulation (EC) No. 561/2006
+                     of the European Parliament and of the Council on the harmonisation of certain social
+                     legislation relating to road transport.</b>
+                  </p>
+            </section>
+            <section class="paragraph">
+               <p>The Passenger and Goods Vehicles (Tachographs) (Amendment) Regulations (Northern Ireland)
+                  2016 do what is necessary to implement the above mentioned EU Regulation, by making
+                  consequential changes to domestic legislation to ensure its coherence in the area
+                  to which the EU Regulation applies.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:15.42%">
+                     <col style="width:35.39%">
+                     <col style="width:27.6%">
+                     <col style="width:21.59%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Articles</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Purpose</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Implementation</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Responsibility</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3</p>
+                        </td>
+                        <td>
+                           <p>Enables Member States to exempt from the application certain vehicles referred to
+                              in Regulation (EC) No 561/2006</p>
+                        </td>
+                        <td>
+                           <p>Regulation 5</p>
+                        </td>
+                        <td>
+                           <p>Department for Infrastructure</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 21</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Enables Member States to authorise field tests of tachographs which have not yet been
+                              type-approved</p>
+                        </td>
+                        <td>
+                           <p>Regulation 3(4)</p>
+                        </td>
+                        <td>
+                           <p>Department for Infrastructure</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 41</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Requires Member States to lay down rules on penalties applicable to infringements
+                              of Regulation (EU) No. 165/2014 and take all measures necessary to ensure that they
+                              are implemented. Those penalties shall be effective, proportionate, dissuasive and
+                              non-discriminatory and shall be in compliance with the categories of infringements
+                              set out in Directive 2006/22/EC. </p>
+                        </td>
+                        <td>
+                           <p>Regulations 2-13</p>
+                        </td>
+                        <td>
+                           <p>Department for Infrastructure</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

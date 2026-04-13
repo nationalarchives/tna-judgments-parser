@@ -1,0 +1,23 @@
+2026-04-13 18:06:34.157 [Information] Using Parser version: "1.6.1"
+2026-04-13 18:06:34.157 [Information] Using data folder: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\EmptyCSVTest"
+2026-04-13 18:06:34.157 [Information] Using court metadata from: "C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\EmptyCSVTest\court_metadata.csv"
+2026-04-13 18:06:34.165 [Fatal] Backlog Parser fell over
+System.IO.DirectoryNotFoundException: Couldn't find C:\Users\test\Documents\Projects\tna-judgments-parser\test\backlog\test-data\EmptyCSVTest\court_documents
+   at Backlog.Src.BacklogFiles..ctor(ILogger`1 logger, String pathToDataFolder, String judgmentsFilePath, String hmctsFilePath) in C:\Users\test\Documents\Projects\tna-judgments-parser\backlog\src\BacklogFiles.cs:line 33
+   at Backlog.Src.Program.<>c__DisplayClass12_0.<ConfigureDependencyInjection>b__1(IServiceProvider serviceProvider) in C:\Users\test\Documents\Projects\tna-judgments-parser\backlog\src\Program.cs:line 191
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Backlog.Src.Program.RunBacklogParser(Boolean isDryRun, Nullable`1 id) in C:\Users\test\Documents\Projects\tna-judgments-parser\backlog\src\Program.cs:line 151

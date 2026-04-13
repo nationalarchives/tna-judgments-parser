@@ -1,0 +1,1375 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="TranspositionNote">
+         <div class="body">
+            <section class="level">
+               <table>
+                  <colgroup>
+                     <col style="width:11.66%">
+                     <col style="width:44.93%">
+                     <col style="width:43.41%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>TRANSPOSITION NOTE</b>
+                              </p>
+                           <p>
+                              <b>Directive 2014/67/EU on the enforcement of Directive 96/71/EC concerning the posting
+                                 of workers in the framework of the provision of services</b>
+                              </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Article</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Objective</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Implementation</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>CHAPTER 1: GENERAL PROVISIONS</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 1: Subject matter</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>1</p>
+                        </td>
+                        <td>
+                           <p>Sets out the subject matter of Directive.</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement explicitly. </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 2: Definitions</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>2</p>
+                        </td>
+                        <td>
+                           <p>Definitions of key terms</p>
+                        </td>
+                        <td>
+                           <p>The Posted Workers (Enforcement of Employment Rights) Regulations (Northern Ireland)
+                              2016 reproduce definition 2(a) at regulation 8. Definitions at 2(b) and (c) are not
+                              required to be specifically implemented. </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 3: Competent authorities and liaison offices</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>3</p>
+                        </td>
+                        <td>
+                           <p>Designating competent authorities and liaison offices</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement explicitly.  The obligation shall be satisfied by communicating
+                              the contact details of the designated competent authorities to the Commission and
+                              other Member States.  </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 4: Identification of a genuine posting and prevention of abuse and circumvention</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>4</p>
+                        </td>
+                        <td>
+                           <p>Identification of a genuine posting and prevention of abuse and circumvention</p>
+                        </td>
+                        <td>
+                           <p>No further implementation beyond present arrangements is required.   The obligation
+                              shall be implemented by the relevant competent authority assessing whether the post
+                              is genuine, in line with the Directive.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>CHAPTER 2: ACCESS TO INFORMATION</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 5: Improved access to information</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>5</p>
+                        </td>
+                        <td>
+                           <p>Access to information</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to incorporate specific implementing measures into domestic legislation.
+                              The relevant information on posted workers in Northern Ireland as well as elsewhere
+                              in the UK will be available online and in a translated format where appropriate.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>CHAPTER 3: ADMINISTRATIVE COOPERATION</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 6: Mutual assistance – general principles</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.1</p>
+                        </td>
+                        <td>
+                           <p>Cooperation and provision of mutual assistance without undue delay between Member
+                              States </p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to incorporate specific implementing measures into domestic legislation.
+                              Great Britain and Northern Ireland will implement this by cooperating with other Member
+                              States and providing mutual assistance without undue delay as required and as specified
+                              below. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.2</p>
+                        </td>
+                        <td>
+                           <p>Cooperation includes replying to reasoned requests for information</p>
+                        </td>
+                        <td>
+                           <p>The Northern Ireland and GB competent authorities will work with the competent authorities
+                              in other Member States within the framework set out in the Directive. The measures
+                              referred to in this Article will be handled by the relevant UK competent authorities
+                              in line with existing enforcement practices </p>
+                           <p>Information will be exchanged between competent authorities using the Internal Market
+                              Information System (IMI).  No new legislation is, therefore, required to implement
+                              this article and an information sharing gateway has been created by Her Majesty’s
+                              Revenue and Customs.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.3</p>
+                        </td>
+                        <td>
+                           <p>Cooperation includes sending and service of documents</p>
+                        </td>
+                        <td>
+                           <p>The relevant competent authority will handle these matters in line with IMI practices
+                              and no new domestic legislation is, therefore, required to implement this Article.
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.4</p>
+                        </td>
+                        <td>
+                           <p>Compliance of service providers with national laws requiring the provision of information
+                              necessary to supervise their activities in compliance with national laws</p>
+                        </td>
+                        <td>
+                           <p>No further implementation required. Legislation already requires service providers
+                              to provide information to check their activities are in compliance with national laws.
+                              </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.5</p>
+                        </td>
+                        <td>
+                           <p>Delays in responding to requests for information</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in Northern Ireland legislation. A Memorandum of Understanding
+                              has been agreed between the competent authorities in the UK (including those in Northern
+                              Ireland) which includes provision to notify the requesting Member State via IMI as
+                              soon as possible.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.6</p>
+                        </td>
+                        <td>
+                           <p>Provision of time limits for responding to requests for information</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in ldomestic legislation. The designated competent authorities
+                              will comply with requirements. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.7</p>
+                        </td>
+                        <td>
+                           <p>Consultation of registers by equivalent competent authorities of other Member States</p>
+                        </td>
+                        <td>
+                           <p>The public registers are already available and no new legislation is required to implement.
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.8</p>
+                        </td>
+                        <td>
+                           <p>Information exchanged only to be used for matter for which it was requested</p>
+                        </td>
+                        <td>
+                           <p>The UK competent authorities (including those in Northern Ireland) are already bound
+                              by these conditions under existing legislation. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.9</p>
+                        </td>
+                        <td>
+                           <p>Mutual cooperation shall be provided free of charge</p>
+                        </td>
+                        <td>
+                           <p>The UK competent authorities (including those in Northern Ireland) will carry out
+                              any work related to the Directive as part of their remit and free of charge. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>6.10</p>
+                        </td>
+                        <td>
+                           <p>Request for information shall not preclude domestic competent authorities taking action</p>
+                        </td>
+                        <td>
+                           <p>No specific implementation necessary. The competent authorities will continue to enforce
+                              under their existing remit and powers.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 7: Role of the Member States in the framework of administrative cooperation</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>7.1</p>
+                        </td>
+                        <td>
+                           <p>Responsibility for inspection of terms and conditions is the responsibility of the
+                              authorities of the host Member State</p>
+                        </td>
+                        <td>
+                           <p>Competent authorities will undertake inspection in accordance with existing practice.
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>7.2</p>
+                        </td>
+                        <td>
+                           <p>Member State of establishment of the service provider shall continue to monitor those
+                              workers posted to another Member State</p>
+                        </td>
+                        <td>
+                           <p>The UK designated competent authorities (including those in Northern Ireland) will
+                              carry out their activities in accordance with existing practice. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>7.3</p>
+                        </td>
+                        <td>
+                           <p>Member State of establishment of the service provider to provide assistance to host
+                              Member State </p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. The competent authorities will comply
+                              with requests as set out in the Memorandum of Understanding as far as existing information
+                              constraints permit. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>7.4</p>
+                        </td>
+                        <td>
+                           <p>Member State to communicate with the Member State concerned on any possible irregularities</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation.   The UK designated competent authorities
+                              (including those in Northern Ireland) will communicate relevant information to the
+                              Member State concerned where irregularities are identified.   </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>7.5</p>
+                        </td>
+                        <td>
+                           <p>Member State of establishment to provide host Member State with information of legality
+                              of service provider’s establishment</p>
+                        </td>
+                        <td>
+                           <p>Further implementation unnecessary.  This information is already available through
+                              the Companies House public register. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>7.6</p>
+                        </td>
+                        <td>
+                           <p>No duty on Member State of establishment to carry out checks on service provider in
+                              host Member State</p>
+                        </td>
+                        <td>
+                           <p>No further implementation necessary. The competent authorities will continue to act
+                              in line with domestic laws and practices.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 8: Accompanying measures</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>8.1</p>
+                        </td>
+                        <td>
+                           <p>Accompanying measures to promote exchange between officials of mutual assistance</p>
+                        </td>
+                        <td>
+                           <p>Officials in the competent authorities will contribute to the development of processes
+                              and cooperate with other Member States and the Commission accordingly.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>8.2</p>
+                        </td>
+                        <td>
+                           <p>Commission assess need for financial support to improve administrative cooperation</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this obligation because it is an obligation on the
+                              European Commission.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>8.3</p>
+                        </td>
+                        <td>
+                           <p>Support for initiatives of social partners</p>
+                        </td>
+                        <td>
+                           <p>No specific implementation required.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p> CHAPTER 4: MONITORING COMPLIANCE</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 9: Administrative requirements and control measures</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>9.1</p>
+                        </td>
+                        <td>
+                           <p>Administrative requirements and control measures which Member States may introduce
+                              for monitoring purposes</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this requirement further. Current domestic laws impose
+                              certain administrative requirements and control measures. </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>9.2</p>
+                        </td>
+                        <td>
+                           <p>Imposition of further administrative requirements if necessary</p>
+                        </td>
+                        <td>
+                           <p>No specific implementation required. The competent authorities will operate using
+                              existing measures but will keep under review the effectiveness of this approach.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>9.3</p>
+                        </td>
+                        <td>
+                           <p>No prejudice to other obligations regarding the protection or employment of workers</p>
+                        </td>
+                        <td>
+                           <p>No new domestic legislation required to implement. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>9.4</p>
+                        </td>
+                        <td>
+                           <p>Procedures for administrative requirements</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. The competent authorities provide
+                              information, advice and processes for undertakings to comply with administrative processes
+                              through the government information portals.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>9.5</p>
+                        </td>
+                        <td>
+                           <p>Communication to the Commission of administrative requirements</p>
+                        </td>
+                        <td>
+                           <p>Northern Ireland and Great Britain will comply with this article by notifying the
+                              Commission and service providers if it applies or implements any of the measures in
+                              articles 9.1 and 9.2. The other obligations in this article are obligations on the
+                              Commission and are therefore not necessary to implement.  </p>
+                           <p>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 10: Inspections</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>10.1 </p>
+                        </td>
+                        <td>
+                           <p>Checks, monitoring and inspections in accordance with national law and practice</p>
+                        </td>
+                        <td>
+                           <p>No further implementation necessary.  Northern Ireland and Great Britain have existing
+                              monitoring regimes for employment rights. </p>
+                           <p>Relevant competent authorities will investigate complaints regarding employment rights
+                              in line with existing domestic legislation.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>10.2</p>
+                        </td>
+                        <td>
+                           <p>Non-discriminatory/non disproportionate inspections and controls</p>
+                        </td>
+                        <td>
+                           <p>No further implementation required. Existing codes of conduct for UK competent authorities
+                              require all inspections to comply with non-discriminatory principles.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>10.3</p>
+                        </td>
+                        <td>
+                           <p>Members States cooperate in sharing of information pursuant to inspections</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this obligation specifically. Implementation measures
+                              in relation to the sharing of information and cooperation are set out under articles
+                              6 and 7.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>10.4</p>
+                        </td>
+                        <td>
+                           <p>Member States may monitor application of relevant terms and conditions of employment
+                              of posted workers</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. The competent authorities will continue
+                              to monitor terms and conditions of employment in line with existing risk-based protocols,
+                              particularly in relation to the national minimum wage. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>10.5</p>
+                        </td>
+                        <td>
+                           <p> Labour inspectorates in Member States    may modify practices for control and monitoring
+                              of working conditions</p>
+                        </td>
+                        <td>
+                           <p>It is not currently the intention to modify practices. The competent authorities will
+                              continue to evaluate the efficacy of their risk-based approach to monitoring terms
+                              and conditions of employment and make modifications in response to emerging threats.
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p> CHAPTER 5: ENFORCEMENT</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 11: Defence of rights, facilitation of complaints, back-payments</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>11.1</p>
+                        </td>
+                        <td>
+                           <p>Ensure mechanisms for posted workers to enforce their statutory rights</p>
+                        </td>
+                        <td>
+                           <p>No further implementation necessary.  Current domestic laws allow for workers posted
+                              to the UK to enforce their rights through the informal and formal mechanisms. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>  11.2 </p>
+                        </td>
+                        <td>
+                           <p>No prejudice to jurisdiction of courts in Member States</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>11.3</p>
+                        </td>
+                        <td>
+                           <p>Trade unions and third parties can engage on behalf of posted workers or employers</p>
+                        </td>
+                        <td>
+                           <p>This is already allowable under current processes and legislation and no further implementation
+                              is necessary.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>11.4</p>
+                        </td>
+                        <td>
+                           <p>Articles 11.1 – 11.3 apply without prejudice to national rules</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement into domestic legislation. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>11.5</p>
+                        </td>
+                        <td>
+                           <p>Posted workers bringing proceedings protected against unfavourable treatment by their
+                              employer</p>
+                        </td>
+                        <td>
+                           <p>No further implementation necessary.  Workers bringing proceedings in Northern Ireland
+                              are protected against unfavourable treatment under existing domestic laws. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>11.6</p>
+                        </td>
+                        <td>
+                           <p>Employer liability for contractual entitlements due to posted workers</p>
+                        </td>
+                        <td>
+                           <p>No further implementation necessary.  Such liability on the employer already exists
+                              under domestic laws.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 12: Subcontracting liability</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>12.1</p>
+                        </td>
+                        <td>
+                           <p>Member States may take additional measures against contractors to tackle fraud and
+                              abuse</p>
+                        </td>
+                        <td>
+                           <p>Following consultation and evidence gathering it has been decided not to take extended
+                              measures.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>12.2</p>
+                        </td>
+                        <td>
+                           <p>Member States must provide for subcontracting liability for posted workers in construction
+                              sector</p>
+                        </td>
+                        <td>
+                           <p>This will be effected by Part 2 of the Posted Workers (Enforcement of Employment Rights)
+                              Regulations (Northern Ireland) 2016.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>12.3</p>
+                        </td>
+                        <td>
+                           <p>Liability of subcontractor limited to worker’s rights acquired under contractual relationship</p>
+                        </td>
+                        <td>
+                           <p>This will be effected by Part 2 of the Posted Workers (Enforcement of Employment Rights)
+                              Regulations (Northern Ireland) 2016.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>  12.4</p>
+                        </td>
+                        <td>
+                           <p>Member States may provide for more stringent liability on scope of subcontracting
+                              liability</p>
+                        </td>
+                        <td>
+                           <p>Following consultation and evidence gathering it has been decided not to take extended
+                              measures.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>  12.5</p>
+                        </td>
+                        <td>
+                           <p>Due diligence defence for contractors is permitted</p>
+                        </td>
+                        <td>
+                           <p>This will be effected by Regulation 5(3) of the Posted Workers (Enforcement of Employment
+                              Rights) Regulations (Northern Ireland) 2016.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>  12.6</p>
+                        </td>
+                        <td>
+                           <p>Other appropriate enforcement measures may be taken against contractors</p>
+                        </td>
+                        <td>
+                           <p>Following consultation and evidence gathering it has been decided not to take extended
+                              measures.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p> 12.7</p>
+                        </td>
+                        <td>
+                           <p>Member States to inform the Commission of measures taken under this Article.  </p>
+                        </td>
+                        <td>
+                           <p>This obligation will be satisfied by providing any such information that is requested,
+                              subject to information constraints. <b></b></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>12.8</p>
+                        </td>
+                        <td>
+                           <p>Commission monitoring application of this Article</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this obligation because it is an obligation on the
+                              European Commission.   </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p> CHAPTER 6: CROSS-BORDER ENFORCEMENT OF FINANCIAL ADMINISTRATIVE    PENALTIES AND/OR
+                              FINES</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 13: Scope</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>13.1</p>
+                        </td>
+                        <td>
+                           <p>Mutual assistance includes cross-border enforcement of financial administrative penalties
+                              and/or fines imposed on service providers established in a Member State </p>
+                        </td>
+                        <td>
+                           <p>No specific implementation required. The Posted Workers (Enforcement of Employment
+                              Rights) Regulations (Northern Ireland) 2016 reflect the scope of this article.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p> 13.2</p>
+                        </td>
+                        <td>
+                           <p>Application of Chapter 6</p>
+                        </td>
+                        <td>
+                           <p>No specific implementation required.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 14: Designation of the competent authorities</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>14</p>
+                        </td>
+                        <td>
+                           <p>Notification through IMI of relevant authorities for this Chapter</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. The relevant competent authorities
+                              as designated are party to notification via IMI notifications as set out in the Memorandum
+                              of Understanding. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 15: General principles – mutual assistance and recognition </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>15.1</p>
+                        </td>
+                        <td>
+                           <p>Requested authority shall recover penalty/fine or notify decision imposing penalty/fine</p>
+                        </td>
+                        <td>
+                           <p>This will be effected by Regulation 8 of the Posted Workers (Enforcement of Employment
+                              Rights) Regulations (Northern Ireland) 2016 and implementation by administrative means.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>15.2</p>
+                        </td>
+                        <td>
+                           <p>Requirements on requesting authority before making request for recovery</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement explicitly. These are administrative measures and will be
+                              complied with as set out in the IMI administration protocol. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>15.3</p>
+                        </td>
+                        <td>
+                           <p> Requested authority take necessary measures to recover penalty/fine</p>
+                        </td>
+                        <td>
+                           <p>This will be effected by Regulation 8 of the Posted Workers (Enforcement of Employment
+                              Rights) Regulations (Northern Ireland) 2016 and implementation by administrative means.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>15.4</p>
+                        </td>
+                        <td>
+                           <p>For recovery/notification of penalty/fine, requested authority to act in accordance
+                              with national laws </p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 16: Request for recovery or notification</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>16.1</p>
+                        </td>
+                        <td>
+                           <p>Requirements for detail for request or notification of penalty/fine</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. The requirement shall be implemented
+                              as and when a request is made.   </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>16.2</p>
+                        </td>
+                        <td>
+                           <p>Further notification requirements </p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. The requirement shall be implemented
+                              as and when a request is made.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>16.3</p>
+                        </td>
+                        <td>
+                           <p>Requested authority take necessary steps to notify service provider and inform requesting
+                              authority</p>
+                        </td>
+                        <td>
+                           <p>Regulation 8 of the Posted Workers (Enforcement of Employment Rights) Regulations
+                              (Northern Ireland) 2016. Also implemented by the competent authorities notifying the
+                              requested authorities of action taken or grounds of refusal. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 17: Grounds for refusal</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>17</p>
+                        </td>
+                        <td>
+                           <p>Grounds for refusal by requested authority for recovery/notification of penalty/fine</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic as it will be implemented by the competent authorities
+                              only refusing a request on these grounds.  </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 18: Suspension of the procedure</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>18.1</p>
+                        </td>
+                        <td>
+                           <p>Suspension of recovery or notification if underlying claim challenged or appealed
+                              by service provider</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. This is an administrative requirement
+                              which the competent authorities will comply with. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>18.2</p>
+                        </td>
+                        <td>
+                           <p>Handling of disputes concerning enforcement measures in requested Member State</p>
+                        </td>
+                        <td>
+                           <p>No further implementation required. Existing domestic national laws and practice set
+                              out appeal processes. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 19: Costs</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>19.1</p>
+                        </td>
+                        <td>
+                           <p>Amounts recovered shall accrue to the requested authority. </p>
+                        </td>
+                        <td>
+                           <p>Regulation 8(4) of the Posted Workers (Enforcement of Employment Rights) Regulations
+                              (Northern Ireland) 2016. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>19.2</p>
+                        </td>
+                        <td>
+                           <p>Member States will not claim costs from each other arising from mutual assistance</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to explicitly implement in domestic laws. The obligation shall be complied
+                              with by UK competent authorities. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>CHAPTER 7: FINAL PROVISIONS</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 20: Penalties</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>20</p>
+                        </td>
+                        <td>
+                           <p>Member States prescribe rules on penalties for infringements of national provisions
+                              adopted pursuant to the Directive</p>
+                        </td>
+                        <td>
+                           <p>No further implementation required.  Domestic legislation already provides for penalties
+                              for an employer’s failure to pay the minimum wage.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 21: Internal Market Information System</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>21.1</p>
+                        </td>
+                        <td>
+                           <p>Administrative cooperation in Articles 6, 7, 10(3) and 14-18 implemented through IMI</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement in domestic legislation. The UK competent authorities will
+                              use the IMI as set out in the Memorandum of Understanding. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>21.2</p>
+                        </td>
+                        <td>
+                           <p>Provision of bilateral agreements for cooperation between competent authorities in
+                              Member States</p>
+                        </td>
+                        <td>
+                           <p>The UK does not currently have any bilateral agreements in place but will consider
+                              putting these in place if deemed necessary. If it does so it shall notify the Commission
+                              in accordance with the obligation. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>21.3</p>
+                        </td>
+                        <td>
+                           <p>Use IMI in context of any bilateral agreements</p>
+                        </td>
+                        <td>
+                           <p>The UK has no such agreements and has no current plans to put any in place. No new
+                              legislation required to implement.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 22: Amendment to Regulation (EU) No 1024/2012</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>22</p>
+                        </td>
+                        <td>
+                           <p>Amendment to Regulation (EU) No 1024/2012</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this obligation as it operates at EU level. No new
+                              legislation required to implement. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 23: Transposition</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>23.1</p>
+                        </td>
+                        <td>
+                           <p>Member States bring into force laws and administrative provisions to implement the
+                              Directive by 18 June 2016</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this obligation explicitly. The obligation is satisfied
+                              by implementing on time. The Posted Workers (Enforcement of Employment Rights) Regulations
+                              (Northern Ireland) 2016 come into operation on 18 June 2016.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>23.2</p>
+                        </td>
+                        <td>
+                           <p>Communication with Commission of measures of national law</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this obligation explicitly. This obligation shall
+                              be satisfied by notifying the Commission of the Posted Workers (Enforcement of Employment
+                              Rights) Regulations (Northern Ireland) 2016. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 24: Review</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>24.1</p>
+                        </td>
+                        <td>
+                           <p>Commission to review Directive no later than 18 June 2019</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement as this is an obligation on the Commission. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>24.2</p>
+                        </td>
+                        <td>
+                           <p>Content of Commission’s review</p>
+                        </td>
+                        <td>
+                           <p>Unnecessary to implement as this is an obligation on the Commission. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 25: Entry into force</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>25</p>
+                        </td>
+                        <td>
+                           <p>Entry into force of Directive</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this obligation as it operates at EU level. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Article 26: Addressees</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>26</p>
+                        </td>
+                        <td>
+                           <p>Addressees of Directive</p>
+                        </td>
+                        <td>
+                           <p>It is not necessary to implement this provision. </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Department for the Economy</b>
+                  </p>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

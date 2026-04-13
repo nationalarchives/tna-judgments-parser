@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -328,11 +337,11 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </p>
                      <table>
                         <colgroup>
-                           <col style="width:0.98in">
-                           <col style="width:0.98in">
-                           <col style="width:0.89in">
-                           <col style="width:1.08in">
-                           <col style="width:1.08in">
+                           <col style="width:19.56%">
+                           <col style="width:19.56%">
+                           <col style="width:17.76%">
+                           <col style="width:21.56%">
+                           <col style="width:21.56%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -1561,34 +1570,44 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <section class="level">
                   <table>
                      <colgroup>
-                        <col style="width:1.52in">
-                        <col style="width:0.9in">
-                        <col style="width:1.09in">
-                        <col style="width:1.09in">
-                        <col style="width:1.5in">
+                        <col style="width:24.92%">
+                        <col style="width:14.75%">
+                        <col style="width:17.87%">
+                        <col style="width:17.87%">
+                        <col style="width:24.59%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p></p>
-                           <p>
-                              <b>Provision</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to England?</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to Wales?</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Extends and applies to Scotland?</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Extends and applies to Northern Ireland?</b>
-                              </p>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td>
@@ -1776,24 +1795,30 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act’s passage through Parliament.</p>
                   <table>
                      <colgroup>
-                        <col style="width:2.04in">
-                        <col style="width:2.07in">
-                        <col style="width:1.97in">
+                        <col style="width:33.55%">
+                        <col style="width:34.05%">
+                        <col style="width:32.4%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p></p>
-                           <p>
-                              <b>Stage</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Date</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Hansard Reference</b>
-                              </p>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td colspan="3">
@@ -2084,29 +2109,37 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      of the Bill through Parliament. </p>
                   <table>
                      <colgroup>
-                        <col style="width:1.45in">
-                        <col style="width:1.58in">
-                        <col style="width:1.77in">
-                        <col style="width:1.77in">
+                        <col style="width:22.07%">
+                        <col style="width:24.05%">
+                        <col style="width:26.94%">
+                        <col style="width:26.94%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p></p>
-                           <p>
-                              <b>Section in the Act</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Bill as Introduced in the Commons</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Bill as introduced in the Lords</b>
-                              </p>
-                           <p></p>
-                           <p>
-                              <b>Bill as amended at Report in the Lords</b>
-                              </p>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Section in the Act</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Bill as Introduced in the Commons</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Bill as introduced in the Lords</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                              <p>
+                                 <b>Bill as amended at Report in the Lords</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td>

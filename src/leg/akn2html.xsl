@@ -171,27 +171,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface &gt; p {
+article[data-doc-type='ExplanatoryNotes'] .preface &gt; p,
+article[data-doc-type='CodeOfPractice'] .preface &gt; p,
+article[data-doc-type='TranspositionNote'] .preface &gt; p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section &gt; h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section &gt; h2,
+article[data-doc-type='CodeOfPractice'] section.section &gt; h2,
+article[data-doc-type='TranspositionNote'] section.section &gt; h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level &gt; p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level &gt; p:only-child &gt; b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level &gt; p:only-child &gt; b:only-child,
+article[data-doc-type='TranspositionNote'] section.level &gt; p:only-child &gt; b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -334,9 +343,13 @@ article[data-doc-type='ExplanatoryNotes'] section.level &gt; p:first-child:has(b
 			</xsl:attribute>
 		</xsl:if>
 		<xsl:if test="exists(@uk:widths)">
+			<xsl:variable name="widths" as="xs:string*" select="tokenize(@uk:widths, ' ')" />
+			<xsl:variable name="total-in" as="xs:double"
+				select="sum(for $w in $widths return xs:double(replace($w, '[^0-9.]', '')))" />
 			<colgroup>
-				<xsl:for-each select="tokenize(@uk:widths, ' ')">
-					<col style="width:{.}" />
+				<xsl:for-each select="$widths">
+					<xsl:variable name="w-in" as="xs:double" select="xs:double(replace(., '[^0-9.]', ''))" />
+					<col style="width:{round($w-in div $total-in * 10000) div 100}%" />
 				</xsl:for-each>
 			</colgroup>
 		</xsl:if>
@@ -346,7 +359,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level &gt; p:first-child:has(b
 	</table>
 </xsl:template>
 
-<xsl:template match="tr | td">
+<xsl:template match="tr | td | th">
 	<xsl:element name="{ local-name() }">
 		<xsl:copy-of select="@*" />
 		<xsl:apply-templates />

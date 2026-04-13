@@ -1,0 +1,2185 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="TranspositionNote">
+         <div class="preface">
+            <p>Annex 1</p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>TRANSPOSITION NOTE FOR COUNCIL DIRECTIVE 2001/110/EC RELATING TO HONEY (AS AMENDED)</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>(DIRECTIVE TO DOMESTIC REGULATIONS)</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>This Note shows how the requirements of Council Directive 2001/110/EC relating to
+                  honey (“the Honey Directive”), as last amended by Directive 2014/63/EU of the European
+                  Parliament and the Council, have been implemented in England. </p>
+            </section>
+            <section class="level">
+               <p>As well as the provisions of the Honey Directive, Regulation (EU) No 1169/2011 of
+                  the European Parliament and of the Council on the provision of food information to
+                  consumers applies to the products regulated by the Honey Directive. The name of food
+                  provisions in Article 17 of Regulation (EU) No 1169/2011 will apply. The names of
+                  products prescribed by the Honey Directive are legal names for the purposes of Article
+                  17(1) of the Regulation (EU) No 1169/2011. The requirements relating to the availability,
+                  placement and presentation of mandatory particulars will apply to the particulars
+                  that are mandatory under the Honey Directive. Article 8 of Regulation (EU) No 1169/2011
+                  contains provisions regulating the information that businesses must provide when selling
+                  food to other businesses. This includes, for example, an obligation to provide sufficient
+                  information to those businesses to enable mandatory food information to be provided
+                  to the final consumer and mass caterers when food is eventually sold to them. Enforcement
+                  provisions relating to the provisions of Regulation (EU) No 1169/2011 are contained
+                  in the Food Information Regulations 2014 (S.I. 2014/1855).</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Approach of the Regulations</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>The Honey Directive was originally implemented in England by the Honey (England) Regulations
+                  2003 (S.I. 2003/2243) (“the 2003 Regulations”). However, the 2003 Regulations have
+                  been amended by the Honey (Amendment) (England) Regulations 2005 (S.I. 2005/1920)
+                  and the Food Information Regulations 2014. Now that the Honey Directive has been amended
+                  (by Directive 2014/63/EU), it has decided to replace the 2003 Regulations with updated
+                  domestic Regulations which implement the Honey Directive, as amended by Directive
+                  2014/63/EU. </p>
+            </section>
+            <section class="paragraph">
+               <p>The requirements of the Honey Directive, as amended, will be implemented by the Honey
+                  (England) Regulations 2015 (“the 2015 Regulations”) as follows:</p>
+               <table>
+                  <colgroup>
+                     <col style="width:10.14%">
+                     <col style="width:32.06%">
+                     <col style="width:29%">
+                     <col style="width:28.8%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <th>
+                           <p></p>
+                           <p>Article in the Honey Directive</p>
+                           <p></p>
+                        </th>
+                        <th>
+                           <p></p>
+                           <p>Objective</p>
+                        </th>
+                        <th>
+                           <p></p>
+                           <p>Provision in the Honey (England) Regulations 2015</p>
+                        </th>
+                        <th>
+                           <p></p>
+                           <p>Comment</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 1, first sentence)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Specifies the products to which the Directive applies</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>No specific provision</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>This forms of the basis of the whole of the 2015 Regulations – it runs throughout
+                              the provisions. </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 1, second sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Requirement for the regulated products to meet the criteria set out in Annex II</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 16</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, introductory words</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Application of Directive 2000/13/EC</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>For the most part nothing is needed.</p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p>Regulation 4</p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>
+                              <b>Direct applicability of the provisions of Regulation (EU) No 1169/2011</b>
+                              </p>
+                           <p></p>
+                           <p>Directive 2000/13/EC was repealed by Regulation (EU) No 1169/2011 of the European
+                              Parliament and of the Council on the provision of food information to consumers on
+                              13th December 2014.</p>
+                           <p></p>
+                           <p>By virtue of Article 53(2) of Regulation (EU) No 1169/2011, references to Directive
+                              2000/13/EC in the Honey Directive are now treated as references to Regulation (EU)
+                              No 1169/2011. </p>
+                           <p></p>
+                           <p>The provisions of Regulation (EU) No 1169/2011 are directly applicable. They are enforced,
+                              in England, under the Food Information Regulations 2014 (S.I. 2014/1855).</p>
+                           <p></p>
+                           <p></p>
+                           <p>
+                              <b>Limited scope</b>
+                              </p>
+                           <p>The opening words of Article 2 of the Honey Directive state that Article 2000/13/EC
+                              is to apply to the Annex I products. The 2000/13/EC reference must, as explained above,
+                              be construed as a 1169/2011 reference now. </p>
+                           <p></p>
+                           <p>As Regulation (EU) No 1169/2011 only applies (at least for the most part) to food
+                              intended for supply to a final consumer or mass caterer, then (because of the opening
+                              words of Article 2 of the Honey Directive) so should our domestic legislation implementing
+                              the Honey Directive. This implemented by regulation 4 and this approach to scope mirrors
+                              the approach taken in the Honey (England) Regulations 2003. </p>
+                           <p></p>
+                           <p>Not all of the provisions of the Honey Directive are only intended to apply the food
+                              intended for supply to a final consumer or mass caterers. Some provisions are of wider
+                              scope. This is why the scope provision in regulation 4(1) of the 2015 Regulations
+                              is limited to the provisions of the 2015 Regulations listed in (a) to (c) of that
+                              paragraph.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Restricting the use of the term “honey” as a product name</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 6(1), (2) and (3)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 2, first sub-paragraph, first sentence</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulating the use of product names – requiring the names to be used for regulated
+                              products and prohibiting those names from being used for other products</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>
+                              <b>For blossom honey and nectar honey:</b>
+                              </p>
+                           <p>Regulation 7(1) and (2)</p>
+                           <p></p>
+                           <p>
+                              <b>For honeydew honey:</b>
+                              </p>
+                           <p>Regulation 8(1) and (2)</p>
+                           <p></p>
+                           <p>
+                              <b>For comb honey:</b>
+                              </p>
+                           <p>Regulation 9(1) and (2)</p>
+                           <p></p>
+                           <p>
+                              <b>For chunk honey and cut comb in honey:</b>
+                              </p>
+                           <p>Regulation 10(1) and (2)</p>
+                           <p></p>
+                           <p>
+                              <b>For drained honey:</b>
+                              </p>
+                           <p>Regulation 11(1) and (2)</p>
+                           <p></p>
+                           <p>
+                              <b>For extracted honey:</b>
+                              </p>
+                           <p>Regulation 12(1) and (3)</p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p>
+                              <b>For pressed honey:</b>
+                              </p>
+                           <p>Regulation 13(1) and (2)</p>
+                           <p></p>
+                           <p>
+                              <b>For filtered honey:</b>
+                              </p>
+                           <p>Regulation 14(1) and (2)</p>
+                           <p></p>
+                           <p>
+                              <b>For baker’s honey:</b>
+                              </p>
+                           <p>Regulation 15(1) and (2)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 2, first sub-paragraph, second sentence</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Permitting the use of the simple product name “honey” in the case of some of the regulated
+                              products</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>
+                              <b>For blossom honey and nectar honey:</b>
+                              </p>
+                           <p>Regulation 7(1)</p>
+                           <p></p>
+                           <p>
+                              <b>For honeydew honey:</b>
+                              </p>
+                           <p>Regulation 8(1)</p>
+                           <p></p>
+                           <p>
+                              <b>For drained honey:</b>
+                              </p>
+                           <p>Regulation 11(1)</p>
+                           <p></p>
+                           <p>
+                              <b>For extracted honey:</b>
+                              </p>
+                           <p>Regulation 12(1)</p>
+                           <p></p>
+                           <p>
+                              <b>For pressed honey:</b>
+                              </p>
+                           <p>Regulation 13(1)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 2, second sub-paragraph, paragraph (a) </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Additional labelling requirement for baker’s honey </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 15(4)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 2, second sub-paragraph, paragraph (b)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Allowing supplemental information to be provided relating to floral or vegetable origin,
+                              regional, territorial or topographical origin and specific quality criteria but not
+                              in the case of filtered honey and baker’s honey</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 17(2), (3), (4) and (5)</p>
+                           <p></p>
+                           <p>Filtered honey exclusion:</p>
+                           <p>Regulation 14(3)</p>
+                           <p></p>
+                           <p>Baker’s honey exclusion:</p>
+                           <p>Regulation 15(3)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 3, first sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Permitting the use of the simple product name “honey” in the product name of a compound
+                              food in which baker’s honey has been used as an ingredient </p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 15(6)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 3, second sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Requirement that baker’s honey is identified as ‘baker’s honey’ in the list of ingredients
+                              of a compound food in a case where baker’s honey has been used as an ingredient in
+                              the compound food but the name ‘honey’ is used in the product name of the compound
+                              food  (as permitted by the first sentence of point 3 of Article 2)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 15(7)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 4(a)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Mandatory requirement for an indication of the country or countries of origin of honey
+                              to be given on the label </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 17(1)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 4(b)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Provision requiring the mandatory country of origin indication to be considered as
+                              a mandatory indication under Article 3 of  Directive 2000/13/EC and for the relevant
+                              provisions of Directive 2000/13/EC to be applied accordingly</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need direct implementation in the 2015 Regulations themselves but regulation
+                              21 of the 2015 Regulations, as read with paragraphs 1 and 2 of Schedule 3 to those
+                              Regulations, makes a consequential amendment to the Food Information Regulations 2014
+                              to implement the provision. </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Directive 2000/13/EC was repealed by Regulation (EU) No 1169/2011.</p>
+                           <p></p>
+                           <p>By virtue of Article 53(2) of Regulation (EU) No 1169/2011, references to Directive
+                              2000/13/EC in the Honey Directive are now treated as references to Regulation (EU)
+                              No 1169/2011. </p>
+                           <p></p>
+                           <p>The provisions in Article 12 Regulation (EU) No 1169/2011 relating to the availability
+                              and placement of mandatory food information, and the provisions of Article 13(1) of
+                              that Regulation relating to the presentation of mandatory food information, apply,
+                              by virtue of Regulation (EU) No 1169/2011,  to the presentation of mandatory food
+                              information. </p>
+                           <p></p>
+                           <p>‘Mandatory food information’ is defined as meaning ‘the particulars that are required
+                              to be provided to the final consumer by Union provisions’. These will include the
+                              country of origin indication that is required to be provided under point 4(a) of Article
+                              2 of the Honey Directive. </p>
+                           <p></p>
+                           <p>Enforcement provisions enabling compliance with Articles 12 and 13(1) of Regulation
+                              (EU) No 1169/2011 to be enforced in England are contained in the Food Information
+                              Regulations 2014. </p>
+                           <p></p>
+                           <p></p>
+                           <p></p>
+                           <p>This is the position for all mandatory food information. </p>
+                           <p></p>
+                           <p>However, there is an additional element in relation to the country of origin information
+                              required by the Honey Directive. Not only must that country of origin information
+                              be treated as ‘mandatory food information’, it must be treated as if it was mandatory
+                              food information required by Article 9 of Regulation (EU) No 1169/2011 (in succession
+                              to Article 3 of Directive 2000/13/EC).  This makes a difference when it comes to the
+                              minimum font size that must be used for that country of origin information.</p>
+                           <p></p>
+                           <p>The 2015 Regulations amend the Food Information Regulations 2014 so  that the country
+                              of origin indication must is treated in the same way as mandatory particulars required
+                              by Article 9(1). This means that the minimum font size provisions in Article 13(2)
+                              and (3) of Regulation (EU) No 1169/2011 apply to them. The consequential amendments
+                              made by regulation 21 of the 2015 Regulations as read with paragraphs 1 and 2 of Schedule
+                              3 to the Regulations, have this effect.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2, point 5</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Exclusion of pollen from the definition of ingredient set out in point (f) of Article
+                              2(2) of Regulation (EU) No 1169/2011 of the European Parliament and of the Council.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 3(1)  - definition of “ingredient”</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 3</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Requirement for indication of the full product name to be given on bulk containers,
+                              packs and trade documents in the case of baker’s honey and filtered honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>
+                              <b>For filtered honey:</b>
+                              </p>
+                           <p>Regulation 14(4)</p>
+                           <p></p>
+                           <p>
+                              <b>For baker’s honey:</b>
+                              </p>
+                           <p>Regulation 15(5)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Please also see the supporting definitions of “bulk containers”, “packs” and “trade
+                              documents” in regulation 3(1).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 4(1)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Commission power to make implementing acts relating to methods of analysis to verify
+                              whether honey is compliant with the provisions of the Honey Directive</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need transposition – the Commission has not made any relevant implementing
+                              acts</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Member States are required to comply with method of analysis provisions in Article
+                              4(1) until the Commission adopts implementing acts. </p>
+                           <p></p>
+                           <p>Article 11  of Regulation (EC) No 882/2004 of the European Parliament and of the Council
+                              on official controls performed to ensure the verification of compliance with feed
+                              and food law etc. also contains methods of analysis provisions and is directly applicable.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 4(2)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Commission power to make delegated acts</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need to be transposed  into domestic legislation</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 5</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Prohibition on national provisions not provided for by the Honey Directive</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The 2015 Regulations do not contain any substantive national provisions not provided
+                              for by the Honey Directive.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The 2015 Regulations contain additional provisions concerning the enforcement of the
+                              provisions in the Honey Directive. Those type of national provisions are not prohibited
+                              by Article 5 of the Honey Directive and are required in order to give proper effect
+                              to the Honey Directive.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 6</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Conditions applying to the Commission power to make delegated acts </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need to be transposed  into domestic legislation</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 7</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Imposition of an obligation on the Standing Committee on the Food Chain and Animal
+                              Health to assist the Commission in the process of adopting implementing acts</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need to be transposed  into domestic legislation</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 8</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Repeal of Directive 74/409/EEC</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need to be transposed  into domestic legislation</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The references to the Honey Directive in the 2015 Regulations are references to Directive
+                              2001/110/EC.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 9, first sub-paragraph</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Imposition of obligation on Member States to implement the provisions of the Directive</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The 2015 Regulations implement Directive 2001/110/EC, as amended by Directive 2014/63/EU.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The Honey Directive was previously implemented by the Honey (England) Regulations
+                              2003. </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 9, second and third sub-paragraphs</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Application of transitional provisions</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 22 contains transitional provisions in line with Article 2 and 3 of Directive
+                              2014/63/EC.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 9, fourth sub-paragraph</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Imposition of obligation on Member States for the measure implementing the Honey Directive
+                              to contain or be accompanied by a reference to the Honey Directive</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The first paragraph of  the Explanatory Note for the 2015 Regulations contains a statement
+                              that the Regulations implement the Honey Directive.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 10</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry into force provisions</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 1(1) provides that the 2015 Regulations come into force on 24th June 2015.
+                              </p>
+                           <p></p>
+                           <p>The 2015 Regulations revoke the 2003 Regulations on that date.</p>
+                           <p></p>
+                           <p>By virtue of Article 2 of Directive 2014/63/EU, the amendments effected by Directive
+                              2014/63/EU must be implemented by 24th June 2015.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 11</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Addressed to Member States </p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need to be transposed  into domestic legislation.</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I</p>
+                           <p></p>
+                        </td>
+                        <td colspan="3">
+                           <p></p>
+                           <p>Names, product descriptions and definitions</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 1 </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “honey”</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(1)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(a) (i)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of  “blossom honey” or “nectar honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(a) (ii)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “honeydew honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(b)(iii)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “comb honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(b)(iv)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “chunk honey” or “cut comb in honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(b)(v)</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “drained honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(b)(vi)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “extracted honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2))</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(b)(vii)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “pressed honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 2(b)(viii)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “filtered honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex I, point 3</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Definition of “baker’s honey”</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 2(2)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II</p>
+                           <p></p>
+                        </td>
+                        <td colspan="3">
+                           <p></p>
+                           <p>Compositional criteria for honey </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, first paragraph, first sentence</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Essential components of honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraph 1 of Schedule 1 </p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, first paragraph, second sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Colour of honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraph 2 Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, first paragraph, third sentence</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Consistency of honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraph 3 of Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, first paragraph, fourth sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Flavour and aroma of honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraph 4 of Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, second paragraph, first sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Prohibition of additions other than honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraphs 5 and 6 of Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, second paragraph, second sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Prohibition of foreign matters in honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraph 7 of Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, second paragraph, third sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Provisions for the condition of honey (except for baker’s honey)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraphs 8 and 9 of Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, third paragraph</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Prohibition on the removal of pollen and other constituent particulars in honey (except
+                              in filtered honey)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraphs 10 and 11 of Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Detailed compositional  criteria for honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Paragraph 12 of Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Sugar content</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 1 of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1.1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Fructose and glucose content (sum of both)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 1(1) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1.1, first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Blossom honey</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 1(1)(a) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1.1, second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Honeydew honey, blends of honeydew honey with blossom honey</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 1(1)(b) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1.2 </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Sucrose content</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry1(2) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1.2, first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>In general</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 1(2)(a) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1.2, second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>False acacia (<i>Robinia pseudoacacia</i>), alfalfa (<i>Medicago sativa</i>), Menzies Banksia (<i>Banksia menziesii</i>), French honeysuckle (<i>Hedysarum</i>), red gum (<i>Eucalyptus camadulensis</i>), leatherwood (<i>Eucryphia lucida</i>, <i>Eucryphia milliganii</i>), <i>Citrus</i> spp.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 1(2)(b) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 1.2, third indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Lavender and borage</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 1(2)(c) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 2</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Moisture content</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 2 of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 2, first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>In general</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 2(a) of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 2, second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Heather (<i>Calluna</i>) and baker’s honey in general</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entries 2(b) and (c) of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 2, third indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Baker’s honey from heather (<i>Calluna</i>)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 2(d) of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 3</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Water-insoluble content</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 3 of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 3, first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>In general</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 3(a) of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 3, second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Pressed honey</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 3(b) of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 4</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Electrical conductivity</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 4 of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 4, first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Honey not listed below, and blends of these honeys</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 4(a) and (b) of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 4, second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Honeydew and chestnut honey and blends of these except with those listed below</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 4(c), (d), (e) and (f) of the paragraph 12 table in Schedule 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 4, third indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Exceptions</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 4(a), (d) and (f) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 5</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Free acid</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 5 of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 5, first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>In general</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 5(a) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 5, second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Baker’s honey</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 5(b) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 6</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Diastase activity and hydroxymethylfurfural content (HMF) determined after processing
+                              and blending</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 6 of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 6(a)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Diastase activity (Schade scale)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 6(a) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 6(a), first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>In general, except baker’s honey</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 6(a)(i) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 6(a), second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Honeys with low natural enzyme content (e.g. citrus honeys) and an HMF content of
+                              not more than 15mg/kg</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 6(a)(ii) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 6(b)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>HMF</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 6(b) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 6(b), first indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>In general, except baker's honey</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 6(b)(i) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>‘Subject to’ wording not included because it has no substantive legal value and only
+                              text with a legal purpose can be included in the Regulations.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Annex II, fourth paragraph,</p>
+                           <p>point 6(b), second indent</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Honeys of declared origin from regions with tropical climate and blends of these honeys</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry 6(b)(ii) of the paragraph 12 table in Schedule 1</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="paragraph">
+               <p>Additional requirements of Directive 2014/63/EU (amending the Honey Directive), i.e.
+                  insofar as its provisions do not relate to direct amendments made to the Honey Directive:</p>
+               <table>
+                  <colgroup>
+                     <col style="width:20.36%">
+                     <col style="width:9.83%">
+                     <col style="width:31.22%">
+                     <col style="width:38.58%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article in Directive 2014/63/EU</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Objective</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Provision in the Honey (England) Regulations 2015</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Comments</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Amends the Honey Directive</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>See the previous table</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2(1), first sub-paragraph, first sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Obligation to transpose</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The provisions of the Honey (England) Regulations 2015 implement the Directive provisions.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2(1), first sub-paragraph, second sentence</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Notification of text to Commission</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Not for the text of the 2015 Regulations</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>DEFRA policy colleagues will notify the Commission of the implementation.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2(1), second sub-paragraph</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Reference to Directive</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The first paragraph of  the Explanatory Note for the 2015 Regulations contains a statement
+                              that the Regulations implement the Honey Directive.</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 2(2)</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Application date</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 1(1) (coming into force date)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 3</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Transitional measures</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Regulation 22</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 4</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Entry in force</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need to be transposed into domestic legislation</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>The 2015 Regulations come into force on 24h June 2015, which is the implementation
+                              date for  Directive 2014/63/EU.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>Article 5</p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Addressed to Member States</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                           <p>Does not need to be transposed into domestic legislation</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

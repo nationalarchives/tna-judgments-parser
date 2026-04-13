@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -4173,688 +4182,1098 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      out in more detail.<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
                   <table>
                      <colgroup>
-                        <col style="width:2.77in">
-                        <col style="width:0.69in">
-                        <col style="width:0.69in">
-                        <col style="width:0.69in">
-                        <col style="width:0.95in">
+                        <col style="width:47.84%">
+                        <col style="width:11.92%">
+                        <col style="width:11.92%">
+                        <col style="width:11.92%">
+                        <col style="width:16.41%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Provision</b>
-                              </p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to England?</b>
-                              </p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to Wales?</b>
-                              </p>
-                           <p>
-                              <b>Extends and applies to Scotland?</b>
-                              </p>
-                           <p>
-                              <b>Extends and applies to Northern Ireland?</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Part 1 Security</b>
-                              </p>
-                           <p></p>
-                           <p></p>
-                           <p></p>
-                           <p></p>
+                           <th>
+                              <p>
+                                 <b>Part 1 Security</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 1 &amp; Schedule 1 - Duty to notify member States of convictions </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 1 &amp; Schedule 1 - Duty to notify member States of convictions </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 2 - Retention of information received from member States</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 2 - Retention of information received from member States</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 3 - Transfers to third countries of personal data notified under section 2</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 3 - Transfers to third countries of personal data notified under section 2</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 4 - Requests for information from member States</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 4 - Requests for information from member States</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 5 - Requests for information made by member States</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 5 - Requests for information made by member States</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 6 - Interpretation of the criminal records provisions</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 6 - Interpretation of the criminal records provisions</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 7 &amp; Schedule 2 - Passenger name record data</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 7 &amp; Schedule 2 - Passenger name record data</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 8 - Disclosure of vehicle registration data </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 8 - Disclosure of vehicle registration data </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 9 &amp; Schedule 3 - Mutual assistance in criminal matters</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 9 &amp; Schedule 3 - Mutual assistance in criminal matters</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 10 - Accreditation of foreign service providers</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 10 - Accreditation of foreign service providers</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 11 - Member States to remain category 1 territories</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 11 - Member States to remain category 1 territories</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 12 - Dual criminality</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 12 - Dual criminality</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 13 - Category 1 territories not applying Trade and Cooperation Agreement to
-                                 old cases</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 13 - Category 1 territories not applying Trade and Cooperation Agreement to
+                                    old cases</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Part 2 Trade and other matters</b>
-                              </p>
-                           <p></p>
-                           <p></p>
-                           <p></p>
-                           <p></p>
+                           <th>
+                              <p>
+                                 <b>Part 2 Trade and other matters</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 14 - Disclosure of non-food product safety information from Europe within
-                                 UK </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 14 - Disclosure of non-food product safety information from Europe within
+                                    UK </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 15 - Disclosure of non-food product safety information to Commission </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 15 - Disclosure of non-food product safety information to Commission </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 16 - Offence relating to disclosure under section 14(4)(b)</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 16 - Offence relating to disclosure under section 14(4)(b)</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 14 - General provisions about disclosure of non-food product safety information</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 14 - General provisions about disclosure of non-food product safety information</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 18 - Interpretation of sections 14 to 17</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 18 - Interpretation of sections 14 to 17</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 19 &amp; Schedule 4 - Use of relevant international standards</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 19 &amp; Schedule 4 - Use of relevant international standards</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 20 - Disclosure of information and co-operation with other customs services
-                                 </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 20 - Disclosure of information and co-operation with other customs services
+                                    </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 21 - Powers to make regulations about movement of goods</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 21 - Powers to make regulations about movement of goods</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 22 - Administrative co-operation on VAT and mutual assistance on tax debts</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 22 - Administrative co-operation on VAT and mutual assistance on tax debts</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 23 - Licences for access to the international road haulage market</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 23 - Licences for access to the international road haulage market</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 24 - International road haulage </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 24 - International road haulage </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 25 - Disclosure of data relating to drivers' cards for tachographs</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 25 - Disclosure of data relating to drivers' cards for tachographs</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 26 - Social security co-ordination</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 26 - Social security co-ordination</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 27 - The EU and Euratom and related organisations and bodies</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 27 - The EU and Euratom and related organisations and bodies</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 28 - Nuclear Cooperation Agreement</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 28 - Nuclear Cooperation Agreement</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Part 3 General Implementation</b>
-                              </p>
-                           <p></p>
-                           <p></p>
-                           <p></p>
-                           <p></p>
+                           <th>
+                              <p>
+                                 <b>Part 3 General Implementation</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
+                           <th>
+                              <p></p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 29 - General implementation of agreements</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 29 - General implementation of agreements</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 30 - Interpretation of agreements</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 30 - Interpretation of agreements</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 31 - Implementation power</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 31 - Implementation power</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 32 - Powers relating to the start of agreements </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 32 - Powers relating to the start of agreements </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 33 - Powers relating to the functioning of agreements </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 33 - Powers relating to the functioning of agreements </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 34 - Funding of PEACE PLUS programme</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 34 - Funding of PEACE PLUS programme</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 35 - General financial provision</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 35 - General financial provision</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Section 36 - Requirements in part 2 of CRAGA</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section 36 - Requirements in part 2 of CRAGA</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
-                           <p>
-                              <b>Part 4 Supplementary and final provision &amp; Schedules 5 and 6 * </b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
-                           <p>
-                              <b>Yes</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Part 4 Supplementary and final provision &amp; Schedules 5 and 6 * </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Yes</b>
+                                 </p>
+                           </th>
                         </tr>
                      </tbody>
                   </table>
@@ -4870,9 +5289,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act's passage through Parliament.</p>
                   <table>
                      <colgroup>
-                        <col style="width:1.48in">
-                        <col style="width:1.48in">
-                        <col style="width:2.85in">
+                        <col style="width:25.47%">
+                        <col style="width:25.47%">
+                        <col style="width:49.05%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -5034,9 +5453,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      passage of the Bill through Parliament. </p>
                   <table>
                      <colgroup>
-                        <col style="width:1.83in">
-                        <col style="width:1.83in">
-                        <col style="width:1.83in">
+                        <col style="width:33.33%">
+                        <col style="width:33.33%">
+                        <col style="width:33.33%">
                      </colgroup>
                      <tbody>
                         <tr>

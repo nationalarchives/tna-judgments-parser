@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -1437,7 +1446,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         the Grand Chamber of the European Court of Human Rights dealt with this point in <i>Big Brother Watch v UK</i><a class="fn" id="fnref-9" href="#fn-9">9</a> at §361:</p>
                      <table>
                         <colgroup>
-                           <col style="width:6.2in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -1472,7 +1481,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         at §62 the Tribunal set out the following: </p>
                      <table>
                         <colgroup>
-                           <col style="width:4.99in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -1683,7 +1692,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         legislation. The IPA 2016 as drafted cover this within Condition A. </p>
                      <table>
                         <colgroup>
-                           <col style="width:4.99in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -1963,7 +1972,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      <p>Section 23 of FOIA (as relevant) states: </p>
                      <table>
                         <colgroup>
-                           <col style="width:4.99in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -2066,7 +2075,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         the data—</p>
                      <table>
                         <colgroup>
-                           <col style="width:4.66in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -4560,29 +4569,39 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <section class="level">
                   <table>
                      <colgroup>
-                        <col style="width:1.12in">
-                        <col style="width:1.12in">
-                        <col style="width:1.12in">
-                        <col style="width:1.12in">
-                        <col style="width:1.12in">
+                        <col style="width:20%">
+                        <col style="width:20%">
+                        <col style="width:20%">
+                        <col style="width:20%">
+                        <col style="width:20%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Provision</b>
-                              </p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to England?</b>
-                              </p>
-                           <p>
-                              <b>Extends to E &amp; W and applies to Wales?</b>
-                              </p>
-                           <p>
-                              <b>Extends and applies to Scotland?</b>
-                              </p>
-                           <p>
-                              <b>Extends and applies to Northern Ireland?</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Provision</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends and applies to Scotland?</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td>
@@ -4865,21 +4884,27 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act's passage through Parliament. </p>
                   <table>
                      <colgroup>
-                        <col style="width:1.75in">
-                        <col style="width:1.48in">
-                        <col style="width:3.22in">
+                        <col style="width:27.13%">
+                        <col style="width:22.95%">
+                        <col style="width:49.92%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Stage</b>
-                              </p>
-                           <p>
-                              <b>Date</b>
-                              </p>
-                           <p>
-                              <b>Hansard Reference</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Stage</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Date</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Hansard Reference</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td colspan="3">
@@ -5094,33 +5119,45 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      passage of the Bill through Parliament. </p>
                   <table>
                      <colgroup>
-                        <col style="width:1.07in">
-                        <col style="width:1.07in">
-                        <col style="width:1.08in">
-                        <col style="width:1.08in">
-                        <col style="width:1.08in">
-                        <col style="width:1.08in">
+                        <col style="width:16.56%">
+                        <col style="width:16.56%">
+                        <col style="width:16.72%">
+                        <col style="width:16.72%">
+                        <col style="width:16.72%">
+                        <col style="width:16.72%">
                      </colgroup>
                      <tbody>
                         <tr>
-                           <p>
-                              <b>Section of the Act</b>
-                              </p>
-                           <p>
-                              <b>Bill as Introduced in the Lords</b>
-                              </p>
-                           <p>
-                              <b>Bill as amended in Committee in the Lords</b>
-                              </p>
-                           <p>
-                              <b>Bill as amended on Report in the Lords </b>
-                              </p>
-                           <p>
-                              <b>Bill as introduced in the Commons </b>
-                              </p>
-                           <p>
-                              <b>Bill as amended in Committee in the Commons</b>
-                              </p>
+                           <th>
+                              <p>
+                                 <b>Section of the Act</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as Introduced in the Lords</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as amended in Committee in the Lords</b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as amended on Report in the Lords </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as introduced in the Commons </b>
+                                 </p>
+                           </th>
+                           <th>
+                              <p>
+                                 <b>Bill as amended in Committee in the Commons</b>
+                                 </p>
+                           </th>
                         </tr>
                         <tr>
                            <td>

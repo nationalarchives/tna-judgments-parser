@@ -1,0 +1,1653 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="CodeOfPractice">
+         <div class="preface">
+            <p class="center">
+               <i>Code of Practice for video recording with sound of interviews of persons detained
+                  under section 41 of, or Schedule 7 to, the Terrorism Act 2000 </i>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>Code of Practice for the video recording with sound of interviews of persons detained
+                     under section 41 of, or Schedule 7 to, the Terrorism Act 2000 which take place in
+                     a police station in Northern Ireland. </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Commencement - Transitional Arrangements</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">This Code applies to:</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>interviews of persons detained under section 41 of the Terrorism Act 2000 which take
+                     place in a police station in Northern Ireland, and </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>questioning of persons detained for examination under Schedule 7 to that Act which
+                     takes place in a police station in Northern Ireland, </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>carried out after midnight on 14 August 2020 even though the interview or questioning
+                  may have commenced before that time.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>Foreword</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>This code of practice is issued by the Secretary of State in accordance with paragraph
+                  3(4)(a) of Schedule 8 to the Terrorism Act 2000 and applies to Northern Ireland only.</p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">The following must be video recorded with sound in accordance with this Code:</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>any interview by a constable of a person detained under section 41 of the Terrorism
+                     Act 2000 which takes place in a police station in Northern Ireland; </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>any questioning by a constable of a person detained for examination under Schedule
+                     7 to the Terrorism Act 2000 which takes place in a police station in Northern Ireland.
+                     </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>Under paragraph 4(7) of Schedule 8 to the 2000 Act, this Code is admissible in evidence
+                  in criminal and civil proceedings and must be taken into account by any court or tribunal
+                  in any case in which it appears to the court or tribunal to be relevant.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>1</b>
+                     </span></h2>
+               <p>
+                  <b>General</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.1</span></h2>
+               <p>This Code of practice applies to the video recording with sound of:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>any interview of a person detained under section 41 of the Terrorism Act 2000 (TACT)
+                     which takes place at a police station in Northern Ireland;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>any questioning of a person detained for examination under Schedule 7 to TACT which
+                     takes place at a police station in Northern Ireland. </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.2</span></h2>
+               <p>The notes for guidance included are not provisions of this Code.  They are guidance
+                  to police officers and others about its application and interpretation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.3</span></h2>
+               <p>This Code of practice must be readily available at the place where any interview to
+                  which this Code applies takes place for consultation by police officers and other
+                  police staff, the persons mentioned in paragraph 1.1 above, prosecutors, members of
+                  the public, appropriate adults and solicitors, interpreters and independent custody
+                  visitors.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.4</span></h2>
+               <p>In this Code, references to ‘police station’ include any place which has been designated
+                  by the Secretary of State under paragraph 1(1) of Schedule 8 to TACT as a place at
+                  which persons may be detained under section 41 of that Act.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.5</span></h2>
+               <p>The video recording with sound of interviews must be carried out openly to instil
+                  confidence in its reliability as an impartial and accurate record of the interview.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.6</span></h2>
+               <p>Nothing in this Code is to detract from:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>the requirements of the Code of Practice H issued under Article 65 of the Police and
+                     Criminal Evidence (Northern Ireland) Order 1989 (PACE) (“PACE Code H”) as it applies
+                     in Northern Ireland to the detention, treatment and questioning of persons detained
+                     under section 41 of TACT;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>the requirements of the Code of Practice for Examining Officers and Review Officers
+                     under Schedule 7 to TACT, issued under paragraph 6(1) of Schedule 14 to TACT (“the
+                     Schedule 7 Code”), as it applies to the detention, questioning and treatment of persons
+                     detained for examination under Schedule 7.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.7</span></h2>
+               <p>In this Code:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>if an interview mentioned in paragraph 1.1(a) takes place:</p>
+                  <section class="subparagraph">
+                     <p>the term ‘appropriate adult’ has the same meaning as in PACE Code H, <i>paragraph </i></p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <i>1.13</i>
+                           </span></h2>
+                     <p>; and the term ‘solicitor’ has the same meaning as in PACE Code H, <i>paragraph 6.13</i>;</p>
+                  </section>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>in the case of a person mentioned in paragraph 1.1(b), the term ‘appropriate adult’
+                     means an adult whose status and role are as described in paragraphs 51 to 54 of the
+                     Schedule 7 Code. </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.8</span></h2>
+               <p>Any reference in this Code to video recording is to be taken to mean video recording
+                  with sound and in this Code:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>‘recording media’ means any removable, physical video recording media (such as magnetic
+                     tape, optical disc or solid state memory) which can be played and copied; and</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>‘secure digital network’ is a computer network system which enables an original interview
+                     video recording to be stored as a digital multi media file or a series of such files,
+                     on a secure file server which is accredited by the National Accreditor for Police
+                     Information Systems in accordance with the UK Government Security Classification Policy.
+                     See section 7 of this Code.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.9</span></h2>
+               <p>Sections 2 to 6 of this Code set out the procedures and requirements which apply to
+                  all interviews together with the provisions which apply only to interviews recorded
+                  using recording media.  Section 7 sets out the provisions which apply to interviews
+                  recorded using a secure digital network and specifies the provisions in sections 2
+                  to 6 which do not apply to secure digital network recording.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>2</b>
+                     </span></h2>
+               <p>
+                  <b>Interviews to be video recorded with sound </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.1</span></h2>
+               <p>All interviews described in paragraph 1.1 to which this Code applies must be video
+                  recorded with sound in accordance with this Code.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.2</span></h2>
+               <p>
+                  <span class="tab">&nbsp;</span>The whole of each interview must be video-recorded, including the taking and reading
+                  back of any statement. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.3</span></h2>
+               <p>It may be necessary to delay an interview to make arrangements to overcome any difficulties
+                  or problems that might otherwise prevent the record being made, for example, unavailability
+                  of suitable recording equipment and interview facilities.  If there is a failure of
+                  recording equipment, see paragraphs 4.16 and 7.10.  If a person refuses to go into
+                  or remain in a suitable interview room, see PACE Code H <i>paragraph 12.5</i>, and the custody officer considers, on reasonable grounds, that the interview should
+                  not be delayed, the interview may, at the custody officer’s discretion, be conducted
+                  in a cell and recorded using portable recording equipment.  The reasons for this must
+                  be recorded.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.4</span></h2>
+               <p>Before any interview to which this Code applies starts, the person concerned and any
+                  appropriate adult and interpreter must be given a written notice which explains the
+                  requirement that under this Code the interview must be video recorded with sound.
+                  At the same time, the person, the appropriate adult and interpreter must be informed
+                  verbally of the content of the notice. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.5</span></h2>
+               <p>If the person to be interviewed or the appropriate adult raises objections to the
+                  interview being video recorded, either at the outset or during the interview or during
+                  the break in the interview, the interviewing officer must explain that the interview
+                  is being recorded in order to protect both the person being interviewed and the interviewing
+                  officer and that there is no opt out facility. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.6</span></h2>
+               <p>A sign or indicator which is visible to the person being interviewed must show when
+                  the recording equipment is recording.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Notes for guidance</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>2A</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Guidance on assessing a juvenile or individuals’ fitness and mental wellbeing prior
+                     to interviewing is provided at paragraphs 11.9 – 11.13 of PACE Code H or for Schedule
+                     7 interviews at paragraphs 51 – 54 of the Schedule 7 Code. </i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>2B</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>If the person to be interviewed has or appears to have a hearing or speech impediment
+                     or there is doubt about their hearing or speaking ability, and is detained under section
+                     41 of TACT, the provisions in section 13 of PACE Code H (Interpreters) should be applied.
+                     If the person is detained under Schedule 7, then paragraph 27 of the Schedule 7 Code
+                     should be observed.</i>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">
+                     <i>2C</i>
+                     <span class="tab">&nbsp;</span>
+                     <i>The person must be reminded of their right to free legal advice in accordance with:
+                        </i>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>
+                     <i>section 6 and paragraph 11.3 of PACE Code H if detained under section 41 for interview;</i>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>
+                     <i>‘Notice of Detention under Schedule 7 to the Terrorism Act 2000’ in Annex A of the
+                        Schedule 7 Code if detained under Schedule 7.</i>
+                     </p>
+               </section>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">
+                     <i>2D</i>
+                     <span class="tab">&nbsp;</span>
+                     <i>Delaying or denying a person access to legal advice before interview is subject to
+                        the following provisions:</i>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>
+                     <i>Annex B or paragraphs 6.7 – 6.9 of PACE Code H if the person is detained for interview
+                        under section 41;</i>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">●</span></h2>
+                  <p>
+                     <i>‘Notice of Detention under Schedule 7 to the Terrorism Act 2000’ in Annex A of the
+                        Schedule 7 Code if the person is detained under Schedule 7.</i>
+                     </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <i>2E</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Qualified access to legal advice when interviewing a person detained under section
+                     41 is subject to paragraph 6.5 of PACE Code H. </i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>3</b>
+                     </span></h2>
+               <p>
+                  <b>Recording and sealing of master recordings </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.1</span></h2>
+               <p>The camera(s) must be placed in the interview room so as to ensure coverage of as
+                  much of the room as is practicably possible whilst the interviews are taking place.
+                  See <i>Note 3A</i>.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.2</span></h2>
+               <p>One recording, the master recording, must be sealed in the presence of the person
+                  being interviewed.  A second recording will be used as a working copy.  The master
+                  recording is one of the recordings used in a twin/triple deck/drive machine or the
+                  only recording in a single deck/drive machine.  The working copy is either the second/third
+                  recording used in a twin/triple deck/drive machine or a copy of the master recording
+                  made by a single deck/drive machine.  See Notes 3B and 3C.</p>
+               <section class="subparagraph">
+                  <p>
+                     <i>[This paragraph does not apply to interviews recorded using a secure digital network,
+                        see paragraph 7.3.]</i>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.3</span></h2>
+               <p>
+                  <span class="tab">&nbsp;</span>For the purpose of any interview to which this Code applies, no interviewing officer
+                  or other officer is required to record or disclose their identity.  To protect the
+                  identity of officers, officers may keep their backs to the camera and may use their
+                  warrant or other identification number and the name of the police station to which
+                  they are attached.  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Notes for Guidance  </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>3A</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Interviewing officers will wish to arrange that, as far as possible, video recording
+                     arrangements are unobtrusive.  It must be clear to the person being interviewed, however,
+                     that there is no opportunity to interfere with the recording equipment or the recording
+                     media.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>3B</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>The purpose of sealing the master copy before it leaves the presence of the person
+                     being interviewed is to establish their confidence that the integrity of the recording
+                     is preserved.  If a single deck/drive machine is used the working copy of the master
+                     recording must be made in the presence of the person being interviewed without the
+                     master recording leaving their sight.  The working copy is to be used for making further
+                     copies if required.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>3C</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>The recording of the interview may be used for identification procedures in accordance
+                     with paragraph 3.21 or Annex E of PACE Code D.</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>The Interview </b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(a)</b>
+                        </span></h2>
+                  <p>
+                     <b>General</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.1</span></h2>
+               <p>In respect of interviews of persons detained under section 41 of TACT, attention is
+                  drawn to section 10 (cautions) and Annex C of PACE Code H which describe the restrictions
+                  on drawing adverse inferences from a person’s failure or refusal to say anything about
+                  their involvement in an offence when interviewed before or after being charged or
+                  informed they may be prosecuted and how those restrictions affect the terms of the
+                  caution and determine whether a special warning under Article 5 and 6 of the Criminal
+                  Evidence (Northern Ireland) Order 1988 can be given.</p>
+               <section class="subparagraph">
+                  <p>Note: The requirement to caution does not apply to interviews of persons detained
+                     for examination under Schedule 7.</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <b>(b)</b>
+                           </span></h2>
+                     <p>
+                        <b>Commencement of Interviews</b>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.2</span></h2>
+               <p>When the person to be interviewed is brought into the interview room the interviewing
+                  officer must without delay, but in sight of the person, load the recording equipment
+                  and set it to record.  The recording media must be unwrapped or otherwise opened in
+                  the presence of the person to be interviewed.  See Note 4A. <i>[This paragraph does not apply to interviews recorded using a secure digital network,
+                     see paragraphs 7.3 and 7.4.]</i></p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.3</span></h2>
+               <p>The interviewing officer must then tell the person formally about the video recording
+                  with sound and point out the sign or indicator which shows that the recording equipment
+                  is activated and recording.  <i>See</i><i>paragraph 2.6</i>.  The interviewing officer must:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>say the interview is being video recorded with sound (<i>see</i><i>paragraph 2.4</i>);</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>give their warrant or other identification number and state the police station they
+                     are attached to, and provide these details in relation to any other police officer
+                     present (<i>see</i><i>paragraph 12.7 of PACE Code H</i>);</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(c)</span></h2>
+                  <p>ask the person to be interviewed and any other party present (e.g. a solicitor) to
+                     identify themselves;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(d)</span></h2>
+                  <p>state the date, time of commencement and place of the interview; and </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(e)</span></h2>
+                  <p>state that the person to be interviewed will be given a notice about what will happen
+                     to the copies of the recording. <i> [This sub-paragraph does not apply to interviews recorded using a secure digital
+                        network, see paragraphs 7.3 and 7.5 to 7.6]</i></p>
+               </section>
+               <section class="subparagraph">
+                  <p>See <i>Note 4A</i></p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.4</span></h2>
+               <p>The interviewing officer must then caution the person and remind the person of their
+                  entitlement to free and independent legal advice and their right to consult a solicitor.
+                  See <i>Note 2C.</i></p>
+               <section class="subparagraph">
+                  <p>Note: The requirement to caution does not apply to interviews of persons detained
+                     for examination under Schedule 7.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.5</span></h2>
+               <p>If the interview takes place in accordance with paragraph 11.4 of Code H, the interviewing
+                  officer must then put to the person being interviewed any significant statement or
+                  silence (i.e. failure or refusal to answer a question or to answer it satisfactorily)
+                  which occurred in the presence and hearing of a police officer or other police staff
+                  before the start of the interview and which have not been put to the person in the
+                  course of a previous interview.  The interviewer must then ask the person being interviewed
+                  whether they wish to confirm or deny that earlier statement or silence and if they
+                  want to add anything.  The terms ‘significant statement’ and ‘significant silence’
+                  have the same meaning as in paragraph 11.5 of PACE Code H.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.6</span></h2>
+               <p>Any person entering the interview room after the interview has commenced must be invited
+                  by the interviewing officer to identify themselves for the purpose of the video recording
+                  and state the reason why they have entered the interview room. </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(c)</b>
+                        </span></h2>
+                  <p>
+                     <b>Interviews with persons with a hearing or speech impediment or with those who do not
+                        understand English</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.7</span></h2>
+               <p>If the person appears to have a hearing or speech impediment, or there is doubt about
+                  their hearing or speaking ability, they must be interviewed in the presence of an
+                  interpreter unless a relevant exemption applies.  See <i>Note 2B</i>.  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(d)</b>
+                        </span></h2>
+                  <p>
+                     <b>Objections and complaints by the person</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.8</span></h2>
+               <p>If the detained person or an appropriate adult raises objections to the interview
+                  being video recorded, either at the outset or during the interview or during a break
+                  in the interview the provisions outlined in paragraph 2.5 must be followed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.9</span></h2>
+               <p>If in the course of an interview at a police station a complaint is made by the person
+                  being questioned, or on their behalf, about their detention, treatment or questioning,
+                  or if the complaint is that the provisions of this Code have not been observed, or
+                  it comes to notice or it comes to the interviewer’s notice that a detainee may have
+                  been treated improperly, then the interviewing officer must record it in the interview
+                  record (<i>see Note 4G</i>) and inform the custody officer, who is responsible for dealing with the complaint
+                  in accordance with paragraph 9.3 of Code H.    </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.10</span></h2>
+               <p>If the person being interviewed indicates that they wish to tell the interviewer about
+                  matters not directly connected with the matter about which they are being interviewed
+                  and that they are unwilling for these matters to be recorded, the person being interviewed
+                  must be given the opportunity to tell the interviewer about these matters after the
+                  conclusion of the formal interview.</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(e)</b>
+                        </span></h2>
+                  <p>
+                     <b>Changing the recording media</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.11</span></h2>
+               <p>When the recording equipment indicates that the recording media has only a short time
+                  left to run, the interviewer must so inform the person being interviewed and bring
+                  that part of the interview to a close.  If the interviewer leaves the room to obtain
+                  a second set of recording media, the person being interviewed must not be left unattended.
+                  The interviewer will remove the recording media from the recording equipment and insert
+                  the new recording media which must be unwrapped or opened in the person’s presence.
+                  The recording equipment must then be set to record on the new media.  To avoid confusion
+                  between the recording media, the interviewer must mark the media with an identification
+                  number immediately after they are removed from the recorder.</p>
+               <section class="subparagraph">
+                  <p>
+                     <i>[This paragraph does not apply to interviews recorded using a secure digital network
+                        as this does not use removable media, see paragraphs 1.8 and  7.3.]</i>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(f)</b>
+                        </span></h2>
+                  <p>
+                     <b>Taking a break during the interview</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.12</span></h2>
+               <p>When a break is taken, the fact that a break is to be taken, the reason for it and
+                  the time must be recorded on the video record.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.13</span></h2>
+               <p>When the break is taken and the interview room vacated by the person being interviewed,
+                  the recording media must be removed from the recorder and the procedures for the conclusion
+                  of an interview followed.  <i>See</i><i>paragraph 4.19</i>.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.14</span></h2>
+               <p>When a break is to be a short one, and both the person being interviewed and a police
+                  officer remain in the interview room, the recording may be stopped.  There is no need
+                  to remove the recording media and when the interview recommences the recording should
+                  continue on the same recording media.  The time the interview recommences must be
+                  recorded on the video record.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.15</span></h2>
+               <p>After any break in an interview under caution, the interviewing officer must, before
+                  resuming the interview remind the person of their right to legal advice if they have
+                  not exercised it (<i>see Note 2C</i>) and must remind the person that they remain under caution (<i>see</i><i>paragraph 4.1</i>) or if there is any doubt, give the caution in full again (<i>see Notes 4D and 4E)</i>.</p>
+               <section class="subparagraph">
+                  <p>
+                     <i>[Paragraphs 4.12 to 4.15 do not apply to interviews recorded using a secure digital
+                        network, see paragraphs 7.3 and 7.7 to 7.9]</i>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(g)</b>
+                        </span></h2>
+                  <p>
+                     <b>Failure of recording equipment</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.16</span></h2>
+               <p>If there is a failure of equipment which can be rectified quickly, e.g. by inserting
+                  new recording media, the appropriate procedures set out in paragraph 4.11 must be
+                  followed.  When the recording is resumed the interviewer must explain what has happened
+                  and video record the time the interview recommences.  If, however, it is not possible
+                  to continue video recording on that particular recorder and no alternative equipment
+                  is readily available, the interview must cease until suitable equipment is available.
+                  <i>See</i><i>Note 4F</i></p>
+               <section class="subparagraph">
+                  <p>
+                     <i>[This paragraph does not apply to interviews recorded using a secure digital network,
+                        see paragraphs 7.3 and 7.10]</i>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(h)</b>
+                        </span></h2>
+                  <p>
+                     <b>Removing used recording media from recording equipment</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.17</span></h2>
+               <p>Recording media which is removed from the recording equipment during the course of
+                  an interview must be retained and the procedures set out in <i>paragraph 4.19</i> followed.</p>
+               <section class="subparagraph">
+                  <p>
+                     <i>[This paragraph does not apply to interviews recorded using a secure digital network
+                        as this does not use removable media, see paragraphs 1.8 and 7.3.]</i>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(i)</b>
+                        </span></h2>
+                  <p>
+                     <b>Conclusion of interview</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.18</span></h2>
+               <p>At the conclusion of the interview, the person being interviewed must be offered the
+                  opportunity to clarify anything he or she has said and asked if there is anything
+                  that they wish to add.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.19</span></h2>
+               <p>At the conclusion of the interview, including the taking and reading back of any written
+                  statement, the time must be recorded in the video record and the recording must be
+                  stopped.  The interviewer must seal the master recording with a master recording label
+                  and treat it as an exhibit in accordance with Service standing orders.  The interviewer
+                  must <i>(</i>subject to<i> paragraph 3.3)</i> sign the label and also ask the person, their solicitor and any appropriate adult
+                  or other third party present during the interview to sign it.  If the person or third
+                  party refuses to sign the label, an officer of at least the rank of inspector, or
+                  if one is not available, the custody officer, must be called into the interview room
+                  and asked (subject to <i>paragraph 3.3</i>) to sign it.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.20</span></h2>
+               <p>The person being interviewed must be handed a notice which explains:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>
+                     <span class="tab">&nbsp;</span>how the video recording will be used;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>the arrangements for access to it; and</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(c)</span></h2>
+                  <p>that if they are charged or informed that they will be prosecuted, a copy of the video
+                     recording will be supplied as soon as practicable or as otherwise agreed between the
+                     interviewee and police or on the order of a court.</p>
+               </section>
+               <section class="subparagraph">
+                  <p>
+                     <i>[Paragraphs 4.18 to 4.20 do not apply to interviews recorded using a secure digital
+                        network, see paragraphs 7.3 and 7.11 to 7.12.]</i>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>(j)</b>
+                     </span></h2>
+               <p>
+                  <b>Remote Monitoring of the interview</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.21</span></h2>
+               <p>If the interview room or other location where the interview takes place is equipped
+                  with facilities that enable video recorded interviews to be remotely monitored as
+                  they take place, the interviewer must ensure that:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>the interview room or other location where the interview takes place, contains a notice,
+                     prominently displayed, referring to the capacity for remote monitoring and to the
+                     fact that the warning light will illuminate whenever monitoring is taking place;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>they explain the contents of that notice to the person being interviewed, their legal
+                     representative and any appropriate adult and that there is no possibility of privileged
+                     conversations being listened to;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(c)</span></h2>
+                  <p>the explanation referred to in paragraph 4.21(b) is recorded as part of the video
+                     recording with sound; and</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(d)</span></h2>
+                  <p>the person being interviewed, their legal representative and any appropriate adult
+                     can see the warning light which is automatically illuminated as soon as remote monitoring
+                     is activated.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.22</span></h2>
+               <p>If an interview, or part of an interview, is remotely monitored, a record of that
+                  fact (if not recorded in the interviewee’s custody record) must be recorded in the
+                  interviewer’s pocket book, and the record must include the names or service number
+                  of the officers doing the monitoring and the purpose of the monitoring. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Notes for Guidance</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>4A</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>For the purposes of identification of persons present in the interview room, the interviewer
+                     should ask the person being interviewed and any other people present to identify themselves</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>4B</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Where the custody officer is called immediately to deal with the complaint, the recorder
+                     should, if possible, be left to run until the custody officer has entered the room
+                     and spoken to the person being interviewed.  Continuation or termination of the interview
+                     should be at the interviewer’s discretion pending action by an inspector under paragraph
+                     9.3 of PACE Code H.    </i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>4C</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>If the complaint is about a matter not connected with this Code or the person’s detention,
+                     treatment or questioning, the decision to continue is at the interviewer’s discretion.
+                     When the interviewer decides to continue the interview, they should tell the person
+                     the complaint will be brought to the custody officer’s attention at the conclusion
+                     of the interview.  When the interview is concluded the interviewer must, as soon as
+                     practicable, inform the custody officer about the existence and nature of the complaint
+                     made.  </i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>4D</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>When considering whether to caution again after a break, the officer should bear in
+                     mind that he or she may have to satisfy a court that the person understood that they
+                     were still under caution when the interview resumed.  </i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>4E</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>The interviewer should bear in mind that it may be necessary to satisfy the court
+                     that nothing occurred during a break in an interview or between interviews which influenced
+                     the person’s recorded evidence.  On the re-commencement of an interview, the officer
+                     should consider summarising on the recording the reason for the break and confirming
+                     this with the person. </i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>4F</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>If any part of the recording media breaks or is otherwise damaged during the interview,
+                     the recording should be sealed as a master copy in the presence of the person being
+                     interviewed.  The undamaged part, if any, should be copied in the person’s presence
+                     before the master copy is sealed. If the recording is irretrievable the interview
+                     should be started again with new recording media.    </i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>4G</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Where reference is made to the ‘interview record’ this means the actual video recording
+                     of the interview.</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>5</b>
+                     </span></h2>
+               <p>
+                  <b>After the interview</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.1</span></h2>
+               <p>The interviewing officer must make a record that the interview has taken place and
+                  that it has been video recorded.  They must also make a note of the date and time
+                  of the interview, the time it commenced, its duration, any breaks that were taken
+                  and date and the identification number of the master recording.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.2</span></h2>
+               <p>Where no proceedings follow in respect of the person whose interview was recorded,
+                  the recording media must be kept securely in accordance with <i>paragraph 6.1</i> and <i>Note 6A</i>.</p>
+               <section class="subparagraph">
+                  <p>
+                     <i>[Paragraphs 5.1, 5.2 and Note 5A) do not apply to interviews recorded using a secure
+                        digital network, see paragraphs 7.3 and 7.13 to 7.15.]</i>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <i>5.3</i>
+                     </span></h2>
+               <p>Where criminal proceedings do follow or are under consideration the interviewing officer
+                  must: </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>prepare a statement of evidence to the effect that an interview took place, containing
+                     details of the interviewee, the fact it was recorded, its location, the date and time
+                     of the interview, the interview reference number and the fact that a master copy is
+                     retained with an exhibit/reference number; and</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>prepare (or arrange for the preparation of) a written summary of the interview or,
+                     if directed by the Public Prosecution Office, prepare (or arrange for the preparation
+                     of) a full transcript.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.4</span></h2>
+               <p>Any transcript of the interview should be given an exhibit number with the officer
+                  transcribing providing a statement of evidence which will include their respective
+                  exhibit number.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>5 <span class="tab">&nbsp;</span>If the transcript of the interview is prepared by a person other than an interviewing
+                  officer, the interviewing officer must check that the transcript is correct before
+                  submission to prosecuting authorities.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.6</span></h2>
+               <p>The court must be made aware of any transcription of the recorded interview which
+                  has been made.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>7<span class="tab">&nbsp;</span>Any summary of the interview prepared by someone other than the interviewing officer
+                  must be checked by the interviewing officer or investigating officer for its accuracy.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.</span></h2>
+               <p>9 <span class="tab">&nbsp;</span>Reference to the Public Prosecution Service in this part of the Code is to be taken
+                  to include any other body or person, other than police, with a statutory responsibility
+                  for prosecution to whom the police report the investigation of any criminal offence.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Note for guidance</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>5A</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Prior to preparing the summary of the interview or to checking a summary of interview
+                     which has been prepared on his or her behalf by another person, the interviewing officer
+                     may refresh his or her memory by viewing the working copy of the recording.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>5B</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>A person preparing a summary of interview on behalf of the interviewing officer must
+                     be a police officer, or other person who has received appropriate training in the
+                     preparation of summaries of interview. He or she should prepare the summary after
+                     viewing the recording and if necessary after consultation with the interviewing officer.</i>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">
+                     <i>5C</i>
+                     <span class="tab">&nbsp;</span>
+                     <i>The summary of interview </i>must <i>be prepared on the basis that it </i>must<i> be exhibited to the interviewing officer’s statement of evidence and that it will
+                        be used for the following purposes:</i></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <i>(i)</i>
+                        </span></h2>
+                  <p>
+                     <i>to enable the Appropriate Senior Officer or the Public Prosecution Service to make
+                        informed decisions about the case on the basis of what was said at the interview;</i>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <i>(ii)</i>
+                        </span></h2>
+                  <p>
+                     <i>for use pursuant to any rule of law permitting the admission of written statements
+                        as evidence in court (for example Article 33 of the Magistrates’ Courts (Northern
+                        Ireland) Order 1981);</i>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <i>(iii)</i>
+                        </span></h2>
+                  <p>
+                     <i>where applicable, for use as a basis for the conduct of the case by the prosecution,
+                        the defence and the court without the necessity for the master recording to be played
+                        in court.</i>
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <i>The summary must, therefore, comprise a balanced account of the interview, including
+                        points in mitigation and/or defence made by the interviewee. Where an admission is
+                        made the question as well as the answer containing the admission must be recorded
+                        verbatim in the summary. Care should be taken to bring to the attention of the Appropriate
+                        Senior Officer and/or Public Prosecution Service, by means of a covering report, any
+                        material on the recording which might be regarded by a court as prejudicial or inadmissible.</i>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>Security of Recording Media</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(a)</b>
+                        </span></h2>
+                  <p>
+                     <b>General</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.1</span></h2>
+               <p>The officer in charge of the police station at which interviews are video recorded
+                  with sound in accordance with this Code must make arrangements for the master recordings
+                  to be kept securely and their movements accounted for on the same basis as other material
+                  which may be used for evidential purposes, in accordance with service standing orders.
+                  <i>See Note 6A</i>.</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(b)</b>
+                        </span></h2>
+                  <p>
+                     <b>Breaking master recording seal for criminal proceedings </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.2</span></h2>
+               <p>A police officer may only break the seal on a master copy which is required for criminal
+                  trial or appeal proceedings with the authority of the Public Prosecution Service.
+                  If it is necessary to gain access to the master copy, the police officer must arrange
+                  for its seal to be broken in the presence of a representative of the Public Prosecution
+                  Service.  The defendant or their legal adviser must be informed and given a reasonable
+                  opportunity to be present. If the defendant or their legal representative is present
+                  they must be invited to reseal and sign the master copy. If neither accepts or neither
+                  is present, this must be done by the representative of the Public Prosecution Service.
+                  <i>See</i><i>Notes 6B and 6C</i>.</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(c)</b>
+                        </span></h2>
+                  <p>
+                     <b>Breaking master recording seal: other cases</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.3</span></h2>
+               <p>The Chief Constable is responsible for establishing arrangements for breaking the
+                  seal of the master copy where no criminal proceedings result; or the criminal proceedings
+                  to which the interview relates have been concluded and it becomes necessary to break
+                  the seal.  These arrangements should be those which the Chief Constable considers
+                  are reasonably necessary to demonstrate to the person interviewed and any other party
+                  who may wish to use or refer to the video recording that the master copy has not been
+                  tampered with and that the video recording remains accurate.  <i>See Note 6D</i>.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.4</span></h2>
+               <p>Subject to paragraph 6.6, a representative of each party must be given a reasonable
+                  opportunity to be present when the seal is broken and the master copy is copied and
+                  re-sealed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.5</span></h2>
+               <p>If one or more of the parties is not present when the master recording seal is broken
+                  because they cannot be contacted or refuse to attend or paragraph 6.6 applies, arrangements
+                  should be made for an independent person such as a custody visitor, to be present.
+                  Alternatively, or as an additional safeguard, arrangements should be made for a film
+                  or photographs to be taken of the procedure. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.6</span></h2>
+               <p>Paragraph 6.4 and paragraph 6.5 do not require a person to be given an opportunity
+                  to be present when:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>it is necessary to break the master copy seal for the proper and effective further
+                     investigation of the original offence or the investigation of some other offence;
+                     and</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>the officer in charge of the investigation has reasonable grounds to suspect that
+                     allowing such an opportunity might prejudice any such an investigation or criminal
+                     proceedings which may be brought as a result or endanger any person.  <i>See Note 6E</i></p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>(d)</b>
+                        </span></h2>
+                  <p>
+                     <b>Documentation</b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.7</span></h2>
+               <p>When a master copy seal is broken, copied and re-sealed, a record must be made of
+                  the procedure followed, including the date; time; place and persons present.</p>
+               <section class="subparagraph">
+                  <p>
+                     <i>[This section (paragraphs 6.1 to 6.7 and Notes 6A to 6C) does not apply to interviews
+                        recorded using a secure digital network, see paragraphs 7.3 and 7.15 to 7.16.]</i>
+                     </p>
+               </section>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Notes for Guidance</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>6A</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>This section is concerned with the security of the master copies sealed at the conclusion
+                     of the interview.  Care must be taken of working copies of recordings since their
+                     loss or destruction may lead unnecessarily to the need to have access to master copies.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>6B</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>If the master copy has been delivered to the court for their keeping the Public Prosecutor
+                     will apply to the official appointee of the appropriate court for its release for
+                     unsealing by the Public Prosecutor.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>6C</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Reference to the Public Prosecution Service or to the Public Prosecutor in this part
+                     of the Code is to be taken to include any other body or person with a statutory responsibility
+                     for prosecution for whom the police conduct any recorded interviews.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>6D</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>The most common reasons for needing access to master copies that are not required
+                     for criminal proceedings arise from civil actions and complaints against police and
+                     civil actions between individuals arising out of allegations of crime investigated
+                     by police.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>6E</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>Paragraph 6.6 could apply, for example, when one or more of the outcomes or likely
+                     outcomes of the investigation might be:</i>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <i>(i)</i>
+                     </span></h2>
+               <p>
+                  <i>the prosecution of one or more of the original suspects;</i>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <i>(ii)</i>
+                        </span></h2>
+                  <p>
+                     <i>the prosecution of someone previously not suspected, including someone who was originally
+                        a witness; and</i>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <i>(iii)</i>
+                        </span></h2>
+                  <p>
+                     <i>any original suspect being treated as a prosecution witness and when premature disclosure
+                        of any police action, particularly through contact with any parties involved, could
+                        lead to a real risk of compromising the investigation and endangering witnesses.</i>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Recording of Interviews by Secure Digital Network</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.1</span></h2>
+               <p>A secure digital network does not use removable media and this section specifies the
+                  provisions which apply when a secure digital network is used.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.2</span></h2>
+               <p>The following requirements are solely applicable to the use of a secure digital network
+                  for the recording of interviews.</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>(a)</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>Application of sections 1 to 6 </i>
+                        </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.3</span></h2>
+               <p>Sections 1 to 6 of this Code apply to recordings made on a secure digital network
+                  except for the following paragraphs:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>Paragraph 3.2 under “Recording and sealing of master recordings”</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>Paragraph 4.2 under “(b) Commencement of interviews”</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(c)</span></h2>
+                  <p>Paragraph 4.3 (e) under “(b) Commencement of interviews”</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(d)</span></h2>
+                     <p>Paragraphs 4.11 – 4.20 under “(e) Changing recording media”, “(f) Taking a break during
+                        interview”, “(g) Failure of recording equipment”, “(h) Removing used recording media
+                        from the recording equipment” and “(i) Conclusion of interview”</p>
+                  </section>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(e)</span></h2>
+                  <p>Paragraphs 5.1-5.2 under “After the interview”</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(f)</span></h2>
+                  <p>Paragraphs 6.1 – 6.7 under “Security of recording media”.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>(b)</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>Commencement of Interview</i>
+                        </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.4</span></h2>
+               <p>When the person to be interviewed is brought into the interview room, the interviewer
+                  must without delay, and in the sight of the person, switch on the recording equipment
+                  and enter the information necessary to log on to the secure network and start recording.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.5</span></h2>
+               <p>The interviewer must then inform the person that the interview is being recorded using
+                  a secure digital network and that recording has commenced.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.6</span></h2>
+               <p>In addition to the requirements of paragraph 4.3 (a) to (d) above, the interviewer
+                  must inform the person that:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>they will be given access to the recording of the interview in the event that they
+                     are charged or informed that they will be prosecuted but if they are not charged or
+                     informed that they will be prosecuted they will only be given access as agreed with
+                     the police or on the order of a court; and</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>they will be given a written notice at the end of the interview setting out their
+                     rights to access the recording and what will happen to the recording.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>(c)</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>Taking a break during interview</i>
+                        </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.7</span></h2>
+               <p>When a break is taken, the fact that a break is to be taken, the reason for it and
+                  the time must be recorded on the recording.  The recording must be stopped and the
+                  procedures in paragraphs 7.11 and 7.12 for the conclusion of an interview followed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.8</span></h2>
+               <p>When the interview recommences the procedures in paragraphs 7.4 to 7.6 for commencing
+                  an interview must be followed to create a new file to record the continuation of the
+                  interview.  The time the interview recommences must be recorded on the recording.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.9</span></h2>
+               <p>After any break in the interview the interviewer must, before resuming the interview,
+                  remind the person being questioned that they remain under caution or, if there is
+                  any doubt, give the caution in full again.  See <i>Note 4D.</i></p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>(d)</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>Failure of recording equipment</i>
+                        </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.10</span></h2>
+               <p>If there is an equipment failure which can be rectified quickly, e.g. by commencing
+                  a new secure digital network recording, the interviewer must follow the appropriate
+                  procedures as in <i>paragraphs 7.7 to 7.9</i>.  When the recording is resumed the interviewer must explain what happened and record
+                  the time the interview recommences.  If, however, it is not possible to continue recording
+                  on the secure digital network the interview should be recorded on removable media
+                  as in <i>paragraph 4.2. See</i><i>Note 4F.</i></p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>(e)</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>Conclusion of interview</i>
+                        </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.11</span></h2>
+               <p>At the conclusion of the interview, the person being interviewed must be offered the
+                  opportunity to clarify anything he or she has said and asked if there is anything
+                  they want to add.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.12</span></h2>
+               <p>At the conclusion of the interview, including the taking and reading back of any written
+                  statement: </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">(a)</span></h2>
+                  <p>the time must be recorded;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(b)</span></h2>
+                  <p>the person being interviewed must be handed a notice which explains:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">●</span></h2>
+                     <p>how the video recording will be used;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">●</span></h2>
+                     <p>the arrangements for access to it; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">●</span></h2>
+                     <p>that if they are charged or informed that they will be prosecuted, they will be given
+                        access to the recording of the interview either electronically or by being given a
+                        copy on removable recording media, but if they are not charged or informed that they
+                        will be prosecuted, they will only be given access as agreed with the police or on
+                        the order of a court;</p>
+                  </section>
+                  <section class="subparagraph">
+                     <p>See <i>Note 7A</i>.</p>
+                  </section>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(c)</span></h2>
+                  <p>the person being interviewed must be asked to confirm that they have received a copy
+                     of the notice at paragraph 7.12(b) above.  If the interviewee fails to accept or to
+                     acknowledge receipt of the notice, the interviewer will state for the recording that
+                     a copy of the notice has been provided to the interviewee and that they have refused
+                     to take a copy of the notice or have refused to acknowledge receipt;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">(d)</span></h2>
+                  <p>the time must be recorded and the interviewer must notify the person being interviewed
+                     that the recording is being saved to the secure network.  The interviewer must save
+                     the recording in the presence of the interviewee.  The interviewee should then be
+                     informed that the interview is terminated.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>(f)</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>After the interview</i>
+                        </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.13</span></h2>
+               <p>The interviewer must make a note in their pocket book that the interview has taken
+                  place, was audibly recorded, its time, duration and date and the original recording’s
+                  identification number.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.14</span></h2>
+               <p>If no proceedings follow in respect of the person whose interview was recorded, the
+                  recordings must be kept securely as in <i>paragraphs 7.15 and 7.16</i>.</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>(g)</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>Security of secure digital network interview records</i>
+                        </b>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.15</span></h2>
+               <p>Interview record files must be stored in read only format on non-removable storage
+                  devices, for example, hard disk drives, to ensure their integrity.  The recordings
+                  must be first saved locally to a secure non-removable device before being transferred
+                  to the remote network device.  If for any reason the network connection fails, the
+                  recording must remain on the local device and must be transferred when the network
+                  connections are restored.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.16</span></h2>
+               <p>Access to interview recordings, including copying to removable media, must be strictly
+                  controlled and monitored to ensure that access is restricted to those who have been
+                  given specific permission to access for specified purposes when this is necessary.
+                  For example, police officers and lawyers involved in the preparation of any prosecution
+                  case, persons interviewed if they have been charged or informed they may be prosecuted
+                  and their legal representatives.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Note for Guidance</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <i>7A</i>
+                  <span class="tab">&nbsp;</span>
+                  <i>The notice at paragraph 7.12 above should provide a brief explanation of the secure
+                     digital network and how access to the recording is strictly limited.  The notice should
+                     also explain the access rights of the person being interviewed, his or her legal representative,
+                     the police and the prosecutor to the recording of the interview.  Space should be
+                     provided on the form to insert the date and the file reference number for the interview.</i>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <img src="http://www.legislation.gov.uk/id/uksi/2020/860/code-of-practice/1/images/uksi_2020_860_code-of-practice_1_en_001.gif" alt="">
+                  </p>
+            </section>
+            <section class="level">
+               <p>© Crown copyright&nbsp;2020</p>
+            </section>
+            <section class="level">
+               <p>This publication is licensed under the terms of the Open Government Licence v3.0 except
+                  where otherwise stated. To view this licence, visit&nbsp;<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3"><u>nationalarchives.gov.uk/doc/open-government-licence/version/3</u></a>.</p>
+            </section>
+            <section class="level">
+               <p>Where we have identified any third party copyright information you will need to obtain
+                  permission from the copyright holders concerned.</p>
+            </section>
+            <section class="level">
+               <p>This publication is available at <a href="https://www.gov.uk/government/publications"><u>www.gov.uk/official-documents</u></a>.</p>
+            </section>
+            <section class="level">
+               <p>Any enquiries regarding this publication should be sent to us at&nbsp;videoconsultation@nio.gov.uk<b></b><span class="tab">&nbsp;</span><span class="tab">&nbsp;</span>.</p>
+            </section>
+            <section class="level">
+               <p>ISBN 978-1-5286-1844-1</p>
+            </section>
+            <section class="level">
+               <p>CCS0320325314<span class="tab">&nbsp;</span>06/20</p>
+            </section>
+            <section class="level">
+               <p>Printed on paper containing 75% recycled fibre content minimum</p>
+            </section>
+            <section class="level">
+               <p>Printed in the UK by the APS Group on behalf of the Controller of Her Majesty’s Stationery
+                  Office</p>
+            </section>
+            <section class="level">
+               <p>CCS0320325314</p>
+            </section>
+            <section class="level">
+               <p>978-1-5286-1844-1</p>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,1930 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="TranspositionNote">
+         <div class="body">
+            <section class="level">
+               <p>
+                  <b>The Seed Potatoes Regulations (Northern Ireland) 2015</b>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">
+                     <b>Transposition Note describing transposition of:</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Directive 2002/56/EC (“the principle Directive”)</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Commission Implementing Directive 2014/20/EU</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Commission Implementing Directive 2014/21/EU</p>
+               </section>
+            </section>
+            <section class="paragraph">
+               <p>Transposition of the principle Directive (as amended by Commission Implementing Directive
+                  2013/63/EU</p>
+               <table>
+                  <colgroup>
+                     <col style="width:24.18%">
+                     <col style="width:44.46%">
+                     <col style="width:31.36%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Article of the principle Directive</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Purpose</b>
+                              </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Implementation</b>
+                              </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 1</p>
+                        </td>
+                        <td>
+                           <p>Application to the production with a view to marketing, and to the marketing of, seed
+                              potatoes within the EU.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 1(2)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(a)</p>
+                        </td>
+                        <td>
+                           <p>Definition of marketing.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 2(1)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(b)</p>
+                        </td>
+                        <td>
+                           <p>Definition of “basic seed potatoes”.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 2(1); reg. 10(3)(b) and Schedules 1 and 3 (certification)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(c)</p>
+                        </td>
+                        <td>
+                           <p>Definition of “certified Seed potatoes”.</p>
+                        </td>
+                        <td>
+                           <p>No transposition required by virtue of Decision 2004/3/EC, as amended by Commission
+                              Implementing Decision 2014/105/EU.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(d)</p>
+                        </td>
+                        <td>
+                           <p>Official measures.</p>
+                        </td>
+                        <td>
+                           <p>All official measures are undertaken by Departmental officials.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(1)</p>
+                        </td>
+                        <td>
+                           <p>Marketing of seed potatoes which have been officially certified.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1); reg. 10 and Schedules 1 (relates to Annex I standards) and 3 (relates to
+                              Annex II standards).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(2) and (3)</p>
+                        </td>
+                        <td>
+                           <p>Grading of seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 2(1) (definition of Union grade); reg. 10(5) (determination of grade) and Schedule
+                              4 (requirements for grading).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(4)</p>
+                        </td>
+                        <td>
+                           <p>Seed potatoes produced by micropropagation.</p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 4</p>
+                        </td>
+                        <td>
+                           <p>Pre-basic seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 2(1) (definition of pre-basic seed potatoes); reg. 4 (permitting the marketing
+                              of pre-basic seed potatoes).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 5</p>
+                        </td>
+                        <td>
+                           <p>Requirements for certification of seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 10 and Schedules 1, 3 and 4 (certification and grading - more stringent controls
+                              applied to seed potatoes produced in Northern Ireland.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 6(1)(a)</p>
+                        </td>
+                        <td>
+                           <p>Marketing of seed potatoes for scientific purposes or selection work.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 2(1) (definition of scientific and selection work seed potatoes); reg. 6</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 6(1)(b)</p>
+                        </td>
+                        <td>
+                           <p>Marketing of test and trial seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 2(1) (definition of test and trial seed potatoes); reg. 7 and Schedule 5.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 6(2)</p>
+                        </td>
+                        <td>
+                           <p>Marketing of test and trial seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>No transposition required. Commission Decision 2004/842/EC applies and is implemented
+                              in reg. 7.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 6(3)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 7</p>
+                        </td>
+                        <td>
+                           <p>Sampling of seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 18 and Schedule 6.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 8</p>
+                        </td>
+                        <td>
+                           <p>Separation of seed potatoes for plant health reasons.</p>
+                        </td>
+                        <td>
+                           <p>Regs. 9 and 17.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 9</p>
+                        </td>
+                        <td>
+                           <p>Prohibition on marketing seed potatoes treated with sprout inhibitors.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(2).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 10(1)</p>
+                        </td>
+                        <td rowspan="2">
+                           <p>Size of seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 8.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 10(2)</p>
+                        </td>
+                        <td>
+                           <p>Reg. 8(3).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 10(3)</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 11(1)</p>
+                        </td>
+                        <td>
+                           <p>Marketing homogenous lots of seed potatoes in closed containers or packages.</p>
+                        </td>
+                        <td>
+                           <p>Regs. 2(1) (definition of package or container), 9 and 12.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 11(2)</p>
+                        </td>
+                        <td>
+                           <p>Exception for small quantities.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 16.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 12(1)</p>
+                        </td>
+                        <td>
+                           <p>Sealing of packages and containers.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 12(1) and (3).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 12(2)</p>
+                        </td>
+                        <td>
+                           <p>Re-sealing of packages and containers.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 12(2) and (3).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 12(3)</p>
+                        </td>
+                        <td>
+                           <p>Exemption for small packages.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 16.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 13(1)</p>
+                        </td>
+                        <td>
+                           <p>Official labels and documents.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 11 and Schedule 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 13(2)</p>
+                        </td>
+                        <td>
+                           <p>Exemption for small quantities.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 16.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 14</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 15</p>
+                        </td>
+                        <td>
+                           <p>Indication of genetic modification.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 13 and Schedule 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 16</p>
+                        </td>
+                        <td>
+                           <p>Requirement to provide details of any chemical treatment.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 11(9).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 17</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 18</p>
+                        </td>
+                        <td>
+                           <p>Requirements for marketing of pre-basic seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 2(1) (definition of pre-basic seed potatoes), reg. 10 and Schedules 1 and 3 (certification
+                              and grading), reg. 11 and Schedule 2 (labelling) and reg. 12 (sealing of packages
+                              and containers).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 19</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 20</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 21</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Not transposed. There is a general restriction on the import of seed potatoes from
+                              third countries in item 10 of Part A of Annex III to the Plant Health Directive (2000/29/EC).
+                              As potatoes from Switzerland are excepted from this restriction reg. 2(3) implements
+                              this exemption.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 22</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 23</p>
+                        </td>
+                        <td>
+                           <p>Compliance with marketing requirements.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 18 (sampling); reg. 20 (powers of inspection and production).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 24</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 25</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 26</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 27</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 28</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 29</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 30</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 31</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex I</p>
+                        </td>
+                        <td rowspan="8">
+                           <p>Conditions to be satisfied by seed potatoes</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>1.(a)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 3, para 8(c).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>1.(b)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 3, para 8(a).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>1.(c)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 3, para 7.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>1.(d)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 3, para 8(b).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>2</p>
+                        </td>
+                        <td>
+                           <p>No transposition required as certified seed potatoes may not be marketed in Northern
+                              Ireland.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>4</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 3, paras 7 and 8(b).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>7</p>
+                        </td>
+                        <td>
+                           <p>Reg. 11(6)(b); Schedule 1, Part 3, para 9(b).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex II</p>
+                        </td>
+                        <td rowspan="9">
+                           <p>Minimum quality conditions for lots of seed potatoes</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>(1)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (viii)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>(2)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>(3)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (vii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>(4)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>(5)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>(6)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>(7)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (vi).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Additional test “Total tolerance ...”</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 2, Group II, item (ix).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex III</p>
+                        </td>
+                        <td rowspan="3">
+                           <p>Labelling requirements</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>A</p>
+                        </td>
+                        <td>
+                           <p>Schedule 2, Part 1, para (3)(b).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>B</p>
+                        </td>
+                        <td>
+                           <p>Schedule 2, Part 1, para (2).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex IV</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex V</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="paragraph">
+               <p>
+                  <b>Transposition of </b>Commission Implementing Directive 2014/20/EU</p>
+               <table>
+                  <colgroup>
+                     <col style="width:24.18%">
+                     <col style="width:44.46%">
+                     <col style="width:31.36%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Article of Directive 2014/20/EU</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Purpose</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Implementation</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 1(a); point (1)(a) of Annex I (grade S)</p>
+                        </td>
+                        <td>
+                           <p>Seed potatoes marketed as “Union Grade S”.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(b) and (c); reg. 10(5); Schedule 4, Table 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(a)(i) of Annex I</p>
+                        </td>
+                        <td rowspan="6">
+                           <p>“Union Grade S” requirements.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (a)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(a)(ii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (a)(iv)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(a)(iii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (a)(v).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(a)(iv) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (a)(ii) and (iii) (standards
+                              are tighter in reliance of Article 5 of the principle Directive).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(a)(v) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(a)(vi) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Reg. 11(6)(b)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 1(b); point (1)(b) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Seed potatoes marketed as “Union Grade S”.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(b) and (c); reg. 10(5); Schedule 4, Table 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(i) of Annex I</p>
+                        </td>
+                        <td rowspan="7">
+                           <p>Tolerance applicable to lots of seed potatoes in respect of “Union Grade S”.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(ii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(iii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(iv) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(v) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(vi).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(vi) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(vii)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(vii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(viii)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (1)(b)(viii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade S), Column 3, point (b)(ix).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(a); point (2)(a) of Annex I (grade SE)</p>
+                        </td>
+                        <td>
+                           <p>Seed potatoes marketed as “Union Grade SE”.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(b) and (c); reg. 10(5); Schedule 4, Table 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(a)(i) of Annex I</p>
+                        </td>
+                        <td rowspan="6">
+                           <p>“Union Grade SE” requirements.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (a)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(a)(ii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (a)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(a)(iii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (a)(v).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(a)(iv) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (a)(ii) and (iii) (standards
+                              are tighter in reliance of Article 5 of the principle Directive).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(a)(v) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(a)(vi) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Reg. 11(6)(b)(ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(b); point (2)(b) of Annex I (grade SE)</p>
+                        </td>
+                        <td>
+                           <p>Seed potatoes marketed as “Union Grade SE”.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(b) and (c); reg. 10(5); Schedule 4, Table 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(i) of Annex I</p>
+                        </td>
+                        <td rowspan="8">
+                           <p>Tolerance applicable to lots of seed potatoes in respect of “Union Grade SE”.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(ii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(iii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(iv) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(v) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(vi).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(vi) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(vii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(vii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(viii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (2)(b)(viii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade SE), Column 3, point (b)(ix).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(a); point (3)(a) of Annex I (grade E)</p>
+                        </td>
+                        <td>
+                           <p>Seed potatoes marketed as “Union Grade E”.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(c); reg. 10(5); Schedule 4, Table 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(a)(i) of Annex I</p>
+                        </td>
+                        <td rowspan="6">
+                           <p>“Union Grade E” requirements.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (a)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(a)(ii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (a)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(a)(iii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (a)(v).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(a)(iv) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (a)(ii) and (iii) (standards
+                              are tighter in reliance of Article 5 of the principle Directive).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(a)(v) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(a)(vi) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Reg. 11(6)(b)(iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(b); point (3)(b) of Annex I (grade SE)</p>
+                        </td>
+                        <td>
+                           <p>Seed potatoes marketed as “Union Grade E”.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(c); reg. 10(5); Schedule 4, Table 2.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(i) of Annex I</p>
+                        </td>
+                        <td rowspan="8">
+                           <p>Tolerance applicable to lots of seed potatoes in respect of “Union Grade E”.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(ii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(iii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(iv) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(v) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(vi).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(vi) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(vii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(vii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(viii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Point (3)(b)(viii) of Annex I</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 2 (Union Grade E), Column 3, point (b)(ix).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Not transposed – no certified seed potatoes in Northern Ireland.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 4</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article5</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 6</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 7</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex I</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>As above</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex II</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>Not transposed – no certified seed potatoes in Northern Ireland.</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="paragraph">
+               <p>
+                  <b>Transposition of </b>Commission Implementing Directive 2014/21/EU</p>
+               <table>
+                  <colgroup>
+                     <col style="width:24.18%">
+                     <col style="width:44.46%">
+                     <col style="width:31.36%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Article of Directive 2014/21/EU</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Purpose</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Implementation</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 1</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2</p>
+                        </td>
+                        <td rowspan="7">
+                           <p>Minimum conditions for pre-basic seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(a); reg. 10; Schedules 1 and 3.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(1)(a)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 2, par 5(a).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(1)(b)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 2, par 5(1)(c).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(1)(c)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 2, par 5(1)(d).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(1)(d)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 2, par 5(1)(e).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(1)(e)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 2, par 5(1)(f) and (g) (standards are tighter in reliance of Article
+                              5 of the principle Directive).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(1)(f)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 1, Part 2, part 5(1)(h).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(2)</p>
+                        </td>
+                        <td>
+                           <p>Provision to market pre-basic seed potatoes as “Union Grade PBTC” and “Union Grade
+                              PB”</p>
+                        </td>
+                        <td>
+                           <p>Reg. 10(5); Schedules 1 and 3 (certification) and Schedule 4 (grading).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 2(3)</p>
+                        </td>
+                        <td>
+                           <p>Requirement for official inspection of growing crop.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 10(3)(a) and Schedule 1.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3</p>
+                        </td>
+                        <td rowspan="9">
+                           <p>Minimum conditions for lots of pre-basic seed potatoes.</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(a); reg. 10; Schedules 1 and 3.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(a)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (viii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(b)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(c)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (vii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(d)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(e)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(f)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(g)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (vi).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 3(h)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 3, Table 1, Group II, item (ix).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 4</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 5</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Article 6</p>
+                        </td>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>No transposition required.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (1) (Grade PBTC)</p>
+                        </td>
+                        <td rowspan="8">
+                           <p>“Union Grade PBTC” requirements</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(a); reg. 10(5); Schedule 4, Table 1.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point 1(a)(i)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (a)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point 1(a)(ii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (a)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point 1(a)(iii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (a)(v).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point 1(a)(iv)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (a)(ii) and (iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point 1(a)(v)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 3, point (b).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point 1(a)(vi)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 3, points (a) and (c).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point 1(a)(vii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 3, point (d).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (1)(b)(i)</p>
+                        </td>
+                        <td rowspan="6">
+                           <p>Tolerance applicable to lots of seed potatoes in respect of “Union Grade PBTC”.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (b)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (1)(b)(ii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (b)(ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (1)(b)(iii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (b)(iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (1)(b)(iv)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (b)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (1)(b)(v)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (b)(vi).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (1)(b)vi)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PBTC), Column 4, point (b)(vii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2) (Grade PB)</p>
+                        </td>
+                        <td rowspan="5">
+                           <p>“Union Grade PB” requirements</p>
+                        </td>
+                        <td>
+                           <p>Reg. 4(1)(a); reg. 10(5); Schedule 4, Table 1.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(a)(i)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (a)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(a)(ii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (a)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(a)(iii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (a)(ii) and (iii) (standards
+                              are tighter in reliance of Article 5 of the principle Directive).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(a)(iv)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (a)(v).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(i)</p>
+                        </td>
+                        <td rowspan="8">
+                           <p>Tolerance applicable to lots of seed potatoes in respect of “Union Grade PB”.</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(i).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(ii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(ii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(iii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(iii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(iv)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(iv).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(v)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(vi).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(vi)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(vii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(vii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(viii).</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Annex, point (2)(b)(viii)</p>
+                        </td>
+                        <td>
+                           <p>Schedule 4, Table 1 (Union Grade PB), Column 4, point (b)(ix).</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <p>
+                  <b>END.</b>
+                  </p>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -608,7 +617,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            (5), in which case the negative resolution procedure applies.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -730,7 +739,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            procedure.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -791,7 +800,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            of such a contract for their installation.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -919,7 +928,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            has complied with the statement of compliance duty when certain conditions are met.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -949,7 +958,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            connectable product as defined in Section 54.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -1579,7 +1588,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            the requirements in subsections (6) and (7) do not apply. </p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -1609,7 +1618,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            notice.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -2206,7 +2215,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            a power to issue guidance on the exercise of any of its enforcement functions.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -2266,7 +2275,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            resolution procedure by virtue of subsection (11).</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -2398,7 +2407,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            is that retailers are treated as distributors, but financial companies are not.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -2503,7 +2512,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            affect any rights already granted in an agreement under Part 2 of the Code.</p>
                         <table>
                            <colgroup>
-                              <col style="width:4.66in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -3573,9 +3582,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act’s passage through Parliament.</p>
                   <table>
                      <colgroup>
-                        <col style="width:2.48in">
-                        <col style="width:1.08in">
-                        <col style="width:2.04in">
+                        <col style="width:44.29%">
+                        <col style="width:19.29%">
+                        <col style="width:36.43%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -3876,12 +3885,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      passage of the Bill through Parliament.</p>
                   <table>
                      <colgroup>
-                        <col style="width:1.08in">
-                        <col style="width:1.08in">
-                        <col style="width:1.08in">
-                        <col style="width:1.08in">
-                        <col style="width:1.08in">
-                        <col style="width:0.78in">
+                        <col style="width:17.48%">
+                        <col style="width:17.48%">
+                        <col style="width:17.48%">
+                        <col style="width:17.48%">
+                        <col style="width:17.48%">
+                        <col style="width:12.62%">
                      </colgroup>
                      <tbody>
                         <tr>

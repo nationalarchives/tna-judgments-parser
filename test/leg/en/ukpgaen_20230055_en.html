@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -2489,7 +2498,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            more than four days.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -2666,7 +2675,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            of subsections (10) and (11). </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -7349,7 +7358,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            12A to D. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -7936,7 +7945,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            of State. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -7959,7 +7968,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -8028,7 +8037,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            licence, which must include use being free of charge to the public.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -8050,7 +8059,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -8863,7 +8872,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            provision for different prescribed public bodies.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -10492,7 +10501,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         of applications etc.</p>
                      <table>
                         <colgroup>
-                           <col style="width:6.19in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -10943,7 +10952,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </p>
                      <table>
                         <colgroup>
-                           <col style="width:6.19in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -11266,8 +11275,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            is to be prohibited. This is summarised in the following table:</p>
                         <table>
                            <colgroup>
-                              <col style="width:2.66in">
-                              <col style="width:2.72in">
+                              <col style="width:49.44%">
+                              <col style="width:50.56%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -12816,7 +12825,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </p>
                      <table>
                         <colgroup>
-                           <col style="width:6.19in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -13216,7 +13225,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            provides that regulations may permit an LPA to pass money to another body. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -13791,7 +13800,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            assessment are monitored or secured. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -13848,7 +13857,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            Report.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -13892,7 +13901,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            in subsection (4).</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -13933,7 +13942,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         <p>Section 154: Power to define ‘relevant consent’ and ‘relevant plan’ etc.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -14083,7 +14092,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            and monitored.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -14435,7 +14444,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            reports to be combined with other documents ((f)).</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -14589,7 +14598,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            Habitats Regulations</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -15625,7 +15634,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            membership of a Locally-led Urban Development Corporation.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -16445,7 +16454,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            website for 6 weeks.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -16516,7 +16525,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            the procedure to be followed when considering confirmation of a CPO.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -16693,7 +16702,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            provision for purchases by ministers).</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -16819,7 +16828,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            (Vesting Declarations) Act 1981 and section 582 of the Housing Act 1985.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -16838,7 +16847,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -16939,7 +16948,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            date the land vests and the date when the assessment is made.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -17044,7 +17053,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      <section class="level">
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -17338,7 +17347,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            or after compensation has been agreed.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -18282,7 +18291,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                               confirmation of the CPO.  </p>
                            <table>
                               <colgroup>
-                                 <col style="width:6.39in">
+                                 <col style="width:100%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -18337,7 +18346,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            </table>
                            <table>
                               <colgroup>
-                                 <col style="width:6.59in">
+                                 <col style="width:100%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -18394,7 +18403,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            </table>
                            <table>
                               <colgroup>
-                                 <col style="width:6.59in">
+                                 <col style="width:100%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -21373,7 +21382,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         that lease. </p>
                      <table>
                         <colgroup>
-                           <col style="width:6.19in">
+                           <col style="width:100%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -22592,7 +22601,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            and “joint strategy area.” </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -22690,7 +22699,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            repeat any national development management policy.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -26295,7 +26304,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -26452,7 +26461,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            description or purpose of the development subsequently changes. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -26472,7 +26481,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -26558,7 +26567,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            treated as an “owner” or “developer”. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -26795,7 +26804,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            in-kind payments of IL, such as in the form of delivery of affordable housing.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -26850,7 +26859,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            work, including consultation, in respect of a charging schedule. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27217,7 +27226,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            on their behalf, and the liability of costs resulting from the appointment. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27352,7 +27361,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                               county council as highway authority to deliver road infrastructure improvements).</p>
                            <table>
                               <colgroup>
-                                 <col style="width:5.59in">
+                                 <col style="width:100%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -27375,7 +27384,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            </table>
                            <table>
                               <colgroup>
-                                 <col style="width:5.84in">
+                                 <col style="width:100%">
                               </colgroup>
                               <tbody>
                                  <tr>
@@ -27466,7 +27475,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            to the charging authority. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27554,7 +27563,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            and the equivalent provision in new section 204O(3).</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27672,7 +27681,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            the document, and the preparation of joint infrastructure delivery strategies. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27693,7 +27702,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27793,7 +27802,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            relevant IL is charged takes place.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27816,7 +27825,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27843,7 +27852,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -27994,7 +28003,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28168,7 +28177,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            (6) allows IL regulations to make similar provision. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28261,7 +28270,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            of a judicial review against an appeal decision. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28316,7 +28325,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            authorities must have regard to that guidance. </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28418,7 +28427,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            the application of subsection (2).</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28506,7 +28515,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            a reasonable time period in this context.  </p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28527,7 +28536,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28641,7 +28650,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            subject to the affirmative resolution procedure (in the House of Commons only).</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28749,7 +28758,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                            to control the exercise of powers to give directions or guidance.</p>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -28771,7 +28780,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                         </table>
                         <table>
                            <colgroup>
-                              <col style="width:6.19in">
+                              <col style="width:100%">
                            </colgroup>
                            <tbody>
                               <tr>
@@ -31036,11 +31045,11 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      <p>Schedules 18 and 19 (compulsory purchase) apply to England and Wales.</p>
                      <table>
                         <colgroup>
-                           <col style="width:1.19in">
-                           <col style="width:1.06in">
-                           <col style="width:1.12in">
-                           <col style="width:1.15in">
-                           <col style="width:1.69in">
+                           <col style="width:19.16%">
+                           <col style="width:17.07%">
+                           <col style="width:18.04%">
+                           <col style="width:18.52%">
+                           <col style="width:27.21%">
                         </colgroup>
                         <tbody>
                            <tr>
@@ -32131,9 +32140,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      Act's passage through Parliament. </p>
                   <table>
                      <colgroup>
-                        <col style="width:1.72in">
-                        <col style="width:1.44in">
-                        <col style="width:3.14in">
+                        <col style="width:27.3%">
+                        <col style="width:22.86%">
+                        <col style="width:49.84%">
                      </colgroup>
                      <tbody>
                         <tr>
@@ -32751,12 +32760,12 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                      passage of the Act through Parliament</p>
                   <table>
                      <colgroup>
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
-                        <col style="width:1.04in">
+                        <col style="width:16.67%">
+                        <col style="width:16.67%">
+                        <col style="width:16.67%">
+                        <col style="width:16.67%">
+                        <col style="width:16.67%">
+                        <col style="width:16.67%">
                      </colgroup>
                      <tbody>
                         <tr>

@@ -124,27 +124,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 .toc-box a { color: inherit; text-decoration: none;}
 .toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
-/* Explanatory Notes styles */
-article[data-doc-type='ExplanatoryNotes'] .preface {
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
 	margin-bottom: 1.5em;
 }
-article[data-doc-type='ExplanatoryNotes'] .preface > p {
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
 	font-size: 20pt;
 	line-height: 1.2;
 	margin: 0 0 6pt 0;
 	font-weight: bold;
 }
-article[data-doc-type='ExplanatoryNotes'] section.section > h2 {
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
 	font-size: 14pt;
 	font-weight: bold;
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 }
 /* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
-	font-size: 13pt;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
 }
 
 </style>
@@ -1026,32 +1035,48 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <p>The current position of staff and volunteers is summarised in the table below:</p>
                <table>
                   <colgroup>
-                     <col style="width:1.51in">
-                     <col style="width:1.55in">
-                     <col style="width:1.38in">
-                     <col style="width:1.55in">
+                     <col style="width:25.21%">
+                     <col style="width:25.88%">
+                     <col style="width:23.04%">
+                     <col style="width:25.88%">
                   </colgroup>
                   <tbody>
                      <tr>
-                        <p></p>
-                        <p>
-                           <b>Full powers</b>
-                           </p>
-                        <p>
-                           <b>Some powers</b>
-                           </p>
-                        <p>
-                           <b>No powers</b>
-                           </p>
+                        <th>
+                           <p></p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Full powers</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Some powers</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>No powers</b>
+                              </p>
+                        </th>
                      </tr>
                      <tr>
-                        <p>
-                           <b>Paid, full-time or part-time</b>
-                           </p>
-                        <p>Police Officer</p>
-                        <p>Designated Staff (that is, PCSO, Investigating Officer, Detention Officer, Escort
-                           Officer)</p>
-                        <p>Other Police Staff</p>
+                        <th>
+                           <p>
+                              <b>Paid, full-time or part-time</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>Police Officer</p>
+                        </th>
+                        <th>
+                           <p>Designated Staff (that is, PCSO, Investigating Officer, Detention Officer, Escort
+                              Officer)</p>
+                        </th>
+                        <th>
+                           <p>Other Police Staff</p>
+                        </th>
                      </tr>
                      <tr>
                         <td>
@@ -2707,29 +2732,39 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:1.07in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
+                     <col style="width:19.85%">
+                     <col style="width:20.04%">
+                     <col style="width:20.04%">
+                     <col style="width:20.04%">
+                     <col style="width:20.04%">
                   </colgroup>
                   <tbody>
                      <tr>
-                        <p>
-                           <b>Applicants</b>
-                           </p>
-                        <p>
-                           <b>Cases</b>
-                           </p>
-                        <p>
-                           <b>Cases Accepted </b>
-                           </p>
-                        <p>
-                           <b>Cases Rejected</b>
-                           </p>
-                        <p>
-                           <b>Cases in Progress</b>
-                           </p>
+                        <th>
+                           <p>
+                              <b>Applicants</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Cases</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Cases Accepted </b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Cases Rejected</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Cases in Progress</b>
+                              </p>
+                        </th>
                      </tr>
                      <tr>
                         <td>
@@ -2757,29 +2792,39 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:1.07in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
+                     <col style="width:19.85%">
+                     <col style="width:20.04%">
+                     <col style="width:20.04%">
+                     <col style="width:20.04%">
+                     <col style="width:20.04%">
                   </colgroup>
                   <tbody>
                      <tr>
-                        <p>
-                           <b>Section 12 of the Sexual Offences Act 1956  (buggery)</b>
-                           </p>
-                        <p>
-                           <b>Section 13 of the Sexual Offences Act 1956  (gross indecency)</b>
-                           </p>
-                        <p>
-                           <b>Military equivalents </b>
-                           </p>
-                        <p>
-                           <b>Older legislation</b>
-                           </p>
-                        <p>
-                           <b>TOTAL</b>
-                           </p>
+                        <th>
+                           <p>
+                              <b>Section 12 of the Sexual Offences Act 1956  (buggery)</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Section 13 of the Sexual Offences Act 1956  (gross indecency)</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Military equivalents </b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Older legislation</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>TOTAL</b>
+                              </p>
+                        </th>
                      </tr>
                      <tr>
                         <td>
@@ -2807,37 +2852,51 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:0.95in">
-                     <col style="width:1in">
-                     <col style="width:0.93in">
-                     <col style="width:0.94in">
-                     <col style="width:0.92in">
-                     <col style="width:0.86in">
-                     <col style="width:0.85in">
+                     <col style="width:14.73%">
+                     <col style="width:15.5%">
+                     <col style="width:14.42%">
+                     <col style="width:14.57%">
+                     <col style="width:14.26%">
+                     <col style="width:13.33%">
+                     <col style="width:13.18%">
                   </colgroup>
                   <tbody>
                      <tr>
-                        <p>
-                           <b>In public lavatory</b>
-                           </p>
-                        <p>
-                           <b>Non consensual</b>
-                           </p>
-                        <p>
-                           <b>Under age</b>
-                           </p>
-                        <p>
-                           <b>Not eligible</b>
-                           <b>1</b>
-                           </p>
-                        <p>
-                           <b>No info found</b>
-                           </p>
-                        <p>
-                           <b>Unrelated</b>2</p>
-                        <p>
-                           <b>TOTAL</b>
-                           </p>
+                        <th>
+                           <p>
+                              <b>In public lavatory</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Non consensual</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Under age</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Not eligible</b>
+                              <b>1</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>No info found</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Unrelated</b>2</p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>TOTAL</b>
+                              </p>
+                        </th>
                      </tr>
                      <tr>
                         <td>
@@ -5881,8 +5940,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   A and B below.</p>
                <table>
                   <colgroup>
-                     <col style="width:1.48in">
-                     <col style="width:5.02in">
+                     <col style="width:22.77%">
+                     <col style="width:77.23%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -7332,7 +7391,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <p>Examples of how these provisions will work in practice are provided below.</p>
                <table>
                   <colgroup>
-                     <col style="width:6.45in">
+                     <col style="width:100%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -7358,7 +7417,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                </table>
                <table>
                   <colgroup>
-                     <col style="width:6.45in">
+                     <col style="width:100%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -7430,7 +7489,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <p>An example of how these provisions will work in practice is below. </p>
                <table>
                   <colgroup>
-                     <col style="width:6.45in">
+                     <col style="width:100%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -7514,7 +7573,7 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   committed gross misconduct will also be captured on the police advisory list.</p>
                <table>
                   <colgroup>
-                     <col style="width:6.45in">
+                     <col style="width:100%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -13809,8 +13868,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:2.95in">
-                     <col style="width:3.35in">
+                     <col style="width:46.83%">
+                     <col style="width:53.17%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -14475,8 +14534,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:1.85in">
-                     <col style="width:3.25in">
+                     <col style="width:36.27%">
+                     <col style="width:63.73%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -14977,8 +15036,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   accordance with the 2002 Act.</p>
                <table>
                   <colgroup>
-                     <col style="width:1.16in">
-                     <col style="width:5.73in">
+                     <col style="width:16.84%">
+                     <col style="width:83.16%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -15024,8 +15083,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   the course of proceedings that should be followed.</p>
                <table>
                   <colgroup>
-                     <col style="width:1.15in">
-                     <col style="width:5.74in">
+                     <col style="width:16.69%">
+                     <col style="width:83.31%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -15130,8 +15189,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   held in public.</p>
                <table>
                   <colgroup>
-                     <col style="width:2.14in">
-                     <col style="width:4.63in">
+                     <col style="width:31.61%">
+                     <col style="width:68.39%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -15230,8 +15289,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                <p>The composition of a PAT is as follows:</p>
                <table>
                   <colgroup>
-                     <col style="width:2.05in">
-                     <col style="width:4.4in">
+                     <col style="width:31.78%">
+                     <col style="width:68.22%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -15653,9 +15712,9 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:3.12in">
-                     <col style="width:1.52in">
-                     <col style="width:2.37in">
+                     <col style="width:44.51%">
+                     <col style="width:21.68%">
+                     <col style="width:33.81%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -15871,8 +15930,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:3.22in">
-                     <col style="width:3.22in">
+                     <col style="width:50%">
+                     <col style="width:50%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -15926,8 +15985,8 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:3.22in">
-                     <col style="width:3.22in">
+                     <col style="width:50%">
+                     <col style="width:50%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -15991,11 +16050,11 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   </p>
                <table>
                   <colgroup>
-                     <col style="width:1.09in">
-                     <col style="width:1.38in">
-                     <col style="width:1.38in">
-                     <col style="width:1.28in">
-                     <col style="width:1.38in">
+                     <col style="width:16.74%">
+                     <col style="width:21.2%">
+                     <col style="width:21.2%">
+                     <col style="width:19.66%">
+                     <col style="width:21.2%">
                   </colgroup>
                   <tbody>
                      <tr>
@@ -17843,21 +17902,27 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   Bill's passage through Parliament. </p>
                <table>
                   <colgroup>
-                     <col style="width:1.75in">
-                     <col style="width:1.48in">
-                     <col style="width:3.22in">
+                     <col style="width:27.13%">
+                     <col style="width:22.95%">
+                     <col style="width:49.92%">
                   </colgroup>
                   <tbody>
                      <tr>
-                        <p>
-                           <b>Stage</b>
-                           </p>
-                        <p>
-                           <b>Date</b>
-                           </p>
-                        <p>
-                           <b>Hansard Reference</b>
-                           </p>
+                        <th>
+                           <p>
+                              <b>Stage</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Date</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Hansard Reference</b>
+                              </p>
+                        </th>
                      </tr>
                      <tr>
                         <td colspan="3">
@@ -18249,33 +18314,45 @@ article[data-doc-type='ExplanatoryNotes'] section.level > p:first-child:has(b) {
                   passage of the Bill through Parliament. </p>
                <table>
                   <colgroup>
-                     <col style="width:1.07in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
-                     <col style="width:1.08in">
+                     <col style="width:16.54%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
                   </colgroup>
                   <tbody>
                      <tr>
-                        <p>
-                           <b>Section of the Act</b>
-                           </p>
-                        <p>
-                           <b>Bill as Introduced in the Commons</b>
-                           </p>
-                        <p>
-                           <b>Bill as amended in Committee in the Commons </b>
-                           </p>
-                        <p>
-                           <b>Bill as introduced in the Lords</b>
-                           </p>
-                        <p>
-                           <b>Bill as amended in Committee in the Lords</b>
-                           </p>
-                        <p>
-                           <b>Bill as amended on Report in the Lords</b>
-                           </p>
+                        <th>
+                           <p>
+                              <b>Section of the Act</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Bill as Introduced in the Commons</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Bill as amended in Committee in the Commons </b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Bill as introduced in the Lords</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Bill as amended in Committee in the Lords</b>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <b>Bill as amended on Report in the Lords</b>
+                              </p>
+                        </th>
                      </tr>
                      <tr>
                         <td>
