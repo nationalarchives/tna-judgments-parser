@@ -1,0 +1,519 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE COMMUNICATIONS (TELEVISION LICENSING) (AMENDMENT) REGULATIONS 2025</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2025 No. 133</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>
+                  <b>Introduction</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.1</span></h2>
+               <p>This explanatory memorandum has been prepared by the Department for Culture, Media
+                  and Sport and is laid before Parliament by Command of His Majesty.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Declaration </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.1</span></h2>
+               <p>Stephanie Peacock, Minister for Sport, Media, Civil Society and Youth at the Department
+                  for Culture, Media and Sport confirms that this Explanatory Memorandum meets the required
+                  standard.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.2</span></h2>
+               <p>Helen Martin &amp; Jo Warner, Deputy Directors for BBC Policy at the Department for Culture,
+                  Media and Sport confirm that this Explanatory Memorandum meets the required standard.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.1</span></h2>
+               <p>Jack Redfern at the Department for Culture, Media and Sport (email: bbcteam@dcms.gov.uk)
+                  can be contacted with any queries regarding the instrument.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part One: Explanation, and context, of the Instrument</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Overview of the Instrument</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What does the legislation do? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.1</span></h2>
+               <p>These regulations amend the Communications (Television Licensing) Regulations 2004
+                  (“the 2004 Regulations”) (S.I. 2004/692) to increase the level of the television licence
+                  fee in line with the Consumer Price Index. The licence fee shall be increased from
+                  £169.50 to £174.50 for a colour licence, and from £57.00 to £58.50 for a black and
+                  white licence. These regulations also increase the sums payable by way of instalments
+                  under the instalment schemes set out in the 2004 Regulations. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Where does the legislation extend to, and apply? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.2</span></h2>
+               <p>The extent and application of this instrument is the United Kingdom, the Isle of Man,
+                  and the Channel Islands (save for the below exception).</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.3</span></h2>
+               <p>Regulations 4(37) and (38) and Schedule 2 do not apply to the Channel Islands. As
+                  these regulations contain only amendments to the 2004 Regulations, the territorial
+                  application of the amendments is governed by the 2004 Regulations.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy Context </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What is being done and why?</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.1</span></h2>
+               <p>Section 365 of the Communications Act 2003 Act grants the Secretary of State the power
+                  to determine the level of the television licence fee, though in practice the licence
+                  fee level is set by the Government in consultation with the BBC, as set out in clause
+                  43 of the BBC Charter<a class="fn" id="fnref-1" href="#fn-1">1</a>. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.2</span></h2>
+               <p>Between 2017 and 2022, the Government used secondary legislation to increase the cost
+                  of the licence fee in line with inflation on an annual basis. Licence fee funding
+                  settlement negotiations took place in 2021/22 in accordance with clause 43 of the
+                  BBC’s Royal Charter. The Government agreed with the BBC that the television licence
+                  fee level would be frozen for two years before rising in line with inflation for the
+                  remainder of the settlement period. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.3</span></h2>
+               <p>Following the freeze between 2022 and 2024, the Communications (Television Licensing)
+                  (Amendment) Regulations 2024 reinstated this process. This legislation upholds the
+                  Government's 2022 commitment to increase the television licence fee in line with the
+                  Consumer Price Index annually from 2024 until 2027.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.4</span></h2>
+               <p>In November 2024 the Government announced that the uplift would be calculated using
+                  the rolling average of CPI in the 12 months to October 2024. This produced an uplift
+                  rate of 2.96%. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.5</span></h2>
+               <p>These regulations therefore increase the level of the television licence fee with
+                  effect from 1 April 2025 to £174.50 for a colour licence and to £58.50 for a black
+                  and white licence. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What was the previous policy, how is this different?</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.6</span></h2>
+               <p>Previous legislation set the licence fee at £169.50 for a colour TV licence and £57.00
+                  for a black and white licence. In line with the policy commitment to increase the
+                  licence fee in line with inflation, this statutory instrument increases the colour
+                  TV licence fee to £174.50 and the black and white licence fee to £58.50. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative and Legal Context</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>How has the law changed? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.1</span></h2>
+               <p>These regulations amend the Communications (Television Licensing) Regulations 2004
+                  to increase the level of the television licence fee with effect from 1 April 2025
+                  to £174.50 for a colour licence and to £58.50 for a black and white licence. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Why was this approach taken to change the law? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.2</span></h2>
+               <p>This is the only possible approach to make the necessary changes. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Summary of consultation outcome and methodology</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.1</span></h2>
+               <p>There are no plans for consultations on this legislation. The licence fee funding
+                  model itself was considered as part of the BBC Charter Review in 2015<a class="fn" id="fnref-2" href="#fn-2">2</a>. The consultation found that the majority of respondents did not want to see a change
+                  in the way the BBC is funded: 60% thought the current licence fee model did not need
+                  to be changed. The Government committed to maintain the current model for the duration
+                  of the Charter (until 31 December 2027). </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.2</span></h2>
+               <p>A further public consultation will be held by this date as part of the Government’s
+                  review of the BBC Charter. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Applicable Guidance</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.1</span></h2>
+               <p>The Government is not intending to produce guidance alongside this SI. As with previous
+                  years, TV Licensing will ensure that licence fee payers are made aware of the increase
+                  to the television licence fee and methods of payments. Existing guidance on the TV
+                  Licensing website<a class="fn" id="fnref-3" href="#fn-3">3</a> will be updated by the time the increase comes into effect on 1 April 2025. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part Two: Impact and the Better Regulation Framework </u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact Assessment</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.1</span></h2>
+               <p>A full Impact Assessment has not been prepared for this instrument because it is expected
+                  that the small increase in licensing fee - of up to a maximum of £5.00 - will result
+                  in a negligible level of impact per business.  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Impact on businesses, charities and voluntary bodies</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.2</span></h2>
+               <p>The impact on business, charities or voluntary bodies is that the new level of the
+                  licence fee will be payable from 1 April 2025 where relevant.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.3</span></h2>
+               <p>The above also applies to small or micro businesses and the public sector. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring and review</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What is the approach to monitoring and reviewing this legislation? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.1</span></h2>
+               <p>There are no plans to review or monitor the instrument. The BBC and its agents using
+                  the ‘TV Licensing’ trademark owned by the BBC are responsible for the collection and
+                  enforcement of the television licensing regime.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.2</span></h2>
+               <p>The instrument does not include a statutory review clause.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.3</span></h2>
+               <p>Under the agreement of the BBC 2022 licence fee settlement, the licence fee will rise
+                  with CPI inflation for the remainder of the settlement period. Therefore this SI will
+                  be superseded in 2026.  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part Three: Statements and Matters of Particular Interest to Parliament</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to Parliament </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.1</span></h2>
+               <p>None.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.1</span></h2>
+               <p>Stephanie Peacock MP, Minister for Sport, Media, Civil Society and Youth has made
+                  the following statement regarding Human Rights: </p>
+               <p class="@name">
+                  
+                  <section class="level">
+                     <p>“In my view the provisions of The Communications (Television Licensing) (Amendment)
+                        Regulations 2025 are compatible with the Convention rights.”</p>
+                  </section>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>The Relevant European Union Acts</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.1</span></h2>
+               <p>This instrument is not made under the European Union (Withdrawal) Act 2018, the European
+                  Union (Future Relationship) Act 2020 or the Retained EU Law (Revocation and Reform)
+                  Act 2023 (“relevant European Union Acts”). </p>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.bbc.com/aboutthebbc/governance/charter"><u><a href="https://www.bbc.com/aboutthebbc/governance/charter">https://www.bbc.com/aboutthebbc/governance/charter</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.gov.uk/government/consultations/bbc-charter-review-public-consultation"><u><a href="https://www.gov.uk/government/consultations/bbc-charter-review-public-consultation">https://www.gov.uk/government/consultations/bbc-charter-review-public-consultation</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.tvlicensing.co.uk/pay-for-your-tv-licence/ways-to-pay"><u><a href="https://www.tvlicensing.co.uk/pay-for-your-tv-licence/ways-to-pay">https://www.tvlicensing.co.uk/pay-for-your-tv-licence/ways-to-pay</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

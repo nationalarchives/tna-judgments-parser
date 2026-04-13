@@ -1,0 +1,526 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE </b>
+               <b>ARCHITECTS (FEES, ELECTRONIC COMMUNICATIONS AND MISCELLANEOUS AMENDMENTS) (AMENDMENT)
+                  REGULATIONS 2024</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2024 No. 1017</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>
+                  <b>Introduction</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.1</span></h2>
+               <p>This Explanatory Memorandum has been prepared by the Ministry of Housing, Communities
+                  and Local Government and is laid before Parliament by Command of His Majesty.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.2</span></h2>
+               <p>This memorandum contains information for the Joint Committee on Statutory Instruments.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Declaration </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.1</span></h2>
+               <p>Minister Norris at the Ministry of Housing, Communities and Local Government confirms
+                  that this Explanatory Memorandum meets the required standard.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.2</span></h2>
+               <p>Chandru Dissanayeke, Director, Building Reform, at the Ministry of Housing, Communities
+                  and Local Government confirms that this Explanatory Memorandum meets the required
+                  standard.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.1</span></h2>
+               <p>Stephanie Griffiths at the Ministry of Housing, Communities and Local Government,
+                  email: <a href="mailto:stephanie.griffiths@communities.gov.uk"><u>stephanie.griffiths@communities.gov.uk</u></a> can be contacted with any queries regarding the instrument.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part One: Explanation, and context, of the Instrument</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Overview of the Instrument</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What does the legislation do? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.1</span></h2>
+               <p>The Architects (Fees, Electronic Communications and Miscellaneous Amendments) (Amendment)
+                  Regulations 2024 (“the Regulations”) amend the Architects (Fees, Electronic Communications
+                  and Miscellaneous Amendments) Regulations 2022 (“the 2022 Regulations”) which, among
+                  other things, allowed the Architects Registration Board (“the ARB”) to charge fees
+                  for certain services. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.2</span></h2>
+               <p>The Regulations makes minor changes to the 2022 Regulations, stating specifically
+                  who is liable to pay the fees and how the fee is to be paid and requiring the ARB
+                  to publish details about their calculation. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Where does the legislation extend to, and apply? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.3</span></h2>
+               <p>The territorial extent of this instrument is United Kingdom. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.4</span></h2>
+               <p>The territorial application of this instrument is United Kingdom.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy Context </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What is being done and why?</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.1</span></h2>
+               <p>Currently, the ARB is able to determine who may be charged the fees set out in the
+                  2022 Regulations as well has how those fees are calculated and paid. It is possible
+                  to interpret the section 24A of the Architects Act 1997, under which both the 2022
+                  Regulations and this instrument are made, as requiring those matters to be set out
+                  in regulations. The Regulations therefore make changes to set out precisely who should
+                  be charged the fees described in the 2022 Regulations and how they should be paid.
+                  These changes are being made in order to avoid any potential for uncertainty around
+                  the legality of the ARB’s fee charging activities.&nbsp;  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.2</span></h2>
+               <p>Currently, there is no requirement on the ARB to publish details about how the fees
+                  are calculated. The Regulations introduce a requirement on the ARB to publish details
+                  about how the fee amounts have been calculated in order to improve transparency. 
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What was the previous policy, how is this different?</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.3</span></h2>
+               <p>The Regulations make minor changes to the 2022 Regulations. The overall policy of
+                  allowing the ARB to charge the fees set out in the 2022 Regulations has not changed.
+                  Rather, these regulations specify who should be charged those fees and how they should
+                  be paid, rather than delegating those decisions to ARB as the 2022 Regulations did.
+                  The Regulations also seek to improve transparency around ARB fees by requiring details
+                  about the fees’ calculation to be published. This will enable stakeholders to scrutinise
+                  the fees and ensure they are being charged on a cost-recovery basis only.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative and Legal Context</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>How has the law changed?</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.1</span></h2>
+               <p>The Regulations amend the 2022 Regulations which were made under powers in the Architects
+                  Act 1997 to make provision about fees the ARB could charge.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Why was this approach taken to change the law? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.2</span></h2>
+               <p>Amending regulations was the only way in which these changes to the law could have
+                  been made.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Summary of consultation outcome and methodology</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.1</span></h2>
+               <p>No consultation was undertaken on the changes made by the Regulations. As above, the
+                  regulations make minor changes to the 2022 Regulations and the general policy has
+                  not changed. The Ministry previously conducted a public consultation on proposed amendments
+                  to the Architects Act 1997, together with new measures for international architects.
+                  The consultation received 404 responses from individuals and organisations. The Government’s
+                  response to the consultation was published on 8 June 2021 and can be found on <a href="https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997/outcome/government-response-to-the-consultation-on-proposed-amendments-to-the-architects-act-1997">gov</a>.uk.<a class="fn" id="fnref-1" href="#fn-1">1</a> 49% of respondents agreed with the proposals for the ARB to be granted a power to
+                  charge fees for its services but the majority of respondents preferred for chargeable
+                  services to be listed in legislation.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.2</span></h2>
+               <p>The Ministry conducted informal stakeholder engagement with the ARB throughout its
+                  policy development and continues to be in regular contact with the regulator.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Applicable Guidance</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">8.1</span></h2>
+               <p>No applicable guidance is provided alongside the regulations. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part Two: Impact and the Better Regulation Framework </u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact Assessment</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.1</span></h2>
+               <p>A full Impact Assessment has not been prepared for this instrument because no significant
+                  impact on the private, voluntary, or public sector is foreseen. The Ministry has assessed
+                  the business impact in compliance with the Better Regulation Framework and determined
+                  costs to be below the de minimis threshold. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Impact on businesses, charities and voluntary bodies</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.2</span></h2>
+               <p>There is no, or no significant, impact on business, charities, or voluntary bodies.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.3</span></h2>
+               <p>The legislation does not have a significant impact on small or micro business. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.4</span></h2>
+               <p>There is no, or no significant, impact on the public sector. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring and review</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What is the approach to monitoring and reviewing this legislation? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.1</span></h2>
+               <p>The approach to monitoring of this legislation is through the Ministry’s established
+                  relationship with the ARB as its Arms’ Length Body and regulator. The ARB will report
+                  on its activities in its annual report to Parliament. In addition, the provisions
+                  under this instrument will be monitored as part of the Ministry’s usual sponsorship
+                  relationship with the ARB.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.2</span></h2>
+               <p>The instrument does not include a statutory review clause as the provisions in this
+                  instrument do not seek to regulate business or a voluntary or community body. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part Three: Statements and Matters of Particular Interest to Parliament</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to Parliament </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.1</span></h2>
+               <p>The Joint Committee on Statutory Instruments (JCSI), in its 26th Report of Session
+                  2022-23, questioned whether the delegation of powers to the ARB in the 2022 Regulations
+                  to determine who may be charged the fees, and how those fees are calculated and paid,
+                  was within scope of the power at section 24A of the Architects Act 1997.<a class="fn" id="fnref-2" href="#fn-2">2</a></p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.2</span></h2>
+               <p>The Department remains of the view that the delegation was lawful, however we recognise
+                  the position set out by the JCSI in their report. These Regulations therefore amend
+                  the 2022 Regulations to insert provision on who may be charged the fees and how those
+                  fees are calculated and paid in order to provide certainty regarding the legality
+                  of the ARB’s fee charging activities.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.1</span></h2>
+               <p>The Parliamentary Under Secretary of State for Local Growth and Building Safety at
+                  the Ministry of Housing, Communities and Local Government, Minister Norris, has made
+                  the following statement regarding Human Rights: </p>
+               <p class="@name">
+                  
+                  <section class="level">
+                     <p>“In my view the provisions of the Architects (Fees, Electronic Communications and
+                        Miscellaneous Amendments) (Amendment) Regulations 2024 are compatible with the Convention
+                        rights.”   </p>
+                  </section>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>The Relevant European Union Acts</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.1</span></h2>
+               <p>This instrument is not made under the European Union (Withdrawal) Act 2018, the European
+                  Union (Future Relationship) Act 2020 or the Retained EU Law (Revocation and Reform)
+                  Act 2023 (“relevant European Union Acts”). </p>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997"><u>Consultation on proposed amendments to the Architects Act 1997 - GOV.UK (www.gov.uk)</u></a><u> - <a href="https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997">https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997</a></u></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://publications.parliament.uk/pa/jt5803/jtselect/jtstatin/149/report.html#Statutory-Instrument-2"><u>Twenty-Sixth Report of Session 2022–23 - Joint Committee on Statutory Instruments
+                        (parliament.uk)</u></a><u> - <a href="https://publications.parliament.uk/pa/jt5803/jtselect/jtstatin/149/report.html#Statutory-Instrument-2">https://publications.parliament.uk/pa/jt5803/jtselect/jtstatin/149/report.html#Statutory-Instrument-2</a></u></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

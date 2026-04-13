@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE HERTFORDSHIRE (ELECTORAL CHANGES) ORDER 2015</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2015 No. 1873</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="paragraph num">
+               <h2><span class="num">1.</span></h2>
+               <p>This explanatory memorandum has been prepared by the Local Government Boundary Commission
+                  for England (the Commission) and is laid before Parliament by Command of Her Majesty.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Purpose of the instrument</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.1.</span></h2>
+                  <p>The Order provides for new county electoral divisions and numbers of county councillors
+                     for the county of Hertfordshire at the county elections in 2017 and thereafter. The
+                     Order also provides for new parish wards and numbers of parish councillors at the
+                     parish elections in 2016 and thereafter wherever this is necessary because a parish
+                     is to be split between new county electoral divisions.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to the Joint Committee on Statutory Instruments</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">3.1.</span></h2>
+                  <p>None.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative context</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.1.</span></h2>
+                  <p>The Commission has power under section 59 of the Local Democracy, Economic Development
+                     and Construction Act 2009 (the 2009 Act) to make an order giving effect to recommendations
+                     contained in a report, prepared under section 58(4) of the 2009 Act, after conducting
+                     an electoral review under section 56(1) of that Act. This instrument is being made
+                     to give effect to the Commission’s recommendations for new electoral arrangements
+                     set out in its report prepared following an electoral review of the county of Hertfordshire.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Territorial extent and application</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">5.1.</span></h2>
+                  <p>This instrument applies to England.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">6.1.</span></h2>
+                  <p>As the instrument is subject to the negative resolution procedure and does not amend
+                     primary legislation, no statement is required.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy background</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">•</span></h2>
+               <p>What is being done and why</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.1.</span></h2>
+               <p>The purpose of an electoral review is to decide on the appropriate electoral arrangements
+                  including the number of councillors and the names, number and boundaries of wards
+                  or divisions for a specific local authority. The Commission began the electoral review
+                  of Hertfordshire in April 2014. The Commission decided to conduct the review as, based
+                  on the December 2012 electorate figures, the number of electors per councillor in
+                  34% of divisions varied from the average by over 10% and Hatfield North division had
+                  55% fewer electors per councillor than the average. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.2.</span></h2>
+               <p>An electoral review aims to ensure that the number of electors represented by each
+                  county or district councillor is as close to equal as possible, but the recommendations
+                  must also have regard to community identities and interests and the need for effective
+                  and convenient local government. To achieve these aims, the Commission tries to ensure
+                  that the number of electors per councillor in every division or ward is as close as
+                  possible to the average for the authority, but is happy to show flexibility in moving
+                  away from the average based on the evidence provided during the consultation stages
+                  of the review. Following a four-stage review process the Commission published its
+                  ‘Final recommendations - New electoral arrangements for Hertfordshire’<a class="fn" id="fnref-1" href="#fn-1">1</a> on 12 May 2015.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.3.</span></h2>
+               <p>The Order provides for changes to the electoral arrangements for the county of Hertfordshire
+                  at the county elections in 2017 as recommended by the Commission. The existing divisions
+                  of the county will be replaced by 78 new ones, each represented by one councillor.
+                  The Commission considered that the evidence received justified two divisions having
+                  variances predicted to vary by more than 10% from the authority average by 2020.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.4.</span></h2>
+               <p>Under section 56 of the 2009 Act, whenever the Commission recommends changes to the
+                  electoral arrangements for a county council it must also recommend whether, in consequence
+                  of those changes, any changes should be made to the electoral arrangements for any
+                  parish council that is within that county. Among other things, under Schedule 2 to
+                  that Act recommendations must ensure that no parish ward is split between new county
+                  electoral divisions and under section 56 of that Act recommendations must be made
+                  regarding the number of parish councillors for each parish ward. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.5.</span></h2>
+               <p>Consequently, in addition to making changes to the electoral arrangements for the
+                  county the Order also, where necessary, makes provision with respect to the establishment
+                  of new parish wards and sets the number of parish councillors for each of those parish
+                  wards.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">7.6.</span></h2>
+               <p>The Order does not amend or revoke any legislation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation outcome</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.1.</span></h2>
+                  <p>The Order gives effect to recommendations that were consulted on during the review
+                     of electoral arrangements from April 2014 until March 2015. There was an initial ten-week
+                     consultation, during which the Commission asked for proposals on the most appropriate
+                     number of councillors and division boundaries for the county. Having considered the
+                     submissions received, the Commission published its ‘Draft recommendations on the new
+                     electoral arrangements for Hertfordshire’<a class="fn" id="fnref-2" href="#fn-2">2</a> on 9 September 2014. Following a further eight-week consultation on the draft recommendations,
+                     the Commission carried out an additional, limited period of consultation on division
+                     boundaries in Stevenage. This consultation period lasted six weeks. Following this,
+                     the Commission considered the further evidence received and published its final recommendations.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.2.</span></h2>
+                  <p>During the course of the review, the Commission received approximately 274 representations.
+                     The consultations involved Hertfordshire County Council, parish and town councils,
+                     local MPs and other interested parties. The Commission considered that a council size
+                     of 78 would ensure effective and convenient local government for the county. The Commission
+                     based its draft recommendations mainly on submissions from the Conservative Group
+                     and Liberal Democrat Group on Hertfordshire County Council. However, the Commission
+                     made modifications in several areas to better reflect the statutory criteria. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.3.</span></h2>
+                  <p>In response to both of the periods of consultation on the draft recommendations, the
+                     Commission modified its recommendations in Dacorum Borough, St Albans City, Stevenage
+                     Borough and Three Rivers District. The Commission considered a variety of possible
+                     options and division patterns for these areas and on the basis of the evidence received
+                     made amendments to division boundaries in all these areas. The Commission also amended
+                     division names in East Hertfordshire District and North Hertfordshire District. The
+                     Commission made no changes to its proposed divisions in Broxbourne Borough, Hertsmere
+                     Borough, Watford Borough and Welwyn Hatfield Borough.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.4.</span></h2>
+                  <p>The Commission received submissions proposing patterns of divisions for Stevenage
+                     Borough which were significantly different from those put forward in the draft recommendations.
+                     The Commission considered that one of these submissions provided for a pattern of
+                     divisions which would meet the statutory criteria, and that the pattern should be
+                     consulted upon locally. The Commission adopted this alternative pattern as part of
+                     its final recommendations. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.5.</span></h2>
+                  <p>A detailed analysis of the outcome of the consultation is set out in the report ‘Final
+                     recommendations - New electoral arrangements for Hertfordshire’ which is available
+                     at <a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf"><u>http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf</u></a>.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Guidance</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.1.</span></h2>
+                  <p>The Commission does not intend to issue any guidance alongside this instrument. This
+                     is not considered necessary as the Order is self-explanatory and gives effect to recommendations
+                     following consultation with interested parties as to the changes to electoral arrangements.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.2.</span></h2>
+                  <p>Once the Order has been made, the Commission will publish a press release and distribute
+                     to local media advising that new electoral arrangements will be implemented at the
+                     next local elections. The press release will also direct interested parties to the
+                     Commission’s website where the final recommendations will be available in detail.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.1.</span></h2>
+                  <p>No impact assessment has been prepared because no impact on the private sector or
+                     the voluntary sector is foreseen.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.2.</span></h2>
+                  <p>The impact on the public sector will be limited to the area for which the Order makes
+                     provision. The one-off cost of producing the map referred to by the instrument is
+                     to be funded by the Commission. The one-off cost of amending the electoral register
+                     to reflect the new county electoral divisions and parish wards is to be funded by
+                     the district councils.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Regulating small business</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.1.</span></h2>
+                  <p>The Order does not apply to small business.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring and review</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.1.</span></h2>
+                  <p>The Commission will have no role in monitoring Hertfordshire’s implementation of the
+                     Hertfordshire (Electoral Changes) Order 2015. The Commission is not required to undertake
+                     such monitoring; that is a matter for the relevant officers of the district councils.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.2.</span></h2>
+                  <p>The Order will be reviewed insofar as the Commission continually monitors local authorities
+                     in England to identify any that meet its criteria for electoral reviews.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">13.1.</span></h2>
+                  <p>Marcus Bowell at the Commission (Tel: 0330 500 1250 or email: marcus.bowell@lgbce.org.uk)
+                     can answer any queries regarding the instrument.</p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf"><u><a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf">http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0005/23288/Hertfordshire-Draft-Recommendations-Sept2014.pdf"><u><a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0005/23288/Hertfordshire-Draft-Recommendations-Sept2014.pdf">http://www.lgbce.org.uk/__data/assets/pdf_file/0005/23288/Hertfordshire-Draft-Recommendations-Sept2014.pdf</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

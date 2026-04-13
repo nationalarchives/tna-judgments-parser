@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE VALUE ADDED TAX (FLAT-RATE VALUATION OF SUPPLIES OF FUEL FOR PRIVATE USE) ORDER
+                  2013</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2013 No. 2911</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>This explanatory memorandum has been prepared by HM Revenue and Customs (“HMRC”) and
+                  is laid before the House of Commons by Command of Her Majesty.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Purpose of the instrument</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>This instrument makes provision for the optional flat-rate basis for valuing supplies
+                     of a business’s road fuel for private use where those supplies fall within paragraph
+                     A1 of Part 1 of Schedule 6 to the Value Added Tax Act 1994 (“VATA”). It also imposes
+                     a requirement on HMRC to regularly revalorise the flat-rate values in accordance with
+                     the method set out in the instrument and requires HMRC to publish updated valuation
+                     tables and the date from which they are to take effect.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to the Select Committee on Statutory Instruments</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative Context</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>VAT is payable if road fuel acquired by a business is used for private motoring. Council
+                     Decision 659/2006/EC of 25th September 2006 (O.J. No. L 272. 3.10.2006, p.15) authorises
+                     the United Kingdom to fix, on an optional flat-rate basis, the proportion of VAT that
+                     relates to expenditure on fuel incurred by a business which is used for private purposes.
+                     That proportion is required to be expressed in fixed amounts and is to be established
+                     on the basis of the CO2 emissions level of the type of vehicle to reflect fuel consumption.
+                     The amounts must be adjusted annually to reflect changes in the average cost of fuel.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>Paragraph B1 of Part 1 of Schedule 6 to VATA was inserted by the Finance Act 2013.
+                     It requires Her Majesty’s Treasury (“HMT”) to make provision for the valuation, on
+                     a flat-rate basis, of supplies of road fuel for private use, for the regular revalorisation
+                     by HMRC of those values and the publication of updated valuation tables. This instrument
+                     is the first to be made under that provision.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.3.</span></h2>
+                  <p>The effect of this instrument is to set out in secondary legislation a base valuation
+                     table, the method by which the values set out in that table will be re-valorised,
+                     that the values must be revalorised at least annually and that HMRC must publish updated
+                     valuation tables and the date from which such tables take effect. The instrument also
+                     sets out notes to the valuation table which are to be used in conjunction with the
+                     table when determining the flat-rate value of supplies of a business’s road fuel for
+                     private use.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Territorial Extent and Application</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>This instrument applies to the whole of the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+               <section class="subparagraph">
+                  <p>The Exchequer Secretary to the Treasury, David Gauke, has made the following statement
+                     regarding Human Rights.</p>
+               </section>
+               <section class="subparagraph">
+                  <p>“In my view the provisions of the Value Added Tax (Flat-rate Valuation of Provision
+                     of Fuel for Private Use) Order 2013 are compatible with the Convention rights”.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy background</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>VATA was amended by the Finance Act 2013, effective from 1 February 2014, to update
+                     and streamline the law on accounting for VAT on supplies of road fuel that arise where
+                     a business’s road fuel is used for private journeys for no consideration. The new
+                     law gives taxpayers clear and simple options which are all provided for in law rather
+                     than by concession.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>This instrument is an integral and essential part of the new flat-rate basis for valuation
+                     of supplies of fuel for private use. It sets out the base table containing the value
+                     of the supplies, notes on its interpretation and the method by which HMRC is required
+                     to update it over time to reflect changes in fuel prices. The updated tables will
+                     appear in HMRC publications alongside clear and simple guidance on taxpayer options
+                     and their practical effect.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>This achieves the policy objectives of having a properly set out flat-rate basis of
+                     valuation available to taxpayers, making it accessible to, and understandable by,
+                     small businesses and removing the routine updating of tables from the budget process
+                     without weakening Parliamentary control of taxation.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation outcome</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>Consultation with business took place from 24 April 2012 to 20 July 2012. This set
+                     out how HMRC intended to update the valuation of supplies of road fuel for private
+                     use and invited comments.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.2</span></h2>
+                  <p>Comments were supportive of the changes. A Summary of Responses was published on 11
+                     December 2012.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Guidance</b>
+                  </p>
+               <section class="subparagraph">
+                  <p>HMRC will publish the flat-rate updated valuation tables alongside guidance on the
+                     options available to business and how to operate the flat-rate basis of valuation.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>No significant economic effects are expected from the changes.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The cost to HMRC and taxpayers of updating the flat rate basis provisions is estimated
+                     to be negligible.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.3</span></h2>
+                  <p>A Tax Information and Impact Note covering this instrument will be published on the
+                     HMRC website at: <a href="http://www.hmrc.gov.uk/thelibrary/tiins.htm"><u>http://www.hmrc.gov.uk/thelibrary/tiins.htm</u></a>.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Regulating small business</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The legislation applies to small business.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.2</span></h2>
+                  <p>To minimise the impact of the requirements on small firms employing up to 20 people,
+                     the approach taken is to have clear and simple rules set out in clear guidance.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.3</span></h2>
+                  <p>Although the consultation invited responses from small businesses none commented.
+                     The needs of small businesses were represented by accountancy bodies that advise small
+                     business.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring &amp; review</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>HMRC will update the values in use at least annually as required by the instrument
+                     to reflect changes in fuel prices.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>HMRC will monitor how the flat-rate basis of valuation is meeting taxpayer needs for
+                     simplification and amend the system if necessary through an Order made by HM Treasury.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>If developments in technology overtake the flat-rate valuation so that it no longer
+                     meets business needs the flat-rate valuation scheme will be reviewed and amended as
+                     necessary.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+               <section class="subparagraph">
+                  <p>Karen Ogilvie at HMRC Tel: 03000 585719 or email: karen.ogilvie@hmrc.gsi.gov.uk can
+                     answer any queries regarding this instrument.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE INTERNATIONAL DEVELOPMENT ASSOCIATION (TWENTIETH REPLENISHMENT) ORDER 2022</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2022 No. 1377</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Foreign, Commonwealth and Development
+                     Office (FCDO) and is laid before the House of Commons by Command of His Majesty.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">1.2</span></h2>
+                  <p>This memorandum contains information for the Select Committee on Statutory Instruments.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>The International Development Association (Twentieth Replenishment) Order 2022 (‘the
+                     Order’) permits His Majesty’s Government (the ‘Government’) to make further payments
+                     of an amount not exceeding £1,414 million to the International Development Association
+                     (the ‘Association’). These payments will be pursuant to arrangements that have been
+                     made between the Association and the Government in accordance with Resolution No.
+                     248 entitled ‘Additions to Resource: Twentieth Replenishment’.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Matters of special interest to the Select Committee on Statutory Instruments</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.1</span></h2>
+                     <p>The attention of the Committee is drawn to the legislative context summarised in paragraph
+                        6.2. The Instrument of Commitment has been deposited with the Association, so the
+                        Government is now bound to make the payment.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The territorial extent of this instrument is the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of this instrument is the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>Andrew Mitchell, Minister of State (Minister for Development), Foreign Commonwealth
+                     and Development Office, has made the following statement regarding Human Rights:</p>
+                  <p class="@name">
+                     
+                     <section class="level">
+                        <p>“<i>In my view the provisions of the International Development Association (Twentieth
+                              Replenishment) Order 2022 are compatible with the Convention rights.</i>”</p>
+                     </section>
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>The Order is being made to enable the United Kingdom to make a further contribution
+                     to the Association. The purpose of this further contribution, together with contributions
+                     pledged by other donors, is to provide the Association with commitment capacity to
+                     provide grants and highly concessional lending to the poorest countries in the world
+                     between July 2022 and June 2025 as part of the twentieth replenishment of the Association
+                     (‘IDA20’).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>The Order is made under section 11 of the International Development Act 2002 (“IDA”),
+                     which empowers the Government to make relevant payments to multilateral development
+                     banks where it is bound to make such a payment. No obligation arises until the Government
+                     deposits an Instrument of Commitment (the “Instrument”) with the Association which
+                     binds the United Kingdom to make the payment foreseen by article 3 of the Order. This
+                     raises a technical issue about the Order making power in section 11 of the IDA. The
+                     power requires the Order to be approved in draft by the House of Commons, but the
+                     Secretary of State, with the approval of the Treasury, may make the Order only when
+                     the Government is bound to make the payment by the deposit of the Instrument. The
+                     draft Order was approved by the House on 31 October 2022 and the Instrument deposited
+                     on 23 November 2022, enabling the Order to be made in the form of the draft. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>What is being done and why?</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.1</span></h2>
+                     <p>The Association is part of the World Bank Group (WBG). The WBG is a global multilateral
+                        development bank. Its goals are to end extreme poverty and to promote shared prosperity.
+                        It is one of the largest and most effective development actors in the world. The size
+                        and global reach of the WBG makes it one of the most important partners to the United
+                        Kingdom for achieving its poverty reduction aims.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.2</span></h2>
+                     <p>The Association provides grants, highly concessional loans (at zero or low interest
+                        rates and with long grace and maturity periods), and advisory support to the poorest
+                        and least credit-worthy countries globally. As the costs of doing this outweigh the
+                        returns on its loans, the Association needs to be replenished every three years by
+                        donors.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.3</span></h2>
+                     <p>Negotiations on the Twentieth replenishment, which will be operational from beginning
+                        July 2022 to end June 2025, concluded in December 2021. The Association’s Governors
+                        adopted the Twentieth Replenishment Resolution (Resolution No. 248) on 31 March 2022.
+                        A copy of Resolution No. 248 alongside the final twentieth replenishment Deputies
+                        Report has been laid in the House of Commons library.(<a class="fn" id="fnref-1" href="#fn-1">1</a>)</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.4</span></h2>
+                     <p>The Association’s replenishments are generally at three-year intervals. The United
+                        Kingdom’s contributions to recent replenishments, along with the year Parliamentary
+                        approval was gained in order to do so, are listed below: </p>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Twelfth replenishment (2000) £511.3 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Thirteenth replenishment (2002) £964.8 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Fourteenth replenishment (2006) £1,430 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Fifteenth replenishment (2008) £2,134 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Sixteenth replenishment (2011) £2,664 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Seventeenth replenishment (2014) £3,300 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Seventeenth replenishment (additional payment) (2016) £350 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Eighteenth replenishment (2017) £3,336 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Nineteenth replenishment (2020) £3,062 million</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.5</span></h2>
+                     <p>A portion of the United Kingdom’s contributions to the Seventeenth and Eighteenth
+                        replenishments were made in Concessional Partner Loans. Given that these loans will
+                        be paid back over time, their net value to the Association is lower than pure grant
+                        contributions. As such the ‘grant equivalent’ value of the United Kingdom’s contributions
+                        to these replenishments are somewhat lower: </p>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Seventeenth replenishment (2014) £2,564 million </p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Seventeenth replenishment (additional payment) (2016) £102 million</p>
+                     </section>
+                     <section class="subparagraph">
+                        <p>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>
+                           <span class="tab">&nbsp;</span>Eighteenth replenishment (2017) £2,886 million</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.6</span></h2>
+                     <p>The total envelope for the Nineteenth replenishment (intended to be from July 2020
+                        to June 2023) was (USD) $82bn. In response to the COVID-19 pandemic, and with the
+                        agreement of the UK and other donors, the Association frontloaded (USD) $70 billion
+                        financing to Association countries between July 2020 to June 2022 to mitigate the
+                        impacts of the pandemic and to support recovery.  This left just (USD) $12 billion
+                        of financing remaining for July 2022 to June 2023.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.7</span></h2>
+                     <p>For the Association to provide significant volumes of ongoing support to Association
+                        countries, additional financial resources were required. In February 2021, with the
+                        agreement of Association donors and borrowers, the Association shortened the nineteenth
+                        replenishment from three to two years, thus ending it in June 2022, and brought forward
+                        the twentieth replenishment a year earlier than originally planned, to start in July
+                        2022. The UK supported this decision.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.8</span></h2>
+                     <p>The overarching aims of the Association’s twentieth replenishment are to continue
+                        to support borrower countries to respond, recover, and rebuild from the pandemic,
+                        while forging greener, more resilient, and inclusive development. Following successful
+                        United Kingdom-led engagement, the twentieth replenishment incorporates policy commitments
+                        that are well-aligned to UK development priorities outlined in the United Kingdom’s
+                        International Development Strategy. In particular, the twentieth replenishment will:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>provide health services to over 285 million people;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>close learning gaps and improve learning outcomes for girls in 20 Association countries;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>support Association countries to contain the COVID-19 pandemic through vaccine rollout,
+                           preventive measures, testing, treatment, and care;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>ensure that at least 35% of Association financing tackles climate change;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>fully align the Association’s operations with the Paris Agreement by 2023;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>support women’s empowerment, by expanding access to affordable sexual and reproductive,
+                           adolescent, and maternal health services, in at least 30 Association borrower countries;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>support all Association countries to strengthen preparedness for future crises;</p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>mobilise private sector investment to create jobs in Association borrower countries.</p>
+                     </section>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.9</span></h2>
+                     <p>The Association is surging resources under the twentieth replenishment to respond
+                        to the growing global food insecurity, debt, and energy crises, under the World Bank
+                        Group’s overall (USD) $170 billion global response (from April 2022 – July 2023).
+                        The World Bank Group has also co-convened the Global Alliance for Food Security alongside
+                        the G7 and will make (USD) $30 billion available to tackle food insecurity specifically
+                        under its global response.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.10</span></h2>
+                     <p>The Association intends to commit (USD) $35 billion in the first year of the twentieth
+                        replenishment (from June 2022 – July 2023). This financing will include efforts to
+                        encourage food and fertiliser production, enhance food systems, facilitate greater
+                        trade, and support vulnerable households and producers. The Association is accelerating
+                        new programmes, adapting existing programmes, and using its crisis tools – which the
+                        UK advocated for – to disburse this financing quickly, targeting those hardest hit.
+                        Examples of new financing include (USD) $2.3 billion to increase food availability
+                        across East and Southern Africa, providing immediate support to 2.3 million people
+                        in Ethiopia and Madagascar;<a class="fn" id="fnref-2" href="#fn-2">2</a> and (USD) $327.5 million to pastoralists in the Horn of Africa, providing support
+                        through droughts, supporting their herds, and aiming to improve livelihoods for 1.6
+                        million people facing immediate food insecurity.<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.11</span></h2>
+                     <p>Following its successful introduction in the eighteenth replenishment, the Association
+                        has continued to utilise its balance sheet to borrow from the market to increase the
+                        overall volume of financing available. Under the twentieth replenishment, for every
+                        £1 of grant finance provided by the United Kingdom, the Association will provide around
+                        £3.95 support to borrower countries (including resources carried over from the nineteenth
+                        replenishment). </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.12</span></h2>
+                     <p>By combining $23.5bn of new donor pledges, repayments on previous loans, and market
+                        borrowing, the twentieth replenishment will make $93bn of grants and loans available
+                        to 74 of the world’s poorest countries between July 2022 and June 2025 – the largest
+                        replenishment in the Association’s history. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.13</span></h2>
+                     <p>The United Kingdom’s £1,414 million contribution to the twentieth replenishment is
+                        the third largest donor contribution, accounting for 8.36% of donor contributions.
+                        Our pledge to the twentieth replenishment is a reduction of 54% compared to our previous
+                        pledge to the nineteenth replenishment. This will allow us to focus funding on UK
+                        bilateral programmes to support priorities in the International Development Strategy,
+                        including clean infrastructure investment, promoting British expertise, supporting
+                        women and girls, delivering humanitarian aid.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.14</span></h2>
+                     <p>The twentieth replenishment also requires adjustments to the United Kingdom Instrument
+                        of Commitment fo<span class="tab">&nbsp;</span>r payments to the Association under the Multilateral Debt Relief Initiative. Authorisation
+                        for those payments is covered by a separate Order ‘the International Development Association
+                        (Multilateral Debt Relief Initiative) (Amendment) Order 2022’ made in accordance with
+                        section 11 of the IDA.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>European Union Withdrawal and Future Relationship</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument does not relate to withdrawal from the European Union / trigger the
+                     statement requirements under the European Union (Withdrawal) Act.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Consolidation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>Not relevant in the context of this instrument.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>Not relevant in the context of this instrument.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>Not relevant in the context of this instrument.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>There is no significant impact on business, charities, or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>There is no significant impact on the public sector.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>A full Impact Assessment has not been prepared for this instrument because no significant
+                     direct impact on businesses in the UK is foreseen.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses.
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>14.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>The approach to monitoring of this legislation is to assess the Association’s performance
+                     against the latest results measurement system, which was developed for the twentieth
+                     replenishment following consultation with donors, including the United Kingdom. This
+                     sets out what we can expect the twentieth replenishment to deliver, both in terms
+                     of development impact and operational performance. The Association will also host
+                     a Mid-Term Review of the Twentieth replenishment with donors in late 2023 to assess
+                     progress. In addition, the WBG activities are independently evaluated by the Independent
+                     Evaluation Group.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>The United Kingdom is represented on the Board of Governors by the Secretary of State.
+                     The United Kingdom’s Executive Director on the World Bank Group Board of Directors
+                     oversees the use of WBG resources.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.3</span></h2>
+                  <p>Regular and effective monitoring, reviewing and lesson learning are critical to how
+                     FCDO will measure the results of the twentieth replenishment and demonstrate its value
+                     for money. FCDO’s monitoring will be undertaken through its own annual reviews in
+                     2023 and 2024, and a final project completion review in 2025. Evidence to inform the
+                     FCDO reviews will be drawn from multiple sources, including performance against the
+                     Association’s results measurement system, the twentieth replenishment mid-term review,
+                     consultation with the UK Executive Director on the World Bank Group Board, and feedback
+                     from the FCDO posts.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.4</span></h2>
+                  <p>Other sources of information include internal and independent evaluations and reports
+                     by organisations, such as the Multilateral Organisation Performance Network and the
+                     Independent Commission on Aid Impact (ICAI), whose recent report on the Association
+                     assessed it to be green/amber.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.5</span></h2>
+                  <p>The instrument does not include a statutory review clause as it has no regulatory
+                     effect on business.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>15.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>John-Paul Fanning at the Foreign, Commonwealth and Development Office (<a href="mailto:john-paul.fanning@fcdo.gov.uk">john-paul.fanning@fcdo.gov.uk</a>) can be contacted with any queries regarding the instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>Phil Stevens, Deputy Director for International Financial Institutions, at the Foreign,
+                     Commonwealth and Development Office can confirm that this Explanatory Memorandum meets
+                     the required standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>Andrew Mitchell, Minister of State (Minister for Development), Foreign Commonwealth
+                     and Development Office can confirm that this Explanatory Memorandum meets the required
+                     standard.</p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> ()<span class="tab">&nbsp;</span>Resolution No. 248 is also available online at <a href="https://documents1.worldbank.org/curated/en/099841004042214431/pdf/IDU0071008f30a7bf04ecd0b4e00311325799dc2.pdf"><a href="https://documents1.worldbank.org/curated/en/099841004042214431/pdf/IDU0071008f30a7bf04ecd0b4e00311325799dc2.pdf">https://documents1.worldbank.org/curated/en/099841004042214431/pdf/IDU0071008f30a7bf04ecd0b4e00311325799dc2.pdf</a></a>.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.worldbank.org/en/news/press-release/2022/06/21/world-bank-approves-2-3-billion-program-to-address-escalating-food-insecurity-in-eastern-and-southern-africa"><a href="https://www.worldbank.org/en/news/press-release/2022/06/21/world-bank-approves-2-3-billion-program-to-address-escalating-food-insecurity-in-eastern-and-southern-africa">https://www.worldbank.org/en/news/press-release/2022/06/21/world-bank-approves-2-3-billion-program-to-address-escalating-food-insecurity-in-eastern-and-southern-africa</a></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.worldbank.org/en/news/press-release/2022/06/23/world-bank-boosts-pastoral-economies-and-climate-action-in-the-horn-of-africa"><a href="https://www.worldbank.org/en/news/press-release/2022/06/23/world-bank-boosts-pastoral-economies-and-climate-action-in-the-horn-of-africa">https://www.worldbank.org/en/news/press-release/2022/06/23/world-bank-boosts-pastoral-economies-and-climate-action-in-the-horn-of-africa</a></a></p>
+               <p></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

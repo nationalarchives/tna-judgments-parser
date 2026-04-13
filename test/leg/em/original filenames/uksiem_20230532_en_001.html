@@ -1,0 +1,676 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE SOCIAL SECURITY (HABITUAL RESIDENCE AND PAST PRESENCE) (AMENDMENT) REGULATIONS
+                  2023</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2023 No. 532</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Department for Work and Pensions
+                     and is laid before Parliament by Command of His Majesty.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">1.2</span></h2>
+                  <p>This memorandum contains information for the Joint Committee on Statutory Instruments.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>This legislation, with effect from 15 May 2023, inserts a category into the list of
+                     persons who are exempted from having to satisfy the Habitual Residence Test and Past
+                     Presence Test for the listed benefits. The category covers those arriving in the UK
+                     who resided in Sudan before 15 April 2023 and left Sudan in connection with the violence
+                     which rapidly escalated on 15 April 2023 in Khartoum and across Sudan.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Matters of special interest to the Joint Committee on Statutory Instruments </i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.1</span></h2>
+                     <p>This instrument is being made under emergency procedures and breaches the 21 day rule.
+                        The Secretary of State believes that this is necessary because of the sudden and unexpected
+                        nature of the volatile situation in Sudan and the immediate need to be able to provide
+                        support to those arriving from Sudan. Delays in the legislation coming into force
+                        would delay access to benefits and services for those who need it. </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The territorial extent of Part 2 (Regulation 2 and 3) is England and Wales and Scotland.
+                     The territorial extent of Part 3 (Regulation 4 and 5) is England and Wales. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of Part 2 (Regulation 2 and 3) is England and Wales and
+                     Scotland. The territorial application of Part 3 (Regulation 4 and 5) is England and
+                     Wales. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>As the instrument is subject to negative resolution procedure and does not amend primary
+                     legislation, no statement is required. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>This Instrument makes amendments to the following benefit regulations:</p>
+                  <section class="subparagraph">
+                     <p>Income-related benefits:</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Income Support (General) Regulations 1987<a class="fn" id="fnref-1" href="#fn-1">1</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Jobseeker’s Allowance Regulations 1996<a class="fn" id="fnref-2" href="#fn-2">2</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>State Pension Credit Regulations 2002<a class="fn" id="fnref-3" href="#fn-3">3</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Housing Benefit Regulations 2006<a class="fn" id="fnref-4" href="#fn-4">4</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Housing Benefit (Persons who have attained the qualifying age for state pension credit)
+                           Regulations 2006<a class="fn" id="fnref-5" href="#fn-5">5</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Employment and Support Allowance Regulations 2008<a class="fn" id="fnref-6" href="#fn-6">6</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Universal Credit Regulations 2013<a class="fn" id="fnref-7" href="#fn-7">7</a></p>
+                     </section>
+                  </section>
+                  <section class="subparagraph">
+                     <p>Disability and carer benefits</p>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security (Invalid Care Allowance) Regulations 1976<a class="fn" id="fnref-8" href="#fn-8">8</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security (Attendance Allowance) Regulations 1991<a class="fn" id="fnref-9" href="#fn-9">9</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security (Disability Living Allowance) Regulations 1991<a class="fn" id="fnref-10" href="#fn-10">10</a></p>
+                     </section>
+                     <section class="subparagraph num">
+                        <h2><span class="num">•</span></h2>
+                        <p>Social Security (Personal Independence Payment) Regulations 2013<a class="fn" id="fnref-11" href="#fn-11">11</a></p>
+                     </section>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>Pursuant to section 115 of the Immigration and Asylum Act 1999<a class="fn" id="fnref-12" href="#fn-12">12</a>, it is a prerequisite to accessing any of the benefits covered by these Regulations
+                     that a person is not a “Person Subject to Immigration Control”. Person Subject to
+                     Immigration Control is defined in section 115(9) of the Immigration and Asylum Act
+                     1999. For those with a right of abode (which includes UK nationals), and Irish nationals,
+                     they are not subject to immigration control and so cannot be a Person Subject to Immigration
+                     Control.   </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.3</span></h2>
+                  <p>The Habitual Residence Test was introduced into income-related benefit regulations
+                     by the Income-Related Benefits Schemes (Miscellaneous Amendments) (No.3) Regulations
+                     1994<a class="fn" id="fnref-13" href="#fn-13">13</a>. There have been a number of modifications to the test over time.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.4</span></h2>
+                  <p>These Regulations will add to the income-related benefits regulations an additional
+                     category of exempt persons to those listed under the relevant provision for the purpose
+                     of the Habitual Residence Test. This category is those who arrive in the UK, having
+                     resided in Sudan before 15 April 2023 and left Sudan in connection with the violence
+                     which rapidly escalated on 15 April 2023 in Khartoum and across Sudan. These individuals
+                     also need to have a right of abode (such as a UK national), be an Irish national or
+                     have been granted immigration leave in the UK with recourse to public funds. Individuals
+                     will still need to meet all other benefit specific eligibility requirements, such
+                     as income thresholds.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.5</span></h2>
+                  <p>The Past Presence Test, in addition to the factual Habitual Residence Test, is part
+                     of the eligibility criteria for claiming certain disability and carer benefits. The
+                     Past Presence Test ordinarily ensures that as well as being present in the UK at the
+                     time a claim is made for a benefit, that the claimant has also been in the UK for
+                     a prescribed period of time before entitlement.  There have been a number of modifications
+                     to the test over time.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.6</span></h2>
+                  <p>These Regulations will add to the disability and carer benefit regulations an additional
+                     category of exempt persons to those listed under the relevant provision for the purpose
+                     of both the factual Habitual Residence Test and the Past Presence Test. This category
+                     is those who arrive in the UK having resided in Sudan before 15 April 2023 and left
+                     Sudan in connection with the violence which rapidly escalated on 15 April 2023 in
+                     Khartoum and across Sudan. These individuals also need to have a right of abode (such
+                     as a UK national), be an Irish national or have been granted immigration leave in
+                     the UK with recourse to public funds. Individuals will still need to meet all other
+                     benefit specific eligibility requirements. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.7</span></h2>
+                  <p>For both the Habitual Residence Test and Past Presence Test exemptions, individuals
+                     will need to have been resident in Sudan prior to the escalation of violence. This
+                     aligns with the UK Government's intention to assist those arriving in the UK who have
+                     had to flee their homes and country of residence. People who resided in Sudan before
+                     15 April 2023, provided they left in connection with the violence which rapidly escalated
+                     on 15 April 2023 in Khartoum and across Sudan, are captured by this exemption whether
+                     they left shortly before, on, or shortly after 15 April 2023.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>What is being done and why?</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.1</span></h2>
+                     <p>Those arriving from Sudan would ordinarily need to satisfy the DWP residency tests,
+                        before they could access the listed income-related, and disability and carer benefits,
+                        as these tests apply to everyone in the UK, including UK and Irish nationals, and
+                        those with leave in the UK, unless exempt. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.2</span></h2>
+                     <p>To ensure that those arriving from Sudan are able to meet the residency conditions
+                        for relevant benefits from day one, these regulations will exempt those arriving from
+                        Sudan from the Habitual Residence Test and the Past Presence Test. This will mean
+                        that they will meet the residency conditions for the listed income-related and disability
+                        and carer benefits from day one and will be eligible subject to all other entitlement
+                        conditions being met. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.3</span></h2>
+                     <p>Exempting from residence tests has previously been done in exceptional situations
+                        such as the regulations brought forward in 2006 in response to the situation in Lebanon<a class="fn" id="fnref-14" href="#fn-14">14</a>, in 2021 in response to the fall of Kabul in Afghanistan<a class="fn" id="fnref-15" href="#fn-15">15</a>, and 2022 in response to the Russian invasion of Ukraine<a class="fn" id="fnref-16" href="#fn-16">16</a>.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.4</span></h2>
+                     <p>The speed of the escalation of violence in Sudan has forced many people resident in
+                        Sudan to flee their homes and the country, clearly with very few or no belongings.
+                        In order to support individuals’ arrival in the UK in such exceptional circumstances,
+                        the exemption to the residency tests will assist those who need access to benefits
+                        as they settle in the UK. </p>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What did any law do before the changes to be made by this instrument?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.5</span></h2>
+                        <p>Relevant legislation provides that a claimant is required to meet the Habitual Residence
+                           Test to be eligible for income-related benefits including Universal Credit and housing
+                           benefit. The purpose of the factual part of the Habitual Residence Test is to ensure
+                           that income-related benefits are paid to people with reasonably close ties to the
+                           UK and an intention to settle here. The test also provides that no person shall be
+                           treated as habitually resident in the UK (the Channel Islands, the Isle of Man or
+                           the Republic of Ireland) if he or she does not have a right to reside there. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.6</span></h2>
+                        <p>“Habitual residence” is not defined further in legislation, but case law has established
+                           that, to be factually habitually resident in the UK, a claimant must (i) have settled
+                           intention to reside there, and (ii) have been resident for an “appreciable period
+                           of time”. It is a factual assessment on a case by case basis and on the balance of
+                           probabilities. For a person who has never previously lived in the UK, it can commonly
+                           take up to three months to establish factual habitual residence. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.7</span></h2>
+                        <p>For disability and carer benefits, a claimant will, in addition to being considered
+                           factually habitually resident, need to meet the Past Presence Test to be able to access
+                           the relevant benefits. The claimant must have been present in Great Britain for a
+                           specified number of weeks over a reference period. The number of weeks depend upon
+                           the age of the disabled person. Those aged 16 or over are required to have been present
+                           in the UK for 104 out of the last 156 weeks (shorter tests apply to those under 16
+                           for Child Disability Living Allowance). The Past Presence Test does not apply to those
+                           who are terminally ill in Attendance Allowance, Disability Living Allowance and Personal
+                           Independence Payment. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.8</span></h2>
+                        <p>There are various existing exemptions to both residence tests such as for those granted
+                           refugee status and humanitarian protection (as well as their dependants). Specific
+                           exemptions have also been provided to assist individuals arriving in the UK in various
+                           exceptional situations such as after the fall of Kabul in Afghanistan in 2021 and
+                           after the Russian invasion in Ukraine in 2022.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>Why is it being changed?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.9</span></h2>
+                        <p>In recognition of, and in response to, the very sudden and difficult situation caused
+                           by the violence which rapidly escalated on 15 April 2023 in Khartoum and across Sudan,
+                           in which individuals will have had to flee Sudan with very little, if any, planning
+                           and possessions, it is the UK Government’s intention to assist those arriving in the
+                           UK, and to ensure that they receive the support they need. Some of that support –
+                           such as access to benefits and services – will for some be needed very quickly upon
+                           arrival to the UK. As such, these regulations will exempt relevant people from residence
+                           tests for the listed benefits, so as to enable more immediate assistance subject to
+                           meeting other entitlement conditions, which would otherwise not be available.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What will it now do?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.10</span></h2>
+                        <p>These Regulations will exempt persons arriving in the UK having resided in Sudan before
+                           15 April 2023 and left Sudan in connection with the violence which rapidly escalated
+                           on 15 April 2023 in Khartoum and across Sudan, from the Habitual Residence Test for
+                           income-related benefits. This exemption will apply to those with a right of abode
+                           (including UK nationals), Irish nationals and those who have leave in the UK with
+                           recourse to public funds. This will mean they will meet the residency conditions for
+                           the listed income-related benefits from day one and will be eligible subject to all
+                           other entitlement conditions being met. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.11</span></h2>
+                        <p>These Regulations will also exempt persons arriving in the UK having resided in Sudan
+                           before 15 April 2023 and left Sudan in connection with violence which rapidly escalated
+                           on 15 April 2023 in Khartoum and across Sudan from the Past Presence Test, as well
+                           as the factual Habitual Residence Test for disability and carer benefits. This exemption
+                           will apply to those with a right of abode (including UK nationals), Irish nationals
+                           and those who have been granted leave under or outside the Rules in the UK with recourse
+                           to public funds. This will mean they will meet the residency conditions for the listed
+                           disability and carer benefits from day one and will be eligible subject to all other
+                           entitlement conditions being met. </p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>European Union Withdrawal and Future Relationship</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument does not relate to withdrawal from the European Union.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Consolidation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>This instrument does not involve consolidation and there are no plans to consolidate
+                     the relevant legislation at this time. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>Due to the urgency of the regulations no consultation has been carried out and the
+                     instrument has not been scrutinised by the Social Security Advisory Committee or the
+                     Local Authority Associations. As such the urgency provisions have been relied upon.
+                     The Regulations will be referred to the Social Security Advisory Committee as soon
+                     as practicable after the date on which they have been made. Letters have been sent
+                     to the Local Authority Associations and the Social Security Advisory Committee to
+                     inform them of these changes. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>Drafts have been shared with the Scottish Government and Northern Ireland Executive.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>Guidance will be issued to local authority staff and Department for Work and Pensions
+                     decision makers in line with the regulations coming into force to ensure that they
+                     are aware of these new exemptions and how to apply them. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>There is no, or no significant, impact on business, charities or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>There is no, or no significant, impact on the public sector.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>A full Impact Assessment has not been prepared for this instrument because there is
+                     no impact on businesses. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses.
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>14.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>The Department for Work and Pensions is firmly committed to evaluating and monitoring
+                     the impact of its policies. These are emergency measures intended to help people leaving
+                     Sudan in connection with the violence which rapidly escalated in Sudan on 15 April
+                     2023, and as such the department will continue to review these provisions in response
+                     to developments in Sudan.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>The Regulations do not contain a statutory review clause. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>15.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>Farzana Choudhury at the Department for Work and Pensions email: <a href="mailto:INTERNATIONALACCESSTO.BENEFITPOLICYTEAM@dwp.gov.uk"><u>INTERNATIONALACCESSTO.BENEFITPOLICYTEAM@DWP.GOV.UK</u></a>  can be contacted with any queries regarding the instrument. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>Ronan O’Connor, Director for International Strategy, at the Department for Work and
+                     Pensions can confirm that this Explanatory Memorandum meets the required standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>Mims Davies, Minister for Social Mobility, Youth and Progression at the Department
+                     for Work and Pensions can confirm that this Explanatory Memorandum meets the required
+                     standard.</p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  <a href="https://www.legislation.gov.uk/uksi/1987/1967">https://www.legislation.gov.uk/uksi/1987/1967</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.legislation.gov.uk/uksi/1996/207"><u><a href="https://www.legislation.gov.uk/uksi/1996/207">https://www.legislation.gov.uk/uksi/1996/207</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.legislation.gov.uk/uksi/2002/1792"><u><a href="https://www.legislation.gov.uk/uksi/2002/1792">https://www.legislation.gov.uk/uksi/2002/1792</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.legislation.gov.uk/uksi/2006/213"><u><a href="https://www.legislation.gov.uk/uksi/2006/213">https://www.legislation.gov.uk/uksi/2006/213</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://www.legislation.gov.uk/uksi/2006/214"><u><a href="https://www.legislation.gov.uk/uksi/2006/214">https://www.legislation.gov.uk/uksi/2006/214</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <a href="https://www.legislation.gov.uk/uksi/2008/794"><u><a href="https://www.legislation.gov.uk/uksi/2008/794">https://www.legislation.gov.uk/uksi/2008/794</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://www.legislation.gov.uk/uksi/2013/376"><u><a href="https://www.legislation.gov.uk/uksi/2013/376">https://www.legislation.gov.uk/uksi/2013/376</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.legislation.gov.uk/uksi/1976/409"><u><a href="https://www.legislation.gov.uk/uksi/1976/409">https://www.legislation.gov.uk/uksi/1976/409</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.legislation.gov.uk/uksi/1991/2740"><u><a href="https://www.legislation.gov.uk/uksi/1991/2740">https://www.legislation.gov.uk/uksi/1991/2740</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://www.legislation.gov.uk/uksi/1991/2890"><u><a href="https://www.legislation.gov.uk/uksi/1991/2890">https://www.legislation.gov.uk/uksi/1991/2890</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a> <a href="https://www.legislation.gov.uk/uksi/2013/377"><u><a href="https://www.legislation.gov.uk/uksi/2013/377">https://www.legislation.gov.uk/uksi/2013/377</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a> <a href="https://www.legislation.gov.uk/ukpga/1999/33/section/115"><u><a href="https://www.legislation.gov.uk/ukpga/1999/33/section/115">https://www.legislation.gov.uk/ukpga/1999/33/section/115</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> <a href="https://www.legislation.gov.uk/uksi/1994/1807"><u><a href="https://www.legislation.gov.uk/uksi/1994/1807">https://www.legislation.gov.uk/uksi/1994/1807</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <a href="https://www.legislation.gov.uk/uksi/2006/1981/made"><u><a href="https://www.legislation.gov.uk/uksi/2006/1981/made">https://www.legislation.gov.uk/uksi/2006/1981/made</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="https://www.legislation.gov.uk/en/uksi/2021/1034/made"><u><a href="https://www.legislation.gov.uk/en/uksi/2021/1034/made">https://www.legislation.gov.uk/en/uksi/2021/1034/made</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> <a href="https://www.legislation.gov.uk/uksi/2022/344"><u><a href="https://www.legislation.gov.uk/uksi/2022/344">https://www.legislation.gov.uk/uksi/2022/344</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

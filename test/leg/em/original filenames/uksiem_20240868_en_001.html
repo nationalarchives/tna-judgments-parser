@@ -1,0 +1,824 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE MEDICINES (GONADOTROPHIN-RELEASING HORMONE ANALOGUES) (EMERGENCY PROHIBITION)
+                  (EXTENSION) ORDER 2024</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2024 No. 868</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>
+                  <b>Introduction</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.1</span></h2>
+               <p>This explanatory memorandum has been prepared by the Department of Health and Social
+                  Care and is laid before Parliament by Command of His Majesty.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">1.2</span></h2>
+               <p>This memorandum contains information for the Joint Committee on Statutory Instruments.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Declaration </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.1</span></h2>
+               <p>Stephen Kinnock MP, Minister of State for Care at the Department of Health and Social
+                  Care, confirms that this Explanatory Memorandum meets the required standard.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">2.2</span></h2>
+               <p>Kathryn Glover and Helen Lovell, Deputy Directors for medicines regulation and prescribing
+                  at the Department of Health and Social Care confirm that this Explanatory Memorandum
+                  meets the required standard.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">3.1</span></h2>
+               <p>David Gosling at the Department of Health and Social Care, e-mail: prescribingpolicy@dhsc.gov.uk
+                  can be contacted with any queries regarding the instrument.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part One: Explanation, and context, of the Instrument</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Overview of the Instrument</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What does the legislation do? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.1</span></h2>
+               <p>The Medicines (Gonadotrophin-Releasing Hormone Analogues) (Emergency Prohibition)
+                  (England, Wales and Scotland) Order 2024 (“the Existing Order”) is due to expire at
+                  the end of 2nd September 2024. This Order is made to replace the Existing Order, so
+                  that there is no break in the legislative provision in Great Britian. It applies in
+                  Northern Ireland for the first time. In Northern Ireland, the Order will come into
+                  force on 27th August. In Great Britain, the provisions will commence on Tuesday 3rd
+                  September.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.2</span></h2>
+               <p>The aim of this Order is to reduce and remove risks to patient safety through ensuring
+                  that a consistent approach to prescribing of gonadatrophin-releasing hormone (GnRH)
+                  analogues is taken by all prescribers. These medicines are hormones that are licensed
+                  to treat conditions in children including precocious puberty or certain growth disorders,
+                  and in adults prostate and breast cancers as well as other disorders.  These medicines
+                  can also have the effect of suppressing puberty as a treatment for gender dysphoria
+                  or gender incongruence but are not licensed for this purpose.  The independent review
+                  of gender identity services for children and young people (“Cass Review<a class="fn" id="fnref-1" href="#fn-1">1</a>”), found that the use of these medicines in the context of gender dysphoria or gender
+                  incongruence was not evidence based and should change.  The desired approach was set
+                  out in the Cass Review, namely that prescribing of GnRH analogues for the treatment
+                  of gender dysphoria or gender incongruence in children and young people under the
+                  age of 18 should only be done with the agreement of the national multi-disciplinary
+                  team and/ or under a research protocol. In practice this will usually mean prescribing
+                  done in, or under the supervision of, NHS specialised services. NHS England<a class="fn" id="fnref-2" href="#fn-2">2</a> and the NHS in Scotland have paused new prescribing of GnRH analogues for the treatment
+                  of gender dysphoria or gender incongruence in children and young people under the
+                  age of 18. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.3</span></h2>
+               <p>The Order seeks to achieve this aim through (1) prohibiting the sale or supply of
+                  specified medicines against prescriptions from a UK private prescriber which would
+                  start a child or young person under the age of 18 on a medical pathway for gender
+                  incongruence/ dysphoria; (2) prohibiting sale or supply against prescriptions from
+                  a EEA or Switzerland-registered prescriber for specified medicines to a child or young
+                  person under the age of 18; (3) making exceptions for sale or supply against NHS prescriptions.
+                  The Order will expire at the end of 26th November.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.4</span></h2>
+               <p>Sale or supply of GnRH analogues to a child or young person who is already on a course
+                  of prescribed medical treatment for gender incongruence/ dysphoria before 3rd June
+                  2024, in Great Britain (when the Existing Order came into force) and before the 27th
+                  August 2024, in Northern Ireland, will be able to continue where the prescription
+                  is from a UK registered prescriber.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.5</span></h2>
+               <p>The sale or supply of GnRH analogues under a prescription from an EEA or Switzerland
+                  registered prescriber which post-dates the Existing Order and the coming into force
+                  day for this Order in Northern Ireland is banned in all circumstances for patients
+                  aged under 18.  Those who were already on a course of treatment prescribed by an EEA
+                  or Switzerland registered prescriber before 3rd June in Great Britain and 27th August
+                  in Northern Ireland can legally switch to a UK based prescriber to continue their
+                  treatment. For patients aged 18 or over, a prescription from an EEA or Switzerland
+                  registered prescriber will be dispensed in the UK providing verification of age and
+                  identity can be shown to the dispensing pharmacist. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.6</span></h2>
+               <p>The Order does not prohibit importation of GnRH analogues.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Where does the legislation extend to, and apply? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.7</span></h2>
+               <p>The extent of the Order is the United Kingdom.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">4.8</span></h2>
+               <p>The territorial application of the Order is the United Kingdom.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy Context </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What is being done and why?</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.1</span></h2>
+               <p>The Cass Review found that there is not a reliable evidence base upon which to make
+                  clinical decisions about the use of GnRH analogues to treat gender dysphoria/incongruence,
+                  or for children and their families to make informed choices. The Cass Review concluded
+                  that because of the limited evidence, and potential risks to patient safety, these
+                  medicines should only be offered for this purpose under a research protocol, and/
+                  or with the agreement of the national multi-disciplinary team. The NHS has implemented
+                  these recommendations. The Cass Review’s conclusions have been accepted and endorsed
+                  by governments, regulators and clinical leaders in the UK.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.2</span></h2>
+               <p>Following the publication of the Cass Review, the Existing Order was introduced by
+                  the previous Secretary of State for Health and Social Care. It was made alongside
+                  The National Health Service (General Medical Services Contracts) (Prescription of
+                  Drugs Etc.) (Amendment) Regulations 2024 (S.I. 2024/728) (“the Regulations”), which
+                  came into force on 26th June 2024 and do not have an expiry date.  The Regulations
+                  restrict NHS primary care prescribing of specified medicines where this would start
+                  a child or young person under the age of 18 on a medical pathway for gender incongruence/
+                  dysphoria.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.3</span></h2>
+               <p>After careful consideration of the evidence, including the Cass, the Secretary of
+                  State has decided to renew the Existing Order and consult on making these restrictions
+                  permanent.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.4</span></h2>
+               <p>It is the government’s view that the same principles to ensuring the safety of children
+                  and young people should be taken regardless of the clinician or setting responsible
+                  for their care. This government has committed to implementing the Cass Review and
+                  agrees with its conclusions that, for this group of children and young people, safety
+                  can be best assured under the supervision of a national multi-disciplinary team and
+                  with new initiations onto a medical pathway for gender dysphoria/incongruence done
+                  under the governance of a clinical trial. The government is aware that not all prescribing
+                  of these medicines is being done in accordance with this position and is of the view
+                  that this presents a risk to patient safety. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.5</span></h2>
+               <p>The Order aligns with the NHS’s clinical policy, providing clarity and removing ambiguity
+                  for all parties – patients and their families, prescribers, employers/ commissioners
+                  and regulators.  Where a patient is under the care of a UK-regulated prescriber, to
+                  ensure patient safety use of these medicines should be consistent regardless of the
+                  setting in which the prescriber is operating. The only excepted prescribers from the
+                  Order (and the Regulations) are in NHS secondary or tertiary care, where the detailed
+                  approach to managing patients with gender dysphoria is set out in the interim service
+                  specification<a class="fn" id="fnref-3" href="#fn-3">3</a>. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.6</span></h2>
+               <p>In the case of prescriptions issued in the EEA and Switzerland, dispensing pharmacists
+                  in the UK cannot easily verify the purpose for which a prescription has been written.
+                  For this reason, all prescriptions of GnRH analogues from an EEA or Switzerland registered
+                  prescriber for patients under the age of 18 dated on or after 3rd June 2024 in Great
+                  Britain and on or after the 27th August in Northern Ireland are no longer to be dispensed
+                  in the UK. Prescriptions of GnRH analogues from an EEA or Switzerland registered prescriber
+                  for patients over the age of 18 may be dispensed in the UK providing verification
+                  of age and identity can be shown to the dispensing pharmacist. This provision is included
+                  because it is not mandatory for prescriptions from EEA prescribers to include the
+                  age/date of birth of patients over the age of 12.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.7</span></h2>
+               <p>Only legislation can achieve consistent action to ensure patient safety across all
+                  sources of prescriptions.  The Order is being made on an emergency basis to respond
+                  to the serious safety risks for vulnerable children and young people. Before the Existing
+                  Order was introduced, providers registered outside of the UK beyond the jurisdiction
+                  of UK regulators, were able to offer services that are not evidence based and treatment
+                  options that are not available through UK registered providers for safety reasons.
+                  The Existing Order closed these loopholes, and this Order provides continuity by renewing
+                  the actions taken to prevent harm in Great Britain and extends them to Northern Ireland
+                  for the first time, while a consultation takes place on whether the restrictions should
+                  be made permanent. In doing so, the Order prevents a scenario where these medicines
+                  are available for a short period of time, which could otherwise create the perverse
+                  incentive to begin taking them or ‘stockpiling’ the medication during the consultation
+                  period. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.8</span></h2>
+               <p>Breach of the Order is a criminal offence under the Medicines Act 1968. Following
+                  the introduction of the Existing Order, communications were published by the government
+                  and NHS England wrote to those on the waiting list for the NHS Children and Young
+                  People’s Gender Service. These set out the new the new requirements to ensure all
+                  those affected have relevant information to ensure compliance. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.9</span></h2>
+               <p>Further information will be published alongside this Order. NHS England will also
+                  write to all general practitioners in England, to provide guidance on how to support
+                  patients presenting to primary care across a range of scenarios. In the event a patient
+                  is under 18 years of age and is already being prescribed GnRH analogues from an EEA
+                  or Switzerland registered prescriber, the letter sets out that GPs can take continuation
+                  of the prescription of these medicines, if they consider that it is in the best interests
+                  of the patient, that relevant due diligence requirements have been met and that they
+                  feel competent to do so. In the event a prescription is discontinued, GPs should consider
+                  the individual’s need for further professional support, including through Children
+                  and Young People mental health services or through the specialist gender pathway.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.10</span></h2>
+               <p>Alongside the Order, a study into the potential benefits and harms of puberty suppressing
+                  hormones as a treatment option for children and young people with gender incongruence
+                  is being developed through the National Research Collaboration Programme (NCRP) in
+                  place between NHS England and the National Institute for Health and Care Research
+                  (NIHR). The study team is now in place and are finalising their application for funding
+                  which will be assessed by an independent scientific review study ahead of the commencement
+                  of wider approvals, including ethics, and set up. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What was the previous policy, how is this different?</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.11</span></h2>
+               <p>Prior to the introduction of the Existing Order (in Great Britain) and the Regulations
+                  (in England and the equivalent regulations in Wales), and this Order (in the United
+                  Kingdom), the previous policy was that there were no legal restrictions which solely
+                  related to prescribing of GnRH analogues. Prescribers were expected to prescribe these
+                  medicines in accordance with the medicine’s marketing authorisation and best available
+                  clinical evidence.  In the case of gender dysphoria/gender incongruence, these expectations
+                  were not met, leading to variation in practice, and risks to patients’ safety.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.12</span></h2>
+               <p>GnRH analogues are prescribed off-label (i.e. for purposes for which they are not
+                  licensed) to treat gender dysphoria and gender incongruence in children, and there
+                  is a lack of reliable evidence for prescribers to use, with variation in prescribing
+                  practice. The Order, in conjunction with the Regulations, therefore, takes necessary
+                  steps to ensure consistent access to and prescribing of GnRH analogues.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative and Legal Context</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>How has the law changed? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.1</span></h2>
+               <p>Section 62 of the Medicines Act 1968 enables the Secretary of State and the Minister
+                  of Health in Northern Ireland to prohibit the sale, supply or importation of medicinal
+                  products, either totally or subject to exceptions. The Order is made under section
+                  62, and prohibits the sale or supply of GnRH analogues, subject to exceptions. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.2</span></h2>
+               <p>The first exception is a sale or supply under an NHS prescription. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.3</span></h2>
+               <p>Secondly, in the case of private prescriptions issued by UK prescribers, a sale or
+                  supply to a person who is 18 or over is excepted, provided that the prescription is
+                  annotated with “SLS” and the person’s age, or they provide proof of age and identity
+                  at the point of sale or supply. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.4</span></h2>
+               <p>Thirdly, also in the case of private UK prescriptions, a sale or supply to a person
+                  under the age of 18 is excepted if it is for a purpose other than treatment for puberty
+                  suppression related to gender dysphoria or gender incongruence, provided that the
+                  prescription meets the conditions of the Order and is annotated with “SLS” and the
+                  person’s date of birth, if the prescription is issued on or after 3rd June 2024 in
+                  Great Britain or 27th August in Northern Ireland. If the prescription was issued before
+                  that date, then the person must provide proof of age and identity. And if the person
+                  had already started a course of treatment at any point before 3rd June 2024 in Great
+                  Britain or 27th August in Northern Ireland, they may continue to be sold or supplied
+                  GnRH analogues.  This would include having been issued with a prescription for a GnRH
+                  analogue in the six-month period before the relevant date, whether or not it had been
+                  dispensed.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.5</span></h2>
+               <p>Fourthly, in the case of private prescriptions issued by prescribers in the EEA and
+                  Switzerland, a sale or supply to a person who is aged 18 or over is excepted, provided
+                  that the person provides proof of age and identity at the point of sale or supply.
+                  EEA and Swiss prescriptions issued before 3rd June 2024 in Great Britain or 27th August
+                  2024 in Northern Ireland to a person under the age of 18 are also excepted if proof
+                  of age and identity is provided at the point of sale or supply.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.6</span></h2>
+               <p>Breach of the Order is a criminal offence under the Medicines Act 1968. This also
+                  applies to possession, where the individual had reasonable cause to know that the
+                  medicine had been sold or supplied in breach of the ban.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.7</span></h2>
+               <p>A person guilty of breaching the Order is liable on summary conviction to a fine of
+                  up to £400, or on conviction on indictment to a fine and/or to imprisonment for a
+                  term of up to two years. In addition, breaching the Order would provide the relevant
+                  regulator with evidence for a fitness to practice investigation.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Why was this approach taken to change the law? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">6.8</span></h2>
+               <p>This is the only possible approach to make the necessary changes on an urgent basis
+                  across the United Kingdom. The Existing Order is due to expire at the end of 2nd September
+                  and it<i></i>is necessary, in the interests of safety, to prohibit the sale and supply of GnRH
+                  analogues to patients under the age of 18 unless certain conditions are met. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation </b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Summary of consultation outcome and methodology</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <i>7.1</i>
+                     </span></h2>
+               <p>There are consultation requirements applicable to the making of orders under section
+                  62 of the Medicines Act 1968, but when making an emergency order under section 62(3)
+                  of the Medicines Act 1968, no prior consultation is required. A consultation in accordance
+                  with the relevant legal requirements will be undertaken for a permanent ban, to allow
+                  for different views to be considered on the issue and shape how the legislation will
+                  work in practice on a permanent basis.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <i>7.2</i>
+                     </span></h2>
+               <p>The government continues to engage with representative bodies and providers to understand
+                  the impact of the restrictions, including but not limited to: NHS England, the devolved
+                  administrations, Community Pharmacy England, the Commission on Human Medicines, the
+                  General Medical Council and the General Pharmaceutical Council. Where they have raised
+                  ways in which the implementation of the ban can continue to be improved, these are
+                  being considered on an ongoing basis.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <i>7.3</i>
+                     </span></h2>
+               <p>The Secretary of State also met with LGBT+ representative groups to hear directly
+                  about the health and care issues that are most important to them. The restrictions
+                  were discussed, amongst a range of topics. Concerns were raised regarding access to
+                  these medicines for patients who were already prescribed a course of treatment prescribed
+                  by an EEA or Switzerland registered prescriber (before 3rd June), the impact the restrictions
+                  may have on mental health and wellbeing of children and young people with gender incongruence,
+                  as well as prescribers’ understanding of the new rules. As set out above, further
+                  communications will be issued before the commencement of the Order. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Applicable Guidance</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <i>8.1</i>
+                     </span></h2>
+               <p>Communications around the Existing Order and this Order are set out at 5.8-5.9.  Further
+                  information will be publicly available before the commencement date of the Order.
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <i>8.2</i>
+                     </span></h2>
+               <p>Existing relevant guidance also includes: the General Medical Council’s <a href="https://www.gmc-uk.org/professional-standards/professional-standards-for-doctors/good-practice-in-prescribing-and-managing-medicines-and-devices"><u>Good practice in prescribing and managing medicines and devices - professional standards
+                        - GMC (gmc-uk.org)</u><a class="fn" id="fnref-4" href="#fn-4">4</a></a>. Royal College of GPs position statement <a href="https://www.rcgp.org.uk/representing-you/policy-areas/transgender-care"><u>Transgender care (rcgp.org.uk)</u><a class="fn" id="fnref-5" href="#fn-5">5</a></a>.  General Pharmaceutical Council guidance <a href="https://assets.pharmacyregulation.org/files/2024-05/gender-identity-services-for-children-and-young-people-making-compassionate-professional-and-ethical-decisions-may-2024.pdf"><u>Gender identity services for children and young people: making compassionate, professional
+                        and ethical decisions (pharmacyregulation.org)</u><a class="fn" id="fnref-6" href="#fn-6">6</a></a>. NHS England’s clinical policy: <a href="https://www.england.nhs.uk/wp-content/uploads/2024/03/clinical-commissioning-policy-gender-affirming-hormones-v2.pdf"><u>Puberty suppressing hormones (PSH) for children and young people who have gender incongruence
+                        / gender dysphoria (england.nhs.uk)</u><a class="fn" id="fnref-7" href="#fn-7">7</a></a>. NHS Scotland <a href="https://www.nhsggc.scot/service-update/"><u>Service Update - NHSGGC</u><a class="fn" id="fnref-8" href="#fn-8">8</a></a>.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part Two: Impact and the Better Regulation Framework </u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact Assessment</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.1</span></h2>
+               <p>The Better Regulation Framework allows, where legislation is required to address an
+                  emergency situation such as essential public safety reforms, for insufficient time
+                  being available for a full assessment at the time the legislation is laid. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.2</span></h2>
+               <p>A Limited Impact Assessment is submitted with this Order and is published alongside
+                  the Explanatory Memorandum on the legislation.gov.uk website. A summary can be found
+                  at paragraphs 9.3 and 9.4. The Order is expected to have minimal impact on businesses.
+                  A full Impact Assessment will be prepared should a permanent Order be made, following
+                  consultation.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.3</span></h2>
+               <p>The Limited Impact Assessment presents a qualitative assessment of costs and benefits.
+                  The main benefit is an improvement in patient safety for under 18s starting a medical
+                  pathway for gender incongruence/dysphoria, as UK prescribing of puberty blockers for
+                  gender dysphoria, and all puberty blocker prescribing originating in the EEA, are
+                  reduced. The reform also delivers improved consistency of treatment for such patients.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.4</span></h2>
+               <p>The expected costs include time spent on familiarisation with the new rules, monitoring
+                  and enforcement. Potential risks include increased demand for alternative NHS or Health
+                  and Social Care Northern Ireland care, disruption to patients should treatment be
+                  delayed or changed, and (notwithstanding the weak evidence base) a loss of any health
+                  benefits that might have arisen from puberty blocker use.</p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>Impact on businesses, charities and voluntary bodies</i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.5</span></h2>
+               <p>The Order maintains the status quo in Great Britain while introducing the restrictions
+                  for the first time in Northern Ireland.  The impact on business, charities or voluntary
+                  bodies is expected to be minimal, given the relatively low number of patients affected
+                  and on the assumption that the NHS or Health and Social Care Northern Ireland provides
+                  alternative treatment where appropriate. Prescribers and dispensers will need to be
+                  familiar with the new rules and provide appropriate advice to patients. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.6</span></h2>
+               <p>The Order does impact small and micro businesses - mainly pharmacies and surgeries
+                  involved with patient care. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.7</span></h2>
+               <p>The impact on the public sector is expected to be minimal, given the relatively low
+                  number of patients affected, but some increased demand for NHS or Health and Social
+                  Care Northern Ireland care is expected.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring and review</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <i>What is the approach to monitoring and reviewing this legislation? </i>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.1</span></h2>
+               <p>The Order has a duration of 3 months from 27th August, the coming into force day in
+                  Northern Ireland. At the same time, a consultation on introducing a permanent Order
+                  has been launched. Monitoring and evaluation of impacts will be done through continued
+                  engagement with the NHS, professional leaders and professional regulators, and monitoring
+                  of available prescribing data.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.2</span></h2>
+               <p>A statutory review clause is not included in the Order because it will cease to have
+                  effect after three months. </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>
+                     <u>Part Three: Statements and Matters of Particular Interest to Parliament</u>
+                     </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to Parliament </b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.1</span></h2>
+               <p>The Order is made under section 62 of the Medicines Act 1968. Ministers are of the
+                  opinion that it is essential to make the Order, with effect from 3rd September in
+                  Great Britain, to maintain the existing restrictions. In Northern Ireland, where the
+                  restrictions will apply for the first time, the Order should come into force with
+                  immediate effect (5 days after laying in Parliament) to avoid serious danger to health.
+                  This is consistent with the rationale for the Existing Order, which introduced the
+                  restrictions for the first time in Great Britain.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.2</span></h2>
+               <p>The Existing Order was subject to legal challenge, with the judgment handed down on
+                  29 July 2024. A combination of the need to await the outcome of the judicial review
+                  before UK Ministers could make a final decision, to allow Ministers in the Northern
+                  Ireland Executive to determine and agree the territorial scope of the Order and the
+                  need for the Northern Ireland provisions to come into force with immediate effect
+                  means it has not been possible to adhere to the 21-day rule. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.3</span></h2>
+               <p>Section 62(4) of the Act provides that an order made in accordance with section 62(3)
+                  cannot have effect for longer than three months, and article 1 of the Order provides
+                  that it will cease to have effect at the end of 26th November 2024.  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.4</span></h2>
+               <p>Section 62(1) permits Ministers to prohibit the sale or supply of medicinal products
+                  of any description. That prohibition may be total, or subject to specified exceptions.
+                  The Order does not impose an outright ban on the sale or supply of GnRH analogues.
+                  Instead, it creates exceptions in relation to specified categories of patients, and
+                  in relation to specified purposes, and makes sale or supply subject to conditions.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.1</span></h2>
+               <p>The Secretary of State for Health and Social Care has made the following statement
+                  regarding Human Rights:</p>
+               <p class="@name">
+                  
+                  <section class="level">
+                     <p>“In my view the provisions of The Medicines (Gonadotrophin-Releasing Hormone Analogues)
+                        (Emergency Prohibition) (Extension) Order 2024 are compatible with the Convention
+                        rights.”</p>
+                  </section>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>The Relevant European Union Acts</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">13.1</span></h2>
+               <p>This instrument is not made under the European Union (Withdrawal) Act 2018, the European
+                  Union (Future Relationship) Act 2020 or the Retained EU Law (Revocation and Reform)
+                  Act 2023 (“relevant European Union Acts”). </p>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://cass.independent-review.uk/home/publications/final-report/"><u>Final Report – Cass Review</u></a> <a href="https://cass.independent-review.uk/home/publications/final-report/">https://cass.independent-review.uk/home/publications/final-report/</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.england.nhs.uk/publication/clinical-policy-puberty-suppressing-hormones/"><u>NHS England » Clinical polic y: puberty suppressing hormones</u></a> <a href="https://www.england.nhs.uk/publication/clinical-policy-puberty-suppressing-hormones/">https://www.england.nhs.uk/publication/clinical-policy-puberty-suppressing-hormones/</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.england.nhs.uk%2Fwp-content%2Fuploads%2F2023%2F04%2Finterim-service-spec-CYP-Gender-service-12-March-2024.docx&amp;wdOrigin=BROWSELINK"><u>interim-service-spec-CYP-Gender-service-12-March-2024.docx (live.com)</u></a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.england.nhs.uk%2Fwp-content%2Fuploads%2F2023%2F04%2Finterim-service-spec-CYP-Gender-service-12-March-2024.docx&amp;wdOrigin=BROWSELINK">https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.england.nhs.uk%2Fwp-content%2Fuploads%2F2023%2F04%2Finterim-service-spec-CYP-Gender-service-12-March-2024.docx&amp;wdOrigin=BROWSELINK</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  <a href="https://www.gmc-uk.org/professional-standards/professional-standards-for-doctors/good-practice-in-prescribing-and-managing-medicines-and-devices">https://www.gmc-uk.org/professional-standards/professional-standards-for-doctors/good-practice-in-prescribing-and-managing-medicines-and-devices</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  <a href="https://www.rcgp.org.uk/representing-you/policy-areas/transgender-care">https://www.rcgp.org.uk/representing-you/policy-areas/transgender-care</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  <a href="https://assets.pharmacyregulation.org/files/2024-05/gender-identity-services-for-children-and-young-people-making-compassionate-professional-and-ethical-decisions-may-2024.pdf">https://assets.pharmacyregulation.org/files/2024-05/gender-identity-services-for-children-and-young-people-making-compassionate-professional-and-ethical-decisions-may-2024.pdf</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  <a href="https://www.england.nhs.uk/wp-content/uploads/2024/03/clinical-commissioning-policy-gender-affirming-hormones-v2.pdf">https://www.england.nhs.uk/wp-content/uploads/2024/03/clinical-commissioning-policy-gender-affirming-hormones-v2.pdf</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  <a href="https://www.nhsggc.scot/service-update/">https://www.nhsggc.scot/service-update/</a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

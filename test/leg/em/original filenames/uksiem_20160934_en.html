@@ -1,0 +1,498 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE NEIGHBOURHOOD PLANNING (REFERENDUMS) (AMENDMENT) REGULATIONS 2016</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2016 No. 934</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Department for Communities and
+                     Local Government and is laid before Parliament by Command of Her Majesty.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">1.2</span></h2>
+                  <p>This memorandum contains information for the Joint Committee on Statutory Instruments.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>The Localism Act 2011 provided a statutory regime for neighbourhood planning. These
+                     Regulations make provision in relation to that regime to prescribe a date by which
+                     a referendum on a proposal for a neighbourhood development plan or neighbourhood development
+                     order (including a community right to build order) must be held.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>Matters of special interest to the Joint Committee on Statutory Instruments </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>The powers at paragraph 16 of Schedule 4B to the Town and Country Planning Act 1990
+                     (“the 1990 Act”) have been exercised previously (S.I. 2012/2031, amended by S.I. 2013/798
+                     and S.I. 2014/333). But these Regulations are the first use of the specific power
+                     at sub-paragraph (2)(c) of that paragraph to prescribe a date by which the referendum
+                     must be held.</p>
+                  <section class="subparagraph">
+                     <p>
+                        <b>
+                           <i>Other matters of interest to the House of Commons</i>
+                           </b>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.2</span></h2>
+                  <p>This instrument extends to England and Wales, and applies in relation to England only.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.3</span></h2>
+                  <p>In the view of the Department, for the purposes of House of Commons Standing Order
+                     83P the subject-matter of this entire instrument would be within the devolved legislative
+                     competence of the Northern Ireland Assembly if equivalent provision in relation to
+                     Northern Ireland were included in an Act of the Northern Ireland Assembly as a transferred
+                     matter and the Scottish Parliament if equivalent provision in relation to Scotland
+                     were included in an Act of the Scottish Parliament and the National Assembly for Wales
+                     if equivalent provision in relation to Wales were included in an Act of the National
+                     Assembly for Wales.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>Chapter 3 of Part 6 of the Localism Act 2011 (“the 2011 Act”) created the neighbourhood
+                     planning regime in England mainly by inserting new provisions into the 1990 Act and
+                     the Planning and Compulsory Purchase Act 2004 (“the 2004 Act”) (<i>see</i> Part 1 of Schedule 9 and Schedules 10 and 11 of the 2011 Act, for the provisions
+                     inserted into the 1990 Act, and Part 2 of Schedule 9 of the 2011 Act for the provisions
+                     inserted into the 2004 Act).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>Before a neighbourhood development plan or neighbourhood development order (including
+                     a community right to build order) can be made by a local planning authority, it must
+                     be voted on by the local community in a referendum. Where the neighbourhood area has
+                     been designated as a business area there must be an additional referendum for the
+                     businesses. A relevant council (defined at paragraph 14(3) of Schedule 4B to the 1990
+                     Act) must make arrangements for the referendum or referendums to take place in so
+                     much of their area as falls within the referendum area.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.3</span></h2>
+                  <p>The Neighbourhood Planning (Referendums) Regulations 2012 (“the 2012 Regulations”),
+                     as amended by the Neighbourhood Planning (Referendums) (Amendment) Regulations 2013
+                     and the Neighbourhood Planning (Referendums) (Amendment) Regulations 2014, make provision
+                     for the conduct of neighbourhood planning referendums. These Regulations further amend
+                     the 2012 Regulations to prescribe a date by which a referendum must be held, subject
+                     to exceptions.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>The extent of this instrument is England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5.2</span></h2>
+                  <p>The territorial application of this instrument is England, as set out in section 3
+                     of this explanatory memorandum under “Other matters of interest to the House of Commons”.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>The Minister of State for Housing and Planning has made the following statement regarding
+                     Human Rights:</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>In my view the provisions of the Neighbourhood Planning (Referendums) (Amendment)
+                     Regulations 2016 are compatible with the Convention rights.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>What is being done and why </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>Once a local planning authority has decided, following an independent examination
+                     of a proposal for a neighbourhood development plan or order (including a community
+                     right to build order), that the proposal should proceed to referendum, the Government
+                     is keen to ensure that the referendum takes place as quickly as possible.  Delays
+                     in holding the referendum date can cause frustration for communities.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>These Regulations prescribe a time period of 56 working days within which the referendum
+                     must be held in most cases.  Where the neighbourhood area is designated as a business
+                     area, where more than one relevant council must arrange a referendum, and areas where
+                     the local planning authority responsible for neighbourhood planning is not the relevant
+                     council responsible for arranging the referendum (such as in National Parks or Mayoral
+                     Development Corporations), a longer period of 84 working days applies. These time
+                     periods are intended to allow sufficient time for the local authority to prepare the
+                     required Information Statement and other documents prescribed under regulation 4 of
+                     the 2012 Regulations, including time for liaison between authorities in cross-boundary
+                     area and where the local planning authority is not the relevant council.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>There are three exceptions to where the prescribed date does not apply.  First, where
+                     the local planning authority and the neighbourhood group agree a date for the referendum
+                     to be held that is later than the prescribed date.  This may be, for example, because
+                     there is an event that the neighbourhood group wishes to align the referendum with
+                     to help encourage turnout. Secondly, where there is another poll due to be held within
+                     three months of the prescribed date, and the neighbourhood planning referendum can
+                     take place on the same day (whether or not combined with that poll).  This may enable
+                     the relevant council to make cost savings, for example by using the same polling station
+                     for both polls.  It may also help encourage turnout.  Thirdly, where there are legal
+                     challenges to the decision to hold a referendum. Although the prescribed date does
+                     not apply in this case, it is for each relevant council to decide, in the light of
+                     their own legal advice where necessary, whether to proceed with the referendum.</p>
+                  <section class="subparagraph">
+                     <p>
+                        <b>
+                           <i>Consolidation</i>
+                           </b>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.4</span></h2>
+                  <p>Not applicable.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>The Department  formally consulted on a number of reforms to the regulations governing
+                     neighbourhood planning from 18 February 2016 to 15 April 2016 (<a href="https://www.gov.uk/government/consultations/implementation-of-planning-changes-technical-consultation"><u>https://www.gov.uk/government/consultations/implementation-of-planning-changes-technical-consultation</u></a>). There were over 800 responses to the consultation of which 362 commented on the
+                     proposal to prescribe a date by which a referendum must be held.  Just under half
+                     of those respondents represented local planning authorities and around a quarter were
+                     from parish councils.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8.2</span></h2>
+                  <p>The consultation document proposed a time period of 10 weeks (in most neighbourhood
+                     areas) and 14 weeks (in business areas.  In these Regulations the time periods have
+                     been expressed as working days and adjusted slightly to align with the “referendum
+                     period” under regulation 4 of the 2012 Regulations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8.3</span></h2>
+                  <p>Over two thirds of local authorities supported the time periods proposed in the consultation
+                     and the proposed circumstances where the prescribed time period would not apply. Some
+                     consultees suggested other situations in which the longer time period should apply,
+                     and these have been taken into account in these Regulations. There was very strong
+                     support from parish councils, house builders and professional bodies.  A report of
+                     the consultation is being prepared and will be placed in the Library of each House
+                     of Parliament and on the Department for Communities and Local Government website (<a href="https://www.gov.uk/government/organisations/department-for-communities-and-local-government"><u>https://www.gov.uk/government/organisations/department-for-communities-and-local-government</u></a>).</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>The Department for Communities and Local Government’s planning practice guidance,
+                     which is a web-based resource (available at: http://planningguidance.planningportal.gov.uk/)
+                     includes guidance on neighbourhood planning. The Department intends to update the
+                     guidance to reflect the changes made by these Regulations.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>There is no impact on business, charities or voluntary bodies. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The impact on the public sector is minimal as we believe that local authorities already
+                     comply with the requirements of the Regulations in the vast majority of cases.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.3</span></h2>
+                  <p>An Impact Assessment has not been prepared for this instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.4</span></h2>
+                  <p>Neighbourhood planning is a voluntary activity; it is for individual organisations
+                     – parish councils or community organisations or businesses – to choose to produce,
+                     lead or participate in the production of a neighbourhood development plan or neighbourhood
+                     development order (including a community right to build order).  There is no new additional
+                     direct cost to businesses or civil society organisations arising from the reforms.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.5</span></h2>
+                  <p>Funding has been identified to support those local authorities that incur additional
+                     burdens as a result of the duties imposed under the 1990 Act and 2004 Act in relation
+                     to neighbourhood planning.  We do not consider that our reforms are introducing a
+                     requirement for additional administration or expenditure by relevant councils. They
+                     are required to arrange a referendum in any event and these Regulations simply prescribe
+                     a date by which the referendum must be held. It will still be possible to combine
+                     polls that are due to take place within a reasonable period of the date prescribed
+                     in these Regulations. Therefore our current arrangements for meeting any new burdens
+                     are sufficient.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11.2</span></h2>
+                  <p>Neighbourhood planning is entirely voluntary and is not a mandated process. It is
+                     for individual businesses and employees to choose whether or not they wish to participate
+                     they choose their involvement and the level of it freely. The proposals do not give
+                     rise to any additional requirements or costs on business.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>These Regulations do not contain provision for review and section 28 of the Small
+                     Business, Enterprise and Employment Act 2015 (duty to review regulatory provisions
+                     in secondary legislation) does not apply as these Regulations do not make regulatory
+                     provision in relation to any qualifying activity or amend regulatory provision made
+                     in relation to any qualifying activity. Neighbourhood planning is an activity that
+                     may be carried on by a voluntary or community body but these Regulations prescribe
+                     the date by which a referendum must be held and the activity of holding a referendum
+                     is carried out by a relevant council and not by a business or by a voluntary of community
+                     body.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>The Government is committed to speeding up and simplifying the neighbourhood planning
+                     process.  If evidence suggests that these measures in relation to prescribing the
+                     date by which a referendum must be held are not effective, further measures will be
+                     considered as appropriate.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>Jenny Frew at the Department for Communities and Local Government Tel: 0303 444 1343
+                     or email: jenny.frew@communities.gsi.gov.uk can answer any queries regarding the instrument.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

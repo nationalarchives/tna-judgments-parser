@@ -1,0 +1,575 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE MARRIAGE (SAME-SEX COUPLES) AND CIVIL PARTNERSHIP (OPPOSITE-SEX COUPLES) (NORTHERN
+                  IRELAND) REGULATIONS 2019</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2019 No. 1514</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Northern Ireland Office and the
+                     Government Equalities Office and is laid before Parliament by Command of Her Majesty.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>The purpose of this instrument is to allow same-sex couples in Northern Ireland and
+                     under Northern Ireland law to form a civil marriage and opposite-sex couples to register
+                     a civil partnership. It provides such couples with a range of associated rights and
+                     entitlements, ensuring that these relationships are recognised throughout the Northern
+                     Ireland statute book, in particular in relation to pensions and social security, but
+                     also in relation to children and families, and gender recognition. It also provides
+                     for how equivalent overseas relationships should be treated in Northern Ireland.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>Matters of special interest to the Joint Committee on Statutory Instruments </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None.</p>
+                  <section class="subparagraph">
+                     <p>
+                        <b>
+                           <i>Matters relevant to Standing Orders Nos. 83P and 83T of the Standing Orders of the
+                              House of Commons relating to Public Business (English Votes for English Laws)</i>
+                           </b>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.2</span></h2>
+                  <p>As the instrument is subject to negative resolution procedure there are no matters
+                     relevant to Standing Orders Nos. 83P and 83T of the Standing Orders of the House of
+                     Commons relating to Public Business at this stage.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The territorial extent of this instrument is Northern Ireland only except as follows.
+                     The following extend to the United Kingdom: Part 1 and regulations 10(3)(a), 11(3),
+                     12 (except paragraph (1)), 14 (except paragraph (1)), 17(1) and (2)(b), 18, 41, 42(2)
+                     to (4), 43(2) to (7), 44, 46(1) and (2) and 49 to 52. The following extend to Northern
+                     Ireland, and England and Wales: regulations 10(3)(c), 26(3)(b) and (6)(b) and 46(3).
+                     Regulation 47(1) extends to England and Wales only. Regulation 47(3) extends to Scotland
+                     only. Regulation 65 extends to England and Wales, and Scotland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of this instrument is the same as the territorial extent.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>The Secretary of State for Northern Ireland, Julian Smith, has made the following
+                     statement regarding Human Rights:</p>
+                  <p class="@name">
+                     
+                     <section class="level">
+                        <p>“In my view the provisions of the Marriage (Same-sex Couples) and Civil Partnership
+                           (Opposite-sex Couples) (Northern Ireland) Regulations 2019 are compatible with the
+                           Convention rights.” </p>
+                     </section>
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>The Marriage (Same Sex Couples) Act 2013 (c.30) made it possible for same-sex couples
+                     to marry in England and Wales, and the Marriage and Civil Partnership (Scotland) Act
+                     2014 (c.5) made similar changes for Scotland. Same-sex marriage has not been possible
+                     to date in Northern Ireland.    </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>The Civil Partnership Act 2004 (c.33) (“the 2004 Act”) introduced civil partnerships
+                     for same-sex couples across the United Kingdom.  The Civil Partnerships, Marriages
+                     and Deaths (Registration etc) Act 2019 (c.12) and the Civil Partnership (Opposite-Sex
+                     Couples) Regulations 2019 (S.I. 2019/1458) (“the 2019 Regulations”) extended civil
+                     partnerships to opposite-sex couples in England and Wales. The Civil Partnership (Scotland)
+                     Bill will have similar effect in Scotland. Opposite-sex civil partnerships have not
+                     been available to date in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.3</span></h2>
+                  <p>The duty under section 8 of the NIEFA requiring the Secretary of State to make regulations
+                     extending marriage to same-sex couples and civil partnerships to opposite-sex couples
+                     in Northern Ireland came into force on 22 October 2019 in the absence of a restored
+                     Northern Ireland Executive by 21 October 2019. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.4</span></h2>
+                  <p>Further regulations made under section 8 of the NIEFA are intended to be made in 2020.
+                     These will follow a consultation on same-sex religious marriage and the associated
+                     protections for that, and conversion entitlements from civil partnership to marriage
+                     (and vice versa). A consultation on conversion entitlements in England and Wales was
+                     conducted in 2019. Given the various potential policy options and the need to ensure
+                     that protections balance the rights of religious bodies and religious couples who
+                     are in favour of same-sex marriage or opposite-sex civil partnership with the rights
+                     of those who are not, and taking into account the particular legal and religious landscape
+                     in Northern Ireland, it was decided that a consultation on these areas is necessary.
+                     This will allow full account to be taken both of the practical and operational issues
+                     in Northern Ireland, as well as relevant rights under the European Convention on Human
+                     Rights. A staggered approach to implementation was announced in Parliament on 21 October
+                     2019.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>What is being done and why?</i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>This instrument applies to marriage and civil partnership policy which is a transferred
+                     matter for Northern Ireland under the Northern Ireland Act 1998 (c.47). The UK Government
+                     remains committed to restoring devolution in Northern Ireland. Parliament determined,
+                     however, that in the absence of a restored Northern Ireland Executive, the UK Government
+                     should legislate to allow same-sex marriages and opposite-sex civil partnerships in
+                     Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>Campaigners, including human rights and equality bodies, have lobbied strongly for
+                     a number of years for the introduction of same-sex marriage in Northern Ireland. The
+                     Northern Ireland Assembly voted on five occasions on motions on the marriage of same-sex
+                     couples. The most recent occasion was in November 2015 when, for the first time, the
+                     Assembly voted by a majority of one in favour of a motion which called on the Executive
+                     to table legislation to allow for marriage of same-sex couples. However, the motion
+                     failed because it did not achieve a cross-community majority and did not progress.
+                     Subsequent Private Members’ Bills at Westminster also failed to progress.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>When the Northern Ireland (Executive Formation etc.) Bill was being considered by
+                     Parliament in July 2019, Conor McGinn MP successfully amended the Bill at Commons
+                     Committee stage to require the UK Government to introduce regulations to extend same-sex
+                     marriage to Northern Ireland. His amendments attracted very strong support, with the
+                     new clause approved by 383 votes to 73. The new clause was further amended in the
+                     House of Lords by Lord Hayward, with government support, and extended to include opposite-sex
+                     civil partnerships in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.4</span></h2>
+                  <p>This instrument gives effect to commitments made by the government during the Parliamentary
+                     passage of the NIEFA. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.5</span></h2>
+                  <p>Part 2 of the instrument permits same-sex couples in Northern Ireland to marry. It
+                     does so in particular by amending the Marriage (Northern Ireland) Order 2003 (S.I.
+                     2003/413 (N.I. 3)) and the Matrimonial Causes (Northern Ireland) Order 1978 (S.I.
+                     1978/1045 (N.I. 15)), removing the legal impediments to same-sex marriage under Northern
+                     Ireland law. The effect of the Regulations is to apply the current preliminaries of
+                     civil marriage in Northern Ireland to same-sex couples. Part 2 also provides that
+                     same-sex marriages formed elsewhere in the UK or overseas can be recognised as marriages
+                     under Northern Ireland law (they are currently treated as civil partnerships). In
+                     addition, it provides for consular and armed forces marriages to be formed overseas
+                     under Northern Ireland law.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.6</span></h2>
+                  <p>Part 3 extends civil partnerships to opposite-sex couples in Northern Ireland by amending
+                     the definition of civil partnership and the eligibility criteria for registering as
+                     civil partners in the 2004 Act, to remove the same-sex requirement. The effect of
+                     the Regulations is to apply the current preliminaries of civil partnership in Northern
+                     Ireland to opposite-sex couples. It also amends Part 5 of the 2004 Act so that certain
+                     opposite-sex relationships formed in other countries, which are not marriages, can
+                     be treated as civil partnerships under Northern Ireland law. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.7</span></h2>
+                  <p>Part 4 amends legislation relating to children and parenthood to provide opposite-sex
+                     parents in a civil partnership with generally the same rights as opposite-sex married
+                     parents. In particular the instrument extends the provisions governing legitimacy,
+                     presumed paternity and parental status (in cases of assisted reproduction), in cases
+                     where a child’s mother and father are married, to cases where a child’s mother and
+                     father are in a civil partnership with one another. It also provides for opposite-sex
+                     parents in civil partnerships to have the same rights and responsibilities as opposite-sex
+                     married parents in respect of parental responsibility and registration of births.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.8</span></h2>
+                  <p>Part 5 of this instrument amends the Gender Recognition Act 2004 (c.7), which enables
+                     individuals to apply for a gender recognition certificate to change their legal gender.
+                     The changes will allow applicants in marriages or civil partnerships formed in Northern
+                     Ireland to obtain a full gender recognition certificate without the need to first
+                     bring their relationship to an end, provided their spouse or civil partner consents.
+                     Until now, this was only possible where both civil partners obtained a gender recognition
+                     certificate on the same date. This brings the position in Northern Ireland in line
+                     with that in England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.9</span></h2>
+                  <p>Part 6 makes consequential changes to pensions and social security primary legislation,
+                     while Part 7 makes changes to pensions and social security secondary legislation.
+                     Part 8 deals with changes to public sector pensions schemes in Northern Ireland. In
+                     particular the Regulations change references in pensions legislation to allow survivor
+                     benefits to be paid to a same-sex spouse or opposite-sex civil partner; and change
+                     references to “couples” in social security legislation so that they are read as including
+                     same-sex married couples and opposite-sex civil partners.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.10</span></h2>
+                  <p>Parts 9 and 10 makes other changes to primary and secondary legislation respectively,
+                     to reflect that in Northern Ireland married couples may now be of the same sex and
+                     civil partners may now be of the opposite sex. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.11</span></h2>
+                  <p>Part 11 contains transitional provision in relation to opposite-sex overseas relationships
+                     that will be treated as civil partnerships under Northern Ireland law as a result
+                     of this instrument. This provision reflects similar measures in Schedule 2 to the
+                     2019 Regulations for England and Wales. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.12</span></h2>
+                  <p>In accordance with the amendments made by these Regulations, marriages of same-sex
+                     couples can initially only be solemnised by a person appointed under article 31 of
+                     the Marriage (Northern Ireland) Order 2003 i.e. as a civil marriage. Same-sex religious
+                     marriage is not provided for under this first set of Regulations as it is intended
+                     to be the subject of a consultation and further legislation, as outlined above. In
+                     recognition of the fact that not everyone supports the introduction of same-sex marriage
+                     or opposite-sex civil partnerships, this instrument provides certain protections.
+                     In particular, new exceptions (see regulations 133 and 163) ensure that it is not
+                     unlawful discrimination for religious bodies to provide blessings (ceremonies or events
+                     to mark a marriage or civil partnership) only to same-sex, or opposite-sex, couples.
+                     In addition, regulation 142 amends the Public Order (Northern Ireland) Order 1987
+                     (S.I. 1987/463 (N.I. 7) to make clear that it is not a criminal offence simply to
+                     criticise same-sex marriage. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>European Union (Withdrawal) Act/Withdrawal of the United Kingdom from the European
+                        Union</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument does not relate to withdrawal from the European Union. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Consolidation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>There is no consolidation done by this instrument. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>The drafting of this instrument has been informed by engagement with the Northern
+                     Ireland Civil Service, including the General Register Office for Northern Ireland
+                     (GRONI). It draws heavily on the equivalent legislative provisions in England and
+                     Wales and Scotland, which were informed by formal consultation exercises. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The Secretary of State for Northern Ireland announced in the House of Commons on 21
+                     October 2019 that the government would be consulting on two issues in relation to
+                     the exercise of the NIEFA power under section 8 in Northern Ireland: the introduction
+                     of same-sex religious marriage and the necessary protections for those religious bodies
+                     and individuals that do not wish to solemnise same-sex marriage; and what conversion
+                     entitlements should be available to couples in Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.3</span></h2>
+                  <p>We intend to publish this consultation in January 2020 with further regulations to
+                     follow later in 2020.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The government will update the guidance on marriage and civil partnerships on the
+                     <i>nidirect</i> website around the time of implementation. GRONI will also issue guidance on these
+                     changes to local registration services.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>There is no significant impact on business, charities or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>The main impact on the public sector will be changes to GRONI’s operating systems.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>A full Impact Assessment is submitted with this memorandum and published alongside
+                     the Explanatory Memorandum on the legislation.gov.uk website. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses
+                     (in terms of regulatory burdens). </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>14.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>The approach to monitoring of this legislation is that the Northern Ireland Office
+                     and the Government Equalities Office will keep it under review, while monitoring the
+                     uptake of same-sex marriages and opposite-sex civil partnerships in Northern Ireland.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>A statutory review clause is not included in this instrument as the Secretary of State
+                     does not consider it appropriate, since there is not expected to be a significant
+                     annualised net impact on business (greater than +/-£5 million net annualised). </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>15.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>Alexis Petrou at the Northern Ireland Office Telephone: 0207 210 0817 or email: alexis.petrou@nio.gov.uk
+                     can be contacted with any queries regarding the instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>Bilal Zahid, Deputy Director for same-sex marriage/opposite-sex civil partnerships
+                     delivery, at the Northern Ireland Office can confirm that this Explanatory Memorandum
+                     meets the required standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>Julian Smith at the Northern Ireland Office can confirm that this Explanatory Memorandum
+                     meets the required standard.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

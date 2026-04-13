@@ -1,0 +1,1171 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE CAT AND DOG FUR (CONTROL OF MOVEMENT ETC.) (EU EXIT) REGULATIONS 2022</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2022 No. 1005</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Department for International
+                     Trade and is laid before Parliament by command of Her Majesty.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">1.2</span></h2>
+                  <p>This memorandum contains information for the Joint Committee on Statutory Instruments,
+                     the European Statutory Instruments Committee and the Secondary Legislation Scrutiny
+                     Committee.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>The purpose of this instrument is to ensure that the ban on the import, export and
+                     placing on the market of cat and dog fur, and products containing such fur, remains
+                     fully operable now that the United Kingdom has left the European Union. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.2</span></h2>
+                  <p>This instrument is made under sections 8 and 8C of the EU (Withdrawal) Act 2018 (“the
+                     EUWA”). </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>Part 2 of this instrument amends the retained domestic version of the Regulation (EC)
+                        No 1523/2007 (the “EC Regulation”) so as to:</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>remove references to the European Commission as these are no longer relevant to the
+                        United Kingdom in respect of Great Britain; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>amend inappropriate references to the European Union, replacing them with references
+                        to Great Britain;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>remove references to EU customs legislation (which has been replaced in its application
+                        to the United Kingdom in respect of Great Britain by provisions in the Taxation (Cross-Border
+                        Trade) Act 2018 and in regulations made under that Act) and replace these with references
+                        to domestic legislation where required;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>transfer to the Secretary of State for International Trade the power of EU Member
+                        States to derogate, by way of provision in regulations, from the general prohibition
+                        contained in the EC Regulation;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>whilst recognising that the placing on the market of such goods remains prohibited,
+                        derogate from the general prohibition to technically enable the movement of cat and
+                        dog fur and products containing such fur from Northern Ireland to Great Britain. In
+                        doing so, it does not prevent unfettered movement between Northern Ireland and other
+                        parts of the United Kingdom’s internal market as permitted by Article 6(1) of the
+                        Protocol on Ireland/Northern Ireland to the EU Withdrawal Agreement. </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>Part 3 of this instrument amends the Cat and Dog Fur (Control of Import, Export and
+                        Placing on the Market) Regulations 2008 (S.I. 2008/2795) (“the domestic Regulations”),
+                        as those Regulations apply in Great Britain, to provide for the imposition of criminal
+                        penalties in the criminal law jurisdictions of England and Wales, and Scotland, for
+                        contravening the prohibition in the retained domestic version of the EC Regulation
+                        as it applies in Great Britain.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>Part 4 of this instrument makes separate provision in respect of Northern Ireland
+                        to apply similar penalties for contravening the prohibition under the EC Regulation,
+                        as it directly applies to and in the United Kingdom in respect of Northern Ireland
+                        only by virtue of section 7A of the EUWA and Annex 2 of the Protocol on Ireland/Northern
+                        Ireland to the EU withdrawal agreement.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">d.</span></h2>
+                     <p>This instrument has nationwide extent. However, the amendments made by Parts 2 and
+                        3 apply in relation to Great Britain only. The amendments made by Part 4 apply in
+                        relation to Northern Ireland only by virtue of section 7A of the EUWA and Annex 2
+                        of Protocol on Ireland/Northern Ireland to the EU withdrawal agreement pursuant to
+                        which the EC Regulation continues to be directly applicable in Northern Ireland.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Explanations</i>
+                           </b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What did any relevant EU law do before exit day?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">2.3</span></h2>
+                        <p>Regulation (EC) No 1523/2007<a class="fn" id="fnref-1" href="#fn-1">1</a>:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>implemented a prohibition on the import, export and placing on the market of cat and
+                              dog fur in the European Union; </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>contained the ability for Member States to derogate from the prohibition for educational
+                              and taxidermy purposes; </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>allowed the European Commission to adopt an analytical method to identify different
+                              species of fur and to introduce legislation to amend this method when necessary; </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>set out the process by which any changes to the methodology will be developed (the
+                              European Commission will be assisted by the Committee on the Food Chain and Animal
+                              health) and adopted (meaning which committee process will apply); </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">e.</span></h2>
+                           <p>imposed obligations on Member States to report to the European Commission on their
+                              efforts to enforce the EC Regulation; </p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">f.</span></h2>
+                           <p>required Member States to provide for the enforcement of appropriate penalties for
+                              any breach of the prohibition in their domestic law.</p>
+                        </section>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>Why is it being changed?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">2.4</span></h2>
+                        <p>The United Kingdom’s position on the trade in cat and dog fur remains unchanged post
+                           the departure of the United Kingdom from the European Union. That is why this EC Regulation,
+                           which imposes a ban on the import, export and placing on the market of cat and dog
+                           fur and products containing such fur, forms part of the retained domestic legislation
+                           of the United Kingdom. The placing on the market of such fur remains illegal across
+                           the whole of the United Kingdom through the combined effect of both the EC Regulation,
+                           as directly applicable in Northern Ireland, and the retained domestic version of the
+                           EC Regulation as amended by Part 2 of this instrument in relation to Great Britain.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">2.5</span></h2>
+                        <p>The retained domestic version of the EC Regulation, as it applies in relation to Great
+                           Britain, contains a number of references to the European Union, the European Commission
+                           and EU laws that are no longer appropriate. Part 2 of these Regulations amends or
+                           removes these inappropriate references in the retained domestic version of the EC
+                           Regulation as it applies in Great Britain and replaces them with references to legislation
+                           governing Great Britain or the United Kingdom, as appropriate. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">2.6</span></h2>
+                        <p>As the retained domestic version of the EC Regulation imposes a total ban on the import,
+                           export and placing on the market of cat and dog fur in Great Britain, this could arguably
+                           include the movement of cat and dog fur and products containing such fur from Great
+                           Britain to Northern Ireland and vice versa. Whilst the import, export and placing
+                           on the market of cat and dog fur remains illegal, given that the United Kingdom is
+                           one customs territory, Part 2 of these Regulations amends the retained domestic version
+                           of the EC Regulation so as to derogate from the general prohibition in Article 3 and
+                           enable, from a technical but not practical perspective, the movement of cat and dog
+                           fur and products containing such fur from Northern Ireland to Great Britain. This
+                           amendment upholds the principle of unfettered movement within the United Kingdom’s
+                           internal market, whilst retaining strict controls on these products.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What will it now do?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">2.7</span></h2>
+                        <p>The instrument makes no change to policy but corrects the technical deficiencies and
+                           implements the Protocol on Ireland/Northern Ireland to the EU withdrawal agreement
+                           as set out in paragraph 2.1 in order to:</p>
+                        <section class="subparagraph num">
+                           <h2><span class="num">a.</span></h2>
+                           <p>leave the law unchanged in Northern Ireland as the EC Regulation directly applies
+                              in Northern Ireland as a result of the section 7A of the EUWA and Annex 2 of the Protocol
+                              on Ireland/Northern Ireland to the EU withdrawal agreement;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">b.</span></h2>
+                           <p>amend the retained domestic version of the EC Regulation as it applies in Great Britain
+                              to correct technical deficiencies and to technically continue allowing the movement
+                              of cat and dog fur and products containing such fur from Northern Ireland to Great
+                              Britain only, in accordance with the domestic policy of unfettered movement within
+                              the United Kingdom’s internal market, whilst maintaining the prohibition on the placement
+                              on the market in reality;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">c.</span></h2>
+                           <p>clarify and make provision in the domestic Regulations for enforcement and criminal
+                              penalties for breach of the prohibition under the retained domestic version of the
+                              EC Regulation for the criminal law jurisdictions of England and Wales, and Scotland;</p>
+                        </section>
+                        <section class="subparagraph num">
+                           <h2><span class="num">d.</span></h2>
+                           <p>make separate provision in respect of Northern Ireland for enforcement and criminal
+                              penalties for breaches of the prohibition in the directly applicable EC Regulation.</p>
+                        </section>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">2.8</span></h2>
+                        <p>Unfettered movement of all products<a class="fn" id="fnref-2" href="#fn-2">2</a> does not alter the commitment of Her Majesty’s Government to maintaining the cat
+                           and dog fur trade measures, but is merely a legal technicality to fulfil obligations
+                           with regards to unfettered movement and its adherence to the Revised Protocol on Ireland
+                           / Northern Ireland.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Matters of special interest to the Joint Committee on Statutory Instruments</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.1</span></h2>
+                     <p>An earlier version of this instrument and Explanatory Memorandum were previously laid
+                        before and approved by Parliament. However, due to two minor technical errors, the
+                        Department wished to withdraw and re-lay that instrument. It was not made before EU
+                        exit day, so the deferral of its commencement to the end of the implementation period
+                        was not effected by provision in the EUWA.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.2</span></h2>
+                     <p>The Department decided not to proceed to make that earlier instrument given that it
+                        did not, as drafted, take into account the implications of the section 7A of the EUWA
+                        and Annex 2 of the Protocol on Ireland/Northern Ireland to the EU withdrawal agreement.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.3</span></h2>
+                     <p>The Department then proceeded to lay before Parliament the Cat and Dog Fur (Control
+                        of Movement etc.) (EU Exit Regulations) 2021 which took account of the implications
+                        of the section 7A of the EUWA and Annex 2 of the Protocol on Ireland/Northern Ireland
+                        to the EU withdrawal agreement.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.4</span></h2>
+                     <p>However, the Joint Committee on Statutory Instruments made a report in respect of
+                        the Cat and Dog Fur (Control of Movement etc.) (EU Exit Regulations) 2021, suggesting
+                        improved drafting of the penalty provisions with respect to Scotland and Northern
+                        Ireland, as it did not include specific references to the statutory maximum for summary
+                        fines. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.5</span></h2>
+                     <p>The JCSI in its report stated that it considered that the penalty provisions in the
+                        statutory instrument did not provide correctly for the penalty provisions in Scotland
+                        and Northern Ireland. Sentencing provisions for each criminal jurisdiction within
+                        the United Kingdom are as a matter of legislative drafting outlined firstly with respect
+                        to that particular jurisdiction, and thereafter with respect to summary and indicatable
+                        offence penalties. At the time of the Cat and Dog Fur (Control of Import, Export and
+                        Placing on the Market) Regulations 2008 being made, summary fines in all criminal
+                        law jurisdictions in the United Kingdom had the same statutory maxima. This position
+                        was changed in 2012 with the Legal Aid Sentencing and Punishment of Offenders Act,
+                        which removed the cap for England and Wales in statute, meaning that fines on a summary
+                        basis were now capped in reference only to an offender’s means to pay or judicial
+                        powers as a matter of discretion. This change only extended to England and Wales;
+                        Scotland and Northern Ireland retained their maxima caps for summary fines.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.6</span></h2>
+                     <p>The Department for International Trade has, therefore, clarified the position on the
+                        penalties that apply across the United Kingdom with respect to each criminal law jurisdiction.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.7</span></h2>
+                     <p>The Department, in response to the JCSI report, withdrew the Cat and Dog Fur (Control
+                        of Movement etc.) (EU Exit Regulations) 2021 and redrafted the relevant provisions
+                        of the instrument to clarify the penalty provisions for each criminal law jurisdiction
+                        of England and Wales, Scotland and Northern Ireland in response to the report of the
+                        JCSI; setting out that a statutory maximum applies in respect of Scotland and Northern
+                        Ireland. </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The territorial extent of this instrument is the whole of the United Kingdom (England
+                     and Wales, Scotland and Northern Ireland).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of the amendments made by Part 2 of this instrument to
+                     the retained domestic version of the EC Regulation is Great Britain only. The territorial
+                     application of the amendments made by Part 3 of this instrument to the enforcement
+                     provisions in the domestic Regulations is England and Wales, and Scotland, by criminal
+                     law jurisdiction. The territorial application of the amendments made by Part 4 of
+                     this instrument to the domestic enforcement provisions is Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.3</span></h2>
+                  <p>The retained domestic version of the EC Regulation is incorporated into the domestic
+                     law of the United Kingdom under section 3 of the EUWA. However, it is not capable
+                     of having effect in relation to Northern Ireland because of the effect of section
+                     7A of the EUWA and Annex 2 of the Protocol on Ireland/Northern Ireland to the EU withdrawal
+                     agreement under which the EC Regulation is directly applicable to and in the United
+                     Kingdom in respect of Northern Ireland.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>The Minister of State, Honourable James Duddridge MP, has made the following statement
+                     regarding Human Rights:</p>
+                  <p class="@name">
+                     
+                     <section class="level">
+                        <p>“In my view the provisions of the Cat and Dog Fur (Control of Movement etc.) (EU Exit)
+                           Regulations 2022 are compatible with the Convention rights.” </p>
+                     </section>
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>The EC Regulation was published in the Official Journal on 11th December 2007 and
+                     the prohibition officially came into force 20 days thereafter. However, Member States
+                     were given until 31st December 2008 to provide an effective, persuasive and proportionate
+                     penalty for breach of this directly applicable prohibition. Existing United Kingdom
+                     legislation, the Customs &amp; Excise Management Act 1979 (CEMA), provides a penalty of
+                     7 years’ imprisonment for deliberate breach of any enactment which has the effect
+                     of prohibiting imports into or exports from the United Kingdom, but this would not
+                     cover unintentional breaches of the customs prohibition or deliberate or unintentional
+                     breaches of the prohibition on sale.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>The EC Regulation was first proposed in response to pressure from non-government organisations
+                     across the European Union who suggested that the import, export and sale of cat and
+                     dog fur was widespread. Representatives in the fur trade argued that a ban was not
+                     required on the basis that they did not believe that the trade in this fur was common.
+                     The impact assessment prepared by the European Commission found very little evidence
+                     of a trade in cat and dog fur.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.3</span></h2>
+                  <p>The EC Regulation was considered by the EC Scrutiny Committees (Explanatory Memorandum
+                     No 15674/06 and supplementary Explanatory Memorandum submitted by the Department for
+                     Environment, Food and Rural Affairs (DEFRA) on 18th December 2006 and 10th May 2007).
+                     The House of Commons EC Scrutiny Committee cleared the proposal on 6th June 2007.
+                     The House of Lords EC Scrutiny Committee cleared the proposal on 16th May 2007.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.4</span></h2>
+                  <p>The EC Regulation will continue to be directly applicable to and in the United Kingdom
+                     in respect of Northern Ireland by virtue of section 7A of the EUWA as it is EU legislation
+                     listed in Annex 2 of the Protocol on Ireland/Northern Ireland to the EU withdrawal
+                     agreement.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>What is being done and why?</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.1</span></h2>
+                     <p>This instrument is required to correct technical deficiencies in retained EU law and
+                        to implement the Protocol on Ireland/Northern Ireland to the EU Withdrawal Agreement.
+                        The amendments made by Part 2 of this instrument, which apply in respect of Great
+                        Britain only, ensure that the existing prohibition under the EC Regulation on the
+                        import, export and placing on the market of cat and dog fur is directly applicable
+                        in Northern Ireland. The amendments made by Part 2 of these Regulations also derogate
+                        from the general prohibition in Article 3 of the retained domestic version of the
+                        EC Regulation to technically (but not practically) enable the movement of cat and
+                        dog fur and products containing such fur from Northern Ireland to Great Britain in
+                        accordance with the domestic policy of unfettered movement within the United Kingdom’s
+                        internal market. The amendments made by Part 2 of this instrument also include a regulation
+                        making power for the Secretary of State to further derogate from the general prohibition
+                        under Article 3 of the retained domestic version of the EC Regulation for educational
+                        or taxidermy purposes.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.2</span></h2>
+                     <p>In addition, the amendments made by Part 4 of this instrument make sure that the criminal
+                        penalties for breach of the prohibition in the directly applicable EC Regulation will
+                        continue to apply in respect of Northern Ireland. Criminal penalties are also applied,
+                        by virtue of the amendments made by Part 3 of this instrument, to a breach of the
+                        prohibition under the retained domestic version of the EC Regulation as it applies
+                        in Great Britain.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Explanations</i>
+                           </b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What did any law do before the changes to be made by this instrument?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.3</span></h2>
+                        <p>Prior to the United Kingdom’s withdrawal from the European Union, Regulation (EC)
+                           No 1523/2007 of the European Parliament and of the Council banned the placing on the
+                           market and the import to, or export from, the European Union of cat and dog fur and
+                           products containing such fur, and the Cat and Dog Fur (Control of Import, Export and
+                           Placing on the Market) Regulations 2008 implemented these requirements in line with
+                           the United Kingdom’s obligations at that time as an EU Member State. Please refer
+                           to Annex Part 1A for the relevant statements under the European Union (Withdrawal)
+                           Act 2018.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>Why is it being changed?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.4</span></h2>
+                        <p>The policy itself is not being changed for the United Kingdom. This instrument will
+                           maintain the ban of the placing on the market, the import to and the export from the
+                           United Kingdom of cat and dog fur and products containing such fur. However, this
+                           instrument corrects technical deficiencies in the retained EU law and implements the
+                           Protocol on Ireland/Northern Ireland. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What will it now do?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.5</span></h2>
+                        <p>This instrument makes sure EU law is retained but is expressed correctly for the United
+                           Kingdom and the continued policy has full effect across in Great Britain. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.6</span></h2>
+                        <p>This instrument enforces the ban on the import, export and placing on the market of
+                           cat and dog fur and products containing such fur in Great Britain, by clarifying penalties
+                           for breaking the law and enabling enforcement. </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.7</span></h2>
+                        <p>The instrument is compliant with the Protocol on Ireland/Northern Ireland by technically,
+                           but not practically, allowing for unfettered movement of products between Northern
+                           Ireland and Great Britain.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.8</span></h2>
+                        <p>The ability to move cat and dog fur, and related products, between Northern Ireland
+                           and Great Britain technically, is one that existed under the EC Regulation as it applied
+                           in relation to the United Kingdom before the end of the implementation period; the
+                           amendments made by these Regulations do not alter the fact that the trade in cat and
+                           dog fur and products containing such fur remains illegal across the whole of the United
+                           Kingdom. The legal changes required to give effect to the policy of unfettered movement
+                           maintain in place the full extent of the restrictions and prohibitions that applied
+                           in this area and that the United Kingdom adhered to as an EU Member State.  </p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>European Union Withdrawal and Future Relationship</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument is being made using the power in section 8 of the European Union (Withdrawal)
+                     Act 2018 in order to address failures of retained EU law to operate effectively or
+                     other deficiencies arising from the withdrawal of the United Kingdom from the European
+                     Union. This instrument is also made under section 8C(1) of the EUWA to implement Annex
+                     2 of the Protocol on Ireland/Northern Ireland to the EU withdrawal agreement by giving
+                     the amendments made to retained domestic version of the EC Regulation effect across
+                     Great Britain and thereby leaving the law unchanged in relation to Northern Ireland.
+                     This instrument therefore enables unfettered movement within the United Kingdom also,
+                     in accordance with the United Kingdom’s internal market.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8.2</span></h2>
+                  <p>In accordance with the requirements of that Act the Minister has made the relevant
+                     statements as detailed in Part 2 of the Annex to this Explanatory Memorandum.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Consolidation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>None.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>There is no requirement for a formal consultation. This instrument makes no change
+                     to policy but corrects the technical deficiencies and implements the Protocol on Ireland/Northern
+                     Ireland to the EU withdrawal agreement as set out in paragraph 2.7. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The Department for International Trade has explained the purpose of the statutory
+                     instrument to the Devolved Administrations.  </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The Department for International Trade does not propose to issue any guidance in relation
+                     to this statutory instrument at this time.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>There is no, or no significant, impact on business, charities or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>There is no, or no significant, impact on the public sector.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>A full Impact Assessment has not been prepared for this instrument because this instrument
+                     makes no change to policy but corrects the technical deficiencies and implements the
+                     Protocol on Ireland/Northern Ireland to the EU withdrawal agreement as set out in
+                     paragraph 2.7.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses.
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>14.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>Monitoring is not proposed because this instrument makes no change to policy but corrects
+                     the technical deficiencies and implements the Protocol on Ireland/Northern Ireland
+                     to the EU Withdrawal Agreement as set out in paragraph 2.7. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>As this instrument is made under the European Union (Withdrawal) Act 2018 no review
+                     clause is required. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>15.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>Nicola Dissem at the Department for International Trade (email: <a href="mailto:importcontrols@trade.gov.uk"><u>importcontrols@trade.gov.uk</u></a>) can be contacted with any queries regarding the instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>Claire Vince, Director of Global Trade and Delivery at the Department for International
+                     Trade can confirm that this Explanatory Memorandum meets the required standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>The Honourable James Duddridge MP, Minister at the Department for International Trade,
+                     can confirm that this Explanatory Memorandum meets the required standard.</p>
+               </section>
+            </section>
+         </div>
+         <section class="attachment" data-name="annex">
+            <div class="body">
+               <p class="center">
+                  <b>Annex</b>
+                  </p>
+               <p class="center">
+                  <b>Statements under the European Union (Withdrawal) Act 2018 and the European Union (Future
+                     Relationship) Act 2020</b>
+                  </p>
+               <p class="center">
+                  <b>Part 1A</b>
+                  </p>
+               <p class="center">Table of Statements under the 2018 Act</p>
+               <p>This table sets out the statements that <u>may</u> be required under the 2018 Act.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:0.98in">
+                     <col style="width:1.77in">
+                     <col style="width:1.87in">
+                     <col style="width:2.56in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Statement</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Where the requirement sits</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>To whom it applies</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>What it requires</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Sifting</p>
+                        </td>
+                        <td>
+                           <p>Paragraphs 3(3), 3(7) and 17(3) and 17(7) of Schedule  7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising sections 8(1) or 23(1) to make a Negative SI</p>
+                        </td>
+                        <td>
+                           <p>Explain why the instrument should be subject to the negative procedure and, if applicable,
+                              why they disagree with the recommendation(s) of the SLSC/Sifting Committees</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Appropriate-</p>
+                           <p>ness</p>
+                        </td>
+                        <td>
+                           <p>Sub-paragraph (2) of paragraph 28, Schedule 7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising sections 8(1)  or 23(1) or jointly exercising powers
+                              in Schedule 2</p>
+                        </td>
+                        <td>
+                           <p>A statement that the SI does no more than is appropriate.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Good Reasons </p>
+                        </td>
+                        <td>
+                           <p>Sub-paragraph (3) of paragraph 28, Schedule 7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising sections 8(1) or 23(1) or jointly exercising powers
+                              in Schedule 2</p>
+                        </td>
+                        <td>
+                           <p>Explain the good reasons for making the instrument and that what is being done is
+                              a reasonable course of action.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Equalities</p>
+                        </td>
+                        <td>
+                           <p>Sub-paragraphs (4) and (5) of paragraph 28, Schedule 7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising sections 8(1) or 23(1) or jointly exercising powers
+                              in Schedule 2</p>
+                        </td>
+                        <td>
+                           <p>Explain what, if any, amendment, repeals or revocations are being made to the Equalities
+                              Acts 2006 and 2010 and legislation made under them. </p>
+                           <p></p>
+                           <p>State that the Minister has had due regard to the need to eliminate discrimination
+                              and other conduct prohibited under the Equality Act 2010.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Explanations</p>
+                        </td>
+                        <td>
+                           <p>Sub-paragraph (6) of paragraph 28, Schedule 7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising sections 8(1) or 23(1) or jointly exercising powers
+                              in Schedule 2</p>
+                           <p>In addition to the statutory obligation the Government has made a political commitment
+                              to include these statements alongside all EUWA SIs</p>
+                        </td>
+                        <td>
+                           <p>Explain the instrument, identify the relevant law before IP completion day, explain
+                              the instrument’s effect on retained EU law and give information about the purpose
+                              of the instrument, e.g., whether minor or technical changes only are intended to the
+                              EU retained law.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Criminal offences</p>
+                        </td>
+                        <td>
+                           <p>Sub-paragraphs (3) and (7) of paragraph 28, Schedule 7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising sections 8(1) or 23(1) or jointly exercising powers
+                              in Schedule 2 to create a criminal offence</p>
+                        </td>
+                        <td>
+                           <p>Set out the ‘good reasons’ for creating a criminal offence, and the penalty attached.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Sub-</p>
+                           <p>delegation</p>
+                        </td>
+                        <td>
+                           <p>Paragraph 30, Schedule 7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising section 8 or part 1 of Schedule 4 to create a legislative
+                              power exercisable not by a Minister of the Crown or a Devolved Authority by Statutory
+                              Instrument.</p>
+                        </td>
+                        <td>
+                           <p>State why it is appropriate to create such a sub-delegated power.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Urgency</p>
+                        </td>
+                        <td>
+                           <p>Paragraph 34, Schedule 7</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown using the urgent procedure in paragraphs 5 or 19, Schedule
+                              7.</p>
+                        </td>
+                        <td>
+                           <p>Statement of the reasons for the Minister’s opinion that the SI is urgent.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Scrutiny statement where amending regulations under 2(2) ECA 1972</p>
+                        </td>
+                        <td>
+                           <p>Paragraph 14, Schedule 8</p>
+                        </td>
+                        <td>
+                           <p>Anybody making an SI after IP completion day under powers conferred before the start
+                              of the 2017-19 session of Parliament which modifies subordinate legislation made under
+                              s. 2(2) ECA</p>
+                        </td>
+                        <td>
+                           <p>Statement setting out:</p>
+                           <p>a) the steps which the relevant authority has taken to make the instrument published
+                              in accordance with paragraph 16(2), Schedule 8 available to each House of Parliament,
+                              </p>
+                           <p>b) containing information about the relevant authority’s response to— </p>
+                           <p>(i) any recommendations made by a committee of either House of Parliament about the
+                              published draft instrument, and </p>
+                           <p>(ii) any other representations made to the relevant authority about the published
+                              draft instrument, and,</p>
+                           <p>c) containing any other information that the relevant authority considers appropriate
+                              in relation to the scrutiny of the instrument.</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Explanations where amending regulations under 2(2) ECA 1972</p>
+                        </td>
+                        <td>
+                           <p>Paragraph 15, Schedule 8</p>
+                        </td>
+                        <td>
+                           <p>Anybody making an SI after IP completion day under powers outside the European Union
+                              (Withdrawal) Act 2018 which modifies subordinate legislation made under s. 2(2) ECA</p>
+                        </td>
+                        <td>
+                           <p>Statement explaining the good reasons for modifying the instrument made under s. 2(2)
+                              ECA, identifying the relevant law before IP completion day, and explaining the instrument’s
+                              effect on retained EU law.</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <p class="center">
+                  <b>Part 1B</b>
+                  </p>
+               <p class="center">Table of Statements under the 2020 Act</p>
+               <p>This table sets out the statements that <u>may</u> be required under the 2020 Act.</p>
+               <table>
+                  <colgroup>
+                     <col style="width:0.98in">
+                     <col style="width:1.77in">
+                     <col style="width:1.87in">
+                     <col style="width:2.56in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Statement</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Where the requirement sits</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>To whom it applies</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>What it requires</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Sifting</p>
+                        </td>
+                        <td>
+                           <p>Paragraph 8 Schedule 5</p>
+                        </td>
+                        <td>
+                           <p>Ministers of the Crown exercising section 31 to make a Negative SI</p>
+                        </td>
+                        <td>
+                           <p>Explain why the instrument should be subject to the negative procedure and, if applicable,
+                              why they disagree with the recommendation(s) of the SLSC/Sifting Committees</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <p class="center">
+                  <b>Part 2</b>
+                  </p>
+               <p class="center">Statements required under the European Union (Withdrawal) 2018 Act or the European
+                  Union (Future Relationship) Act 2020</p>
+               <div class="blockContainer">
+                  <p><span class="num">
+                        <b>1.</b>
+                        </span>
+                     <b>Appropriateness statement</b>
+                     </p>
+               </div>
+               <div class="blockContainer">
+                  <p><span class="num">1.1</span>The Minister of State at the Department for International Trade, Honourable James
+                     Duddridge MP has made the following statement regarding use of legislative powers
+                     in the European Union (Withdrawal) Act 2018:</p>
+               </div>
+               <p>“In my view the Cat and Dog Fur (Control of Movement etc.) (EU Exit) Regulations 2022
+                  do no more than is appropriate”. </p>
+               <div class="blockContainer">
+                  <p><span class="num">1.2</span>This is the case because United Kingdom left the EU on 31st January 2020 and is, therefore,
+                     no longer a Member State of the European Union.  Provisions designed in the context
+                     of EU membership need to be adapted accordingly, while doing no more than maintaining
+                     existing policy.</p>
+               </div>
+               <div class="blockContainer">
+                  <p><span class="num">
+                        <b>2.</b>
+                        </span>
+                     <b>Good reasons</b>
+                     </p>
+               </div>
+               <div class="blockContainer">
+                  <p><span class="num">2.1</span>The Minister of State at the Department for International Trade, Honourable James
+                     Duddridge MP has made the following statement regarding use of legislative powers
+                     in the European Union (Withdrawal) Act 2018:</p>
+               </div>
+               <p>“In my view there are good reasons for the provisions in this instrument, and I have
+                  concluded they are a reasonable course of action”. </p>
+               <div class="blockContainer">
+                  <p><span class="num">2.2</span>These are that regulations would otherwise contain a number of references to the European
+                     Union, the Commission and EU laws that are no longer appropriate in the United Kingdom
+                     after exit. These reasons are explained further in sections 2.4, 7.1 and 8.1 of the
+                     explanatory memorandum. </p>
+               </div>
+               <div class="blockContainer">
+                  <p><span class="num">
+                        <b>3.</b>
+                        </span>
+                     <b>Equalities</b>
+                     </p>
+               </div>
+               <div class="blockContainer">
+                  <p><span class="num">3.1</span>The Minister of State at the Department for International Trade, Honourable James
+                     Duddridge MP has made the following statement(s):</p>
+               </div>
+               <p>“The instrument does not amend, repeal or revoke a provision or provisions in the
+                  Equality Act 2006 or the Equality Act 2010 or subordinate legislation made under those
+                  Acts. </p>
+               <div class="blockContainer">
+                  <p><span class="num">3.2</span>The Minister of State at the Department for International Trade, Honourable James
+                     Duddridge MP has made the following statement regarding use of legislative powers
+                     in the European Union (Withdrawal) Act 2018:</p>
+               </div>
+               <p>“In relation to the instrument, I, Honourable James Duddridge MP, have had due regard
+                  to the need to eliminate discrimination, harassment, victimisation and any other conduct
+                  that is prohibited by or under the Equality Act 2010.”.</p>
+               <div class="blockContainer">
+                  <p><span class="num">
+                        <b>4.</b>
+                        </span>
+                     <b>Explanations</b>
+                     </p>
+               </div>
+               <div class="blockContainer">
+                  <p><span class="num">4.1</span>The explanations statement has been made in section 2 of the main body of this explanatory
+                     memorandum.</p>
+               </div>
+            </div>
+         </section>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  As amended by S.I. 2009/1056 (The Cat and Dog Fur (Control of Import, Export and
+                  Placing on the Market) (Amendment) Regulations 2009</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The only exception to unfettered movement policy is where it is necessary to secure
+                  compliance with, or to give effect to, any international obligations.</p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

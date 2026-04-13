@@ -1,0 +1,487 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE PROTECTION OF FREEDOMS ACT 2012 (GUIDANCE ON THE MAKING OR RENEWING OF NATIONAL
+                  SECURITY DETERMINATIONS) ORDER 2014</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2014 No. 198</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>This explanatory memorandum has been prepared by the Home Office and is laid before
+                  Parliament by Command of Her Majesty.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Purpose of the instrument</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>The purpose of this Order is to make provision for guidance in relation to powers
+                     for the making or renewing of national security determinations allowing the retention
+                     of biometric data set out in the Terrorism Act 2000, Counter-Terrorism Act 2008, Terrorism
+                     Prevention and Investigation Measures Act 2011, Police and Criminal Evidence Act 1984,
+                     Police and Criminal Evidence (Northern Ireland) Order 1989 and the Criminal Procedure
+                     (Scotland) Act 1995, as amended by section 9 and Schedule 1 to the Protection of Freedoms
+                     Act 2012.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to the Joint Committee on Statutory Instruments</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative Context</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The powers to retain biometric material set out in relevant UK legislation were significantly
+                     altered by the Protection of Freedoms Act 2012 (enacted in May 2012).  These changes
+                     were made as a result of the judgment of the European Court of Human Rights in <i>S and Marper v United Kingdom [2008] </i>(see: <a href="http://www.bailii.org/eu/cases/ECHR/2008/1581.html"><u>http://www.bailii.org/eu/cases/ECHR/2008/1581.html</u></a>) and gave effect to the Government’s commitment made in its <i>Programme for Government [2010]</i> to ‘adopt the protections of the Scottish model.’</p>
+               </section>
+               <section class="subparagraph">
+                  <p>(see:<a href="http://webarchive.nationalarchives.gov.uk/20100526084809/http://programmeforgovernment.hmg.gov.uk"><u>http://webarchive.nationalarchives.gov.uk/20100526084809/http://programmeforgovernment.hmg.gov.uk</u></a>).</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>Specifically, sections 9, 19 to 22 and Schedule 1 to the Protection of Freedoms Act
+                     2012 provides the police and other law enforcement authorities with the power to extend
+                     retention of biometric material (DNA and fingerprints) where necessary for the purposes
+                     of national security i.e. make a national security determination (NSD). This process
+                     is subject to independent oversight by the Biometric Commissioner (including the power
+                     to order destruction of material), and requires the Secretary of State to issue guidance
+                     on the making or renewing of national security determinations allowing extended retention
+                     of such material.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Territorial Extent and Application</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">5.1</span></h2>
+               <p>This instrument applies to all of the United Kingdom. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>The Secretary of State has made the following statement regarding Human Rights:</p>
+               </section>
+               <section class="subparagraph">
+                  <p>
+                     <span class="tab">&nbsp;</span>
+                     <i>“In my view the provisions of the Protection of Freedoms Act 2012 (Guidance on the
+                        Making or Renewing of National Security Determinations) Order 2014 are compatible
+                        with the Convention Rights”.</i>
+                     </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy background</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>
+                           <i>•</i>
+                           </b>
+                        </span></h2>
+                  <p>
+                     <b>
+                        <i>What is being done and why </i>
+                        </b>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>The Programme for Government (section 3: civil liberties) states that the Government
+                     “<i>will adopt the protections of the Scottish model for the DNA database</i>”.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>The existing framework for the taking, retention and destruction of fingerprints,
+                     footwear impressions, DNA samples and the profiles derived from such samples set out
+                     in Part 5 of <u>Police and Criminal Evidence Act 1984</u> (“PACE”) and as amended by the <u>Criminal Justice and Public Order Act 1994 </u>(“the 1994 Act”) enabled DNA samples to be taken from anyone charged with, reported
+                     for summons, cautioned or convicted of a recordable offence; and allowed profiles
+                     obtained from such samples to be retained and speculatively searched against other
+                     profiles obtained from victims or scenes of crime.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>The <u>Criminal Justice and Police Act 2001</u> further amended PACE so as to remove the obligation to destroy a DNA sample or profile
+                     when a suspect was not prosecuted for or was acquitted of the offence with which he
+                     or she was charged. The power to take and retain DNA samples and profiles was further
+                     widened by the <u>Criminal Justice Act 2003</u> (“the 2003 Act”) which enabled a DNA sample to be taken from any person arrested
+                     for a recordable offence and detained in a police station, whether or not they are
+                     subsequently charged. Any such sample, and the profile derived from it, could be retained
+                     indefinitely.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.4</span></h2>
+                  <p>In December 2008, in the case of <i>S and Marper v United Kingdom </i>[2008] ECHR 15812, the European Court of Human Rights (“ECtHR”) ruled that the provisions
+                     in PACE (and the equivalent legislation in Northern Ireland) permitting the ‘blanket
+                     and indiscriminate’ retention of DNA from unconvicted individuals violated Article
+                     8 (right to privacy) of the European Convention on Human Rights (“ECHR”). In response
+                     to this judgment, the then Government brought forward provisions in sections 14 to
+                     23 of the <u>Crime and Security Act 2010</u> (“the 2010 Act”) which, amongst other things, allowed for the retention of fingerprints
+                     and DNA profiles of persons arrested for, but not convicted of, any recordable offence
+                     for six years. Sections 14 to 18, 20 and 21 of the 2010 Act established a separate
+                     approach to the retention of DNA profiles and fingerprints by the police for national
+                     security purposes and made provisions for the extended retention of DNA and fingerprints
+                     on national security grounds. These provisions of the 2010 Act were not brought into
+                     force and Part 1 of Schedule 10 to the 2012 Act repeals them.  The equivalent legislation
+                     in Scotland is contained in sections 18 to 20 of the <u>Criminal Procedure (Scotland) Act 1995</u> (as amended). </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.5</span></h2>
+                  <p>Although retention on national security grounds was not addressed in the judgment
+                     in <i>Marper</i>, the Government sought to ensure that a comprehensive regime, which included this
+                     category of material, was established.&nbsp; To this end, section 9 and Schedule 1 to the
+                     Protection of Freedoms Act 2012 provide for a broadly equivalent regime to that governing
+                     retention of biometric material taken in respect of general purposes, for that encompassing
+                     national security.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.6</span></h2>
+                  <p>This Order introduces for the first time statutory guidance governing the exercise
+                     of powers on the retention, destruction and use of biometric material held for national
+                     security purposes by police and other law enforcement authorities.  It gives effect
+                     to section 22 of the Protection of Freedoms Act 2012 which places a duty on the Secretary
+                     of State to prepare guidance in respect of the use of powers to retain biometric data
+                     for national security purposes. </p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation outcome</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>There is a statutory requirement to consult the Commissioner for the Retention and
+                     Use of Biometric Material (“Biometrics Commissioner”) and the Lord Advocate on the
+                     draft guidance governing the national security retention powers contained in the relevant
+                     legislation (see paragraph 9.1 below), as amended by the Protection of Freedoms Act
+                     2012.  A consultation on the draft guidance was launched on 26 March 2013 and closed
+                     on 20 May 2013 (a period of eight weeks). The Home Office received eight submissions
+                     in response to the consultation – which broadly welcomed the new guidance as likely
+                     to be effective in ensuring the new powers of retention are used fairly and appropriately.
+                     Responses, including those from the Police Service, Information Commissioner, Northern
+                     Ireland Policing Board and the statutory consultees (the Biometrics Commissioner and
+                     the Lord Advocate) made particular reference to the need for appropriate, stringent
+                     safeguards and clear lines of accountability.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.2</span></h2>
+                  <p>A summary of responses received is available on the GOV.UK website (see <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/206086/consultation-response.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/206086/consultation-response.pdf</u></a>).</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.3</span></h2>
+                  <p>The Department has given careful consideration to the submissions received as part
+                     of the consultation as well as to those from its own engagement with stakeholders
+                     in developing the guidance and has made a number of changes to it as a result.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Guidance</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>The Guidance sets out the basic principles for the use of the power by Chief Officers
+                     or Chief Constables to extend retention for national security purposes, under the
+                     following legislation:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">i.</span></h2>
+                     <p>Terrorism Act 2000;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">ii.</span></h2>
+                     <p>Counter-Terrorism Act 2008;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">iii.</span></h2>
+                     <p>Terrorism Prevention and Investigation Measures Act 2011;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">iv.</span></h2>
+                     <p>Police and Criminal Evidence Act 1984;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">v.</span></h2>
+                     <p>Police and Criminal Evidence (Northern Ireland) Order 1989;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">vi.</span></h2>
+                     <p>Criminal Procedure (Scotland) Act 1995.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">9.2</span></h2>
+               <p>The guidance includes direction on:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">i.</span></h2>
+                  <p>The scope of the powers;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">ii.</span></h2>
+                  <p>Requirements for making or renewing a national security determination (NSD);</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">iii.</span></h2>
+                  <p>Recording, monitoring and reporting on the use of the powers;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">iv.</span></h2>
+                  <p>Engagement with the Commissioner for the Retention and Use of Biometric Material.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.1</span></h2>
+               <p>There is no foreseeable impact on business, charities or voluntary bodies. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.2</span></h2>
+               <p>The impact on the public sector is less than £5million.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">10.3</span></h2>
+               <p>An Impact Assessment has not been prepared for this instrument.</p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Regulating small business</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">11.1</span></h2>
+               <p>The legislation does not apply to small business. </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring &amp; review</b>
+                  </p>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.1</span></h2>
+               <p>The Guidance provides for the monitoring of the use of the powers to retain</p>
+               <section class="subparagraph">
+                  <p>biometric material for national security purposes.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">12.2</span></h2>
+               <p>Statistical data on the use of the powers should be provided on a quarterly</p>
+               <section class="subparagraph">
+                  <p>basis to the Home Office.</p>
+               </section>
+            </section>
+            <section class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The Counter-Terrorism Legislation Team at the Home Office can answer any queries regarding
+                     this instrument. The team can be contacted via email: <a href="mailto:counterterrorismlegislation@homeoffice.x.gsi.gov.uk"><u>counterterrorismlegislation@homeoffice.x.gsi.gov.uk</u></a>; or by post: 2 Marsham Street, Peel 5th Floor, London SW1P 4DF.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

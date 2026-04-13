@@ -1,0 +1,703 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE CHILD SUPPORT (AMENDMENTS RELATING TO ELECTRONIC COMMUNICATIONS AND INFORMATION)
+                  (ENGLAND AND WALES AND SCOTLAND) REGULATIONS 2022</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2022 No. 503</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Department for Work and Pensions
+                     and is laid before Parliament by Command of Her Majesty.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>This instrument:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(a)</span></h2>
+                     <p>authorises and facilitates the option of electronic communications between the Child
+                        Maintenance Service (CMS)<a class="fn" id="fnref-1" href="#fn-1">1</a>, customers<a class="fn" id="fnref-2" href="#fn-2">2</a> and third parties<a class="fn" id="fnref-3" href="#fn-3">3</a> for the purposes of calculating, collecting and enforcing child support maintenance;
+                        and  </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(b)</span></h2>
+                     <p>adds trustees, managers or administrators of personal pension schemes, academy proprietors,
+                        the Motor Insurers’ Bureau (or its officers) and persons engaged in investment management
+                        or share trading activities to the persons required to provide information, or evidence,
+                        at the request of CMS (for the purpose of their functions under the Child Support
+                        Act 1991). </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The territorial extent of this instrument is to England and Wales and Scotland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of this instrument is England, Wales and Scotland. However,
+                     as academies only exist in England, the new requirements for academy proprietors will
+                     only apply to England.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.3</span></h2>
+                  <p>It is anticipated that corresponding provisions will be made for Northern Ireland
+                     by the Northern Ireland Department for Communities.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>As the instrument is subject to the negative resolution procedure and does not amend
+                     primary legislation, no statement is required. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>Current legislation prescribes that in certain circumstances, Child Maintenance Service
+                     (CMS) must send customer notifications by post. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>This instrument amends four regulations in order to authorise and facilitate the option
+                     of electronic communication between CMS, customers and third parties for the purposes
+                     of calculating, collecting and enforcing child support maintenance.  The regulations
+                     are:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(a)</span></h2>
+                     <p>The Child Support (Collection and Enforcement) Regulations 1992<a class="fn" id="fnref-4" href="#fn-4">4</a>;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(b)</span></h2>
+                     <p>The Child Support Information Regulations 2008 (the 2008 Regulations)<a class="fn" id="fnref-5" href="#fn-5">5</a>;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(c)</span></h2>
+                     <p>The Child Support (Management of Payment and Arrears Regulations) 2009<a class="fn" id="fnref-6" href="#fn-6">6</a>; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(d)</span></h2>
+                     <p>The Child Support Maintenance Calculation Regulations 2012<a class="fn" id="fnref-7" href="#fn-7">7</a>.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.3</span></h2>
+                  <p>The amendments are to provisions made under Child Support Act 1991<a class="fn" id="fnref-8" href="#fn-8">8</a> powers, three of which attract the affirmative resolution procedure: sections 32C,
+                     32J and 41E.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.4</span></h2>
+                  <p>However, the powers under the Child Support Act 1991 are not specifically targeted
+                     to enabling electronic communications.  Therefore, we have elected to use the more
+                     specific power in section 8 of the Electronic Communications Act 2000 (ECA 2000)<a class="fn" id="fnref-9" href="#fn-9">9</a> to make these amendments. Section 9(3) and (4) of the ECA 2000 allows a choice between
+                     negative or affirmative procedure when exercising section 8 powers.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.5</span></h2>
+                  <p>In making the decision both to use the section 8 ECA 2000 power and the negative procedure
+                     we have considered our aims and are satisfied it is appropriate to use this power
+                     and the procedure is commensurate to the weight and effect of the amendments for the
+                     reasons set out below.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.6</span></h2>
+                  <p>We are acting within the scope of section 8 of the ECA 2000, which allows the appropriate
+                     Minister to amend existing legislation to authorise, and facilitate, the option of
+                     electronic communication for a range of purposes.  We are proposing to use the section
+                     8 power in precisely the way it appears to be intended for use, to amend a range of
+                     enactments in a coordinated manner </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.7</span></h2>
+                  <p>We are using the section 8 power and negative procedure in order to facilitate coordination
+                     and consistency and not to evade procedural burdens.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.8</span></h2>
+                  <p>There are safeguards to the proposed use of electronic communications, including that
+                     the instrument requires any electronic communication as well as its form and the address
+                     to be agreed with the recipient. Customers will be able to challenge decisions sent
+                     by electronic means in accordance with the statutory system of revisions, supersessions
+                     and appeals, and these appeal rights are not affected by the amendments. For example,
+                     there are appeal rights to the First Tier Tribunal against decisions concerning maintenance
+                     calculations, and to the Magistrates Court against Deduction from Earnings Orders
+                     and Deduction Orders.  </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>Child maintenance legislation is based on the general principle that all parents take
+                     financial responsibility for all of their children. The main objective of child maintenance
+                     legislation is to maximise the number of effective maintenance arrangements for children
+                     who live apart from one or both of their parents. The Child Maintenance Service (CMS)
+                     continuously strives to modernise and improve services to both parents and thus legislative
+                     amendments are being made to support this aspiration.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Child Maintenance notifications to be sent, received and accessed digitally </i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.2</span></h2>
+                     <p>CMS has a multi-channel strategy to meet the evolving needs and growing digital expectations
+                        of users. Customers have better internet access and have a desire to self-serve using
+                        our on-line services.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.3</span></h2>
+                     <p>CMS has three online services; Apply for Child Maintenance, My Child Maintenance Case
+                        and the Employer Portal. These services enable parents to apply for and manage their
+                        child maintenance case online and offer management functions for employers who make
+                        payments through salary deduction. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.4</span></h2>
+                     <p>These amendments will authorise and facilitate notifications to be sent, received,
+                        and accessed digitally. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.5</span></h2>
+                     <p>To reduce the burden on employers, this instrument authorises and enables the option
+                        of electronic communications with employers and intermediaries. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.6</span></h2>
+                     <p>For some customers, the online service will not be a suitable channel in which to
+                        receive communication on their case. Our overall policy aim is to ensure that the
+                        right channel is used at the right time for our customers. As such, CMS will retain
+                        flexibility to meet the needs of vulnerable customers and their preferred method of
+                        communication such as postal or by telephone. A postal service will be retained for
+                        customers who choose to have their communications by post or for whom an online service
+                        is not appropriate. A customer can amend their contact preference at any point during
+                        the lifetime of the case. This can be done via My Child Maintenance Case<a class="fn" id="fnref-10" href="#fn-10">10</a> or by contacting CMS</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.7</span></h2>
+                     <p>Customers will register for My Child Maintenance Case through Gov.uk.  They will be
+                        required to indicate their preferred form of electronic communications and prompted
+                        to provide their choice of email address and a mobile telephone number.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.8</span></h2>
+                     <p>The terms and conditions describe fully how the service will meet the needs of our
+                        customers.  They explain how customers will receive digital prompts to updates on
+                        their account and how to select their choice of how they receive communications. The
+                        terms and conditions also explain that statutory notices delivered electronically,
+                        will have the same legal validity and implications as a statutory notice delivered
+                        via postal methods.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.9</span></h2>
+                     <p>The official computer system, which facilitates the running of the child maintenance
+                        case, records and stores all notifications both inbound and outbound.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.10</span></h2>
+                     <p>The integrity of the customer portal is constantly monitored for external cyber-attacks
+                        and performance to understand outages and what causes them.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.11</span></h2>
+                     <p>Operational safeguards will be in place for the use of the My Child Maintenance Case
+                        portal: customers who select the portal as their preferred method of communication
+                        will be alerted via SMS or email when a new notification has been uploaded to the
+                        portal. We will also continue to send letters with serious consequences via a postal
+                        method alongside using electronic means; for example, a letter detailing our intention
+                        to remove a paying parent’s passport would be made available digitally and be posted.
+                        We will build in a period of review to monitor the outcome of the change to digital
+                        communications as an additional safeguard.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>The Child Support Information Regulations 2008</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.12</span></h2>
+                     <p>The amendments to the 2008 Regulations will expand the list of organisations required
+                        to comply with requests from Child Maintenance Service (CMS), for information or evidence.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.13</span></h2>
+                     <p>CMS powers to request information are used when gathering information for the purpose
+                        of: tracing the paying parent, calculating maintenance, maintaining the case; or enforcing
+                        child maintenance arrears.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.14</span></h2>
+                     <p>Where an organisation is not listed in the 2008 Regulations, relevant information
+                        is requested from them on a voluntary basis. If information is not provided in the
+                        first instance, it will be necessary for an inspector to visit the premises, using
+                        powers of entry, where the information is held.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.15</span></h2>
+                     <p>The following organisations will be added to the 2008 Regulations and will have a
+                        duty to provide information on request: the trustees, managers and administrators
+                        of personal pension schemes, academy proprietors, the Motor Insurers’ Bureau (or its
+                        officers) and persons engaged in investment management or share trading activities.
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.16</span></h2>
+                     <p>In respect of academy proprietors, (known as academy trusts and relevant to England
+                        only), statutory responsibilities are generally applied through their Master Funding
+                        Agreement<a class="fn" id="fnref-11" href="#fn-11">11</a>. There are information sharing duties between academy proprietors and local authorities
+                        under their funding agreements. Although there is already a duty on local authorities
+                        to supply information to the CMS under the 2008 Regulations, requiring academies to
+                        provide this information directly to CMS will allow CMS to obtain information more
+                        easily.  This will enable CMS to reduce the time it takes to obtain information relevant
+                        to making child maintenance calculations and recovering child maintenance debt.  This
+                        will help parents receive payments sooner.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>European Union Withdrawal and Future Relationship</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument does not relate to withdrawal from the European Union or trigger the
+                     statement requirements under the European Union (Withdrawal) Act </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Consolidation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>There are no plans currently to consolidate the legislation that is being amended
+                     by this instrument.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>We carried out a public consultation, Child Maintenance: modernising and improving
+                     our service, on GOV.UK<a class="fn" id="fnref-12" href="#fn-12">12</a> between 18th June to 6th August 2021.  The consultation invited comments to specific
+                     questions on our proposals to introduce electronic communications and expand the 2008
+                     Regulations. 122 responses were received: 8 from organisations and 111 from private
+                     individuals, of which 29 identified themselves as paying parents and 40 as receiving
+                     parents. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>Respondents to the consultation were generally in favour of improving communication
+                     delivery through the use of digital methods, as long as they were appropriate and
+                     did not disadvantage any customer.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.3</span></h2>
+                  <p>Some concerns were voiced in relation to the possible impact on customers going through
+                     difficult times, with portal issues causing access problems and occasionally language
+                     barriers. In these instances, communication via post would be preferable.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.4</span></h2>
+                  <p>This instrument will only give Child Maintenance Service (CMS) the option to communicate
+                     with customers electronically where they consent to this, so we will retain other
+                     methods of communication such as postal and telephone for customers who still wish
+                     to use them.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.5</span></h2>
+                  <p>Extending the 2008 Regulations to cover additional organisations was generally welcomed
+                     by respondents. Respondents felt this would prove an effective power but advocated
+                     exercising caution in the use and storage of the data in relation to data protection
+                     obligations.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.6</span></h2>
+                  <p>Data collection and retention processes will comply with the UK General Data Protection
+                     Regulation (Retained Regulation EU 2016/679), and the Data Protection Act 2018. <a class="fn" id="fnref-13" href="#fn-13">13</a>.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The Department will ensure that its customers and stakeholders are fully informed
+                     of the changes arising from this instrument at our regular stakeholder meetings and
+                     a targeted customer awareness campaign.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>The impact on business, charities or voluntary bodies are detailed below.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>Adding trustees, managers or administrators of personal pension schemes, academy proprietors,
+                     the Motor Insurers’ Bureau (or its officers) and persons that engage in investment
+                     management or share trading activities to the 2008 Regulations will place a legal
+                     requirement on these organisations to give us information when we request it.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>The changes to regulations will require these businesses to provide the information
+                     instead of needing a CMS agent to use powers of entry. The annual estimate of costs
+                     on private pension providers, academies, Motor Insurers’ Bureau and companies that
+                     offer, promote or sell investment management services or facilitate share trading
+                     who will now be required in law to give us information when we request it, is around
+                     £7,000 per year with multiple visits required. The new legal obligation may reduce
+                     costs to businesses by enabling information to be provided on initial request. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.4</span></h2>
+                  <p>The impact on the public sector is as follows.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.5</span></h2>
+                  <p>The current process of sending physical letters costs £311,000 per month for clerical
+                     and system generated letters combined, giving an annual estimated cost of £3.7 million.
+                     Up to 10% of CMS letters will continue to be sent clerically.  We anticipate that
+                     eventually, between 70% and 80 % of Child Maintenance Service (CMS) customers will
+                     opt to have their communications digitally, resulting in savings for the tax payer.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.6</span></h2>
+                  <p>An Impact Assessment has not been prepared for this instrument due to the low impact
+                     per business.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The legislation applies to activities that are undertaken by small businesses. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13.2</span></h2>
+                  <p>No specific action is proposed to minimise regulatory burdens on small businesses.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13.3</span></h2>
+                  <p>The basis for the final decision on what action to take to assist small businesses
+                     is as follows.  It will be easier for trustees, managers or administrators of personal
+                     pension schemes, academy proprietors, the Motor Insurers Bureau (or its officers)
+                     and persons that engage in investment management or share trading activities to provide
+                     us with information in writing or via secure email, without the need for a visit from
+                     an inspector.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>14.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>Baroness Stedman-Scott OBE, has made the following statement in accordance with section
+                     31(2) of the Small Business, Enterprise and Employment Act 2015: </p>
+                  <p class="@name">
+                     
+                     <section class="level">
+                        <p>“The instrument does not include a statutory review clause. Given the minimal impact
+                           to business, it would be disproportionate in these circumstances to make a statutory
+                           provision for a review. The impact of these measures is expected to be less than £5million
+                           (net annualised) on business and improve communications and engagement with the CMS
+                           in carrying out its business.” </p>
+                     </section>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>This instrument will be carefully monitored. We will regularly engage with key stakeholders
+                     and will review these provisions if we receive feedback from our stakeholders or customers
+                     surrounding their effectiveness or operation</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>15.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>The Child Maintenance Policy Team at the Department for Work and Pensions. Email:
+                     childmaintenance.policyqueries@dwp.gov.uk can be contacted with any queries regarding
+                     the instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>The Deputy Director for Child Maintenance Policy, Duncan Gilchrist, at the Department
+                     for Work and Pensions can confirm that this Explanatory Memorandum meets the required
+                     standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>Baroness Stedman-Scott OBE, Parliamentary Under Secretary of State at the Department
+                     for Work and Pensions can confirm that this Explanatory Memorandum meets the required
+                     standard.</p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The Child Maintenance Service is part of the Department for Work and Pensions and
+                  acts for Secretary of State for Work and Pensions.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Customers of CMS are “persons with care”, “non-resident parents” and “child in Scotland”</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Third parties of CMS would include for example:  employers, banks and intermediaries.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  <a href="https://www.legislation.gov.uk/uksi/1992/1989/contents/made">https://www.legislation.gov.uk/uksi/1992/1989/contents/made</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  <a href="https://www.legislation.gov.uk/uksi/2008/2551/contents/made">https://www.legislation.gov.uk/uksi/2008/2551/contents/made</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  <a href="https://www.legislation.gov.uk/uksi/2009/3151/contents">https://www.legislation.gov.uk/uksi/2009/3151/contents</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  <a href="https://www.legislation.gov.uk/uksi/2012/2677/contents/made">https://www.legislation.gov.uk/uksi/2012/2677/contents/made</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  <a href="https://www.legislation.gov.uk/ukpga/1991/48/contents">https://www.legislation.gov.uk/ukpga/1991/48/contents</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  <a href="https://www.legislation.gov.uk/ukpga/2000/7/contents">https://www.legislation.gov.uk/ukpga/2000/7/contents</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  My Child Maintenance Case Online offers a service for parents to manage their case
+                  online</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  <a href="https://www.gov.uk/government/publications/academy-and-free-school-funding-agreements">https://www.gov.uk/government/publications/academy-and-free-school-funding-agreements</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  <a href="https://www.gov.uk/government/consultations/child-maintenance-modernising-and-improving-our-service">https://www.gov.uk/government/consultations/child-maintenance-modernising-and-improving-our-service</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  <a href="https://www.legislation.gov.uk/eur/2016/679/data.pdf">https://www.legislation.gov.uk/eur/2016/679/data.pdf</a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

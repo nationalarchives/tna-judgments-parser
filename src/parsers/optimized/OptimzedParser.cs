@@ -581,7 +581,7 @@ abstract class OptimizedParser {
         return false;
     }
 
-    protected IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false, bool quote = false) {
+    protected virtual IDivision ParseParagraphAndSubparagraphs(WLine line, bool sub = false, bool quote = false) {
 
         ILeaf div = ParseSimpleParagraph(line, sub);
         if (i == PreParsed.Body.Count)

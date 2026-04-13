@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE CONSTRUCTION CONTRACTS (ENGLAND) EXCLUSION ORDER 2022</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2022 No. 839</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Department for Business, Energy
+                     and Industrial Strategy and is laid before Parliament by Command of Her Majesty.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>This instrument excludes two types of construction contract from the provisions of
+                     the Housing Grants, Construction and Regeneration Act 1996 (“the Act”):</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Direct Procurement for Customers (DPC) Competitively Appointed Provider (CAP) Contracts -
+                     excluded from all requirements of Part 2 of the 1996 Act; and</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Direct Procurement for Customers (DPC) First Tier Sub-Contracts - excluded from section
+                     110(1A) of the 1996 Act. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.2</span></h2>
+                  <p>Both contract types (defined in sub-section 7.6) form part of a new procurement model,
+                     known as Direct Procurement for Customers (DPC) for the finance, design, building,
+                     operation and maintenance of high value water and sewerage infrastructure. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Matters of special interest to the Joint Committee on Statutory Instruments</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.1</span></h2>
+                     <p>None.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The territorial extent of this instrument is England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of this instrument is England.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>Lee Rowley MP, Parliamentary Under Secretary of State at the Department for Business,
+                     Energy and Industrial Strategy for has made the following statement regarding Human
+                     Rights:</p>
+               </section>
+               <section class="level">
+                  <p>“In my view the provisions of the Construction Contracts (England) Exclusion Order
+                     2022 are compatible with the Convention rights.” </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>Three pieces of construction payment and dispute resolution legislation work together
+                     to create a statutory framework for construction contracts in England: </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Part 2 of the Housing Grants, Construction and Regeneration Act 1996. Amended by Part
+                     8 of the Local Democracy, Economic Development and Construction Act 2009. Part 2 provides
+                     a framework for fair and prompt payment through the construction supply chain, and
+                     a resolution procedure for disputes by providing a statutory right to adjudication.
+                     Provisions of the Act include:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">◦</span></h2>
+                     <p>the right to be paid in interim, periodic or stage payments;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">◦</span></h2>
+                     <p>the right to be informed of the amount due, or any amounts to be withheld;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">◦</span></h2>
+                     <p>the right to suspend performance for non-payment;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">◦</span></h2>
+                     <p>the right to adjudication; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">◦</span></h2>
+                     <p>disallowing pay when paid clauses.</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The Scheme for Construction Contracts (England and Wales) Regulations 1998. Amended
+                     by the Scheme for Construction Contracts (England and Wales) Regulations 1998 (Amendment)
+                     (England) Regulations 2011. Part 1 of the Scheme makes provision for adjudication
+                     where the contract does not comply with the Act. Part 2 of the Scheme replaces those
+                     provisions in relation to payment that do not comply with the Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>The Construction Contracts (England and Wales) Exclusion Order 1998 and the Construction
+                     Contracts (England) Exclusion Order 2011. Provides for the exclusion of specific construction
+                     contracts from all, or part of, Part 2 of the Act for Private Finance Initiative (PFI)
+                     Agreements.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>Where a construction contract omits to deal with an issue or does so in a way which
+                     does not meet the requirements of the Act, the Scheme for Construction Contracts (“the
+                     Scheme”) is deemed to apply in the contract.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.3</span></h2>
+                  <p>Due to the contracting and financing approach of the DPC procurement model, the payment
+                     provisions under the Act have implications for the structure and operation of the
+                     contracts. This instrument excludes two types of construction contract for the DPC
+                     procurement model in the regulated water and sewerage sector.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.4</span></h2>
+                  <p>PFI agreements and PFI First Tier Sub-Contracts are already excluded from all of Part
+                     2 of the 1996 Act and section 110(1A) under the 1998 and 2011 Exclusion Orders.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>What is being done and why?</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.1</span></h2>
+                     <p>The 1996 Act has always prevented the use of “pay when paid” clauses in construction
+                        contracts i.e. clauses whereby B will not pay C unless B has himself been paid by
+                        A. The 1996 Act prevents these clauses because this was a commonly used contractual
+                        mechanism to delay payment to the supply-chain. Some firms in the industry have, however,
+                        avoided the effect of this by making payment dependent on the issue of a certificate
+                        (e.g. a valuation of the work by A’s agent) under the superior contract. The 2009
+                        Act closed this loophole by preventing any term in a construction contract which makes
+                        payment conditional on the performance of an obligation under another contract – section
+                        110(1A) of the 1996 Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.2</span></h2>
+                     <p>Due to the financing arrangements of DPC, payment to the firm that has delivered the
+                        infrastructure by the commissioning water and sewerage firm is through a unitary charge,
+                        which only commences once at least one sewerage or water asset has been completed
+                        and is capable of operating. However, the CAP agreement and first tier sub-contracts
+                        fall under the definition of a construction contract and therefore may be subject
+                        to challenge for non-compliance with the Act. If non-compliant, the relevant payment
+                        provisions of the Scheme for Construction Contracts are implied in the contract and
+                        will take precedence over contract provisions designed for DPC. This would adversely
+                        affect the structure and operation of these project agreements, and make these less
+                        attractive to investors, and it is for this reason that this “excluding” instrument
+                        is being made.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.3</span></h2>
+                     <p>The instrument is limited to a specific procurement model for high value infrastructure
+                        assets in the regulated water and sewerage sector. These will be procurements undertaken
+                        by private companies. Public interest in the Exclusion Order is expected to be minimal.
+                        There are two projects under active development and a further 18 strategic water resource
+                        schemes are being progressed which may meet DPC eligibility criteria across the next
+                        2-3 price review periods.  </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.4</span></h2>
+                     <p>This instrument excludes two types of construction contract from the Housing Grants,
+                        Construction and Regeneration Act 1996 (“the Act”):</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Direct Procurement for Customers (DPC) Competitively Appointed Provider (CAP) Contracts -
+                        excluded from all requirements of Part 2 of the 1996 Act; and</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Direct Procurement for Customers (DPC) First Tier Sub-Contracts - excluded from section
+                        110(1A) of the 1996 Act. </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.5</span></h2>
+                     <p>All remaining construction contracts through the supply chain (in particular for SMEs)
+                        would remain subject to all the provisions of the Act.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.6</span></h2>
+                     <p>A DPC CAP contract is a contract between a water company appointed by Ofwat and a
+                        CAP, a limited company successful in a competitive procurement process. The CAP is
+                        likely to be Special Purpose Vehicle, owned by a private consortium likely to include
+                        a construction company, funder and service provider. A DPC First Tier Sub-Contract
+                        is a contract between the CAP to a DPC agreement and a third party (the main construction
+                        contractor) in which the former sub-contracts construction obligations in the DPC
+                        agreement to the latter.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>European Union Withdrawal and Future Relationship</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument does not relate to withdrawal from the European Union / trigger the
+                     statement requirements under the European Union (Withdrawal) Act. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Consolidation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>There are no plans to consolidate these regulations. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>The instrument is limited to a specific procurement model in the water and sewerage
+                     regulated sector (sewerage or water undertaker appointed under section 6(1) of the
+                     Water Industry Act 1991) with private companies.   </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The exclusion is technical and narrow in scope and impacts on a small segment of the
+                     construction sector and other stakeholders. A targeted consultation, through individual
+                     and group meetings, with relevant construction industry and water sector stakeholders
+                     was undertaken over a two-month period. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.3</span></h2>
+                  <p>For each Devolved Administration construction is a devolved matter. Engagement at
+                     Ministerial and official level has been undertaken on the proposed instrument and
+                     highlighted where Administrations may wish to consider corresponding legislative changes.
+                     Each Administration welcomed engagement and noted this Order. Wales will consider
+                     whether similar legislation might be required. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>Guidance is not required.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>There is no, or no significant, impact on business, charities or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>There is no, or no significant, impact on the public sector.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>A full Impact Assessment has not been prepared for this instrument because it will
+                     only affect a limited number of businesses and the impact is estimated to be less
+                     than £5m per year. Ofwat has undertaken a full impact assessment of DPC. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses.
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>14.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>The approach to monitoring of this legislation is via Ofwat, with notification of
+                     any issues as regards to the operation of this instrument. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>The instrument does not include a statutory review clause. In line with the requirements
+                     of the Small Business, Enterprise and Employment Act 2015, Lee Rowley MP, Parliamentary
+                     Under Secretary of State at the Department for Business, Energy and Industrial Strategy
+                     has made the following statement:</p>
+               </section>
+               <section class="level">
+                  <p>“The business impacts for this instrument falls significantly below the £5m threshold,
+                     at an estimated £54k. Given the limited and specific scope of this measure to the
+                     water sector, and in particular large water infrastructure projects, a statutory review
+                     is not deemed to be required. Furthermore, given the significant time period each
+                     DPC contract will run for, policy certainty is required in this area and the exclusion
+                     could not be revoked halfway through a contract”.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>15.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>James Brown-Humes at the Department for Business, Energy and Industrial Strategy Telephone:
+                     020 7215 6278 or email: James.BrownHumes@beis.gov.uk can be contacted with any queries
+                     regarding the instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>Fergus Harradence, Deputy Director for Infrastructure and Construction, at the Department
+                     for Business, Energy and Industrial Strategy can confirm that this Explanatory Memorandum
+                     meets the required standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>Lee Rowley MP, Parliamentary Under Secretary of State at the Department for Business,
+                     Energy and Industrial Strategy can confirm that this Explanatory Memorandum meets
+                     the required standard.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

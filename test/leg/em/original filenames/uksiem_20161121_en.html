@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE NORTHERN IRELAND (STORMONT AGREEMENT AND IMPLEMENTATION PLAN) ACT 2016 (IMMUNITIES
+                  AND PRIVILEGES) REGULATIONS 2016 </b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2016 No. 1121</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction </b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by the Northern Ireland Office and is
+                     laid before Parliament by Command of Her Majesty.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>These Regulations<b></b>make provision to confer certain immunities and privileges on members, and members
+                     of staff of the Independent Reporting Commission (“the Commission”), including agents
+                     of, or other persons carrying out work for the Commission.   </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>Matters of special interest to the Joint Committee on Statutory Instruments</i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None.</p>
+                  <section class="subparagraph">
+                     <p>
+                        <b>
+                           <i>Other matters of interest to the House of Commons</i>
+                           </b>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.2</span></h2>
+                  <p>As this instrument is subject to negative resolution procedure and has not been prayed
+                     against, consideration as to whether there are other matters of interest to the House
+                     of Commons does not arise at this stage.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>Sections 1 to 5 of the Northern Ireland (Stormont Agreement and Implementation Plan)
+                     Act 2016 (c. 13) (“the 2016 Act”) make provision about the Commission which will be
+                     established by the Agreement between the Government of the United Kingdom of Great
+                     Britain and Northern Ireland and the Government of Ireland establishing the Independent
+                     Reporting Commission Agreement (“the Agreement”)<a class="fn" id="fnref-1" href="#fn-1">1</a>.   The purpose of the Regulations is to confer immunities and privileges on members
+                     of the Commission and members of staff of the Commission.  These Regulations are the
+                     first regulations under section 3 of the 2016 Act.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>On 15 September 2016, the Northern Ireland Office has also laid the Northern Ireland
+                     (Stormont Agreement and Implementation Plan) Act 2016 (Independent Reporting Commission)
+                     Regulations 2016 which are subject to the affirmative procedure and which make provision
+                     to give full effect to the Agreement. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>The extent of this instrument is the United Kingdom.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5.2</span></h2>
+                  <p>The territorial application of this instrument is the United Kingdom.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>As the instrument is subject to the negative resolution procedure and does not amend
+                     primary legislation, no statement is required. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy Background</b>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <b>
+                        <i>What is being done and why</i>
+                        </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>The Fresh Start Agreement<a class="fn" id="fnref-2" href="#fn-2">2</a> was reached on 17 November 2015 after 10 weeks of cross party talks between the UK
+                     Government, the five largest parties of the Northern Ireland Assembly and the Government
+                     of Ireland on matters for which they have responsibility, in accordance with the three-stranded
+                     approach reflected in the 1998 Belfast Agreement.  The aim of the cross-party talks
+                     was to secure the implementation of the December 2014 Stormont House Agreement<a class="fn" id="fnref-3" href="#fn-3">3</a> and deal with the impact of continued paramilitary activity connected with Northern
+                     Ireland. The Fresh Start Agreement seeks to make progress towards fulfilling these
+                     objectives.  The Fresh Start Agreement strongly reaffirms support for the rule of
+                     law, places fresh obligations on Northern Ireland’s elected representatives to work
+                     together on their shared objective of ridding society of all forms of paramilitary
+                     activity and groups, and commits to a concerted and enhanced effort to combat organised
+                     crime and cross border crime.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>The Fresh Start Agreement includes a series of measures to end paramilitarism and
+                     tackle organised crime, including the establishment of the Commission.  The Commission
+                     will report on progress towards ending continuing paramilitary activity connected
+                     with Northern Ireland, report on the implementation of the relevant measures of the
+                     three administrations; and consult with a wide range of statutory agencies, communities
+                     and civic society organisations.  It is intended that reports of the Commission will
+                     inform future Northern Ireland Executive Programme for Government priorities and commitments
+                     through to 2021.  It is intended that the Commission will be established by early
+                     January 2017.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>Section 3(1) and (2) of 2016 Act confers immunity from suit and legal process, and
+                     inviolability of its official archive, on the Commission itself, subject to the Commission
+                     having the ability to waive these.   In summary, this was due to reasons related to
+                     the ability of the Commission to fulfil its functions successfully, including the
+                     following.   First, to help protect the Commission’s independence from either Government.
+                     Second, to protect it from challenge from others who may be the subject of its reports
+                     (e.g. the paramilitary groups whose activities the Commission will monitor progress
+                     to tackle).   Third, absent these immunities, there would be a risk that the Commission
+                     would become bogged down in litigation and be unable fully to discharge its functions
+                     which are intended to be carried out, at least initially, over a limited period of
+                     time.<i></i>Fourth, the immunities from suit and legal process also serve to make sure that the
+                     Commission is able to receive the information it needs to accurately assess progress
+                     towards ending paramilitary activity connected with Northern Ireland, and therefore
+                     are central to the fulfilment of its functions.  A body such as the Commission cannot
+                     operate if contributors perceive a risk of the information they contribute, or the
+                     identity of its source, being disclosed and if contributors decline to engage with
+                     the body, this would have a detrimental effect on the ability of the Commission to
+                     perform its functions successfully. <br>For similar reasons, in order to enable the Commission to fulfil its functions successfully,
+                     the effect of these Regulations is to confer on members of the Commission and members
+                     of staff of the Commission, including agents of, and persons carrying out work for,
+                     or giving advice to, the Commission, immunity from suit and legal process in respect
+                     of things done or omitted to be done by them in the course of the performance of their
+                     official duties.    (This was also the case, for example, with members and members
+                     of staff of, and agents and other persons carrying out work for or giving advice to,
+                     the Independent Monitoring Commission, see the Northern Ireland (Monitoring Commission
+                     etc.) Act 2003 (Immunities and Privileges) Order 2003).   It is possible for the Commission
+                     itself to expressly waive the immunity from suit or legal process given to a person
+                     under these Regulations, for example, in the event of an employment or health and
+                     safety dispute.  We do not expect it to do so in respect of its official functions.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.4</span></h2>
+                  <p>In addition, these Regulations provide that unless they are (a) a British citizen,
+                     British overseas territories citizen, British Overseas citizen or a British National
+                     (Overseas), or (b) a permanent resident of the United Kingdom at the time of becoming
+                     a member of the Commission of member of staff of the Commission, members of the Commission
+                     and members of staff of the Commission (other than agents and other persons carrying
+                     out work for, or giving advice to, the Commission)  will also be exempt from income
+                     tax and will not make social security related contributions whilst employed by the
+                     Commission.   This is consistent with provision made in relation to other international
+                     organisations, and is consistent with the position in relation to the Independent
+                     Monitoring Commission (see the Northern Ireland (Monitoring Commission etc.) Act 2003
+                     (Immunities and Privileges) Order 2003).</p>
+                  <section class="subparagraph">
+                     <p>
+                        <b>
+                           <i>Consolidation</i>
+                           </b>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.5</span></h2>
+                  <p>There is no consolidation necessary as these Regulations are the first regulations
+                     made under section 3 of the 2016 Act.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>Consultative outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>Drafts of these Regulations have been discussed by the Northern Ireland Office on
+                     behalf of the UK Government, with the Department of Justice and Equality and the Department
+                     of Foreign Affairs and Trade in Ireland.  The Northern Ireland Office also liaised
+                     with other relevant UK Government Departments in negotiating the Agreement and shared
+                     the terms of the Agreement with the five largest parties of the Northern Ireland Assembly.
+                     The views of those with whom the regulations have been discussed have been taken on
+                     board.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>No guidance is intended to be issued directly on these Regulations.   However, under
+                     section 2(5) of the 2016, the Secretary of State must issue guidance about the exercise
+                     of the Commission’s functions in relation to information the disclosure of which might
+                     (a) prejudice the national security interests of the United Kingdom, or (b) put at
+                     risk the life or safety of any person.   The Northern Ireland Office is discussing
+                     this with stakeholders and will issue the guidance to the Commission, in time for
+                     the Commission starting its work, and has committed to placing a copy of the guidance
+                     in the Library of each House of Parliament.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>There is no impact on business, charities or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The impact on the public sector is the monetary costs of the Commission, to the UK
+                     Government, which are up to £3m over four years to establish and fund the new body.&nbsp;
+                     Indirect monetary savings may be realised in future years if the work of the Commission,
+                     together with other Fresh Start Agreement measures, results in ending paramilitarism
+                     and organised crime connected with Northern Ireland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.3</span></h2>
+                  <p>An Impact Assessment is submitted with this memorandum and will be published alongside
+                     the Explanatory Memorandum on the legislation.gov.uk website.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Monitoring and review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>The UK Government is providing funding over four years to establish and fund the Commission
+                     and there will be a natural review point when the Commission has been operational
+                     for that period of time.   The regulations will be reviewed at this time.  The 2016
+                     Act confers power on the Secretary of State to make provision for winding up the Commission
+                     but before doing so the Secretary of State must consult the First Minister and deputy
+                     First Minister in Northern Ireland, the relevant Minister in the Government of Ireland
+                     and any other person the Secretary of State considers appropriate.   </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>Clare Sloan, at the Northern Ireland Office telephone: 0289 0527 013 or email: clare.sloan@nio.gov.uk
+                     can answer any queries regarding the instrument.</p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  A copy of the agreement can be found at <a href="https://www.gov.uk/uk-treaties"><a href="https://www.gov.uk/uk-treaties">https://www.gov.uk/uk-treaties</a></a> during week commencing 19 September 2016. </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/479116/A_Fresh_Start_-_The_Stormont_Agreement_and_Implementation_Plan_-_Final_Version_20_Nov_2015_for_PDF.pdf"><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/479116/A_Fresh_Start_-_The_Stormont_Agreement_and_Implementation_Plan_-_Final_Version_20_Nov_2015_for_PDF.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/479116/A_Fresh_Start_-_The_Stormont_Agreement_and_Implementation_Plan_-_Final_Version_20_Nov_2015_for_PDF.pdf</a></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  <a href="https://www.gov.uk/government/publications/the-stormont-house-agreement">https://www.gov.uk/government/publications/the-stormont-house-agreement</a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>
