@@ -30,6 +30,7 @@ public class Program {
     private static readonly Option<FileInfo> InputOption = new("--input"){ Description = "the .docx file", Required = true };
     private static readonly Option<FileInfo> OutputOption = new("--output"){ Description = "the .xml file"};
     private static readonly Option<FileInfo> OutputZipOption = new("--output-zip"){ Description = "the .zip file"};
+    private static readonly Option<FileInfo> OutputHtmlOption = new("--output-html"){ Description = "the .html file (leg doc types only)"};
     private static readonly Option<FileInfo> LogOption = new("--log"){ Description = "the log file"};
     private static readonly Option<bool> TestOption = new("--test"){ Description = "whether to test the result"};
     private static readonly Option<FileInfo> AttachmentOption = new("--attachment"){ Description = "an associated file to include"};
@@ -43,6 +44,7 @@ public class Program {
             InputOption,
             OutputOption,
             OutputZipOption,
+            OutputHtmlOption,
             LogOption,
             TestOption,
             AttachmentOption,
@@ -58,12 +60,13 @@ public class Program {
         return Command.Parse(args).Invoke();
     }
 
-    private static (FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment,
+    private static (FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment,
         string hint, string subType, string procedure, string[] language) GetParsedArgs(ParseResult parseResult)
     {
         return (input: parseResult.GetValue(InputOption),
             output: parseResult.GetValue(OutputOption),
             outputZip: parseResult.GetValue(OutputZipOption),
+            outputHtml: parseResult.GetValue(OutputHtmlOption),
             log: parseResult.GetValue(LogOption),
             test: parseResult.GetValue(TestOption),
             attachment: parseResult.GetValue(AttachmentOption),
@@ -72,10 +75,10 @@ public class Program {
             procedure: parseResult.GetValue(ProcedureOption),
             language: parseResult.GetValue(LanguageOption));
     }
-    
+
     static int Transform(ParseResult parseResult)
     {
-        var (input, output, outputZip, log, test, attachment, hint, subType, procedure, language) = GetParsedArgs(parseResult);
+        var (input, output, outputZip, outputHtml, log, test, attachment, hint, subType, procedure, language) = GetParsedArgs(parseResult);
 
         ILogger logger = null;
         if (log is not null) {
@@ -84,32 +87,32 @@ public class Program {
             logger.LogInformation("parsing " + input.FullName);
         }
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEM(input, output, outputZip, log, test, attachment);
+            TransformEM(input, output, outputZip, outputHtml, log, test, attachment);
             return Success;
         }
 
         if ("ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformIA(input, output, outputZip, log, test, attachment);
+            TransformIA(input, output, outputZip, outputHtml, log, test, attachment);
             return Success;
         }
 
         if ("en".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEN(input, output, outputZip, log, test, attachment);
+            TransformEN(input, output, outputZip, outputHtml, log, test, attachment);
             return Success;
         }
 
         if ("tn".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformTN(input, output, outputZip, log, test, attachment);
+            TransformTN(input, output, outputZip, outputHtml, log, test, attachment);
             return Success;
         }
 
         if ("cop".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformCoP(input, output, outputZip, log, test, attachment);
+            TransformCoP(input, output, outputZip, outputHtml, log, test, attachment);
             return Success;
         }
 
         if ("od".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformOD(input, output, outputZip, log, test, attachment);
+            TransformOD(input, output, outputZip, outputHtml, log, test, attachment);
             return Success;
         }
 
@@ -152,158 +155,52 @@ public class Program {
         return Success;
     }
 
-    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
-        if (attachment is not null)
-            throw new Exception();
-        byte[] docx = File.ReadAllBytes(input.FullName);
-        string filename = input.Name;
-        var parsed = EM.Helper.Parse(docx, filename);
-        
-        // Save images alongside output if output path is specified
-        if (output is not null) {
-            string outputDir = Path.GetDirectoryName(output.FullName);
-            if (!string.IsNullOrEmpty(outputDir)) {
-                parsed.SaveImages(outputDir);
-            }
-        }
-        
-        if (outputZip is not null)
-            SaveZip(parsed, outputZip);
-        else if (output is not null)
-            File.WriteAllText(output.FullName, parsed.Serialize());
-        else
-            Console.WriteLine(parsed.Serialize());
-    }
+    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
+        => RunLegTransform(EM.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
 
-    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
+        => RunLegTransform(IA.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+
+    static void TransformEN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
+        => RunLegTransform(EN.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+
+    static void TransformTN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
+        => RunLegTransform(TN.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+
+    static void TransformCoP(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
+        => RunLegTransform(CoP.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+
+    static void TransformOD(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
+        => RunLegTransform(OD.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+
+    private delegate IXmlDocument LegParser(byte[] docx, string filename, bool simplify = true);
+
+    private static void RunLegTransform(LegParser parse, FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, FileInfo attachment) {
         if (attachment is not null)
             throw new Exception();
-            
-        // Set up logging for IA parsing
-        if (log is not null) {
+        if (log is not null)
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
-        }
-        
-        byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = IA.Helper.Parse(docx, input.Name);
-        
-        // Save images alongside output if output path is specified
-        if (output is not null) {
-            string outputDir = Path.GetDirectoryName(output.FullName);
-            if (!string.IsNullOrEmpty(outputDir)) {
-                parsed.SaveImages(outputDir);
-            }
-        }
-        
-        if (outputZip is not null)
-            SaveZip(parsed, outputZip);
-        else if (output is not null)
-            File.WriteAllText(output.FullName, parsed.Serialize());
-        else
-            Console.WriteLine(parsed.Serialize());
-    }
-
-    static void TransformEN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
-        if (attachment is not null)
-            throw new Exception();
-
-        if (log is not null) {
-            Logging.SetConsoleAndFile(log, LogLevel.Debug);
-        }
 
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = EN.Helper.Parse(docx, input.Name);
+        var parsed = parse(docx, input.Name, true);
 
-        if (output is not null) {
-            string outputDir = Path.GetDirectoryName(output.FullName);
-            if (!string.IsNullOrEmpty(outputDir)) {
-                parsed.SaveImages(outputDir);
-            }
-        }
+        // Save images alongside whichever file output is requested. Prefer --output's
+        // directory; fall back to --output-html's. Both go to the same place if both
+        // are set in the same directory (SaveImages overwrites idempotently).
+        string imageDir = output is not null
+            ? Path.GetDirectoryName(output.FullName)
+            : (outputHtml is not null ? Path.GetDirectoryName(outputHtml.FullName) : null);
+        if (!string.IsNullOrEmpty(imageDir))
+            parsed.SaveImages(imageDir);
+
+        if (outputHtml is not null)
+            File.WriteAllText(outputHtml.FullName, HtmlBuilder.Build(parsed.Document));
 
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)
             File.WriteAllText(output.FullName, parsed.Serialize());
-        else
-            Console.WriteLine(parsed.Serialize());
-    }
-
-    static void TransformTN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
-        if (attachment is not null)
-            throw new Exception();
-
-        if (log is not null) {
-            Logging.SetConsoleAndFile(log, LogLevel.Debug);
-        }
-
-        byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = TN.Helper.Parse(docx, input.Name);
-
-        if (output is not null) {
-            string outputDir = Path.GetDirectoryName(output.FullName);
-            if (!string.IsNullOrEmpty(outputDir)) {
-                parsed.SaveImages(outputDir);
-            }
-        }
-
-        if (outputZip is not null)
-            SaveZip(parsed, outputZip);
-        else if (output is not null)
-            File.WriteAllText(output.FullName, parsed.Serialize());
-        else
-            Console.WriteLine(parsed.Serialize());
-    }
-
-    static void TransformCoP(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
-        if (attachment is not null)
-            throw new Exception();
-
-        if (log is not null) {
-            Logging.SetConsoleAndFile(log, LogLevel.Debug);
-        }
-
-        byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = CoP.Helper.Parse(docx, input.Name);
-
-        if (output is not null) {
-            string outputDir = Path.GetDirectoryName(output.FullName);
-            if (!string.IsNullOrEmpty(outputDir)) {
-                parsed.SaveImages(outputDir);
-            }
-        }
-
-        if (outputZip is not null)
-            SaveZip(parsed, outputZip);
-        else if (output is not null)
-            File.WriteAllText(output.FullName, parsed.Serialize());
-        else
-            Console.WriteLine(parsed.Serialize());
-    }
-
-    static void TransformOD(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
-        if (attachment is not null)
-            throw new Exception();
-
-        if (log is not null) {
-            Logging.SetConsoleAndFile(log, LogLevel.Debug);
-        }
-
-        byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = OD.Helper.Parse(docx, input.Name);
-
-        if (output is not null) {
-            string outputDir = Path.GetDirectoryName(output.FullName);
-            if (!string.IsNullOrEmpty(outputDir)) {
-                parsed.SaveImages(outputDir);
-            }
-        }
-
-        if (outputZip is not null)
-            SaveZip(parsed, outputZip);
-        else if (output is not null)
-            File.WriteAllText(output.FullName, parsed.Serialize());
-        else
+        else if (outputHtml is null)
             Console.WriteLine(parsed.Serialize());
     }
 

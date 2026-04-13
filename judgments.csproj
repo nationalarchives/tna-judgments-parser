@@ -40,6 +40,9 @@
     <EmbeddedResource Include="src/leg/source/associated_document_mapping.csv">
       <LogicalName>leg.associated_document_mapping.csv</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/akn2html.xsl">
+      <LogicalName>leg.akn2html.xsl</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +67,7 @@
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
   </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="NationalArchives.FindCaseLaw.Utils\NationalArchives.FindCaseLaw.Utils.csproj" />
