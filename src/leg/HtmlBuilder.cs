@@ -84,6 +84,20 @@ public static class HtmlBuilder {
         return !string.IsNullOrEmpty(fromEnv) ? fromEnv : DefaultOxygenHomeWindows;
     }
 
+    /// <summary>
+    /// Returns true if HtmlBuilder can run on this machine (Oxygen-bundled Saxon is reachable).
+    /// Tests that need to compare HTML output should skip when this returns false.
+    /// </summary>
+    public static bool IsAvailable() {
+        try {
+            string oxygenHome = ResolveOxygenHome();
+            string javaExe = Path.Combine(oxygenHome, "jre", "bin", "java.exe");
+            return File.Exists(javaExe);
+        } catch {
+            return false;
+        }
+    }
+
     private static void ExtractEmbeddedXsl(string destination) {
         var assembly = Assembly.GetExecutingAssembly();
         using Stream stream = assembly.GetManifestResourceStream("leg.akn2html.xsl");

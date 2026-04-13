@@ -1,0 +1,1898 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ImpactAssessment">
+         <div class="body">
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:4.25in">
+                     <col style="width:2.85in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Title:</b>
+                              </p>
+                           <p>Impact assessment for the changes to deregulate unwarranted existing domestic land-use
+                              planning controls going beyond the requirements of the Seveso III directive.    </p>
+                           <p>
+                              <b>IA No: </b>RPC14-FT-CLG-2154(2)</p>
+                           <p>
+                              <b>Lead department or agency:</b>
+                              </p>
+                           <p>Department for Communities and Local Government </p>
+                           <p>
+                              <b>Other departments or agencies: </b>
+                              </p>
+                        </td>
+                        <td>
+                           <table class="ia-table">
+                              <colgroup>
+                                 <col style="width:2.84in">
+                              </colgroup>
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <p>Impact Assessment (IA)</p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Date: </b>
+                                          <b>
+                                             </b>
+                                          <span class="docDate">
+                                             <b>02/02/2015</b>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Stage: </b>
+                                          <b>
+                                             </b>
+                                          <span class="docStage">
+                                             <b>Final (validation)</b>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Source of intervention: </b>
+                                          <b>Domestic</b>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Type of measure: </b>
+                                          <b>Secondary legislation</b>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Contact for enquiries:</b> emily.mayhew@communities.gsi.gov.uk</p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Summary: Intervention and Options </b>
+                              </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>RPC Opinion: </b>Awaiting Validation</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="2">
+                           <p></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:1.38in">
+                     <col style="width:1.12in">
+                     <col style="width:1.75in">
+                     <col style="width:1.38in">
+                     <col style="width:1.46in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td colspan="5">
+                           <p>
+                              <b>Cost of Preferred (or more likely) Option</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Total Net Present Value</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Business Net Present Value</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Net cost to business per year </b>(EANCB on 2009 prices)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>In scope of One-In, Two-Out?</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Measure qualifies as</b>
+                              </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>£0</p>
+                        </td>
+                        <td>
+                           <p>£0</p>
+                        </td>
+                        <td>
+                           <p>£0</p>
+                        </td>
+                        <td>
+                           <p>Yes</p>
+                        </td>
+                        <td>
+                           <p>OUT</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                           <p>
+                              <b>What is the problem under consideration? Why is government intervention necessary?</b>
+                              </p>
+                           <p>European directive 2012/18/EU (the ‘Seveso III directive’) on the control of major
+                              accident hazards involving hazardous substances must be transposed by 31 May 2015.
+                              The Department is responsible for implementing the directive's land-use planning requirements
+                              in England.  At the same time, opportunities have been identified to deregulate existing
+                              domestic controls where these without good reason go beyond the requirements of Seveso
+                              III.  In the interests of transparency, separate and complementary impact assessments
+                              have been prepared: an assessment of the impacts of the changes proposed to land-use
+                              planning regulations in order to transpose the directive, and this assessment of the
+                              impacts of the proposed deregulation of unwarranted domestic land-use planning controls.
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:7.09in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>What are the policy objectives and the intended effects?</b>
+                              </p>
+                           <p>To minimise burdens to business and constraints on development, specifically, where
+                              not required to implement the directive or for public safety: (i) reduce the number
+                              of sites where operators are currently governed by a hazardous substances consent;
+                              (ii) remove the need for businesses to obtain consent in certain instances; (iii)
+                              increase flexibility for businesses to change their operations without needing to
+                              reapply for consent.  These objectives will be achieved through deregulation of existing
+                              domestic legislation, which will enhance competitive advantage and result in savings
+                              to business through reduction in administrative burdens.   </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:7.09in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>What policy options have been considered, including any alternatives to regulation?
+                                 Please justify preferred option (further details in Evidence Base)</b>
+                              </p>
+                           <p>(1) Transposition only. This does not meet Red Tape Challenge commitments or policy
+                              objectives for deregulation. </p>
+                           <p>(2) Transposition, deregulation, and re-working of the whole system. This is a substantial
+                              undertaking and cannot be carried out to the transposition deadline of 31 May.</p>
+                           <p>(3) Transposition and deregulation. This is the preferred option as it meets Red Tape
+                              Challenge commitments and objectives for deregulation, while implementing the directive's
+                              requirements within the necessary timeframe. Guidance will be provided to avoid the
+                              need for regulation where consistent with EU requirements.  The extent of deregulation
+                              was carefully considered and is detailed in this assessment.  </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:7.09in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Will the policy be reviewed?  </b>It <b>will</b> be reviewed.<b></b><b> If applicable, set review date:  </b><b>06</b>/<b>2020</b></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:3.67in">
+                     <col style="width:0.68in">
+                     <col style="width:0.68in">
+                     <col style="width:0.68in">
+                     <col style="width:0.24in">
+                     <col style="width:0.44in">
+                     <col style="width:0.68in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td colspan="3">
+                           <p>Does implementation go beyond minimum EU requirements?</p>
+                        </td>
+                        <td colspan="4">
+                           <p>No</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Are any of these organisations in scope? If Micros not exempted set out reason in
+                              Evidence Base.</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Micro</b>Yes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>&lt; 20</b>
+                              </p>
+                           <p>
+                              <b>
+                                 </b>Yes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Small</b>Yes</p>
+                        </td>
+                        <td colspan="2">
+                           <p>
+                              <b>Medium</b>Yes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Large</b>Yes</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>What is the CO2 equivalent change in greenhouse gas emissions? <br>(Million tonnes CO2 equivalent)  </p>
+                        </td>
+                        <td colspan="2">
+                           <p>
+                              <b>Traded:   </b>
+                              <br>
+                              <b>n/a</b>
+                              </p>
+                        </td>
+                        <td colspan="2">
+                           <p>
+                              <b>Non-traded:   </b>
+                              <br>
+                              <b>     n/a</b>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="paragraph">
+               <p>
+                  <b>
+                     <i>I have read the Impact Assessment and I am satisfied that (a) it represents a fair
+                        and reasonable view of the expected costs, benefits and impact of the policy, and
+                        (b) that the benefits justify the costs.</i>
+                     </b>
+                  </p>
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:3.34in">
+                     <col style="width:1.88in">
+                     <col style="width:0.49in">
+                     <col style="width:1.4in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>
+                                 <i>Signed by the responsible Minister:</i>
+                                 </b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>Brandon Lewis</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>
+                                 <i>&nbsp;</i>
+                                 </b>
+                              <b>
+                                 <i>Date</i>
+                                 </b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>16 February 2015  </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Summary: Analysis &amp; Evidence</b>Policy Option 3</p>
+               <section class="level">
+                  <p>
+                     <b>Description:  </b>
+                     <b>Policy Option 3 - Transposition and Deregulation (Preferred Option) </b>
+                     </p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <b>FULL ECONOMIC ASSESSMENT</b>
+                     </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                        <col style="width:1in">
+                        <col style="width:1.25in">
+                        <col style="width:1.27in">
+                        <col style="width:1.83in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Price Base Year  </b>2014</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <b>PV Base Year 2014  </b>    </p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Time Period Years  </b>    </p>
+                           </td>
+                           <td colspan="3">
+                              <p>
+                                 <b>Net Benefit (Present Value (PV)) (£m)</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Low: </b>
+                                 <b>0</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>High: </b>
+                                 <b>0</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Best Estimate: </b>
+                                 <b>     0</b>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:1.39in">
+                        <col style="width:1.35in">
+                        <col style="width:0.55in">
+                        <col style="width:1.99in">
+                        <col style="width:1.23in">
+                        <col style="width:0.6in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>COSTS (£m)</b>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Transition </b>
+                                 <br>(Constant Price)Years</p>
+                              <p>
+                                 <br>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Average Annual </b>
+                                 <br>(excl. Transition) (Constant Price)</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Cost</b>
+                                 <br>(Present Value)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Low </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td rowspan="3">
+                              <p>   </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>0</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>High </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>0</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Best Estimate</b>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>0     </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>0     </b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Description and scale of key monetised costs by ‘main affected groups’ </b>
+                                 </p>
+                              <p>No gross cost to business. </p>
+                              <p></p>
+                              <p>Familiarisation costs to business are explained and accounted for in the separate
+                                 and complementary assessment of the proposed changes to land-use planning regulations
+                                 in order to transpose Seveso III.  They are not repeated here in order to avoid double-counting.
+                                 No other costs have been identified.  </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Other key non-monetised costs by ‘main affected groups’ </b>
+                                 </p>
+                              <p>Existing domestic controls which go over and above EU requirements will be removed,
+                                 reducing the number of businesses needing to apply for a hazardous substances consent
+                                 where they hold substances in quantities below the EU threshold, and where they are
+                                 seeking to make changes to their operations or inventory with no resulting significant
+                                 consequences for major accident hazards. This will reduce costs and uncertainty for
+                                 businesses which would otherwise need to apply for consent.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>BENEFITS (£m)</b>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Transition </b>
+                                 <br>(Constant Price)Years</p>
+                              <p>
+                                 <br>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Average Annual </b>
+                                 <br>(excl. Transition) (Constant Price)</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Benefit</b>
+                                 <br>(Present Value)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Low </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td rowspan="3">
+                              <p>   </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td colspan="2">
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>High </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td colspan="2">
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Best Estimate</b>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>     </p>
+                           </td>
+                           <td>
+                              <p>     </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>     </b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Description and scale of key monetised benefits by ‘main affected groups’ </b>
+                                 </p>
+                              <p>A number of sites will fall out of scope of regulation and will no longer require
+                                 hazardous substances consent. An estimated 25 sites may come out of scope and will
+                                 no longer need a consent, although the impact on these sites has not been monetised,
+                                 as explained at Section 5.1. Businesses wanting to make minor changes to their operations
+                                 or inventories will also no longer need to apply for a consent where there are no
+                                 resulting concerns about major accident hazards.  Proxy measures have been relied
+                                 on as appropriate to indicate the likely scale of benefit and therefore are not monetised.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Other key non-monetised benefits by ‘main affected groups’ </b>
+                                 </p>
+                              <p>Business will benefit from a more streamlined and efficient system, allowing for greater
+                                 flexibility. Deregulation to align with EU standards will level the playing field
+                                 for industry, as well as reducing the administrative burden for industry. The changes
+                                 will also result in a reduction in constraints to development surrounding certain
+                                 establishments currently holding hazardous substances. </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="5">
+                              <p>
+                                 <b>Key assumptions/sensitivities/risks</b>
+                                 <b>Discount rate (%)</b>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>3.5%     </p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p></p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <b>BUSINESS ASSESSMENT (Option 3)</b>
+                     </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:1.38in">
+                        <col style="width:1.5in">
+                        <col style="width:1.38in">
+                        <col style="width:1.38in">
+                        <col style="width:1.47in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <b>Direct impact on business (Equivalent Annual) £m: </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>In scope of OITO?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>  Measure qualifies as</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Costs: </b>
+                                 <b>     0</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Benefits: </b>
+                                 <b>     </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Net: </b>
+                                 <b>     </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>Yes</p>
+                           </td>
+                           <td>
+                              <p>OUT</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Introduction</b>
+                  </p>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Please note: </b>We have one proposal with two regulatory elements. This proposal is being taken forward
+                        through the introduction of new ‘Planning (Hazardous Substances) Regulations 2015’
+                        and the wider planning regime, together delivering: </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">
+                           <b>a)</b>
+                           </span></h2>
+                     <p>Transposition of the Seveso III directive; and </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">
+                           <b>b)</b>
+                           </span></h2>
+                     <p>Deregulation of domestic rules that are more onerous than the Seveso directive </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>Separate and complementary assessments are provided for each element to ensure transparency
+                     in the calculation of costs and benefits<b>. </b>This was the format adopted at regulatory triage assessment stage and supported by
+                     the Regulatory Policy Committee. </p>
+               </section>
+               <section class="level">
+                  <p>This assessment deals with only the effects of (b) deregulation of domestic measures
+                     that are more onerous than the Seveso directive.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>
+                  <b>Problem under consideration</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>1.1</b>
+                        </span></h2>
+                  <p>
+                     <b>Background to the Seveso Directive and domestic regulation</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">1.</span></h2>
+                  <p>Directive 2012/18/EU - the ‘Seveso III directive’ - was introduced into European law
+                     in August 2012 and is to be fully transposed by member states by 31 May 2015, to come
+                     into force on 1 June 2015<a class="fn" id="fnref-1" href="#fn-1">1</a>. The Department for Communities and Local Government has responsibility for transposing
+                     the land-use planning requirements of the directive in England.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.</span></h2>
+                  <p>The stated purpose of the Seveso III directive is to prevent on-shore major accidents
+                     involving dangerous (‘hazardous’ in domestic regulations) substances, and limit their
+                     consequences for human health and the environment, with a view to ensuring a high
+                     level of protection throughout the European Union in a consistent and effective manner.
+                     Seveso III replaces EU directive 96/82/EC (‘Seveso II’).</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.</span></h2>
+                  <p>EU legislation aimed at preventing major accidents involving hazardous substances
+                     has been in place since 1982, when the first Seveso directive was introduced in the
+                     wake of a number of incidents across Europe, including explosions at Flixborough in
+                     the UK and a major accident at Seveso in Italy. Land-use planning requirements were
+                     introduced in 1996 under Seveso II, and are amended in Seveso III. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.</span></h2>
+                  <p>At present, the Seveso II directive applies to just over 700 sites in England<a class="fn" id="fnref-2" href="#fn-2">2</a>, mainly establishments related to petrochemical and chemical industries, large scale
+                     fuel, gas and chemical storage distribution depots, and some pharmaceutical and metal
+                     manufacturing sites. The chemicals industry had an output of £9.5bn in 2010, employs
+                     100,000 people and plays a key role in the supply chain for other sectors<a class="fn" id="fnref-3" href="#fn-3">3</a>. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>1.3</b>
+                        </span></h2>
+                  <p>
+                     <b>Domestic regulation </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5.</span></h2>
+                  <p>In developing our proposals to transpose the Seveso III directive<a class="fn" id="fnref-4" href="#fn-4">4</a>, we have identified some areas where existing domestic regulations clearly extend
+                     beyond those required by the directive, in particular relating to:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The range and quantities of substances that are controlled; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>How changes to hazardous substances held on a site are controlled; </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.</span></h2>
+                  <p>In these areas, additional domestic regulations impose unnecessary costs and administration
+                     on industry which can leave business at a disadvantage relative to European competitors.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">7.</span></h2>
+                  <p>In line with the Government’s commitment to avoid ‘gold-plating’ of EU directives
+                     we are therefore proposing, at the same time as implementing the transposition of
+                     Seveso III, to bring forward changes in a number of areas where without good reason
+                     domestic controls exceed the directive’s requirements. This impact assessment is concerned
+                     with these proposed deregulatory changes. A separate and complementary impact assessment
+                     has been prepared to consider the costs and benefits of the changes solely required
+                     to implement the directive.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Rationale for intervention </b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">8.</span></h2>
+                  <p>Changes to land-use planning regulations in England are necessary in order to fully
+                     transpose the requirements of the Seveso III directive by 31 May 2015. In developing
+                     our proposals to transpose the directive, opportunities to remove existing domestic
+                     gold-plating<a class="fn" id="fnref-5" href="#fn-5">5</a> have been identified. In particular, substances controlled through the hazardous
+                     substances consent regime have not been overhauled since 1992 and are out of step
+                     with the new directive. The proposed deregulatory measures would remove burdens on
+                     business and bring competitive gain as the better alignment with EU and international
+                     standards levels the playing field for English business. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy objectives</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">9.</span></h2>
+                  <p>A key government objective in implementing EU directives is to minimise burdens on
+                     business and ensure they are not put at a disadvantage relative to their European
+                     competitors. In developing our proposals to transpose the directive, we are therefore
+                     seeking to remove where possible existing, unwarranted domestic controls because they
+                     give rise to burdens on business and constraints on development. Specifically, we
+                     aim to, where not required to implement the directive or for public safety:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(i)</span></h2>
+                     <p>Reduce the number of sites where operators are currently governed by a hazardous substances
+                        consent; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(ii)</span></h2>
+                     <p>Remove the need for businesses to obtain a consent; </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">(iii)</span></h2>
+                     <p>Increase the flexibility for businesses to change their operations without needing
+                        to reapply for a consent;</p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.</span></h2>
+                  <p>Business will benefit from the removal of unwarranted regulation. As a result of our
+                     proposals, a number of sites will no longer require a hazardous substances consent
+                     and will drop out of scope of regulation, benefitting from associated savings going
+                     forward. Businesses wanting to modify consents where the modifications bring no resulting
+                     concerns about major accident hazards will also benefit through not needing to apply
+                     for a consent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11.</span></h2>
+                  <p>The Department has worked with the Health and Safety Executive to ensure that the
+                     proposed deregulatory measures will not impact on the high levels of protection which
+                     the public and environment currently benefit from. The Executive has informed and
+                     supported the proposals.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Description of options considered </b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">12.</span></h2>
+                  <p>In considering how to transpose the land-use planning requirements of Seveso III,
+                     several policy options were identified, and are explained in greater detail below:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <u>Option 1: Transposition only</u>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <u>Option 2: Transposition, deregulation, and re-working of the whole system</u>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <u>Option 3: Transposition and deregulation</u> (Preferred option) </p>
+                  </section>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>
+                     <u>Option 1: Transposition</u>
+                     </b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">13.</span></h2>
+                  <p>Policy option 1:  Revise existing regulations to transpose the new content of the
+                     directive, adding new requirements and amending those where there have been changes
+                     between the existing and new directives.  Use the European Communities Act to amend
+                     the Planning (Hazardous Substances) Regulations 1992 and, potentially, the Planning
+                     (Hazardous Substances) Act 1990. Where appropriate, transposition to be in the form
+                     of ‘copy-out’ in line with UK Government policy. Negative resolution process to be
+                     used. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.</span></h2>
+                  <p>This option is not suitable as our analysis of the hazardous substance consent regime
+                     shows that the current domestic requirements are more onerous than the directive (current
+                     and new). Option 1 would therefore result in additional domestic burdens on industry
+                     being retained. This option also fails to deliver our Red Tape Challenge commitment
+                     to consolidate existing regulations. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>
+                     <u>Option 2: Transposition, deregulation and reworking of whole system</u>
+                     </b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">15.</span></h2>
+                  <p>Policy option 2: Rework the system to make substantial changes to the hazardous substances
+                     consent regime, and streamline land-use planning requirements for hazardous substances,
+                     while still meeting the expectations set out in the Seveso III directive. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16.</span></h2>
+                  <p>In reworking the system, objectives are not only deregulation, but also ensuring we
+                     meet the requirements of the directive, and maintain required levels of public safety.
+                     This reworking would, therefore, be a substantial project which would take significant
+                     time and consultation with industry and agencies. This would risk the Government not
+                     achieving transposition within the required time-frame, potentially resulting in legal
+                     proceedings and leaving industry at a comparative disadvantage. Transposition of the
+                     land-use planning requirements is part of a wider package of measures being introduced
+                     by the Health and Safety Executive to transpose a European directive and ensure public
+                     safety from major accidents involving hazardous substances. If these regulations were
+                     not introduced, the chemicals industry would be faced with two parallel regimes and
+                     leave an uncertain position on to how to continue operating lawfully. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17.</span></h2>
+                  <p>As part of the consultation, we consulted on the scope for further reform. The responses
+                     received provide useful evidence and will be taken into account in considering the
+                     scope and shape of any future reform. </p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>
+                     <u>Option 3 (Preferred option): Transposition and deregulation</u>
+                     </b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">18.</span></h2>
+                  <p>Policy option 3: Transpose the land-use planning requirements of Seveso III using
+                     existing mechanisms (i.e. the hazardous consent regime and wider planning system);
+                     remove unwarranted existing additional domestic regulation going beyond the requirements
+                     of the directive; consolidate hazardous substances regulations in line with the Government’s
+                     Red Tape Challenge commitment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19.</span></h2>
+                  <p>Option 3 is the best option for transposing the directive to the EU deadline, whilst
+                     meeting agreed actions for the Government’s Red Tape Challenge. As part of this approach,
+                     accompanying guidance is also being published alongside new regulations. We will also
+                     seek opportunities in future for greater streamlining and further integration of the
+                     land-use planning regime with the Control of Major Accident Hazards regime.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact on business: monetised and non-monetised costs and benefits</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">20.</span></h2>
+                  <p>Since options 1 and 2 above are not viable options, in accordance with Better Regulation
+                     guidance<a class="fn" id="fnref-6" href="#fn-6">6</a> they have not been further analysed. The following is an assessment of the impact
+                     of the preferred option (Option 3) on business. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21.</span></h2>
+                  <p>With regard to proposals to deregulate how unwarranted domestic controls might impact
+                     on business. <b>As explained, the impact of the proposed changes to transpose the directive is addressed
+                        in a separate and complementary assessment.</b></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22.</span></h2>
+                  <p>Changes to the current land-use planning rules are necessary in order to transpose
+                     the requirements of Seveso III. All measures proposed to transpose the directive and
+                     the deregulatory proposals are being taken forward through a single set of regulations,
+                     the Planning (Hazardous Substances) Regulations. Familiarisation costs associated
+                     with the new regulations are accounted for in the separate impact assessment relating
+                     to the costs and benefits of the transposition. In order to avoid double-counting
+                     these costs are not represented in this impact assessment.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23.</span></h2>
+                  <p>The Department has sought to identify monetised estimates of the savings to business
+                     where possible. However in view of the evidence available, proxy measures have been
+                     relied on as appropriate to indicate the likely scale of benefit rather than producing
+                     estimates that risk misrepresenting the monetary value of the costs and benefits of
+                     these deregulatory changes. </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:0.27in">
+                        <col style="width:1.87in">
+                        <col style="width:2.66in">
+                        <col style="width:2.26in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td colspan="4">
+                              <p>
+                                 <b>Outline: Key impacts on business of deregulatory measures</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Proposed Change</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Anticipated Impact</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Estimated Monetised Impact</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>1</p>
+                           </td>
+                           <td>
+                              <p>Alignment of substances under additional domestic control with Seveso III </p>
+                           </td>
+                           <td>
+                              <p>Up to 25 sites to fall out of scope of regulation; capacity for operators to obtain
+                                 less restrictive consents; potential for a small decrease in the number of applications
+                                 for consent each year. </p>
+                           </td>
+                           <td>
+                              <p>Savings to business through deregulation; monetised benefit not provided.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>2</p>
+                           </td>
+                           <td>
+                              <p>Remove the need for businesses to reapply for a consent when making minor modifications</p>
+                           </td>
+                           <td>
+                              <p>Increased flexibility for business; business will benefit through the removal of uncertainty
+                                 surrounding applications being approved; small cost savings compared to applying for
+                                 a consent.</p>
+                           </td>
+                           <td>
+                              <p>Small cost savings to business relative to the consent application process; estimated
+                                 monetised benefit not provided.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>5.1</b>
+                        </span></h2>
+                  <p>
+                     <b>Impact of proposals to deregulate controls on hazardous substances: scope of regulation</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24.</span></h2>
+                  <p>For certain substances, regulations in England currently set a lower tonnage threshold
+                     for control than the Seveso directive. This translates into a stricter regime in England
+                     as these additionally controlled substances come into scope of regulation in England
+                     when held at lower quantities than the EU minimum threshold for control. Where substances
+                     are in scope of regulation in England, operators require a hazardous substances consent
+                     to hold them on site.</p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>Figure 1</b> below shows the levels of additional control in England over and above that required
+                        by EU law (under Seveso II and Seveso III), as a percentage of the EU controlled threshold.
+                        </span></h2>
+                  <section class="paragraph">
+                     <p>
+                        <b>Fig 1. Level of additional domestic control compared to Seveso II and III</b>
+                        <a class="fn" id="fnref-7" href="#fn-7">7</a>
+                        <b>
+                           </b>
+                        <img src="http://www.legislation.gov.uk/id/uksi/2015/627/impacts/2015/171/" alt="">
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25.</span></h2>
+                  <p>Under the new Planning (Hazardous Substances) 2015 Regulations, domestic land-use
+                     planning  controls on hazardous substances will be aligned with European standards,
+                     with the exception of liquefied petroleum gas, natural gas, and hydrogen, which will
+                     continue to be controlled at current levels for reasons of public safety, the rationale
+                     for which is further explained under <u>Section 6.1</u>. This greater alignment with international standards will bring trade benefits and
+                     lower costs to business through deregulation.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">26.</span></h2>
+                  <p>The alignment of the majority of controlled substances with European requirements
+                     also provides greater flexibility for operators. Whereas existing regulations require
+                     operators to apply for a consent specifically for set quantities of the substance,
+                     our proposals allow operators in some cases to apply for consent under a generic category.
+                     This allows greater flexibility for operators to change the substances held within
+                     a category of substances with similar hazard characteristics. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">27.</span></h2>
+                  <p>As a result of this alignment, a number of sites could fall out of scope of regulation
+                     altogether and no longer need a consent. This will occur where controlled substances
+                     are held in quantities such that they are currently subject to control in England
+                     but fall below the threshold set in Seveso III.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">28.</span></h2>
+                  <p>Health and Safety Executive data indicates that there are at present around 700 sites
+                     in England subject to control under the Seveso directive. Additionally, 217 sites
+                     are currently controlled because of domestic regulatory requirements, although the
+                     total number is not known<a class="fn" id="fnref-8" href="#fn-8">8</a>. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">29.</span></h2>
+                  <p>
+                     <b>Figure 2</b> below is a summary of Health and Safety Executive data which shows the number of
+                     sites in England (numbered and in red) which are in scope of regulation as a result
+                     of holding the main substances where the control arises from a domestic and not an
+                     EU requirement. The information relates to those sites where consent has been granted
+                     for a single substance, not those where these substances might be present together
+                     with other substances.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Figure 2. Number of sites controlled under domestic regulations in addition to Seveso
+                     III requirements  (2014)</b>
+                  </p>
+               <section class="level">
+                  <p>
+                     <img src="http://www.legislation.gov.uk/id/uksi/2015/627/impacts/2015/171/" alt="">
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">30.</span></h2>
+                  <p>A minimum of 17 sites<a class="fn" id="fnref-9" href="#fn-9">9</a> are expected to come out of scope of regulation when the proposed changes come into
+                     effect. This is a conservative estimate, based on the number of sites that hold a
+                     consent for a single substance. Where substances are held in combination with other
+                     substances, our proposals may lead to more sites falling below the threshold for regulation.
+                     This is because the combined quantities of substances held determine whether a hazardous
+                     substances consent is required. Health and Safety Executive data indicates that, in
+                     addition to the 17 sites to come out of scope through no longer needing a consent
+                     for a specific substance only, a further 8<a class="fn" id="fnref-10" href="#fn-10">10</a> sites may come out of scope due to the combination of substances for which they hold
+                     a consent. Therefore, a total of 25 sites<a class="fn" id="fnref-11" href="#fn-11">11</a> may be expected to come out of scope of regulation as a result of the alignment of
+                     the list of controlled substances.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">31.</span></h2>
+                  <p>Because of the way information is held by the Health and Safety Executive, it is possible
+                     that there may be further sites we have not been able to identify which could come
+                     out of scope due to the particular combinations and quantities of substances held.
+                     More detailed assessment of the number of sites which could come out of scope would
+                     have required disproportionate resource to identify all additionally controlled sites
+                     in England and review their inventories to determine how the particular quantities
+                     and combinations of substances would affect the establishment’s status under the new
+                     proposals. This would have been a significant and costly undertaking, which was judged
+                     disproportionate given we have no reason to believe significant numbers of additional
+                     unidentified sites would come out of scope. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">32.</span></h2>
+                  <p>In summary, the proposed deregulation of controls which currently go beyond the requirements
+                     of the directive will result in an estimated 25 sites coming out of scope. The decrease
+                     in the number of sites in scope of domestic regulation (and therefore subject to consent
+                     requirements) may translate into savings to business arising from the cost of complying
+                     with a consent, and greater operational flexibility. We do not have data related to
+                     these cost savings. There are no specific compliance costs related to the consent
+                     regime, and existing consents are valid until they are given up by operators or revoked
+                     (meaning that coming out of scope is not equivalent to saving the cost of making an
+                     application for a consent). The data held relates to costs incurred during the process
+                     of making a hazardous substances consent application. Given that these application
+                     costs only affect business as and when they need to apply for a consent, as determined
+                     by their business operations, we are not able to provide a monetised estimate of the
+                     savings to businesses as a result of coming out of scope of regulation. We do however
+                     anticipate that this might result in a small reduction in the number of applications
+                     made for hazardous substances consent per year<a class="fn" id="fnref-12" href="#fn-12">12</a>, a process estimated to cost an average £17,300<a class="fn" id="fnref-13" href="#fn-13">13</a>. In addition, the deregulatory changes better align land-use planning controls in
+                     England with those of European competitors, ensuring that businesses are not unnecessarily
+                     disadvantaged.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">33.</span></h2>
+                  <p>Please note that sites coming out of scope as a result of the proposed deregulatory
+                     measures are in addition to a number of sites anticipated to come out of scope as
+                     a result of changes to the list of substances controlled under Seveso III compared
+                     to Seveso II, as detailed in the separate and complementary assessment of the impact
+                     of proposed transposition measures on business. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>5.2</b>
+                        </span></h2>
+                  <p>
+                     <b>Impact of proposals to deregulate controls on hazardous substances: minor modifications</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">34.</span></h2>
+                  <p>Under current regulations, operators seeking to make any change to the hazardous substances
+                     stored or used on site beyond those set out in an existing consent need to make an
+                     application to the hazardous substances authority for consent. Making an application
+                     for a consent costs an estimated average £17,300. This regulatory requirement is more
+                     onerous than in the directive, which requires control over changes “which could have
+                     significant consequences for major-accident hazards”<a class="fn" id="fnref-14" href="#fn-14">14</a> or which result in an establishment moving between being a ‘Lower Tier’ and ‘Upper
+                     Tier’ establishment. Current domestic regulations are therefore more burdensome than
+                     required by the directive and impose additional costs on business.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">35.</span></h2>
+                  <p>The proposed deregulation would mean that businesses looking to make minor modifications
+                     to their inventory or their operations will no longer need to apply for a consent
+                     where the changes proposed do not entail ‘significant consequences for major accident
+                     hazards’ or a tier change (following the wording in the directive). This will lower
+                     administrative costs for business and local authorities and allow businesses to be
+                     more flexible and reactive to industry trends and customer demand, enhancing competitiveness.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">36.</span></h2>
+                  <p>The Department also sought to ensure that in providing additional flexibility through
+                     the deregulatory measures, existing levels of public safety and environmental protection
+                     would be maintained. To ensure this, operators will need to provide information to
+                     the Control of Major Accident Hazards Competent Authority to certify that the modifications
+                     proposed will not entail significant consequences for major accident hazards. While
+                     there will be some costs to business in providing relevant information, a main advantage
+                     is that it will remove the uncertainty involved in the consent application process.
+                     There will also be cost savings through no longer incurring costs associated with
+                     a consent application, such as the application fee (£200-£400<a class="fn" id="fnref-15" href="#fn-15">15</a>) and public notification costs. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">37.</span></h2>
+                  <p>The proposed deregulation for minor modifications was supported by businesses and
+                     local authorities in the consultation, with respondents noting that it would help
+                     reduce red tape around the consent regime, and ease the brake on development resulting
+                     from the uncertainty to industry of a consent application. One business commented
+                     that it will reduce the long, costly and onerous process of applying for varied consents.
+                     As a result of consultation further flexibilities have been introduced. In order to
+                     provide further benefit to business, the Department will continue to work with the
+                     Control of Major Accident Hazards Competent Authority to ensure that guidance is provided
+                     to help businesses take advantage of the opportunity to make minor modifications without
+                     the need to apply for a consent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">38.</span></h2>
+                  <p>At present, we know that on average 84-102<a class="fn" id="fnref-16" href="#fn-16">16</a> applications are made for a hazardous substances consent in England each year. The
+                     existing hazardous substances consent regime does not differentiate between applications
+                     for consent for minor changes and other consent applications, meaning that there is
+                     no recorded data on the number of applications made by businesses seeking to make
+                     small changes to their inventories or operations. Even if this data were available,
+                     it would not identify situations where recent applications may have been made for
+                     greater quantities than an operator may require to meet business need (for example
+                     to win a new contract), or foregone opportunities. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">39.</span></h2>
+                  <p> While we considered asking business to quantify the advantage of the minor modifications
+                     route, we recognised that this would entail re-evaluation of old inventory lists and
+                     analysis for each change to determine whether the changes proposed would have been
+                     classed as having ‘significant consequences for major accident hazards’ and been eligible
+                     for the proposed new minor modifications channel. This was not a proportionate or
+                     realistically feasible option, especially given the relatively small number of consent
+                     applications made per year. We have therefore not provided a monetised estimate of
+                     predicted savings to business. Industry has given clear support to the proposed measure
+                     and the anticipated overall effect, as explained above, is increased flexibility for
+                     businesses together with a reduction in the administrative burden and removal of uncertainty
+                     in the process.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>5.3</b>
+                        </span></h2>
+                  <p>
+                     <b>Impact of proposals to deregulate controls on hazardous substances: development in
+                        the vicinity of hazardous establishments</b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">40.</span></h2>
+                  <p>When preparing local plans, local planning authorities must have regard to the prevention
+                     of major accidents, and limiting their consequences. They must also consider the long-term
+                     need for appropriate distances between establishments holding hazardous substances
+                     and population centres or environmentally sensitive areas. The proposed measure to
+                     deregulate the existing controls will remove a number of sites from scope and, in
+                     so doing, may reduce the area of land that might otherwise be ruled out for development.
+                     This provides greater flexibility for other businesses that may want to develop in
+                     these areas, without compromising public safety.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>Rationale and evidence</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>6.1</b>
+                        </span></h2>
+                  <p>
+                     <b>Extent of deregulation  </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">41.</span></h2>
+                  <p>At present, for certain substances, regulations in England set a lower tonnage threshold
+                     for control than the Seveso directive (II and III), meaning that the domestic system
+                     is more regulatory than required by EU standards. The Department initially explored
+                     the option to deregulate all substances where these were controlled more rigorously
+                     than required by the Seveso directive. However, on the basis of advice from the Health
+                     and Safety Executive, for now, retaining the existing levels of control in the hazardous
+                     substances consent regime for liquefied petroleum gas natural gas and hydrogen is
+                     considered to be justified in terms of public safety. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">42.</span></h2>
+                  <p>The Health and Safety Executive has advised that liquefied petroleum gas, hydrogen
+                     and natural gas are all extremely flammable gases and have the potential to cause
+                     a major accident even under the current control quantities, which are stricter than
+                     those imposed by Seveso. An indication of the potential consequences from an accident
+                     involving this quantity of flammable substances can be drawn from the Los Alfaques
+                     campsite disaster in Spain in 1978. This involved around 25 tonnes of a liquefied
+                     petroleum gas and resulted in 217 fatalities and 200 injuries.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">43.</span></h2>
+                  <p>There is a current drive for use of hydrogen as a ‘clean’ fuel at the point of use
+                     which may lead to more sites storing this substance. Maintaining control levels is
+                     therefore precautionary in light of the possibility of rapid proliferation of these
+                     sites. There is also current trend for liquefied natural gas fuel facilities at logistics
+                     sites (where a number of people will be present on site), and other sites which are
+                     not experienced major hazard operators, it is therefore also advisable to maintain
+                     current control standards on natural gas.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">44.</span></h2>
+                  <p>The intention to align the majority of substances with EU requirements was widely
+                     supported through public consultation. Energy UK commented that the approach was reasonable
+                     given advice from the Health and Safety Executive. Additionally, it was noted that
+                     if regulations were to be relaxed now but later thought to be necessary, it would
+                     be difficult tighten these controls again without impacting on business, as affected
+                     establishments might become surrounded by inappropriate development in the meantime,
+                     which could lead to operational restrictions on the business. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">45.</span></h2>
+                  <p>We will work with the Health and Safety Executive to keep these controls under review.
+                     Technical advice from the Executive, including on these three substances, will be
+                     used to inform the proposed review of the Seveso III directive in 2020. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>6.2</b>
+                        </span></h2>
+                  <p>
+                     <b>Cost of making an application for a hazardous substances consent </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">46.</span></h2>
+                  <p>The lack of available data on the overall costs to business of applying for a hazardous
+                     substances consent has lead the Department to identify proxy costs associated with
+                     making a planning application for a typical warehouse development. The latest figures
+                     on costs of applying for permission for a ‘typical warehouse development’ were calculated
+                     by Arup in research carried out for the Department in 2009. Arup found that these
+                     costs varied significantly with an average of £15,321<a class="fn" id="fnref-17" href="#fn-17">17</a> at 2009 prices. We have adjusted this figure for 2014 using the treasury deflator,
+                     giving an average figure of <b>£17,300</b> which we use in our calculations. The Arup report also provided a lower and upper
+                     bound - around £3,900 and £41,000 – showing that a wide range of costs can materialise
+                     in applying for planning consent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">47.</span></h2>
+                  <p>The Department has made further attempts to secure the data necessary to more accurately
+                     estimate the cost to business of making an application for a consent. This has been
+                     done through further engagement with industry, including working with chemical industry
+                     bodies to obtain information from their members. This has involved significant efforts
+                     by industry to provide the relevant information, albeit only a relatively small number
+                     (19) of business were able to help. We have been advised this is because business
+                     do not tend to record the costs involved in the consent application process, and the
+                     knock-on effects on competitiveness of the time taken to secure a consent. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">48.</span></h2>
+                  <p>We were advised by industry that while in straightforward cases, costs averaging around
+                     £15,000 were indicated, for more complex applications (including new applications),
+                     where the process becomes extended, and taking into account the cost of delays and
+                     lost business alongside the consultant or man-hour costs, the cost could be significantly
+                     higher (costs of up to £25,000 were reported by industry body members in England).
+                     Variables such as size and type of project, and whether a consent is being sought
+                     for an entirely new site or simply straightforward modifications, mean that there
+                     can be significant differences in costs incurred in making an application for consent.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">49.</span></h2>
+                  <p>Given industry feedback, we have judged that the proxy cost associated with making
+                     a planning application for a warehouse development (updated to reflect 2014 prices)
+                     remains the best available way of representing the costs that businesses might expect
+                     to incur in preparing and submitting an application for hazardous substances consent.
+                     Attempting to gather more detailed evidence would cause a disproportionate burden
+                     to businesses and industry, who had already invested significant effort in gathering
+                     information. This would be particularly unwarranted given that we were advised that
+                     the information we were seeking is not usually held by businesses and was therefore
+                     not available. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">50.</span></h2>
+                  <p>The Department is acting on industry concerns relating to risks of delay and complications
+                     in the hazardous substances consent regime, and has sought to streamline the application
+                     process to increase efficiency in line with the directive’s requirements, as detailed
+                     in the impact assessment relating to the transposition of the directive.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Risks and assumptions</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">51.</span></h2>
+                  <p>Estimates are based on the best available data, as explained in the relevant sections.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52.</span></h2>
+                  <p>In calculating the number of sites likely to come out of scope as result of changes
+                     to the list of controlled substances, projections are based on data provided by the
+                     Health and Safety Executive. This information is the best available from Health and
+                     Safety Executive records, but this is not a definitive list of consents which are
+                     held by individual hazardous substances authorities. Therefore it is possible that
+                     there are further sites which may come out of scope that have not been accounted for.
+                     Nevertheless it is a reasonable illustration of the extent, and it is not likely that
+                     any significant number of additional unidentified sites would come out of scope. It
+                     is also possible that there may be further sites we have not been able to identify
+                     which could come out of scope due to the particular combinations and quantities of
+                     substances held. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">53.</span></h2>
+                  <p>The estimated number of sites which may come out of scope as a result of the proposals
+                     is based on the underlying assumption that these sites will continue to operate as
+                     they did at the start of 2014 when data was collected. If operators have made changes
+                     to substances and quantities stored or will change these in future, this could have
+                     an impact on whether or not a business will be within scope of legislation. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">54.</span></h2>
+                  <p>Further to this, it is conceivable that some businesses would seek to take advantage
+                     of changes by adapting their operations in future so as to fall out of scope and lessen
+                     their administrative burden. Business representatives have indicated this is unlikely.
+                     We have therefore assumed that this is not a very probable eventuality, but the result
+                     would be an increase in overall administrative savings to business. </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Direct costs and benefits to business calculations (following One In Two Out methodology)</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">55.</span></h2>
+                  <p>Our proposals to deregulate the Planning (Hazardous Substances) Regulations 1992 (as
+                     amended) are in scope of One In Two Out. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">56.</span></h2>
+                  <p>The deregulatory measures proposed entail no gross costs to business. For reasons
+                     set out in the relevant sections, a monetised estimate of benefits has not been provided,
+                     but the overall impact on business will be cost-saving, due to the proposed deregulation
+                     and reduction in the scope of land-use planning regulations on hazardous substances.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">57.</span></h2>
+                  <p>These measures are therefore classified as an ‘OUT’.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Wider impacts</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">58.</span></h2>
+                  <p>We have considered the potential impacts of the proposed project in the context of
+                     the general equality duty and concluded that they are not likely to result in any
+                     significant differential impacts on any of the protected characteristics.  </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Summary and implementation plan</b>
+                  </p>
+               <section class="paragraph num">
+                  <h2><span class="num">59.</span></h2>
+                  <p>The Seveso III directive on the control of major-accident hazards is to be transposed
+                     by 31 May 2015. The Department for Communities and Local Government has responsibility
+                     for transposing the land-use planning requirements of the directive in England.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">60.</span></h2>
+                  <p>At the same time as the transposition, the Department has taken the opportunity to
+                     deregulate domestic controls where these are more onerous than the requirements of
+                     the directive. Where domestic tonnage thresholds are lower than the minimum thresholds
+                     in the directive, (and therefore subject to stricter control) these will be aligned
+                     with EU thresholds in all but three cases, where the Health and Safety Executive have
+                     advised that controls are to stay at current standards for public safety reasons.
+                     As a result of this deregulation, around 25 sites could come out of scope of regulation
+                     in England altogether, and would therefore no longer be subject to the hazardous substance
+                     consent regime and associated costs.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">61.</span></h2>
+                  <p>Businesses seeking to make minor modifications to their operations or inventory will
+                     also no longer need to apply for a new consent where these modifications do not result
+                     in significant consequences for major accident hazards. This will remove the uncertainty
+                     involved in applying for a consent, reduce the administrative burden on industry and
+                     help enable greater business flexibility. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">62.</span></h2>
+                  <p>Further advantages to business will follow from other changes as a result of the transposition
+                     of the directive and the consolidation of land-use planning regulations as part of
+                     the Department’s Red Tape Challenge commitment. These are detailed in the related
+                     separate impact assessment for the transposition.  </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">63.</span></h2>
+                  <p>Industry has been supportive of the changes proposed and consultation with industry
+                     has informed the Department’s approach throughout the transposition. Measures outlined
+                     in this impact assessment carry no cost to business. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">64.</span></h2>
+                  <p>The regulations will be laid before Parliament in March 2015, and will come into effect
+                     in England on 1 June 2015 (the EU deadline for implementation). Guidance will be provided
+                     to support the proposed measures. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <b>10.1</b>
+                        </span></h2>
+                  <p>
+                     <b>Post implementation review </b>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">65.</span></h2>
+                  <p>The proposed Planning (Hazardous Substances) Regulations will be reviewed within five
+                     years of commencement. Furthermore, by 30 September 2020, the European Commission
+                     will review the implementation and functioning of the Seveso III directive. </p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Directive 2012/18/EU can be viewed at  <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0018"><u><a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0018">http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0018</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Health and Safety Executive records indicate there are presently 715 establishments
+                  controlled under the Seveso directive in England.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  BIS ‘Review of Enforcement in the Chemicals Industry (COMAH)’ Review, February 2013
+                  - <a href="http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf"><u><a href="http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf">http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf</a></u></a></p>
+               <p></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  For background to how the directive is implemented see the transposition validation
+                  impact assessment section 1.1.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  The ‘Better Regulation Framework Manual’ 2013 - <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  ‘The Better Regulation Framework Manual’ - <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Note that Figure 1 shows those substances which are controlled at lower quantities
+                  (i.e. more regulatory) than Seveso requirements. Seveso thresholds = 0, <u>additional control is shown as a % of Seveso requirements</u>. The larger the %, the more onerous the domestic threshold, when compared to the
+                  directive. (For example, if Seveso II controls substance <i>A</i> at 60 tonnes, domestic regulations are more regulatory by requiring consent for just
+                  30 tonnes of substance <i>A</i>. The graph would therefore show that domestic regulations are 100% more regulatory
+                  than EU requirements).</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  Based on Health and Safety Executive data we have estimated the number of sites holding
+                  substances most affected by control arising from domestic regulation as 217. Data
+                  on sites controlled under additional domestic regulation is held by the individual
+                  hazardous substances authorities that process applications for consent, and is not
+                  centrally collected. </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  Figure based on 16 sites holding Consent for Ammonium Nitrate only and 1 site holding
+                  Consent for Acrylonitrile only. LPG, Natural Gas and Hydrogen will continue to be
+                  controlled at current levels and establishments will therefore not come out of scope
+                  as a result of holding a consent for any of these substances only. </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  Health and Safety Executive data indicates respectively that  5, 1, and 2 sites holding
+                  substances in combination may out of scope of regulation as a result of changes in
+                  the tonnage threshold for Sulphur Dioxide,  Cellulose Nitrate and Carbon Disulphide.
+                  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Please note that these figures are estimates only and not based on site-specific
+                  data.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  There are currently an estimated 84-102 applications for hazardous substances consent
+                  made in England per annum.</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  Please refer to Section 6.2 for further details of the cost of making an application
+                  for hazardous substances consent</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  Directive 2012/18/EU (Seveso III), Article 7, paragraph 4</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/"><u><a href="http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/">http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  Data on the number of consent applications per annum is provided in the separate
+                  and complimentary assessment of the changes proposed to carry out the transposition</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  DCLG (2009) Benchmarking the costs to applicants of submitting a planning application
+                  <a href="http://webarchive.nationalarchives.gov.uk/20120919132719/http://www.communities.gov.uk/documents/planningandbuilding/pdf/benchmarkingcostsapplication.pdf">http://webarchive.nationalarchives.gov.uk/20120919132719/http://www.communities.gov.uk/documents/planningandbuilding/pdf/benchmarkingcostsapplication.pdf</a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

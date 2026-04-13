@@ -1,0 +1,1402 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ImpactAssessment">
+         <div class="body">
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:1.38in">
+                     <col style="width:1.48in">
+                     <col style="width:1.39in">
+                     <col style="width:1.37in">
+                     <col style="width:1.46in">
+                     <col style="width:0.01in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Title:</b>
+                              </p>
+                           <p>
+                              <b>Use of works for public administration and reporting</b>
+                              </p>
+                           <p>
+                              <b>IA No: </b>
+                              <b>BIS0309</b>
+                              </p>
+                           <p>
+                              <b>Lead department or agency:</b>
+                              </p>
+                           <p>IPO</p>
+                           <p>
+                              <b>Other departments or agencies: </b>
+                              </p>
+                           <p>     </p>
+                        </td>
+                        <td colspan="3">
+                           <table class="ia-table">
+                              <colgroup>
+                                 <col style="width:2.84in">
+                              </colgroup>
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <p>Impact Assessment (IA)</p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Date: </b>
+                                          <b>
+                                             </b>
+                                          <span class="docDate">
+                                             <b>13/12/2012*</b>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Stage: </b>
+                                          <b>
+                                             </b>
+                                          <span class="docStage">
+                                             <b>Final</b>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Source of intervention:</b>
+                                          <b>
+                                             </b>
+                                          <b>Domestic</b>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Type of measure: </b>
+                                          <b>Secondary legislation</b>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <b>Contact for enquiries</b>: </p>
+                                       <p>matt.cope@ipo.gov.uk</p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Summary: Intervention and Options </b>
+                              </p>
+                           <p></p>
+                        </td>
+                        <td colspan="3">
+                           <p>
+                              <b>RPC: </b>GREEN</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="6">
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                           <p>
+                              <b>Cost of Preferred (or more likely) Option </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Total Net Present Value</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Business Net Present Value</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Net cost to business per year </b>
+                              </p>
+                           <p>(EANCB on 2009 prices)</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>In scope of One-In, One-Out?</b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>  Measure qualifies as</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>£13.8m</p>
+                        </td>
+                        <td>
+                           <p>£0.00m</p>
+                        </td>
+                        <td>
+                           <p>£0m</p>
+                        </td>
+                        <td>
+                           <p>No</p>
+                        </td>
+                        <td>
+                           <p>NA</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                           <p>
+                              <b>What is the problem under consideration? Why is government intervention necessary?</b>
+                              </p>
+                           <p>Public bodies hold vast amounts of information available for inspection by the public.
+                              Some will have been submitted by third parties and may be essential to fully understand
+                              processes and decisions. This third-party information can be shared in paper copy
+                              or viewed on the premises of public bodies, but cannot be shared online without obtaining
+                              permission or infringing copyright. Making physical copies is time consuming and costly
+                              for public bodies, and they are prevented from publishing this data widely and proactively
+                              by the law. It also costs the public, who may have to travel to the relevant body
+                              or put in individual requests for information. Intervention is required to make an
+                              exception to copyright that allows public bodies to share such data on the internet.</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:7.09in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>What are the policy objectives and the intended effects?</b>
+                              </p>
+                           <p>The primary aim of this measure is to allow more information held by public bodies
+                              to be made easily accessible to the public. This would mean that material open to
+                              public inspection or on an official register – including material submitted by third
+                              parties – could be made available online. It would also mean that more materials that
+                              the public has a right to access under the FOI Act could be pro-actively made available
+                              online. The effect would be reduced admin costs to individuals and public bodies from
+                              requesting and responding to requests, and easier access to more complete public information
+                              by individuals. </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:7.09in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>What policy options have been considered, including any alternatives to regulation?
+                                 Please justify preferred option (further details in Evidence Base)</b>
+                              </p>
+                           <p>0) Do nothing</p>
+                           <p>1) Amend the current copyright exception for public administration and reporting to
+                              permit the publication of relevant (unpublished) third-party documents online.</p>
+                           <p></p>
+                           <p>Option 1 is our preferred option, as it would remove adminstrative costs to individuals
+                              and public bodies, particularly those arising from repeat requests for information.
+                              It is not possible to consider any further options as the EU Copyright Directive does
+                              not provide any more flexibility to consider further options in addition to the single
+                              one proposed. We aim to achieve this without harming the interests of copyright owners
+                              by ensuring that the safeguards already present in the Copyright Act and FOI Act,
+                              which allow public bodies to copy only to the extent that is necessary and reasonable,
+                              are maintained.</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:3.67in">
+                     <col style="width:0.68in">
+                     <col style="width:0.68in">
+                     <col style="width:0.68in">
+                     <col style="width:0.24in">
+                     <col style="width:0.44in">
+                     <col style="width:0.68in">
+                     <col style="width:0.01in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td colspan="8">
+                           <p>
+                              <b>Will the policy be reviewed?   </b>It <b>will</b> be reviewed.<b></b><b>  If applicable, set review date:  </b><b>04</b>/<b>2020</b></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>Does implementation go beyond minimum EU requirements?</p>
+                        </td>
+                        <td colspan="4">
+                           <p>No</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Are any of these organisations in scope? If Micros not exempted set out reason in
+                              Evidence Base.</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Micro</b>
+                              </p>
+                           <p>Yes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>&lt; 20</b>
+                              </p>
+                           <p>
+                              <b>
+                                 </b>Yes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Small</b>
+                              </p>
+                           <p>Yes</p>
+                        </td>
+                        <td colspan="2">
+                           <p>
+                              <b>Medium</b>
+                              </p>
+                           <p>Yes</p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Large</b>
+                              </p>
+                           <p>Yes</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>What is the CO2 equivalent change in greenhouse gas emissions? <br>(Million tonnes CO2 equivalent)  </p>
+                        </td>
+                        <td colspan="2">
+                           <p>
+                              <b>Traded:   </b>
+                              <br>
+                              <b>n/a</b>
+                              </p>
+                        </td>
+                        <td colspan="2">
+                           <p>
+                              <b>Non-traded:</b>
+                              <br>
+                              <b>     </b>
+                              <b>n/a</b>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="paragraph">
+               <p>
+                  <b>
+                     <i>I have read the Impact Assessment and I am satisfied that, given the available evidence,
+                        it represents a reasonable view of the likely costs, benefits and impact of the leading
+                        options.</i>
+                     </b>
+                  </p>
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:3.34in">
+                     <col style="width:1.88in">
+                     <col style="width:0.49in">
+                     <col style="width:1.4in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>Signed by the responsible Minister:</p>
+                        </td>
+                        <td>
+                           <p>Younger of Leckie</p>
+                        </td>
+                        <td>
+                           <p>&nbsp;Date:</p>
+                        </td>
+                        <td>
+                           <p>23 March 14     </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
+               <section class="level">
+                  <p>Description:  Amend the current exception for public administration and reporting
+                     to permit the publication of relevant documents online</p>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <b>FULL ECONOMIC ASSESSMENT</b>
+                     </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:0.88in">
+                        <col style="width:0.88in">
+                        <col style="width:1in">
+                        <col style="width:1.25in">
+                        <col style="width:1.27in">
+                        <col style="width:1.83in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Price Base Year  </b>2011</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <b>PV Base Year  </b>2011</p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <b>Time Period Years  </b>10</p>
+                           </td>
+                           <td colspan="3">
+                              <p>
+                                 <b>Net Benefit (Present Value (PV)) (£m)</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Low: </b>
+                                 <b>13.8</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>High: </b>
+                                 <b>25.8</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Best Estimate: 18.9</b>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:1.39in">
+                        <col style="width:1.35in">
+                        <col style="width:0.55in">
+                        <col style="width:1.99in">
+                        <col style="width:1.23in">
+                        <col style="width:0.6in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>COSTS (£m)</b>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Transition </b>
+                                 <br>(Constant Price)Years</p>
+                              <p>
+                                 <br>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Average Annual </b>
+                                 <br>(excl. Transition) (Constant Price)</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Cost</b>
+                                 <br>(Present Value)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Low </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td rowspan="3">
+                              <p>1</p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>0</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>High </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>0</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Best Estimate</b>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td colspan="2">
+                              <p>0</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Description and scale of key monetised costs by ‘main affected groups’ </b>
+                                 </p>
+                              <p>Public bodies will experience costs if they choose to set up a new online records
+                                 system as a result of this exception. However we have not been able to monetise this
+                                 due to a lack of available data and evidence. An illustration has been provided on
+                                 page 6.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Other key non-monetised costs by ‘main affected groups’ </b>
+                                 </p>
+                              <p>Copyright owners are not expected to experience any costs due to safeguards in the
+                                 exception that ensure it does not undermine commercial sales of copyright works.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>BENEFITS (£m)</b>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Transition </b>
+                                 <br>(Constant Price)Years</p>
+                              <p>
+                                 <br>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Average Annual </b>
+                                 <br>(excl. Transition) (Constant Price)</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>Total Benefit</b>
+                                 <br>(Present Value)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Low </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td rowspan="3">
+                              <p>0</p>
+                           </td>
+                           <td>
+                              <p>1.6</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>13.8</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>High </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td>
+                              <p>3</p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <b>25.8</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Best Estimate</b>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>0</p>
+                           </td>
+                           <td>
+                              <p>2.2</p>
+                           </td>
+                           <td colspan="2">
+                              <p>18.9</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Description and scale of key monetised benefits by ‘main affected groups’ </b>
+                                 </p>
+                              <p>Using figures produced by Frontier in their report looking at FOI, the average time
+                                 saving per FOI of £285 which includes a £290 saving to public bodies and a £5 saving
+                                 to individuals. Estimates provided by the MOD suggested that roughly 4.5% of all FOI
+                                 requests relate to third party information that could be provided online with this
+                                 proposal. Therefore there are potential savings of 4.5% of 168,000 FOI requests at
+                                 a cost saving of £295 per request giving a best estimate of £2.2m p.a.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <b>Other key non-monetised benefits by ‘main affected groups’ </b>
+                                 </p>
+                              <p>There will be other financial and labour resources outside of FOI requests that would
+                                 have been spent dealing with this information.</p>
+                              <p>There will be wider benefits than just time-saving benefits. These include members
+                                 of the public having greater access to official information and evidence about services
+                                 that affect them. This in turn may give the public greater confidence in the functions
+                                 of Governement and public bodies and the relevant services. </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="5">
+                              <p>
+                                 <b>Key assumptions/sensitivities/risks</b>
+                                 <b>Discount rate (%)</b>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>3.5%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>The current number of FOI requests has been taken from the Ministry of Justice's annual
+                                 publication of statistics for FOI requests to government departments covering the
+                                 2011 year. The estimate for the cost per request have been taken from a study by Frontier
+                                 Economics (2006) and inflated to 2010 prices. Estimates by MOD of the % of affected
+                                 FOIs has informed our assumption. A 10% sensitivity analysis has been carried out
+                                 on the benefit estimates. </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <b>BUSINESS  ASSESSMENT (Option 1)</b>
+                     </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:1.38in">
+                        <col style="width:1.5in">
+                        <col style="width:1.38in">
+                        <col style="width:1.38in">
+                        <col style="width:1.47in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <b>Direct impact on business (Equivalent Annual) £m: </b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>In scope of OIOO?</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>  Measure qualifies as</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Costs: </b>
+                                 <b>0</b>
+                                 </p>
+                              <p></p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Benefits: </b>
+                                 <b>0.00</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <b>Net: </b>
+                                 <b>0.00</b>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>No</p>
+                           </td>
+                           <td>
+                              <p>NA</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Evidence Base (for summary sheets)</b>
+                  </p>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Problem under consideration; </b>
+                  </p>
+               <section class="level">
+                  <p>The law currently allows a variety of acts to be performed by government departments
+                     and other public bodies without infringing copyright, to enable them to complete their
+                     required duties.</p>
+               </section>
+               <section class="level">
+                  <p>Exceptions allow public bodies to copy material that is open to public inspection
+                     or on an official register. They allow them to copy these materials and issue copies
+                     to the public if they contain information of scientific, technical, commercial or
+                     economic interest, or to enable the materials to be accessed at a more convenient
+                     time or place. In certain circumstances, public bodies are also able to make copies
+                     of unpublished works that have been communicated to them (such as letters) and to
+                     issue copies of these to the public.</p>
+               </section>
+               <section class="level">
+                  <p>Although some of these exceptions permit the issuing of copies to the public, this
+                     relates only to the issuing of individual copies, for example sending by mail or email.
+                     It does not allow copies to be shared on the internet. The copyright in most of the
+                     information held by a public body will be owned by that body or the Crown, so this
+                     will often not be an issue. But where a public body wishes to make available letters
+                     or other materials sent to them by third parties, in order to give a more complete
+                     picture of decisions they have made, they may be prevented from doing so by the owners
+                     of the copyright in those materials.</p>
+               </section>
+               <section class="level">
+                  <p>We know from various sources that certain public bodies wish to make third party materials
+                     available. For example, the Ministry of Defence, in its submission to the Hargreaves
+                     Review, noted that it was unable to pro-actively publish third-party reports of UFO
+                     sightings online. These are the most frequent requests the MOD receives under the
+                     FOI Act, and such reports can legally be copied and issued to the public on an individual
+                     basis, but cannot be published online without permission from copyright owners – permission
+                     that, in practice, is too costly and time consuming to seek. </p>
+               </section>
+               <section class="level">
+                  <p>A number of public bodies do currently obtain permission to publish documents online
+                     from the original copyright owner at the time they submit evidence to the department,
+                     for example consultation responses. However this is not practical for all types of
+                     third party documents and is only suitable in certain circumstances so there will
+                     be still be a large amount of third party material that is not published.</p>
+               </section>
+               <section class="level">
+                  <p>Concerns have also been raised that current restrictions on publication of third-party
+                     materials may deny the public access to materials they are entitled to view under
+                     FOI in the form they desire.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Rationale for intervention; </b>
+                  </p>
+               <section class="level">
+                  <p>Copyright incentivises and rewards the creation of new works, including for example
+                     literary works (e.g. letters). It does this by giving creators and producers of creative
+                     works the rights to control how they are used and by whom, including the right to
+                     seek payment for this use. Copyright thus imposes costs on users and consumers of
+                     copyright works to the benefit of creators and producers of them.</p>
+               </section>
+               <section class="level">
+                  <p>Given the inherent costs to users and consumers of copyright works - often creators
+                     and producers themselves - certain acts are removed from copyright infringement through
+                     specific exceptions. Government agrees with the argument made by the Hargreaves Review
+                     that copyright should only restrict useful activity by third parties to the extent
+                     necessary to fulfil its fundamental purpose - the provision of incentives to creators.
+                     To this end, the Government intends to implement more exceptions to copyright, and
+                     widen existing ones, to the extent that EU law permits, and to the extent possible
+                     without undermining these incentives.</p>
+               </section>
+               <section class="level">
+                  <p>For the reasons described above, it appears that our current exceptions applying to
+                     public bodies unduly restrict activity that would be beneficial to society and could
+                     be widened without negative impact on copyright owners.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Policy objective</b>
+                  </p>
+               <section class="level">
+                  <p>The primary aim of this measure is to allow more information held by public bodies
+                     to be made easily accessible to the public. This would mean that material open to
+                     public inspection or on an official register – including material submitted by third
+                     parties – could be made available online. It would also mean that more materials the
+                     public has a right to access under the FOI Act could be pro-actively made available
+                     online. As a result of the policy it will mean: </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">-</span></h2>
+                  <p>The public will be able to better understand why public bodies have taken certain
+                     decisions and more effectively hold the Government to account, as they will have easy
+                     access to all documents (from the public body and third parties) relevant to the decision-making
+                     process.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">-</span></h2>
+                  <p>The public will have easier access to information held by public bodies, as more could
+                     be made available online (and retrievable via a database search) rather than having
+                     to be issued on a per-request basis.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">-</span></h2>
+                  <p>Public bodies will benefit from administrative savings as they will no longer have
+                     to respond to repeat requests for the same information.</p>
+               </section>
+               <section class="level">
+                  <p>We aim to achieve this without harming the interests of copyright owners by ensuring
+                     that the safeguards already present in the Copyright Act and FOI Act, which allow
+                     public bodies to copy only to the extent that is necessary and reasonable, are maintained.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Description of options considered (including do nothing);</b>
+                  </p>
+               <section class="level">
+                  <p>Option 0 - Do nothing</p>
+               </section>
+               <section class="level">
+                  <p>Option 1 - Amend the current copyright exceptions for public administration and reporting
+                     to permit the publication of relevant third-party documents online.</p>
+               </section>
+               <section class="level">
+                  <p>It is not possible to consider any other options as the EU Copyright Directive does
+                     not provide any flexibility to consider further options in addition to the single
+                     one proposed.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Option 0 - Do nothing</b>
+                  </p>
+               <section class="level">
+                  <p>The current copyright exception for public administration and reporting will remain
+                     unchanged. This means the public will be able to access data held by public bodies
+                     that is generated by that body, either individually or via the internet. They will
+                     also be able to access relevant third-party documents on request. But they will not
+                     be able to access these third-party documents online.</p>
+               </section>
+               <section class="level">
+                  <p>This would mean members of the public will face barriers to accessing third party
+                     materials held by public bodies, as they would face the time and resource costs of
+                     requesting this information from the relevant public body.</p>
+               </section>
+               <section class="level">
+                  <p>It also means the relevant public body will face time and resource costs associated
+                     with dealing with such requests.</p>
+               </section>
+               <section class="level">
+                  <p>These restrictions conflict with Freedom of Information best practice on pro-active
+                     publication, and their costs mean that less information is available to the public
+                     than is desirable. </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>Option 1- Amend the current copyright exception for public administration and reporting
+                        to permit the publication of relevant third-party documents online</b>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>This would give public bodies the option to publish relevant third-party documents
+                     online, as well as being able to send individually by letter or email. In particular,
+                     it would enable proactive publication by public bodies, allowing them to put materials
+                     or records that are likely to be of public interest on their websites (in line with
+                     FOI best practice).</p>
+               </section>
+               <section class="level">
+                  <p>Pro-active online publication allows members of the public to search for the information
+                     they require online rather than formally request it. For material that is repeatedly
+                     requested this is expected to reduce admin burdens for both the requester and the
+                     public body dealing with it. It will also allow the public to search for and find
+                     documents that allow them to understand more about the decisions made by public bodies,
+                     which are not currently known to them.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Costs and Benefits of Option 1:</b>
+                  </p>
+               <section class="level">
+                  <p>
+                     <b>Benefits:</b> The “Independent Review of the impact of the Freedom of Information Act” by Frontier
+                     Economics (2006)<a class="fn" id="fnref-1" href="#fn-1">1</a> provides some insight into the costs of handling individual Freedom of Information
+                     (FOI) requests, and the overall scale of these costs.</p>
+               </section>
+               <section class="level">
+                  <p>This report estimated the annual volume of requests for information from central government
+                     to be 34,000, and from the wider public sector to be 87,000, the total number of FOI
+                     requests annually is estimated to be 121,000 and the yearly cost of dealing with these
+                     requests to be £35.5 million. It estimates that the average hourly cost to public
+                     bodies of responding to FOI requests is £34 and that on average, FOI requests in central
+                     government take 7.5 hours to deal with and cost approximately £255 per request (£34*7.5
+                     =£255). In order to inflate this number to 2011 prices we have used the HM Treasury
+                     GDP deflator series<a class="fn" id="fnref-2" href="#fn-2">2</a> to give an approximate cost of £290. (Rounded to the nearest £10).</p>
+               </section>
+               <section class="level">
+                  <p>A more recent publication by the Ministry of Justice <i>‘Freedom of Information Act 2000 – Statistics on implementation in central government
+                        – 2011’</i><a class="fn" id="fnref-3" href="#fn-3">3</a><i></i>(April 2012) shows that since the introduction of the FOI Act in 2005 there has been
+                     an increase in the number of FOI requests made to government bodies each year. The
+                     report shows that in 2011 central government bodies received a total of 47,141 FOI
+                     requests, the report does not detail the number of FOI requests received by the wider
+                     public sector. The figure for 2011 shows an increase of 39% on the Frontier Economics
+                     estimate for 2006. If it were to be assumed that there would be a similar increase
+                     for the wider public sector we could estimate that the overall number of FOI requests
+                     would be around 168,000 in 2011.</p>
+               </section>
+               <section class="level">
+                  <p>Assuming the cost per FOI request is £290 (as above) we can estimate the total annual
+                     cost of dealing with FOI requests to be approximately £49m. </p>
+               </section>
+               <section class="level">
+                  <p>All public bodies are encouraged to proactively publish information on their websites
+                     (Information Commissioner’s Office guidance), so are likely to already have the infrastructure
+                     for doing this. The majority of such costs could be removed if frequently-requested
+                     documents are made available online. Therefore, by automatically providing the information,
+                     hence negating the need to spend time responding to a proportion of these requests,
+                     £290 per request would be saved.  </p>
+               </section>
+               <section class="level">
+                  <p>There will also be a saving to the members of the public who are sending these FOI
+                     requests. If we assume it takes 30 minutes to prepare an FOI request, and using the
+                     median hourly wage of all employees as £11.08(2011 ASHE data<a class="fn" id="fnref-4" href="#fn-4">4</a>) the cost saving to the public of such a request can be estimated to be £5 per request.
+                     It is unclear what proportion of FOI's are submitted by individuals compared to businesses.
+                     For this reason we have assumed that the benefits of this public exception are for
+                     the individual. While a business may submit an FOI it is expected that such requests
+                     are in the minority. No evidence was provided at consultation in response to our questions
+                     to suggest that this statement is inaccurate and so we are not able to ascertain what
+                     proportion should be recognised as a benefit to business. </p>
+               </section>
+               <section class="level">
+                  <p>Therefore there would be a <u>potential saving of £295 per request</u> including both savings to public bodies and members of public. A 10% sensitivity
+                     analysis has been applied to this giving a low estimate of £266 and high estimate
+                     of £325.</p>
+               </section>
+               <section class="level">
+                  <p>Public bodies will benefit by putting documents online that are frequently requested,
+                     removing the need to deal with the same types of request repeatedly. The Ministry
+                     of Defence in their response to the Hargreaves consultation explained that in the
+                     case of requests to MOD for information on UFO sightings, the volume of work was so
+                     high that it took up a significant proportion of the time of a full-time employee.<a class="fn" id="fnref-5" href="#fn-5">5</a>  According to MOD figures, they were receiving on average 153 such requests every
+                     year that related to third party information, out of a total 3,483 FOI requests per
+                     year – 4.4% of all requests. </p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">We have assumed that all public bodies face similar levels of FOI requests that could
+                        be avoided by online publication as the MOD (i.e. have assumed 4.5 %) and have carried
+                        out a sensitivity analysis. Bringing in this exception would therefore remove the
+                        need to deal with 5,324 requests per year (4.5% x 121,000). Therefore using our cost
+                        saving estimates we get:</span></h2>
+                  <section class="paragraph">
+                     <p>
+                        <b>Best Estimate: (4.5% * 168,000) *£295 = £2.2m per year</b>
+                        </p>
+                  </section>
+                  <section class="paragraph">
+                     <p>Low Estimate: (3.5% * 168,000) * £266 = £1.6m per year</p>
+                  </section>
+                  <section class="paragraph">
+                     <p>High Estimate: (5.5% * 168,000) * £325 = £3.0m per year</p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>At consultation we tested these assumptions and asked for data from more public bodies,
+                     particularly with regard to how many third party documents are requested. However
+                     no further information or case studies were provided. We do not consider it possible
+                     or proportionate to carry out more work to confirm these assumptions. We have assumed
+                     that the majority of information benefiting from this exception would be covered under
+                     FOI. There may be instances where data can be made public that would otherwise not
+                     be requested under FOI and occasions where data may be put into a more formal register.
+                     This suggests that there could be additional benefits that we are unable to quantify.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>There will also be wider benefits, not just time-saving benefits, to members of the
+                     public who will now have greater access to official information and evidence about
+                     services that affect them. The Impact Assessment for Extending the Coverage of Freedom
+                     of Information Act 2000<a class="fn" id="fnref-6" href="#fn-6">6</a> (assessed the benefits to the public of providing more access to information as “ensuring
+                     greater public scrutiny (including from private individuals, journalists and businesses).
+                     As a result, the public may gain greater confidence in the functions these government
+                     bodies perform or public services they provide, better informing the public debate.
+                     This may generate direct economic welfare benefits for society. There may be further
+                     economic welfare benefits if, as a result of being brought within the Act, public
+                     bodies operate in ways which are more defensible to public scrutiny and which accord
+                     more closely to the preferences of society.”</p>
+               </section>
+               <section class="level">
+                  <p>This option is supported by the Information Commissioners Office (ICO) which detailed
+                     some potential benefits in its consultation response although they have no evidence
+                     on the magnitude of the costs and benefits. The ICO anticipates that this exception
+                     would have the benefit of promoting openness and accountability of public bodies.
+                     The ICO recognises that in some cases third party information influences decisions
+                     made by public authorities and that in such cases it is in the public interest to
+                     make this information available.</p>
+               </section>
+               <section class="level">
+                  <p>The ICO also notes that this exception would allow public authorities to fully publish
+                     disclosure logs (lists of FOI requests and the accompanying responses) which may reduce
+                     the number of requests for similar information. </p>
+               </section>
+               <section class="level">
+                  <p>There was also support from organisations including ITV, British Screen Advisory Council
+                     and Consumer Focus which confirmed what was said by the ICO about the accountability
+                     of government bodies, they also mentioned the need to bring this exception up to date
+                     with the ‘digital age’. We also received supportive comments from organisations representing
+                     libraries and archives, including the National Museum Directors’ Conference and the
+                     Libraries and Archives Copyright Alliance, along with the Tate, University of Reading
+                     and the Cambridge University.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Costs: </b>
+                  </p>
+               <section class="level">
+                  <p>In the consultation response submitted by the ICO, it was acknowledged that making
+                     more information readily available may prompt an increase in FOI request; although
+                     the ICO does suggest that it would be possible that such requests would be better-focussed
+                     enabling public bodies to deal with them more quickly.</p>
+               </section>
+               <section class="level">
+                  <p>There were some respondents who were concerned that this exception may result in publication
+                     of material that is currently only available to purchase or license and several respondents
+                     thought the proposal contravened the three step test. However, Copyright owners are
+                     not expected to experience any costs due to safeguards in the exception that ensure
+                     it does not undermine commercial sales of copyright works. There will be no costs
+                     to members of the public who would currently need to request FOIs which incurs costs
+                     in terms of time and also postage. Therefore all costs will be borne by Government
+                     and public bodies in implementing a system of making all documents publicly available.
+                     </p>
+               </section>
+               <section class="level">
+                  <p>It is not possible to estimate the totality of the costs for if all public bodies
+                     were to launch a new public service because we are unable to estimate whether, or
+                     how many, other Government departments and other public bodies will want to create
+                     online records systems and how they will want to go about it. No further information
+                     was provided during the consultation in order to improve these estimates and we do
+                     not consider it to be either possible or proportional to gather more information on
+                     this.</p>
+               </section>
+               <section class="level">
+                  <p>However we have illustrated what the costs could be for a single new public records
+                     service using estimates calculated in the Impact Assessment of Amending the Patents
+                     Act to provide for online patent document inspections<a class="fn" id="fnref-7" href="#fn-7">7</a>. </p>
+               </section>
+               <section class="level">
+                  <p>When the online patent file inspection system was set up, the Intellectual Property
+                     Office (IPO) estimated the one-off cost of setting up such a system to be £55,000,
+                     annual costs to be £13,000 based on IT development costs and testing costs. These
+                     costs are conservative costs as all public bodies are encouraged to proactively publish
+                     information on their websites (Information Commissioner’s Office guidance), so are
+                     likely to already have the infrastructure for doing this and would therefore experience
+                     lower costs. It is not possible to extrapolate these costs across all government departments
+                     and public bodies as it will be dependent on the size of department and the level
+                     of third party information it holds.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Risks and assumptions;</b>
+                  </p>
+               <section class="level">
+                  <p>We have assumed that this exception will have no impact on sales of copyright works.
+                     This is because the current exception only permits public bodies to copy and issue
+                     third-party materials if they are unpublished, and to the degree that is necessary.
+                     So if someone sought access to a scientific journal held by Government in order to
+                     understand a decision that it had been used to support, they would be directed to
+                     the published journal, and the relevant department would not be able to publish this
+                     journal itself online. Primarily, therefore, this exception will permit the publication
+                     of letters, unpublished third-party reports, etc., to the extent necessary under FOI
+                     and other legislation.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Direct Costs and Benefits to Business Calculations (following OIOO methodology)</b>
+                  </p>
+               <section class="level">
+                  <p>Under the “One In, One Out” rule, whereby a measure that has a net cost to business
+                     must have a measure or measures of equivalent cost removed in order to be implemented.
+                     Our preferred option has no costs or benefits to business, only to public sector bodies,
+                     therefore this measure is out of scope as was recommended by the RPC opinion dated
+                     17/11/2011</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Wider impacts;</b>
+                  </p>
+               <section class="level">
+                  <p>As well as bringing efficiency and cost savings, amending this exception will deliver
+                     benefits to the public by supporting pro-active publication of information by public
+                     bodies and enabling more effective public scrutiny.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Summary </b>
+                  </p>
+               <section class="level">
+                  <p>The benefits of introducing this exception would be the reduction in administrative
+                     costs incurred by public authorities, members of the public would also experience
+                     savings as more information would be readily available online reducing the need for
+                     making formal FOI requests. Also of benefit is the increased openness that this could
+                     potentially bring about, so improving the relationship between the general public
+                     and government.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Preferred Option</b>
+                  </p>
+               <section class="level">
+                  <p>Option 1.</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Evaluation</b>
+                  </p>
+               <section class="level">
+                  <p>A full evaluation strategy and Post Implementation Review is being developed for the
+                     introduction of the Hargreaves recommendations. The Post Implementation Review will
+                     detail the benefits associated with the introduction of the copyright reforms and
+                     will include input from external stakeholders. The plan will also set out how and
+                     when the benefits will be measured, which will depend on the type of benefit, as some
+                     benefits will be measured by applications and take-up that can be measured from the
+                     first year of operation, whereas others will depend on information that will take
+                     several years. The evaluation strategy will set out the activities that will be undertaken
+                     in order to evaluate the policy, drawing on management information collected through
+                     the copyright system, as well as research that is commissioned in order to measure
+                     the benefits.</p>
+               </section>
+               <section class="level">
+                  <p>The main source of data available for evaluation will be collated using industry figures.
+                     These statistics, alongside other management information on the operation of the system
+                     will be used by Government to assess the impact of the copyright reforms, including
+                     assessing whether benefits have been achieved and how policy or operations can be
+                     developed to realise benefits more effectively.</p>
+               </section>
+               <section class="level">
+                  <p>___________________________</p>
+               </section>
+               <section class="level">
+                  <p>
+                     <b>*</b>Note </p>
+               </section>
+               <section class="level">
+                  <p>This Impact Assessment (IA), which is one of a series of IAs concerning copyright
+                     exceptions, was originally published in December 2012 alongside the policy statement
+                     "Modernising Copyright". It was republished to accompany the publication of the secondary
+                     legislation that implements the chosen options set out in the IAs. Since the original
+                     publication of the IAs the Government has engaged extensively with stakeholders both
+                     formally (through a technical review of the draft legislation) and informally. No
+                     new evidence has been provided that has led the Government to alter the overall numerical
+                     assessment of the costs and benefits contained within this IA.</p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Available at: <a href="http://webarchive.nationalarchives.gov.uk/+/http:/www.dca.gov.uk/foi/reference/foi-independent-review.pdf)">http://webarchive.nationalarchives.gov.uk/+/http:/www.dca.gov.uk/foi/reference/foi-independent-review.pdf)</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  <a href="http://www.hm-treasury.gov.uk/data_gdp_index.htm">http://www.hm-treasury.gov.uk/data_gdp_index.htm</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  <a href="http://www.justice.gov.uk/downloads/statistics/mojstats/foi-statistics/foi-stats-bulletin-q4-2011.pdf">http://www.justice.gov.uk/downloads/statistics/mojstats/foi-statistics/foi-stats-bulletin-q4-2011.pdf</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Available at: <a href="http://www.ons.gov.uk/ons/publications/re-reference-tables.html?edition=tcm%3A77-256648">http://www.ons.gov.uk/ons/publications/re-reference-tables.html?edition=tcm%3A77-256648</a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  (Available at: <a href="http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf"><a href="http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf">http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf</a></a> ).</p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Available at: <a href="http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary"><a href="http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary">http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary</a></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Available at: <a href="http://www.ialibrary.bis.gov.uk/uploaded/Online%20Patent%20Files%20Impact%20Assessment.pdf">http://www.ialibrary.bis.gov.uk/uploaded/Online%20Patent%20Files%20Impact%20Assessment.pdf</a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

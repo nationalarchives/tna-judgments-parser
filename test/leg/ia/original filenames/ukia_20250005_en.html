@@ -1,0 +1,491 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+	table-layout: fixed;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty,
+.ia-table td:has(> p:only-child:empty) {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+</style>
+   </head>
+   <body>
+      <div class="toc-container">
+         <div class="toc-box"><a href="/contents">Impact Assessment Table of Contents</a></div>
+      </div>
+      <article id="doc" data-doc-type="ImpactAssessment">
+         <div class="body">
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:3.94in">
+                     <col style="width:3.25in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Title:</b>
+                              <span class="docTitle"> The Waste Electrical and Electronic Equipment Regulations 2013 SI 2013/3113 </span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>Post Implementation Review</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>PIR No: </b>PIR-65109<b></b></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Date:</b>
+                              <span class="docDate">
+                                 <b>07/01/2025</b>
+                                 </span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Original IA/RPC No: </b>IA/RPC No: BIS 0382</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Type of regulation:  </b>
+                              <b>Domestic</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Lead department or agency: </b>
+                              Department for Environment Food and Rural Affairs
+                              </p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Type of review:  Statutory</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Other departments or agencies:  </b>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Date measure came into force:  </b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>01/01/2013</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>Recommendation:  Amend</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>Contact for enquiries: weee@defra.gov.uk </p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>RPC Opinion: N/A</b>
+                              </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:7.19in">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Questions</b>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>1. What were the policy objectives of the measure? </b>(Maximum 5 lines)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>The 2013 Waste Electrical and Electronic Equipment (WEEE) Regulations came into force
+                              on the 1st of January 2014. The objectives of the Regulations were: • to ensure compliance
+                              with the recast WEEE Directive 2012/19/EU (‘the WEEE Directive’) which aimed to improve
+                              the efficiency and effectiveness of the original WEEE Directive by further protecting
+                              the environment as well as human and animal health; and • to respond to the concerns
+                              expressed by UK electrical and electronic equipment (EEE) producers under the Red
+                              Tape Challenge about the cost of meeting their financial obligations under the 2006
+                              WEEE Regulations (the Waste Electrical and Electronic Equipment Regulations 2006 (SI
+                              2006 No. 3289, as amended by SIs 2007 No. 3454, 2009 No. 2957, 2009 No. 3216 and 2010
+                              No. 1155)).</p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>2. What evidence has informed the PIR? </b>(Maximum 5 lines)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>The Consultation<a class="fn" id="fnref-1" href="#fn-1">1</a> on Reforming the Producer Responsibility System for Waste Electrical and Electronic
+                              Equipment 2023 and Electrical Waste: Reforming the Producer Responsibility System
+                              – Call for Evidence<a class="fn" id="fnref-2" href="#fn-2">2</a>, the accompanying Impact Assessment<a class="fn" id="fnref-3" href="#fn-3">3</a> and Summary of Responses to the consultation<a class="fn" id="fnref-4" href="#fn-4">4</a> and call for evidence<a class="fn" id="fnref-5" href="#fn-5">5</a> provide the evidence. Those documents with the Government Response constitute the
+                              statutory requirements for a PIR under Regulation 93 of the 2013 WEEE Regulations.
+                              The consultation and call for evidence take forward policy recommendations from the
+                              previous PIR and other measures aimed to drive up levels of separately collected WEEE
+                              for re-use/recycling and wider measures designed to embrace the circular economy.
+                              </p>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>3. To what extent have the policy objectives been achieved? </b>(Maximum 5 lines)</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p></p>
+                           <p>EU Member State collection targets (45%) were achieved by setting household WEEE collection
+                              targets from 2014 onwards and gathering data on household and non household WEEE financed
+                              by producers, supplemented by data from other sources. Along with most other member
+                              states, the UK was unable to achieve the higher target (65%) between 2019 and leaving
+                              the EU. The compliance fee and household WEEE collection targets have been instrumental
+                              in decreasing cost of evidence and enabling costs correction of WEEE evidence. There
+                              has been high compliance among UK based business but compliance by online businesses
+                              - particularly those overseas and more recently amongst producers of vapes - has been
+                              lower.</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="level">
+               <p>Sign-off for Post Implementation Review: Chief economist/Head of Analysis and Minister</p>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>
+                     <i>I have read the PIR and I am satisfied that it represents a fair and proportionate
+                        assessment of the impact of the measure.</i>
+                     </b>
+                  </p>
+               <section class="level">
+                  <p>Signed:  <i>Abi Farrag, Economic Advisor</i>Date: 16/12/2024</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>Signed:  <b><i>Mary Creagh CBE MP</i></b></p>
+               <section class="level">
+                  <p>
+                     <img src="http://www.legislation.gov.uk/id/uksi/2013/3113/impacts/2025/5/images/ukia_2025_5_en_001.gif" alt="">                                   Date: 07/01/2025</p>
+               </section>
+            </section>
+            <section class="section heading">
+               <h2></h2>
+               <p>
+                  <b>Further information sheet</b>
+                  </p>
+               <section class="paragraph">
+                  <p>Please provide additional evidence in subsequent sheets, as required. </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:7.19in">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>Questions</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>4. </b>
+                                 <b>What were the original assumptions? </b>(Maximum 5 lines)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                              <p>The original assumptions were set out in two impact assessments accompanying the Government
+                                 response to the implementation of the WEEE Directive and changes to the UK WEEE system.
+                                 One was an Impact Assessment of the recast Directive 2012/96/EU on WEEE and the other
+                                 an Impact Assessment of the UK WEEE System. A key assumption was that a compliance
+                                 fee would be charged to individual producer compliance schemes (PCSs) in the event
+                                 that they did not meet their household WEEE collection target. The compliance fee
+                                 would be set at a level that put a ‘price ceiling’ on the cost of evidence in order
+                                 to restrict the risk that costs of collection and treatment paid by producers through
+                                 PCSs was often much higher that the true costs of collection and treatment of WEEE.
+                                 Within the Impact Assessment which accompanied the Government response to the implementation
+                                 of the WEEE Directive and changes to the UK WEEE system, the central scenario assumed
+                                 an additional 10% of WEEE tonnage of gas discharge lamps (GDLs), displays and cooling
+                                 products would be funded through the compliance fee. Photovoltaic (PV) panels come
+                                 into scope with the introduction of the 2013 Regulations. It was assumed that 45%
+                                 of PV EEE put on market (POM) would be collected as WEEE.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>5. </b>
+                                 <b>Were there any unintended consequences? </b>(Maximum 5 lines)</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>The previous PIR highlighted the burdensome way that Regulation 34 worked for local
+                                 authorities which has been addressed. This provides a guarantee that PCSs would always
+                                 finance the costs of collection and subsequent treatment of WEEE arising at “Designated
+                                 Collection Facilities” even in circumstances where no individual PCS was willing to
+                                 enter a contact. Whilst measures have largely been successful in ensuring the system
+                                 brings proportionate costs to businesses, the system does not provide levers that
+                                 maximise the level of separately collected WEEE financed by producers or that ensure
+                                 re-use is prioritised over recycling. Changes are necessary to ensure better communication
+                                 with householders on how to dispose of WEEE and measures that make it easier for householders
+                                 and business to send unwanted equipment for reuse/recycling. The focus on promoting
+                                 recycling over landfill has resulted in a lack of measures within the legislation
+                                 designed to support the circular economy.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>6. Has the evidence identified any opportunities for reducing the burden on business?
+                                    </b>(Maximum 5 lines)</p>
+                              <p>The significant rise in internet sales since the inception of the original regulations
+                                 and the surge on the sale of vapes has recreated some unfair cost distribution (and
+                                 consequential burdens) across those organisations defined as producers.  The consultation
+                                 proposals and subsequent government response seek to address those anomalies by creating
+                                 a new category of equipment for vapes and creating a new category of producer for
+                                 online market places who would in future have a financial obligation for WEEE collections
+                                 in respect of the equipment placed on their UK market by overseas sellers.  Wider
+                                 potential opportunities have been identified to reduce compliance costs placed on
+                                 businesses that adopt circular economy business models and those supplying equipment
+                                 that meet specific eco-design requirements.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <b>7. </b>
+                                 <b>How does the UK approach compare with the implementation of similar measures internationally,
+                                    including how EU member states implemented EU requirements that are comparable or
+                                    now form part of retained EU law, or how other countries have implemented international
+                                    agreements? </b>(Maximum 5 lines)</p>
+                              <p></p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p></p>
+                              <p>The regulations fully implemented the WEEE Directive. The Directive aims to reduce
+                                 the negative impacts on the environment as well as human and animal health (negative
+                                 externalities) caused by the disposal of WEEE and it provides significant flexibility
+                                 as to how it is implemented by Member States which has resulted in different methods
+                                 for implementing the requirements. There is no evidence available to provide accurate
+                                 cost comparisons between Member States. Further information on how other Member States
+                                 have implemented the WEEE Directive are set out in the ‘Comparisons with other Member
+                                 States’ section of the 2020 PIR.  Research commissioned by Defra<a class="fn" id="fnref-6" href="#fn-6">6</a> on “ingredients for success” in reforming the 2013 WEEE Regulations sets out some
+                                 comparisons with EU Member States.  In the absence of changes to the EU Directive,
+                                 there will not be substantial changes to member state approaches to implementation
+                                 since then.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Consultation on reforming the producer responsibility system for waste electrical
+                  and electronic equipment 2023. Available at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/"><u><a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/">https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Call for evidence on reforming the producer responsibility system for waste electricals
+                  2023. Available at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/"><u><a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/">https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>   Reforming the UK producer responsibility system for waste electricals. Available
+                  at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf"><u><a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf">https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Consultation outcome - Electrical waste: reforming the producer responsibility system.
+                  Available at:  <a href="https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system"><u><a href="https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system">https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Call for evidence outcome - Electrical waste: reforming the producer responsibility
+                  system – call for evidence. Available at: <a href="https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence"><u><a href="https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence">https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence</a></u></a></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Electrical and Electronic Equipment: Ingredients for Successful Extended Producer
+                  Responsibility - EV0278. Available at: <a href="https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10"><u><a href="https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10#Description">https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10#Description</a></u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>
