@@ -277,6 +277,7 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 		<xsl:attribute name="src">
 			<xsl:sequence select="concat($image-base, $doc-id, '/', @src)" />
 		</xsl:attribute>
+		<xsl:attribute name="alt" select="(@alt, '')[1]" />
 		<xsl:apply-templates />
 	</img>
 </xsl:template>
@@ -355,9 +356,9 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 <!-- footnotes -->
 
 <xsl:template match="authorialNote">
-	<span class="fn">
+	<a class="fn" id="fnref-{@marker}" href="#fn-{@marker}">
 		<xsl:value-of select="@marker" />
-	</span>
+	</a>
 </xsl:template>
 
 <xsl:template name="footnotes">
@@ -381,9 +382,9 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 		<xsl:if test="@class">
 			<xsl:attribute name="class" select="@class" />
 		</xsl:if>
-		<span class="marker">
+		<a class="marker" id="fn-{../@marker}" href="#fnref-{../@marker}">
 			<xsl:value-of select="../@marker" />
-		</span>
+		</a>
 		<xsl:text> </xsl:text>
 		<xsl:apply-templates />
 	</xsl:element>
