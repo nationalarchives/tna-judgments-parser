@@ -48,22 +48,16 @@ public class TestTN {
         var resourceName = $"test.leg.tn.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
 
-        var actual = Helper.Parse(docx, filename + ".docx").Serialize();
+        var parsed = Helper.Parse(docx, filename + ".docx");
+        DocumentHelpers.AssertValidMainAkn(parsed.Document);
 
         var expectedResourceName = $"test.leg.tn.{filename}.akn";
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-        if (!assembly.GetManifestResourceNames().Contains(expectedResourceName)) {
-            var doc = new XmlDocument();
-            doc.LoadXml(actual);
-            var validator = new Validator();
-            var errors = validator.Validate(doc);
-            Assert.Empty(errors);
+        if (!assembly.GetManifestResourceNames().Contains(expectedResourceName))
             return;
-        }
 
-        var expected = DocumentHelpers.ReadXml(expectedResourceName);
-        actual = RemoveSomeMetadata(actual);
-        expected = RemoveSomeMetadata(expected);
+        var actual = RemoveSomeMetadata(parsed.Serialize());
+        var expected = RemoveSomeMetadata(DocumentHelpers.ReadXml(expectedResourceName));
         Assert.Equal(expected, actual);
     }
 

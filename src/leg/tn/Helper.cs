@@ -44,9 +44,7 @@ class Helper : BaseHelper {
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
-        TocGenerator.Generate(xml, "The whole Transposition Note",
-            skipIfNoStructuralEntries: true,
-            strategy: TocGenerator.TocStrategy.BoldTitleDocumentOrder);
+        TocGenerator.Generate(xml, "The whole Transposition Note", TocGenerator.TocStrategy.BoldTitleDocumentOrder);
     }
 
 }

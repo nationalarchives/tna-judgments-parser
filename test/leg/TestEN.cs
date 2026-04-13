@@ -44,24 +44,18 @@ public class TestEN {
         var resourceName = $"test.leg.en.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
 
-        var actual = Helper.Parse(docx, filename + ".docx").Serialize();
+        var parsed = Helper.Parse(docx, filename + ".docx");
+        DocumentHelpers.AssertValidMainAkn(parsed.Document);
 
-        // Look up expected .akn by normalized filename (canonical CSV format)
+        // Expected .akn is keyed by the canonical CSV filename, not the on-disk one.
         var normalizedName = UK.Gov.Legislation.Common.ENLegislationMapping.NormalizeFilename(filename);
         var expectedResourceName = $"test.leg.en.{normalizedName}.akn";
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-        if (!assembly.GetManifestResourceNames().Contains(expectedResourceName)) {
-            var doc = new XmlDocument();
-            doc.LoadXml(actual);
-            var validator = new Validator();
-            var errors = validator.Validate(doc);
-            Assert.Empty(errors);
+        if (!assembly.GetManifestResourceNames().Contains(expectedResourceName))
             return;
-        }
 
-        var expected = DocumentHelpers.ReadXml(expectedResourceName);
-        actual = RemoveSomeMetadata(actual);
-        expected = RemoveSomeMetadata(expected);
+        var actual = RemoveSomeMetadata(parsed.Serialize());
+        var expected = RemoveSomeMetadata(DocumentHelpers.ReadXml(expectedResourceName));
         Assert.Equal(expected, actual);
     }
 
@@ -118,26 +112,6 @@ public class TestEN {
         if (failures.Count > 0) {
             Console.WriteLine($"\n{failures.Count} file(s) failed to regenerate:");
             foreach (var f in failures) Console.WriteLine($"  - {f}");
-        }
-    }
-
-    [Theory]
-    [MemberData(nameof(TestFiles))]
-    public void ValidateParsedOutput(string filename) {
-        var resourceName = $"test.leg.en.{filename}.docx";
-        var docx = DocumentHelpers.ReadDocx(resourceName);
-
-        var akn = Helper.Parse(docx, filename + ".docx").Serialize();
-
-        var doc = new XmlDocument();
-        doc.LoadXml(akn);
-
-        var validator = new Validator();
-        var errors = validator.Validate(doc);
-
-        if (errors.Count > 0) {
-            var errorMessages = string.Join("\n", errors.Select(e => $"  - {e.Message}"));
-            throw new Exception($"Validation failed for {filename} with {errors.Count} error(s):\n{errorMessages}");
         }
     }
 
