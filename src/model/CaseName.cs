@@ -1,12 +1,9 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml;
 
-namespace UK.Gov.Legislation.Judgments {
+namespace UK.Gov.Legislation.Judgments;
 
 class CaseName {
 
@@ -71,7 +68,7 @@ class CaseName {
                 }
             }
             string combined = name1 + " v " + name2;
-            if (court.HasValue && court.Value.Equals(Courts.PrivyCouncil))
+            if (court == Courts.PrivyCouncil)
                 if (location.Any())
                     return combined + " (" + location.First().Text + ")";
             return combined;
@@ -95,7 +92,5 @@ class CaseName {
             return party1.Name;
         return null;
     }
-
-}
 
 }

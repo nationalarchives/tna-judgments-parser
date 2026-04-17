@@ -16,7 +16,7 @@ public interface IBlock {
 
 }
 
-enum AlignmentValues { Left, Right, Center, Justify }
+public enum AlignmentValues { Left, Right, Center, Justify }
 
 interface ILine : IBlock, IBordered {
 

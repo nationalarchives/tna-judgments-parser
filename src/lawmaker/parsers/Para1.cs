@@ -35,19 +35,30 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
 
                 int save = i;
-                IDivision next = ParseNextBodyDivision();
-                if (next is Para1)
-                {
-                    // Para1 & Para2 nums are both lowercase alphabetical
-                    // Para1 parser has higher precedence, so must force parse as Para2
-                    i = save;
-                    next = ParseCurrentAsPara2();
-                }
-                if (!Para1.IsValidChild(next))
+
+                // Para1 numbers: lowercase letters (a, b, c, ...)
+                // Para2 numbers: lowercase roman numerals (i, ii, iii, ...)
+
+                // Because roman numerals are a subset of letters, the Para1 parser would
+                // normally consume all Para2 numbers. To handle this correctly, we explicitly
+                // give the Para2 parser higher precedence when parsing the next division.
+                IDivision next = ParseNextBodyDivision(
+                    l => ParseAndMemoize(l, "Para2", ParsePara2)
+                );
+
+                // Special case: if the next number immediately follows the
+                // previous Para1 number (e.g., h -> i, k -> l, u -> v, w -> x)
+                // we treat it as a Para1 instead of Para2, despite being roman.
+                bool nextIsPara1 = next is Para2
+                    && IsSubsequentAlphabetic(num.Text, next.Number.Text)
+                    && children.Count == 0;
+
+                if (nextIsPara1 || !Para1.IsValidChild(next))
                 {
                     i = save;
                     break;
                 }
+
                 children.Add(next);
                 finalChildStart = save;
 

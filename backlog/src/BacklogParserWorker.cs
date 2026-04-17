@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+
+using Backlog.Csv;
 
 using Microsoft.Extensions.Logging;
 
@@ -12,18 +15,21 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 namespace Backlog.Src;
 
 /// <summary>
-/// This is the main entry point to the bulk backlog parsing process
+///     This is the main entry point to the bulk backlog parsing process
 /// </summary>
 internal class BacklogParserWorker(
     ILogger<BacklogParserWorker> logger,
     Api.Parser parser,
     BacklogFiles backlogFiles,
-    Metadata csvMetadataReader,
-    Tracker tracker)
+    CsvMetadataReader csvMetadataReader,
+    Tracker tracker,
+    Bucket bucket,
+    MetadataTransformer metadataTransformer)
 {
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
     {
-        var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var csvParseErrors);
+        var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var skippedCsvLineIdentifiers,
+            out var csvParseErrors, out var numAllLinesInCsv);
         if (lines.Count == 0)
         {
             logger.LogCritical("No valid records found in the metadata file");
@@ -41,10 +47,9 @@ internal class BacklogParserWorker(
             }
         }
 
-        var alreadyDoneLines = new List<Metadata.Line>();
-        var markedAsSkipLines = new List<Metadata.Line>();
-        var successfulNewLines = new List<Metadata.Line>();
-        var failedToProcessLines = new List<(Metadata.Line line, Exception exception)>();
+        var alreadyDoneLines = new List<CsvLine>();
+        var successfulNewLines = new List<CsvLine>();
+        var failedToProcessLines = new List<(CsvLine line, Exception exception)>();
 
         for (var i = 0; i < lines.Count; i++)
         {
@@ -52,16 +57,9 @@ internal class BacklogParserWorker(
 
             try
             {
-                if (line.Skip)
-                {
-                    logger.LogWarning("Skipping {LineId} because it was marked to skip in the csv", line.id);
-                    markedAsSkipLines.Add(line);
-                    continue;
-                }
-
                 if (tracker.WasDone(line))
                 {
-                    logger.LogWarning("Skipping {LineId} because it was previously processed", line.id);
+                    logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
                     alreadyDoneLines.Add(line);
                     continue;
                 }
@@ -81,7 +79,7 @@ internal class BacklogParserWorker(
                 else
                 {
                     logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                    Bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
+                    bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
                 }
 
                 tracker.MarkDone(line, bundle.Uuid);
@@ -100,8 +98,8 @@ internal class BacklogParserWorker(
             }
         }
 
-        LogFinalStatistics(logger, markedAsSkipLines, alreadyDoneLines, successfulNewLines, lines,
-            failedToProcessLines, csvParseErrors);
+        LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
+            skippedCsvLineIdentifiers, numAllLinesInCsv);
 
         if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
         {
@@ -111,27 +109,26 @@ internal class BacklogParserWorker(
         return 0;
     }
 
-    private static void LogFinalStatistics(ILogger logger, List<Metadata.Line> markedAsSkipLines,
-        List<Metadata.Line> alreadyDoneLines,
-        List<Metadata.Line> successfulNewLines, List<Metadata.Line> parsedLinesFromCsv,
-        List<(Metadata.Line line, Exception exception)> failedToProcessLines,
-        List<string> csvParseErrors)
+    private static void LogFinalStatistics(ILogger logger, List<CsvLine> alreadyDoneLines,
+        List<CsvLine> successfulNewLines, List<(CsvLine line, Exception exception)> failedToProcessLines,
+        List<string> csvParseErrors, List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv)
     {
-        var markedAsSkipIds = markedAsSkipLines.Any()
-            ? $"[{string.Join(", ", markedAsSkipLines.Select(l => l.id))}]"
+        var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
+        var markedAsSkipIds = numSkippedCsvLines > 0
+            ? $"[{string.Join(", ", skippedCsvLineIdentifiers)}]"
             : string.Empty;
 
         logger.LogInformation("""
                               ---------------------------
                               Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
                                 - {NewLinesCount} lines were new
-                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds} 
+                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds}
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
-            markedAsSkipLines.Count + alreadyDoneLines.Count + successfulNewLines.Count,
-            parsedLinesFromCsv.Count + csvParseErrors.Count,
+            numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
+            numAllLinesInCsv,
             successfulNewLines.Count,
-            markedAsSkipLines.Count, markedAsSkipIds,
+            numSkippedCsvLines, markedAsSkipIds,
             alreadyDoneLines.Count
         );
 
@@ -188,100 +185,89 @@ internal class BacklogParserWorker(
         }
     }
 
-    private Api.Response CreateResponse(ExtendedMetadata meta, byte[] content)
+    private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent, bool isStub)
     {
-        var isPdf = meta.SourceFormat.ToLower() == "application/pdf";
-        if (isPdf)
+        Api.Response response;
+        if (isStub)
         {
-            var metadata = new Api.Meta
+            var stubMetadata = MetadataTransformer.MakeMetadata(csvLine);
+            var stub = Stub.Make(stubMetadata);
+
+            response = new Api.Response
             {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = meta.Date?.Date,
-                Name = meta.Name
+                Xml = stub.Serialize(),
+                Meta = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = stubMetadata.Court?.Code,
+                    Date = stubMetadata.Date?.Date,
+                    Name = stubMetadata.Name
+                }
             };
-
-            var stub = Stub.Make(meta);
-
-            var response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
-            return response;
         }
         else
         {
-            var metadata = new Api.Meta
-            {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = meta.Date?.Date,
-                Name = meta.Name,
-                JurisdictionShortNames = meta.Jurisdictions.Select(j => j.ShortName).ToList(),
-                Extensions = new Api.Extensions
-                {
-                    SourceFormat = meta.SourceFormat,
-                    CaseNumbers = meta.CaseNumbers,
-                    Parties = meta.Parties,
-                    Categories = meta.Categories,
-                    WebArchivingLink = meta.WebArchivingLink
-                }
-            };
-
             var request = new Api.Request
             {
-                Meta = metadata,
+                Meta = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Cite = csvLine.Ncn,
+                    Court = csvLine.Court,
+                    Date = csvLine.DecisionDateTime.ToString("yyyy-MM-dd"),
+                    Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,
+                    JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
+                    Extensions = new Api.Extensions
+                    {
+                        SourceFormat = mimeType,
+                        CaseNumbers = [csvLine.CaseNo],
+                        Parties = csvLine.Parties.ToList(),
+                        Categories = csvLine.Categories.ToList(),
+                        WebArchivingLink = csvLine.WebArchiving
+                    }
+                },
                 Hint = Api.Hint.UKUT,
-                Content = content
+                Content = sourceContent
             };
 
-            var response = parser.Parse(request);
-            return response;
-        }
-    }
+            response = parser.Parse(request);
 
-    private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string? courtCode)
-    {
-        List<Bundle.CustomField> customFields = [];
-        if (!string.IsNullOrWhiteSpace(line.headnote_summary))
-        {
-            customFields.Add(new Bundle.CustomField
+            if (response.Xml.Contains("<header />"))
             {
-                Name = "headnote_summary",
-                Source = courtCode,
-                Value = line.headnote_summary
-            });
+                throw new NotSupportedException(
+                    "Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles");
+            }
         }
 
-        return customFields;
+        return response;
     }
 
-    private Bundle GenerateBundle(Metadata.Line line, bool autoPublish)
+    private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish)
     {
-        if (line == null)
-            throw new ArgumentNullException(nameof(line));
+        var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
+            ? csvLine.Uuid
+            : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
 
-        if (string.IsNullOrWhiteSpace(line.FilePath))
-            throw new ArgumentException("FilePath cannot be empty", nameof(line));
+        var sourceContent = backlogFiles.ReadFile(tdrUuid);
+        var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
-        if (string.IsNullOrWhiteSpace(line.Extension))
-            throw new ArgumentException("Extension cannot be empty", nameof(line));
+        var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
+        var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
 
-        var meta = Metadata.MakeMetadata(line);
+        var contentHash = Hash(sourceContent);
+        var images = response.Images?.ToArray() ?? [];
 
-        var uuid = !string.IsNullOrWhiteSpace(line.Uuid)
-            ? line.Uuid
-            : backlogFiles.FindUuidInTransferMetadata(line.FilePath);
-        var content = backlogFiles.ReadFile(uuid);
+        var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var response = CreateResponse(meta, content);
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(csvLine.FileName, mimeType,
+            contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
 
-        var source = new Bundle.Source
-        {
-            Filename = Path.GetFileName(line.FilePath),
-            Content = content,
-            MimeType = meta.SourceFormat
-        };
-        var customFields = CreateCustomFields(line, meta.Court?.Code);
-        logger.LogInformation("Creating bundle with source: {SourceFilename}", source.Filename);
-        logger.LogInformation("Creating bundle with content: {ContentLength} bytes", source.Content.Length);
-        return Bundle.Make(source, response, customFields, autoPublish);
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
+    }
+
+    public static string Hash(byte[] content)
+    {
+        var hash = SHA256.HashData(content);
+        return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
     }
 }

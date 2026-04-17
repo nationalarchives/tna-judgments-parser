@@ -97,42 +97,6 @@ namespace UK.Gov.Legislation.Lawmaker
             return true;
         }
 
-        private bool FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)
-        {
-            if (intro.First() is not WLine first || first is WOldNumberedParagraph)
-                return false;
-
-            (WText schProv2Num, WLine schProv2FirstLine) = FixFirstProv2Num(first);
-            if (schProv2Num is null)
-                return false;
-
-            intro.Remove(first);
-            intro.Insert(0, schProv2FirstLine);
-
-
-            SchProv2 schProv2;
-            bool isEndOfQuotedStructure = IsEndOfQuotedStructure(intro);
-            if (isEndOfQuotedStructure)
-            {
-                List<IBlock> contents = new(intro);
-                schProv2 = new SchProv2Leaf { Number = schProv2Num, Contents = contents };
-            }
-            else
-            {
-                List<IBlock> schProv2WrapUp = [];
-                List<IDivision> schProv2Children = ParseSchProv2Children(first, intro, schProv2WrapUp);
-
-                List<IBlock> contents = new(intro);
-                if (schProv2Children.Count == 0)
-                    schProv2 = new SchProv2Leaf { Number = schProv2Num, Contents = contents };
-                else
-                    schProv2 = new SchProv2Branch { Number = schProv2Num, Intro = contents, Children = schProv2Children, WrapUp = schProv2WrapUp };
-
-            }
-            intro.Clear();
-            children.Insert(0, schProv2);
-            return isEndOfQuotedStructure;
-        }
     }
 
 }

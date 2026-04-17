@@ -40,4 +40,22 @@ public class TestRegexHelpers
         Assert.True(actual.Success);
         Assert.Equal(expectedGroupCapture, actual.Groups[1].Value);
     }
+    
+    [Theory]
+    [InlineData("pattern", "^pattern$")]
+    [InlineData("^pattern", "^pattern$")]
+    [InlineData("pattern$", "^pattern$")]
+    [InlineData("^pattern$", "^pattern$")]
+    [InlineData(@"pat\^tern", @"^pat\^tern$")]
+    [InlineData(@"^pat\^tern", @"^pat\^tern$")]
+    [InlineData(@"pat\$tern", @"^pat\$tern$")]
+    [InlineData(@"pat\$tern$", @"^pat\$tern$")]
+    [InlineData(@"pat\^\$tern", @"^pat\^\$tern$")]
+    [InlineData(@"^pat\^\$tern$", @"^pat\^\$tern$")]
+    public void AddAnchors_ShouldAddStartAndEndAnchors(string input, string expected)
+    {
+        var actual = RegexHelpers.AddAnchors(input);
+
+        Assert.Equal(expected, actual);
+    }
 }

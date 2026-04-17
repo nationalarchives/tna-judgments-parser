@@ -1,0 +1,38 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
+{
+	"name": "C# (.NET)",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/dotnet:2-8.0",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"SonarSource.sonarlint-vscode",
+				"ms-dotnettools.csdevkit",
+				"-vscjava.vscode-java-pack", // remove extensions provided by java feature
+				"-dbaeumer.vscode-eslint" // remove extensions provided by node feature
+			]
+		}
+	},
+	"containerEnv": {
+		"XUNIT_PRINT_MAX_STRING_LENGTH": "100"
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/java": {}, // install for sonarlint extension to work
+		"ghcr.io/devcontainers/features/node:1": {} // install for sonarlint extension to work
+	}
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [5000, 5001],
+	// "portsAttributes": {
+	//		"5001": {
+	//			"protocol": "https"
+	//		}
+	// }
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "dotnet restore",
+	// Configure tool-specific properties.
+	// "customizations": {},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

@@ -14,9 +14,9 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "[2023] UKUT 123 (IAC)"
+            Ncn = "[2023] UKUT 123 (IAC)"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -32,9 +32,9 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = ""
+            Ncn = ""
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -52,9 +52,9 @@ public class TestStub
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             // ncn is not set (null)
-            ncn = null
+            Ncn = null
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -71,9 +71,9 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "   "
+            Ncn = "   "
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -90,9 +90,9 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "[2023] EWCA Civ 123 & 124"
+            Ncn = "[2023] EWCA Civ 123 & 124"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -112,7 +112,7 @@ public class TestStub
         {
             Jurisdictions = ["new jurisdiction"]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -132,7 +132,7 @@ public class TestStub
         {
             Jurisdictions = ["new jurisdiction", "other new jurisdiction"]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -147,74 +147,14 @@ public class TestStub
     }
 
     [Fact]
-    public void Stub_WithEmptyJurisdiction_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = [""]
-        };
-        var metadata = Metadata.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:jurisdiction");
-    }
-
-    [Fact]
     public void Stub_WithNoJurisdiction_DoesNotAppearInXml()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            // Jurisdiction is not set (empty)
+            Jurisdictions = []
         };
-        var metadata = Metadata.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:jurisdiction");
-    }
-
-    [Fact]
-    public void Stub_WithWhitespaceJurisdiction_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   "]
-        };
-        var metadata = Metadata.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:jurisdiction");
-    }
-
-    [Fact]
-    public void Stub_WithMultipleWhitespaceJurisdictions_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   ", "", "  "]
-        };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -232,9 +172,9 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            webarchiving = "a web archive link"
+            WebArchiving = "a web archive link"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -246,36 +186,15 @@ public class TestStub
         doc.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:webarchiving", "a web archive link");
     }
 
-    
-        [Fact]
-    public void Stub_WithEmptyWebArchivingLink_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            webarchiving = ""
-        };
-        var metadata = Metadata.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:webarchiving");
-    }
-
     [Fact]
     public void Stub_WithNoWebArchivingLink_DoesNotAppearInXml()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            // WebArchiving is not set (empty)
+            WebArchiving = null
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);

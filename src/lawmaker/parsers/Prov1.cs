@@ -222,7 +222,7 @@ namespace UK.Gov.Legislation.Lawmaker
             provisionRecords.Push(typeof(Prov1), number, quoteDepth);
 
             // Attempt to parse the first child as a Prov2
-            HContainer prov2 = ParseAndMemoize(line, "Prov2", ParseProv2);
+            HContainer? prov2 = ParseAndMemoize(line, "Prov2", ParseProv2);
             if (prov2 != null)
             {
                 children.Add(prov2);
@@ -296,48 +296,48 @@ namespace UK.Gov.Legislation.Lawmaker
             };
         }
 
-
-        private (WText, WLine) FixFirstProv2Num(WLine line)
-        {
-            WText num = null;
-            WLine rest = null;
-            if (line.Contents.FirstOrDefault() is WText t && t.Text.StartsWith("—(1) "))
-            {
-                num = new("(1)", t.properties);
-                WText x = new(t.Text[5..], t.properties);
-                rest = WLine.Make(line, line.Contents.Skip(1).Prepend(x));
-            }
-            else if (line.Contents.FirstOrDefault() is WText t1 && line.Contents.Skip(1).FirstOrDefault() is WText t2)
-            {
-                string combined = t1.Text + t2.Text;
-                if (!combined.StartsWith("—(1) "))
-                    return (null, null);
-                num = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
-                WText x = new(combined[5..], t2.properties);
-                rest = WLine.Make(line, line.Contents.Skip(2).Prepend(x));
-            }
-            return (num, rest);
-        }
-
-        // 
+        /// <summary>
+        /// Strips the Prov1 number from a joint Prov1-Prov2 line.
+        /// </summary>
+        /// <param name="line">
+        /// The joint Prov1-Prov2 line.
+        /// </param>
+        /// <returns>
+        /// A <see cref="WOldNumberedParagraph"/> representing a corrected Prov2 line,
+        /// if a Prov1 number was successfully removecd. Otherwise, <c>null</c>.
+        /// </returns>
+        /// <remarks>
+        /// <para>
+        /// The first Prov2 under a Prov1 is special in that it begins on the same line
+        /// as the Prov1 number (e.g., <c>1.-(1)</c>, where <c>1</c> is the Prov1 number and
+        /// <c>(1)</c> is the first Prov2 number).
+        /// </para>
+        /// <para>
+        /// This method strips the Prov1 number from the beginning of the joint Prov1-Prov2 line,
+        /// returning the line as a standalone Prov2.
+        /// </para>
+        /// </remarks>
         private WOldNumberedParagraph? FixFirstProv2(WLine line)
         {
-            if (line.Contents.FirstOrDefault() is WText t && Prov2.IsFirstProv2Start(t.Text))
+            List<IInline> inlines = [.. line.Contents.Where(inline => inline is not WTab)];
+            if (inlines.FirstOrDefault() is WText t && Prov2.IsFirstProv2Start(t.Text))
             {
+                // The start of the Prov2 is within a single IInline element.
                 string text = t.Text.TrimStart(); // Sometimes there's a leading space
                 WText num = new("(1)", t.properties);
                 WText remainder = new(text.Substring(Math.Min(5, text.Length)), t.properties);
-                return new(num, line.Contents.Skip(1).Prepend(remainder), line);
+                return new(num, inlines.Skip(1).Prepend(remainder), line);
             }
-            else if (line.Contents.FirstOrDefault() is WText t1 && line.Contents.Skip(1).FirstOrDefault() is WText t2)
+            else if (inlines.FirstOrDefault() is WText t1 && inlines.Skip(1).FirstOrDefault() is WText t2)
             {
+                // The start of the Prov2 is split across multiple IInline elements.
                 string combined = t1.Text.TrimStart() + t2.Text;
                 if (!Prov2.IsFirstProv2Start(combined))
                     return null;
 
                 WText num = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
                 WText remainder = new(combined.Substring(Math.Min(5, combined.Length)), t2.properties);
-                return new(num, line.Contents.Skip(2).Prepend(remainder), line);
+                return new(num, inlines.Skip(2).Prepend(remainder), line);
             }
             return null;
         }
@@ -375,7 +375,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             string firstNum = GetNumString(currentNumber);
             string secondNum = GetNumString(line);
-            return IsSubsequentNum(firstNum, secondNum);
+            return IsSubsequentAlphanumeric(firstNum, secondNum);
         }
 
     }

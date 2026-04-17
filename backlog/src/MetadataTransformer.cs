@@ -1,0 +1,149 @@
+#nullable enable
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Backlog.Csv;
+using Backlog.TreMetadata;
+
+using TRE.Metadata;
+using TRE.Metadata.Enums;
+using TRE.Metadata.MetadataFieldTypes;
+
+using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.Judgments.Api;
+
+namespace Backlog.Src;
+
+internal class MetadataTransformer(TimeProvider timeProvider)
+{
+    internal FullTreMetadata CreateFullTreMetadata(string sourceFilename, string sourceMimeType,
+        string contentHash, bool autoPublish, Image[] images, Meta responseMeta,
+        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
+    {
+        var metadata = new FullTreMetadata
+        {
+            Parameters = new Parameters
+            {
+                TRE = new Tre
+                {
+                    Reference = Guid.NewGuid().ToString(),
+                    Payload = new Payload
+                    {
+                        Filename = sourceFilename,
+                        Images = images.Select(i => i.Name).ToArray(),
+                        Log = null
+                    }
+                },
+                PARSER = new ParserProcessMetadata
+                {
+                    Court = responseMeta.Court,
+                    Cite = responseMeta.Cite,
+                    Date = responseMeta.Date,
+                    Name = responseMeta.Name,
+                    Extensions = responseMeta.Extensions,
+                    Attachments = responseMeta.Attachments ?? [],
+                    DocumentType = Enum.Parse<DocumentType>(responseMeta.DocumentType, true),
+                    ErrorMessages = [],
+                    MetadataFields = externalMetadataFields,
+                    PrimarySource = new PrimarySourceFile
+                    {
+                        Filename = sourceFilename,
+                        Mimetype = sourceMimeType,
+                        Route = Route.Bulk,
+                        Sha256 = contentHash,
+                        RouteDateTime = timeProvider.GetUtcNow().UtcDateTime
+                    },
+                    XmlContainsDocumentText = xmlContainsDocumentText
+                },
+                IngestorOptions = new IngestorOptions
+                {
+                    AutoPublish = autoPublish,
+                    Source = new SourceDocument { Format = sourceMimeType, Hash = contentHash }
+                }
+            }
+        };
+        return metadata;
+    }
+
+    internal static StubMetadata MakeMetadata(CsvLine line)
+    {
+        StubMetadata meta = new()
+        {
+            Type = JudgmentType.Decision,
+            Court = Courts.GetByCode(line.Court),
+            Jurisdictions = line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
+            Date = new WNamedDate { Date = line.DecisionDateTime.ToString("yyyy-MM-dd"), Name = "decision" },
+            Name = line.FirstPartyName + " v " + line.Respondent,
+            CaseNumbers = [line.CaseNo],
+            Parties = line.Parties.ToList(),
+            Categories = line.Categories.ToList(),
+            SourceFormat = GetMimeType(line.Extension),
+            Cite = line.Ncn,
+            WebArchivingLink = line.WebArchiving
+        };
+        return meta;
+    }
+
+    public static string GetMimeType(string fileExtension)
+    {
+        return fileExtension switch
+        {
+            ".doc" or ".docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            ".pdf" => "application/pdf",
+            _ => throw new ArgumentOutOfRangeException(nameof(fileExtension), $"Unexpected extension {fileExtension}")
+        };
+    }
+
+    public List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine)
+    {
+        List<IMetadataField> metadataFields =
+        [
+            CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileProperties, new CsvProperties(csvLine.CsvProperties.Name, csvLine.CsvProperties.Hash, csvLine.FullCsvLineContents)),
+            CreateExternalMetadataField(MetadataFieldName.CaseNumber, csvLine.CaseNo),
+            .. CreateExternalMetadataFields(MetadataFieldName.Category, () => csvLine.Categories),
+            CreateExternalMetadataField(MetadataFieldName.Court, csvLine.Court),
+            CreateExternalMetadataField(MetadataFieldName.Date, csvLine.DecisionDateTime),
+            .. CreateExternalMetadataFields(MetadataFieldName.Jurisdiction, () => csvLine.Jurisdictions),
+            .. CreateExternalMetadataFields(MetadataFieldName.Party, () => csvLine.Parties)
+        ];
+
+        if (csvLine.Ncn is not null)
+        {
+            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.Ncn, csvLine.Ncn));
+        }
+
+        if (csvLine.HeadnoteSummary is not null)
+        {
+            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.HeadnoteSummary,
+                csvLine.HeadnoteSummary));
+        }
+
+        if (csvLine.WebArchiving is not null)
+        {
+            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.WebArchivingLink, csvLine.WebArchiving));
+        }
+
+        return metadataFields;
+    }
+
+    private IEnumerable<MetadataField<T>> CreateExternalMetadataFields<T>(MetadataFieldName metadataFieldName,
+        Func<IEnumerable<T>> values)
+    {
+        return values().Select(item => CreateExternalMetadataField(metadataFieldName, item));
+    }
+
+    private MetadataField<T> CreateExternalMetadataField<T>(MetadataFieldName metadataFieldName, T value)
+    {
+        return new MetadataField<T>
+        {
+            Id = Guid.NewGuid(),
+            Name = metadataFieldName,
+            Value = value,
+            Source = MetadataSource.External,
+            Timestamp = timeProvider.GetUtcNow().UtcDateTime
+        };
+    }
+}
