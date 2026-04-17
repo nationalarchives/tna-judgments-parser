@@ -99,7 +99,7 @@ namespace test.backlog
             var exception = Assert.Throws<MoreThanOneFileFoundException>(() => backlogFiles.ReadFile(uuid));
 
             Assert.Equal(
-                "There should only be one file in court_documents matching UUID a80ed36d-7a5c-4956-894d-51b14c89aa79 but found 2: [\"a80ed36d-7a5c-4956-894d-51b14c89aa79.docx\", \"a80ed36d-7a5c-4956-894d-51b14c89aa79\"]",
+                "There should only be one file in court_documents matching UUID a80ed36d-7a5c-4956-894d-51b14c89aa79 but found 2: [\"a80ed36d-7a5c-4956-894d-51b14c89aa79\", \"a80ed36d-7a5c-4956-894d-51b14c89aa79.docx\"]",
                 exception.Message);
         }
 

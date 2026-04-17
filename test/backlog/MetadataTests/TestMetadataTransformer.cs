@@ -1,0 +1,346 @@
+#nullable enable
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Backlog.Src;
+
+using Microsoft.Extensions.Time.Testing;
+
+using test.backlog;
+
+using TRE.Metadata;
+using TRE.Metadata.Enums;
+using TRE.Metadata.MetadataFieldTypes;
+
+using UK.Gov.Legislation.Judgments;
+
+using Xunit;
+
+using Api = UK.Gov.NationalArchives.Judgments.Api;
+using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
+
+namespace test.backlog.MetadataTests;
+
+public class TestMetadataTransformer
+{
+    private readonly FakeTimeProvider fakeTimeProvider = new();
+    private readonly MetadataTransformer metadataTransformer;
+    public TestMetadataTransformer()
+    {
+        metadataTransformer = new(fakeTimeProvider);   
+    }
+
+    [Fact]
+    public void CreateFullTreMetadata_SetsIngestorOptions()
+    {
+        const bool autoPublish = true;
+        const string contentHash = "123-456-789";
+        const string sourceMimeType = "application/pdf";
+        var responseMeta = new Api.Meta { DocumentType = "decision" };
+
+        // Act
+        var result = metadataTransformer.CreateFullTreMetadata("test.pdf", sourceMimeType, contentHash, autoPublish, [],
+            responseMeta, [], false);
+
+        // Assert
+        Assert.Equal(autoPublish, result.Parameters.IngestorOptions.AutoPublish);
+        Assert.Equal(sourceMimeType, result.Parameters.IngestorOptions.Source.Format);
+        Assert.Equal(contentHash, result.Parameters.IngestorOptions.Source.Hash);
+    }
+
+    [Fact]
+    public void CreateFullTreMetadata_SetsParserMetadata()
+    {
+        // Arrange
+        const string court = "test-court";
+        const string cite = "[2026] IMTU 3312";
+        const string date = "2025-07-30";
+        const string name = "a v b";
+        DateTimeOffset expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+        fakeTimeProvider.AdjustTime(expectedDate);
+
+        var extensions = new Api.Extensions
+        {
+            Parties =
+            [
+                new Party { Name = "a", Role = PartyRole.Appellant },
+                new Party { Name = "b", Role = PartyRole.Respondent }
+            ],
+            WebArchivingLink = "https://webarchivinglink"
+        };
+        const bool xmlContainsDocumentText = true;
+
+        var responseMeta = new Api.Meta
+        {
+            DocumentType = "decision",
+            Cite = cite,
+            Court = court,
+            Date = date,
+            Extensions = extensions,
+            Name = name
+        };
+
+        // Act
+        List<IMetadataField> externalMetadataFields = [];
+
+        var result = metadataTransformer.CreateFullTreMetadata("test.docx", "application/pdf", "1234-456-789", true, [],
+            responseMeta, externalMetadataFields, xmlContainsDocumentText);
+
+        // Assert
+        Assert.Null(result.Parameters.PARSER.Uri);
+        Assert.Equal(court, result.Parameters.PARSER.Court);
+        Assert.Equal(cite, result.Parameters.PARSER.Cite);
+        Assert.Equal(date, result.Parameters.PARSER.Date);
+        Assert.Equal(name, result.Parameters.PARSER.Name);
+        Assert.Equal(extensions, result.Parameters.PARSER.Extensions);
+        Assert.Empty(result.Parameters.PARSER.Attachments);
+        Assert.Equal(DocumentType.Decision, result.Parameters.PARSER.DocumentType);
+        Assert.Empty(result.Parameters.PARSER.ErrorMessages);
+        Assert.Equal(externalMetadataFields, result.Parameters.PARSER.MetadataFields);
+        Assert.Equal(xmlContainsDocumentText, result.Parameters.PARSER.XmlContainsDocumentText);
+
+        Assert.Equal("test.docx", result.Parameters.PARSER.PrimarySource.Filename);
+        Assert.Equal("application/pdf", result.Parameters.PARSER.PrimarySource.Mimetype);
+        Assert.Equal(Route.Bulk, result.Parameters.PARSER.PrimarySource.Route);
+        Assert.Equal("1234-456-789", result.Parameters.PARSER.PrimarySource.Sha256);
+        Assert.Equal(expectedDate, result.Parameters.PARSER.PrimarySource.RouteDateTime);
+    }
+
+    [Fact]
+    public void CreateFullTreMetadata_SetsTrePayload()
+    {
+        // Arrange
+        const string sourceFilename = "test-file.docx";
+        Api.Image[] images =
+        [
+            new() { Name = "img1.png" },
+            new() { Name = "img2.png" }
+        ];
+
+        // Act
+        var result = metadataTransformer.CreateFullTreMetadata(
+            sourceFilename,
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "sha256:abc",
+            false,
+            images,
+            new Api.Meta { DocumentType = "decision" },
+            [],
+            false
+        );
+
+        // Assert
+        Assert.Equal(sourceFilename, result.Parameters.TRE.Payload.Filename);
+        Assert.Null(result.Parameters.TRE.Payload.Log);
+        Assert.Equal(["img1.png", "img2.png"], result.Parameters.TRE.Payload.Images);
+    }
+
+    [Fact]
+    public void CreateFullTreMetadata_Generates_UniqueReference()
+    {
+        var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
+            "test-file.docx",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "sha256:abc",
+            false,
+            [],
+            new Api.Meta { DocumentType = "decision" },
+            [],
+            false
+        );
+        var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
+            "test-file.docx",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "sha256:abc",
+            false,
+            [],
+            new Api.Meta { DocumentType = "decision" },
+            [],
+            false
+        );
+
+        // Assert - unique reference is generated
+        Assert.NotEqual(firstFullTreMetadata.Parameters.TRE.Reference, secondFullTreMetadata.Parameters.TRE.Reference);
+
+        //Assert - all other properties are the same
+        Assert.EquivalentWithExclusions(firstFullTreMetadata, secondFullTreMetadata,
+            fullTreMetadata => fullTreMetadata.Parameters.TRE.Reference);
+    }
+
+
+    [Fact]
+    public void CsvLineToMetadataFields_AllFields_HaveExternalSource()
+    {
+        var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
+
+        var result = metadataTransformer.CsvLineToMetadataFields(metadataLine);
+
+        Assert.All(result, field => Assert.Equal(MetadataSource.External, field.Source));
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_AllFields_HaveCurrentTimestamp()
+    {
+        var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
+        DateTimeOffset expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+        fakeTimeProvider.AdjustTime(expectedDate);
+
+        var result = metadataTransformer.CsvLineToMetadataFields(metadataLine);
+        Assert.All(result, field => Assert.Equal(field.Timestamp, expectedDate));
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_CaseNumber_IsMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { CaseNo = "XYZ/123" };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("XYZ/123", MetadataFieldName.CaseNumber, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Court_IsMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Court = "UKFTT-GRC" };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("UKFTT-GRC", MetadataFieldName.Court, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Date_IsMapped()
+    {
+        var decisionDatetime = new DateTime(2024, 2, 1, 10, 30, 0, DateTimeKind.Utc);
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { DecisionDateTime = decisionDatetime };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue(decisionDatetime, MetadataFieldName.Date, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Jurisdictions_AreMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Jurisdictions = ["Transport", "Tax"] };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasMetadataFieldsWithValues(["Transport", "Tax"], MetadataFieldName.Jurisdiction, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Parties_AreMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Appellants = "Alice", Respondent = "HMRC" };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasMetadataFieldsWithValues(csvLine.Parties, MetadataFieldName.Party, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Categories_AreMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            MainCategory = "CatA",
+            MainSubcategory = "SubA",
+            SecCategory = "CatB"
+        };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasMetadataFieldsWithValues(csvLine.Categories, MetadataFieldName.Category, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_CsvMetadataFileProperties_IsMapped()
+    {
+        var expectedCsvProperties = new CsvProperties(
+            "name.csv",
+            "hash",
+            new Dictionary<string, string> { { "a", "1" }, { "b", "2" } }
+        );
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            CsvProperties = (expectedCsvProperties.Name, expectedCsvProperties.Hash),
+            FullCsvLineContents = expectedCsvProperties.FullLineContents
+        };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue(expectedCsvProperties, MetadataFieldName.CsvMetadataFileProperties,
+            fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Ncn_IsIncludedWhenPresent()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "NCN123" };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("NCN123", MetadataFieldName.Ncn, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_HeadnoteSummary_IsIncludedWhenPresent()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { HeadnoteSummary = "A summary" };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("A summary", MetadataFieldName.HeadnoteSummary, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_WebArchivingLink_IsIncludedWhenPresent()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { WebArchiving = "http://example.com" };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("http://example.com", MetadataFieldName.WebArchivingLink, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_OptionalFields_AreExcludedWhenNull()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            HeadnoteSummary = null,
+            Ncn = null,
+            WebArchiving = null
+        };
+
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.HeadnoteSummary);
+        Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.Ncn);
+        Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.WebArchivingLink);
+    }
+
+    private static void AssertHasSingleMetadataFieldWithValue<T>(T expectedValue, MetadataFieldName metadataFieldName,
+        List<IMetadataField> fields)
+    {
+        var metadataField = Assert.Single(fields, f => f.Name == metadataFieldName);
+        var typedMetadataField = Assert.IsType<MetadataField<T>>(metadataField);
+        Assert.Equal(expectedValue, typedMetadataField.Value);
+    }
+
+    private static void AssertHasMetadataFieldsWithValues<T>(T[] expectedValues, MetadataFieldName metadataFieldName,
+        List<IMetadataField> fields)
+    {
+        var metadataFields = fields.Where(f => f.Name == metadataFieldName);
+
+        Assert.Collection(metadataFields, expectedValues.Select<T, Action<IMetadataField>>(v => metadataField =>
+        {
+            var typedMetadataField = Assert.IsType<MetadataField<T>>(metadataField);
+            Assert.Equivalent(v, typedMetadataField.Value);
+        }).ToArray());
+    }
+}

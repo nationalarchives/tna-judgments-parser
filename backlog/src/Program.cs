@@ -1,14 +1,19 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 
+using Amazon.S3;
+
+using Backlog.Csv;
 using Backlog.Utilities;
 
 using DotNetEnv;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.NationalArchives.Judgments.Api;
@@ -34,7 +39,9 @@ public class Program
         });
 
         RootCommand.SetAction(validatedCommandInputs =>
-            RunBacklogParser(validatedCommandInputs.GetValue(DryRunOption), validatedCommandInputs.GetValue(FileIdOption))
+            RunBacklogParser(validatedCommandInputs.GetValue(DryRunOption),
+                validatedCommandInputs.GetValue(FileIdOption),
+                validatedCommandInputs.GetValue(AutoPublishOption))
         );
     }
 
@@ -70,6 +77,11 @@ public class Program
         Description = "Use the dry run flag to run the parser without sending to AWS"
     };
 
+    private static readonly Option<bool> AutoPublishOption = new("--auto-publish")
+    {
+        Description = "Use the auto-publish flag to automatically publish uploaded judgments"
+    };
+
     private static readonly Option<uint?> FileIdOption = new("--id")
     {
         Description =
@@ -79,11 +91,17 @@ public class Program
 
     private static readonly RootCommand RootCommand = new("Backlog parser used to bulk parse imported files")
     {
-        Options = { DryRunOption, FileIdOption }, Subcommands = { SplitFilesByExtension }
+        Options =
+        {
+            DryRunOption,
+            AutoPublishOption,
+            FileIdOption
+        },
+        Subcommands = { SplitFilesByExtension }
     };
 
     #endregion
-    
+
     /// <summary>
     /// This is the entry point method that is triggered by running the backlog parser on commandline
     /// </summary>
@@ -114,10 +132,8 @@ public class Program
         }
     }
 
-    private static int RunBacklogParser(bool isDryRun, uint? id)
+    private static int RunBacklogParser(bool isDryRun, uint? id, bool autoPublish)
     {
-        var autoPublish = true;
-
         Env.Load(); // required for bucket name
 
         var judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH") ?? "";
@@ -127,8 +143,11 @@ public class Program
         var pathToOutputFolder = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
         Directory.CreateDirectory(pathToOutputFolder);
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
+        var bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME") ??
+                         throw new InvalidOperationException("BUCKET_NAME environment variable not set");
 
-        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath, hmctsFilePath);
+        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath,
+            hmctsFilePath, bucketName);
 
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
         try
@@ -139,7 +158,7 @@ public class Program
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
 
             var backlogParserWorker = serviceProvider.GetRequiredService<BacklogParserWorker>();
-            
+
             return backlogParserWorker.Run(isDryRun, id, pathToCourtMetadataFile, autoPublish, pathToOutputFolder);
         }
         catch (Exception e)
@@ -149,29 +168,69 @@ public class Program
         }
     }
 
-    private static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
-        string judgmentsFilePath, string hmctsFilePath)
+
+    private static List<(Type serviceType, object instance, bool replace)> _dependencyInjectionOverrides = [];
+
+    /// <summary>
+    ///     Allow services like S3 to be mocked, but only during tests
+    /// </summary>
+    internal static List<(Type serviceType, object instance, bool replace)> DependencyInjectionOverrides =>
+        IsTest()
+            ? _dependencyInjectionOverrides
+            : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
+
+    internal static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
+        string judgmentsFilePath, string hmctsFilePath, string bucketName)
     {
         var services = new ServiceCollection();
-
         services.AddLogging(loggingBuilder =>
         {
             var logFilePath = Path.Combine(pathToDataFolder, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
             loggingBuilder.AddConsole()
                           .AddFile(logFilePath,
                               outputTemplate:
-                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}");
+                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
         });
         services
             .AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
                 UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddSingleton<Parser>();
         services.AddSingleton<BacklogParserWorker>();
-        services.AddSingleton<Metadata>();
+        services.AddSingleton<CsvMetadataReader>();
         services.AddSingleton<BacklogFiles>(serviceProvider => new BacklogFiles(serviceProvider.GetRequiredService<ILogger<BacklogFiles>>(), pathToDataFolder,
             judgmentsFilePath, hmctsFilePath));
         services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
+        services.AddSingleton<IAmazonS3, AmazonS3Client>();
+        services.AddSingleton<Bucket>(serviceProvider => new Bucket(serviceProvider.GetRequiredService<IAmazonS3>(), bucketName));
+        services.AddSingleton<MetadataTransformer>();
+        services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
+
+        if (IsTest())
+        {
+            OverrideDependencyInjection(services);
+        }
 
         return services.BuildServiceProvider();
+    }
+
+    private static void OverrideDependencyInjection(ServiceCollection services)
+    {
+        foreach (var (serviceType, instance, replace) in DependencyInjectionOverrides)
+        {
+            if (replace)
+            {
+                services.RemoveAll(serviceType);
+            }
+
+            services.AddSingleton(serviceType, instance);
+        }
+    }
+
+    /// <summary>
+    /// Are we running in a test environment (is the IS_TEST envvar true?)
+    /// </summary>
+    private static bool IsTest()
+    {
+        return bool.TryParse(Environment.GetEnvironmentVariable("IS_TEST"), out var isTest) && isTest;
     }
 }

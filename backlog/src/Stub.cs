@@ -14,7 +14,7 @@ namespace Backlog.Src
 
     internal class Stub
     {
-        internal static Stub Make(ExtendedMetadata data)
+        internal static Stub Make(StubMetadata data)
         {
             return new(data);
         }
@@ -38,7 +38,7 @@ namespace Backlog.Src
             parent.AppendChild(e);
             return e;
         }
-        private Stub(ExtendedMetadata data)
+        private Stub(StubMetadata data)
         {
             Data = data;
             XmlElement root = CreateAndAppend("akomaNtoso", Document);
@@ -141,8 +141,8 @@ namespace Backlog.Src
             {
                 XmlElement tldOrg = CreateAndAppend("TLCOrganization", references);
                 tldOrg.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
-                tldOrg.SetAttribute("href", Data.Court.Value.URL);
-                tldOrg.SetAttribute("showAs", Data.Court.Value.Name);
+                tldOrg.SetAttribute("href", Data.Court.URL);
+                tldOrg.SetAttribute("showAs", Data.Court.Name);
             }
             XmlElement tlcEvent = CreateAndAppend("TLCEvent", references);
             tlcEvent.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
@@ -159,7 +159,7 @@ namespace Backlog.Src
             {
                 XmlElement court = CreateAndAppendUK("court", proprietary);
                 proprietary.AppendChild(court);
-                court.AppendChild(Document.CreateTextNode(Data.Court.Value.Code.ToString()));
+                court.AppendChild(Document.CreateTextNode(Data.Court.Code));
             }
 
             foreach (var jurisdiction in Data.Jurisdictions)
@@ -190,11 +190,11 @@ namespace Backlog.Src
             {
                 AddCategory(proprietary, cat);
             }
-            if (!string.IsNullOrWhiteSpace(Data.NCN))
+            if (!string.IsNullOrWhiteSpace(Data.Cite))
             {
                 XmlElement cite = CreateAndAppendUK("cite", proprietary);
                 proprietary.AppendChild(cite);
-                cite.AppendChild(Document.CreateTextNode(Data.NCN));
+                cite.AppendChild(Document.CreateTextNode(Data.Cite));
             }
             if (!string.IsNullOrWhiteSpace(Data.WebArchivingLink))
             {

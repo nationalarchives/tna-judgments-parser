@@ -198,7 +198,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE
                 // throw new Exception("cite and URI do not match");
             }
 
-            if (court is not null && !Courts.ByCode.ContainsKey(court))
+            if (court is not null && !Courts.Exists(court))
             {
                 logger.LogCritical("input court is not recognized: {}", court);
                 throw new Exception("input court is not recognized: " + court);

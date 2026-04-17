@@ -8,7 +8,7 @@ This module provides a specialized entry point to the parser specifically design
     * [Pre-requisites](#pre-requisites)
     * [File Splitter (tool to assist with preparing for file conversions)](#file-splitter-tool-to-assist-with-preparing-for-file-conversions)
     * [Backlog Parser](#backlog-parser)
-    * [Processing Modes](#processing-modes)
+      * [Options](#options)
   * [Configuration](#configuration)
     * [File Formats](#file-formats)
     * [Directory Structure](#directory-structure)
@@ -50,37 +50,28 @@ dotnet run split <source folder> --destination <destination folder>
     - Exporting in the shell (e.g. `export MY_VAR=value`)
     - Adding them to a `.env` file in the assembly folder
     - Adding them to the build/run configuration in your IDE (e.g. [Run configs in Rider](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html#envvars-progargs))
-3. **Run the processor** using one of the [Processing Modes](#processing-modes).
+3. **Run the processor** using the [Options](#options) below.
     - It is recommended to do a dry run before uploading to S3 to ensure that there are no hidden complications in the new data.
 
-### Processing Modes
+#### Options
 
-The backlog processor supports three modes of operation:
+The following options can be combined in any combination:
 
-1. **Process the Entire CSV** (default):
+| Flag | Description |
+|------|-------------|
+| `--id <id>` | Process only the record with this ID from the court metadata CSV. Without this flag, all records are processed sequentially, skipping already-processed ones |
+| `--dry-run` | Write output files to the output path but do not upload to S3 |
+| `--auto-publish` | Set `auto_publish: true` in the bundle metadata, instructing the ingester to automatically publish each judgment after ingestion. Without this flag, `auto_publish` defaults to `false` and judgments must be published manually |
 
-   ```bash
-   dotnet run
-   ```
+Examples:
 
-   Processes every record in the court metadata CSV sequentially, skipping already processed records.
-
-2. **Process Specific Records by ID**:
-
-   ```bash
-   dotnet run --id <id>
-   ```
-
-   Processes a specific judgment record by its ID from the court metadata CSV.
-
-3. **Dry run**:
-
-   ```bash
-   dotnet run --dry-run
-   dotnet run --dry-run --id <id>
-   ```
-
-   Processes every record or specific record (as specified by `--id`), writes the files to the output path but does not send the results to S3
+```bash
+dotnet run                                        # Process all records
+dotnet run --id 42                                # Process one record
+dotnet run --dry-run --id 42                      # Dry run for one record
+dotnet run --auto-publish                         # Process all, auto-publishing each
+dotnet run --dry-run --auto-publish --id 42       # Dry run, single record, with auto-publish set
+```
 
 ## Configuration
 
@@ -99,8 +90,9 @@ data/
 ├── tdr_metadata/
 │   └── file-metadata.csv              # Maps original judgment filenames to UUIDs (only required if UUID isn't provided in the Court Metadata CSV)
 └── court_documents/                   # Contains the actual judgment documents
-    ├── {uuid}                         # (e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890)
-    ├── {uuid}
+    ├── {uuid}                         # (e.g. a1b2c3d4-e5f6-7890-abcd-ef1234567890, 6f4d2e8b-3c91-4a7f-9d25-1b8e6c0f7a42.pdf)
+    ├── Some subfolder/                # Optional subfolder structure
+    │   └── {uuid}
     └── {uuid}
 └── {court_metadata.csv}               # Metadata extracted from tribunal-specific spreadsheets about courts and their judgments
 ```
@@ -113,42 +105,39 @@ data/
 
 ### Court Metadata CSV
 
-Contains metadata extracted from tribunal-specific spreadsheets about courts and their judgments. This data includes:
+Contains cleansed metadata extracted from tribunal-specific spreadsheets about courts and their judgments.
 
-- Court identifiers and names
-- Judgment dates
-- Case numbers
-- Document metadata from the source tribunal system
-- Any tribunal-specific metadata fields
+Column names are case-insensitive, can optionally use underscores and can be arranged in any order.
 
 #### Required Columns
 
 The CSV file must contain the following columns for each judgment:
 
-- `id` - Unique identifier for each judgment record
-- `court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
+- `Id` - Unique identifier for each judgment record
+- `Court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
 - `FilePath` - Path to the judgment file relative to the base directory (UUID without extension)
 - `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
-- `decision_datetime` - Date and time when the decision was made (format: "yyyy-MM-dd HH:mm:ss")
+- `Decision_datetime` - Date when the decision was made (format: "yyyy-MM-dd")
 - `CaseNo` - Case number(s) (with space inbetween if multiple)
-- `claimants` OR `appellants` - Name(s) of the claimant(s)/appellant(s)
-- `respondent` - Name(s) of the respondent(s)
+- `Claimants` OR `Appellants` - Name(s) of the claimant(s)/appellant(s)
+- `Respondent` - Name(s) of the respondent(s)
+- `Skip` - Leave blank or set to `n`, `0` or `false` to process the record. Fill in anything to skip it (e.g. `skip`, `Already in FCL`, `Duplicate`)
 
 #### Optional Columns
 
 The following columns are optional:
 
-- `main_category` - Primary category name
-- `main_subcategory` - Primary subcategory name (child of main_category)
-- `sec_category` - Secondary category name (optional)
-- `sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
-- `ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
-- `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
+- `Main_category` - Primary category name
+- `Main_subcategory` - Primary subcategory name (child of main_category)
+- `Sec_category` - Secondary category name (optional)
+- `Sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
+- `Ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
+- `Headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
 - `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
-- `uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
-- `webarchiving` - Link to the webarchive for this judgment
+- `Uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
+- `Webarchiving` - Link to the webarchive for this judgment
 
-**Note**: If required columns are missing, the system will throw a validation error listing the missing columns.
+**Note**: If required columns are missing, the system will throw a validation error listing the missing columns but if optional columns are missing or misspelt then there will be no warning.
 
 #### CSV Line Example
 

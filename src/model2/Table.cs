@@ -47,18 +47,20 @@ class WTable : ITable, ILineable {
     }
 
     private static IEnumerable<WRow> ParseTableContents(WTable table, IEnumerable<OpenXmlElement> elements) {
-        return elements.Select(e => ParseTableChild(table, e)).Where(e => e is not null);
+        return elements.SelectMany(e => ParseTableChildren(table, e));
     }
 
-    internal static WRow ParseTableChild(WTable table, OpenXmlElement e) {
+    internal static IEnumerable<WRow> ParseTableChildren(WTable table, OpenXmlElement e) {
         if (e is TableProperties)
-            return null;
+            return Enumerable.Empty<WRow>();
         if (e is TableGrid) // TODO
-            return null;
+            return Enumerable.Empty<WRow>();
         if (e is TableRow row)
-            return new WRow(table, row);
+            return new[] { new WRow(table, row) };
         if (e is BookmarkStart || e is BookmarkEnd)
-            return null;
+            return Enumerable.Empty<WRow>();
+        if (e is SdtRow sdt)
+            return ParseTableContents(table, sdt.SdtContentRow.ChildElements);
         throw new Exception();
     }
 
