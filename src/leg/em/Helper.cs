@@ -36,8 +36,8 @@ class Helper : BaseHelper {
     /// <param name="docx">The document stream</param>
     /// <param name="filename">The filename (e.g., uksiem_20132911_en.docx) used for URI and legislation lookup</param>
     /// <param name="simplify">Whether to simplify the output XML</param>
-    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
     /// <summary>
@@ -46,8 +46,8 @@ class Helper : BaseHelper {
     /// <param name="docx">The document bytes</param>
     /// <param name="filename">The filename (e.g., uksiem_20132911_en.docx) used for URI and legislation lookup</param>
     /// <param name="simplify">Whether to simplify the output XML</param>
-    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
     protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {

@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes" />
-          <FRBRdate date="2023-11-16T17:23:00Z" name="lastModified" />
+          <FRBRdate date="2023-11-16" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,25 +31,24 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-11-16</dc:modified>
-        <dc:title>Explanatory Notes Online Safety Act 2023</dc:title>
-        <dc:description>Explanatory Notes Online Safety Act 2023</dc:description>
+        <dc:title>Explanatory Notes for Online Safety Act 2023</dc:title>
+        <dc:description>Explanatory Notes for Online Safety Act 2023</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2023/50" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2023/50" Class="UnitedKingdomPublicGeneralAct" Year="2023" Number="50" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2023/50/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2023-11-24" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2023" />
-        <ukm:LegislationNumber Value="50" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2023-11-24</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="992" />
-          <ukm:BodyParagraphs Value="992" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="1001" />
+          <ukm:BodyParagraphs Value="984" />
+          <ukm:ScheduleParagraphs Value="17" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>e664bea63e779b19301298ee2bbc61d5374a55eaa844da7c26c11d082eb76799</uk:hash>
+        <ukm:Hash>e664bea63e779b19301298ee2bbc61d5374a55eaa844da7c26c11d082eb76799</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -66,9 +65,9 @@
         <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes/section/5" level="2"><inline name="tocHeading">Commentary on provisions of Act</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes/section/7" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes/section/8" level="2"><inline name="tocHeading">Annex A - Territorial extent and application</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes/section/9" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes/section/10" level="2"><inline name="tocHeading">Annex C - Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes#annex_1_p_8" level="2"><inline name="tocHeading">8. Annex A - Territorial extent and application</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes#annex_2_p_9" level="2"><inline name="tocHeading">9. Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/50/notes#annex_3_p_10" level="2"><inline name="tocHeading">10. Annex C - Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -8700,93 +8699,125 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_8">
-        <heading><b>Annex A - Territorial extent and application</b></heading>
-        <paragraph>
-          <num>981 </num>
-          <content>
-            <p>This Act extends and applies to the whole of the UK, aside from in a small number of areas, as set out above.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>982 </num>
-          <content>
-            <p>Repeals, revocations and amendments made by the Act have the same territorial extent and application as the legislation that they are amending. </p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>983 </num>
-          <content>
-            <p>Regulations made under powers in the Act may have extraterritorial effect where they are being used to amend legislation which already produces a practical effect outside the UK.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>984 </num>
-          <intro>
-            <p>The Act confers powers onto Devolved Ministers. These are:</p>
-          </intro>
-          <subparagraph>
-            <num>a.</num>
-            <content>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_8"><b>Annex A - Territorial extent and application</b></p>
+            <blockContainer>
+              <num>981 </num>
+              <p>This Act extends and applies to the whole of the UK, aside from in a small number of areas, as set out above.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>982 </num>
+              <p>Repeals, revocations and amendments made by the Act have the same territorial extent and application as the legislation that they are amending. </p>
+            </blockContainer>
+            <blockContainer>
+              <num>983 </num>
+              <p>Regulations made under powers in the Act may have extraterritorial effect where they are being used to amend legislation which already produces a practical effect outside the UK.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>984 </num>
+              <p>The Act confers powers onto Devolved Ministers. These are:</p>
+            </blockContainer>
+            <blockContainer>
+              <num>a.</num>
               <p>A power for Ministers in Scotland, Wales, and the relevant department in Northern Ireland to amend the list of exempt educational institutions included at Part 2 of Schedule 1 under section 221. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>b.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>b.</num>
               <p>A power for Ministers in Scotland to amend the list of CSEA offences included in Part 2 of Schedule 6 under section 222(2). </p>
-            </content>
-          </subparagraph>
-        </paragraph>
-        <paragraph>
-          <num>985 </num>
-          <content>
-            <p>The Government sought the consent of the relevant legislatures for these provisions as they alter the powers of Ministers of the devolved administrations. As set out above, the Northern Ireland Assembly was adjourned during the parliamentary passage of the Act.  </p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>986 </num>
-          <intro>
-            <p>This Act also legislates for a number of new offences. The extent of these offences is set out below:</p>
-          </intro>
-          <subparagraph>
-            <num>a.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>985 </num>
+              <p>The Government sought the consent of the relevant legislatures for these provisions as they alter the powers of Ministers of the devolved administrations. As set out above, the Northern Ireland Assembly was adjourned during the parliamentary passage of the Act.  </p>
+            </blockContainer>
+            <blockContainer>
+              <num>986 </num>
+              <p>This Act also legislates for a number of new offences. The extent of these offences is set out below:</p>
+            </blockContainer>
+            <blockContainer>
+              <num>a.</num>
               <p>The False Communication Offence under sections 179, 180 and 182 extends and applies to England, Wales and Northern Ireland. It does not extend to Scotland. The offence is devolved. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>b.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>b.</num>
               <p>The Threatening Communication Offence under sections 181 and 182 extends and applies to England, Wales and Northern Ireland. It does not extend to Scotland. The offence is devolved.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>c.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>c.</num>
               <p>The Offence under section 183 of sending or showing flashing images electronically extends and applies to England and Wales and Northern Ireland. This offence is reserved in respect of Northern Ireland, and partially devolved for Wales. It does not extend to Scotland. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>d.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>d.</num>
               <p>The Offence under section 184 of encouraging or assisting the serious self-harm of another person extends and applies to England and Wales, Scotland and Northern Ireland. This offence is devolved in respect of Wales, Scotland and Northern Ireland. </p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>e.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>e.</num>
               <p>The Intimate Image Abuse Offence under section 187 and the Cyberflashing Offence under section 188 are to be inserted into the Sexual Offences Act 2003, which applies to England and Wales only. These offences are reserved.</p>
-            </content>
-          </subparagraph>
-        </paragraph>
-      </section>
-      <section eId="section_9">
-        <heading><b>Annex B - Hansard References</b></heading>
-        <paragraph>
-          <num>987 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+            </blockContainer>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_9"><b>Annex B - Hansard References</b></p>
+            <blockContainer>
+              <num>987 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.76in 1.49in 3.05in">
               <tr>
                 <td>
@@ -9039,15 +9070,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_10">
-        <heading><b>Annex C - Progress of Bill Table</b></heading>
-        <paragraph>
-          <num>988 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/3/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/annex/3/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_3_p_10"><b>Annex C - Progress of Bill Table</b></p>
+            <blockContainer>
+              <num>988 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.14in 1.19in 1.19in 1.17in 1.19in 1.15in">
               <tr>
                 <td>
@@ -14250,9 +14308,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

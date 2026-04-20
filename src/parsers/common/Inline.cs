@@ -64,7 +64,7 @@ class Inline {
         if (e is EndnoteReference en)
             return new WFootnote(main, en);
         if (e is Drawing draw)
-            return new WImageRef(main, draw);
+            return WImageRef.Make(main, draw);
         if (e is Picture pict) {
             // look for text box?
             return WImageRef.Make(main, pict);

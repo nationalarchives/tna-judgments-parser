@@ -72,9 +72,24 @@ internal class DocumentMetadata {
     public string ExpressionAuthor { get; init; }
 
     /// <summary>
-    /// The URI of the legislation this document is associated with (e.g., for Impact Assessments).
+    /// The URI of the parent legislation this document is associated with.
     /// </summary>
     public string LegislationUri { get; init; }
+
+    /// <summary>
+    /// Document-main-type of the parent legislation (e.g. "UnitedKingdomStatutoryInstrument").
+    /// </summary>
+    public string LegislationClass { get; init; }
+
+    /// <summary>
+    /// Year of the parent legislation.
+    /// </summary>
+    public int? LegislationYear { get; init; }
+
+    /// <summary>
+    /// Number of the parent legislation.
+    /// </summary>
+    public string LegislationNumber { get; init; }
 
     /// <summary>
     /// The identifier used to derive image filenames for this document.

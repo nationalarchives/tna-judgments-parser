@@ -38,6 +38,7 @@ public class Program {
     private static readonly Option<string> SubtypeOption = new("--subtype"){ Description = "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"};
     private static readonly Option<string> ProcedureOption = new("--procedure"){ Description = "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"};
     private static readonly Option<string[]> LanguageOption = new("--language"){ Description = "the language(s) of the document - the default is English", AllowMultipleArgumentsPerToken = true};
+    private static readonly Option<string> ManifestationNameOption = new("--manifestation-name"){ Description = "value for FRBRManifestation/FRBRdate/@name identifying the workflow (default: historic-akn-transform)"};
 
     static Program() {
         Command = new RootCommand {
@@ -52,6 +53,7 @@ public class Program {
             SubtypeOption,
             ProcedureOption,
             LanguageOption,
+            ManifestationNameOption,
         };
         Command.SetAction(Transform);
     }
@@ -61,7 +63,7 @@ public class Program {
     }
 
     private static (FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment,
-        string hint, string subType, string procedure, string[] language) GetParsedArgs(ParseResult parseResult)
+        string hint, string subType, string procedure, string[] language, string manifestationName) GetParsedArgs(ParseResult parseResult)
     {
         return (input: parseResult.GetValue(InputOption),
             output: parseResult.GetValue(OutputOption),
@@ -73,12 +75,13 @@ public class Program {
             hint: parseResult.GetValue(HintOption),
             subType: parseResult.GetValue(SubtypeOption),
             procedure: parseResult.GetValue(ProcedureOption),
-            language: parseResult.GetValue(LanguageOption));
+            language: parseResult.GetValue(LanguageOption),
+            manifestationName: parseResult.GetValue(ManifestationNameOption) ?? UK.Gov.Legislation.Builder.DefaultManifestationName);
     }
 
     static int Transform(ParseResult parseResult)
     {
-        var (input, output, outputZip, outputHtml, log, test, attachment, hint, subType, procedure, language) = GetParsedArgs(parseResult);
+        var (input, output, outputZip, outputHtml, log, test, attachment, hint, subType, procedure, language, manifestationName) = GetParsedArgs(parseResult);
 
         ILogger logger = null;
         if (log is not null) {
@@ -87,32 +90,32 @@ public class Program {
             logger.LogInformation("parsing " + input.FullName);
         }
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEM(input, output, outputZip, outputHtml, log, test, attachment);
+            TransformEM(input, output, outputZip, outputHtml, log, test, attachment, manifestationName);
             return Success;
         }
 
         if ("ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformIA(input, output, outputZip, outputHtml, log, test, attachment);
+            TransformIA(input, output, outputZip, outputHtml, log, test, attachment, manifestationName);
             return Success;
         }
 
         if ("en".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEN(input, output, outputZip, outputHtml, log, test, attachment);
+            TransformEN(input, output, outputZip, outputHtml, log, test, attachment, manifestationName);
             return Success;
         }
 
         if ("tn".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformTN(input, output, outputZip, outputHtml, log, test, attachment);
+            TransformTN(input, output, outputZip, outputHtml, log, test, attachment, manifestationName);
             return Success;
         }
 
         if ("cop".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformCoP(input, output, outputZip, outputHtml, log, test, attachment);
+            TransformCoP(input, output, outputZip, outputHtml, log, test, attachment, manifestationName);
             return Success;
         }
 
         if ("od".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformOD(input, output, outputZip, outputHtml, log, test, attachment);
+            TransformOD(input, output, outputZip, outputHtml, log, test, attachment, manifestationName);
             return Success;
         }
 
@@ -155,34 +158,34 @@ public class Program {
         return Success;
     }
 
-    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
-        => RunLegTransform(EM.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment, string manifestationName)
+        => RunLegTransform(EM.Helper.Parse, input, output, outputZip, outputHtml, log, attachment, manifestationName);
 
-    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
-        => RunLegTransform(IA.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment, string manifestationName)
+        => RunLegTransform(IA.Helper.Parse, input, output, outputZip, outputHtml, log, attachment, manifestationName);
 
-    static void TransformEN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
-        => RunLegTransform(EN.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+    static void TransformEN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment, string manifestationName)
+        => RunLegTransform(EN.Helper.Parse, input, output, outputZip, outputHtml, log, attachment, manifestationName);
 
-    static void TransformTN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
-        => RunLegTransform(TN.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+    static void TransformTN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment, string manifestationName)
+        => RunLegTransform(TN.Helper.Parse, input, output, outputZip, outputHtml, log, attachment, manifestationName);
 
-    static void TransformCoP(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
-        => RunLegTransform(CoP.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+    static void TransformCoP(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment, string manifestationName)
+        => RunLegTransform(CoP.Helper.Parse, input, output, outputZip, outputHtml, log, attachment, manifestationName);
 
-    static void TransformOD(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment)
-        => RunLegTransform(OD.Helper.Parse, input, output, outputZip, outputHtml, log, attachment);
+    static void TransformOD(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment, string manifestationName)
+        => RunLegTransform(OD.Helper.Parse, input, output, outputZip, outputHtml, log, attachment, manifestationName);
 
-    private delegate IXmlDocument LegParser(byte[] docx, string filename, bool simplify = true);
+    private delegate IXmlDocument LegParser(byte[] docx, string filename, bool simplify = true, string manifestationName = UK.Gov.Legislation.Builder.DefaultManifestationName);
 
-    private static void RunLegTransform(LegParser parse, FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, FileInfo attachment) {
+    private static void RunLegTransform(LegParser parse, FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, FileInfo attachment, string manifestationName) {
         if (attachment is not null)
             throw new Exception();
         if (log is not null)
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
 
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = parse(docx, input.Name, true);
+        var parsed = parse(docx, input.Name, true, manifestationName);
 
         // Save images alongside whichever file output is requested. Prefer --output's
         // directory; fall back to --output-html's. Both go to the same place if both
@@ -226,29 +229,27 @@ public class Program {
         }
     }
 
-    private static void SaveZip(IXmlDocument em, FileInfo file) {
+    private static void SaveZip(IXmlDocument document, FileInfo file) {
         using var stream = new FileStream(file.FullName, FileMode.Create);
         using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
-        var entry = archive.CreateEntry("judgment.xml");
+        var entry = archive.CreateEntry("document.xml");
         using (var zip = entry.Open()) {
-            byte[] bytes = Encoding.UTF8.GetBytes(em.Serialize());
+            byte[] bytes = Encoding.UTF8.GetBytes(document.Serialize());
             zip.Write(bytes, 0, bytes.Length);
         }
-        foreach (var image in em.Images) {
+        foreach (var image in document.Images) {
             entry = archive.CreateEntry(image.Name);
             using var zip = entry.Open();
-            byte[] bytes = image.Read();
-            zip.Write(bytes, 0, bytes.Length);
+            byte[] imageBytes = image.Read();
+            zip.Write(imageBytes, 0, imageBytes.Length);
         }
     }
 
     private static void Print(Api.Meta meta) {
-        Console.WriteLine($"The document type is { meta.DocumentType }");
-        Console.WriteLine($"The document's uri is { meta.Uri }");
-        Console.WriteLine($"The court is { meta.Court }");
-        Console.WriteLine($"The case citation is { meta.Cite }");
-        Console.WriteLine($"The doc date is { meta.Date }");
-        Console.WriteLine($"The doc name is { meta.Name }");
+        Console.Error.WriteLine(meta.Uri);
+        Console.Error.WriteLine(meta.Court);
+        Console.Error.WriteLine(meta.Date);
+        Console.Error.WriteLine(meta.Cite);
+        Console.Error.Write(meta.Name);
     }
-
 }

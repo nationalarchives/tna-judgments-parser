@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2019/4/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2019/4/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2019/4/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2019/4/notes" />
-          <FRBRdate date="2019-03-13T12:22:00Z" name="lastModified" />
+          <FRBRdate date="2019-03-13" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2019/4/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2019/4/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,26 +31,25 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2019-03-13</dc:modified>
-        <dc:title>Explanatory Notes Tenant Fees Act 2019</dc:title>
-        <dc:description>Explanatory Notes Tenant Fees Act 2019</dc:description>
+        <dc:title>Explanatory Notes for Tenant Fees Act 2019</dc:title>
+        <dc:description>Explanatory Notes for Tenant Fees Act 2019</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2019/4" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2019/4" Class="UnitedKingdomPublicGeneralAct" Year="2019" Number="4" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2019/4/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2019-03-13" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2019" />
-        <ukm:LegislationNumber Value="4" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2019-03-13</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="190" />
-          <ukm:BodyParagraphs Value="190" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="192" />
+          <ukm:BodyParagraphs Value="188" />
+          <ukm:ScheduleParagraphs Value="4" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>41c2ace84def7fd72cf0c4331f98b0a6ed365df0bfae4047c24c08501bed1c84</uk:hash>
+        <ukm:Hash>41c2ace84def7fd72cf0c4331f98b0a6ed365df0bfae4047c24c08501bed1c84</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -66,8 +65,8 @@
         <tocItem href="http://www.legislation.gov.uk/ukpga/2019/4/notes/section/4" level="2"><inline name="tocHeading">Territorial extent and application</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2019/4/notes/section/5" level="2"><inline name="tocHeading">Commentary on provisions of Act</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2019/4/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2019/4/notes/section/7" level="2"><inline name="tocHeading">Annex A – Overview of the Act’s passage through Parliament</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2019/4/notes/section/8" level="2"><inline name="tocHeading">Annex B – Progress of Act Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2019/4/notes#annex_1_p_7" level="2"><inline name="tocHeading">7. Annex A – Overview of the Act’s passage through Parliament</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2019/4/notes#annex_2_p_8" level="2"><inline name="tocHeading">8. Annex B – Progress of Act Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -1623,12 +1622,41 @@
           </content>
         </paragraph>
       </section>
-      <section eId="section_7">
-        <heading><b>Annex A – Overview of the Act’s passage through Parliament</b></heading>
-        <paragraph>
-          <num>168 </num>
-          <content>
-            <p>The table below sets out the dates and Hansard References for each stage of the Act’s passage through Parliament.</p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2019/4/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2019/4/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_7"><b>Annex A – Overview of the Act’s passage through Parliament</b></p>
+            <blockContainer>
+              <num>168 </num>
+              <p>The table below sets out the dates and Hansard References for each stage of the Act’s passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.75in 1.48in 3.22in">
               <tr>
                 <th>
@@ -1812,15 +1840,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_8">
-        <heading><b>Annex B – Progress of Act Table</b></heading>
-        <paragraph>
-          <num>169 </num>
-          <content>
-            <p>The table below summarises how each Section of the Act was numbered during its passage through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2019/4/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2019/4/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2019/4/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_8"><b>Annex B – Progress of Act Table</b></p>
+            <blockContainer>
+              <num>169 </num>
+              <p>The table below summarises how each Section of the Act was numbered during its passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="3.91in 1.32in 1.22in">
               <tr>
                 <th>
@@ -2252,9 +2307,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

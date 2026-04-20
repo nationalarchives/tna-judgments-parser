@@ -24,13 +24,10 @@ class IAMetadata : DocumentMetadata {
     public string Department { get; init; }
     public string IADate { get; init; }
     public string PDFDate { get; init; }
-    public string LegislationClass { get; init; }
-    
+
     // Year and number values (for explicit metadata in proprietary section)
     public int? UkiaYear { get; init; }
     public int? UkiaNumber { get; init; }
-    public int? LegislationYear { get; init; }
-    public string LegislationNumber { get; init; }
     
     // Full UKIA URI (e.g., http://www.legislation.gov.uk/id/ukia/2025/17)
     public string UkiaUri { get; init; }
@@ -73,7 +70,7 @@ class IAMetadata : DocumentMetadata {
 
         return new IAMetadata {
             ShortUriComponent = shortUri,
-            ExpressionDate = Builder.FormatDateAndTime(modified),
+            ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
             LastModified = modified,
             Name = name,

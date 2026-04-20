@@ -28,15 +28,15 @@ class Helper : BaseHelper {
     /// <summary>
     /// Parse a Transposition Note document with filename for metadata lookup.
     /// </summary>
-    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
     /// <summary>
     /// Parse a Transposition Note document with filename for metadata lookup.
     /// </summary>
-    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
     protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {

@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/10/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/10/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/10/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/10/notes" />
-          <FRBRdate date="2025-04-10T16:13:00Z" name="lastModified" />
+          <FRBRdate date="2025-04-10" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/10/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/10/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,26 +31,25 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-04-10</dc:modified>
-        <dc:title>Explanatory Notes Terrorism (Protection of Premises) Act 2025</dc:title>
-        <dc:description>Explanatory Notes Terrorism (Protection of Premises) Act 2025</dc:description>
+        <dc:title>Explanatory Notes for Terrorism (Protection of Premises) Act 2025</dc:title>
+        <dc:description>Explanatory Notes for Terrorism (Protection of Premises) Act 2025</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2025/10" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2025/10" Class="UnitedKingdomPublicGeneralAct" Year="2025" Number="10" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2025/10/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2025-04-16" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2025" />
-        <ukm:LegislationNumber Value="10" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2025-04-16</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="244" />
-          <ukm:BodyParagraphs Value="244" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="246" />
+          <ukm:BodyParagraphs Value="241" />
+          <ukm:ScheduleParagraphs Value="5" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>18cce1692832b2fb2c4f6be6988fd8be5e8518905356b273b8243ca18174447e</uk:hash>
+        <ukm:Hash>18cce1692832b2fb2c4f6be6988fd8be5e8518905356b273b8243ca18174447e</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -81,8 +80,8 @@
         <tocItem href="#section_5" level="3"><inline name="tocHeading">Schedule 4 – Licensing: disclosure of plans of premises</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2025/10/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2025/10/notes/section/7" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/10/notes/section/8" level="2"><inline name="tocHeading">Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/10/notes/section/9" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/10/notes#annex_1_p_8" level="2"><inline name="tocHeading">8. Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/10/notes#annex_2_p_9" level="2"><inline name="tocHeading">9. Annex B - Hansard References</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -2787,18 +2786,45 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_8">
-        <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
-        <paragraph>
-          <num>238 </num>
-          <content>
-            <p>Parts 1 and 3 of the Act extend and apply to the whole of the United Kingdom. Part 2 only applies to England, Wales and Scotland. </p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>239 </num>
-          <content>
-            <p>Section 34 and Schedule 4 extend and apply to England, Wales and Scotland only. Part 1 of Schedule 4 only applies to England and Wales, whereas Part 2 of Schedule 4 only applies to Scotland.</p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/10/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/10/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_8"><b>Annex A - Territorial extent and application in the United Kingdom</b></p>
+            <blockContainer>
+              <num>238 </num>
+              <p>Parts 1 and 3 of the Act extend and apply to the whole of the United Kingdom. Part 2 only applies to England, Wales and Scotland. </p>
+            </blockContainer>
+            <blockContainer>
+              <num>239 </num>
+              <p>Section 34 and Schedule 4 extend and apply to England, Wales and Scotland only. Part 1 of Schedule 4 only applies to England and Wales, whereas Part 2 of Schedule 4 only applies to Scotland.</p>
+            </blockContainer>
             <table uk:widths="0.92in 0.93in 0.92in 0.93in 0.93in">
               <tr>
                 <td>
@@ -3057,15 +3083,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_9">
-        <heading><b>Annex B - Hansard References</b></heading>
-        <paragraph>
-          <num>240 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/10/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/10/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/10/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_9"><b>Annex B - Hansard References</b></p>
+            <blockContainer>
+              <num>240 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.75in 1.48in 3.22in">
               <tr>
                 <td>
@@ -3232,9 +3285,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

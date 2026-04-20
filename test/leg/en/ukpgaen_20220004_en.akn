@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/4/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/4/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/4/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/4/notes" />
-          <FRBRdate date="2022-03-03T09:05:00Z" name="lastModified" />
+          <FRBRdate date="2022-03-03" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/4/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/4/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,25 +31,24 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-03-03</dc:modified>
-        <dc:title>Explanatory Notes Advanced Research and Invention Agency Act 2022</dc:title>
-        <dc:description>Explanatory Notes Advanced Research and Invention Agency Act 2022</dc:description>
+        <dc:title>Explanatory Notes for Advanced Research and Invention Agency Act 2022</dc:title>
+        <dc:description>Explanatory Notes for Advanced Research and Invention Agency Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/4" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2022/4" Class="UnitedKingdomPublicGeneralAct" Year="2022" Number="4" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/4/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2022-03-04" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2022" />
-        <ukm:LegislationNumber Value="4" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2022-03-04</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="81" />
-          <ukm:BodyParagraphs Value="81" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="83" />
+          <ukm:BodyParagraphs Value="79" />
+          <ukm:ScheduleParagraphs Value="4" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>9f407c37113066a7cf37f28e44d66434e1745dc44e169854436cca82883cff79</uk:hash>
+        <ukm:Hash>9f407c37113066a7cf37f28e44d66434e1745dc44e169854436cca82883cff79</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -66,8 +65,8 @@
         <tocItem href="http://www.legislation.gov.uk/ukpga/2022/4/notes/section/4" level="2"><inline name="tocHeading">Commentary on provisions of Act</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2022/4/notes/section/5" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2022/4/notes/section/6" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/4/notes/section/7" level="2"><inline name="tocHeading">Annex A - Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/4/notes/section/8" level="2"><inline name="tocHeading">Annex B - Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/4/notes#annex_1_p_7" level="2"><inline name="tocHeading">7. Annex A - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/4/notes#annex_2_p_8" level="2"><inline name="tocHeading">8. Annex B - Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -789,12 +788,41 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_7">
-        <heading><b>Annex A - Hansard References</b></heading>
-        <paragraph>
-          <num>76 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/4/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/4/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_7"><b>Annex A - Hansard References</b></p>
+            <blockContainer>
+              <num>76 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
+            </blockContainer>
             <table uk:widths="1.72in 1.45in 3.13in">
               <tr>
                 <th>
@@ -961,15 +989,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_8">
-        <heading><b>Annex B - Progress of Bill Table</b></heading>
-        <paragraph>
-          <num>77 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/4/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/4/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/4/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_8"><b>Annex B - Progress of Bill Table</b></p>
+            <blockContainer>
+              <num>77 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
+            </blockContainer>
             <table uk:widths="1.04in 1.05in 1.05in 1.05in 1.05in 1.05in">
               <tr>
                 <th>
@@ -1332,9 +1387,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

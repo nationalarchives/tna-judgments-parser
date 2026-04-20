@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes" />
-          <FRBRdate date="2022-07-08T15:01:00Z" name="lastModified" />
+          <FRBRdate date="2022-07-08" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,25 +31,24 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-07-08</dc:modified>
-        <dc:title>Explanatory Notes Professional Qualifications Act 2022</dc:title>
-        <dc:description>Explanatory Notes Professional Qualifications Act 2022</dc:description>
+        <dc:title>Explanatory Notes for Professional Qualifications Act 2022</dc:title>
+        <dc:description>Explanatory Notes for Professional Qualifications Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/20" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2022/20" Class="UnitedKingdomPublicGeneralAct" Year="2022" Number="20" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/20/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2022-07-11" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2022" />
-        <ukm:LegislationNumber Value="20" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2022-07-11</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="119" />
-          <ukm:BodyParagraphs Value="119" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="125" />
+          <ukm:BodyParagraphs Value="114" />
+          <ukm:ScheduleParagraphs Value="11" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>7e8798a2fdf8b02267ccc972d102e65fdfd6a68d1597538bbdc6a67f83d5e231</uk:hash>
+        <ukm:Hash>7e8798a2fdf8b02267ccc972d102e65fdfd6a68d1597538bbdc6a67f83d5e231</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -69,9 +68,9 @@
         <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 7: Assistance centre</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes/section/7" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes/section/8" level="2"><inline name="tocHeading">Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes/section/9" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes/section/10" level="2"><inline name="tocHeading">Annex C - Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes#annex_1_p_8" level="2"><inline name="tocHeading">8. Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes#annex_2_p_9" level="2"><inline name="tocHeading">9. Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/20/notes#annex_3_p_10" level="2"><inline name="tocHeading">10. Annex C - Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -1064,42 +1063,61 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_8">
-        <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
-        <paragraph>
-          <num>115 </num>
-          <content>
-            <p>The Act will apply and extend to the whole of the United Kingdom.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>116 </num>
-          <intro>
-            <p>The devolution settlements make provision for the regulation of certain professions to be reserved to Westminster, though not all:</p>
-          </intro>
-          <subparagraph>
-            <num>a.</num>
-            <content>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_8"><b>Annex A - Territorial extent and application in the United Kingdom</b></p>
+            <blockContainer>
+              <num>115 </num>
+              <p>The Act will apply and extend to the whole of the United Kingdom.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>116 </num>
+              <p>The devolution settlements make provision for the regulation of certain professions to be reserved to Westminster, though not all:</p>
+            </blockContainer>
+            <blockContainer>
+              <num>a.</num>
               <p>Northern Ireland: In relation to legislative competence, there are no reserved or excepted matters that deal directly with the regulation of the professions. The regulation of the profession may be an excepted or reserved matter if the subject matter of the profession is an excepted or reserved matter (for example, intellectual property is a reserved matter and so the regulation of patent agents may be a reserved matter). See sections 6 and 8 of the Northern Ireland Act 1998 and Schedules 2 and 3 to that Act.</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>b.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>b.</num>
               <p>Scotland: In relation to legislative competence, the regulation of the professions listed under Head G of Schedule 5 to the Scotland Act 1998 is reserved to the UK (architects, most health professions including veterinary surgeons (but not social workers), and auditors). In addition, the regulation of the profession may be reserved if the subject matter of the profession is a reserved matter (e.g. intellectual property) (see s.29 Scotland Act 1998).</p>
-            </content>
-          </subparagraph>
-          <subparagraph>
-            <num>c.</num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>c.</num>
               <p>Wales: In relation to legislative competence, the regulation of professions listed under Head G of Schedule 7A of the Government of Wales Act 2006 is reserved to the UK (architects, most health professions (but not social work and social care), veterinary surgeons and auditors.) In addition, the legal professions are a reserved matter under Head L of Schedule 7. As with the Northern Ireland Act 1998 and the Scotland Act 1998, the regulation of the profession may be reserved where the subject matter of the profession is a reserved matter (see s.108A Government of Wales Act 2006).</p>
-            </content>
-          </subparagraph>
-        </paragraph>
-        <paragraph>
-          <num>117 </num>
-          <content>
-            <p>The Act is not limited to particular professions. It therefore contains provisions regarding devolved matters in Scotland and Wales and transferred matters in Northern Ireland. </p>
+            </blockContainer>
+            <blockContainer>
+              <num>117 </num>
+              <p>The Act is not limited to particular professions. It therefore contains provisions regarding devolved matters in Scotland and Wales and transferred matters in Northern Ireland. </p>
+            </blockContainer>
             <table uk:widths="0.76in 0.87in 0.72in 0.8in 1in">
               <tr>
                 <th rowspan="2">
@@ -1150,15 +1168,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_9">
-        <heading><b>Annex B - Hansard References</b></heading>
-        <paragraph>
-          <num>118 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_9"><b>Annex B - Hansard References</b></p>
+            <blockContainer>
+              <num>118 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
+            </blockContainer>
             <table uk:widths="1.71in 1.43in 3.12in">
               <tr>
                 <th>
@@ -1326,15 +1371,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_10">
-        <heading><b>Annex C - Progress of Bill Table</b></heading>
-        <paragraph>
-          <num>119 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/20/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/3/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/20/notes/annex/3/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_3_p_10"><b>Annex C - Progress of Bill Table</b></p>
+            <blockContainer>
+              <num>119 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
+            </blockContainer>
             <table uk:widths="0.89in 0.9in 0.9in 0.89in 0.9in 0.9in 0.9in">
               <tr>
                 <th>
@@ -1866,9 +1938,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

@@ -62,17 +62,22 @@ public class WImageRef : IImageRef {
 
     private readonly Uri uri;
 
-    public WImageRef(MainDocumentPart main, Drawing drawing) {
+    public static WImageRef Make(MainDocumentPart main, Drawing drawing) {
+        DrawingML.Blip blip = drawing.Descendants<DrawingML.Blip>().FirstOrDefault();
+        if (blip is null) {
+            var graphicData = drawing.Descendants<DrawingML.GraphicData>().FirstOrDefault();
+            string graphicUri = graphicData?.Uri?.Value ?? "unknown";
+            logger.LogWarning("dropping drawing with no blip (graphicData uri={Uri})", graphicUri);
+            return null;
+        }
+        return new WImageRef(main, drawing, blip);
+    }
+
+    private WImageRef(MainDocumentPart main, Drawing drawing, DrawingML.Blip blip) {
         bool isAbsolutelyPositioned = drawing.ChildElements.OfType<DrawingML.Wordprocessing.Anchor>().Any(); // types are WrapSquare, WrapTight, WrapThrough, WrapTopBottom and WrapNone
         if (isAbsolutelyPositioned)
             logger.LogWarning("image is absolutely positioned");
-        DrawingML.Blip blip = drawing.Descendants<DrawingML.Blip>().FirstOrDefault();
-        if (blip is null) {
-            logger.LogWarning("unable to represent drawing");
-            logger.LogWarning(drawing.OuterXml);
-        } else {
-            this.uri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
-        }
+        this.uri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
 
         /* alt text */
         // var props = drawing.Descendants().OfType<DrawingML.Wordprocessing.DocProperties>().FirstOrDefault();
@@ -134,7 +139,7 @@ public class WImageRef : IImageRef {
             var drawing = picture.Descendants<Drawing>().FirstOrDefault();
             if (drawing is not null) {
                 logger.LogWarning("drawing within picture");
-                return new WImageRef(main, drawing);
+                return Make(main, drawing);
             }
             if (picture.Descendants<Vml.TextBox>().Any()) {
                 logger.LogCritical("skipping text box");
@@ -161,7 +166,12 @@ public class WImageRef : IImageRef {
             logger.LogWarning("skipping picture because it is located off the page");
             return null;
         }
-        return new WImageRef(main, picture, datum, relId);
+        var result = new WImageRef(main, picture, datum, relId);
+        if (string.IsNullOrEmpty(result.Src)) {
+            logger.LogWarning("dropping picture because its relationship did not resolve to a URI");
+            return null;
+        }
+        return result;
     }
 
     private WImageRef(MainDocumentPart main, Picture picture, Vml.ImageData data, string relId) {

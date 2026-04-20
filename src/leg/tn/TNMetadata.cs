@@ -23,12 +23,9 @@ class TNMetadata : DocumentMetadata {
     public string Department { get; init; }
     public string TnDate { get; init; }
     public string ModifiedDate { get; init; }
-    public string LegislationClass { get; init; }
     public string TnType { get; init; }
 
     public int? TnYear { get; init; }
-    public int? LegislationYear { get; init; }
-    public string LegislationNumber { get; init; }
 
     internal static TNMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
@@ -59,7 +56,7 @@ class TNMetadata : DocumentMetadata {
 
         return new TNMetadata {
             ShortUriComponent = shortUri,
-            ExpressionDate = Builder.FormatDateAndTime(modified),
+            ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
             LastModified = modified,
             Name = name,

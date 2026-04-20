@@ -17,9 +17,6 @@ class ENMetadata : DocumentMetadata {
     public string DocumentMainType { get; init; }
     public string EnType { get; init; }
     public string EnDate { get; init; }
-    public string LegislationClass { get; init; }
-    public int? LegislationYear { get; init; }
-    public string LegislationNumber { get; init; }
 
     internal static ENMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
@@ -46,7 +43,7 @@ class ENMetadata : DocumentMetadata {
 
         return new ENMetadata {
             ShortUriComponent = shortUri,
-            ExpressionDate = Builder.FormatDateAndTime(modified),
+            ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
             LastModified = modified,
             Name = name,

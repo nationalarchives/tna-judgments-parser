@@ -23,14 +23,11 @@ class EMMetadata : DocumentMetadata {
     public string Department { get; init; }
     public string EmDate { get; init; }
     public string ModifiedDate { get; init; }
-    public string LegislationClass { get; init; }
     public string EmType { get; init; }
-    
+
     // Year and version values (for explicit metadata in proprietary section)
     public int? EmYear { get; init; }
     public int EmVersion { get; init; }
-    public int? LegislationYear { get; init; }
-    public string LegislationNumber { get; init; }
 
     internal static EMMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
@@ -63,7 +60,7 @@ class EMMetadata : DocumentMetadata {
 
         return new EMMetadata {
             ShortUriComponent = shortUri,
-            ExpressionDate = Builder.FormatDateAndTime(modified),
+            ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
             LastModified = modified,
             Name = name,

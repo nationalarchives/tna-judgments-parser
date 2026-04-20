@@ -31,12 +31,12 @@ class Helper : BaseHelper {
         return Parse(docx, null, simplify);
     }
 
-    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
-    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
     protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {
@@ -114,6 +114,42 @@ class Helper : BaseHelper {
             }
         }
 
+        var annexBodies = xml.SelectNodes("//akn:attachments/akn:attachment/akn:doc/akn:mainBody", nsmgr);
+        if (annexBodies != null) {
+            int annexIndex = 0;
+            foreach (XmlNode annexBody in annexBodies) {
+                annexIndex++;
+                foreach (XmlNode child in annexBody.ChildNodes) {
+                    if (child is not XmlElement el) continue;
+                    if (el.LocalName == "section") {
+                        sectionCounter++;
+                        AddSectionToToc(xml, toc, el, expressionUri, nsmgr, sectionCounter);
+                    } else if (el.LocalName == "paragraph") {
+                        AddParagraphToToc(xml, toc, el, expressionUri, nsmgr);
+                    } else if (el.LocalName == "p"
+                               && IsFlatBoldHeadingParagraph(el, nsmgr, out string headingText)) {
+                        sectionCounter++;
+                        string eId = el.GetAttribute("eId");
+                        if (string.IsNullOrEmpty(eId)) {
+                            eId = $"annex_{annexIndex}_p_{sectionCounter}";
+                            el.SetAttribute("eId", eId);
+                        }
+                        string href = !string.IsNullOrEmpty(expressionUri)
+                            ? $"{expressionUri}#{eId}"
+                            : "#" + eId;
+                        var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
+                        tocItem.SetAttribute("href", href);
+                        tocItem.SetAttribute("level", "2");
+                        var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
+                        inlineHeading.SetAttribute("name", "tocHeading");
+                        inlineHeading.InnerText = $"{sectionCounter}. {headingText}";
+                        tocItem.AppendChild(inlineHeading);
+                        toc.AppendChild(tocItem);
+                    }
+                }
+            }
+        }
+
         if (toc.HasChildNodes) {
             if (mainBody.FirstChild != null) {
                 mainBody.InsertBefore(toc, mainBody.FirstChild);
@@ -122,6 +158,21 @@ class Helper : BaseHelper {
             }
             logger.LogInformation("Generated TOC with {Count} entries", toc.ChildNodes.Count);
         }
+    }
+
+    private static bool IsFlatBoldHeadingParagraph(XmlElement paragraph, XmlNamespaceManager nsmgr, out string headingText) {
+        headingText = null;
+        string fullText = paragraph.InnerText?.Trim() ?? "";
+        if (fullText.Length < 3 || fullText.Length > 200) return false;
+        var bold = paragraph.SelectSingleNode("akn:b", nsmgr);
+        if (bold == null) return false;
+        string boldText = bold.InnerText?.Trim() ?? "";
+        if (boldText.Length < 3) return false;
+        if (boldText.Length < fullText.Length - 3) return false;
+        string trimmed = boldText.TrimEnd(':', '.', ' ');
+        if (string.IsNullOrEmpty(trimmed)) return false;
+        headingText = trimmed.Length > 120 ? trimmed.Substring(0, 117) + "..." : trimmed;
+        return true;
     }
 
     private static void AddSectionToToc(XmlDocument xml, XmlElement toc, XmlElement section, string expressionUri, XmlNamespaceManager nsmgr, int sectionNumber) {

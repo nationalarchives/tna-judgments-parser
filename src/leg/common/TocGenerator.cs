@@ -77,6 +77,8 @@ internal static class TocGenerator {
             _ => PopulateMultiXPath(xml, toc, expressionUri, nsmgr)
         };
 
+        structuralCount += PopulateFromAttachments(xml, toc, expressionUri, nsmgr);
+
         // BoldTitleDocumentOrder callers (CoP/OD/TN) don't want a TOC that's just the
         // whole-document link on unstructured content; MultiXPath (EM) historically always emits.
         if (strategy == TocStrategy.BoldTitleDocumentOrder && structuralCount == 0)
@@ -122,6 +124,37 @@ internal static class TocGenerator {
             tocNumber++;
         }
         return added;
+    }
+
+    private static int PopulateFromAttachments(XmlDocument xml, XmlElement toc, string expressionUri, XmlNamespaceManager nsmgr) {
+        var annexBodies = xml.SelectNodes("//akn:attachments/akn:attachment/akn:doc/akn:mainBody", nsmgr);
+        if (annexBodies == null || annexBodies.Count == 0) return 0;
+        int nextTocNumber = toc.ChildNodes.Count;
+        int added = 0;
+        foreach (XmlNode annexBody in annexBodies) {
+            foreach (XmlNode child in annexBody.ChildNodes) {
+                if (child is not XmlElement el) continue;
+                if (el.LocalName != "p" || el.NamespaceURI != AKN_NAMESPACE) continue;
+                if (!IsFlatBoldHeadingParagraph(el, nsmgr, out string headingText)) continue;
+                EmitTocEntry(xml, toc, el, "paragraph", nextTocNumber, expressionUri, headingText);
+                nextTocNumber++;
+                added++;
+            }
+        }
+        return added;
+    }
+
+    private static bool IsFlatBoldHeadingParagraph(XmlElement paragraph, XmlNamespaceManager nsmgr, out string headingText) {
+        headingText = null;
+        string fullText = paragraph.InnerText?.Trim() ?? "";
+        if (fullText.Length < 3 || fullText.Length > 200) return false;
+        var bold = paragraph.SelectSingleNode("akn:b", nsmgr);
+        if (bold == null) return false;
+        string boldText = bold.InnerText?.Trim() ?? "";
+        if (boldText.Length < 3) return false;
+        if (boldText.Length < fullText.Length - 3) return false;
+        headingText = TruncateHeading(boldText.TrimEnd(':', '.', ' '));
+        return !string.IsNullOrEmpty(headingText);
     }
 
     private static int PopulateBoldTitleInOrder(XmlDocument xml, XmlElement toc, XmlNode mainBody, string expressionUri, XmlNamespaceManager nsmgr) {

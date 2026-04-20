@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/6/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/6/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/6/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/6/notes" />
-          <FRBRdate date="2023-04-19T11:42:00Z" name="lastModified" />
+          <FRBRdate date="2023-04-19" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/6/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/6/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,25 +31,24 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-04-19</dc:modified>
-        <dc:title>Explanatory Notes Genetic Technology (Precision Breeding) Act 2023</dc:title>
-        <dc:description>Explanatory Notes Genetic Technology (Precision Breeding) Act 2023</dc:description>
+        <dc:title>Explanatory Notes for Genetic Technology (Precision Breeding) Act 2023</dc:title>
+        <dc:description>Explanatory Notes for Genetic Technology (Precision Breeding) Act 2023</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2023/6" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2023/6" Class="UnitedKingdomPublicGeneralAct" Year="2023" Number="6" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2023/6/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2023-04-11" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2023" />
-        <ukm:LegislationNumber Value="6" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2023-04-11</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="269" />
-          <ukm:BodyParagraphs Value="269" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="271" />
+          <ukm:BodyParagraphs Value="266" />
+          <ukm:ScheduleParagraphs Value="5" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>e712a8dab58cc5120a418a39bfab7a9294d05a461cde1920a5554502d5a19511</uk:hash>
+        <ukm:Hash>e712a8dab58cc5120a418a39bfab7a9294d05a461cde1920a5554502d5a19511</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -80,8 +79,8 @@
         <tocItem href="#section_5" level="3"><inline name="tocHeading">Costs</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2023/6/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2023/6/notes/section/7" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/6/notes/section/8" level="2"><inline name="tocHeading">Annex A - Territorial extent and application</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/6/notes/section/9" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/6/notes#annex_1_p_8" level="2"><inline name="tocHeading">8. Annex A - Territorial extent and application</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2023/6/notes#annex_2_p_9" level="2"><inline name="tocHeading">9. Annex B - Hansard References</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -2060,18 +2059,45 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_8">
-        <heading><b>Annex A - Territorial extent and application</b></heading>
-        <paragraph>
-          <num>263 </num>
-          <content>
-            <p>Section 47 sets out the territorial extent of the provisions of the Act. The extent of an Act is the legal jurisdiction of which it forms part of the law; application refers to where it has practical effect. </p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>264 </num>
-          <content>
-            <p>The regulation of precision bred organisms is a devolved matter and most of the provisions of this Act extend to England and Wales only and apply in relation to England only. Section 41 amends legislation which extends to England and Wales and Scotland, so that section and the definitions in Part 1 of the Act to which those amendments refer likewise extend to England and Wales and Scotland. The general provisions in sections 42 to 48 extend to England and Wales and Scotland and Northern Ireland.</p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/6/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/6/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_8"><b>Annex A - Territorial extent and application</b></p>
+            <blockContainer>
+              <num>263 </num>
+              <p>Section 47 sets out the territorial extent of the provisions of the Act. The extent of an Act is the legal jurisdiction of which it forms part of the law; application refers to where it has practical effect. </p>
+            </blockContainer>
+            <blockContainer>
+              <num>264 </num>
+              <p>The regulation of precision bred organisms is a devolved matter and most of the provisions of this Act extend to England and Wales only and apply in relation to England only. Section 41 amends legislation which extends to England and Wales and Scotland, so that section and the definitions in Part 1 of the Act to which those amendments refer likewise extend to England and Wales and Scotland. The general provisions in sections 42 to 48 extend to England and Wales and Scotland and Northern Ireland.</p>
+            </blockContainer>
             <table uk:widths="0.75in 0.04in 0.55in 0.59in 0.59in 0.81in 0.81in 0.99in 0.89in 0.89in">
               <tr>
                 <td colspan="2">
@@ -2192,15 +2218,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_9">
-        <heading><b>Annex B - Hansard References</b></heading>
-        <paragraph>
-          <num>265 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/6/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/6/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/6/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_9"><b>Annex B - Hansard References</b></p>
+            <blockContainer>
+              <num>265 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.89in 1.63in 2.77in">
               <tr>
                 <th>
@@ -2373,9 +2426,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

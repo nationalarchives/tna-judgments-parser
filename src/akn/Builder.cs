@@ -817,12 +817,12 @@ abstract class Builder {
         AddHash(akn, UKNS);
     }
 
-    protected static void AddHash(XmlDocument akn, string ns, string prefix = "uk") {
+    protected static void AddHash(XmlDocument akn, string ns, string prefix = "uk", string localName = "hash") {
         string value = SHA256.Hash(akn);
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary", nsmgr);
-        XmlElement hash = akn.CreateElement(prefix, "hash", ns);
+        XmlElement hash = akn.CreateElement(prefix, localName, ns);
         proprietary.AppendChild(hash);
         hash.AppendChild(akn.CreateTextNode(value));
     }

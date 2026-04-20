@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes" />
-          <FRBRdate date="2019-01-08T17:46:00Z" name="lastModified" />
+          <FRBRdate date="2019-01-08" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,26 +31,25 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2019-01-08</dc:modified>
-        <dc:title>Explanatory Notes Ivory Act 2018</dc:title>
-        <dc:description>Explanatory Notes Ivory Act 2018</dc:description>
+        <dc:title>Explanatory Notes for Ivory Act 2018</dc:title>
+        <dc:description>Explanatory Notes for Ivory Act 2018</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2018/30" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2018/30" Class="UnitedKingdomPublicGeneralAct" Year="2018" Number="30" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2018/30/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2019-01-11" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2018" />
-        <ukm:LegislationNumber Value="30" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2019-01-11</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="213" />
-          <ukm:BodyParagraphs Value="213" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="216" />
+          <ukm:BodyParagraphs Value="210" />
+          <ukm:ScheduleParagraphs Value="6" />
           <ukm:TotalImages Value="7" />
         </ukm:Statistics>
-        <uk:hash>7ca512bd807164ac2340c360d5f6b885b6c45ddfe34ff5fb0e8b01333591f75c</uk:hash>
+        <ukm:Hash>7ca512bd807164ac2340c360d5f6b885b6c45ddfe34ff5fb0e8b01333591f75c</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -79,9 +78,9 @@
         <tocItem href="#section_5" level="3"><inline name="tocHeading">General</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes/section/7" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes/section/8" level="2"><inline name="tocHeading">Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes/section/9" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes/section/10" level="2"><inline name="tocHeading">Annex C - Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes#annex_1_p_8" level="2"><inline name="tocHeading">8. Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes#annex_2_p_9" level="2"><inline name="tocHeading">9. Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2018/30/notes#annex_3_p_10" level="2"><inline name="tocHeading">10. Annex C - Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -556,7 +555,7 @@
                 <tr>
                   <td>
                     <p><b>An illustrative example of the type of item that may be considered exempt under the rarest and most important items category. Assessments will be subject to the detailed criteria set out in any statutory guidance, to be issued in due course. </b></p>
-                    <p><img src="images/ukpga_2018_30_notes_en_001.gif" /></p>
+                    <p><img src="http://www.legislation.gov.uk/ukpga/2018/30/notes/images/ukpga_2018_30_notes_en_001.gif" /></p>
                     <p>Artist/maker unknown, The Crucified Christ c 1275-1300 (made), Origin England or France, materials Elephant ivory. “This is an ivory figure of the Crucified Christ, made in France (Paris) or England, in ca. 1275-1300. This in one of the finest surviving ivory carvings of the crucified Christ from the Gothic era, despite its fragmentary state…The figure is from a large altar cross or retable, it is a rare example of a Gothic ivory crucifix figure.” </p>
                     <p><b>© Victoria and Albert Museum, London</b></p>
                   </td>
@@ -758,7 +757,7 @@
                   <td>
                     <p>Illustrative examples of portrait miniatures which may, subject to any advice which may be published, qualify under the portrait miniature exemption.</p>
                     <p>                                                       </p>
-                    <p><img src="images/ukpga_2018_30_notes_en_002.gif" />              <img src="images/ukpga_2018_30_notes_en_003.gif" /></p>
+                    <p><img src="http://www.legislation.gov.uk/ukpga/2018/30/notes/images/ukpga_2018_30_notes_en_002.gif" />              <img src="http://www.legislation.gov.uk/ukpga/2018/30/notes/images/ukpga_2018_30_notes_en_003.gif" /></p>
                     <p>1.                                              2. </p>
                     <p> (1) Henry Robert, An Unknown girl c 1890-1900, Watercolour on ivory <br /> (2) Sir Ross, William Charles, Portrait of Pandelli C. Ralli, 1856, Watercolour on ivory</p>
                     <p>© Victoria and Albert Museum, London</p>
@@ -841,7 +840,7 @@
                   <td>
                     <p><b>Illustrative examples of pre-1947 items with low ivory content which may, subject to any advice which may be published, qualify under the pre-1947 item with low ivory content exemption.</b></p>
                     <p />
-                    <p><img src="images/ukpga_2018_30_notes_en_004.gif" /><img src="images/ukpga_2018_30_notes_en_005.gif" /><img src="images/ukpga_2018_30_notes_en_006.gif" /></p>
+                    <p><img src="http://www.legislation.gov.uk/ukpga/2018/30/notes/images/ukpga_2018_30_notes_en_004.gif" /><img src="http://www.legislation.gov.uk/ukpga/2018/30/notes/images/ukpga_2018_30_notes_en_005.gif" /><img src="http://www.legislation.gov.uk/ukpga/2018/30/notes/images/ukpga_2018_30_notes_en_006.gif" /></p>
                     <p>1.                                                                           2.</p>
                     <p />
                     <p>(1) English made (ca 1913) rectangular box with an arched lid of mahogany, inlaid with fine bands of ivory <br />(2) French made (c 1929) Materials and Techniques: Ebony with ivory inlay</p>
@@ -900,7 +899,7 @@
                 <tr>
                   <td>
                     <p><b>Illustrative example of a musical instrument which may, subject to any advice that may be published, qualify under the musical instrument exemption.</b></p>
-                    <p><img src="images/ukpga_2018_30_notes_en_007.gif" /></p>
+                    <p><img src="http://www.legislation.gov.uk/ukpga/2018/30/notes/images/ukpga_2018_30_notes_en_007.gif" /></p>
                     <p>Above is an example of a Grand piano (c 1815 – 1820) with Oak case with mahogany veneer, rosewood cross-banding and brass stringing; Brass collars on the tops of solid mahogany legs; Ivory covered naturals and ebony sharps</p>
                     <p>© Victoria and Albert Museum, London </p>
                   </td>
@@ -2176,12 +2175,41 @@
           </content>
         </paragraph>
       </section>
-      <section eId="section_8">
-        <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
-        <paragraph>
-          <num>179 </num>
-          <content>
-            <p>This extends and applies to the United Kingdom.</p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_8"><b>Annex A - Territorial extent and application in the United Kingdom</b></p>
+            <blockContainer>
+              <num>179 </num>
+              <p>This extends and applies to the United Kingdom.</p>
+            </blockContainer>
             <table uk:widths="1.26in 1.26in 1.26in 1.26in 1.26in">
               <tr>
                 <td>
@@ -2454,15 +2482,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_9">
-        <heading><b>Annex B - Hansard References</b></heading>
-        <paragraph>
-          <num>180 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_9"><b>Annex B - Hansard References</b></p>
+            <blockContainer>
+              <num>180 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="2.1in 2.1in 2.1in">
               <tr>
                 <td>
@@ -2623,15 +2678,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_10">
-        <heading><b>Annex C - Progress of Bill Table</b></heading>
-        <paragraph>
-          <num>181 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/3/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/annex/3/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_3_p_10"><b>Annex C - Progress of Bill Table</b></p>
+            <blockContainer>
+              <num>181 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.57in 1.57in 1.57in 1.57in">
               <tr>
                 <td>
@@ -3292,9 +3374,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes" />
-          <FRBRdate date="2025-08-01T11:51:00Z" name="lastModified" />
+          <FRBRdate date="2025-08-01" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,26 +31,25 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-08-01</dc:modified>
-        <dc:title>Explanatory Notes Coronavirus Act 2020</dc:title>
-        <dc:description>Explanatory Notes Coronavirus Act 2020</dc:description>
+        <dc:title>Explanatory Notes for Coronavirus Act 2020</dc:title>
+        <dc:description>Explanatory Notes for Coronavirus Act 2020</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2020/7" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2020/7" Class="UnitedKingdomPublicGeneralAct" Year="2020" Number="7" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2020/7/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2022-01-13" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2020" />
-        <ukm:LegislationNumber Value="7" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2022-01-13</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="672" />
-          <ukm:BodyParagraphs Value="672" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="676" />
+          <ukm:BodyParagraphs Value="669" />
+          <ukm:ScheduleParagraphs Value="7" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>f6a4f32a213f55de6795c7049c0e7d641ad372d07f2445c38f8dce289f87616a</uk:hash>
+        <ukm:Hash>f6a4f32a213f55de6795c7049c0e7d641ad372d07f2445c38f8dce289f87616a</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -169,9 +168,9 @@
         <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 101: Extension to the Isle of Man</inline></tocItem>
         <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 102: Short title</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/5" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/6" level="2"><inline name="tocHeading">Annex A - Territorial extent and application</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/7" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/8" level="2"><inline name="tocHeading">Annex C - Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes#annex_1_p_6" level="2"><inline name="tocHeading">6. Annex A - Territorial extent and application</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes#annex_2_p_7" level="2"><inline name="tocHeading">7. Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes#annex_3_p_8" level="2"><inline name="tocHeading">8. Annex C - Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -5479,12 +5478,41 @@
           </content>
         </paragraph>
       </section>
-      <section eId="section_6">
-        <heading><b>Annex A - Territorial extent and application</b></heading>
-        <paragraph>
-          <num>667 </num>
-          <content>
-            <p>The entries in this table summarise the position for the sections in the Act. The entries do not necessarily represent the position for all sub-sections. </p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_6"><b>Annex A - Territorial extent and application</b></p>
+            <blockContainer>
+              <num>667 </num>
+              <p>The entries in this table summarise the position for the sections in the Act. The entries do not necessarily represent the position for all sub-sections. </p>
+            </blockContainer>
             <table uk:widths="2.33in 1.08in 1in 0.99in 1.04in">
               <tr>
                 <td>
@@ -6950,20 +6978,43 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-        <level>
-          <content>
             <p>*<marker name="tab" />These entries summarise the position for Part 2 and do not necessarily represent the position for all sections in that Part.</p>
-          </content>
-        </level>
-      </section>
-      <section eId="section_7">
-        <heading><b>Annex B - Hansard References</b></heading>
-        <paragraph>
-          <num>668 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Bill's passage through Parliament. </p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_7"><b>Annex B - Hansard References</b></p>
+            <blockContainer>
+              <num>668 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Bill's passage through Parliament. </p>
+            </blockContainer>
             <table uk:widths="1.75in 1.48in 3.22in">
               <tr>
                 <td>
@@ -7113,15 +7164,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_8">
-        <heading><b>Annex C - Progress of Bill Table</b></heading>
-        <paragraph>
-          <num>669 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. The Bill was not amended in the Lords.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/3/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/annex/3/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_3_p_8"><b>Annex C - Progress of Bill Table</b></p>
+            <blockContainer>
+              <num>669 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. The Bill was not amended in the Lords.</p>
+            </blockContainer>
             <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
               <tr>
                 <td>
@@ -9764,9 +9842,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

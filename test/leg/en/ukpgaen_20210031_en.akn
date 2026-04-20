@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/31/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/31/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/31/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/31/notes" />
-          <FRBRdate date="2021-12-29T13:49:00Z" name="lastModified" />
+          <FRBRdate date="2021-12-29" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/31/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/31/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,25 +31,24 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2021-12-29</dc:modified>
-        <dc:title>Explanatory Notes Telecommunications (Security) Act 2021</dc:title>
-        <dc:description>Explanatory Notes Telecommunications (Security) Act 2021</dc:description>
+        <dc:title>Explanatory Notes for Telecommunications (Security) Act 2021</dc:title>
+        <dc:description>Explanatory Notes for Telecommunications (Security) Act 2021</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2021/31" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2021/31" Class="UnitedKingdomPublicGeneralAct" Year="2021" Number="31" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2021/31/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2021-12-07" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2021" />
-        <ukm:LegislationNumber Value="31" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2021-12-07</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="409" />
-          <ukm:BodyParagraphs Value="409" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="410" />
+          <ukm:BodyParagraphs Value="392" />
+          <ukm:ScheduleParagraphs Value="18" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>18822d188fab5768aab9255c83310d7c6c64954a631684739bbcd89cee23b51f</uk:hash>
+        <ukm:Hash>18822d188fab5768aab9255c83310d7c6c64954a631684739bbcd89cee23b51f</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -66,8 +65,8 @@
         <tocItem href="http://www.legislation.gov.uk/ukpga/2021/31/notes/section/5" level="2"><inline name="tocHeading">Commentary on provisions of Act</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2021/31/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2021/31/notes/section/7" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/31/notes/section/8" level="2"><inline name="tocHeading">Annex A – Definitions</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/31/notes/section/9" level="2"><inline name="tocHeading">Annex B – Hansard references</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/31/notes#annex_1_p_8" level="2"><inline name="tocHeading">8. Annex A – Definitions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/31/notes#annex_2_p_9" level="2"><inline name="tocHeading">9. Annex B – Hansard references</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -2946,111 +2945,137 @@
           </content>
         </paragraph>
       </section>
-      <section eId="section_8">
-        <heading><b>Annex A – Definitions</b></heading>
-        <paragraph>
-          <num>340 </num>
-          <content>
-            <p>This Annex describes the scope of certain sections of the Act with reference to other sections of the 2003 Act.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>341 </num>
-          <content>
-            <p>Sections 1 to 14 concern ‘providers of public electronic communications networks’ and ‘providers of public electronic communications services’. In these explanatory notes’ description of those sections the term ‘provider’ has been used to describe both categories for ease of reference. </p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>342 </num>
-          <content>
-            <p>These terms are defined in the 2003 Act, in summary, as follows.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>343 </num>
-          <content>
-            <p><b>Electronic communications network </b>is defined in section 32(1) of the 2003 Act as a transmission system for the conveyance, by the use of electrical, magnetic or electro-magnetic energy of signals of any description, and associated apparatus, software and stored data.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>344 </num>
-          <content>
-            <p>Examples of such networks include satellite networks, fixed networks (whether circuit- or packet-switched, and including the Internet) and mobile terrestrial networks and networks used for radio and television broadcasting, including cable TV networks.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>345 </num>
-          <content>
-            <p><b>Electronic communications service </b>is defined (from 21 December 2020, when a new definition took effect following transposition of the European Electronic Communications Code) in section 32(2) of the 2003 Act as an internet access service, a number-based interpersonal communications service, or any other service consisting in, or having as its principal feature, the conveyance of signals, provided by means of an electronic communications network except in so far as it is a content service.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>346 </num>
-          <content>
-            <p>Examples of such services include telecommunications services and transmission services in networks used for broadcasting.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>347 </num>
-          <content>
-            <p>Section 151 of the 2003 Act defines a public<b> electronic communications network</b> as an electronic communications network provided wholly or mainly for the purpose of making electronic communications services available to the public.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>348 </num>
-          <content>
-            <p>This definition includes networks or services that serve business customers and those who serve individual customers. This definition does not include ‘private networks’ that provide internal communications within a network.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>349 </num>
-          <content>
-            <p>Section 15 provides that a ‘designated vendor direction’ may be given to a <b>public communications provider</b>. This term is defined in section 151 of the Communications Act 2003 as:</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>•</num>
-          <content>
-            <p>a provider of a public electronic communications network;</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>•</num>
-          <content>
-            <p>a provider of a public electronic communications service; or</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>•</num>
-          <content>
-            <p>a person who makes available facilities that are associated facilities by reference to a public electronic communications network or a public electronic communications service.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>350 </num>
-          <content>
-            <p>In these explanatory notes, the term ‘provider’ has been used instead of public communications provider for ease of reference.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>351 </num>
-          <content>
-            <p><b>Associated facility </b>is defined in section 32(3) of the 2003 Act as a facility, element or service which is available for use in association with an electronic communications network or service in order to make the provision of that network or service (or other services) possible, or to support the provision of other services.</p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>352 </num>
-          <content>
-            <p>Examples of such facilities include physical infrastructure of conditional access systems and electronic programme guides.</p>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_9">
-        <heading><b>Annex B – Hansard references</b></heading>
-        <paragraph>
-          <num>353 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament. </p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/31/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/31/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_8"><b>Annex A – Definitions</b></p>
+            <blockContainer>
+              <num>340 </num>
+              <p>This Annex describes the scope of certain sections of the Act with reference to other sections of the 2003 Act.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>341 </num>
+              <p>Sections 1 to 14 concern ‘providers of public electronic communications networks’ and ‘providers of public electronic communications services’. In these explanatory notes’ description of those sections the term ‘provider’ has been used to describe both categories for ease of reference. </p>
+            </blockContainer>
+            <blockContainer>
+              <num>342 </num>
+              <p>These terms are defined in the 2003 Act, in summary, as follows.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>343 </num>
+              <p><b>Electronic communications network </b>is defined in section 32(1) of the 2003 Act as a transmission system for the conveyance, by the use of electrical, magnetic or electro-magnetic energy of signals of any description, and associated apparatus, software and stored data.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>344 </num>
+              <p>Examples of such networks include satellite networks, fixed networks (whether circuit- or packet-switched, and including the Internet) and mobile terrestrial networks and networks used for radio and television broadcasting, including cable TV networks.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>345 </num>
+              <p><b>Electronic communications service </b>is defined (from 21 December 2020, when a new definition took effect following transposition of the European Electronic Communications Code) in section 32(2) of the 2003 Act as an internet access service, a number-based interpersonal communications service, or any other service consisting in, or having as its principal feature, the conveyance of signals, provided by means of an electronic communications network except in so far as it is a content service.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>346 </num>
+              <p>Examples of such services include telecommunications services and transmission services in networks used for broadcasting.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>347 </num>
+              <p>Section 151 of the 2003 Act defines a public<b> electronic communications network</b> as an electronic communications network provided wholly or mainly for the purpose of making electronic communications services available to the public.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>348 </num>
+              <p>This definition includes networks or services that serve business customers and those who serve individual customers. This definition does not include ‘private networks’ that provide internal communications within a network.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>349 </num>
+              <p>Section 15 provides that a ‘designated vendor direction’ may be given to a <b>public communications provider</b>. This term is defined in section 151 of the Communications Act 2003 as:</p>
+            </blockContainer>
+            <blockContainer>
+              <num>•</num>
+              <p>a provider of a public electronic communications network;</p>
+            </blockContainer>
+            <blockContainer>
+              <num>•</num>
+              <p>a provider of a public electronic communications service; or</p>
+            </blockContainer>
+            <blockContainer>
+              <num>•</num>
+              <p>a person who makes available facilities that are associated facilities by reference to a public electronic communications network or a public electronic communications service.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>350 </num>
+              <p>In these explanatory notes, the term ‘provider’ has been used instead of public communications provider for ease of reference.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>351 </num>
+              <p><b>Associated facility </b>is defined in section 32(3) of the 2003 Act as a facility, element or service which is available for use in association with an electronic communications network or service in order to make the provision of that network or service (or other services) possible, or to support the provision of other services.</p>
+            </blockContainer>
+            <blockContainer>
+              <num>352 </num>
+              <p>Examples of such facilities include physical infrastructure of conditional access systems and electronic programme guides.</p>
+            </blockContainer>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/31/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/31/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/31/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_9"><b>Annex B – Hansard references</b></p>
+            <blockContainer>
+              <num>353 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament. </p>
+            </blockContainer>
             <table uk:widths="1.65in 2.36in 2.46in">
               <tr>
                 <th>
@@ -3266,9 +3291,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

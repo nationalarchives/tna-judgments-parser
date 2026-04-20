@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes" />
-          <FRBRdate date="2025-08-01T11:39:00Z" name="lastModified" />
+          <FRBRdate date="2025-08-01" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,25 +31,24 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-08-01</dc:modified>
-        <dc:title>Explanatory Notes Water (Special Measures) Act 2025</dc:title>
-        <dc:description>Explanatory Notes Water (Special Measures) Act 2025</dc:description>
+        <dc:title>Explanatory Notes for Water (Special Measures) Act 2025</dc:title>
+        <dc:description>Explanatory Notes for Water (Special Measures) Act 2025</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2025/5" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2025/5" Class="UnitedKingdomPublicGeneralAct" Year="2025" Number="5" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2025/5/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2025-03-04" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2025" />
-        <ukm:LegislationNumber Value="5" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2025-03-04</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="101" />
-          <ukm:BodyParagraphs Value="101" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="104" />
+          <ukm:BodyParagraphs Value="99" />
+          <ukm:ScheduleParagraphs Value="5" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>3b10fb81cf120b13415038cda3b9d7e9cf1792e643af8671b855bd892e74664e</uk:hash>
+        <ukm:Hash>3b10fb81cf120b13415038cda3b9d7e9cf1792e643af8671b855bd892e74664e</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -67,9 +66,9 @@
         <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes/section/6" level="2"><inline name="tocHeading">Commentary on provisions of the Act</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes/section/7" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes/section/8" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes/section/9" level="2"><inline name="tocHeading">Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes/section/10" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes/section/11" level="2"><inline name="tocHeading">Annex C - Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes#annex_1_p_9" level="2"><inline name="tocHeading">9. Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes#annex_2_p_10" level="2"><inline name="tocHeading">10. Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2025/5/notes#annex_3_p_11" level="2"><inline name="tocHeading">11. Annex C - Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -1078,10 +1077,37 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_9">
-        <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
-        <level>
-          <content>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_9"><b>Annex A - Territorial extent and application in the United Kingdom</b></p>
             <table uk:widths="0.88in 1.08in 1.28in 1.28in 1.38in">
               <tr>
                 <td rowspan="2">
@@ -1218,15 +1244,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </level>
-      </section>
-      <section eId="section_10">
-        <heading><b>Annex B - Hansard References</b></heading>
-        <paragraph>
-          <num>97 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_10"><b>Annex B - Hansard References</b></p>
+            <blockContainer>
+              <num>97 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
+            </blockContainer>
             <table uk:widths="1.71in 1.45in 3.13in">
               <tr>
                 <th>
@@ -1414,15 +1467,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_11">
-        <heading><b>Annex C - Progress of Bill Table</b></heading>
-        <paragraph>
-          <num>98 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/5/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/3/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/5/notes/annex/3/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_3_p_11"><b>Annex C - Progress of Bill Table</b></p>
+            <blockContainer>
+              <num>98 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
+            </blockContainer>
             <table uk:widths="1.04in 1.05in 1.05in 1.05in 1.05in 1.05in">
               <tr>
                 <th>
@@ -1785,9 +1865,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

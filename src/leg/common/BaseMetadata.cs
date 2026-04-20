@@ -26,7 +26,7 @@ class BaseMetadata : DocumentMetadata {
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
         return new BaseMetadata {
             ShortUriComponent = uri,
-            ExpressionDate = Builder.FormatDateAndTime(modified),
+            ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
             Name = name,
             CSS = css

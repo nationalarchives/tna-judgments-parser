@@ -22,13 +22,10 @@ class CoPMetadata : DocumentMetadata {
     public string Department { get; init; }
     public string CopDate { get; init; }
     public string ModifiedDate { get; init; }
-    public string LegislationClass { get; init; }
     public string CopType { get; init; }
 
     public int? CopYear { get; init; }
     public int CopVersion { get; init; }
-    public int? LegislationYear { get; init; }
-    public string LegislationNumber { get; init; }
 
     internal static CoPMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
@@ -59,7 +56,7 @@ class CoPMetadata : DocumentMetadata {
 
         return new CoPMetadata {
             ShortUriComponent = shortUri,
-            ExpressionDate = Builder.FormatDateAndTime(modified),
+            ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
             LastModified = modified,
             Name = name,

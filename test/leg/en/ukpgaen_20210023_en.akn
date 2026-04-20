@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes" />
-          <FRBRdate date="2021-06-14T14:58:00Z" name="lastModified" />
+          <FRBRdate date="2021-06-14" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,26 +31,25 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2021-06-14</dc:modified>
-        <dc:title>Explanatory Notes Overseas Operations (Service Personnel and Veterans) Act 2021</dc:title>
-        <dc:description>Explanatory Notes Overseas Operations (Service Personnel and Veterans) Act 2021</dc:description>
+        <dc:title>Explanatory Notes for Overseas Operations (Service Personnel and Veterans) Act 2021</dc:title>
+        <dc:description>Explanatory Notes for Overseas Operations (Service Personnel and Veterans) Act 2021</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2021/23" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2021/23" Class="UnitedKingdomPublicGeneralAct" Year="2021" Number="23" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2021/23/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2021-05-26" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2021" />
-        <ukm:LegislationNumber Value="23" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2021-05-26</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="86" />
-          <ukm:BodyParagraphs Value="86" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="89" />
+          <ukm:BodyParagraphs Value="82" />
+          <ukm:ScheduleParagraphs Value="7" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>4f23c07620d55a4f7c981c89a134e3483faecc7bdab10f547cfe25de4850bbfc</uk:hash>
+        <ukm:Hash>4f23c07620d55a4f7c981c89a134e3483faecc7bdab10f547cfe25de4850bbfc</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -71,9 +70,9 @@
         <tocItem href="#section_4" level="3"><inline name="tocHeading">Part 3: General</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes/section/5" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes/section/6" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes/section/7" level="2"><inline name="tocHeading">Annex A – Territorial extent and application in the United Kingdom</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes/section/8" level="2"><inline name="tocHeading">Annex B – Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes/section/9" level="2"><inline name="tocHeading">Annex C – Progress of the Bill table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes#annex_1_p_7" level="2"><inline name="tocHeading">7. Annex A – Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes#annex_2_p_8" level="2"><inline name="tocHeading">8. Annex B – Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2021/23/notes#annex_3_p_9" level="2"><inline name="tocHeading">9. Annex C – Progress of the Bill table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -982,18 +981,45 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_7">
-        <heading><b>Annex A – Territorial extent and application in the United Kingdom</b></heading>
-        <paragraph>
-          <num>79 </num>
-          <content>
-            <p>The Act will extend to England and Wales, Scotland and Northern Ireland. The effects of the provisions are substantively the same throughout the UK, but as amendments are needed to different pieces of legislation in the different nations, some provisions of the Act apply to England and Wales only, some to Scotland, and others to Northern Ireland. </p>
-          </content>
-        </paragraph>
-        <paragraph>
-          <num>80 </num>
-          <content>
-            <p>The extent and application of the provisions are summarised in the table below.</p>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_7"><b>Annex A – Territorial extent and application in the United Kingdom</b></p>
+            <blockContainer>
+              <num>79 </num>
+              <p>The Act will extend to England and Wales, Scotland and Northern Ireland. The effects of the provisions are substantively the same throughout the UK, but as amendments are needed to different pieces of legislation in the different nations, some provisions of the Act apply to England and Wales only, some to Scotland, and others to Northern Ireland. </p>
+            </blockContainer>
+            <blockContainer>
+              <num>80 </num>
+              <p>The extent and application of the provisions are summarised in the table below.</p>
+            </blockContainer>
             <table uk:widths="0.98in 1.16in 1.16in 1.23in 1.26in">
               <tr>
                 <td>
@@ -1336,15 +1362,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_8">
-        <heading><b>Annex B – Hansard References</b></heading>
-        <paragraph>
-          <num>81 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_8"><b>Annex B – Hansard References</b></p>
+            <blockContainer>
+              <num>81 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.47in 2.56in 2.42in">
               <tr>
                 <th>
@@ -1564,15 +1617,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_9">
-        <heading><b>Annex C – Progress of the Bill table</b></heading>
-        <paragraph>
-          <num>82 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/23/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/3/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/23/notes/annex/3/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_3_p_9"><b>Annex C – Progress of the Bill table</b></p>
+            <blockContainer>
+              <num>82 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
               <tr>
                 <th>
@@ -1995,9 +2075,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

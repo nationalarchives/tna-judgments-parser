@@ -37,8 +37,8 @@ class Helper : BaseHelper {
     /// <param name="docx">The document stream</param>
     /// <param name="filename">The filename (e.g., ukia_20250001_en.docx) used for URI and legislation lookup</param>
     /// <param name="simplify">Whether to simplify the output XML</param>
-    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
     /// <summary>
@@ -47,8 +47,8 @@ class Helper : BaseHelper {
     /// <param name="docx">The document bytes</param>
     /// <param name="filename">The filename (e.g., ukia_20250001_en.docx) used for URI and legislation lookup</param>
     /// <param name="simplify">Whether to simplify the output XML</param>
-    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
     }
 
     protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {
@@ -207,10 +207,6 @@ class Helper : BaseHelper {
         }
     }
 
-    /// <summary>
-    /// Transform header structure for Impact Assessments
-    /// Wrap header metadata in hcontainer with name="summary" containing a table structure
-    /// </summary>
     private static void TransformHeaderStructure(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
@@ -221,31 +217,21 @@ class Helper : BaseHelper {
 
         var headerLevels = new List<XmlNode>();
         var levels = mainBody.SelectNodes("akn:level", nsmgr);
-        
+
+        var preambleCandidates = new List<XmlNode>();
+        bool sawCoverLabel = false;
+
         foreach (XmlNode level in levels) {
-            var content = level.SelectSingleNode("akn:content", nsmgr);
-            if (content == null) break;
-            
-            var paragraphs = content.SelectNodes("akn:p", nsmgr);
-            if (paragraphs.Count == 0) break;
-            
-            var firstPara = paragraphs[0];
-            string firstParaText = CleanContent(firstPara.InnerText?.Trim() ?? "");
-            
-            bool isHeaderRow = firstParaText.StartsWith("Impact Assessment") ||
-                              firstParaText.StartsWith("Title:") ||
-                              firstParaText.StartsWith("Type of measure:") ||
-                              firstParaText.StartsWith("Department or agency:") ||
-                              firstParaText.StartsWith("IA number:") ||
-                              firstParaText.StartsWith("Type of Impact Assessment") ||
-                              firstParaText.StartsWith("RPC reference number:") ||
-                              firstParaText.StartsWith("Contact for enquiries:") ||
-                              firstParaText.StartsWith("Date:") ||
-                              firstParaText.Contains("Lead department") ||
-                              firstParaText.Contains("Other departments");
-            
-            if (isHeaderRow) {
+            if (LevelLooksLikeIaCover(level, nsmgr)) {
+                if (!sawCoverLabel && preambleCandidates.Count > 0) {
+                    headerLevels.AddRange(preambleCandidates);
+                    preambleCandidates.Clear();
+                }
                 headerLevels.Add(level);
+                sawCoverLabel = true;
+            } else if (!sawCoverLabel && LevelLooksLikeCoverPreamble(level, nsmgr)
+                       && preambleCandidates.Count < 2) {
+                preambleCandidates.Add(level);
             } else {
                 break;
             }
@@ -253,44 +239,107 @@ class Helper : BaseHelper {
 
         if (headerLevels.Count == 0) return;
 
+        bool anyHasTable = false;
+        foreach (XmlNode level in headerLevels) {
+            if (level.SelectSingleNode("akn:content/akn:table", nsmgr) != null) {
+                anyHasTable = true;
+                break;
+            }
+        }
+
         var hcontainer = xml.CreateElement("hcontainer", AKN_NAMESPACE);
         hcontainer.SetAttribute("name", "summary");
-        
-        var hcontainerContent = xml.CreateElement("content", AKN_NAMESPACE);
-        hcontainer.AppendChild(hcontainerContent);
-        
-        var table = xml.CreateElement("table", AKN_NAMESPACE);
-        hcontainerContent.AppendChild(table);
-        
-        foreach (XmlNode level in headerLevels) {
-            var tr = xml.CreateElement("tr", AKN_NAMESPACE);
-            table.AppendChild(tr);
-            
-            var levelContent = level.SelectSingleNode("akn:content", nsmgr);
-            if (levelContent != null) {
-                var td = xml.CreateElement("td", AKN_NAMESPACE);
-                tr.AppendChild(td);
-                
-                var paragraphs = levelContent.SelectNodes("akn:p", nsmgr);
-                foreach (XmlNode para in paragraphs) {
-                    var importedPara = xml.ImportNode(para, true);
-                    td.AppendChild(importedPara);
+
+        if (anyHasTable) {
+            foreach (XmlNode level in headerLevels) {
+                var levelContent = level.SelectSingleNode("akn:content", nsmgr);
+                if (levelContent != null)
+                    hcontainer.AppendChild(xml.ImportNode(levelContent, true));
+            }
+        } else {
+            var hcontainerContent = xml.CreateElement("content", AKN_NAMESPACE);
+            hcontainer.AppendChild(hcontainerContent);
+            var table = xml.CreateElement("table", AKN_NAMESPACE);
+            hcontainerContent.AppendChild(table);
+            foreach (XmlNode level in headerLevels) {
+                var tr = xml.CreateElement("tr", AKN_NAMESPACE);
+                table.AppendChild(tr);
+                var levelContent = level.SelectSingleNode("akn:content", nsmgr);
+                if (levelContent != null) {
+                    var td = xml.CreateElement("td", AKN_NAMESPACE);
+                    tr.AppendChild(td);
+                    var paragraphs = levelContent.SelectNodes("akn:p", nsmgr);
+                    foreach (XmlNode para in paragraphs) {
+                        td.AppendChild(xml.ImportNode(para, true));
+                    }
                 }
             }
         }
-        
+
         var firstChild = mainBody.FirstChild;
         if (firstChild != null) {
             mainBody.InsertBefore(hcontainer, firstChild);
         } else {
             mainBody.AppendChild(hcontainer);
         }
-        
+
         foreach (XmlNode level in headerLevels) {
             mainBody.RemoveChild(level);
         }
-        
-        logger.LogInformation("Transformed {Count} IA header levels into hcontainer.summary with table structure", headerLevels.Count);
+
+        logger.LogInformation("Wrapped {Count} IA cover level(s) in hcontainer.summary",
+            headerLevels.Count);
+    }
+
+    private static bool LevelLooksLikeIaCover(XmlNode level, XmlNamespaceManager nsmgr) {
+        var content = level.SelectSingleNode("akn:content", nsmgr);
+        if (content == null) return false;
+        var paragraphs = content.SelectNodes(".//akn:p", nsmgr);
+        if (paragraphs == null || paragraphs.Count == 0) return false;
+
+        int limit = System.Math.Min(10, paragraphs.Count);
+        for (int i = 0; i < limit; i++) {
+            string text = CleanContent(paragraphs[i].InnerText?.Trim() ?? "");
+            if (string.IsNullOrEmpty(text)) continue;
+            if (IsIaCoverHeading(text)) return true;
+        }
+        return false;
+    }
+
+    private static readonly string[] IaCoverLabelPrefixes = new[] {
+        "Title:", "Title of proposal:",
+        "IA No:", "IA number:",
+        "RPC Reference No:", "RPC reference number:",
+        "Lead department or agency:", "Lead department:",
+        "Other departments or agencies:", "Other departments:",
+        "Department or agency:",
+        "Date:", "Stage:",
+        "Source of intervention:",
+        "Type of measure:", "Type of Impact Assessment:",
+        "Contact for enquiries:", "Contact:"
+    };
+
+    internal static bool IsIaCoverHeading(string text) {
+        if (string.IsNullOrEmpty(text)) return false;
+        if (text.StartsWith("Impact Assessment", System.StringComparison.OrdinalIgnoreCase))
+            return true;
+        foreach (var prefix in IaCoverLabelPrefixes) {
+            if (text.StartsWith(prefix, System.StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        return false;
+    }
+
+    private static bool LevelLooksLikeCoverPreamble(XmlNode level, XmlNamespaceManager nsmgr) {
+        var content = level.SelectSingleNode("akn:content", nsmgr);
+        if (content == null) return false;
+        var paragraphs = content.SelectNodes(".//akn:p", nsmgr);
+        if (paragraphs == null || paragraphs.Count == 0 || paragraphs.Count > 2)
+            return false;
+        string text = CleanContent(paragraphs[0].InnerText?.Trim() ?? "");
+        if (string.IsNullOrEmpty(text) || text.Length > 80) return false;
+        return System.Text.RegularExpressions.Regex.IsMatch(
+            text, @"\bimpact\s+assessment\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
     }
 
     /// <summary>
@@ -450,9 +499,11 @@ class Helper : BaseHelper {
         if (firstPBold == null) return false;
 
         string boldText = firstPBold.InnerText?.Trim() ?? "";
-        
+
         // Must be substantive but heading-like (not too long)
         if (boldText.Length < 5 || boldText.Length > 200) return false;
+
+        if (IsFigureOrTableCaption(boldText)) return false;
 
         // Extract heading (remove trailing colons)
         headingText = boldText.Replace(":", "").Trim();
@@ -478,7 +529,7 @@ class Helper : BaseHelper {
         if (boldElement == null) return false;
 
         string boldText = boldElement.InnerText?.Trim() ?? "";
-        
+
         // Must be heading-like: substantive but short
         if (boldText.Length < 5 || boldText.Length > 150) return false;
 
@@ -486,8 +537,18 @@ class Helper : BaseHelper {
         string totalText = firstP.InnerText?.Trim() ?? "";
         if (boldText.Length < totalText.Length * 0.5) return false;
 
+        if (IsFigureOrTableCaption(boldText)) return false;
+
         headingText = boldText.Replace(":", "").Trim();
         return true;
+    }
+
+    internal static bool IsFigureOrTableCaption(string text) {
+        if (string.IsNullOrEmpty(text)) return false;
+        return System.Text.RegularExpressions.Regex.IsMatch(
+            text,
+            @"^(Figure|Fig\.?|Table|Chart|Box|Diagram|Map|Exhibit|Graph)\s*[A-Z]?[\-\.]?\s*\d",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
     }
 
     private static void TransformToSemanticSection(XmlDocument xml, XmlNode element, int sectionNumber, string headingText, List<XmlNode> following) {
@@ -864,16 +925,16 @@ class Helper : BaseHelper {
         if (allSections != null && allSections.Count > 0) {
             foreach (XmlElement section in allSections) {
                 var eId = section.GetAttribute("eId");
-                
+
                 // Extract heading using flexible approach
                 string headingText = ExtractHeadingForToc(section, nsmgr);
-                
+
                 // Generate eId if missing
                 if (string.IsNullOrEmpty(eId)) {
                     eId = $"section_{tocNumber + 1}";
                     section.SetAttribute("eId", eId);
                 }
-                
+
                 string sectionNumber = eId.Replace("section_", "");
 
                 string href;
@@ -888,11 +949,50 @@ class Helper : BaseHelper {
             }
         }
 
+        var annexBodies = xml.SelectNodes("//akn:attachments/akn:attachment/akn:doc/akn:mainBody", nsmgr);
+        if (annexBodies != null) {
+            int annexIndex = 0;
+            foreach (XmlNode annexBody in annexBodies) {
+                annexIndex++;
+                foreach (XmlNode child in annexBody.ChildNodes) {
+                    if (child is not XmlElement el) continue;
+                    if (el.LocalName != "p" || el.NamespaceURI != AKN_NAMESPACE) continue;
+                    if (!IsFlatBoldHeadingParagraph(el, nsmgr, out string headingText)) continue;
+
+                    string eId = el.GetAttribute("eId");
+                    if (string.IsNullOrEmpty(eId)) {
+                        eId = $"annex_{annexIndex}_p_{tocNumber}";
+                        el.SetAttribute("eId", eId);
+                    }
+                    string href = !string.IsNullOrEmpty(expressionUri)
+                        ? $"{expressionUri}#{eId}"
+                        : "#" + eId;
+                    AddTocItem(xml, toc, href, tocNumber, headingText);
+                    tocNumber++;
+                }
+            }
+        }
+
         // Insert TOC at the beginning of mainBody
         if (toc.HasChildNodes) {
             mainBody.InsertBefore(toc, mainBody.FirstChild);
             logger.LogInformation("Generated TOC with {Count} entries", toc.ChildNodes.Count);
         }
+    }
+
+    private static bool IsFlatBoldHeadingParagraph(XmlElement paragraph, XmlNamespaceManager nsmgr, out string headingText) {
+        headingText = null;
+        string fullText = paragraph.InnerText?.Trim() ?? "";
+        if (fullText.Length < 3 || fullText.Length > 200) return false;
+        var bold = paragraph.SelectSingleNode("akn:b", nsmgr);
+        if (bold == null) return false;
+        string boldText = bold.InnerText?.Trim() ?? "";
+        if (boldText.Length < 3) return false;
+        if (boldText.Length < fullText.Length - 3) return false;
+        string trimmed = boldText.TrimEnd(':', '.', ' ');
+        if (string.IsNullOrEmpty(trimmed)) return false;
+        headingText = trimmed.Length > 120 ? trimmed.Substring(0, 117) + "..." : trimmed;
+        return true;
     }
 
     /// <summary>

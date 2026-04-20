@@ -38,6 +38,7 @@ class LegImageProcessor {
         }
 
         string fileIdentifier = document.Meta.ImageFileIdentifier ?? shortUri;
+        string srcBase = document.Meta.ExpressionUri + "/images/";
 
         logger.LogInformation("Processing {Count} images for {Uri} (file identifier: {Id})",
             document.Images.Count(), shortUri, fileIdentifier);
@@ -81,7 +82,7 @@ class LegImageProcessor {
 
             // Generate new S3-style filename with .gif extension
             string newFilename = ImageNaming.GenerateFilename(fileIdentifier, language, sequence, "gif");
-            string newSrc = "images/" + newFilename;
+            string newSrc = srcBase + newFilename;
 
             logger.LogDebug("Renaming image: {OldName} -> {NewName} (src: {NewSrc})",
                 image.Name, newFilename, newSrc);

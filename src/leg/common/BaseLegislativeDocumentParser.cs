@@ -387,6 +387,34 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
         return IsFirstLineOfAnnex(block);
     }
 
+    protected override bool IsFirstLineOfAnnex(IBlock block) {
+        if (block is not WLine line) return false;
+        return IsLegAnnexHeading(line.NormalizedContent);
+    }
+
+    private const int MaxAnnexHeadingLength = 120;
+
+    internal static bool IsLegAnnexHeading(string content) {
+        string text = content?.Trim() ?? "";
+        if (text.Length == 0 || text.Length > MaxAnnexHeadingLength) return false;
+
+        if (text.Equals("Annex", System.StringComparison.OrdinalIgnoreCase)) return true;
+        if (text.Equals("- Annex -", System.StringComparison.OrdinalIgnoreCase)) return true;
+        if (text.Equals("Appendix", System.StringComparison.OrdinalIgnoreCase)) return true;
+        if (Regex.IsMatch(text, @"^Annex \d+$", RegexOptions.IgnoreCase)) return true;
+
+        string stripped = Regex.Replace(text, @"^[A-Za-z0-9]{1,3}[\.\):]\s+", "");
+        if (stripped.Length == 0) return false;
+
+        if (Regex.IsMatch(stripped, @"^(Annexes|Appendices)[\s:]*$",
+                          RegexOptions.IgnoreCase))
+            return true;
+        return Regex.IsMatch(
+            stripped,
+            @"^(Annex|Appendix)\s+[A-Z]{1,3}(?:[\s\.\:\-\u2013\u2014]+(?:[A-Za-z0-9][^\.]{0,100})?)?$",
+            RegexOptions.IgnoreCase);
+    }
+
 }
 
 }

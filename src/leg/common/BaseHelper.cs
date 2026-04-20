@@ -18,47 +18,49 @@ abstract class BaseHelper {
         Config = config;
     }
 
-    public IXmlDocument Parse(Stream docx, bool simplify = true, string filename = null) {
+    public IXmlDocument Parse(Stream docx, bool simplify = true, string filename = null, string manifestationName = Builder.DefaultManifestationName) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify, filename);
+        return Parse(word, simplify, filename, manifestationName);
     }
 
-    public IXmlDocument Parse(byte[] docx, bool simplify = true, string filename = null) {
+    public IXmlDocument Parse(byte[] docx, bool simplify = true, string filename = null, string manifestationName = Builder.DefaultManifestationName) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify, filename);
+        return Parse(word, simplify, filename, manifestationName);
     }
 
-    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify, string filename = null) {
+    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify, string filename, string manifestationName) {
         IDocument doc = ParseDocument(docx, filename);
-        
-        // Process images: convert formats, rename to S3 convention, update references
+
         IEnumerable<Judgments.IImage> processedImages = LegImageProcessor.ProcessImages(doc);
 
         doc.Meta.Statistics = StatisticsCalculator.Calculate(doc);
 
-        XmlDocument xml = Builder.Build(doc);
+        XmlDocument xml = Builder.Build(doc, manifestationName);
         docx.Dispose();
         if (simplify)
             Simplifier.Simplify(xml);
-        
-        // Apply document-specific processing
+
         ApplyDocumentSpecificProcessing(xml);
-        
+
+        SyncTotalImagesWithXml(xml);
+
         return new XmlDocument_ { Document = xml, Images = processedImages };
     }
 
-    /// <summary>
-    /// Parse the document using the appropriate parser for this document type.
-    /// Must be implemented by derived classes.
-    /// </summary>
+    private static void SyncTotalImagesWithXml(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
+        nsmgr.AddNamespace("ukm", "http://www.legislation.gov.uk/namespaces/metadata");
+        var totalImages = xml.SelectSingleNode("//ukm:Statistics/ukm:TotalImages", nsmgr) as XmlElement;
+        if (totalImages == null) return;
+        var imgs = xml.SelectNodes("//akn:img", nsmgr);
+        int count = imgs?.Count ?? 0;
+        totalImages.SetAttribute("Value", count.ToString());
+    }
+
     protected abstract IDocument ParseDocument(WordprocessingDocument docx, string filename = null);
 
-    /// <summary>
-    /// Apply document-specific processing to the XML.
-    /// Can be overridden by derived classes for custom processing.
-    /// </summary>
     protected virtual void ApplyDocumentSpecificProcessing(XmlDocument xml) {
-        // Default implementation does nothing
     }
 
 }

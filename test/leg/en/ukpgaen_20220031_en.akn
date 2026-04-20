@@ -6,21 +6,21 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes" />
-          <FRBRdate date="2026-04-13" name="generated" />
+          <FRBRdate date="2026-04-20" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes" />
-          <FRBRdate date="2022-11-24T16:40:00Z" name="lastModified" />
+          <FRBRdate date="2022-11-24" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes/data.akn" />
-          <FRBRdate date="2026-04-13" name="transform" />
+          <FRBRdate date="2026-04-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -31,26 +31,25 @@
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-11-24</dc:modified>
-        <dc:title>Explanatory Notes Health and Care Act 2022</dc:title>
-        <dc:description>Explanatory Notes Health and Care Act 2022</dc:description>
+        <dc:title>Explanatory Notes for Health and Care Act 2022</dc:title>
+        <dc:description>Explanatory Notes for Health and Care Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/31" />
+        <ukm:Legislation URI="http://www.legislation.gov.uk/id/ukpga/2022/31" Class="UnitedKingdomPublicGeneralAct" Year="2022" Number="31" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/31/notes</dc:identifier>
-        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
-        <ukm:Date Value="2022-11-21" />
-        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
-        <ukm:LegislationYear Value="2022" />
-        <ukm:LegislationNumber Value="31" />
+        <ukm:DocumentClassification>
+          <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        </ukm:DocumentClassification>
+        <dc:date>2022-11-21</dc:date>
         <ukm:Statistics>
-          <ukm:TotalParagraphs Value="1337" />
-          <ukm:BodyParagraphs Value="1337" />
-          <ukm:ScheduleParagraphs Value="0" />
+          <ukm:TotalParagraphs Value="1344" />
+          <ukm:BodyParagraphs Value="1332" />
+          <ukm:ScheduleParagraphs Value="12" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <uk:hash>5b97cdc3002999dfd40c9ac1d0c0d17cafad12d232e4223270e6037fe1979d11</uk:hash>
+        <ukm:Hash>5b97cdc3002999dfd40c9ac1d0c0d17cafad12d232e4223270e6037fe1979d11</ukm:Hash>
       </proprietary>
     </meta>
     <preface>
@@ -166,10 +165,10 @@
         <tocItem href="#section_4" level="3"><inline name="tocHeading">Child Safeguarding: Information Sharing</inline></tocItem>
         <tocItem href="#section_4" level="3"><inline name="tocHeading">Disability and autism training</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes/section/5" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes/section/6" level="2"><inline name="tocHeading">Annex A – Territorial extent and application in the United Kingdom</inline></tocItem>
-        <tocItem href="#section_6" level="3"><inline name="tocHeading">Subject matter and legislative competence of devolved legislatures</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes/section/7" level="2"><inline name="tocHeading">Annex B – Hansard References</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes/section/8" level="2"><inline name="tocHeading">Annex C – Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes#annex_1_p_6" level="2"><inline name="tocHeading">6. Annex A – Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes#annex_1_p_7" level="2"><inline name="tocHeading">7. Subject matter and legislative competence of devolved legislatures</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes#annex_2_p_8" level="2"><inline name="tocHeading">8. Annex B – Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2022/31/notes#annex_3_p_9" level="2"><inline name="tocHeading">9. Annex C – Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -11173,60 +11172,102 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section eId="section_6">
-        <heading><b>Annex A – Territorial extent and application in the United Kingdom</b></heading>
-        <level>
-          <heading><b>Subject matter and legislative competence of devolved legislatures</b></heading>
-          <paragraph>
-            <num>1328 </num>
-            <content>
+    </mainBody>
+    <attachments>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/1" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/1" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/1/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/1/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_1_p_6"><b>Annex A – Territorial extent and application in the United Kingdom</b></p>
+            <p eId="annex_1_p_7"><b>Subject matter and legislative competence of devolved legislatures</b></p>
+            <blockContainer>
+              <num>1328 </num>
               <p>In the opinion of the UK Government, the subject matter of the Act is within the devolved competence of the Welsh, Scottish and Northern Irish legislatures because it relates to health. Health policy and funding are controlled by the respective Devolved Administrations.</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num>1329 </num>
-            <content>
+            </blockContainer>
+            <blockContainer>
+              <num>1329 </num>
               <p>Health is within the competence of Senedd Cymru because it is not a reserved matter under Schedule 7A of the Government of Wales Act 2006. It is within the competence of the Scottish Parliament because it is not a reserved matter under Schedule 5 of the Scotland Act 1998. It is within the competence of the Northern Ireland Executive because it is neither reserved under Schedule 3 to the Northern Ireland Act 1998 nor excepted under Schedule 2 to that Act.</p>
-            </content>
-          </paragraph>
-          <paragraph>
-            <num>1330 </num>
-            <intro>
+            </blockContainer>
+            <blockContainer>
+              <num>1330 </num>
               <p>The exceptions are:</p>
-            </intro>
-            <subparagraph>
+            </blockContainer>
+            <blockContainer>
               <num>•</num>
-              <content>
-                <p>Section 168: Regulation of healthcare and associated professions. Professional regulation is reserved under the Scotland Act 1998 with the exception of professions brought into regulation since the Scotland Act 1998 including any professions brought into regulation in the future. Professional regulation of healthcare workers is an entirely reserved matter under the Wales Act 2006. Not excepted are orders in council made under section 60 of the Health Act 1999 to bring into regulation groups of workers who are concerned with physical or mental health of individuals, but who are not generally regarded as a profession. </p>
-              </content>
-            </subparagraph>
-            <subparagraph>
+              <p>Section 168: Regulation of healthcare and associated professions. Professional regulation is reserved under the Scotland Act 1998 with the exception of professions brought into regulation since the Scotland Act 1998 including any professions brought into regulation in the future. Professional regulation of healthcare workers is an entirely reserved matter under the Wales Act 2006. Not excepted are orders in council made under section 60 of the Health Act 1999 to bring into regulation groups of workers who are concerned with physical or mental health of individuals, but who are not generally regarded as a profession. </p>
+            </blockContainer>
+            <blockContainer>
               <num>•</num>
-              <content>
-                <p>Section 125: Restriction of statutory powers requiring disclosure. This section prevents a UK wide power relating to reserved areas being used to require disclosure of, or to seize, any protected material from the HSSIB and therefore would be outside the legislative competence of the devolved legislatures.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
+              <p>Section 125: Restriction of statutory powers requiring disclosure. This section prevents a UK wide power relating to reserved areas being used to require disclosure of, or to seize, any protected material from the HSSIB and therefore would be outside the legislative competence of the devolved legislatures.</p>
+            </blockContainer>
+            <blockContainer>
               <num>•</num>
-              <content>
-                <p>Sections 113 and 114. These could have some practical effect in Wales as a result of a request for assistance or agreement in relation to section 111 or 112, but this would not involve any devolved legislation being affected.</p>
-              </content>
-            </subparagraph>
-            <subparagraph>
+              <p>Sections 113 and 114. These could have some practical effect in Wales as a result of a request for assistance or agreement in relation to section 111 or 112, but this would not involve any devolved legislation being affected.</p>
+            </blockContainer>
+            <blockContainer>
               <num>•</num>
-              <content>
-                <p>Section 172 and Schedule 17: Advertising of less healthy food and drink. While food and health are within devolved competence in all three devolution settlements, Internet services and broadcasting matters are reserved in all three settlements (sections C10 and K1 of Schedule 5 to the Scotland Act 1998, sections C9 and K1 of Schedule 7A to the Government of Wales Act 2006 and Paragraph 29 of Schedule 3 to the Northern Ireland Act 1998). </p>
-              </content>
-            </subparagraph>
-          </paragraph>
-        </level>
-      </section>
-      <section eId="section_7">
-        <heading><b>Annex B – Hansard References</b></heading>
-        <paragraph>
-          <num>1331 </num>
-          <content>
-            <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament.</p>
+              <p>Section 172 and Schedule 17: Advertising of less healthy food and drink. While food and health are within devolved competence in all three devolution settlements, Internet services and broadcasting matters are reserved in all three settlements (sections C10 and K1 of Schedule 5 to the Scotland Act 1998, sections C9 and K1 of Schedule 7A to the Government of Wales Act 2006 and Paragraph 29 of Schedule 3 to the Northern Ireland Act 1998). </p>
+            </blockContainer>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/2" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/2" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/2/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/2/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_2_p_8"><b>Annex B – Hansard References</b></p>
+            <blockContainer>
+              <num>1331 </num>
+              <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.71in 1.45in 3.13in">
               <tr>
                 <th>
@@ -11484,15 +11525,42 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-      <section eId="section_8">
-        <heading><b>Annex C – Progress of Bill Table</b></heading>
-        <paragraph>
-          <num>1332 </num>
-          <content>
-            <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+          </mainBody>
+        </doc>
+      </attachment>
+      <attachment>
+        <doc name="annex">
+          <meta>
+            <identification source="#tna">
+              <FRBRWork>
+                <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/31/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+                <FRBRcountry value="GB-UKM" />
+              </FRBRWork>
+              <FRBRExpression>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/3" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/3" />
+                <FRBRdate date="2026-04-20" name="generated" />
+                <FRBRauthor href="#" />
+                <FRBRlanguage language="en" />
+              </FRBRExpression>
+              <FRBRManifestation>
+                <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/3/data.akn" />
+                <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/31/notes/annex/3/data.akn" />
+                <FRBRdate date="2026-04-20" name="historic-akn-transform" />
+                <FRBRauthor href="#tna" />
+                <FRBRformat value="application/akn+xml" />
+              </FRBRManifestation>
+            </identification>
+          </meta>
+          <mainBody>
+            <p eId="annex_3_p_9"><b>Annex C – Progress of Bill Table</b></p>
+            <blockContainer>
+              <num>1332 </num>
+              <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
+            </blockContainer>
             <table uk:widths="1.05in 1.05in 1.05in 1.05in 1.05in 1.04in">
               <tr>
                 <th>
@@ -15695,9 +15763,9 @@
                 </td>
               </tr>
             </table>
-          </content>
-        </paragraph>
-      </section>
-    </mainBody>
+          </mainBody>
+        </doc>
+      </attachment>
+    </attachments>
   </doc>
 </akomaNtoso>

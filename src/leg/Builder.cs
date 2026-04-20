@@ -12,15 +12,30 @@ namespace UK.Gov.Legislation {
 
 class Builder : AkN.Builder {
 
+    public const string DefaultManifestationName = "historic-akn-transform";
+
     override protected string UKNS => "https://legislation.gov.uk/akn";
     private const string UKM_NS = "http://www.legislation.gov.uk/namespaces/metadata";
 
+    private readonly string manifestationName;
 
-    private static string FormatDateOnly(DateTime? date) {
+    private Builder(string manifestationName) {
+        this.manifestationName = manifestationName ?? DefaultManifestationName;
+    }
+
+
+    public static string FormatDateOnly(DateTime? date) {
         return date?.ToString("s")[..10];
     }
-    public static string FormatDateAndTime(DateTime? date) {
-        return date?.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture);
+
+    private void AppendDocumentClassification(XmlElement proprietary, string mainTypeValue) {
+        if (string.IsNullOrEmpty(mainTypeValue))
+            return;
+        XmlElement classification = doc.CreateElement("ukm", "DocumentClassification", UKM_NS);
+        proprietary.AppendChild(classification);
+        XmlElement mainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
+        classification.AppendChild(mainType);
+        mainType.SetAttribute("Value", mainTypeValue);
     }
 
     private static string BuildDcTitle(DocumentMetadata data) {
@@ -36,12 +51,12 @@ class Builder : AkN.Builder {
         if (docTypeLabel is null)
             return null;
         if (!string.IsNullOrEmpty(data.LegislationTitle))
-            return $"{docTypeLabel} {data.LegislationTitle}";
+            return $"{docTypeLabel} for {data.LegislationTitle}";
         return docTypeLabel;
     }
 
-    public static XmlDocument Build(IDocument document) {
-        Builder builder = new();
+    public static XmlDocument Build(IDocument document, string manifestationName = DefaultManifestationName) {
+        Builder builder = new(manifestationName);
         builder.PrivateBuild(document);
         return builder.doc;
     }
@@ -66,7 +81,7 @@ class Builder : AkN.Builder {
         else
             throw new System.Exception();
         AddAnnexes(main, document);
-        AddHash(doc, UKNS, "uk");
+        AddHash(doc, UKM_NS, "ukm", "Hash");
     }
 
     private void AddMetadata(XmlElement main, DocumentMetadata data) {
@@ -122,7 +137,7 @@ class Builder : AkN.Builder {
         maniURI.SetAttribute("value",  data.ExpressionUri + "/data.akn");
         XmlElement maniDate = CreateAndAppend("FRBRdate", manifestation);
         maniDate.SetAttribute("date", FormatDateOnly(DateTime.UtcNow));
-        maniDate.SetAttribute("name", "transform");
+        maniDate.SetAttribute("name", manifestationName);
         XmlElement maniAuthor = CreateAndAppend("FRBRauthor", manifestation);
         maniAuthor.SetAttribute("href", "#tna");
         XmlElement maniFormat = CreateAndAppend("FRBRformat", manifestation);
@@ -175,10 +190,8 @@ class Builder : AkN.Builder {
         else if (data is OtherDocuments.ODMetadata odData && odData.LastModified.HasValue) {
             modifiedValue = FormatDateOnly(odData.LastModified);
         }
-        // For other documents, use ExpressionDate if it's a lastModified timestamp
         else if (data.ExpressionDateName == "lastModified" && data.ExpressionDate != null) {
-            // Extract date portion only (first 10 characters: yyyy-MM-dd)
-            modifiedValue = data.ExpressionDate.Length >= 10 ? data.ExpressionDate[..10] : data.ExpressionDate;
+            modifiedValue = data.ExpressionDate;
         }
         
         if (modifiedValue != null) {
@@ -221,11 +234,16 @@ class Builder : AkN.Builder {
             dcPublisher.AppendChild(doc.CreateTextNode(data.Publisher));
         }
 
-        // Add legislation reference if available (for Impact Assessments)
         if (data.LegislationUri is not null) {
             XmlElement legislation = doc.CreateElement("ukm", "Legislation", UKM_NS);
             proprietary.AppendChild(legislation);
-            legislation.SetAttribute("Value", data.LegislationUri);
+            legislation.SetAttribute("URI", data.LegislationUri);
+            if (!string.IsNullOrEmpty(data.LegislationClass))
+                legislation.SetAttribute("Class", data.LegislationClass);
+            if (data.LegislationYear.HasValue)
+                legislation.SetAttribute("Year", data.LegislationYear.Value.ToString());
+            if (!string.IsNullOrEmpty(data.LegislationNumber))
+                legislation.SetAttribute("Number", data.LegislationNumber);
         }
 
         // Add additional EM metadata from CSV mapping (for Explanatory Memoranda)
@@ -236,11 +254,7 @@ class Builder : AkN.Builder {
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(emMetadata.WorkUri));
             }
-            if (!string.IsNullOrEmpty(emMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
-                proprietary.AppendChild(documentMainType);
-                documentMainType.SetAttribute("Value", emMetadata.DocumentMainType);
-            }
+            AppendDocumentClassification(proprietary, emMetadata.DocumentMainType);
 
             if (!string.IsNullOrEmpty(emMetadata.Department)) {
                 XmlElement department = doc.CreateElement("ukm", "Department", UKM_NS);
@@ -249,37 +263,9 @@ class Builder : AkN.Builder {
             }
 
             if (!string.IsNullOrEmpty(emMetadata.EmDate)) {
-                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
+                XmlElement date = doc.CreateElement("dc", "date", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(date);
-                date.SetAttribute("Value", emMetadata.EmDate);
-            }
-
-            if (!string.IsNullOrEmpty(emMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
-                proprietary.AppendChild(legislationClass);
-                legislationClass.SetAttribute("Value", emMetadata.LegislationClass);
-            }
-
-            if (emMetadata.EmYear.HasValue) {
-                XmlElement year = doc.CreateElement("ukm", "Year", UKM_NS);
-                proprietary.AppendChild(year);
-                year.SetAttribute("Value", emMetadata.EmYear.Value.ToString());
-            }
-
-            XmlElement version = doc.CreateElement("ukm", "Version", UKM_NS);
-            proprietary.AppendChild(version);
-            version.SetAttribute("Value", emMetadata.EmVersion.ToString());
-
-            if (emMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
-                proprietary.AppendChild(legislationYear);
-                legislationYear.SetAttribute("Value", emMetadata.LegislationYear.Value.ToString());
-            }
-
-            if (!string.IsNullOrEmpty(emMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
-                proprietary.AppendChild(legislationNumber);
-                legislationNumber.SetAttribute("Value", emMetadata.LegislationNumber);
+                date.AppendChild(doc.CreateTextNode(emMetadata.EmDate));
             }
         }
         // Add additional IA metadata from CSV mapping (for Impact Assessments)
@@ -297,11 +283,7 @@ class Builder : AkN.Builder {
                 documentStage.SetAttribute("Value", iaMetadata.DocumentStage);
             }
 
-            if (!string.IsNullOrEmpty(iaMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
-                proprietary.AppendChild(documentMainType);
-                documentMainType.SetAttribute("Value", iaMetadata.DocumentMainType);
-            }
+            AppendDocumentClassification(proprietary, iaMetadata.DocumentMainType);
 
             if (!string.IsNullOrEmpty(iaMetadata.Department)) {
                 XmlElement department = doc.CreateElement("ukm", "Department", UKM_NS);
@@ -310,21 +292,15 @@ class Builder : AkN.Builder {
             }
 
             if (!string.IsNullOrEmpty(iaMetadata.IADate)) {
-                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
+                XmlElement date = doc.CreateElement("dc", "date", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(date);
-                date.SetAttribute("Value", iaMetadata.IADate);
+                date.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
             }
 
             if (!string.IsNullOrEmpty(iaMetadata.PDFDate)) {
                 XmlElement pdfDate = doc.CreateElement("ukm", "PdfDate", UKM_NS);
                 proprietary.AppendChild(pdfDate);
                 pdfDate.SetAttribute("Value", iaMetadata.PDFDate);
-            }
-
-            if (!string.IsNullOrEmpty(iaMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
-                proprietary.AppendChild(legislationClass);
-                legislationClass.SetAttribute("Value", iaMetadata.LegislationClass);
             }
 
             if (iaMetadata.UkiaYear.HasValue) {
@@ -338,18 +314,6 @@ class Builder : AkN.Builder {
                 proprietary.AppendChild(number);
                 number.SetAttribute("Value", iaMetadata.UkiaNumber.Value.ToString());
             }
-
-            if (iaMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
-                proprietary.AppendChild(legislationYear);
-                legislationYear.SetAttribute("Value", iaMetadata.LegislationYear.Value.ToString());
-            }
-
-            if (!string.IsNullOrEmpty(iaMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
-                proprietary.AppendChild(legislationNumber);
-                legislationNumber.SetAttribute("Value", iaMetadata.LegislationNumber);
-            }
         }
         // Add additional EN metadata from CSV mapping (for Explanatory Notes)
         else if (data is ExplanatoryNotes.ENMetadata enMetadata) {
@@ -358,30 +322,11 @@ class Builder : AkN.Builder {
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(enMetadata.WorkUri));
             }
-            if (!string.IsNullOrEmpty(enMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
-                proprietary.AppendChild(documentMainType);
-                documentMainType.SetAttribute("Value", enMetadata.DocumentMainType);
-            }
+            AppendDocumentClassification(proprietary, enMetadata.DocumentMainType);
             if (!string.IsNullOrEmpty(enMetadata.EnDate)) {
-                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
+                XmlElement date = doc.CreateElement("dc", "date", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(date);
-                date.SetAttribute("Value", enMetadata.EnDate);
-            }
-            if (!string.IsNullOrEmpty(enMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
-                proprietary.AppendChild(legislationClass);
-                legislationClass.SetAttribute("Value", enMetadata.LegislationClass);
-            }
-            if (enMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
-                proprietary.AppendChild(legislationYear);
-                legislationYear.SetAttribute("Value", enMetadata.LegislationYear.Value.ToString());
-            }
-            if (!string.IsNullOrEmpty(enMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
-                proprietary.AppendChild(legislationNumber);
-                legislationNumber.SetAttribute("Value", enMetadata.LegislationNumber);
+                date.AppendChild(doc.CreateTextNode(enMetadata.EnDate));
             }
         }
         // Add additional TN metadata from CSV mapping (for Transposition Notes)
@@ -391,40 +336,16 @@ class Builder : AkN.Builder {
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(tnMetadata.WorkUri));
             }
-            if (!string.IsNullOrEmpty(tnMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
-                proprietary.AppendChild(documentMainType);
-                documentMainType.SetAttribute("Value", tnMetadata.DocumentMainType);
-            }
+            AppendDocumentClassification(proprietary, tnMetadata.DocumentMainType);
             if (!string.IsNullOrEmpty(tnMetadata.Department)) {
                 XmlElement department = doc.CreateElement("ukm", "Department", UKM_NS);
                 proprietary.AppendChild(department);
                 department.SetAttribute("Value", tnMetadata.Department);
             }
             if (!string.IsNullOrEmpty(tnMetadata.TnDate)) {
-                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
+                XmlElement date = doc.CreateElement("dc", "date", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(date);
-                date.SetAttribute("Value", tnMetadata.TnDate);
-            }
-            if (!string.IsNullOrEmpty(tnMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
-                proprietary.AppendChild(legislationClass);
-                legislationClass.SetAttribute("Value", tnMetadata.LegislationClass);
-            }
-            if (tnMetadata.TnYear.HasValue) {
-                XmlElement year = doc.CreateElement("ukm", "Year", UKM_NS);
-                proprietary.AppendChild(year);
-                year.SetAttribute("Value", tnMetadata.TnYear.Value.ToString());
-            }
-            if (tnMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
-                proprietary.AppendChild(legislationYear);
-                legislationYear.SetAttribute("Value", tnMetadata.LegislationYear.Value.ToString());
-            }
-            if (!string.IsNullOrEmpty(tnMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
-                proprietary.AppendChild(legislationNumber);
-                legislationNumber.SetAttribute("Value", tnMetadata.LegislationNumber);
+                date.AppendChild(doc.CreateTextNode(tnMetadata.TnDate));
             }
         }
         // Add additional CoP metadata from CSV mapping (for Codes of Practice)
@@ -434,43 +355,16 @@ class Builder : AkN.Builder {
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(copMetadata.WorkUri));
             }
-            if (!string.IsNullOrEmpty(copMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
-                proprietary.AppendChild(documentMainType);
-                documentMainType.SetAttribute("Value", copMetadata.DocumentMainType);
-            }
+            AppendDocumentClassification(proprietary, copMetadata.DocumentMainType);
             if (!string.IsNullOrEmpty(copMetadata.Department)) {
                 XmlElement department = doc.CreateElement("ukm", "Department", UKM_NS);
                 proprietary.AppendChild(department);
                 department.SetAttribute("Value", copMetadata.Department);
             }
             if (!string.IsNullOrEmpty(copMetadata.CopDate)) {
-                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
+                XmlElement date = doc.CreateElement("dc", "date", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(date);
-                date.SetAttribute("Value", copMetadata.CopDate);
-            }
-            if (!string.IsNullOrEmpty(copMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
-                proprietary.AppendChild(legislationClass);
-                legislationClass.SetAttribute("Value", copMetadata.LegislationClass);
-            }
-            if (copMetadata.CopYear.HasValue) {
-                XmlElement year = doc.CreateElement("ukm", "Year", UKM_NS);
-                proprietary.AppendChild(year);
-                year.SetAttribute("Value", copMetadata.CopYear.Value.ToString());
-            }
-            XmlElement version = doc.CreateElement("ukm", "Version", UKM_NS);
-            proprietary.AppendChild(version);
-            version.SetAttribute("Value", copMetadata.CopVersion.ToString());
-            if (copMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
-                proprietary.AppendChild(legislationYear);
-                legislationYear.SetAttribute("Value", copMetadata.LegislationYear.Value.ToString());
-            }
-            if (!string.IsNullOrEmpty(copMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
-                proprietary.AppendChild(legislationNumber);
-                legislationNumber.SetAttribute("Value", copMetadata.LegislationNumber);
+                date.AppendChild(doc.CreateTextNode(copMetadata.CopDate));
             }
         }
         // Add additional OD metadata from CSV mapping (for Other Documents)
@@ -480,43 +374,16 @@ class Builder : AkN.Builder {
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(odMetadata.WorkUri));
             }
-            if (!string.IsNullOrEmpty(odMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
-                proprietary.AppendChild(documentMainType);
-                documentMainType.SetAttribute("Value", odMetadata.DocumentMainType);
-            }
+            AppendDocumentClassification(proprietary, odMetadata.DocumentMainType);
             if (!string.IsNullOrEmpty(odMetadata.Department)) {
                 XmlElement department = doc.CreateElement("ukm", "Department", UKM_NS);
                 proprietary.AppendChild(department);
                 department.SetAttribute("Value", odMetadata.Department);
             }
             if (!string.IsNullOrEmpty(odMetadata.OdDate)) {
-                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
+                XmlElement date = doc.CreateElement("dc", "date", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(date);
-                date.SetAttribute("Value", odMetadata.OdDate);
-            }
-            if (!string.IsNullOrEmpty(odMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
-                proprietary.AppendChild(legislationClass);
-                legislationClass.SetAttribute("Value", odMetadata.LegislationClass);
-            }
-            if (odMetadata.OdYear.HasValue) {
-                XmlElement year = doc.CreateElement("ukm", "Year", UKM_NS);
-                proprietary.AppendChild(year);
-                year.SetAttribute("Value", odMetadata.OdYear.Value.ToString());
-            }
-            XmlElement odVersion = doc.CreateElement("ukm", "Version", UKM_NS);
-            proprietary.AppendChild(odVersion);
-            odVersion.SetAttribute("Value", odMetadata.OdVersion.ToString());
-            if (odMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
-                proprietary.AppendChild(legislationYear);
-                legislationYear.SetAttribute("Value", odMetadata.LegislationYear.Value.ToString());
-            }
-            if (!string.IsNullOrEmpty(odMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
-                proprietary.AppendChild(legislationNumber);
-                legislationNumber.SetAttribute("Value", odMetadata.LegislationNumber);
+                date.AppendChild(doc.CreateTextNode(odMetadata.OdDate));
             }
         }
 

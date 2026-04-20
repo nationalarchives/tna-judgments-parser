@@ -308,9 +308,7 @@ article[data-doc-type='TranspositionNote'] section.level &gt; p:only-child &gt; 
 
 <xsl:template match="img">
 	<img>
-		<xsl:attribute name="src">
-			<xsl:sequence select="concat($image-base, $doc-id, '/', @src)" />
-		</xsl:attribute>
+		<xsl:attribute name="src" select="@src" />
 		<xsl:attribute name="alt" select="(@alt, '')[1]" />
 		<xsl:apply-templates />
 	</img>
