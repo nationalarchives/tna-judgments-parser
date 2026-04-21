@@ -20,13 +20,18 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
 
     private readonly string sofficePath;
     private readonly TimeSpan conversionTimeout;
+    private readonly SemaphoreSlim subprocessGate;
 
     private readonly ConcurrentDictionary<string, Lazy<IReadOnlyList<byte[]>>> imageCache = new();
 
-    public LocalSubprocessRenderer(string sofficePath, TimeSpan? conversionTimeout = null) {
+    public LocalSubprocessRenderer(
+        string sofficePath, TimeSpan? conversionTimeout = null, int? maxConcurrency = null) {
         this.sofficePath = sofficePath
             ?? throw new ArgumentNullException(nameof(sofficePath));
         this.conversionTimeout = conversionTimeout ?? TimeSpan.FromMinutes(2);
+        int limit = maxConcurrency ?? Environment.ProcessorCount;
+        if (limit < 1) limit = 1;
+        this.subprocessGate = new SemaphoreSlim(limit, limit);
     }
 
     public byte[] TryRenderDrawing(byte[] docx, int drawingIndex, CancellationToken ct) {
@@ -93,23 +98,28 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
             UseShellExecute = false,
             CreateNoWindow = true,
         };
-        using var proc = Process.Start(psi);
-        if (proc == null) {
-            logger.LogError("failed to start soffice at {Path}", sofficePath);
-            return false;
+        subprocessGate.Wait(ct);
+        try {
+            using var proc = Process.Start(psi);
+            if (proc == null) {
+                logger.LogError("failed to start soffice at {Path}", sofficePath);
+                return false;
+            }
+            using var reg = ct.Register(() => { try { proc.Kill(entireProcessTree: true); } catch { } });
+            if (!proc.WaitForExit((int) conversionTimeout.TotalMilliseconds)) {
+                try { proc.Kill(entireProcessTree: true); } catch { }
+                logger.LogWarning("soffice did not complete within {Timeout}", conversionTimeout);
+                return false;
+            }
+            if (proc.ExitCode != 0) {
+                logger.LogWarning("soffice exited {Code}: {Err}",
+                    proc.ExitCode, proc.StandardError.ReadToEnd());
+                return false;
+            }
+            return true;
+        } finally {
+            subprocessGate.Release();
         }
-        using var reg = ct.Register(() => { try { proc.Kill(entireProcessTree: true); } catch { } });
-        if (!proc.WaitForExit((int) conversionTimeout.TotalMilliseconds)) {
-            try { proc.Kill(entireProcessTree: true); } catch { }
-            logger.LogWarning("soffice did not complete within {Timeout}", conversionTimeout);
-            return false;
-        }
-        if (proc.ExitCode != 0) {
-            logger.LogWarning("soffice exited {Code}: {Err}",
-                proc.ExitCode, proc.StandardError.ReadToEnd());
-            return false;
-        }
-        return true;
     }
 
     private static readonly Regex TokenPattern = new(

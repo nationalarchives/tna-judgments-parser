@@ -112,12 +112,13 @@ class Inline {
         var session = UK.Gov.Legislation.Common.Rendering.RenderSession.Current;
 
         if (session != null && drawingIndex >= 0 && session.DocxBytes != null) {
-            byte[] png = session.Renderer.TryRenderDrawing(
+            byte[] bytes = session.Renderer.TryRenderDrawing(
                 session.DocxBytes, drawingIndex, System.Threading.CancellationToken.None);
-            if (png != null && png.Length > 0) {
-                string name = $"rendered_drawing_{drawingIndex:D3}.png";
+            if (bytes != null && bytes.Length > 0) {
+                var (ext, mime) = UK.Gov.Legislation.Common.Rendering.ImageFormat.Detect(bytes);
+                string name = $"rendered_drawing_{drawingIndex:D3}.{ext}";
                 session.AddRenderedImage(new UK.Gov.Legislation.Common.Rendering.WRenderedImage(
-                    name, "image/png", png));
+                    name, mime, bytes));
                 return new UK.Gov.Legislation.Common.Rendering.WRenderedImageRef(name);
             }
         }
