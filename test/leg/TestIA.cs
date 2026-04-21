@@ -48,7 +48,7 @@ public class TestIA {
         var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
 
-        var parsed = Helper.Parse(docx, filename + ".docx");
+        var parsed = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
         DocumentHelpers.AssertValidMainAkn(parsed.Document);
 
         var expectedResourceName = $"test.leg.ia.original_filenames.{filename}.akn";
@@ -72,7 +72,7 @@ public class TestIA {
             string filename = (string)testData[0];
             var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
             var docx = DocumentHelpers.ReadDocx(resourceName);
-            var result = Helper.Parse(docx, filename + ".docx");
+            var result = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
             var testFolder = System.IO.Path.Combine(projectRoot, "test", "leg", "ia", "original filenames");
             var outputPath = System.IO.Path.Combine(testFolder, $"{filename}.akn");
             System.IO.File.WriteAllText(outputPath, result.Serialize());

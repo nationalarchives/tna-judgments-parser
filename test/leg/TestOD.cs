@@ -48,7 +48,7 @@ public class TestOD {
         var resourceName = $"test.leg.od.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
 
-        var parsed = Helper.Parse(docx, filename + ".docx");
+        var parsed = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
         DocumentHelpers.AssertValidMainAkn(parsed.Document);
 
         var expectedResourceName = $"test.leg.od.{filename}.akn";
@@ -73,7 +73,7 @@ public class TestOD {
             try {
                 var resourceName = $"test.leg.od.{filename}.docx";
                 var docx = DocumentHelpers.ReadDocx(resourceName);
-                var result = Helper.Parse(docx, filename + ".docx");
+                var result = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
                 var testFolder = System.IO.Path.Combine(projectRoot, "test", "leg", "od");
                 var outputPath = System.IO.Path.Combine(testFolder, $"{filename}.akn");
                 System.IO.File.WriteAllText(outputPath, result.Serialize());

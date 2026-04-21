@@ -63,8 +63,13 @@ class Inline {
             logger.LogDebug("endnote reference");
         if (e is EndnoteReference en)
             return new WFootnote(main, en);
-        if (e is Drawing draw)
-            return WImageRef.Make(main, draw);
+        if (e is Drawing draw) {
+            var session = UK.Gov.Legislation.Common.Rendering.RenderSession.Current;
+            int drawingIndex = session?.NextDrawingIndex() ?? -1;
+            IInline img = WImageRef.Make(main, draw);
+            if (img != null) return img;
+            return ResolveUnrenderedDrawing(draw, rProps, drawingIndex);
+        }
         if (e is Picture pict) {
             // look for text box?
             return WImageRef.Make(main, pict);
@@ -101,6 +106,61 @@ class Inline {
         if (e is PositionalTab pTab)    // EWCA/Civ/2018/1825.rtf in header
             return new WTab(pTab);
         throw new Exception(e.OuterXml);
+    }
+
+    private static IInline ResolveUnrenderedDrawing(Drawing draw, RunProperties rProps, int drawingIndex) {
+        var session = UK.Gov.Legislation.Common.Rendering.RenderSession.Current;
+
+        if (session != null && drawingIndex >= 0 && session.DocxBytes != null) {
+            byte[] png = session.Renderer.TryRenderDrawing(
+                session.DocxBytes, drawingIndex, System.Threading.CancellationToken.None);
+            if (png != null && png.Length > 0) {
+                string name = $"rendered_drawing_{drawingIndex:D3}.png";
+                session.AddRenderedImage(new UK.Gov.Legislation.Common.Rendering.WRenderedImage(
+                    name, "image/png", png));
+                return new UK.Gov.Legislation.Common.Rendering.WRenderedImageRef(name);
+            }
+        }
+
+        if (session != null && !session.AllowUnrenderedCharts) {
+            var (graphicType, caption) = DescribeDrawing(draw);
+            throw new UK.Gov.Legislation.Common.Rendering.UnrenderableDrawingException(
+                session.DocumentName, drawingIndex, graphicType, caption,
+                "renderer unavailable or returned no image");
+        }
+
+        return MakeDrawingPlaceholder(draw, rProps);
+    }
+
+    private static (string graphicType, string caption) DescribeDrawing(Drawing draw) {
+        var graphicData = draw.Descendants<DocumentFormat.OpenXml.Drawing.GraphicData>().FirstOrDefault();
+        string graphicType = graphicData?.Uri?.Value ?? "unknown";
+        var props = draw.Descendants<DocumentFormat.OpenXml.Drawing.Wordprocessing.DocProperties>().FirstOrDefault();
+        string caption = props?.Description?.Value?.Trim()
+                       ?? props?.Name?.Value?.Trim()
+                       ?? "";
+        return (graphicType, caption);
+    }
+
+    private static WText MakeDrawingPlaceholder(Drawing draw, RunProperties rProps) {
+        var props = draw.Descendants<DocumentFormat.OpenXml.Drawing.Wordprocessing.DocProperties>().FirstOrDefault();
+        string name = props?.Name?.Value?.Trim() ?? "";
+        string descr = props?.Description?.Value?.Trim() ?? "";
+
+        var graphicData = draw.Descendants<DocumentFormat.OpenXml.Drawing.GraphicData>().FirstOrDefault();
+        string graphicUri = graphicData?.Uri?.Value ?? "";
+        string kind = graphicUri switch {
+            string u when u.Contains("chart") => "Chart",
+            string u when u.Contains("diagram") => "Diagram",
+            string u when u.Contains("smartArt") => "SmartArt",
+            string u when u.Contains("wordprocessingShape") => "Shape",
+            _ => "Visual"
+        };
+
+        string caption = !string.IsNullOrEmpty(descr) ? descr
+            : !string.IsNullOrEmpty(name) ? name
+            : kind;
+        return new WText($"[{kind}: {caption}]", rProps);
     }
 
     private static bool IsDuplicateSumAboveField(List<OpenXmlElement> withinField, BidirectionalEnumerator<OpenXmlElement> enumerator) {

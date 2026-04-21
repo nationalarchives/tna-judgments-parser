@@ -28,15 +28,15 @@ class Helper : BaseHelper {
     /// <summary>
     /// Parse a Code of Practice document with filename for metadata lookup.
     /// </summary>
-    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
+    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName, bool allowUnrenderedCharts = true, UK.Gov.Legislation.Common.Rendering.IDrawingRenderer renderer = null) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName, allowUnrenderedCharts, renderer);
     }
 
     /// <summary>
     /// Parse a Code of Practice document with filename for metadata lookup.
     /// </summary>
-    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName) {
-        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName);
+    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true, string manifestationName = Builder.DefaultManifestationName, bool allowUnrenderedCharts = true, UK.Gov.Legislation.Common.Rendering.IDrawingRenderer renderer = null) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename, manifestationName, allowUnrenderedCharts, renderer);
     }
 
     protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {

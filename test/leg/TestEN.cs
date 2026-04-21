@@ -44,7 +44,7 @@ public class TestEN {
         var resourceName = $"test.leg.en.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
 
-        var parsed = Helper.Parse(docx, filename + ".docx");
+        var parsed = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
         DocumentHelpers.AssertValidMainAkn(parsed.Document);
 
         // Expected .akn is keyed by the canonical CSV filename, not the on-disk one.
@@ -97,7 +97,7 @@ public class TestEN {
             try {
                 var resourceName = $"test.leg.en.{filename}.docx";
                 var docx = DocumentHelpers.ReadDocx(resourceName);
-                var result = Helper.Parse(docx, filename + ".docx");
+                var result = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
                 var testFolder = Path.Combine(projectRoot, "test", "leg", "en");
                 var normalizedName = UK.Gov.Legislation.Common.ENLegislationMapping.NormalizeFilename(filename);
                 var outputPath = Path.Combine(testFolder, $"{normalizedName}.akn");

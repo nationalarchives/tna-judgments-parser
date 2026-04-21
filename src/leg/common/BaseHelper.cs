@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 
 using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.NationalArchives.AkomaNtoso;
+using UK.Gov.Legislation.Common.Rendering;
 using UK.Gov.Legislation.Models;
 using UK.Gov.Legislation.Judgments;
 
@@ -18,18 +20,34 @@ abstract class BaseHelper {
         Config = config;
     }
 
-    public IXmlDocument Parse(Stream docx, bool simplify = true, string filename = null, string manifestationName = Builder.DefaultManifestationName) {
+    public IXmlDocument Parse(
+        Stream docx, bool simplify = true, string filename = null,
+        string manifestationName = Builder.DefaultManifestationName,
+        bool allowUnrenderedCharts = true,
+        IDrawingRenderer renderer = null) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify, filename, manifestationName);
+        return Parse(word, simplify, filename, manifestationName, allowUnrenderedCharts, renderer, docxBytes: null);
     }
 
-    public IXmlDocument Parse(byte[] docx, bool simplify = true, string filename = null, string manifestationName = Builder.DefaultManifestationName) {
+    public IXmlDocument Parse(
+        byte[] docx, bool simplify = true, string filename = null,
+        string manifestationName = Builder.DefaultManifestationName,
+        bool allowUnrenderedCharts = true,
+        IDrawingRenderer renderer = null) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify, filename, manifestationName);
+        return Parse(word, simplify, filename, manifestationName, allowUnrenderedCharts, renderer, docxBytes: docx);
     }
 
-    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify, string filename, string manifestationName) {
+    private IXmlDocument Parse(
+        WordprocessingDocument docx, bool simplify, string filename,
+        string manifestationName, bool allowUnrenderedCharts,
+        IDrawingRenderer renderer, byte[] docxBytes) {
+        using var session = RenderSession.Begin(
+            renderer ?? new NullRenderer(), docxBytes, filename, allowUnrenderedCharts);
+
         IDocument doc = ParseDocument(docx, filename);
+
+        MergeRenderedImages(doc, RenderSession.Current);
 
         IEnumerable<Judgments.IImage> processedImages = LegImageProcessor.ProcessImages(doc);
 
@@ -45,6 +63,21 @@ abstract class BaseHelper {
         SyncTotalImagesWithXml(xml);
 
         return new XmlDocument_ { Document = xml, Images = processedImages };
+    }
+
+    private static void MergeRenderedImages(IDocument doc, RenderSession session) {
+        var rendered = session?.RenderedImages;
+        if (rendered == null) return;
+        var list = new List<Judgments.IImage>(rendered);
+        if (list.Count == 0) return;
+
+        var existing = doc.Images?.ToList() ?? new List<Judgments.IImage>();
+        existing.AddRange(list);
+
+        if (doc is Models.DividedDocument dd)
+            dd.Images = existing;
+        else if (doc is Models.UndividedDocument ud)
+            ud.Images = existing;
     }
 
     private static void SyncTotalImagesWithXml(XmlDocument xml) {

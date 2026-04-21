@@ -57,7 +57,7 @@ public class TestCoP {
         var resourceName = $"test.leg.cop.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
 
-        var parsed = Helper.Parse(docx, filename + ".docx");
+        var parsed = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
         DocumentHelpers.AssertValidMainAkn(parsed.Document);
 
         var expectedResourceName = $"test.leg.cop.{filename}.akn";
@@ -82,7 +82,7 @@ public class TestCoP {
             try {
                 var resourceName = $"test.leg.cop.{filename}.docx";
                 var docx = DocumentHelpers.ReadDocx(resourceName);
-                var result = Helper.Parse(docx, filename + ".docx");
+                var result = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
                 var testFolder = System.IO.Path.Combine(projectRoot, "test", "leg", "cop");
                 var outputPath = System.IO.Path.Combine(testFolder, $"{filename}.akn");
                 System.IO.File.WriteAllText(outputPath, result.Serialize());

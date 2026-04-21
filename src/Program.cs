@@ -176,7 +176,10 @@ public class Program {
     static void TransformOD(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment, string manifestationName)
         => RunLegTransform(OD.Helper.Parse, input, output, outputZip, outputHtml, log, attachment, manifestationName);
 
-    private delegate IXmlDocument LegParser(byte[] docx, string filename, bool simplify = true, string manifestationName = UK.Gov.Legislation.Builder.DefaultManifestationName);
+    private delegate IXmlDocument LegParser(
+        byte[] docx, string filename, bool simplify,
+        string manifestationName, bool allowUnrenderedCharts,
+        UK.Gov.Legislation.Common.Rendering.IDrawingRenderer renderer);
 
     private static void RunLegTransform(LegParser parse, FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, FileInfo attachment, string manifestationName) {
         if (attachment is not null)
@@ -185,7 +188,7 @@ public class Program {
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
 
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = parse(docx, input.Name, true, manifestationName);
+        var parsed = parse(docx, input.Name, true, manifestationName, true, null);
 
         // Save images alongside whichever file output is requested. Prefer --output's
         // directory; fall back to --output-html's. Both go to the same place if both
