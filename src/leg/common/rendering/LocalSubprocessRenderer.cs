@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Security.Cryptography;
 using System.Threading;
 
 using Microsoft.Extensions.Logging;
@@ -22,8 +21,6 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
     private readonly TimeSpan conversionTimeout;
     private readonly SemaphoreSlim subprocessGate;
 
-    private readonly ConcurrentDictionary<string, Lazy<IReadOnlyList<byte[]>>> imageCache = new();
-
     public LocalSubprocessRenderer(
         string sofficePath, TimeSpan? conversionTimeout = null, int? maxConcurrency = null) {
         this.sofficePath = sofficePath
@@ -34,26 +31,13 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
         this.subprocessGate = new SemaphoreSlim(limit, limit);
     }
 
-    public byte[] TryRenderDrawing(byte[] docx, int drawingIndex, CancellationToken ct) {
-        if (docx == null || docx.Length == 0) return null;
+    public IReadOnlyList<byte[]> RenderAllDrawings(byte[] docx, CancellationToken ct) {
+        if (docx == null || docx.Length == 0) return Array.Empty<byte[]>();
         if (!File.Exists(sofficePath)) {
             logger.LogWarning("soffice not found at {Path}; cannot render", sofficePath);
-            return null;
+            return Array.Empty<byte[]>();
         }
-
-        string hash = HashDocx(docx);
-        var lazy = imageCache.GetOrAdd(hash, _ => new Lazy<IReadOnlyList<byte[]>>(
-            () => ConvertAndExtract(docx, ct) ?? Array.Empty<byte[]>(),
-            System.Threading.LazyThreadSafetyMode.ExecutionAndPublication));
-        var images = lazy.Value;
-        if (images == null || images.Count == 0) return null;
-        if (drawingIndex < 0 || drawingIndex >= images.Count) return null;
-        return images[drawingIndex];
-    }
-
-    private static string HashDocx(byte[] docx) {
-        byte[] h = SHA256.HashData(docx);
-        return Convert.ToHexString(h);
+        return ConvertAndExtract(docx, ct) ?? Array.Empty<byte[]>();
     }
 
     private IReadOnlyList<byte[]> ConvertAndExtract(byte[] docx, CancellationToken ct) {
@@ -90,14 +74,22 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
         string profileDir = Path.Combine(outDir, "profile");
         Directory.CreateDirectory(profileDir);
         string profileUri = new Uri(profileDir).AbsoluteUri;
+
         var psi = new ProcessStartInfo {
             FileName = sofficePath,
-            Arguments = $"-env:UserInstallation={profileUri} --headless --convert-to html --outdir \"{outDir}\" \"{inputDocx}\"",
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
             CreateNoWindow = true,
         };
+        psi.ArgumentList.Add($"-env:UserInstallation={profileUri}");
+        psi.ArgumentList.Add("--headless");
+        psi.ArgumentList.Add("--convert-to");
+        psi.ArgumentList.Add("html");
+        psi.ArgumentList.Add("--outdir");
+        psi.ArgumentList.Add(outDir);
+        psi.ArgumentList.Add(inputDocx);
+
         subprocessGate.Wait(ct);
         try {
             using var proc = Process.Start(psi);
@@ -105,6 +97,14 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
                 logger.LogError("failed to start soffice at {Path}", sofficePath);
                 return false;
             }
+            // Drain stdout/stderr asynchronously so the pipe buffers don't fill and deadlock.
+            var stderrBuf = new StringBuilder();
+            var stdoutBuf = new StringBuilder();
+            proc.OutputDataReceived += (_, e) => { if (e.Data != null) lock (stdoutBuf) stdoutBuf.AppendLine(e.Data); };
+            proc.ErrorDataReceived  += (_, e) => { if (e.Data != null) lock (stderrBuf) stderrBuf.AppendLine(e.Data); };
+            proc.BeginOutputReadLine();
+            proc.BeginErrorReadLine();
+
             using var reg = ct.Register(() => { try { proc.Kill(entireProcessTree: true); } catch { } });
             if (!proc.WaitForExit((int) conversionTimeout.TotalMilliseconds)) {
                 try { proc.Kill(entireProcessTree: true); } catch { }
@@ -112,8 +112,7 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
                 return false;
             }
             if (proc.ExitCode != 0) {
-                logger.LogWarning("soffice exited {Code}: {Err}",
-                    proc.ExitCode, proc.StandardError.ReadToEnd());
+                logger.LogWarning("soffice exited {Code}: {Err}", proc.ExitCode, stderrBuf.ToString());
                 return false;
             }
             return true;
@@ -124,7 +123,7 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
 
     private static readonly Regex TokenPattern = new(
         @"(?<marker>LEGRENDERMARK(?<idx>\d{5})ENDMARK)|(?<img><img\b[^>]*?\bsrc\s*=\s*[""'](?<src>[^""']+)[""'][^>]*>)",
-        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        RegexOptions.Compiled);
 
     private IReadOnlyList<byte[]> ExtractImagesByMarkers(string htmlPath, int drawingCount) {
         string html = File.ReadAllText(htmlPath);
@@ -133,9 +132,15 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
         var result = new byte[drawingCount][];
         int regionStart = -1;
         var regionImgs = new List<string>();
+        int lastMarkerSeen = -1;
 
         void Flush(int regionEnd) {
             if (regionStart < 0) { regionImgs.Clear(); return; }
+            int span = regionEnd - regionStart;
+            if (regionImgs.Count > 0 && span > 1 && regionImgs.Count != span)
+                logger.LogWarning(
+                    "rendered-image count {Imgs} does not match drawing span [{Start},{End}); distributing across span",
+                    regionImgs.Count, regionStart, regionEnd);
             int imgIdx = 0;
             for (int d = regionStart; d < regionEnd && d < drawingCount; d++) {
                 if (imgIdx >= regionImgs.Count) break;
@@ -154,6 +159,7 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
                 if (!int.TryParse(m.Groups["idx"].Value, out int idx)) continue;
                 Flush(idx);
                 regionStart = idx;
+                lastMarkerSeen = idx;
                 continue;
             }
             if (!m.Groups["img"].Success) continue;
@@ -163,6 +169,12 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
             regionImgs.Add(src);
         }
         Flush(drawingCount);
+
+        if (lastMarkerSeen + 1 < drawingCount)
+            logger.LogWarning(
+                "expected {Expected} markers, only saw through {Seen}; rendered set is incomplete",
+                drawingCount, lastMarkerSeen + 1);
+
         return result;
     }
 

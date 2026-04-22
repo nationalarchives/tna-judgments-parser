@@ -17,6 +17,11 @@ public sealed class RenderSession {
     public string DocumentName { get; }
     public bool AllowUnrenderedCharts { get; }
 
+    // Per-session lazy. First access triggers a single docx → all-images conversion;
+    // subsequent accesses share the result. Scoped to this parse so nothing outlives
+    // the Session.Dispose — no cached CT, no cached docx bytes, no cached failures.
+    private readonly Lazy<IReadOnlyList<byte[]>> renderedDrawings;
+
     private int drawingCounter;
     public int NextDrawingIndex() => Interlocked.Increment(ref drawingCounter) - 1;
 
@@ -36,6 +41,17 @@ public sealed class RenderSession {
         DocxBytes = docx;
         DocumentName = documentName;
         AllowUnrenderedCharts = allowUnrenderedCharts;
+        renderedDrawings = new Lazy<IReadOnlyList<byte[]>>(
+            () => Renderer.RenderAllDrawings(DocxBytes, CancellationToken.None)
+                  ?? Array.Empty<byte[]>(),
+            LazyThreadSafetyMode.ExecutionAndPublication);
+    }
+
+    public byte[] GetRenderedDrawing(int drawingIndex) {
+        if (drawingIndex < 0 || DocxBytes == null || Renderer is NullRenderer) return null;
+        var images = renderedDrawings.Value;
+        if (drawingIndex >= images.Count) return null;
+        return images[drawingIndex];
     }
 
     public static IDisposable Begin(
