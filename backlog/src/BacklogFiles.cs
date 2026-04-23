@@ -109,7 +109,7 @@ namespace Backlog.Src
         /// <returns>File contents as a byte array</returns>
         internal byte[] ReadFile(string uuid)
         {
-            var filesWithUuid = courtDocumentsDirectory.GetFiles($"{uuid}*");
+            var filesWithUuid = courtDocumentsDirectory.GetFiles($"{uuid}*", SearchOption.AllDirectories);
             if (filesWithUuid.Length == 0)
             {
                 throw new FileNotFoundException($"Couldn't find file with UUID: {uuid}. It must have been received through TDR in order to have been assigned a UUID so check the original TDR bucket and check any file conversion folders");
@@ -118,7 +118,7 @@ namespace Backlog.Src
             if (filesWithUuid.Length > 1)
             {
                 throw new MoreThanOneFileFoundException(
-                    $"There should only be one file in {COURT_DOCUMENTS_DIR} matching UUID {uuid} but found {filesWithUuid.Length}: [{string.Join(", ", filesWithUuid.Select(f => $"\"{f.Name}\""))}]");
+                    $"There should only be one file in {COURT_DOCUMENTS_DIR} matching UUID {uuid} but found {filesWithUuid.Length}: [{string.Join(", ", filesWithUuid.OrderBy(f => f.Name).Select(f => $"\"{f.Name}\""))}]");
             }
 
             return File.ReadAllBytes(filesWithUuid.Single().FullName);

@@ -22,7 +22,7 @@ jobs:
 
       # Set up .NET environment (assuming C# is the primary language)
       - name: Setup .NET
-        uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5
+        uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
         with:
           dotnet-version: '8.0.x' # Adjust to your target version
 
@@ -36,4 +36,6 @@ jobs:
 
       # Run tests
       - name: Run tests
+        env:
+          XUNIT_PRINT_MAX_STRING_LENGTH: 100
         run: dotnet test tna-judgments-parser.sln --no-build --configuration release

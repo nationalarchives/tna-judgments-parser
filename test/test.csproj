@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.4.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
@@ -38,7 +38,14 @@
     <EmbeddedResource Include="./lawmaker/**/*.docx" />
     <EmbeddedResource Include="./lawmaker/**/*.xml" />
 
-    <EmbeddedResource Include="backlog/expected-output/*.xml" />
+    <EmbeddedResource Include="./leg/en/*.docx" />
+
+    <EmbeddedResource Include="./backlog/expected-output/*.json" />
+    <EmbeddedResource Include="./backlog/expected-output/*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="backlog\test-data\MultiLineTest\court_documents\empty directory\" />
   </ItemGroup>
 
 </Project>

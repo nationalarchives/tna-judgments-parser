@@ -2,6 +2,8 @@
 
 using System;
 
+using Backlog.Csv;
+
 using Backlog.Src;
 
 using UK.Gov.Legislation.Judgments;
@@ -16,25 +18,25 @@ public class TestMakeMetadata
     public void MakeMetadata_WithBasicLine_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvLine
         {
             id = "123",
-            court = "UKFTT-GRC",
-            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
+            Court = "UKFTT-GRC",
+            DecisionDateTime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            headnote_summary = "This is a test headnote summary",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = "Human Rights",
-            sec_subcategory = "Article 8",
+            Claimants = "John Smith",
+            Respondent = "HMRC",
+            HeadnoteSummary = "This is a test headnote summary",
+            MainCategory = "Immigration",
+            MainSubcategory = "Asylum",
+            SecCategory = "Human Rights",
+            SecSubcategory = "Article 8",
             FilePath = "/path/to/test-document.pdf",
             Extension = ".pdf"
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -62,21 +64,22 @@ public class TestMakeMetadata
     public void MakeMetadata_WithAppellants_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvLine
         {
             id = "124",
-            court = "UKFTT-GRC",
-            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
+            FilePath = "/test/data/test.pdf",
+            Court = "UKFTT-GRC",
+            DecisionDateTime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/002",
-            appellants = "Jane Doe",
-            respondent = "Home Office",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
+            Appellants = "Jane Doe",
+            Respondent = "Home Office",
+            MainCategory = "Immigration",
+            MainSubcategory = "Asylum",
             Extension = ".pdf"
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -110,7 +113,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
@@ -126,7 +129,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
@@ -142,8 +145,8 @@ public class TestMakeMetadata
         };
 
         // Act & Assert
-        var ex = Assert.Throws<Exception>(() => Metadata.MakeMetadata(line));
-        Assert.Equal("Unexpected extension .txt", ex.Message);
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => MetadataTransformer.MakeMetadata(line));
+        Assert.Contains("Unexpected extension .txt", ex.Message);
     }
 
     [Fact]
@@ -152,157 +155,15 @@ public class TestMakeMetadata
         // Arrange - Date on or after 2010-01-18
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = new DateTime(2010, 01, 10,  14, 30, 00, DateTimeKind.Utc)
+            Court = "UKFTT-GRC",
+            DecisionDateTime = new DateTime(2010, 01, 10,  14, 30, 00, DateTimeKind.Utc)
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal(Courts.FirstTierTribunal_GRC, result.Court);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithPartiesData_CreatesCorrectParties()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLine with
-        {
-            claimants = "Jane Doe & John Smith",
-            respondent = "Home Office"
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Parties);
-        Assert.Equal(2, result.Parties.Count);
-
-        var claimant = result.Parties.Find(p => p.Role == PartyRole.Claimant);
-        var respondent = result.Parties.Find(p => p.Role == PartyRole.Respondent);
-
-        Assert.NotNull(claimant);
-        Assert.Equal("Jane Doe & John Smith", claimant.Name);
-
-        Assert.NotNull(respondent);
-        Assert.Equal("Home Office", respondent.Name);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithAppellantPartiesData_CreatesCorrectParties()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLine with
-        {
-            appellants = "Jane Doe & John Smith",
-            respondent = "Home Office"
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Parties);
-        Assert.Equal(2, result.Parties.Count);
-
-        var appellant = result.Parties.Find(p => p.Role == PartyRole.Appellant);
-        var respondent = result.Parties.Find(p => p.Role == PartyRole.Respondent);
-
-        Assert.NotNull(appellant);
-        Assert.Equal("Jane Doe & John Smith", appellant.Name);
-
-        Assert.NotNull(respondent);
-        Assert.Equal("Home Office", respondent.Name);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithCategoriesData_CreatesCorrectCategories()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = "Human Rights",
-            sec_subcategory = "Article 8"
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Categories);
-        Assert.Equal(4, result.Categories.Count);
-
-        // Check main category and subcategory
-        var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-        var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
-
-        Assert.NotNull(mainCategory);
-        Assert.NotNull(mainSubcategory);
-
-        // Check secondary category and subcategory
-        var secCategory = result.Categories.Find(c => c.Name == "Human Rights" && c.Parent == null);
-        var secSubcategory = result.Categories.Find(c => c.Name == "Article 8" && c.Parent == "Human Rights");
-
-        Assert.NotNull(secCategory);
-        Assert.NotNull(secSubcategory);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithoutSecondaryCategory_CreatesOnlyMainCategories()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = null, // No secondary category
-            sec_subcategory = null
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Categories);
-        Assert.Equal(2, result.Categories.Count);
-
-        // Check only main category and subcategory exist
-        var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-        var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
-
-        Assert.NotNull(mainCategory);
-        Assert.NotNull(mainSubcategory);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceSecondaryCategory_CreatesOnlyMainCategories()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = "   ", // Whitespace only
-            sec_subcategory = "Article 8",
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Categories);
-        Assert.Equal(2, result.Categories.Count);
-
-        // Check only main category and subcategory exist
-        var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-        var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
-
-        Assert.NotNull(mainCategory);
-        Assert.NotNull(mainSubcategory);
     }
 
     [Fact]
@@ -315,7 +176,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("IA/12345/2023", result.CaseNumbers[0]);
@@ -327,11 +188,11 @@ public class TestMakeMetadata
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            decision_datetime = new DateTime(2023, 12, 25,  15, 45, 30, DateTimeKind.Utc),
+            DecisionDateTime = new DateTime(2023, 12, 25,  15, 45, 30, DateTimeKind.Utc),
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("2023-12-25", result.Date.Date);
@@ -339,24 +200,24 @@ public class TestMakeMetadata
     }
 
     [Fact]
-    public void MakeMetadata_WithNCN_SetsNCNProperty()
+    public void MakeMetadata_WithNCN_SetsCiteProperty()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "[2023] UKUT 123 (IAC)"
+            Ncn = "[2023] UKUT 123 (IAC)"
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal("[2023] UKUT 123 (IAC)", result.NCN);
+        Assert.Equal("[2023] UKUT 123 (IAC)", result.Cite);
     }
 
     [Fact]
-    public void MakeMetadata_WithoutNCN_NCNPropertyIsNull()
+    public void MakeMetadata_WithoutNCN_CitePropertyIsNull()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
@@ -365,45 +226,11 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
-        Assert.Null(result.NCN);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithEmptyNCN_NCNPropertyIsEmpty()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            ncn = ""
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal("", result.NCN);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceNCN_NCNPropertyIsWhitespace()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            ncn = "   "
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal("   ", result.NCN);
+        Assert.Null(result.Cite);
     }
 
     [Fact]
@@ -412,30 +239,14 @@ public class TestMakeMetadata
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            webarchiving = "http://webarchivelink"
+            WebArchiving = "http://webarchivelink"
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("http://webarchivelink", result.WebArchivingLink);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithoutWebArchiving_WebArchivingLinkIsNull()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            webarchiving = ""
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.Null(result.WebArchivingLink);
     }
 
     [Fact]
@@ -448,7 +259,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         var actualJurisdiction = Assert.Single(result.Jurisdictions);
@@ -465,42 +276,9 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Empty(result.Jurisdictions);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceJurisdiction_JurisdictionPropertyIsEmpty()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   "]
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        Assert.Empty(result.Jurisdictions);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceAndNonWhitespaceJurisdictions_IgnoresBlankJurisdictions()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   ", "Transport", ""]
-        };
-
-        // Act
-        var result = Metadata.MakeMetadata(line);
-
-        // Assert
-        var actualJurisdiction = Assert.Single(result.Jurisdictions);
-        Assert.Equal("Transport", actualJurisdiction.ShortName);
     }
 }

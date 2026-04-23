@@ -19,9 +19,9 @@ internal class MetaWrapper : IOutsideMetadata {
     public Court? Court { get {
         if (Meta.Court is null)
             return null;
-        if (!Courts.ByCode.ContainsKey(Meta.Court))
+        if (!Courts.Exists(Meta.Court))
             return null;
-        return Courts.ByCode[Meta.Court];
+        return Courts.GetByCode(Meta.Court);
     } }
 
     public List<string> JurisdictionShortNames => Meta.JurisdictionShortNames;
@@ -65,8 +65,6 @@ internal class MetaWrapper : IOutsideMetadata {
     public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => Meta.Extensions?.Parties ?? [];
 
     public List<ICategory> Categories => Meta.Extensions?.Categories ?? [];
-
-    public string NCN => Meta.Extensions?.NCN;
 
     public string WebArchivingLink => Meta.Extensions?.WebArchivingLink;
 }

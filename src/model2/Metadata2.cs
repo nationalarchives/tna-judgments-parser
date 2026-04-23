@@ -42,11 +42,11 @@ class WMetadata2 : WMetadata {
     } }
 
     internal static string MakeDateName(Court? court) {
-        if (!court.HasValue)
+        if (court is null)
             return "judgment";
-        if (court.Value.Code.StartsWith("UKUT"))
+        if (court.Code.StartsWith("UKUT"))
             return "decision";
-        if (court.Value.Code.StartsWith("UKFTT") || court.Value.Code.StartsWith("FTT"))
+        if (court.Code.StartsWith("UKFTT") || court.Code.StartsWith("FTT"))
             return "decision";
         return "judgment";
     }
@@ -133,8 +133,6 @@ class WMetadata3 : WMetadata, IMetadataExtended {
     public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => outside.Parties;
 
     public List<ICategory> Categories => outside.Categories;
-
-    public string NCN => outside.NCN;
 
     public string WebArchivingLink => outside.WebArchivingLink;
 }
