@@ -10,11 +10,11 @@
 
   <ItemGroup>
     <ProjectReference Include="../judgments.csproj"/>
-    <PackageReference Include="AWSSDK.SSO" Version="4.0.2.25" />
-    <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.3.26" />
+    <PackageReference Include="AWSSDK.SSO" Version="4.0.2.26" />
+    <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.3.27" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
-    <PackageReference Include="AWSSDK.S3" Version="4.0.22" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.22.1" />
     <ProjectReference Include="../TRE/TRE.csproj" />
   </ItemGroup>
 
