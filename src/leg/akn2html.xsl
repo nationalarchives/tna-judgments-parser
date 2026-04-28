@@ -14,6 +14,11 @@
 
 <xsl:param name="image-base" as="xs:string" select="'/'" />
 
+<!-- When non-empty, the head links to an external stylesheet at this URL instead
+     of embedding the CSS inline. The CSS body lives in associated-docs.css
+     alongside this XSL and is the single source of truth for both modes. -->
+<xsl:param name="stylesheet-href" as="xs:string" select="''" />
+
 <!-- global variables -->
 
 <xsl:variable name="doc-id" as="xs:string">
@@ -39,7 +44,14 @@
 	<html>
 		<head>
 			<meta charset="utf-8" />
-			<xsl:call-template name="style" />
+			<xsl:choose>
+				<xsl:when test="$stylesheet-href != ''">
+					<link rel="stylesheet" href="{$stylesheet-href}" />
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:call-template name="style" />
+				</xsl:otherwise>
+			</xsl:choose>
 		</head>
 		<body>
 			<xsl:call-template name="header"/>
@@ -49,161 +61,7 @@
 </xsl:template>
 
 <xsl:template name="style">
-	<style>
-article { margin: 0.5in 1in }
-p.center { text-align: center }
-section { position: relative }
-h2 { font-size: inherit; font-weight: normal }
-.section &gt; h2 &gt; .num { display: inline-block; width: 0.5in }
-.paragraph { margin-left: 0.5in }
-.paragraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
-.subparagraph { margin-left: 0.5in }
-.subparagraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
-section &gt; .level &gt; h2 { margin-left: 0.5in }
-table { border-collapse: collapse }
-th, td { border: thin dotted; padding: 3pt }
-td:has(p.ia-title) { padding: 0 }
-td { vertical-align: top }
-span.fn { vertical-align: super; font-size: small }
-.footnote &gt; p:first-child &gt; .marker:first-child { vertical-align: super; font-size: small }
-.blockContainer { position: relative; margin-left: 0.5in }
-.blockContainer &gt; p:first-child &gt; .num:first-child { position: absolute; margin-left: -0.25in }
-.attachment { margin-top: 2em }
-
-/* Impact Assessment styles */
-article[data-doc-type='ImpactAssessment'] {
-	font-family: Arial, sans-serif;
-}
-
-article[data-doc-type='ImpactAssessment'] * {
-	font-family: Arial, sans-serif !important;
-}
-
-article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
-	margin-left: 0 !important;
-}
-
-/* IA paragraph classes */
-.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
-.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
-.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
-.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
-.ia-stage { font-size: 11pt; margin: 2pt 4pt }
-/* IA semantic inline elements */
-.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
-	font-size: 11pt; 
-	line-height: 1.2;
-}
-
-/* IA table styling */
-.ia-table {
-	border: 1px solid black;
-	width: 100%;
-	margin: 6pt 0;
-	table-layout: fixed;
-}
-
-.ia-table th,
-.ia-table td {
-	border: 1px solid black;
-	padding: 4pt 6pt;
-	vertical-align: top;
-}
-
-.ia-table td p {
-	margin: 2pt 4pt;
-	line-height: 1.2;
-}
-
-.ia-table td p:empty {
-	margin: 0;
-	height: 4pt;
-}
-
-.ia-table td:empty,
-.ia-table td:has(> p:only-child:empty) {
-	display: none !important;
-}
-
-/* Center spanning header cells */
-.ia-table tr:first-child td[colspan="5"] .ia-table-text {
-	text-align: center;
-}
-
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
-	border: none;
-}
-
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
-	border: none;
-	margin: 0;
-}
-
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
-	border: 1px solid black;
-}
-
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
-	border: none;
-	padding: 0;
-}
-
-
-/* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
-	display: none !important;
-}
-
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
-}
-
-.blockContainer {
-	margin: 6pt 0;
-	padding: 4pt;
-}
-
-/* IA TOC Link */
-.toc-container { display: flex; justify-content: center; align-items: center;}
-.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
-.toc-box a { color: inherit; text-decoration: none;}
-.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
-
-/* Shared heading styles for text-oriented leg documents */
-article[data-doc-type='ExplanatoryNotes'] .preface,
-article[data-doc-type='CodeOfPractice'] .preface,
-article[data-doc-type='TranspositionNote'] .preface {
-	margin-bottom: 1.5em;
-}
-article[data-doc-type='ExplanatoryNotes'] .preface &gt; p,
-article[data-doc-type='CodeOfPractice'] .preface &gt; p,
-article[data-doc-type='TranspositionNote'] .preface &gt; p {
-	font-size: 20pt;
-	line-height: 1.2;
-	margin: 0 0 6pt 0;
-	font-weight: bold;
-}
-article[data-doc-type='ExplanatoryNotes'] section.section &gt; h2,
-article[data-doc-type='CodeOfPractice'] section.section &gt; h2,
-article[data-doc-type='TranspositionNote'] section.section &gt; h2 {
-	font-size: 14pt;
-	font-weight: bold;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
-}
-/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
-article[data-doc-type='ExplanatoryNotes'] section.level &gt; p:only-child &gt; b:only-child,
-article[data-doc-type='CodeOfPractice'] section.level &gt; p:only-child &gt; b:only-child,
-article[data-doc-type='TranspositionNote'] section.level &gt; p:only-child &gt; b:only-child {
-	font-size: 14pt;
-	display: inline-block;
-	margin-top: 0.5em;
-	margin-bottom: 0.25em;
-}
-
-</style>
+	<style><xsl:text>&#10;</xsl:text><xsl:value-of select="unparsed-text('associated-docs.css')" disable-output-escaping="yes" /><xsl:text>&#10;</xsl:text></style>
 </xsl:template>
 
 <xsl:template match="doc">
@@ -428,7 +286,7 @@ article[data-doc-type='TranspositionNote'] section.level &gt; p:only-child &gt; 
 
 <!-- Auto-link bare URLs in footnote text -->
 <xsl:template match="authorialNote//text()">
-	<xsl:analyze-string select="." regex="https?://[^\s&lt;&gt;]+">
+	<xsl:analyze-string select="." regex="https?://[^\s&lt;>]+">
 		<xsl:matching-substring>
 			<a href="{.}"><xsl:value-of select="." /></a>
 		</xsl:matching-substring>

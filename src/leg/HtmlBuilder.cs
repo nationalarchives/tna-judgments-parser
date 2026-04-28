@@ -43,11 +43,13 @@ public static class HtmlBuilder {
         Directory.CreateDirectory(tempDir);
         string aknPath = Path.Combine(tempDir, "in.akn");
         string xslPath = Path.Combine(tempDir, "akn2html.xsl");
+        string cssPath = Path.Combine(tempDir, "associated-docs.css");
         string htmlPath = Path.Combine(tempDir, "out.html");
 
         try {
             akn.Save(aknPath);
-            ExtractEmbeddedXsl(xslPath);
+            ExtractEmbeddedResource("leg.akn2html.xsl", xslPath);
+            ExtractEmbeddedResource("leg.associated-docs.css", cssPath);
 
             var psi = new ProcessStartInfo {
                 FileName = javaExe,
@@ -98,11 +100,11 @@ public static class HtmlBuilder {
         }
     }
 
-    private static void ExtractEmbeddedXsl(string destination) {
+    private static void ExtractEmbeddedResource(string logicalName, string destination) {
         var assembly = Assembly.GetExecutingAssembly();
-        using Stream stream = assembly.GetManifestResourceStream("leg.akn2html.xsl");
+        using Stream stream = assembly.GetManifestResourceStream(logicalName);
         if (stream == null)
-            throw new InvalidOperationException("Embedded resource 'leg.akn2html.xsl' not found.");
+            throw new InvalidOperationException($"Embedded resource '{logicalName}' not found.");
         using var fileStream = File.Create(destination);
         stream.CopyTo(fileStream);
     }
