@@ -148,6 +148,11 @@ namespace UK.Gov.Legislation.Lawmaker
                     if (cell.ColSpan is not null)
                         td.SetAttribute("colspan", cell.ColSpan.ToString());
                     Dictionary<string, string> styles = cell.GetCSSStyles();
+                    if (styles.TryGetValue("background-color", out string bg) &&
+                        (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
+                        styles.Remove("background-color");
+                    foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
+                        styles.Remove(key);
                     if (styles.Any())
                         td.SetAttribute("style", AkN.CSS.SerializeInline(styles));
                     tr.AppendChild(td);
