@@ -144,6 +144,10 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
                 State[item.Key] = item.Value;
             foreach (KeyValuePair<string, string> item in GetStyleProperties(e))
                 State[item.Key] = item.Value;
+            // Preserve cell-level style/class on <td>/<th>: these carry semantic
+            // presentation (background colour, borders) that callers want round-tripped to HTML.
+            if (e.LocalName == "td" || e.LocalName == "th")
+                return;
             e.RemoveAttribute("class", "");
             e.RemoveAttribute("style", "");
             // replace "class" and "style" attributes with those in another namespace

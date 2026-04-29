@@ -332,6 +332,9 @@ abstract class Builder {
                     if (cell.ColSpan is not null)
                         td.SetAttribute("colspan", cell.ColSpan.ToString());
                     Dictionary<string, string> styles = cell.GetCSSStyles();
+                    if (styles.TryGetValue("background-color", out string bg) &&
+                        (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
+                        styles.Remove("background-color");
                     if (styles.Any())
                         td.SetAttribute("style", CSS.SerializeInline(styles));
                     tr.AppendChild(td);
