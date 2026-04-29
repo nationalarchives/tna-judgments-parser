@@ -337,6 +337,8 @@ abstract class Builder {
                         styles.Remove("background-color");
                     foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
                         styles.Remove(key);
+                    if (styles.TryGetValue("background-color", out string bgValue) && IsDarkColor(bgValue) && !styles.ContainsKey("color"))
+                        styles["color"] = "#ffffff";
                     if (styles.Any())
                         td.SetAttribute("style", CSS.SerializeInline(styles));
                     tr.AppendChild(td);
@@ -358,6 +360,21 @@ abstract class Builder {
             }
         } finally {
         }
+    }
+
+    internal static bool IsDarkColor(string color) {
+        if (string.IsNullOrEmpty(color))
+            return false;
+        string hex = color.StartsWith("#") ? color.Substring(1) : color;
+        if (hex.Length == 3)
+            hex = $"{hex[0]}{hex[0]}{hex[1]}{hex[1]}{hex[2]}{hex[2]}";
+        if (hex.Length != 6 || !int.TryParse(hex, System.Globalization.NumberStyles.HexNumber, null, out int rgb))
+            return false;
+        int r = (rgb >> 16) & 0xFF;
+        int g = (rgb >> 8) & 0xFF;
+        int b = rgb & 0xFF;
+        // ITU-R BT.601 luma; below ~128 is "dark enough" that black text would not be legible.
+        return (r * 0.299 + g * 0.587 + b * 0.114) < 128;
     }
 
     private string ContainingParagraphStyle;
