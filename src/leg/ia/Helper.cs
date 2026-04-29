@@ -175,7 +175,12 @@ class Helper : BaseHelper {
         
         // Remove parenthetical notes (e.g., "May 2017 (updated June 2017...)" -> "May 2017")
         cleaned = System.Text.RegularExpressions.Regex.Replace(cleaned, @"\s*\(.*\)\s*$", "");
-        
+
+        // Strip ordinal suffixes from day numbers (e.g., "14th January 2025" -> "14 January 2025").
+        cleaned = System.Text.RegularExpressions.Regex.Replace(
+            cleaned, @"\b(\d{1,2})(st|nd|rd|th)\b", "$1",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
         // Remove any remaining trailing punctuation
         cleaned = cleaned.TrimEnd('.', ',', ';', ':');
         
@@ -315,7 +320,7 @@ class Helper : BaseHelper {
         "Department or agency:",
         "Date:", "Stage:",
         "Source of intervention:",
-        "Type of measure:", "Type of Impact Assessment:",
+        "Type of measure:", "Type of Impact Assessment:", "Type of Impact Assessment",
         "Contact for enquiries:", "Contact:"
     };
 

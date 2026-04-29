@@ -45,6 +45,8 @@ abstract class BaseHelper {
         using var session = RenderSession.Begin(
             renderer ?? new NullRenderer(), docxBytes, filename, allowUnrenderedCharts);
 
+        TextBoxLifter.Lift(docx);
+
         IDocument doc = ParseDocument(docx, filename);
 
         MergeRenderedImages(doc, RenderSession.Current);
