@@ -320,6 +320,7 @@
             <xs:element ref="b" />
             <xs:element ref="i" />
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
     </xs:complexType>
 </xs:element>
@@ -329,6 +330,7 @@
         <xs:element ref="b" />
         <xs:element ref="i" />
         <xs:element ref="u" />
+        <xs:element ref="span" />
         <xs:element ref="a" />
         <xs:element ref="ref" />
         <xs:element ref="marker" />
@@ -345,6 +347,7 @@
             <xs:element ref="b" />
             <xs:element ref="i" />
             <xs:element ref="u" />
+            <xs:element ref="span" />
             <xs:element ref="a" />
             <xs:element ref="ref" />
             <xs:element ref="marker" />
@@ -444,7 +447,10 @@
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="i" />
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
     </xs:complexType>
 </xs:element>
 
@@ -452,12 +458,21 @@
     <xs:complexType mixed="true">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
     </xs:complexType>
 </xs:element>
 
 <xs:element name="u">
-    <xs:complexType mixed="true" />
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="span" />
+        </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
+    </xs:complexType>
 </xs:element>
 
 <xs:element name="a">
@@ -466,6 +481,7 @@
             <xs:element ref="b" />
             <xs:element ref="i" />
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
         <xs:attribute name="href" type="xs:anyURI" />
         <xs:attribute name="class" type="xs:string" />
@@ -505,6 +521,7 @@
             <xs:element ref="b" />
             <xs:element ref="i" />
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
         <xs:attribute name="href" type="xs:anyURI" />
         <xs:attribute name="class">
@@ -556,6 +573,8 @@
             <xs:element ref="i" />
             <xs:element ref="u" />
         </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
     </xs:complexType>
 </xs:element>
 

@@ -160,6 +160,7 @@
 
 <xsl:template match="span">
 	<span>
+		<xsl:copy-of select="@*" />
 		<xsl:apply-templates />
 	</span>
 </xsl:template>
@@ -174,6 +175,7 @@
 
 <xsl:template match="b | i | u">
 	<xsl:element name="{ local-name() }">
+		<xsl:copy-of select="@*" />
 		<xsl:apply-templates />
 	</xsl:element>
 </xsl:template>

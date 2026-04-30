@@ -235,6 +235,7 @@
             <xs:element ref="b" />
             <xs:element ref="i" />
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
     </xs:complexType>
 </xs:element>
@@ -244,7 +245,8 @@
         <xs:element ref="b" />
         <xs:element ref="i" />
         <xs:element ref="u" />
-        <xs:element ref="a" />
+        <xs:element ref="span" />
+<xs:element ref="a" />
         <xs:element ref="marker" />
         <xs:element ref="authorialNote" />
     </xs:choice>
@@ -274,7 +276,10 @@
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="i" />
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
     </xs:complexType>
 </xs:element>
 
@@ -282,12 +287,34 @@
     <xs:complexType mixed="true">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="u" />
+            <xs:element ref="span" />
         </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
     </xs:complexType>
 </xs:element>
 
 <xs:element name="u">
-    <xs:complexType mixed="true" />
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="span" />
+        </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="span">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+            <xs:element ref="span" />
+        </xs:choice>
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="style" type="xs:string" />
+    </xs:complexType>
 </xs:element>
 
 <xs:element name="a" />
@@ -335,7 +362,8 @@
             <xs:element ref="b" />
             <xs:element ref="i" />
             <xs:element ref="u" />
-            <xs:element ref="inline" />
+            <xs:element ref="span" />
+<xs:element ref="inline" />
         </xs:choice>
         <xs:attribute name="href" type="xs:string" use="required" />
         <xs:attribute name="level" type="xs:integer" use="required" />

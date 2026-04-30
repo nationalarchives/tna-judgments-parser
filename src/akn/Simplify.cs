@@ -208,6 +208,33 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
 
         protected void VisitText(XmlText text)
         {
+            // Background colour and foreground colour (e.g. RAG-coloured run names
+            // like "Green", "Amber", "Red") need a styled <span> wrapper. Sit above
+            // the bold/italic handlers so the visible colour band wraps the bold tag.
+            string bg = State.GetValueOrDefault("background-color");
+            if (!string.IsNullOrEmpty(bg) && bg != "auto" && bg != "transparent" && bg != "initial" && bg != "white" && bg != "#ffffff" && bg != "#FFFFFF")
+            {
+                var span = text.OwnerDocument.CreateElement("span", Builder.ns);
+                span.SetAttribute("style", "background-color:" + bg);
+                text.ParentNode.ReplaceChild(span, text);
+                span.AppendChild(text);
+                State.Remove("background-color");
+                VisitText(text);
+                State["background-color"] = bg;
+                return;
+            }
+            string fg = State.GetValueOrDefault("color");
+            if (!string.IsNullOrEmpty(fg) && fg != "auto" && fg != "initial" && fg != "inherit")
+            {
+                var span = text.OwnerDocument.CreateElement("span", Builder.ns);
+                span.SetAttribute("style", "color:" + fg);
+                text.ParentNode.ReplaceChild(span, text);
+                span.AppendChild(text);
+                State.Remove("color");
+                VisitText(text);
+                State["color"] = fg;
+                return;
+            }
             if (State.GetValueOrDefault("font-weight") == "bold")
             {
                 var b = text.OwnerDocument.CreateElement("b", Builder.ns);
