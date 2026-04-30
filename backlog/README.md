@@ -132,8 +132,8 @@ The following columns are optional:
 - `Sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
 - `Ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
 - `Headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
-- `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
-- `CaseNo` - Case number(s). This can be a single item or a comma separated list in quotes (e.g. `"case1,case2"`)
+- `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a semicolon or comma separated list in quotes (e.g. `jurisdiction1;jurisdiction2` or `"jurisdiction1,jurisdiction2"`)
+- `CaseNo` - Case number(s). This can be a single item or a semicolon or comma separated list in quotes (e.g. `case1;case2` or `"case1,case2"`)
 - `Uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
 - `Webarchiving` - Link to the webarchive for this judgment
 

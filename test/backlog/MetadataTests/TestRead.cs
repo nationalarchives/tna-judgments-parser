@@ -207,6 +207,7 @@ public class TestRead : IDisposable
     [InlineData("     ", new string[] { })]
     [InlineData(",   ,  ", new string[] { })]
     [InlineData("\"Community,Environment\"", new[] { "Community", "Environment" })]
+    [InlineData("Community;Environment", new[] { "Community", "Environment" })]
     [InlineData("\"Community, Environment,Other , Another ,\"",
         new[] { "Community", "Environment", "Other", "Another" })]
     [InlineData("\"Community, Environment,,  ,Other , Another ,\"",
@@ -234,6 +235,11 @@ public class TestRead : IDisposable
     [InlineData("     ", new string[] { })]
     [InlineData("\",   ;  \"", new string[] { })]
     [InlineData("\"IA/2025/001,IA/2025/002\"", new[] { "IA/2025/001", "IA/2025/002" })]
+    [InlineData("IA/2025/001;IA/2025/002", new[] { "IA/2025/001", "IA/2025/002" })]
+    [InlineData("\"IA/2025/001; IA/2025/002,IA/2025/003 ; IA/2025/004 ;\"",
+        new[] { "IA/2025/001", "IA/2025/002", "IA/2025/003", "IA/2025/004" })]
+    [InlineData("\"IA/2025/001, IA/2025/002,, ; ,IA/2025/003 , IA/2025/004 ,\"",
+        new[] { "IA/2025/001", "IA/2025/002", "IA/2025/003", "IA/2025/004" })]
     [InlineData("\"IA/2025/001\"", new[] { "IA/2025/001" })]
     [InlineData("IA/2025/001", new[] { "IA/2025/001" })]
     public void Read_WithCaseNos_StoresTrimmedNonEmptyCaseNos(string csvCaseNos,

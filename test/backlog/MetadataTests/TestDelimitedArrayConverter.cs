@@ -61,6 +61,12 @@ public class TestDelimitedArrayConverter
     [InlineData("item2", new[] { "item2" })]
     [InlineData("item3,item1,item2", new[] { "item3", "item1", "item2" })]
     [InlineData("item3,item2,item1", new[] { "item3", "item2", "item1" })]
+    [InlineData("item1;item2", new[] { "item1", "item2" })]
+    [InlineData("item1; item2", new[] { "item1", "item2" })]
+    [InlineData("item1,item2;item3", new[] { "item1", "item2", "item3" })]
+    [InlineData("item1,item2;item3 ;", new[] { "item1", "item2", "item3" })]
+    [InlineData(" ; ", new string[] { })]
+    [InlineData("item1 ; item2 ; item3", new[] { "item1", "item2", "item3" })]
     [InlineData(null, new string[] { })]
     public void ConvertFromString_ReturnsExpectedArray(string? input, string[] expected)
     {
