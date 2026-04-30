@@ -18,6 +18,14 @@ th, td { border: thin dotted; padding: 3pt }
 td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge. */
+p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p > span.tab { flex: 1 1 auto }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -53,7 +61,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	border: 1px solid black;
 	width: 100%;
 	margin: 6pt 0;
-	table-layout: fixed;
 }
 
 .ia-table th,
@@ -71,11 +78,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-table td p:empty {
 	margin: 0;
 	height: 4pt;
-}
-
-.ia-table td:empty,
-.ia-table td:has(> p:only-child:empty) {
-	display: none !important;
 }
 
 /* Center spanning header cells */
@@ -467,8 +469,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         <td colspan="4">
                            <p>Departmental Policy signoff (SCS):  Joanne Gibson                                
                               Date:      15/11/2021</p>
-                           <p>Economist signoff (senior analyst):  Joy Thompson                                
-                              Date:      12/11/2021</p>
+                           <p>Economist signoff (senior analyst):  Joy Thompson <span class="tab">&nbsp;</span><span class="tab">&nbsp;</span>                                         Date:      12/11/2021</p>
                            <p>Better Regulation Unit signoff:   Prabhavati Mistry                              
                               Date:      12/11/2021</p>
                         </td>
@@ -953,13 +954,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      All businesses who choose to set up a CDC scheme will incur costs associated with:</p>
                </section>
                <section class="level">
-                  <p>•One-off familiarisation for trustees to read the relevant legislation and guidance</p>
+                  <p>•<span class="tab">&nbsp;</span>One-off familiarisation for trustees to read the relevant legislation and guidance</p>
                </section>
                <section class="level">
-                  <p>•One-off costs associated with meeting the criteria to be authorised</p>
+                  <p>•<span class="tab">&nbsp;</span>One-off costs associated with meeting the criteria to be authorised</p>
                </section>
                <section class="level">
-                  <p>•Ongoing costs associated with meeting the supervisory regime</p>
+                  <p>•<span class="tab">&nbsp;</span>Ongoing costs associated with meeting the supervisory regime</p>
                </section>
                <section class="level">
                   <p>Depending on the scheme design some employers may also incur additional ongoing scheme
@@ -2546,7 +2547,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="paragraph num">
                   <h2><span class="num">c.</span></h2>
                   <p>notifying all employers that the scheme has experienced a triggering event, and how
-                     they plan to transfer members out and wind up the scheme;</p>
+                     they plan to <span class="tab">&nbsp;</span>transfer members out and wind up the scheme;</p>
                </section>
                <section class="paragraph num">
                   <h2><span class="num">d.</span></h2>
@@ -2555,7 +2556,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="paragraph num">
                   <h2><span class="num">e.</span></h2>
                   <p>periodically reporting to the Regulator about the scheme’s progress in addressing
-                     the triggering event.</p>
+                     the triggering <span class="tab">&nbsp;</span>event.</p>
                </section>
                <section class="level">
                   <p>A scheme following option 1 will have to notify the Regulator of the occurrence of

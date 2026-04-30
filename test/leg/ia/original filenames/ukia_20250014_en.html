@@ -18,6 +18,14 @@ th, td { border: thin dotted; padding: 3pt }
 td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge. */
+p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p > span.tab { flex: 1 1 auto }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -53,7 +61,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	border: 1px solid black;
 	width: 100%;
 	margin: 6pt 0;
-	table-layout: fixed;
 }
 
 .ia-table th,
@@ -71,11 +78,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-table td p:empty {
 	margin: 0;
 	height: 4pt;
-}
-
-.ia-table td:empty,
-.ia-table td:has(> p:only-child:empty) {
-	display: none !important;
 }
 
 /* Center spanning header cells */
@@ -5293,7 +5295,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   permission from the copyright holders concerned.</p>
                <p>About this publication:</p>
                <p>enquiries  <a href="https://www.gov.uk/contact-dfe"><u>https://www.gov.uk/contact-dfe</u></a></p>
-               <p>download <a href="http://www.gov.uk/government/publications"><u>www.gov.uk/government/publications</u></a></p>
+               <p>download <span class="tab">&nbsp;</span><a href="http://www.gov.uk/government/publications"><u>www.gov.uk/government/publications</u></a></p>
                <p>Follow us on X: <a href="http://twitter.com/educationgovuk"><u>@educationgovuk</u></a><br>Connect with us on Facebook: <a href="http://www.facebook.com/educationgovuk"><u>facebook.com/educationgovuk</u></a></p>
             </div>
          </section>

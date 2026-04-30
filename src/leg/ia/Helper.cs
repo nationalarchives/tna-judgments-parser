@@ -696,7 +696,9 @@ class Helper : BaseHelper {
             toc.ParentNode.RemoveChild(toc);
         }
         
-        var markers = xml.SelectNodes("//akn:marker", nsmgr);
+        // The IA subschema permits <marker name="tab"> but no other marker types.
+        // Strip anything else; keep tab markers so paragraph tab stops survive to HTML.
+        var markers = xml.SelectNodes("//akn:marker[@name != 'tab']", nsmgr);
         foreach (XmlElement marker in markers) {
             marker.ParentNode.RemoveChild(marker);
         }

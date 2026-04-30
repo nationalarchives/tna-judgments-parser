@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2025/36/impacts/2025/8/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2025/36/impacts/2025/8/data.akn" />
-          <FRBRdate date="2026-04-29" name="historic-akn-transform" />
+          <FRBRdate date="2026-04-30" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -457,7 +457,7 @@
                   <p>No pass through has been deducted from these figures.</p>
                 </td>
                 <td style="color:#ffffff;background-color:#C00000">
-                  <p><b>Negative</b></p>
+                  <p><b>Negative</b><marker name="tab" /></p>
                   <p><b>Based on likely business £NPV</b></p>
                 </td>
               </tr>
@@ -708,7 +708,7 @@
         </intro>
         <paragraph>
           <content>
-            <p><b>PV base year:</b><b> 2024</b></p>
+            <p><b>PV base year:</b><marker name="tab" /><b> 2024</b></p>
             <table uk:widths="1.18in 1.18in 1.87in 1.87in 1.87in 1.87in">
               <tr>
                 <td colspan="2">
@@ -3788,7 +3788,7 @@
           </subparagraph>
           <subparagraph>
             <content>
-              <p>Source:</p>
+              <p><marker name="tab" />Source:</p>
             </content>
           </subparagraph>
         </paragraph>

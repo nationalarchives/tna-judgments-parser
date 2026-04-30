@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/data.akn" />
-          <FRBRdate date="2026-04-29" name="historic-akn-transform" />
+          <FRBRdate date="2026-04-30" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -329,7 +329,7 @@
       <section eId="section_2">
         <heading>Summary Analysis &amp; Evidence</heading>
         <content>
-          <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
+          <p><b>Summary: Analysis &amp; Evidence</b><marker name="tab" />Policy Option 1</p>
         </content>
       </section>
       <section eId="section_3">
@@ -373,7 +373,7 @@
                   <p><b>COSTS (£m)</b></p>
                 </td>
                 <td colspan="2">
-                  <p><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p><b>Total Transition </b><br /><marker name="tab" />(Constant Price)<marker name="tab" />Years</p>
                   <p><br /></p>
                 </td>
                 <td>
@@ -449,7 +449,7 @@
                   <p><b>BENEFITS (£m)</b></p>
                 </td>
                 <td colspan="2">
-                  <p><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p><b>Total Transition </b><br /><marker name="tab" />(Constant Price)<marker name="tab" />Years</p>
                   <p><br /></p>
                 </td>
                 <td>
@@ -524,7 +524,7 @@
               </tr>
               <tr>
                 <td colspan="5">
-                  <p><b>Discount rate (%)</b></p>
+                  <p><marker name="tab" /><b>Discount rate (%)</b></p>
                   <p />
                 </td>
                 <td>

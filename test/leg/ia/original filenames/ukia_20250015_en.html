@@ -18,6 +18,14 @@ th, td { border: thin dotted; padding: 3pt }
 td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge. */
+p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p > span.tab { flex: 1 1 auto }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -53,7 +61,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	border: 1px solid black;
 	width: 100%;
 	margin: 6pt 0;
-	table-layout: fixed;
 }
 
 .ia-table th,
@@ -71,11 +78,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-table td p:empty {
 	margin: 0;
 	height: 4pt;
-}
-
-.ia-table td:empty,
-.ia-table td:has(> p:only-child:empty) {
-	display: none !important;
 }
 
 /* Center spanning header cells */
@@ -642,6 +644,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td style="background-color:#FFC000">
                               <p>
                                  <b>Neutral</b>
+                                 <span class="tab">&nbsp;</span>
                                  </p>
                               <p></p>
                            </td>
@@ -1086,6 +1089,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="paragraph">
                   <p>
                      <b>PV base year:</b>
+                     <span class="tab">&nbsp;</span>
                      <b> 2024/25</b>
                      </p>
                   <table class="ia-table">
@@ -5415,16 +5419,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   the British Nationality (Hong Kong) Act 1997 </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Migration Advisory Committee, Analysis of the Impact of Migration (January 2012)
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <span class="tab">&nbsp;</span>Migration Advisory Committee, Analysis of the Impact of Migration (January 2012) 
                   <a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration"><u><a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration">https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration</a></u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:&nbsp;&nbsp;</p>
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <span class="tab">&nbsp;</span>A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:&nbsp;&nbsp;</p>
                <p><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk"><u><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk">https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk</a></u></a>&nbsp;&nbsp;</p>
                <p></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Migration Advisory Committee, Analysis of the Impact of Migration (January 2012)
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <span class="tab">&nbsp;</span>Migration Advisory Committee, Analysis of the Impact of Migration (January 2012) 
                   <a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration"><u><a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration">https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration</a></u></a></p>
             </div>
             <div class="footnote">
@@ -5433,32 +5437,32 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   applications first.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Low estimate based on a one-week snapshot of flags inputted by carriers in April
-                  2023, high estimate based on 2018 estimates of non-EEA arrivals and the products they
-                  arrived into the UK on, including transit visas. The former may not be representative
-                  of other months in the year, the latter uses an old methodology and may not be representative
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <span class="tab">&nbsp;</span>Low estimate based on a one-week snapshot of flags inputted by carriers in April 2023,
+                  high estimate based on 2018 estimates of non-EEA arrivals and the products they arrived
+                  into the UK on, including transit visas. The former may not be representative of other
+                  months in the year, the latter uses an old methodology and may not be representative
                   of all nationalities.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  Taxes and fees for sales of service: how they differ and why it is important - Office
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <span class="tab">&nbsp;</span>Taxes and fees for sales of service: how they differ and why it is important - Office
                   for National Statistics (ons.gov.uk):&nbsp;&nbsp;<a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31"><u><a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31">https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31</a></u></a>&nbsp; </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  Managing public money - GOV.UK:&nbsp;&nbsp;<a href="https://www.gov.uk/government/publications/managing-public-money"><u><a href="https://www.gov.uk/government/publications/managing-public-money">https://www.gov.uk/government/publications/managing-public-money</a></u></a>&nbsp;</p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <span class="tab">&nbsp;</span>Managing public money - GOV.UK:&nbsp;&nbsp;<a href="https://www.gov.uk/government/publications/managing-public-money"><u><a href="https://www.gov.uk/government/publications/managing-public-money">https://www.gov.uk/government/publications/managing-public-money</a></u></a>&nbsp;</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  “Pay for UK healthcare as part of your immigration application”, GOV.UK:  <a href="https://www.gov.uk/healthcare-immigration-application/refunds">https://www.gov.uk/healthcare-immigration-application/refunds</a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <span class="tab">&nbsp;</span>“Pay for UK healthcare as part of your immigration application”, GOV.UK:  <a href="https://www.gov.uk/healthcare-immigration-application/refunds">https://www.gov.uk/healthcare-immigration-application/refunds</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Immigration Health Surcharge: equality impact assessment 2023 (accessible) - GOV.UK
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a> <span class="tab">&nbsp;</span>Immigration Health Surcharge: equality impact assessment 2023 (accessible) - GOV.UK
                   (www.gov.uk): <a href="https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible"><u><a href="https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible">https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible</a></u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  Some exemptions may apply. Exemptions are set out in UK visa sponsorship for employers:
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a> <span class="tab">&nbsp;</span>Some exemptions may apply. Exemptions are set out in UK visa sponsorship for employers:
                   Immigration skills charge - GOV.UK:  <a href="https://www.gov.uk/uk-visa-sponsorship-employers/immigration-skills-charge">https://www.gov.uk/uk-visa-sponsorship-employers/immigration-skills-charge</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> <span class="tab">&nbsp;</span>A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:
                   </p>
                <p><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk"><u><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk">https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk</a></u></a></p>
             </div>
@@ -5471,12 +5475,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   Margin." American Economic Review, 101 (3): 482-86.&nbsp;<a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482"><u><a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482">https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482</a></u></a>&nbsp; </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  Blundell, Richard, Antoine Bozio, and Guy Laroque. 2011. "Labor Supply and the Extensive
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> <span class="tab">&nbsp;</span>Blundell, Richard, Antoine Bozio, and Guy Laroque. 2011. "Labor Supply and the Extensive
                   Margin." American Economic Review, 101 (3): 482-86. <a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482">https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  An internal academic literature review was used to tailor the estimates from the
-                  DfT’s UK aviation forecasts 2017: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a> <span class="tab">&nbsp;</span>An internal academic literature review was used to tailor the estimates from the DfT’s
+                  UK aviation forecasts 2017: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf</a></u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  E.g. <a href="https://www.legislation.gov.uk/ukia/2023/121/pdfs/ukia_20230121_en.pdf"><u>Impact assessment for Immigration and Nationality (Fees) Regulations (Amendment) 2023
@@ -5497,10 +5501,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         RPC Opinion: N/A (legislation.gov.uk)</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-23" href="#fnref-23">23</a>  Low estimate based on a one-week snapshot of flags inputted by carriers in April
-                  2023, high estimate based on 2018 estimates of non-EEA arrivals and the products they
-                  arrived into the UK on, including transit visas. The former may not be representative
-                  of other months in the year, the latter uses an old methodology and may not be representative
+               <p><a class="marker" id="fn-23" href="#fnref-23">23</a> <span class="tab">&nbsp;</span>Low estimate based on a one-week snapshot of flags inputted by carriers in April 2023,
+                  high estimate based on 2018 estimates of non-EEA arrivals and the products they arrived
+                  into the UK on, including transit visas. The former may not be representative of other
+                  months in the year, the latter uses an old methodology and may not be representative
                   of all nationalities.</p>
             </div>
             <div class="footnote">

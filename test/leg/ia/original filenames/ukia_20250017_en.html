@@ -18,6 +18,14 @@ th, td { border: thin dotted; padding: 3pt }
 td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge. */
+p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p > span.tab { flex: 1 1 auto }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -53,7 +61,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	border: 1px solid black;
 	width: 100%;
 	margin: 6pt 0;
-	table-layout: fixed;
 }
 
 .ia-table th,
@@ -71,11 +78,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-table td p:empty {
 	margin: 0;
 	height: 4pt;
-}
-
-.ia-table td:empty,
-.ia-table td:has(> p:only-child:empty) {
-	display: none !important;
 }
 
 /* Center spanning header cells */
@@ -740,6 +742,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                               <p>
                                  <b>Total Transition </b>
                                  <br>
+                                 <span class="tab">&nbsp;</span>
                                  </p>
                               <p>
                                  <br>
@@ -850,7 +853,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price) Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price) <span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -954,6 +958,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="5">
                               <p>
                                  <b>Key assumptions/sensitivities/risks </b>
+                                 <span class="tab">&nbsp;</span>
                                  <b>Discount rate – (3.5%)</b>
                                  </p>
                               <p></p>
@@ -4358,7 +4363,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  Including the cost of installing a wet distribution system. Households currently
                   heated by direct electric appliances tend to be smaller than average which partly
-                  offsets the increase in price due to the installation of a wet distribution system.</p>
+                  offsets the increase in price due to the installation of a wet distribution system.<span class="tab">&nbsp;</span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  BEIS (2023), Green Book supplementary guidance, <a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal"><u><a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal">https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal</a></u></a></p>

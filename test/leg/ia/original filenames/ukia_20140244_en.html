@@ -18,6 +18,14 @@ th, td { border: thin dotted; padding: 3pt }
 td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge. */
+p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p > span.tab { flex: 1 1 auto }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -53,7 +61,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	border: 1px solid black;
 	width: 100%;
 	margin: 6pt 0;
-	table-layout: fixed;
 }
 
 .ia-table th,
@@ -71,11 +78,6 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-table td p:empty {
 	margin: 0;
 	height: 4pt;
-}
-
-.ia-table td:empty,
-.ia-table td:has(> p:only-child:empty) {
-	display: none !important;
 }
 
 /* Center spanning header cells */
@@ -544,7 +546,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <section class="section heading">
                <h2></h2>
                <p>
-                  <b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
+                  <b>Summary: Analysis &amp; Evidence</b>
+                  <span class="tab">&nbsp;</span>Policy Option 1</p>
             </section>
             <section class="section heading">
                <h2></h2>
@@ -626,7 +629,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -725,7 +729,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -819,6 +824,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="5">
                               <p>
                                  <b>Key assumptions/sensitivities/risks</b>
+                                 <span class="tab">&nbsp;</span>
                                  <b>Discount rate (%)</b>
                                  </p>
                               <p></p>
@@ -898,7 +904,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <section class="section heading">
                <h2></h2>
                <p>
-                  <b>Summary: Analysis &amp; Evidence</b>Policy Option 2</p>
+                  <b>Summary: Analysis &amp; Evidence</b>
+                  <span class="tab">&nbsp;</span>Policy Option 2</p>
                <section class="level">
                   <p>
                      <b>Description:  </b>
@@ -981,7 +988,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -1086,7 +1094,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -1190,6 +1199,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="5">
                               <p>
                                  <b>Key assumptions/sensitivities/risks</b>
+                                 <span class="tab">&nbsp;</span>
                                  <b>Discount rate (%)</b>
                                  </p>
                               <p></p>
@@ -1277,7 +1287,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <section class="section heading">
                <h2></h2>
                <p>
-                  <b>Summary: Analysis &amp; Evidence</b>Policy Option 3</p>
+                  <b>Summary: Analysis &amp; Evidence</b>
+                  <span class="tab">&nbsp;</span>Policy Option 3</p>
                <section class="level">
                   <p>
                      <b>Description:  </b>
@@ -1358,7 +1369,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -1460,7 +1472,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -1561,6 +1574,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="5">
                               <p>
                                  <b>Key assumptions/sensitivities/risks</b>
+                                 <span class="tab">&nbsp;</span>
                                  <b>Discount rate (%)</b>
                                  </p>
                               <p></p>
@@ -1645,7 +1659,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <section class="section heading">
                <h2></h2>
                <p>
-                  <b>Summary: Analysis &amp; Evidence</b>Policy Option 4</p>
+                  <b>Summary: Analysis &amp; Evidence</b>
+                  <span class="tab">&nbsp;</span>Policy Option 4</p>
                <section class="level">
                   <p>
                      <b>Description:  </b>
@@ -1727,7 +1742,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -1831,7 +1847,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -1934,6 +1951,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="5">
                               <p>
                                  <b>Key assumptions/sensitivities/risks</b>
+                                 <span class="tab">&nbsp;</span>
                                  <b>Discount rate (%)</b>
                                  </p>
                               <p></p>
@@ -2018,7 +2036,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <section class="section heading">
                <h2></h2>
                <p>
-                  <b>Summary: Analysis &amp; Evidence</b>Policy Option 5</p>
+                  <b>Summary: Analysis &amp; Evidence</b>
+                  <span class="tab">&nbsp;</span>Policy Option 5</p>
                <section class="level">
                   <p>
                      <b>Description:  </b>
@@ -2099,7 +2118,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -2203,7 +2223,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="2">
                               <p>
                                  <b>Total Transition </b>
-                                 <br>(Constant Price)Years</p>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>(Constant Price)<span class="tab">&nbsp;</span>Years</p>
                               <p>
                                  <br>
                                  </p>
@@ -2301,6 +2322,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <td colspan="5">
                               <p>
                                  <b>Key assumptions/sensitivities/risks</b>
+                                 <span class="tab">&nbsp;</span>
                                  <b>Discount rate (%)</b>
                                  </p>
                               <p></p>
@@ -2611,19 +2633,23 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="level heading">
                   <h2><span class="heading">Stakeholders were also asked:</span></h2>
                   <section class="paragraph">
-                     <p>- to provide evidence of the cost savings and losses which would be incurred if activities
+                     <p>
+                        <span class="tab">&nbsp;</span>- to provide evidence of the cost savings and losses which would be incurred if activities
                         relating to clinical and field trials were exempt from infringement;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- for information about why stakeholder may be put into the position of risking patent
+                     <p>
+                        <span class="tab">&nbsp;</span>- for information about why stakeholder may be put into the position of risking patent
                         infringement when running clinical trials for new drugs;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- to comment on the partial impact assessment, the definitions used, whether micro-businesses
+                     <p>
+                        <span class="tab">&nbsp;</span>- to comment on the partial impact assessment, the definitions used, whether micro-businesses
                         should be included in the proposed measures,</p>
                   </section>
                   <section class="paragraph">
-                     <p>- to comment on the suitability of using a legislative reform order (LRO) to make
+                     <p>
+                        <span class="tab">&nbsp;</span>- to comment on the suitability of using a legislative reform order (LRO) to make
                         the changes and LRO preconditions<a class="fn" id="fnref-25" href="#fn-25">25</a>.</p>
                   </section>
                </section>
@@ -2670,13 +2696,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         We propose doing this by amending the Patents Act to provide an exception to infringement
                         which covers:</span></h2>
                   <section class="paragraph">
-                     <p>- all activities required to obtain regulatory approval of all drugs;</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- all activities required to obtain regulatory approval of all drugs;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- trials and studies necessary for HTA of all drugs;</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- trials and studies necessary for HTA of all drugs;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- the activities listed above when carried out for the purpose of obtaining regulatory
+                     <p>
+                        <span class="tab">&nbsp;</span>- the activities listed above when carried out for the purpose of obtaining regulatory
                         approval or HTA in all countries.  </p>
                   </section>
                </section>
@@ -2781,11 +2810,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <h2><span class="heading">We specifically want to change the law to exempt from patent infringement activities
                         involved in preparing or running:</span></h2>
                   <section class="paragraph">
-                     <p>- clinical trials and field trials for the purposes of gaining regulatory approval
-                        in all countries;</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- clinical trials and field trials for the purposes of gaining regulatory approval
+                        in all <span class="tab">&nbsp;</span>countries;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- health technology assessments for use in all countries.</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- health technology assessments for use in all countries.</p>
                   </section>
                </section>
                <section class="level">
@@ -2827,7 +2858,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <h2><span class="heading">Stakeholders were able to provide information of the non-monetised costs.  These are
                         listed below:</span></h2>
                   <section class="paragraph">
-                     <p>-Loss of licensing fees or loss of sales revenue for patent holders when their drug
+                     <p>
+                        <span class="tab">&nbsp;</span>-Loss of licensing fees or loss of sales revenue for patent holders when their drug
                         is used in a trial.  This assumes that patentees currently licence or sell their products
                         to third parties for use in clinical trials.  However, it was noted by one stakeholder
                         that trial sponsors are unlikely to be prepared to spend much licensing a product
@@ -2841,9 +2873,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         to the final marketed product.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- Earlier reduction in market share for the patent holder after patent expiry.  This
-                        assumes that third parties seeking to produce a competitor drug either do not run
-                        a clinical trial until there is no risk of infringement <i>i.e.</i> after patent expiry, or that they do not currently run clinical trials while the
+                     <p>
+                        <span class="tab">&nbsp;</span>- Earlier reduction in market share for the patent holder after patent expiry.  This
+                        assumes that <span class="tab">&nbsp;</span>third parties seeking to produce a competitor drug either do not run a clinical trial
+                        until there is no <span class="tab">&nbsp;</span>risk of infringement <i>i.e.</i> after patent expiry, or that they do not currently run clinical trials while the
                         patent is still in-force.  Anecdotal evidence, however, suggests that clinical trials
                         are being run before expiry of a competitor’s patent, either in the UK or another
                         country.  It is therefore likely that the real cost caused by changing the law to
@@ -2851,13 +2884,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         </p>
                   </section>
                   <section class="paragraph">
-                     <p>- Losses to academics, SMEs and technology transfer companies looking to commercialise
+                     <p>
+                        <span class="tab">&nbsp;</span>- Losses to academics, SMEs and technology transfer companies looking to commercialise
                         their product to pharmaceutical companies for further development, and loss of control
                         of IP rights for drugs used in trials.  On the other hand, positive results in trials
                         could encourage larger pharmaceutical companies to invest in smaller entities;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- Companies are responsible for reporting safety information generated for their drug
+                     <p>
+                        <span class="tab">&nbsp;</span>- Companies are responsible for reporting safety information generated for their drug
                         products, even if they do not generate the information themselves.  Concern was raised
                         that unlicensed use of a product e.g. by third parties in clinical trials could adversely
                         impact the safety profile of a product.  Another, related point is that adverse results
@@ -2898,107 +2933,120 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <h2><span class="heading">Some limited evidence of the cost of the current legislation was obtained during the
                         informal consultation.  </span></h2>
                   <section class="paragraph">
-                     <p>- Company A indicated that they have at least one query a year relating to patent
-                        infringement when running clinical trials.  This requires considerable analysis of
-                        the infringement risk by their legal department, taking up approximately a week of
-                        attorney time, at a cost of around £3000.  This is set against a company background
-                        of over 100 clinical trial protocols run across over 500 sites in the UK, with more
-                        than 10 000 patients involved.  In the example provided, the decision was taken to
-                        run the trial in a country with a broader Bolar provision, and thus may be considered
-                        a loss to the UK economy.</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- Company A indicated that they have at least one query a year relating to patent
+                        infringement <span class="tab">&nbsp;</span>when running clinical trials.  This requires considerable analysis of the infringement
+                        risk by their legal department, taking up approximately a week of attorney time, at
+                        a cost of around £3000.  This is set against a company background of over 100 clinical
+                        trial protocols run across over 500 sites in the UK, with more than 10 000 patients
+                        involved.  In the example provided, the decision was taken to run the trial in a country
+                        with a broader Bolar provision, and thus may be considered a loss to the UK economy.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- The legal activities carried out by company B relate to drug development and clinical
+                     <p>
+                        <span class="tab">&nbsp;</span>- The legal activities carried out by company B relate to drug development and clinical
                         trials include freedom-to-operate studies, European Patent Office opposition proceedings
                         and revocation actions in the UK courts.  They estimate the cost of in-house Freedom-to-Operate
-                        (FTO) studies ranges from £90K to 135K, and EPO oppositions range from £100K to £250K,
+                        <span class="tab">&nbsp;</span>(FTO) studies ranges from £90K to 135K, and EPO oppositions range from £100K to £250K,
                         depending on the importance of the case. Revocation proceedings may cost up to £1.5
                         million.  </p>
                   </section>
                   <section class="paragraph">
-                     <p>- These two companies clearly operate very different strategies and it is therefore
+                     <p>
+                        <span class="tab">&nbsp;</span>- These two companies clearly operate very different strategies and it is therefore
                         difficult to give a best estimate of the average benefit to stakeholders based on
                         the information provided.  It seems reasonable to assume, however, that the proposed
                         law change would save companies the legal and administrative cost burden associated
-                        with assessing infringement risk prior to running clinical trials.  Based on the evidence
-                        provided, the benefits range from £3000 at the lower end to £135K for Freedom-to-Operate
-                        studies, and from £100K to £1.5 million for challenging the validity of a patent.</p>
+                        with assessing infringement risk prior to <span class="tab">&nbsp;</span>running clinical trials.  Based on the evidence provided, the benefits range from
+                        £3000 at the lower end to £135K for Freedom-to-Operate studies, and from £100K to
+                        £1.5 million for challenging the validity of a patent.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- Company B provided some updated information at formal consultation stage.  They
+                     <p>
+                        <span class="tab">&nbsp;</span>- Company B provided some updated information at formal consultation stage.  They
                         indicated that approximately 60% of the molecules they have in clinical development
                         have potential infringement issues in respect of clinical trials only i.e. where a
-                        patent will expire before commercialisation.  The estimate that the costs associated
-                        with opposition or revocation of these patents could be in excess of £5.6 million,
-                        with internal costs of approximately £1.35 million.  The total benefit to company
-                        B of a change in legislation could therefore be nearly £7 million.</p>
+                        patent will expire before <span class="tab">&nbsp;</span>commercialisation.  The estimate that the costs associated with opposition or revocation
+                        of these patents could be in excess of £5.6 million, with internal costs of approximately
+                        £1.35 million.  The total benefit to company B of a change in legislation could therefore
+                        be nearly £7 million.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- Company C estimated the cost of FTO searches as being in the region of tens-of-thousands
+                     <p>
+                        <span class="tab">&nbsp;</span>- Company C estimated the cost of FTO searches as being in the region of tens-of-thousands
                         of pounds, plus the drain on a company’s internal resources; licensing negotiations
                         and costs may be £10 000 to £15 000 per licence; costs of challenging validity or
-                        defending an infringement action are difficult to quantify but are significant. They
-                        indicated that all these costs would be saved if the proposed changes were implemented.
-                        </p>
+                        defending an infringement <span class="tab">&nbsp;</span>action are difficult to quantify but are significant. They indicated that all these
+                        costs would be <span class="tab">&nbsp;</span>saved if the proposed changes were implemented. </p>
                   </section>
                   <section class="paragraph">
-                     <p>- Anecdotal evidence was provided that company D, a medium-sized biotechnology company
-                        has lost business due to the narrow exception to infringement currently available
-                        in the UK, however no quantification of the loss was given.  The implication is that
-                        if the infringement exceptions had been broader these losses would not have occurred.
-                        </p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- Anecdotal evidence was provided that company D, a medium-sized biotechnology company
+                        has <span class="tab">&nbsp;</span>lost business due to the narrow exception to infringement currently available in the
+                        UK, however no quantification of the loss was given.  The implication is that if the
+                        infringement exceptions had <span class="tab">&nbsp;</span>been broader these losses would not have occurred. </p>
                   </section>
                </section>
                <section class="level heading">
                   <h2><span class="heading">Further, more general, comments were received regarding the cost savings which would
                         be brought about if the law is changed.  These are difficult to quantify and include:</span></h2>
                   <section class="paragraph">
-                     <p>- Freedom-to-operate searches and follow-on costs where an infringement risk is identified.
+                     <p>
+                        <span class="tab">&nbsp;</span>- Freedom-to-operate searches and follow-on costs where an infringement risk is identified.
                         </p>
                   </section>
                   <section class="paragraph">
-                     <p>- The delay of a trial and subsequent commercialisation of a product due to an uncertain
+                     <p>
+                        <span class="tab">&nbsp;</span>- The delay of a trial and subsequent commercialisation of a product due to an uncertain
                         infringement position. </p>
                   </section>
                   <section class="paragraph">
-                     <p>- Obtaining FTO searches, validity opinions and funding EP oppositions to ensure that
-                        trials are not disrupted by third parties. </p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- Obtaining FTO searches, validity opinions and funding EP oppositions to ensure that
+                        trials are <span class="tab">&nbsp;</span>not disrupted by third parties. </p>
                   </section>
                   <section class="paragraph">
-                     <p>-In the technology transfer sector, simplification of the negotiation procedure would
+                     <p>
+                        <span class="tab">&nbsp;</span>-In the technology transfer sector, simplification of the negotiation procedure would
                         mean no assessment of infringement risks would be required prior to collaboration
                         with other companies resulting in cost savings.  Costs would also be saved in the
                         following areas: clinical trial agreements, material transfer agreements, retained
                         IP rights. </p>
                   </section>
                   <section class="paragraph">
-                     <p>-The outlay, often from a limited budget, for SMEs assessing infringement risks.</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>-The outlay, often from a limited budget, for SMEs assessing infringement risks.</p>
                   </section>
                </section>
                <section class="level heading">
                   <h2><span class="heading">Stakeholders also cited the following as benefits associated with the proposed change
                         to legislation:</span></h2>
                   <section class="paragraph">
-                     <p>- Stakeholders who have previously been given legal advice against running trials
+                     <p>
+                        <span class="tab">&nbsp;</span>- Stakeholders who have previously been given legal advice against running trials
                         in the UK due to the current risk of infringement, or who  will currently not consider
                         locating a trial in the UK due to this risk; would be more likely to locate trials
                         here.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- Extending HTA assessment to the generic industry should increase the growth in the
+                     <p>
+                        <span class="tab">&nbsp;</span>- Extending HTA assessment to the generic industry should increase the growth in the
                         biosimilars and generics market in the UK. </p>
                   </section>
                   <section class="paragraph">
-                     <p>- A more favourable legislative provision should prevent the loss of clinical research
+                     <p>
+                        <span class="tab">&nbsp;</span>- A more favourable legislative provision should prevent the loss of clinical research
                         jobs to other countries, which currently impacts the UK economy. </p>
                   </section>
                   <section class="paragraph">
-                     <p>- Opportunities are lost to the UK and to patients when trials are run elsewhere,
+                     <p>
+                        <span class="tab">&nbsp;</span>- Opportunities are lost to the UK and to patients when trials are run elsewhere,
                         leading to a loss of expertise and revenue for UK institutions.  This would be prevented
                         if the clinical trial environment was more favourable in the UK.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- Improved commercialisation success rate as more safety data would be generated through
+                     <p>
+                        <span class="tab">&nbsp;</span>- Improved commercialisation success rate as more safety data would be generated through
                         others’ use of a drug in a trial environment. This would have a public health benefit.
                         This would be of particular benefit to SMEs and academic researchers with limited
                         budgets.  This is would be a positive outcome of adverse results in a trial which
@@ -3222,7 +3270,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="level heading">
                   <h2><span class="heading">We have also made the following assumptions:</span></h2>
                   <section class="paragraph">
-                     <p>- That some stakeholders involved are “straddling the fence”, i.e. that  pharmaceutical
+                     <p>
+                        <span class="tab">&nbsp;</span>- That some stakeholders involved are “straddling the fence”, i.e. that  pharmaceutical
                         companies both  manufacture patented drugs which others want to use in clinical trials,
                         and also wants to use  drugs patented by  other companies in their own clinical trials,
                         either as part of a combination therapy, or as a comparator. Therefore, on some occasions
@@ -3233,7 +3282,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         on any particular group.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- That if the risk of patent infringement when carrying out clinical trials was removed,
+                     <p>
+                        <span class="tab">&nbsp;</span>- That if the risk of patent infringement when carrying out clinical trials was removed,
                         companies would choose to conduct more clinical trials in the UK.  Some companies
                         indicated at consultation that such a change would make the UK a more attractive location
                         in which to run trials, but we are aware that a large number of factors are considered
@@ -3241,17 +3291,20 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         is just one. </p>
                   </section>
                   <section class="paragraph">
-                     <p>- That some companies currently licence or sell their patented products for use by
+                     <p>
+                        <span class="tab">&nbsp;</span>- That some companies currently licence or sell their patented products for use by
                         third parties in clinical trials.  Anecdotal evidence suggests that this is not the
                         case for all companies, and some provide their products free of charge to third parties.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- That clinical trials are only run when there is no risk of patent infringement <i>i.e.</i> after patent expiry.  Again, anecdotal evidence suggests that this is not the case
-                        with companies either running their trials abroad, or running them in the UK when
-                        the infringement position is not certain.</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- That clinical trials are only run when there is no risk of patent infringement <i>i.e.</i> after patent <span class="tab">&nbsp;</span>expiry.  Again, anecdotal evidence suggests that this is not the case with companies
+                        either running their trials abroad, or running them in the UK when the infringement
+                        position is not certain.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- That we would not receive sufficient support from EU Member States to successfully
+                     <p>
+                        <span class="tab">&nbsp;</span>- That we would not receive sufficient support from EU Member States to successfully
                         introduce EU legislation to remove infringement risk.</p>
                   </section>
                </section>
@@ -3268,16 +3321,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="level heading">
                   <h2><span class="heading">The following risks have been identified for specific policy options:</span></h2>
                   <section class="paragraph">
-                     <p>- In respect of policy option 3 (clarification of legislation),  limited case law
-                        exists which would make it difficult to provide useful and legally certain guidance
-                        to stakeholders.  This could lead to a lack of confidence. There is also the risk
-                        that legal challenges of its content could be brought.</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- In respect of policy option 3 (clarification of legislation),  limited case law
+                        exists which would make it <span class="tab">&nbsp;</span>difficult to provide useful and legally certain guidance to stakeholders.  This could
+                        lead to a lack of confidence. There is also the risk that legal challenges of its
+                        content could be brought.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- In respect of policy option 5 (changing  EU law to give all Member States a broad
-                        infringement exception in this area), there is a risk that pharmaceutical companies
-                        could locate clinical trials in other countries which currently have a narrow research
-                        exception e.g. the Netherlands and Spain, and not use the UK for this work.</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- In respect of policy option 5 (changing  EU law to give all Member States a broad
+                        infringement <span class="tab">&nbsp;</span>exception in this area), there is a risk that pharmaceutical companies could locate
+                        clinical trials in <span class="tab">&nbsp;</span>other countries which currently have a narrow research exception e.g. the Netherlands
+                        and Spain, and not use the UK for this work.</p>
                   </section>
                </section>
             </section>
@@ -3311,7 +3366,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="level heading">
                   <h2><span class="heading">The following economic and financial impacts have been identified:</span></h2>
                   <section class="paragraph">
-                     <p>- Small businesses and academic groups have limited budgets for performing clinical
+                     <p>
+                        <span class="tab">&nbsp;</span>- Small businesses and academic groups have limited budgets for performing clinical
                         trials.  Large multinational pharmaceutical companies have large budgets for this
                         work.  Large companies are able to locate their trials in countries where they do
                         not risk patent infringement, whereas smaller companies are unlikely to be able to.
@@ -3319,7 +3375,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         small companies to locate trials in the UK without risking infringement.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- The wider economic impact of the proposed changes would be making the UK a more
+                     <p>
+                        <span class="tab">&nbsp;</span>- The wider economic impact of the proposed changes would be making the UK a more
                         attractive location in which to perform clinical trials.  This should increase the
                         number of trials run here which would bring economic benefits in the clinical trial,
                         and related sectors.</p>
@@ -3356,15 +3413,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <h2><span class="heading">The proposed changes, and possible increase in the number trials run in the UK may
                         have the following public health impacts:</span></h2>
                   <section class="paragraph">
-                     <p>- Experimental drugs are often a last resort for very ill patients, and any increase
-                        in the number of trials run in the UK will increase the number of experimental treatments
-                        available to them.</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- Experimental drugs are often a last resort for very ill patients, and any increase
+                        in the number of <span class="tab">&nbsp;</span>trials run in the UK will increase the number of experimental treatments available
+                        to them.</p>
                   </section>
                   <section class="paragraph">
-                     <p>- It will be more likely that trials for drugs for diseases which have a higher incidence
+                     <p>
+                        <span class="tab">&nbsp;</span>- It will be more likely that trials for drugs for diseases which have a higher incidence
                         in the UK than other countries will be run in the UK.  Due to the greater number of
-                        potential trial participants, it is hoped that the trials would be shorter and new
-                        drugs for these diseases will reach the market more quickly.</p>
+                        potential trial <span class="tab">&nbsp;</span>participants, it is hoped that the trials would be shorter and new drugs for these
+                        diseases will <span class="tab">&nbsp;</span>reach the market more quickly.</p>
                   </section>
                </section>
                <section class="level">
@@ -3390,13 +3449,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         combinations.  More specifically, we want to amend the Patents Act to provide an exception
                         to infringement which  covers:</span></h2>
                   <section class="paragraph">
-                     <p>- all activities required to obtain regulatory approval of all drugs;</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- all activities required to obtain regulatory approval of all drugs;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- trials and studies necessary for HTA of all drugs;</p>
+                     <p>
+                        <span class="tab">&nbsp;</span>- trials and studies necessary for HTA of all drugs;</p>
                   </section>
                   <section class="paragraph">
-                     <p>- the activities listed above when carried out for the purpose of obtaining regulatory
+                     <p>
+                        <span class="tab">&nbsp;</span>- the activities listed above when carried out for the purpose of obtaining regulatory
                         approval or HTA in all countries.  </p>
                   </section>
                </section>
