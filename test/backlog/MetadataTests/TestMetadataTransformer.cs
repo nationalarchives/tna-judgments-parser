@@ -191,14 +191,16 @@ public class TestMetadataTransformer
         Assert.All(result, field => Assert.Equal(field.Timestamp, expectedDate));
     }
 
-    [Fact]
-    public void CsvLineToMetadataFields_CaseNumber_IsMapped()
+    [Theory]
+    [InlineData("XYZ/123")]
+    [InlineData("ABC/1", "DEF/2")]
+    public void CsvLineToMetadataFields_CaseNumbers_AreMapped(params string[] caseNumbers)
     {
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { CaseNo = "XYZ/123" };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { CaseNo = caseNumbers };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        AssertHasSingleMetadataFieldWithValue("XYZ/123", MetadataFieldName.CaseNumber, fields);
+        AssertHasMetadataFieldsWithValues(caseNumbers, MetadataFieldName.CaseNumber, fields);
     }
 
     [Fact]

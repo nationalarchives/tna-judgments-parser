@@ -118,7 +118,7 @@ The CSV file must contain the following columns for each judgment:
 - `FilePath` - Path to the judgment file relative to the base directory (UUID without extension)
 - `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
 - `Decision_datetime` - Date when the decision was made (format: "yyyy-MM-dd")
-- `CaseNo` - Case number(s) (with space inbetween if multiple)
+- `CaseNo` - Case number(s). This can be a single item or a comma separated list in quotes (e.g. `"case1,case2"`)
 - `Claimants` OR `Appellants` - Name(s) of the claimant(s)/appellant(s)
 - `Respondent` - Name(s) of the respondent(s)
 - `Skip` - Leave blank or set to `n`, `0` or `false` to process the record. Fill in anything to skip it (e.g. `skip`, `Already in FCL`, `Duplicate`)

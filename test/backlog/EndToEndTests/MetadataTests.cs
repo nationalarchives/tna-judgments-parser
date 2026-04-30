@@ -87,7 +87,13 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                 jurisdictions = $"\"{jurisdictions}\"";
             }
 
-            return $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.DecisionDateTime:yyyy-MM-dd},{metadataLine.CaseNo},{metadataLine.Court},{metadataLine.Appellants},{metadataLine.Claimants},{metadataLine.Respondent},{jurisdictions},{metadataLine.WebArchiving},{(metadataLine.Skip ? "skip" : "")},{metadataLine.Ncn}";
+            var caseNumbers = string.Join(',', metadataLine.CaseNo);
+            if (metadataLine.CaseNo.Length > 1)
+            {
+                caseNumbers = $"\"{caseNumbers}\"";
+            }
+
+            return $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.DecisionDateTime:yyyy-MM-dd},{caseNumbers},{metadataLine.Court},{metadataLine.Appellants},{metadataLine.Claimants},{metadataLine.Respondent},{jurisdictions},{metadataLine.WebArchiving},{(metadataLine.Skip ? "skip" : "")},{metadataLine.Ncn}";
         }));
 
         var metadataPath = courtMetadataPath ??
@@ -110,7 +116,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "new case number",
+            CaseNo = ["new case number"],
             Court = "UKUT-LC",
             Claimants = "new claimants",
             Respondent = "new respondent",
@@ -163,7 +169,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".pdf",
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "new case number",
+            CaseNo = ["new case number"],
             Court = "UKUT-LC",
             Ncn = "new ncn",
             Claimants = "new claimants",
@@ -214,7 +220,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "new case number",
+            CaseNo = ["new case number"],
             Court = "UKFTT-GRC",
             Appellants = "new appellants",
             Respondent = "new respondent",
@@ -244,7 +250,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "EA/2023/0132",
+            CaseNo = ["EA/2023/0132"],
             Court = "UKFTT-GRC",
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
@@ -322,7 +328,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "EA/2023/0132",
+            CaseNo = ["EA/2023/0132"],
             Ncn = "[2023] UKFTT 916 (GRC)",
             Court = "UKFTT-GRC",
             Appellants = "NIGEL RAWLINS",
