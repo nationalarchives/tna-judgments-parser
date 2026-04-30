@@ -159,15 +159,6 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     v => string.IsNullOrWhiteSpace(v.Field)
                         ? "Decision date must be provided"
                         : "Unsupported decision date. Ensure dates are in yyyy-MM-dd format");
-            Map(l => l.Jurisdictions)
-                .Optional()
-                .Convert(convertFromStringArgs =>
-                {
-                    // Get value
-                    convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
-                    return field?.Split(',').Select(item => item.Trim())
-                                .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
-                });
 
             Map(l => l.FullCsvLineContents)
                 .Convert(convertFromStringArgs =>

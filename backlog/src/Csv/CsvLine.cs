@@ -40,6 +40,7 @@ internal record CsvLine
     public required string CaseNo { get; set; }
 
     [Optional]
+    [TypeConverter(typeof(DelimitedArrayConverter))]
     public string[] Jurisdictions { get; set; } = [];
 
     [Optional]
