@@ -65,10 +65,20 @@ internal static class TextBoxLifter {
             // paragraph (e.g. the "Title:" cell in an IA summary form). Merge
             // the text-box's runs INTO that label paragraph so the result is a
             // single "Title: <value>" line that the SemanticEnricher already
-            // knows how to split. If we can't find a label, fall back to
-            // inserting the box's paragraphs as siblings of the anchor.
-            var labelParagraph = FindLabelParagraphAfter(anchorParagraph);
+            // knows how to split. If the anchor paragraph itself already has the
+            // label text (e.g. ukia_20250013 "Price base year:" with the value
+            // boxed alongside), merge into it instead. If we can't find a label,
+            // fall back to inserting the box's paragraphs as siblings of the anchor.
+            var labelParagraph = HasSubstantiveText(anchorParagraph)
+                ? anchorParagraph
+                : FindLabelParagraphAfter(anchorParagraph);
             if (labelParagraph != null) {
+                // If the label paragraph ends with a w:tab (Word used it to leave
+                // visual room for the now-lifted text-box value), strip it — we
+                // are about to put the value right next to the label and the tab
+                // would otherwise become a flex spacer pushing the value to the
+                // right margin.
+                StripTrailingTab(labelParagraph);
                 EnsureTrailingSpace(labelParagraph);
                 foreach (var p in paragraphs) {
                     foreach (var run in p.Elements<Run>()) {
@@ -105,6 +115,21 @@ internal static class TextBoxLifter {
             if (HasSubstantiveText(p)) return p;
         }
         return null;
+    }
+
+    private static void StripTrailingTab(Paragraph p) {
+        // Walk runs from the end; remove any trailing run whose only payload is
+        // a TabChar. Stop at the first run with real text content.
+        for (var run = p.Elements<Run>().LastOrDefault(); run != null; run = p.Elements<Run>().LastOrDefault()) {
+            var nonRPr = run.ChildElements.Where(c => c is not RunProperties).ToList();
+            if (nonRPr.Count == 0)
+                break;
+            if (nonRPr.All(c => c is TabChar)) {
+                run.Remove();
+                continue;
+            }
+            break;
+        }
     }
 
     private static void EnsureTrailingSpace(Paragraph p) {

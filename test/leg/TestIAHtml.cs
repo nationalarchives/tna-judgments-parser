@@ -58,7 +58,7 @@ public class TestIAHtml {
         Assert.Equal(expected, actual);
     }
 
-    [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
+    [Fact]
     public void RegenerateAllHtml() {
         if (!HtmlBuilder.IsAvailable())
             Assert.Skip("HtmlBuilder unavailable - install Oxygen or set OXYGEN_HOME.");

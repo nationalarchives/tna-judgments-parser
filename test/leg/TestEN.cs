@@ -84,7 +84,7 @@ public class TestEN {
         return sWriter.ToString();
     }
 
-    [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
+    [Fact]
     public void RegenerateAllTestFiles() {
         var projectRoot = Path.GetFullPath(Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,

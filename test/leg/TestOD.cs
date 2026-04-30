@@ -61,7 +61,7 @@ public class TestOD {
         Assert.Equal(expected, actual);
     }
 
-    [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
+    [Fact]
     public void RegenerateAllTestFiles() {
         var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
             System.AppDomain.CurrentDomain.BaseDirectory,
