@@ -118,7 +118,6 @@ The CSV file must contain the following columns for each judgment:
 - `FilePath` - Path to the judgment file relative to the base directory (UUID without extension)
 - `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
 - `Decision_datetime` - Date when the decision was made (format: "yyyy-MM-dd")
-- `CaseNo` - Case number(s). This can be a single item or a comma separated list in quotes (e.g. `"case1,case2"`)
 - `Claimants` OR `Appellants` - Name(s) of the claimant(s)/appellant(s)
 - `Respondent` - Name(s) of the respondent(s)
 - `Skip` - Leave blank or set to `n`, `0` or `false` to process the record. Fill in anything to skip it (e.g. `skip`, `Already in FCL`, `Duplicate`)
@@ -134,6 +133,7 @@ The following columns are optional:
 - `Ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
 - `Headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
 - `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
+- `CaseNo` - Case number(s). This can be a single item or a comma separated list in quotes (e.g. `"case1,case2"`)
 - `Uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
 - `Webarchiving` - Link to the webarchive for this judgment
 
