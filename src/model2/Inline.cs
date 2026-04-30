@@ -207,7 +207,15 @@ internal class WText : IFormattedText {
                 continue;
             if (entry.Value == valueFromParagraphStyle)
                 continue;
-            formatting.Add(entry.Key, valueFromParagraphStyle);
+            // Default cascade in this codebase: paragraph style wins when it disagrees
+            // with the character style. For colour properties the opposite is correct
+            // (a character style overriding a paragraph-style default colour is exactly
+            // why authors introduce one — e.g. IARPCChar overriding Title's white text
+            // back to black). Use the character-style value for those.
+            string winner = (entry.Key == "color" || entry.Key == "background-color")
+                ? entry.Value
+                : valueFromParagraphStyle;
+            formatting.Add(entry.Key, winner);
         }
     }
 
