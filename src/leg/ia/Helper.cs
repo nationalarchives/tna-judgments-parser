@@ -254,6 +254,9 @@ class Helper : BaseHelper {
 
         var hcontainer = xml.CreateElement("hcontainer", AKN_NAMESPACE);
         hcontainer.SetAttribute("name", "summary");
+        // eId is what the TOC's "#summary" href and the rendered HTML's
+        // `id="summary"` resolve against; without it the first TOC link is dead.
+        hcontainer.SetAttribute("eId", "summary");
 
         if (anyHasTable) {
             foreach (XmlNode level in headerLevels) {

@@ -93,6 +93,9 @@
 
 <xsl:template match="level | section | paragraph | subparagraph | hcontainer">
 	<section>
+		<xsl:if test="@eId">
+			<xsl:attribute name="id" select="@eId" />
+		</xsl:if>
 		<xsl:attribute name="class">
 			<xsl:value-of select="local-name(.)" />
 			<xsl:if test="@name">
@@ -135,6 +138,9 @@
 <xsl:template match="p">
 	<xsl:element name="{ local-name() }">
 		<xsl:copy-of select="@class" />
+		<xsl:if test="@eId">
+			<xsl:attribute name="id" select="@eId" />
+		</xsl:if>
 		<xsl:apply-templates />
 	</xsl:element>
 </xsl:template>
