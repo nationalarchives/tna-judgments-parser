@@ -480,18 +480,22 @@ class Helper : BaseHelper {
     /// Check if a paragraph element is a section header based on structural patterns.
     /// Pattern: Bold numbered/lettered paragraph with bold content
     /// </summary>
-    private static bool IsSectionHeaderParagraph(XmlNode paragraph, XmlNamespaceManager nsmgr, out string headingText) {
+    internal static bool IsSectionHeaderParagraph(XmlNode paragraph, XmlNamespaceManager nsmgr, out string headingText) {
         headingText = null;
 
-        // Check if <num> contains <b>
+        // Check if <num> contains <b>. Use descendant-or-self because LEG-150's
+        // colour-preservation work wraps inline runs in <span style="color:...">,
+        // so <b> may be a grandchild rather than a direct child of <num>/<p>.
+        // A direct-child query silently degrades section detection — see
+        // src/leg/spec/LEG-151-ia-toc-refactor.md for the impact measurement.
         var num = paragraph.SelectSingleNode("akn:num", nsmgr);
         if (num == null) return false;
 
-        var numBold = num.SelectSingleNode("akn:b", nsmgr);
+        var numBold = num.SelectSingleNode(".//akn:b", nsmgr);
         if (numBold == null) return false;
 
         string numText = numBold.InnerText?.Trim() ?? "";
-        
+
         // Check if it's a numbered (1., 2., etc.) or lettered (A., B., etc.) section
         bool isNumberedOrLettered = System.Text.RegularExpressions.Regex.IsMatch(numText, @"^([0-9]+|[A-Z])\.$");
         if (!isNumberedOrLettered) return false;
@@ -503,7 +507,7 @@ class Helper : BaseHelper {
         var firstP = content.SelectSingleNode("akn:p", nsmgr);
         if (firstP == null) return false;
 
-        var firstPBold = firstP.SelectSingleNode("akn:b", nsmgr);
+        var firstPBold = firstP.SelectSingleNode(".//akn:b", nsmgr);
         if (firstPBold == null) return false;
 
         string boldText = firstPBold.InnerText?.Trim() ?? "";
@@ -522,7 +526,7 @@ class Helper : BaseHelper {
     /// Check if a level element is a section header based on structural patterns.
     /// Pattern: Level with single bold paragraph that looks like a heading
     /// </summary>
-    private static bool IsSectionHeaderLevel(XmlNode level, XmlNamespaceManager nsmgr, out string headingText) {
+    internal static bool IsSectionHeaderLevel(XmlNode level, XmlNamespaceManager nsmgr, out string headingText) {
         headingText = null;
 
         var content = level.SelectSingleNode("akn:content", nsmgr);
@@ -533,7 +537,8 @@ class Helper : BaseHelper {
         if (paragraphs.Count != 1) return false;
 
         var firstP = paragraphs[0];
-        var boldElement = firstP.SelectSingleNode("akn:b", nsmgr);
+        // Descendant-or-self: see comment on IsSectionHeaderParagraph above.
+        var boldElement = firstP.SelectSingleNode(".//akn:b", nsmgr);
         if (boldElement == null) return false;
 
         string boldText = boldElement.InnerText?.Trim() ?? "";
