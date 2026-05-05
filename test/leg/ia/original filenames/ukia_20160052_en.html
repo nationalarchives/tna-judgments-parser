@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:59.86%">
@@ -348,7 +366,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:18.05%">
@@ -499,7 +518,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -526,7 +546,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -558,7 +579,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_6" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -595,7 +617,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_7" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:51.91%">
@@ -778,14 +801,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 1</p>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">Description</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Description:  </b>
@@ -1260,8 +1283,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 2</p>
@@ -1754,19 +1777,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy Background</b>
-                     </span>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy Background</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>
@@ -2066,18 +2087,24 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">Section A Definition of the underlying problem and rationale for government intervention</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Section A: Definition of the underlying problem and rationale for government intervention</b>
                      </span>
                   </p>
-               <section class="level">
+               <section class="paragraph num">
+                  <h2><span class="num">16.</span></h2>
                   <p>
-                     <i>Background and current position</i>
+                     <span style="color:#000000">Section 85 of the 2008 Act gives the CQC the power, with the consent of the Secretary
+                        of State, to charge a fee for the registration of providers. Section 85(1)(a) states
+                        that the CQC has power to charge for: </span>
                      </p>
                </section>
+            </section>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Background and current position</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">11.</span></h2>
                   <p>
@@ -2384,11 +2411,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         cost recovery through fees to fall from 77% in 2013/14 to 53% in 2014/15. </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>The CQC’s current fee raising powers</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">The CQC’s current fee raising powers</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">15.</span></h2>
                   <p>
@@ -2397,31 +2422,23 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         the 2008 Act. </span>
                      </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">16.</span></h2>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
                   <p>
-                     <span style="color:#000000">Section 85 of the 2008 Act gives the CQC the power, with the consent of the Secretary
-                        of State, to charge a fee for the registration of providers. Section 85(1)(a) states
-                        that the CQC has power to charge for: </span>
+                     <span style="color:#000000">an application for registration;</span>
                      </p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">•</span></h2>
-                     <p>
-                        <span style="color:#000000">an application for registration;</span>
-                        </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">•</span></h2>
-                     <p>
-                        <span style="color:#000000">the grant or subsistence of such registration; and </span>
-                        </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">•</span></h2>
-                     <p>
-                        <span style="color:#000000">an application to vary the terms of registration.</span>
-                        </p>
-                  </section>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>
+                     <span style="color:#000000">the grant or subsistence of such registration; and </span>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>
+                     <span style="color:#000000">an application to vary the terms of registration.</span>
+                     </p>
                </section>
                <section class="paragraph num">
                   <h2><span class="num">17.</span></h2>
@@ -2498,8 +2515,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">Section B Policy objectives and intended effects</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Section B: Policy objectives and intended effects</b>
@@ -2525,18 +2542,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">Section C Description of the options</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>  Section C: Description of the options</b>
                      </span>
                   </p>
-               <section class="level">
-                  <p>
-                     <i>Option 1: Do nothing</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">Option 1: Do nothing</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">26.</span></h2>
                   <p>
@@ -2551,12 +2566,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         they already have the power to charge for.</span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Option 2: amend the regulations to allow the CQC to charge for all aspects of its
-                        inspection process</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">Option 2: amend the regulations to allow the CQC to charge for all aspects of its
+                     inspection process</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">27.</span></h2>
                   <p>
@@ -2594,11 +2607,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         Section D of this Impact Assessment. </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Alternatives to Regulation and Other Options</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">Alternatives to Regulation and Other Options</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">30.</span></h2>
                   <p>
@@ -2622,18 +2633,25 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">Section D Costs and benefits assessment of the options (including specific impacts)</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Section D: Costs and benefits assessment of the options (including specific impacts)</b>
                      </span>
                   </p>
-               <section class="level">
+               <section class="paragraph num">
+                  <h2><span class="num">49.</span></h2>
                   <p>
-                     <i>Proposed fee trajectory </i>
+                     <span style="color:#000000">If we were to apply this estimate to the potential annual saving of £110m to the Department
+                        from reduced GIA funding to the CQC, this would imply that just over 7,300 additional
+                        Quality Adjusted Life Years could potentially be generated in the NHS every year.
+                        </span>
                      </p>
                </section>
+            </section>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">Proposed fee trajectory</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">32.</span></h2>
                   <p>
@@ -2732,11 +2750,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         option.</span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Impact on private sector and OITO status</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Impact on private sector and OITO status</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">40.</span></h2>
                   <p>
@@ -2957,11 +2973,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         of the required fee increases for each sector.</span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Benefits of the proposal</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">Benefits of the proposal</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">45.</span></h2>
                   <p>
@@ -2972,11 +2986,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         in provider fees discussed above. </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Other non-monetised benefits</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">Other non-monetised benefits</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">46.</span></h2>
                   <p>
@@ -2997,11 +3009,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         own efficiencies as part of the fee setting process. </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Potential wider societal impacts of the changes</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">Potential wider societal impacts of the changes</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">48.</span></h2>
                   <p>
@@ -3016,122 +3026,113 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         the NHS in 2015 prices.</span>
                      </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">49.</span></h2>
+               <section class="subparagraph">
                   <p>
-                     <span style="color:#000000">If we were to apply this estimate to the potential annual saving of £110m to the Department
-                        from reduced GIA funding to the CQC, this would imply that just over 7,300 additional
-                        Quality Adjusted Life Years could potentially be generated in the NHS every year.
-                        </span>
+                     <span style="color:#000000">However, this figure represents the potential gross annual health impact. To estimate
+                        the net annual health impact, we would also need to consider whether the increased
+                        fee costs for providers also result in any additional health or societal impacts.
+                        This in turn will depend on how providers respond to the fee increases as follows:</span>
                      </p>
-                  <section class="subparagraph">
-                     <p>
-                        <span style="color:#000000">However, this figure represents the potential gross annual health impact. To estimate
-                           the net annual health impact, we would also need to consider whether the increased
-                           fee costs for providers also result in any additional health or societal impacts.
-                           This in turn will depend on how providers respond to the fee increases as follows:</span>
-                        </p>
-                     <table class="ia-table">
-                        <colgroup>
-                           <col style="width:34.42%">
-                           <col style="width:65.58%">
-                        </colgroup>
-                        <tbody>
-                           <tr>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Provider response</b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Additional health impacts?</b>
-                                       </span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">Pass on the increased fees to service users via higher prices</span>
-                                    </p>
-                              </td>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">If purchasers choose to maintain the amount that they purchase, the societal impact
-                                       is the increased cost of buying the same level of services. There are no additional
-                                       health impacts as the level of services remains unchanged.</span>
-                                    </p>
-                                 <p>
-                                    <span style="color:#000000">However, if the result of higher prices is that purchasers choose to reduce the amount
-                                       of health/social care services that they buy, there would be a health impact associated
-                                       with this reduction.   </span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">Absorb the costs of increased fees via acceptance of lower profits</span>
-                                    </p>
-                              </td>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">Lower profits impact on shareholders. The societal impact of lower profits for shareholders
-                                       is assumed to be equal to the monetary value of the reduction in profits and there
-                                       is no impact on health</span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">A combination of the above</span>
-                                    </p>
-                              </td>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">The ultimate societal impact would also lie somewhere between the societal impacts
-                                       estimated above. </span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">Choosing to exit the market entirely if the increased costs are felt to be unsustainable</span>
-                                    </p>
-                              </td>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">The ultimate impact would depend on the dynamics of the market. However this is not
-                                       considered further as it is felt that the level of fee increases being discussed in
-                                       this IA would make this an unlikely outcome. For example, a 28 bed care home is anticipated
-                                       to see annual fee increases of between £250 and £350 over the four year period</span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">Demand increased funding from DH</span>
-                                    </p>
-                              </td>
-                              <td>
-                                 <p>
-                                    <span style="color:#000000">If providers are partially funded by the Department (e.g. dentists), they may attempt
-                                       to recuperate their fee increases through demands for additional funding from DH.
-                                       Depending on their likelihood of success, this would have an additional health impact
-                                       as discussed above. </span>
-                                    </p>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </section>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:34.42%">
+                        <col style="width:65.58%">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Provider response</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Additional health impacts?</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Pass on the increased fees to service users via higher prices</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">If purchasers choose to maintain the amount that they purchase, the societal impact
+                                    is the increased cost of buying the same level of services. There are no additional
+                                    health impacts as the level of services remains unchanged.</span>
+                                 </p>
+                              <p>
+                                 <span style="color:#000000">However, if the result of higher prices is that purchasers choose to reduce the amount
+                                    of health/social care services that they buy, there would be a health impact associated
+                                    with this reduction.   </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Absorb the costs of increased fees via acceptance of lower profits</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Lower profits impact on shareholders. The societal impact of lower profits for shareholders
+                                    is assumed to be equal to the monetary value of the reduction in profits and there
+                                    is no impact on health</span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">A combination of the above</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">The ultimate societal impact would also lie somewhere between the societal impacts
+                                    estimated above. </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Choosing to exit the market entirely if the increased costs are felt to be unsustainable</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">The ultimate impact would depend on the dynamics of the market. However this is not
+                                    considered further as it is felt that the level of fee increases being discussed in
+                                    this IA would make this an unlikely outcome. For example, a 28 bed care home is anticipated
+                                    to see annual fee increases of between £250 and £350 over the four year period</span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Demand increased funding from DH</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">If providers are partially funded by the Department (e.g. dentists), they may attempt
+                                    to recuperate their fee increases through demands for additional funding from DH.
+                                    Depending on their likelihood of success, this would have an additional health impact
+                                    as discussed above. </span>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
                </section>
                <section class="paragraph num">
                   <h2><span class="num">50.</span></h2>
@@ -3241,11 +3242,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         that might arise.    </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Risks and sensitivities</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">Risks and sensitivities</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">52.</span></h2>
                   <p>
@@ -3280,21 +3279,20 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">Section E Summary of specific impact tests</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Section E: Summary of specific impact tests:</b>
                      </span>
                   </p>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Equality Impact Assessment</b>
-                     </span>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Equality Impact Assessment</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">54.</span></h2>
                   <p>
@@ -3306,23 +3304,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Competition</b>
-                     </span>
-                  </p>
-               <section class="level">
-                  <p>
-                     <i>In any affected market, would the proposal: </i>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <i>Directly limit the number or range of suppliers? </i>
-                     </p>
-               </section>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Competition</b>
+                        </span>
+                     </span></h2>
+            </section>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">In any affected market, would the proposal:</span></h2>
+            </section>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">Directly limit the number or range of suppliers?</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">55.</span></h2>
                   <p>
@@ -3330,11 +3323,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         procurement will not be from a single supplier or restricted group of suppliers. </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Indirectly limit the number or range of suppliers? </i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">Indirectly limit the number or range of suppliers?</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">56.</span></h2>
                   <p>
@@ -3346,11 +3337,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         potential factors that might influence decisions on such factors </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Limit the ability of suppliers to compete? </i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">Limit the ability of suppliers to compete?</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">57.</span></h2>
                   <p>This duty is not expected to have any impact on suppliers. All providers of health
@@ -3367,11 +3356,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         to advertise their products.</span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Reduce suppliers' incentives to compete vigorously? </i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">Reduce suppliers' incentives to compete vigorously?</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>
@@ -3380,13 +3367,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Small and Micro Business Assessment</b>
-                     </span>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Small and Micro Business Assessment</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>How does the proposal affect small businesses, their customers or competitors?</i>
@@ -3685,11 +3671,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      of fees and the move to full cost recovery for providers of all sizes.</p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Legal Aid/ Justice Impact</b>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <b>Legal Aid/ Justice Impact</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">67.</span></h2>
                   <p>
@@ -3795,13 +3780,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Sustainable Development</b>
-                     </span>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Sustainable Development</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">68.</span></h2>
                   <p>
@@ -3812,13 +3796,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Health Impact </b>
-                     </span>
-                  </p>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Health Impact </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>Do the proposals have a significant effect on human health by virtue of their effects
@@ -3844,13 +3827,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rural Proofing</b>
-                     </span>
-                  </p>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rural Proofing</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>Rural proofing is a commitment by Government to ensure domestic policies take account
@@ -3868,13 +3850,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Economic impacts</b>
-                     </span>
-                  </p>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Economic impacts</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">72.</span></h2>
                   <p>
@@ -3883,13 +3864,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Environmental impacts and sustainable development</b>
-                     </span>
-                  </p>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Environmental impacts and sustainable development</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">73.</span></h2>
                   <p>
@@ -3898,8 +3878,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">Section F Summary and Conclusions</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Section F: Summary and Conclusions</b>
@@ -4161,7 +4141,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a> 
                   <span style="color:#000000"> For example, please see </span>
                   <a href="http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf">
-                     <u><a href="http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf">http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf</a></u>
+                     <u>http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4184,7 +4164,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a> 
                   <span style="color:#000000"> Managing Public Money, chapter 6, available at  </span>
                   <a href="https://www.gov.uk/government/publications/managing-public-money">
-                     <u><a href="https://www.gov.uk/government/publications/managing-public-money">https://www.gov.uk/government/publications/managing-public-money</a></u>
+                     <u>https://www.gov.uk/government/publications/managing-public-money</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4211,7 +4191,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">th </span>
                   <span style="color:#000000">June 2013 </span>
                   <a href="http://www.york.ac.uk/media/che/documents/reports/resubmitted_report.pdf">
-                     <u><a href="http://www.york.ac.uk/media/che/documents/reports/resubmitted_report.pdf">http://www.york.ac.uk/media/che/documents/reports/resubmitted_report.pdf</a></u>
+                     <u>http://www.york.ac.uk/media/che/documents/reports/resubmitted_report.pdf</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4233,7 +4213,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> For example, for Dentists, fees are based on both the number of dental chairs and
                      number of locations. Source: CQC’s 2015/16 Fees Scheme </span>
                   <a href="http://www.cqc.org.uk/sites/default/files/20150323_cqc_fees_scheme_2015-16.pdf">
-                     <u><a href="http://www.cqc.org.uk/sites/default/files/20150323_cqc_fees_scheme_2015-16.pdf">http://www.cqc.org.uk/sites/default/files/20150323_cqc_fees_scheme_2015-16.pdf</a></u>
+                     <u>http://www.cqc.org.uk/sites/default/files/20150323_cqc_fees_scheme_2015-16.pdf</u>
                      </a>
                   <span style="color:#000000">
                      </span>

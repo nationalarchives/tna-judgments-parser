@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:16.76%">
@@ -461,7 +479,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -492,7 +511,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -549,7 +569,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -573,7 +594,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_6" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:61.35%">
@@ -737,8 +759,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   </p>
@@ -1236,19 +1258,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base</b>
+                     </span></h2>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Background</b>
-                     </span>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Background</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <u>Leaving the EU</u>
@@ -1345,13 +1365,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      towards maintaining surcharge-free roaming to EU destinations.</p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration and rationale for intervention </b>
-                     </span>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration and rationale for intervention </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Following the UK’s exit from the EU, the existing EU regulations which enable UK mobile
                      network operators access to capped wholesales rates in Member States will cease to
@@ -1370,13 +1389,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      arrangement.</p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objective</b>
-                     </span>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objective</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>The objectives of the policy are, in the unlikely event of a no deal scenario, to
                      retain a roaming regime for the UK which: </p>
@@ -1407,16 +1425,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are related to the EU Withdrawal Bill.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered </b>
-                     </span>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered </b>
+                        </span>
+                     </span></h2>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">Option 1 Current arrangements</span></h2>
                <p>
                   <b>
                      <i>Option 1: Current arrangements </i>
@@ -1431,8 +1448,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         below.</span></p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Option 2 Do nothing not correcting the deficiencies in the retained EU law</span></h2>
                <p>
                   <b>
                      <i>Option 2: Do nothing: not correcting the deficiencies in the retained EU law</i>
@@ -1455,8 +1472,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      retails caps do apply. </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">Option 3 Domestic legislation with one-sided obligation</span></h2>
                <p>
                   <b>
                      <i>Option 3: Domestic legislation with one-sided obligation</i>
@@ -1526,13 +1543,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      bill. The €50 limit would be amended to £45.</p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Monetised and non-monetised costs and benefits</b>
-                     </span>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Monetised and non-monetised costs and benefits</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>The impact analysis provides an indication of the costs and benefits that would arise
                      from policy option 4. These impacts are measured against what would happen if no SI
@@ -1556,8 +1572,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      from familiarisation costs and reduced legal uncertainty in all do nothing scenarios.</p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">Policy Option 4 Domestic legislation without one-sided regulation</span></h2>
                <p>
                   <b>
                      <i>Policy Option 4: Domestic legislation without one-sided regulation</i>
@@ -1871,13 +1887,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      on wholesale rates, is beyond the scope of this impact assessment.</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale and evidence that justify the level of analysis used in the IA</b>
-                     </span>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale and evidence that justify the level of analysis used in the IA</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>This impact assessment does not provide detailed quantification of costs and benefits
                      due to the inherent uncertainty of factors outside the scope of this SI and a lack
@@ -1893,13 +1908,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      from the SI.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks and assumptions</b>
-                     </span>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and assumptions</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>The impact of the scenarios considered have a high degree of uncertainty and in the
                      future will depend on the outcome of negotiations. In assessing the impact of this
@@ -2004,11 +2018,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the ability to predict commercial outcomes for future roaming in EU jurisdictions.</p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Small and Micro Business Assessment</b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>Small and Micro Business Assessment</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>Impact on small and micro business customers</i>
@@ -2170,13 +2183,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Summary and preferred option with description of implementation plan</b>
-                     </span>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Summary and preferred option with description of implementation plan</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>We want to ensure that UK companies have the maximum freedom to trade and do business
                      with the EU. The Government recognises that there are specific consumer measures that
@@ -2203,11 +2215,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Will continue to provide transparency to UK customers roaming in EU member states.</p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Post-Implementation Review</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>Post-Implementation Review</b>
+                     </span></h2>
                <section class="level">
                   <p>We recognise that Ministers have a duty to include a statutory review provision in
                      new secondary legislation that has a regulatory effect on business, unless it is not

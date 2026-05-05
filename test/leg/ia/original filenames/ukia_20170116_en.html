@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.44%">
@@ -575,7 +593,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:51.98%">
@@ -775,8 +794,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_4" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>
@@ -1248,8 +1267,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
+            <section id="section_5" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>
@@ -1742,19 +1761,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration</b>
-                     </span>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>When the pension freedoms<a class="fn" id="fnref-4" href="#fn-4">4</a> were introduced in April 2015, the government put safeguards in place to make sure
@@ -1949,13 +1966,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      addition, recent Pensions Ombudsman Service cases<a class="fn" id="fnref-10" href="#fn-10">10</a> indicate that some members are unaware of the existence of a GAR.</p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale for intervention</b>
-                     </span>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale for intervention</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">10.</span></h2>
                   <p>The pension freedoms were introduced in April 2015 to allow individuals to flexibly
@@ -2008,13 +2024,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to seek FCA regulated financial advice.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objectives</b>
-                     </span>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objectives</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>The government intends to amend the valuation process for safeguarded benefits. This
@@ -2038,13 +2053,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and thereby give up their GAR.</p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered</b>
-                     </span>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">16.</span></h2>
                   <p>In March 2016, the government committed to simplifying the valuation process for the
@@ -2261,13 +2275,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Monetised and non-monetised costs and benefits</b>
-                     </span>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Monetised and non-monetised costs and benefits</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">26.</span></h2>
                   <p>The following section sets out the estimated costs and benefits arising from Option
@@ -3310,11 +3323,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary of monetised costs and benefits</b>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary of monetised costs and benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">67.</span></h2>
                   <p>
@@ -3597,13 +3609,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks and Assumptions</b>
-                     </span>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and Assumptions</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">70.</span></h2>
                   <p>There is uncertainty around the estimated costs and benefits of these regulations
@@ -4303,13 +4314,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Direct costs and benefits to Business </b>
-                     </span>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Direct costs and benefits to Business </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">96.</span></h2>
                   <p>The proposal imposes a burden on businesses and is within the scope for one-in, three-out
@@ -4322,25 +4332,23 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      -£1.6 million<b></b>(2014/15 prices).</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Wider impacts</b>
-                     </span>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wider impacts</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">97.</span></h2>
                   <p>N/A</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Small and Micro Business Assessment </b>
-                     </span>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Small and Micro Business Assessment </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">98.</span></h2>
                   <p>
@@ -4377,13 +4385,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Implementation of preferred options</b>
-                     </span>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Implementation of preferred options</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">101.</span></h2>
                   <p>The preferred option is Option 2 - to simplify advice requirements for safeguarded
@@ -4438,7 +4445,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   tax (rather than the previous 55% charge which most faced for full withdrawal).</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <span style="color:#000000"></span><span style="color:#000000">An impact assessment was published alongside the</span><span style="color:#000000"> consultation in September 2016: (</span><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf</a></u></a><span style="color:#000000">). This s</span><span style="color:#000000">tated </span><span style="color:#000000">that:</span></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <span style="color:#000000"></span><span style="color:#000000">An impact assessment was published alongside the</span><span style="color:#000000"> consultation in September 2016: (</span><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf</u></a><span style="color:#000000">). This s</span><span style="color:#000000">tated </span><span style="color:#000000">that:</span></p>
                <p><span style="color:#000000"></span><span style="color:#000000">“There is uncertainty over the number of pension policies with safeguarded-flexible
                      benefits, that is, safeguarded benefits that are not traditional salary-related (for
                      instance final salary) pensions. We have used as a proxy the number of pension policies
@@ -4472,13 +4479,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   for salary-related Defined Benefit schemes.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016"><u><a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016">https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016</a></u></a></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016"><u>https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  PO 563 and 569  <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf"><span style="color:#0000FF"><u><a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf">https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf</a></u></span></a><span style="color:#0000FF">, </span><a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf"><span style="color:#0000FF"><u><a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf">https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  PO 563 and 569  <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf"><span style="color:#0000FF"><u>https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf</u></span></a><span style="color:#0000FF">, </span><a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf"><span style="color:#0000FF"><u>https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  SI 2015/742</p>
@@ -4486,34 +4493,34 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  Responses to the government’s Call for Evidence on the Valuation of Pensions with
                   a Guaranteed Annuity Rate<b></b>raised concerns that members are often not fully aware of the potential value of GARs
-                  attached to their pension benefits. <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf</a></u></a>. Similarly, cases brought to the attention of the Financial Ombudsman have shown
-                  that individuals do not always have complete information about their GAR – e.g. <a href="http://www.financial-ombudsman.org.uk/publications/ombudsman-news/115/115-annuities.html"><u><a href="http://www.financial-ombudsman.org.uk/publications/ombudsman-news/115/115-annuities.html">http://www.financial-ombudsman.org.uk/publications/ombudsman-news/115/115-annuities.html</a></u></a></p>
+                  attached to their pension benefits. <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf</u></a>. Similarly, cases brought to the attention of the Financial Ombudsman have shown
+                  that individuals do not always have complete information about their GAR – e.g. <a href="http://www.financial-ombudsman.org.uk/publications/ombudsman-news/115/115-annuities.html"><u>http://www.financial-ombudsman.org.uk/publications/ombudsman-news/115/115-annuities.html</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  Government response to: Occupational and Personal Pension Schemes and the Pension
                   Protection Fund (Miscellaneous Amendments) Regulations 2016 and the call for evidence
-                  on the valuation of pensions with a guaranteed annuity rate - <a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016"><u><a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016">https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016</a></u></a></p>
+                  on the valuation of pensions with a guaranteed annuity rate - <a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016"><u>https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf"><u><a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf">https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf"><u>https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf"><u><a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf">https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf"><u>https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  FCA Data Bulletin - Issue 7,  <span style="color:#0000FF"><u></u></span><span style="color:#0000FF"><u><a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">https://www.fca.org.uk/publications/data/data-bulletin-issue-7</a></u></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf">http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</a></u></a><span style="color:#0000FF"><u></u></span></p>
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u>http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</u></a><span style="color:#0000FF"><u></u></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  DC trust: presentation of scheme return data 2016 – 2017, TPR <a href="http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx"><u><a href="http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx">http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx</a></u></a></p>
+               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  DC trust: presentation of scheme return data 2016 – 2017, TPR <a href="http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx"><u>http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf">http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u>http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  DC trust: presentation of scheme return data 2016 – 2017, TPR <a href="http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx"><u><a href="http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx">http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx</a></u></a></p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  DC trust: presentation of scheme return data 2016 – 2017, TPR <a href="http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx"><u>http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  Where SSAS status is unknown, we have applied the proportion of SSAS and non-SSAS
@@ -4538,7 +4545,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   stabilised, with only a 0.2% fall in the number of pots accessed. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf">http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</a></u></a><span style="color:#0000FF"><u></u></span></p>
+               <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u>http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</u></a><span style="color:#0000FF"><u></u></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-25" href="#fnref-25">25</a>  TPR scheme returns data 2016/17, <span style="color:#0000FF"><u></u></span><span style="color:#0000FF"><u><a href="http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx">http://www.thepensionsregulator.gov.uk/doc-library/dc-trust-presentation-of-scheme-return-data-2017.aspx</a></u></span></p>
@@ -4562,7 +4569,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="http://www.fca.org.uk/static/documents/retirement-income-market-data-july-september-2015.pdf">
-                     <u><a href="http://www.fca.org.uk/static/documents/retirement-income-market-data-july-september-2015.pdf">http://www.fca.org.uk/static/documents/retirement-income-market-data-july-september-2015.pdf</a></u>
+                     <u>http://www.fca.org.uk/static/documents/retirement-income-market-data-july-september-2015.pdf</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4582,7 +4589,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> Data Bulletin </span>
                   <span style="color:#000000">Issue 7 (</span>
                   <a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">
-                     <u><a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">https://www.fca.org.uk/publications/data/data-bulletin-issue-7</a></u>
+                     <u>https://www.fca.org.uk/publications/data/data-bulletin-issue-7</u>
                      </a>
                   <span style="color:#000000">). They </span>
                   <span style="color:#000000">show that</span>
@@ -4626,7 +4633,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-31" href="#fnref-31">31</a>  This may over-estimate the number of trust-based schemes who face familiarisation
-                  costs as the TPR data (TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf">http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</a></u></a> ) shows that small schemes are more likely to have GARs and in these schemes the
+                  costs as the TPR data (TPR Governance Survey 2014,<span style="color:#0000FF"><u></u></span><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf"><u>http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</u></a> ) shows that small schemes are more likely to have GARs and in these schemes the
                   work of familiarisation and implementing changes will typically be carried out by
                   an administrator or another other service provider. In practice many schemes use the
                   same service provider, so the number of distinct firms who need to familiarise themselves
@@ -4641,7 +4648,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-32" href="#fnref-32">32</a>  The gross median hourly rate for a professional is £19.75. This has been increased
                   by 27% in line with the Green Book to account for non-wage costs, which gives £25.08.
                   The hourly rate data are taken from the Annual Survey of Hours and Earnings (ASHE),
-                  2016. <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2"><span style="color:#0000FF"><u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</a></u></span></a></p>
+                  2016. <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2"><span style="color:#0000FF"><u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-33" href="#fnref-33">33</a> 
@@ -4659,7 +4666,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">
-                     <u><a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">https://www.fca.org.uk/publications/data/data-bulletin-issue-7</a></u>
+                     <u>https://www.fca.org.uk/publications/data/data-bulletin-issue-7</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4696,7 +4703,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">
-                     <u><a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">https://www.fca.org.uk/publications/data/data-bulletin-issue-7</a></u>
+                     <u>https://www.fca.org.uk/publications/data/data-bulletin-issue-7</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4720,7 +4727,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         </u>
                      </span>
                   <a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">
-                     <u><a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">https://www.fca.org.uk/publications/data/data-bulletin-issue-7</a></u>
+                     <u>https://www.fca.org.uk/publications/data/data-bulletin-issue-7</u>
                      </a>
                   <span style="color:#000000">. In the absence of equivalent data for trust-based schemes, the proportions provided
                      in the FCA data for contract based pensions have been applied for both contract-based
@@ -4729,7 +4736,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-38" href="#fnref-38">38</a> <span style="color:#000000"></span><span style="color:#000000"></span><span style="color:#000000">The gross median hourly rate for a</span><span style="color:#000000">n</span><span style="color:#000000"></span><span style="color:#000000">associate professional is £15.00. This has been</span><span style="color:#000000"> increased by 27% in line with the Green Book to account for non-wage costs, </span><span style="color:#000000">which gives</span><span style="color:#000000"> £</span><span style="color:#000000">19.05</span><span style="color:#000000">. The hourly rate data are taken from the Annual Survey of Hours and Earnings (ASHE),
-                     201</span><span style="color:#000000">6.</span><span style="color:#000000"></span><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2"><span style="color:#0000FF"><u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</a></u></span></a></p>
+                     201</span><span style="color:#000000">6.</span><span style="color:#000000"></span><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2"><span style="color:#0000FF"><u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-39" href="#fnref-39">39</a> <span style="color:#000000"> In order to test this assumption, we sought input from a number of providers around
@@ -4739,7 +4746,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-40" href="#fnref-40">40</a> <span style="color:#000000">This is based on an estimate of the cost of financial advice for an individual with
-                     a £30,000 pension with a GAR, from Unbiased</span><span style="color:#0000FF"><u></u></span><span style="color:#000000"><u>(</u></span><a href="https://www.unbiased.co.uk/cost-of-financial-advice"><u><a href="https://www.unbiased.co.uk/cost-of-financial-advice">https://www.unbiased.co.uk/cost-of-financial-advice</a></u></a><u>)</u><span style="color:#0000FF"><u>.</u></span><span style="color:#0000FF"></span><span style="color:#000000">This is similar to the estimate</span><span style="color:#000000"></span><span style="color:#000000">used </span><span style="color:#000000">in the</span><span style="color:#000000"> DB transfers impact assessment</span><span style="color:#000000"></span><span style="color:#000000">(</span><a href="http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf"><u><a href="http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf">http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf</a></u></a><u>)</u> based on <span style="color:#000000">previous</span><span style="color:#000000"> discussions with the Pensions Regulator and the Association of Professional Financial
+                     a £30,000 pension with a GAR, from Unbiased</span><span style="color:#0000FF"><u></u></span><span style="color:#000000"><u>(</u></span><a href="https://www.unbiased.co.uk/cost-of-financial-advice"><u>https://www.unbiased.co.uk/cost-of-financial-advice</u></a><u>)</u><span style="color:#0000FF"><u>.</u></span><span style="color:#0000FF"></span><span style="color:#000000">This is similar to the estimate</span><span style="color:#000000"></span><span style="color:#000000">used </span><span style="color:#000000">in the</span><span style="color:#000000"> DB transfers impact assessment</span><span style="color:#000000"></span><span style="color:#000000">(</span><a href="http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf"><u>http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf</u></a><u>)</u> based on <span style="color:#000000">previous</span><span style="color:#000000"> discussions with the Pensions Regulator and the Association of Professional Financial
                      Advisers which </span><span style="color:#000000">suggested that</span><span style="color:#000000"> an average cost of financial advice is £156 per hour, and the average time required
                      for advice is 7.5 hours</span><span style="color:#000000">, giving a total of £1,170</span><span style="color:#000000">.</span><span style="color:#000000"> As the Unbiased estimate is more specifically focussed on those with GARs worth £30,000,
                      we have used £900.</span></p>
@@ -4754,7 +4761,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      (</span>
                   <a href="http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf">
                      <span style="color:#0000FF">
-                        <u><a href="http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf">http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf</a></u>
+                        <u>http://www.parliament.uk/documents/impact-assessments/IA14-13A.pdf</u>
                         </span>
                      </a>
                   <span style="color:#0000FF">
@@ -4776,7 +4783,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         </u>
                      </span>
                   <a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf">
-                     <u><a href="http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf">http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</a></u>
+                     <u>http://webarchive.nationalarchives.gov.uk/20150703133738/http://www.thepensionsregulator.gov.uk/docs/governance-survey-report-2014.pdf</u>
                      </a>
                   <span style="color:#000000"> )</span>
                   <span style="color:#000000"> shows that small schemes are more likely to have GARs and in these schemes the work
@@ -4814,7 +4821,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2">
-                     <u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</a></u>
+                     <u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4831,7 +4838,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Impact assessment, 2016, </span>
                   <a href="http://www.legislation.gov.uk/uksi/2016/294/impacts">
                      <span style="color:#000000">
-                        <u><a href="http://www.legislation.gov.uk/uksi/2016/294/impacts">http://www.legislation.gov.uk/uksi/2016/294/impacts</a></u>
+                        <u>http://www.legislation.gov.uk/uksi/2016/294/impacts</u>
                         </span>
                      </a>
                   </p>
@@ -4855,7 +4862,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <span style="color:#000000">DWP </span>
                   <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf">
-                     <u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</a></u>
+                     <u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4866,7 +4873,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf">
-                     <u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf</a></u>
+                     <u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4901,7 +4908,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-50" href="#fnref-50">50</a>  This covers the postage costs and is based on previous consultation with the pensions
                   industry around changes to disclosure of information regulations. Department for Work
                   and Pensions (DWP), July 2013, The Occupational and Personal Pension Schemes (Disclosure
-                  of Information) Regulations 2013: Government response, <a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-disclosure-of-information-regulations-2013"><u><a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-disclosure-of-information-regulations-2013">https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-disclosure-of-information-regulations-2013</a></u></a>. The 2013 estimate has been converted into 2016 prices, using the CPI index published
+                  of Information) Regulations 2013: Government response, <a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-disclosure-of-information-regulations-2013"><u>https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-disclosure-of-information-regulations-2013</u></a>. The 2013 estimate has been converted into 2016 prices, using the CPI index published
                   by the Office for National Statistics <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/d7bt/mm23.">https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/d7bt/mm23.</a>  </p>
             </div>
             <div class="footnote">
@@ -4924,29 +4931,29 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2">
                      <span style="color:#0000FF">
-                        <u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</a></u>
+                        <u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation2digitsocashetable2</u>
                         </span>
                      </a>
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-52" href="#fnref-52">52</a>  FCA, Data Bulletin Issue 7, <a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7"><u><a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7">https://www.fca.org.uk/publications/data/data-bulletin-issue-7</a></u></a></p>
+               <p><a class="marker" id="fn-52" href="#fnref-52">52</a>  FCA, Data Bulletin Issue 7, <a href="https://www.fca.org.uk/publications/data/data-bulletin-issue-7"><u>https://www.fca.org.uk/publications/data/data-bulletin-issue-7</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-53" href="#fnref-53">53</a>  The asymmetry between £2.26m higher and £2.27m lower is due to rounding in the final
                   costing tables. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-54" href="#fnref-54">54</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-54" href="#fnref-54">54</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-55" href="#fnref-55">55</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-55" href="#fnref-55">55</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555564/consultation-valuing-pensions-for-the-advice-requirement-and-introducing-new-consumer-protections.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-57" href="#fnref-57">57</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-57" href="#fnref-57">57</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/555566/draft-impact-assessment-simplifying-advice-requirements-for-safeguarded-pension-benefits-and-introducing-new-consumer-protections.pdf</u></a></p>
             </div>
          </footer>
       </article>

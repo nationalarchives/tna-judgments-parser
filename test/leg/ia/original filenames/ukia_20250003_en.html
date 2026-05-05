@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:20%">
@@ -417,7 +435,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -455,7 +474,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -492,7 +512,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -663,17 +684,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <img src="http://www.legislation.gov.uk/ukdsi/2025/9780348267174/impacts/2025/3/images/ukia_2025_3_en_001.gif" alt="">
                   </p>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 3</p>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Description:  </b>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <b>Description:  </b>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <b>FULL ECONOMIC ASSESSMENT</b>
@@ -1036,17 +1056,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base</b>
+                     </span></h2>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Problem under consideration and rationale for intervention</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Problem under consideration and rationale for intervention</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>This secondary legislation sets the thresholds for Category 1, Category 2A and Category
@@ -1072,12 +1090,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      kept up to date.</p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Rationale and evidence to justify the level of analysis used in the IA (proportionality
-                     approach)</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Rationale and evidence to justify the level of analysis used in the IA (proportionality
+                        approach)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">4.</span></h2>
                   <p>The evidence, data and assumptions gathered for this IA are derived from the Enactment
@@ -1100,11 +1117,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      as the cost of user empowerment tools.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Description of options considered</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>Description of options considered</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">7.</span></h2>
                   <p>
@@ -1160,37 +1176,32 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      factors/characteristics. </p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Policy objective(s)</b>
-                  </p>
-               <section class="paragraph num">
-                  <h2><span class="num">10.</span></h2>
-                  <p>Ensuring clarity for services: As a result of the government making regulations on
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>Policy objective(s)</b>
+                     </span></h2>
+            </section>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">Ensuring clarity for services: As a result of the government making regulations on
                      categorisation thresholds, Ofcom must create a register of categorised services. Services
                      in scope of the OSA will be made aware if they fall into Category 1, 2A or 2B, and
                      must comply with additional duties. In addition, user-to-user services that meet the
                      conditions set out in section 97 of the OSA and are close to reaching the Category
                      1 threshold, will be placed on the ‘List of emerging Category 1 services’ by Ofcom.
                      This process provides services with notice that they are close to reaching the relevant
-                     Category 1 threshold and may, in the future, have to comply with additional obligations.
-                     </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">11.</span></h2>
-                  <p>Implementing the OSA, to keep users’ safe: The categorisation thresholds are an integral
-                     part of the implementation of the OSA. <span style="color:#000000">Ofcom will only consult further on draft codes and guidance in relation to additional
-                        duties on these services, such as user empowerment, once the Regulations have been
-                        made. Delaying setting thresholds for each category would halt additional protection
-                        for users. </span></p>
-               </section>
+                     Category 1 threshold and may, in the future, have to comply with additional obligations.</span></h2>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary and preferred option with description of implementation plan</b>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Implementing the OSA, to keep users’ safe: The categorisation thresholds are an integral
+                     part of the implementation of the OSA. Ofcom will only consult further on draft codes
+                     and guidance in relation to additional duties on these services, such as user empowerment,
+                     once the Regulations have been made. Delaying setting thresholds for each category
+                     would halt additional protection for users.</span></h2>
+            </section>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary and preferred option with description of implementation plan</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>The regulations will set the thresholds for Category 1, Category 2A and Category 2B
@@ -1223,12 +1234,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      government. </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Monetised and non-monetised costs and benefits of each option (including administrative
-                     burden)</b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>Monetised and non-monetised costs and benefits of each option (including administrative
+                        burden)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">15.</span></h2>
                   <p>All costs and benefits are presented in 2019 prices with 2020 base year, to enable
@@ -1237,11 +1247,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      from the OSA Enactment IA.</p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Direct costs and benefits to business calculations</b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>Direct costs and benefits to business calculations</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">16.</span></h2>
                   <p>All costs estimated below are direct costs to business in aggregate. All regulations
@@ -1262,11 +1271,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and understand what is expected of them as categorised businesses.</p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Familiarisation with the guidance on additional duties for categorised providers</b>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <b>Familiarisation with the guidance on additional duties for categorised providers</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">19.</span></h2>
                   <p>As of the time of writing, Ofcom has published several consultations on draft guidance
@@ -2175,13 +2183,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      providers expected to be subject to higher duties.</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Notes on duties and estimates, where applicable</u>
-                     </b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Notes on duties and estimates, where applicable</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">28.</span></h2>
                   <p>
@@ -2444,13 +2451,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Benefits</u>
-                     </b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Benefits</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">43.</span></h2>
                   <p>There are no direct monetisable benefits to business resulting from regulation enabled
@@ -2461,11 +2467,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the mental and physical health of their users.</p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Social Benefits</b>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <b>Social Benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">44.</span></h2>
                   <p>The benefit flowing from regulation enabled by this piece of secondary legislation
@@ -2480,11 +2485,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      by online harms in the UK, according to the OSA Enactment IA.</p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Risks and assumptions</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>Risks and assumptions</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">45.</span></h2>
                   <p>Due to very limited data and evidence available relating to protections for news publisher
@@ -2503,18 +2507,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      firms in scope. In practice, compliance costs will vary across businesses in scope.</p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on small and micro businesses</b>
-                  </p>
-               <section class="paragraph num">
-                  <h2><span class="num">48.</span></h2>
-                  <p>In setting the thresholds for categorised services, HMG have taken a tiered approach
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on small and micro businesses</b>
+                     </span></h2>
+            </section>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">In setting the thresholds for categorised services, HMG have taken a tiered approach
                      which ensures the user-to-user services in scope of the regulation with the greatest
                      reach, that have the relevant characteristics/functionalities, are subject to the
-                     strongest duties under Category 1.</p>
-               </section>
+                     strongest duties under Category 1.</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">49.</span></h2>
                   <p>There is no basis in the primary legislation to exempt SMEs from categorisation, so
@@ -2550,19 +2552,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      on businesses. This will include a specific requirement to assess the impact of regulatory
                      proposals on small and micro businesses.</p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">53.</span></h2>
-                  <p>
-                     <span style="color:#000000">The regulator will take a proportionate and targeted approach to monitoring and enforcement,
-                        focusing on the services where the risk of harm is highest. </span>
-                     </p>
-               </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on medium businesses</b>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">The regulator will take a proportionate and targeted approach to monitoring and enforcement,
+                     focusing on the services where the risk of harm is highest.</span></h2>
+            </section>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on medium businesses</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">54.</span></h2>
                   <p>The justification for not exempting small and micro businesses applies to medium businesses.
@@ -2575,13 +2573,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      will not be known until Ofcom creates the register of categorised services.</p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Wider impacts</b>
-                     </span>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wider impacts</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">55.</span></h2>
                   <p>The increased transparency and user safety measures could lead to a safer and more
@@ -2618,11 +2615,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Wider impacts of the OSA in general can be found in the OSB Impact Assessment<a class="fn" id="fnref-8" href="#fn-8">8</a>.</p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>A summary of the potential trade implications of measure</b>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <b>A summary of the potential trade implications of measure</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>The categorisation of online providers and the imposition of specific duties could
@@ -2635,11 +2631,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Please refer to the OSB IA to see wider trade implications.</p>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Monitoring and Evaluation</b>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <b>Monitoring and Evaluation</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">61.</span></h2>
                   <p>A wholescale review of the legislation is included within the OSA. As per section
@@ -2664,7 +2659,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          </div>
          <section class="attachment" data-name="annex">
             <div class="body">
-               <p id="annex_1_p_22">
+               <p id="annex_1_p_29">
                   <b>
                      <u>Annex A: Additional duties for Categorised services </u>
                      </b>
@@ -2847,7 +2842,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tr>
                   </tbody>
                </table>
-               <p id="annex_1_p_23">
+               <p id="annex_1_p_30">
                   <b>Online Safety Act duties on Categorised services in more detail:</b>
                   </p>
                <div class="blockContainer">
@@ -2913,12 +2908,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          </section>
          <section class="attachment" data-name="annex">
             <div class="body">
-               <p id="annex_2_p_24">
+               <p id="annex_2_p_31">
                   <b>
                      <u>Annex B: Ofcom’s proposed thresholds for Category 1, 2A and 2B</u>
                      </b>
                   </p>
-               <p id="annex_2_p_25">
+               <p id="annex_2_p_32">
                   <b>Category 1:</b>
                   </p>
                <div class="blockContainer">
@@ -2929,7 +2924,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p><span class="num">b.</span>allow users to forward or reshare user-generated content <b>and </b>use a content recommender system <b>and</b> have more than 7 million UK users on the user-to-user part of the service, representing
                      c.10% of the UK population.  </p>
                </div>
-               <p id="annex_2_p_26">
+               <p id="annex_2_p_33">
                   <b>Category 2A:</b>
                   </p>
                <p>Ofcom recommend the Category 2A threshold should capture search services or combined
@@ -2942,7 +2937,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p><span class="num">b.</span>have more than 7 million UK users on the search engine part of the service, representing
                      c.10% of the UK population.&nbsp;</p>
                </div>
-               <p id="annex_2_p_27">
+               <p id="annex_2_p_34">
                   <b>Category 2B:</b>
                   </p>
                <p>The advice also recommends the<b></b>Category 2B threshold should capture services which:</p>
@@ -3032,7 +3027,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://assets.publishing.service.gov.uk/media/6231dc9be90e070ed8233a60/Online_Safety_Bill_impact_assessment.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/6231dc9be90e070ed8233a60/Online_Safety_Bill_impact_assessment.pdf">https://assets.publishing.service.gov.uk/media/6231dc9be90e070ed8233a60/Online_Safety_Bill_impact_assessment.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://assets.publishing.service.gov.uk/media/6231dc9be90e070ed8233a60/Online_Safety_Bill_impact_assessment.pdf"><u>https://assets.publishing.service.gov.uk/media/6231dc9be90e070ed8233a60/Online_Safety_Bill_impact_assessment.pdf</u></a></p>
                <p></p>
             </div>
          </footer>

@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <tbody>
                      <tr>
@@ -231,13 +249,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section num heading">
+            <section id="section_3" class="section num heading">
                <h2><span class="num">
                      <b>1.</b>
+                     </span><span class="heading">
+                     <b>Summary of proposal </b>
                      </span></h2>
-               <p>
-                  <b>Summary of proposal </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>Firearms licensing fees are being increased to achieve full-cost recovery for the
@@ -259,13 +276,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      budgets is significantly reduced.</p>
                </section>
             </section>
-            <section id="section_3" class="section num heading">
+            <section id="section_4" class="section num heading">
                <h2><span class="num">
                      <b>2.</b>
+                     </span><span class="heading">
+                     <b>Strategic case for proposed regulation </b>
                      </span></h2>
-               <p>
-                  <b>Strategic case for proposed regulation </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">4.</span></h2>
                   <p>The licensing of firearms and shotguns is administered by local police forces and
@@ -299,13 +315,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         to amend the fees by order.</span></p>
                </section>
             </section>
-            <section id="section_4" class="section num heading">
+            <section id="section_5" class="section num heading">
                <h2><span class="num">
                      <b>3.</b>
+                     </span><span class="heading">
+                     <b>SMART objectives for intervention</b>
                      </span></h2>
-               <p>
-                  <b>SMART objectives for intervention</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">8.</span></h2>
                   <p>The objectives are to enable police forces to move to full cost recovery for issuing
@@ -332,10 +347,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      an efficient and professional service to applicants and certificate holders.</p>
                </section>
             </section>
-            <section id="section_5" class="section num heading">
+            <section id="section_6" class="section num heading">
                <h2><span class="num">
                      <b>4.</b>
-                     </span></h2>
+                     </span><span class="heading">Description of proposed intervention options and explanation of the</span></h2>
                <p>
                   <b>Description of proposed intervention options and explanation of the</b>
                   <span style="color:#000000">
@@ -364,13 +379,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      of the suitability of applicants to possess</p>
                </section>
             </section>
-            <section id="section_6" class="section num heading">
+            <section id="section_7" class="section num heading">
                <h2><span class="num">
                      <b>5.</b>
+                     </span><span class="heading">
+                     <b>Summary of long-list and alternatives </b>
                      </span></h2>
-               <p>
-                  <b>Summary of long-list and alternatives </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>All realistic options to achieve the government's intended outcomes were taken through
@@ -380,13 +394,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      been deemed disproportionate in this case.</p>
                </section>
             </section>
-            <section id="section_7" class="section num heading">
+            <section id="section_8" class="section num heading">
                <h2><span class="num">
                      <b>6.</b>
+                     </span><span class="heading">
+                     <b>Description of shortlisted policy options carried forward </b>
                      </span></h2>
-               <p>
-                  <b>Description of shortlisted policy options carried forward </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">13.</span></h2>
                   <p>Options considered are as follows:</p>
@@ -428,11 +441,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Appraisal Process outline</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Appraisal Process outline</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>The Home Office completed a data capture exercise in January 2023 to understand the
@@ -461,13 +473,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are considered in section F of the Evidence Base.</p>
                </section>
             </section>
-            <section id="section_9" class="section num heading">
+            <section id="section_10" class="section num heading">
                <h2><span class="num">
                      <b>7.</b>
+                     </span><span class="heading">
+                     <b>Regulatory scorecard for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Regulatory scorecard for preferred option</b>
-                  </p>
                <section class="level">
                   <p>
                      <span style="color:#222222">Please provide quantitative estimates and qualitative descriptions of impacts under
@@ -502,12 +513,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <span style="color:#222222">&nbsp;Please see BRF guidance technical annex for definitions.</span>
                      </p>
                </section>
+            </section>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">Part A: Overall and stakeholder impacts</span></h2>
                <section class="paragraph">
-                  <p>
-                     <span style="color:#000000">
-                        <b>Part A: Overall and stakeholder impacts </b>
-                        </span>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:18.79%">
@@ -864,12 +873,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
+            </section>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">Part B: Impacts on wider government priorities</span></h2>
                <section class="paragraph">
-                  <p>
-                     <span style="color:#000000">
-                        <b>Part B: Impacts on wider government priorities</b>
-                        </span>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:26.74%">
@@ -973,13 +980,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_10" class="section num heading">
+            <section id="section_13" class="section num heading">
                <h2><span class="num">
                      <b>8.</b>
+                     </span><span class="heading">
+                     <b>Monitoring and evaluation of preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Monitoring and evaluation of preferred option</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">18.</span></h2>
                   <p>The government will keep firearms licensing fees under review annually to check whether
@@ -994,26 +1000,24 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the process.</p>
                </section>
             </section>
-            <section id="section_11" class="section num heading">
+            <section id="section_14" class="section num heading">
                <h2><span class="num">
                      <b>9.</b>
+                     </span><span class="heading">
+                     <b>Minimising administrative and compliance costs for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Minimising administrative and compliance costs for preferred option</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">20.</span></h2>
                   <p>There are no administrative of compliance costs for any of the options considered,
                      including the preferred option.</p>
                </section>
             </section>
-            <section id="section_12" class="section num heading">
+            <section id="section_15" class="section num heading">
                <h2><span class="num">
                      <b>10.</b>
+                     </span><span class="heading">
+                     <b>Main assumptions / sensitivities and economic / analytical risks</b>
                      </span></h2>
-               <p>
-                  <b>Main assumptions / sensitivities and economic / analytical risks</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">21.</span></h2>
                   <p>The impact on costs and revenues of any fee changes is dependent upon future volumes
@@ -1029,42 +1033,43 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      rate, the estimated cost of a licence will be different.</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Declaration</b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>Declaration</b>
+                     </span></h2>
                <section class="level">
-                  <p>Department:</p>
+                  <p>Department:  Home Office</p>
                </section>
                <section class="level">
-                  <p>Contact details for enquiries:  Home Office</p>
+                  <p>Contact details for enquiries:  Dennis Wilmer, Home Office ()</p>
                </section>
                <section class="level">
-                  <p>Minister responsible:  Dennis Wilmer, Home Office ()</p>
+                  <p>Minister responsible:  The Rt Hon. Dame Diana Johnson DBE MP, Minister of State for
+                     Policing, Fire and Crime Prevention</p>
                </section>
                <section class="level">
                   <p>
                      <span style="color:#000000">I have read the Impact Assessment and I am satisfied that, given the available evidence,
                         it represents a reasonable view of the likely costs, benefits and impact of the leading
-                        options.</span> The Rt Hon. Dame Diana Johnson DBE MP, Minister of State for Policing, Fire and Crime
-                     Prevention</p>
+                        options.</span>
+                     <img src="http://www.legislation.gov.uk/uksi/2025/36/impacts/2025/8/images/ukia_2025_8_en_001.gif" alt="">
+                     </p>
                </section>
                <section class="level">
-                  <p>Signed: <img src="http://www.legislation.gov.uk/uksi/2025/36/impacts/2025/8/images/ukia_2025_8_en_001.gif" alt=""></p>
+                  <p>Signed: </p>
                </section>
                <section class="level">
                   <p>Date: <span class="docDate">26.11.24</span></p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">Summary Analysis and evidence</span></h2>
                <p>
                   <b>Summary: Analysis and evidence</b>
                   </p>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">Price base year</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Price base year:  </b>
@@ -1450,27 +1455,24 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence base </b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence base </b>
+                     </span></h2>
             </section>
-            <section id="section_17" class="section num heading">
+            <section id="section_20" class="section num heading">
                <h2><span class="num">
                      <b>A.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Strategic objective and overview</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Strategic objective and overview</b>
-                     </span>
-                  </p>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Strategic objective</b>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <b>Strategic objective</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>The policy proposals appraised in this impact assessment would increase the fees charged
@@ -1481,11 +1483,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and certificate holders. This supports the government’s Safer Streets mission<a class="fn" id="fnref-10" href="#fn-10">10</a> by helping to reduce gun crime.</p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Background</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>Background</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">2.</span></h2>
                   <p>Firearms licensing is a chargeable service provided by the police. The Home Office
@@ -1538,17 +1539,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      recovery for the police in its manifesto<a class="fn" id="fnref-14" href="#fn-14">14</a> as part of the Safer Streets Mission.</p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Groups affected</b>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>Groups affected</b>
+                     </span></h2>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Police forces in England, Wales, and Scotland  </b>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <b>Police forces in England, Wales, and Scotland  </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">9.</span></h2>
                   <p>Police forces issue certificates for licensed firearms and incur costs from having
@@ -1565,11 +1564,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      area.</p>
                </section>
             </section>
-            <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Registered firearms dealers  </b>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <b>Registered firearms dealers  </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">11.</span></h2>
                   <p>An important group of commercial users of the firearms licensing system are RFDs.
@@ -1585,11 +1583,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and renewed a further 718 (540 in England and Wales, and 178 in Scotland).</p>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Businesses with firearm/shotgun certificates  </b>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>Businesses with firearm/shotgun certificates  </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">13.</span></h2>
                   <p>There are several occupations that require the use of a firearm or shotgun and therefore
@@ -1729,11 +1726,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Other sectors which may hold firearm/shotgun licences</b>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <b>Other sectors which may hold firearm/shotgun licences</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>NFLMS and Shogun does not categorise any other business types of any volume that hold
@@ -1743,15 +1739,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_25" class="section num heading">
+            <section id="section_28" class="section num heading">
                <h2><span class="num">
                      <b>B.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration, with business as usual, and rationale for intervention</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration, with business as usual, and rationale for intervention</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">15.</span></h2>
                   <p>The licensing of firearms and shotguns is administered by local police forces and
@@ -1780,15 +1775,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      staff with improved training.</p>
                </section>
             </section>
-            <section id="section_26" class="section num heading">
+            <section id="section_29" class="section num heading">
                <h2><span class="num">
                      <b>C.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objective </b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objective </b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">18.</span></h2>
                   <p>The government’s manifesto committed to increase firearms licensing fees to achieve
@@ -1807,21 +1801,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      assessment of the suitability of applicants to possess firearms.</p>
                </section>
             </section>
-            <section id="section_27" class="section num heading">
+            <section id="section_30" class="section num heading">
                <h2><span class="num">
                      <b>D.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered</b>
-                     </span>
-                  </p>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Long List</b>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <b>Long List</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">20.</span></h2>
                   <p>All realistic options to achieve the government's intended outcomes were taken through
@@ -1835,11 +1827,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the policy was constructed and appraised.</p>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Short Listed Options</b>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <b>Short Listed Options</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">22.</span></h2>
                   <p>Options considered are as follows:</p>
@@ -1868,11 +1859,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Non-regulatory options</b>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <b>Non-regulatory options</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">23.</span></h2>
                   <p>There are no non-regulatory options that could meet the government’s manifesto commitment
@@ -2156,11 +2146,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>General assumptions and data</b>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <b>General assumptions and data</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">25.</span></h2>
                   <p>A social discount rate of 3.5 per cent is used to obtain present values, see HM Treasury
@@ -2169,11 +2158,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are presented in 2024 prices unless specified otherwise. </p>
                </section>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Cost of a licence</b>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <b>Cost of a licence</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">26.</span></h2>
                   <p>To properly assess the deficit faced by police forces in all options, and to calculate
@@ -2311,11 +2299,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      12 and 15 per cent of licences.</p>
                </section>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Fee Options</b>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <b>Fee Options</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">32.</span></h2>
                   <p>To calculate the new fee options, the current fee levels were inflated by the CPI<a class="fn" id="fnref-20" href="#fn-20">20</a> (for Option 2) and RPI<a class="fn" id="fnref-21" href="#fn-21">21</a> (for Option 3). These used the monthly indices to obtain the percentage increase
@@ -2349,11 +2336,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to remain the same for the purposes of this Impact Assessment. </p>
                </section>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Volumes of Firearms Licenses</b>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <b>Volumes of Firearms Licenses</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">36.</span></h2>
                   <p>To estimate the impact on overall revenue and expenditure over the appraisal period,
@@ -2936,11 +2922,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Transfers</b>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <b>Transfers</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">40.</span></h2>
                   <p>As this policy represents a fee change, the monetised impact is considered a transfer.
@@ -5319,10 +5304,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_36" class="section num heading">
+            <section id="section_39" class="section num heading">
                <h2><span class="num">
                      <b>E.</b>
-                     </span></h2>
+                     </span><span class="heading">NPSV monetised and non-monetised costs and benefits of each shortlist option (including
+                     administrative burden)</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>NPSV: monetised and non-monetised costs and benefits of each shortlist option (including
@@ -5330,221 +5316,213 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   </p>
                <section class="paragraph num">
-                  <h2><span class="num">44.</span></h2>
-                  <p>
-                     <span style="color:#000000">Any change in fees would represent a transfer of funds from individuals and businesses
-                        to the police. Thus, the Net Present Social Value of all options in all scenarios
-                        is zero. </span>
-                     </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">45.</span></h2>
-                  <p>
-                     <span style="color:#000000">Given that volume estimates are the same for each option the change in costs and revenue
-                        is driven by the change in Licence Fees. Given the increase is largest in fees and
-                        fee revenues occurs in option 3.</span>
-                     </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">46.</span></h2>
-                  <p>It should also be noted that in the calculations of costs and revenue changes the
-                     firearms licence fees are expected to remain fixed across the whole appraisal period.
-                     In practice the fees will likely change when the next comprehensive review of fees
-                     takes place in three years. Total costs would then change depending on what fees are
-                     changed to after the review. This has not been incorporated as it is unknown what
-                     fees will change to.</p>
-               </section>
-               <section class="paragraph num">
                   <h2><span class="num">47.</span></h2>
                   <p>
                      <span style="color:#000000">Table 10 shows the total increased costs, increased revenue and NPSVs for each option
                         in the central volume scenario for the ten-year appraisal period.</span>
                      </p>
-                  <section class="subparagraph">
-                     <p>
-                        <b>Table 10 – Central volume scenario total impacts on individuals, businesses, police
-                           revenue and net present social value (£ million, 2024 prices, 2024/25 PV)</b>
-                        </p>
-                     <table class="ia-table">
-                        <colgroup>
-                           <col style="width:38.68%">
-                           <col style="width:15.41%">
-                           <col style="width:15.41%">
-                           <col style="width:15.41%">
-                           <col style="width:15.09%">
-                        </colgroup>
-                        <tbody>
-                           <tr>
-                              <td>
-                                 <p></p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Option 0</b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Option 1</b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Option 2</b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Option 3</b>
-                                       </span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Increased Costs to individuals </b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">0.0</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">21.9</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">29.7</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>92.6</b>
-                                       </span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Increased Costs to business </b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">0.0</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">2.5</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">3.4</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>10.5</b>
-                                       </span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>Increased Revenue to Police</b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">0.0</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">24.4</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">33.2</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>103.2</b>
-                                       </span>
-                                    </p>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>NPSV</b>
-                                       </span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">0.0</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">0.0</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">0.0</span>
-                                    </p>
-                              </td>
-                              <td style="vertical-align:middle">
-                                 <p>
-                                    <span style="color:#000000">
-                                       <b>0.0</b>
-                                       </span>
-                                    </p>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </section>
-                  <section class="subparagraph">
-                     <p>
-                        <span class="tab">&nbsp;</span>Source:</p>
-                  </section>
                </section>
             </section>
-            <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Sensitivity Analysis</b>
-                  </p>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">Any change in fees would represent a transfer of funds from individuals and businesses
+                     to the police. Thus, the Net Present Social Value of all options in all scenarios
+                     is zero.</span></h2>
+            </section>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">Given that volume estimates are the same for each option the change in costs and revenue
+                     is driven by the change in Licence Fees. Given the increase is largest in fees and
+                     fee revenues occurs in option 3.</span></h2>
+            </section>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">It should also be noted that in the calculations of costs and revenue changes the
+                     firearms licence fees are expected to remain fixed across the whole appraisal period.
+                     In practice the fees will likely change when the next comprehensive review of fees
+                     takes place in three years. Total costs would then change depending on what fees are
+                     changed to after the review. This has not been incorporated as it is unknown what
+                     fees will change to.</span></h2>
+               <section class="subparagraph">
+                  <p>
+                     <b>Table 10 – Central volume scenario total impacts on individuals, businesses, police
+                        revenue and net present social value (£ million, 2024 prices, 2024/25 PV)</b>
+                     </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:38.68%">
+                        <col style="width:15.41%">
+                        <col style="width:15.41%">
+                        <col style="width:15.41%">
+                        <col style="width:15.09%">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Option 0</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Option 1</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Option 2</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Option 3</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Increased Costs to individuals </b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">0.0</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">21.9</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">29.7</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>92.6</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Increased Costs to business </b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">0.0</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">2.5</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">3.4</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>10.5</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Increased Revenue to Police</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">0.0</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">24.4</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">33.2</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>103.2</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>NPSV</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">0.0</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">0.0</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">0.0</span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>0.0</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="subparagraph">
+                  <p>
+                     <span class="tab">&nbsp;</span>Source:</p>
+               </section>
+            </section>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">
+                     <b>Sensitivity Analysis</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">48.</span></h2>
                   <p>The total impact on revenue and costs for individuals, businesses and the police from
@@ -5902,11 +5880,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Value for Money (VfM)</b>
-                  </p>
+            <section id="section_44" class="section heading">
+               <h2><span class="heading">
+                     <b>Value for Money (VfM)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">50.</span></h2>
                   <p>As this is a transfer, overall NPSV is neutral in all scenarios.  However, it is likely
@@ -5916,21 +5893,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      which was the government’s manifesto commitment.</p>
                </section>
             </section>
-            <section id="section_39" class="section num heading">
+            <section id="section_45" class="section num heading">
                <h2><span class="num">
                      <b>F.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Costs and benefits to business calculations</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Costs and benefits to business calculations</b>
-                     </span>
-                  </p>
             </section>
-            <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Cost to business and Business Net Present Values</b>
-                  </p>
+            <section id="section_46" class="section heading">
+               <h2><span class="heading">
+                     <b>Cost to business and Business Net Present Values</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">51.</span></h2>
                   <p>In the central scenario:</p>
@@ -6307,11 +6282,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_41" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Equivalent Annual Net Direct Cost to Business</b>
-                  </p>
+            <section id="section_47" class="section heading">
+               <h2><span class="heading">
+                     <b>Equivalent Annual Net Direct Cost to Business</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">53.</span></h2>
                   <p>In the central scenario </p>
@@ -6479,11 +6453,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_42" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Registered Firearms Dealers</b>
-                  </p>
+            <section id="section_48" class="section heading">
+               <h2><span class="heading">
+                     <b>Registered Firearms Dealers</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">55.</span></h2>
                   <p>Registered Firearms Dealers (RFDs) represent a key group of businesses that hold Firearms
@@ -7002,11 +6975,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_43" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Place-based analysis</b>
-                  </p>
+            <section id="section_49" class="section heading">
+               <h2><span class="heading">
+                     <b>Place-based analysis</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">57.</span></h2>
                   <p>The increase in fees is likely to cost rural communities more than urban ones. This
@@ -7022,11 +6994,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to rural communities is uncertain. </p>
                </section>
             </section>
-            <section id="section_44" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on small and micro-businesses</b>
-                  </p>
+            <section id="section_50" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on small and micro-businesses</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>Since the EANDCB estimates are well below the threshold for a small and micro-business
@@ -8118,15 +8089,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_45" class="section num heading">
+            <section id="section_51" class="section num heading">
                <h2><span class="num">
                      <b>G.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Costs and benefits to households’ calculations</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Costs and benefits to households’ calculations</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">69.</span></h2>
                   <p> In the central scenario:</p>
@@ -8503,11 +8473,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_46" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Equivalent Annual Net Direct Cost to Households</b>
-                  </p>
+            <section id="section_52" class="section heading">
+               <h2><span class="heading">
+                     <b>Equivalent Annual Net Direct Cost to Households</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">71.</span></h2>
                   <p>In the central scenario </p>
@@ -8831,15 +8800,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         budget allowing an increase in other policing activity.</span></p>
                </section>
             </section>
-            <section id="section_47" class="section num heading">
+            <section id="section_53" class="section num heading">
                <h2><span class="num">
                      <b>H.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Business environment</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Business environment</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">80.</span></h2>
                   <p>
@@ -8849,15 +8817,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_48" class="section num heading">
+            <section id="section_54" class="section num heading">
                <h2><span class="num">
                      <b>I.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Trade implications</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Trade implications</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">81.</span></h2>
                   <p>
@@ -8866,10 +8833,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_49" class="section num heading">
+            <section id="section_55" class="section num heading">
                <h2><span class="num">
                      <b>J.</b>
-                     </span></h2>
+                     </span><span class="heading">Environment Natural capital impact and decarbonisation</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Environment: Natural capital impact and decarbonisation</b>
@@ -8881,30 +8848,28 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to have any significant impact on the environment.</p>
                </section>
             </section>
-            <section id="section_50" class="section num heading">
+            <section id="section_56" class="section num heading">
                <h2><span class="num">
                      <b>K.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Other wider impacts (consider the impacts of your proposals)</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Other wider impacts (consider the impacts of your proposals)</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">83.</span></h2>
                   <p>Changes to firearms licencing fees in England, Wales and Scotland are not estimated
                      to have any significant wider impacts beyond those outlined in this impact assessment.</p>
                </section>
             </section>
-            <section id="section_51" class="section num heading">
+            <section id="section_57" class="section num heading">
                <h2><span class="num">
                      <b>L.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and assumptions</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks and assumptions</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">84.</span></h2>
                   <p>The impact on costs and revenues of any fee changes is dependent upon future volumes
@@ -8974,60 +8939,60 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          <footer class="footnotes">
             <hr style="margin-top:2em">
             <div class="footnote">
-               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Firearms Variation of Fees Order 2015: <a href="https://www.legislation.gov.uk/uksi/2015/611/contents/made"><span style="color:#0000FF"><u><a href="https://www.legislation.gov.uk/uksi/2015/611/contents/made">https://www.legislation.gov.uk/uksi/2015/611/contents/made</a></u></span></a></p>
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Firearms Variation of Fees Order 2015: <a href="https://www.legislation.gov.uk/uksi/2015/611/contents/made"><span style="color:#0000FF"><u>https://www.legislation.gov.uk/uksi/2015/611/contents/made</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Labour Party Manifesto 2024. Change – The Labour Party: <a href="https://labour.org.uk/change/"><span style="color:#0000FF"><u><a href="https://labour.org.uk/change/">https://labour.org.uk/change/</a></u></span></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Labour Party Manifesto 2024. Change – The Labour Party: <a href="https://labour.org.uk/change/"><span style="color:#0000FF"><u>https://labour.org.uk/change/</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.bbc.co.uk/news/uk-england-devon-58200336"><span style="color:#0000FF"><u><a href="https://www.bbc.co.uk/news/uk-england-devon-58200336">https://www.bbc.co.uk/news/uk-england-devon-58200336</a></u></span></a></p>
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.bbc.co.uk/news/uk-england-devon-58200336"><span style="color:#0000FF"><u>https://www.bbc.co.uk/news/uk-england-devon-58200336</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  The Senior Coroner for Plymouth, Torbay and South Devon issued Prevention of Future
-                  Deaths reports to the Home Office and other parties on 8 March 2023l: <a href="https://tgchambers.com/wp-content/uploads/2023/03/KEYHAM-INQUESTS-Combined-PFD-reports-1.pdf"><span style="color:#0000FF"><u><a href="https://tgchambers.com/wp-content/uploads/2023/03/KEYHAM-INQUESTS-Combined-PFD-reports-1.pdf">https://tgchambers.com/wp-content/uploads/2023/03/KEYHAM-INQUESTS-Combined-PFD-reports-1.pdf</a></u></span></a></p>
+                  Deaths reports to the Home Office and other parties on 8 March 2023l: <a href="https://tgchambers.com/wp-content/uploads/2023/03/KEYHAM-INQUESTS-Combined-PFD-reports-1.pdf"><span style="color:#0000FF"><u>https://tgchambers.com/wp-content/uploads/2023/03/KEYHAM-INQUESTS-Combined-PFD-reports-1.pdf</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Firearms Act 1968: <a href="https://www.legislation.gov.uk/ukpga/1968/27/contents"><span style="color:#0000FF"><u><a href="https://www.legislation.gov.uk/ukpga/1968/27/contents">https://www.legislation.gov.uk/ukpga/1968/27/contents</a></u></span></a></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Firearms Act 1968: <a href="https://www.legislation.gov.uk/ukpga/1968/27/contents"><span style="color:#0000FF"><u>https://www.legislation.gov.uk/ukpga/1968/27/contents</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <span style="color:#000000">Labour Party Manifesto 2024 - Take back our streets – The Labour Party: </span><a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u><a href="https://labour.org.uk/change/take-back-our-streets/">https://labour.org.uk/change/take-back-our-streets/</a></u></span></a></p>
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <span style="color:#000000">Labour Party Manifesto 2024 - Take back our streets – The Labour Party: </span><a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u>https://labour.org.uk/change/take-back-our-streets/</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Managing Public Money HMT:  <a href="https://www.gov.uk/government/publications/managing-public-money"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/managing-public-money">https://www.gov.uk/government/publications/managing-public-money</a></u></span></a></p>
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Managing Public Money HMT:  <a href="https://www.gov.uk/government/publications/managing-public-money"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/managing-public-money</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <span style="color:#000000">Labour Party Manifesto 2024 - Take back our streets – The Labour Party: </span><a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u><a href="https://labour.org.uk/change/take-back-our-streets/">https://labour.org.uk/change/take-back-our-streets/</a></u></span></a></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <span style="color:#000000">Labour Party Manifesto 2024 - Take back our streets – The Labour Party: </span><a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u>https://labour.org.uk/change/take-back-our-streets/</u></span></a></p>
                <p></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  BlueLight Commercial | Transforming commercial services together: <a href="https://bluelightcommercial.police.uk/about/"><span style="color:#0000FF"><u><a href="https://bluelightcommercial.police.uk/about/">https://bluelightcommercial.police.uk/about/</a></u></span></a></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  BlueLight Commercial | Transforming commercial services together: <a href="https://bluelightcommercial.police.uk/about/"><span style="color:#0000FF"><u>https://bluelightcommercial.police.uk/about/</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  Labour Party Manifesto 2024 - Take back our streets – The Labour Party: <a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u><a href="https://labour.org.uk/change/take-back-our-streets/">https://labour.org.uk/change/take-back-our-streets/</a></u></span></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  Labour Party Manifesto 2024 - Take back our streets – The Labour Party: <a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u>https://labour.org.uk/change/take-back-our-streets/</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Firearms Act 1968: <a href="https://www.legislation.gov.uk/ukpga/1968/27/contents"><span style="color:#0000FF"><u><a href="https://www.legislation.gov.uk/ukpga/1968/27/contents">https://www.legislation.gov.uk/ukpga/1968/27/contents</a></u></span></a></p>
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Firearms Act 1968: <a href="https://www.legislation.gov.uk/ukpga/1968/27/contents"><span style="color:#0000FF"><u>https://www.legislation.gov.uk/ukpga/1968/27/contents</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  Firearm and shotgun certificates, April 2023 to March 2024 - GOV.UK (<a href="http://www.gov.uk/"><span style="color:#0000FF"><u>www.gov.uk</u></span></a>): <a href="https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024">https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024</a></u></span></a> and Police Scotland Firearms Licensing Statistical Publication 2023-2024 <a href="https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard"><span style="color:#0000FF"><u><a href="https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard">https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard</a></u></span></a>.</p>
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  Firearm and shotgun certificates, April 2023 to March 2024 - GOV.UK (<a href="http://www.gov.uk/"><span style="color:#0000FF"><u>www.gov.uk</u></span></a>): <a href="https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024"><span style="color:#0000FF"><u>https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024</u></span></a> and Police Scotland Firearms Licensing Statistical Publication 2023-2024 <a href="https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard"><span style="color:#0000FF"><u>https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard</u></span></a>.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  Managing public money – GOV.UK: <a href="https://www.gov.uk/government/publications/managing-public-money"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/managing-public-money">https://www.gov.uk/government/publications/managing-public-money</a></u></span></a></p>
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  Managing public money – GOV.UK: <a href="https://www.gov.uk/government/publications/managing-public-money"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/managing-public-money</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  Labour Party Manifesto - Take back our streets – The Labour Party: <a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u><a href="https://labour.org.uk/change/take-back-our-streets/">https://labour.org.uk/change/take-back-our-streets/</a></u></span></a></p>
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  Labour Party Manifesto - Take back our streets – The Labour Party: <a href="https://labour.org.uk/change/take-back-our-streets/"><span style="color:#0000FF"><u>https://labour.org.uk/change/take-back-our-streets/</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="https://www.bbc.co.uk/news/uk-england-devon-58200336"><span style="color:#0000FF"><u><a href="https://www.bbc.co.uk/news/uk-england-devon-58200336">https://www.bbc.co.uk/news/uk-england-devon-58200336</a></u></span></a></p>
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="https://www.bbc.co.uk/news/uk-england-devon-58200336"><span style="color:#0000FF"><u>https://www.bbc.co.uk/news/uk-england-devon-58200336</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  The Green Book and accompanying guidance and documents – GOV.UK: <a href="https://www.gov.uk/government/collections/the-green-book-and-accompanying-guidance-and-documents"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/collections/the-green-book-and-accompanying-guidance-and-documents">https://www.gov.uk/government/collections/the-green-book-and-accompanying-guidance-and-documents</a></u></span></a></p>
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  The Green Book and accompanying guidance and documents – GOV.UK: <a href="https://www.gov.uk/government/collections/the-green-book-and-accompanying-guidance-and-documents"><span style="color:#0000FF"><u>https://www.gov.uk/government/collections/the-green-book-and-accompanying-guidance-and-documents</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  Bluelight Commercial - <a href="https://bluelightcommercial.police.uk/about/"><span style="color:#0000FF"><u><a href="https://bluelightcommercial.police.uk/about/">https://bluelightcommercial.police.uk/about/</a></u></span></a></p>
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  Bluelight Commercial - <a href="https://bluelightcommercial.police.uk/about/"><span style="color:#0000FF"><u>https://bluelightcommercial.police.uk/about/</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  The Firearms (Variation of Fees) Order – GOV.UK: <a href="https://assets.publishing.service.gov.uk/media/5a74a1bb40f0b616bcb18114/Impact_assessment.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/media/5a74a1bb40f0b616bcb18114/Impact_assessment.pdf">https://assets.publishing.service.gov.uk/media/5a74a1bb40f0b616bcb18114/Impact_assessment.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  The Firearms (Variation of Fees) Order – GOV.UK: <a href="https://assets.publishing.service.gov.uk/media/5a74a1bb40f0b616bcb18114/Impact_assessment.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/media/5a74a1bb40f0b616bcb18114/Impact_assessment.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-19" href="#fnref-19">19</a> <span style="color:#0B0C0C">A coterminous certificate allows the certificate holder’s firearm and shotgun certificates
@@ -9035,39 +9000,39 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      holder and reduces the burden on police firearms licensing teams.</span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  CPI INDEX 00: ALL ITEMS 2015=100 – Office for National Statistics: <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/d7bt/mm23"><span style="color:#0000FF"><u><a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/d7bt/mm23">https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/d7bt/mm23</a></u></span></a></p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  CPI INDEX 00: ALL ITEMS 2015=100 – Office for National Statistics: <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/d7bt/mm23"><span style="color:#0000FF"><u>https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/d7bt/mm23</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  RPI All Items Index: Jan 1987=100 – Office for National Statistics: <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/chaw/mm23"><span style="color:#0000FF"><u><a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/chaw/mm23">https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/chaw/mm23</a></u></span></a></p>
+               <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  RPI All Items Index: Jan 1987=100 – Office for National Statistics: <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/chaw/mm23"><span style="color:#0000FF"><u>https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/chaw/mm23</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-22" href="#fnref-22">22</a>  Statistics on firearm and shotgun certificates, England and Wales: April 2022 to
-                  March 2023 – GOV.UK: <a href="https://www.gov.uk/government/statistics/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/statistics/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023">https://www.gov.uk/government/statistics/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023</a></u></span></a></p>
+                  March 2023 – GOV.UK: <a href="https://www.gov.uk/government/statistics/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023"><span style="color:#0000FF"><u>https://www.gov.uk/government/statistics/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023/statistics-on-firearm-and-shotgun-certificates-england-and-wales-april-2022-to-march-2023</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-23" href="#fnref-23">23</a>  The number of Scottish licence holders as a proportion of England, Scotland and Wales
                   over this period is 14 per cent for firearms certificates, 8 per cent for shotgun
                   certificates, 10 per cent for RFD licence holders and 42 per cent for visitor permits.
-                  <a href="https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard"><span style="color:#0000FF"><u><a href="https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard">https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard</a></u></span></a></p>
+                  <a href="https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard"><span style="color:#0000FF"><u>https://www.scotland.police.uk/about-us/what-we-do/firearms-and-explosives-licensing?view=Standard</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  Firearm and shotgun certificates, April 2023 to March 2024 - GOV.UK (<a href="http://www.gov.uk/"><span style="color:#0000FF"><u>www.gov.uk</u></span></a>): <a href="https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024">https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024</a></u></span></a></p>
+               <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  Firearm and shotgun certificates, April 2023 to March 2024 - GOV.UK (<a href="http://www.gov.uk/"><span style="color:#0000FF"><u>www.gov.uk</u></span></a>): <a href="https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024"><span style="color:#0000FF"><u>https://www.gov.uk/government/statistics/firearm-and-shotgun-certificates-april-2023-to-march-2024</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-25" href="#fnref-25">25</a> <a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020">https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020</a></u></span></a></p>
+               <p><a class="marker" id="fn-25" href="#fnref-25">25</a> <a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-26" href="#fnref-26">26</a>  Business Population Estimates Business population estimates 2024 - GOV.UK (<a href="http://www.gov.uk/"><span style="color:#0000FF"><u>www.gov.uk</u></span></a>): <a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020">https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020</a></u></span></a></p>
+               <p><a class="marker" id="fn-26" href="#fnref-26">26</a>  Business Population Estimates Business population estimates 2024 - GOV.UK (<a href="http://www.gov.uk/"><span style="color:#0000FF"><u>www.gov.uk</u></span></a>): <a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government/the-green-book-2020</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  SIC Code definitions <a href="https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic">https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic</a></u></span></a></p>
+               <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  SIC Code definitions <a href="https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="https://www.gov.uk/find-licences/tv-licence">TV Licence - GOV.UK (www.gov.uk): <span style="color:#0000FF"><u><a href="https://www.gov.uk/find-licences/tv-licence">https://www.gov.uk/find-licences/tv-licence</a></u></span></a></p>
+               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="https://www.gov.uk/find-licences/tv-licence">TV Licence - GOV.UK (www.gov.uk): <span style="color:#0000FF"><u>https://www.gov.uk/find-licences/tv-licence</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-29" href="#fnref-29">29</a> <a href="https://www.gov.uk/fishing-licences/buy-a-fishing-licence">Buy a rod fishing licence: Buy a rod fishing licence for England and Wales - GOV.UK
-                     (www.gov.uk):<span style="color:#0000FF"><u> <a href="https://www.gov.uk/fishing-licences/buy-a-fishing-licence">https://www.gov.uk/fishing-licences/buy-a-fishing-licence</a></u></span></a></p>
+                     (www.gov.uk):<span style="color:#0000FF"><u> https://www.gov.uk/fishing-licences/buy-a-fishing-licence</u></span></a></p>
             </div>
          </footer>
       </article>

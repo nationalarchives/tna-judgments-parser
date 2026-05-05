@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:54.8%">
@@ -297,7 +315,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -383,25 +402,25 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <p>
                   <span style="color:#000000">Sign-off for Post Implementation Review: Chief economist/Head of Analysis and Minister</span>
                   </p>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>I have read the PIR and I am satisfied that it represents a fair and proportionate
-                        assessment of the impact of the measure.</i>
-                     </b>
-                  </p>
+            <section id="section_5" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>I have read the PIR and I am satisfied that it represents a fair and proportionate
+                           assessment of the impact of the measure.</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Signed:  <span style="color:#000000"><i>Abi Farrag, Economic Advisor</i></span><span class="tab">&nbsp;</span><span class="tab">&nbsp;</span><span class="tab">&nbsp;</span><span class="tab">&nbsp;</span><span class="tab">&nbsp;</span><span class="tab">&nbsp;</span>Date: <span style="color:#000000">16/12/2024</span></p>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Mary Creagh CBE MP</span></h2>
                <p>Signed:  <span style="color:#000000"><b><i>Mary Creagh CBE MP</i></b></span></p>
                <section class="level">
                   <p>
@@ -413,13 +432,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <span class="tab">&nbsp;</span>                                   Date: <span style="color:#000000">07/01/2025</span></p>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Further information sheet</b>
-                     </span>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Further information sheet</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <span style="color:#000000">Please provide additional evidence in subsequent sheets, as required. </span>
@@ -560,27 +578,27 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <hr style="margin-top:2em">
             <div class="footnote">
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Consultation on reforming the producer responsibility system for waste electrical
-                  and electronic equipment 2023. Available at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/"><span style="color:#0000FF"><u><a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/">https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/</a></u></span></a></p>
+                  and electronic equipment 2023. Available at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/"><span style="color:#0000FF"><u>https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Call for evidence on reforming the producer responsibility system for waste electricals
-                  2023. Available at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/"><span style="color:#0000FF"><u><a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/">https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/</a></u></span></a></p>
+                  2023. Available at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/"><span style="color:#0000FF"><u>https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/call-for-evidence-on-reforming-the-producer-respon/</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a>   Reforming the UK producer responsibility system for waste electricals. Available
-                  at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf"><span style="color:#0000FF"><u><a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf">https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf</a></u></span></a></p>
+                  at: <a href="https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf"><span style="color:#0000FF"><u>https://consult.defra.gov.uk/product-regulation-and-producer-responsibility/consultation-on-reforming-the-producer-responsibil/supporting_documents/WEEE%20Review%20Impact%20Assessment%20Final%202023.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Consultation outcome - Electrical waste: reforming the producer responsibility system.
-                  Available at:  <a href="https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system">https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system</a></u></span></a></p>
+                  Available at:  <a href="https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system"><span style="color:#0000FF"><u>https://www.gov.uk/government/consultations/electrical-waste-reforming-the-producer-responsibility-system</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Call for evidence outcome - Electrical waste: reforming the producer responsibility
-                  system – call for evidence. Available at: <a href="https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence">https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence</a></u></span></a></p>
+                  system – call for evidence. Available at: <a href="https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence"><span style="color:#0000FF"><u>https://www.gov.uk/government/calls-for-evidence/electrical-waste-reforming-the-producer-responsibility-system-call-for-evidence</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Electrical and Electronic Equipment: Ingredients for Successful Extended Producer
-                  Responsibility - EV0278. Available at: <a href="https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10"><span style="color:#0000FF"><u><a href="https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10#Description">https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10#Description</a></u></span></a></p>
+                  Responsibility - EV0278. Available at: <a href="https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10"><span style="color:#0000FF"><u>https://sciencesearch.defra.gov.uk/ProjectDetails?ProjectID=20257&amp;FromSearch=Y&amp;Publisher=1&amp;SearchText=EV0278&amp;SortString=ProjectCode&amp;SortOrder=Asc&amp;Paging=10#Description</u></span></a></p>
             </div>
          </footer>
       </article>

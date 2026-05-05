@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:59.86%">
@@ -340,7 +358,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.46%">
@@ -481,7 +500,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -507,7 +527,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -535,7 +556,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_6" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -572,7 +594,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_7" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:51.91%">
@@ -764,8 +787,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 3</p>
@@ -1258,11 +1281,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Introduction</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <b>Please note: </b>We have one proposal with two regulatory elements. This proposal is being taken forward
@@ -1291,15 +1313,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      that are more onerous than the Seveso directive.</p>
                </section>
             </section>
-            <section id="section_4" class="section num heading">
+            <section id="section_10" class="section num heading">
                <h2><span class="num">
                      <b>1.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">
                         <b>1.1</b>
@@ -1387,15 +1408,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to implement the directive.</p>
                </section>
             </section>
-            <section id="section_5" class="section num heading">
+            <section id="section_11" class="section num heading">
                <h2><span class="num">
                      <b>2.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale for intervention </b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale for intervention </b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">8.</span></h2>
                   <p>
@@ -1412,15 +1432,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_6" class="section num heading">
+            <section id="section_12" class="section num heading">
                <h2><span class="num">
                      <b>3.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objectives</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objectives</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">9.</span></h2>
                   <p>
@@ -1465,15 +1484,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      supported the proposals.</p>
                </section>
             </section>
-            <section id="section_7" class="section num heading">
+            <section id="section_13" class="section num heading">
                <h2><span class="num">
                      <b>4.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered </b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered </b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>
@@ -1503,8 +1521,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Option 1 Transposition</span></h2>
                <p>
                   <b>
                      <u>Option 1: Transposition</u>
@@ -1529,8 +1547,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to consolidate existing regulations. </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">Option 2 Transposition, deregulation and reworking of whole system</span></h2>
                <p>
                   <b>
                      <u>Option 2: Transposition, deregulation and reworking of whole system</u>
@@ -1563,8 +1581,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      scope and shape of any future reform. </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">Option 3 (Preferred option) Transposition and deregulation</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>
@@ -1591,10 +1609,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_11" class="section num heading">
+            <section id="section_17" class="section num heading">
                <h2><span class="num">
                      <b>5.</b>
-                     </span></h2>
+                     </span><span class="heading">Impact on business monetised and non-monetised costs and benefits</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Impact on business: monetised and non-monetised costs and benefits</b>
@@ -1737,16 +1755,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">
-                        <b>5.1</b>
-                        </span></h2>
-                  <p>
-                     <span style="color:#000000">
-                        <b>Impact of proposals to deregulate controls on hazardous substances: scope of regulation</b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">Impact of proposals to deregulate controls on hazardous substances: scope of regulation</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">24.</span></h2>
                   <p>
@@ -1919,16 +1930,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to Seveso II, as detailed in the separate and complementary assessment of the impact
                      of proposed transposition measures on business. </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">
-                        <b>5.2</b>
-                        </span></h2>
-                  <p>
-                     <span style="color:#000000">
-                        <b>Impact of proposals to deregulate controls on hazardous substances: minor modifications</b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">Impact of proposals to deregulate controls on hazardous substances: minor modifications</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">34.</span></h2>
                   <p>
@@ -2010,17 +2014,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         in the process.</span>
                      </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">
-                        <b>5.3</b>
-                        </span></h2>
-                  <p>
-                     <span style="color:#000000">
-                        <b>Impact of proposals to deregulate controls on hazardous substances: development in
-                           the vicinity of hazardous establishments</b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">Impact of proposals to deregulate controls on hazardous substances: development in
+                     the vicinity of hazardous establishments</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">40.</span></h2>
                   <p>When preparing local plans, local planning authorities must have regard to the prevention
@@ -2033,25 +2030,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      these areas, without compromising public safety.</p>
                </section>
             </section>
-            <section id="section_12" class="section num heading">
+            <section id="section_21" class="section num heading">
                <h2><span class="num">
                      <b>6.</b>
-                     </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale and evidence</b>
-                     </span>
-                  </p>
-               <section class="paragraph num">
-                  <h2><span class="num">
-                        <b>6.1</b>
-                        </span></h2>
-                  <p>
+                     </span><span class="heading">
                      <span style="color:#000000">
-                        <b>Extent of deregulation  </b>
+                        <b>Rationale and evidence</b>
                         </span>
-                     </p>
-               </section>
+                     </span></h2>
+            </section>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">Extent of deregulation</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">41.</span></h2>
                   <p>
@@ -2101,16 +2090,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Technical advice from the Executive, including on these three substances, will be
                      used to inform the proposed review of the Seveso III directive in 2020. </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">
-                        <b>6.2</b>
-                        </span></h2>
-                  <p>
-                     <span style="color:#000000">
-                        <b>Cost of making an application for a hazardous substances consent </b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Cost of making an application for a hazardous substances consent</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">46.</span></h2>
                   <p>The lack of available data on the overall costs to business of applying for a hazardous
@@ -2170,15 +2152,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in the impact assessment relating to the transposition of the directive.</p>
                </section>
             </section>
-            <section id="section_13" class="section num heading">
+            <section id="section_24" class="section num heading">
                <h2><span class="num">
                      <b>7.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and assumptions</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks and assumptions</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">51.</span></h2>
                   <p>
@@ -2223,15 +2204,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_14" class="section num heading">
+            <section id="section_25" class="section num heading">
                <h2><span class="num">
                      <b>8.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Direct costs and benefits to business calculations (following One In Two Out methodology)</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Direct costs and benefits to business calculations (following One In Two Out methodology)</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">55.</span></h2>
                   <p>Our proposals to deregulate the Planning (Hazardous Substances) Regulations 1992 (as
@@ -2250,15 +2230,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>These measures are therefore classified as an ‘OUT’.</p>
                </section>
             </section>
-            <section id="section_15" class="section num heading">
+            <section id="section_26" class="section num heading">
                <h2><span class="num">
                      <b>9.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wider impacts</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Wider impacts</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">58.</span></h2>
                   <p>
@@ -2268,15 +2247,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_16" class="section num heading">
+            <section id="section_27" class="section num heading">
                <h2><span class="num">
                      <b>10.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Summary and implementation plan</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Summary and implementation plan</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>The Seveso III directive on the control of major-accident hazards is to be transposed
@@ -2346,7 +2324,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a> 
                   <span style="color:#000000"> Directive 2012/18/EU can be viewed at  </span>
                   <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0018">
-                     <u><a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0018">http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0018</a></u>
+                     <u>http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012L0018</u>
                      </a>
                   </p>
             </div>
@@ -2356,7 +2334,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  BIS ‘Review of Enforcement in the Chemicals Industry (COMAH)’ Review, February 2013
-                  - <a href="http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf"><u><a href="http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf">http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf</a></u></a></p>
+                  - <a href="http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf"><u>http://discuss.bis.gov.uk/focusonenforcement/files/2013/02/bis-13-557-review-of-enforcement-in-chemicals-industry-comah.pdf</u></a></p>
                <p></p>
             </div>
             <div class="footnote">
@@ -2367,7 +2345,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-5" href="#fnref-5">5</a> 
                   <span style="color:#000000"> The ‘Better Regulation Framework Manual’ 2013 - </span>
                   <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf">
-                     <u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf</a></u>
+                     <u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf</u>
                      </a>
                   </p>
             </div>
@@ -2375,7 +2353,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a> 
                   <span style="color:#000000"> ‘The Better Regulation Framework Manual’ - </span>
                   <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf">
-                     <u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf</a></u>
+                     <u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf</u>
                      </a>
                   </p>
             </div>
@@ -2447,7 +2425,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/"><u><a href="http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/">http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/</a></u></a></p>
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/"><u>http://planningguidance.planningportal.gov.uk/blog/guidance/hazardous-substances/how-are-applications-for-consent-made/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-16" href="#fnref-16">16</a> 

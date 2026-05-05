@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:21.7%">
@@ -517,7 +535,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tr>
                </tbody>
             </table>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -533,22 +552,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Policy options considered, including alternatives to regulation</b>
-                  </p>
+            <section id="section_4" class="section heading">
+               <h2><span class="heading">
+                     <b>Policy options considered, including alternatives to regulation</b>
+                     </span></h2>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>The Policy Background</b>
-                  </p>
-               <section class="level">
-                  <p>
-                     <i>Background</i>
-                     </p>
-               </section>
+            <section id="section_5" class="section heading">
+               <h2><span class="heading">
+                     <b>The Policy Background</b>
+                     </span></h2>
+            </section>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Background</span></h2>
                <section class="level">
                   <p>Until the Pension Schemes Act 2021<a class="fn" id="fnref-4" href="#fn-4">4</a>, the UK’s workplace pensions legislative framework was, broadly speaking, binary
                      in nature with employers enabled to offer only Defined Benefit (DB) or Defined Contribution
@@ -667,11 +682,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      must do to become authorised, to operate effectively in the market under regulatory
                      oversight, and what happens if changes need to be made to schemes.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Collective Defined Contribution schemes</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">Collective Defined Contribution schemes</span></h2>
                <section class="level">
                   <p>In a CDC scheme, the contributions of employers and employees are invested in a collective
                      fund. When the member retires, they are paid a pension based on their share of that
@@ -706,19 +719,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      on a regular, if variable, income throughout retirement.</p>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Description of options considered</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Description of options considered</b>
+                     </span></h2>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Option 0 - Do Nothing</i>
-                     </b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Option 0 - Do Nothing</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This is the basis of our counterfactual. As the Bill Stage Impact Assessment<a class="fn" id="fnref-11" href="#fn-11">11</a> did not monetise the impacts of any provisions made in the 2021 Act; we are treating
                      Option 0 as the counterfactual where Primary legislation was not enacted. Therefore,
@@ -741,13 +752,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      than DB. </p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Option 1 - Guidance around authorisation and scheme design </i>
-                     </b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Option 1 - Guidance around authorisation and scheme design </i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This is a non-regulatory policy option and involves issuing guidance to employers
                      and CDC trustees about member protections and ongoing supervision. This would encourage
@@ -774,14 +784,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to existing pension saving options.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Option 2 – Introducing secondary legislation to outline the authorisation and supervision
-                        regime</i>
-                     </b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Option 2 – Introducing secondary legislation to outline the authorisation and supervision
+                           regime</i>
+                        </b>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">Option 2 is our preferred option. These regulations set up the framework for authorisation
                         and supervision of CDC schemes, which includes:</span></h2>
@@ -844,19 +853,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      providing a route to respond to a changing market in the future.</p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs and benefits to businesses</b>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs and benefits to businesses</b>
+                     </span></h2>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Counterfactuals</i>
-                     </b>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Counterfactuals</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>The counterfactual is the ‘do nothing’ option. As stated, whilst this regulatory framework
                      is a marginal additional cost incurred over and above the costs which firms choose
@@ -868,11 +875,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      below. Regardless of the counterfactual, we only anticipate these direct costs to
                      be incurred if the business expects the benefits to outweigh the costs.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>DB Counterfactual</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">DB Counterfactual</span></h2>
                <section class="level">
                   <p>Where the counterfactual is DB, savings to sponsoring businesses may be substantial.
                      New private sector DB schemes are no longer being created in practice and where DB
@@ -892,11 +897,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      CDC scheme, but it is not possible to know how many of these would have switched to
                      DC if there was no CDC option.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>DC Counterfactual</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">DC Counterfactual</span></h2>
                <section class="level">
                   <p>Where the counterfactual is DC, there may be some differences in direct costs to sponsoring
                      businesses. CDC schemes are likely to incur greater costs in the running and set up
@@ -916,13 +919,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      not have any robust evidence to estimate this.</p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Expected level of business impacts</i>
-                     </b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Expected level of business impacts</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>These regulations do not mandate CDCs but provides a framework if an employer wants
                      to set up a CDC scheme. We only expect businesses to incur any gross costs if it were
@@ -1154,13 +1156,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Familiarisation</i>
-                     </b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Familiarisation</i>
+                        </b>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">Businesses who decide to set up a CDC scheme will be required to familiarise themselves
                         with:</span></h2>
@@ -1240,13 +1241,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Scoping</i>
-                     </b>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Scoping</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>The regulations have flexibility for businesses to adapt and design a CDC scheme that
                      suits their needs and desired outcomes. Businesses may decide to take time determining
@@ -1261,13 +1261,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      an additional cost to business.</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Preparing an application</i>
-                     </b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Preparing an application</i>
+                        </b>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">Until an employer’s CDC is authorised by the Regulator, they cannot start to receive
                         any contributions. When an employer makes an application for authorisation, they will
@@ -1307,13 +1306,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      cost to business.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Fit and Proper</i>
-                     </b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Fit and Proper</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>As a part of their application for authorisation by the Regulator, persons undertaking
                      key functions<a class="fn" id="fnref-23" href="#fn-23">23</a> in the CDC scheme will have to meet the fit and proper persons requirement. The is
@@ -1348,11 +1346,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      board as a whole. Therefore, we have used the existing Master Trust fit and proper
                      authorisation criteria as a proxy.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Conduct and Integrity</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">Conduct and Integrity</span></h2>
                <section class="level heading">
                   <h2><span class="heading">The matters to be considered by the Regulator are similar to those it considers when
                         authorising Master Trusts. These include:</span></h2>
@@ -1407,11 +1403,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>8 people in each CDC scheme x 0.5 hours to collect information x £100.78 hourly wage
                      rate = £400</p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Competence tests</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">Competence tests</span></h2>
                <section class="level">
                   <p>Given the additional complexity of CDC schemes, the trustees must have appropriate
                      experience, knowledge and understanding to properly discharge their duties. The Regulator
@@ -1488,13 +1482,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      it.</p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Scheme Design</i>
-                     </b>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Scheme Design</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This authorisation criterion aims to protect members from being enrolled in ill-considered
                      and poorly designed CDC schemes, which are unlikely to remain viable over the long-term.
@@ -1690,11 +1683,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p> 2 trustees x (37.5 hours a week x 2 weeks) x £100.78 wage rate =</p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>£15,100</b>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <b>£15,100</b>
+                     </span></h2>
                <section class="level">
                   <p>We therefore assume that the cost will be £656,100 in the 3rd year of the appraisal
                      period. Regardless of whether a business has an existing DB or DC scheme, if they
@@ -1702,13 +1694,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      incur this cost if the benefit outweighs it.</p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Financial Sustainability</i>
-                     </b>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Financial Sustainability</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This authorisation criterion aims to ensure CDC schemes have sufficient financial
                      resources and well considered strategies to meet the costs of setting up and running
@@ -1782,11 +1773,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p> 2 trustees x 8 hours taken to gather financial information x £100.78 wage rate =</p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>£1,600</b>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>£1,600</b>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">The former Department for Business, Innovation and Skills estimated the cost to business
                         of an audit to be £7,700.48<a class="fn" id="fnref-38" href="#fn-38">38</a>. This has been uprated to 2020/21 using data from the Office of National Statistics<a class="fn" id="fnref-39" href="#fn-39">39</a>, the cost in 2020/21 prices is therefore £8,600. The business would also have a professional
@@ -1811,13 +1801,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      it.</p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Communication requirement</i>
-                     </b>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Communication requirement</i>
+                        </b>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">This authorisation criterion aims to ensure effective scheme communications are delivered
                         to relevant persons in relation to the scheme. The Regulator is expected to take the
@@ -1949,11 +1938,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p> 2 trustees x 8 hours taken to gather financial information x £100.78 wage rate =</p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>£1,600</b>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <b>£1,600</b>
+                     </span></h2>
                <section class="level">
                   <p>We therefore estimate that the cost of meeting the communications criterion will be
                      £43,100 in the 2nd year of the appraisal period. Regardless of whether a business
@@ -1962,13 +1950,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      they will only incur this cost if the benefits outweigh it.</p>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Systems and processes requirement</i>
-                     </b>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Systems and processes requirement</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This authorisation criterion aims to identify whether the systems and processes used
                      in running a CDC scheme are sufficient to ensure that it is run effectively. Schemes
@@ -2097,13 +2084,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      cost if the benefits outweigh it.</p>
                </section>
             </section>
-            <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Continuity Strategy</i>
-                     </b>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Continuity Strategy</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This authorisation criterion requires trustees of a CDC scheme to prepare a continuity
                      strategy document which sets out how the interests of the scheme members will be protected
@@ -2164,13 +2150,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      cost of meeting the Regulator’s requirements.</p>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Valuation and Benefit Adjustment</i>
-                     </b>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Valuation and Benefit Adjustment</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Each year after authorisation, CDC schemes are required to run an actuarial valuation
                      and benefit adjustment process. Benefits can be adjusted every year in order to keep
@@ -2290,13 +2275,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      not know by how much at this stage so cannot estimate the potential savings. </p>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Ongoing Supervision </i>
-                     </b>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Ongoing Supervision </i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Once a&nbsp;CDC&nbsp;scheme receives authorisation, it will still be required to be able to
                      demonstrate to the Regulator that it continues to meet the authorisation criteria
@@ -2325,13 +2309,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      engaging in pro-active regular meetings and quarterly discussions with the Regulator.</p>
                </section>
             </section>
-            <section id="section_25" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Supervisory return</i>
-                     </b>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Supervisory return</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>The supervisory return will be used by the Regulator to inform its ongoing risk assessment
                      of schemes and enables the Regulator to place a minimum reporting requirement on schemes
@@ -2362,19 +2345,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p> 2 trustees x 8 hours taken to gather information x £100.78 wage rate =</p>
                </section>
             </section>
-            <section id="section_26" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>£1,600</b>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <b>£1,600</b>
+                     </span></h2>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Significant event</i>
-                     </b>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Significant event</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Significant events are events that may affect the ability of an authorised CDC scheme
                      to continue to meet the authorisation criteria. For example, if a scheme has a change
@@ -2409,13 +2390,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      hourly wage rate = £100</p>
                </section>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Risk Notices</i>
-                     </b>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Risk Notices</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Risk notices are a supervisory tool that allows the Regulator to issue a notice to
                      the trustees of a&nbsp;CDC&nbsp;scheme if it considers there is an issue of concern in relation
@@ -2461,13 +2441,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>1 trustee x 2.5 hours to notify the Regulator x £100.78 hourly wage rate = £300</p>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Triggering event</i>
-                     </b>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Triggering event</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>The 2021 Act places certain requirements on CDC schemes including the need for the
                      Regulator to be notified if the scheme experiences a triggering event, which can pose
@@ -2495,11 +2474,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="level">
                   <p>1 trustee x 0.5 hours to notify the Regulator x £100.78 hourly wage rate = £300</p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Implementation strategy </i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">Implementation strategy</span></h2>
                <section class="level">
                   <p>An implementation strategy is a document setting out how the interests of members
                      are to be protected following the occurrence of the triggering event.&nbsp;The document
@@ -2533,11 +2510,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         the implementation strategy x £100.78 wage rate = £2,100</i>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Continuity option 1</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">Continuity option 1</span></h2>
                <section class="level">
                   <p>This option will arise where the trustees of the CDC scheme are required by the Regulator
                      or choose to wind up the scheme following a triggering event. Triggering events are
@@ -2594,11 +2569,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>There will be more information in the Regulator’s Code of Practice, but it is seen
                      as disproportionate to update these costs given the unlikelihood and scale of costs.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Continuity option 2</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">Continuity option 2</span></h2>
                <section class="level">
                   <p>Continuity option 2 provides for the resolution of a triggering event. The aim of
                      continuity option 2 is to allow some flexibility for trustees where the triggering
@@ -2660,13 +2633,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      issue at hand or wind-up the scheme appropriately.</p>
                </section>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Automatic enrolment quality requirement</i>
-                     </b>
-                  </p>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Automatic enrolment quality requirement</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>For schemes used by employers to fulfil their automatic enrolment (AE) duties, there
                      must be a quality test to ensure the scheme is compliant with the relevant AE tests.
@@ -2681,19 +2653,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      if a DC or DB scheme, we assume this is a net zero cost to business. </p>
                </section>
             </section>
-            <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits</b>
-                  </p>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits</b>
+                     </span></h2>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Running costs</i>
-                     </b>
-                  </p>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Running costs</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Where the counterfactual is DB, savings to sponsoring businesses may be substantial.
                      New private sector DB schemes are no longer being created in practice. And where DB
@@ -2733,37 +2703,34 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      business.</p>
                </section>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs and benefits to other affected parties </b>
-                  </p>
+            <section id="section_44" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs and benefits to other affected parties </b>
+                     </span></h2>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs to members</b>
-                  </p>
-               <section class="level">
-                  <p>On an individual basis some members may incur costs associated with the introduction
+            <section id="section_45" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs to members</b>
+                     </span></h2>
+            </section>
+            <section id="section_46" class="section heading">
+               <h2><span class="heading">On an individual basis some members may incur costs associated with the introduction
                      of CDCs. Given the uncertainty around scheme design and future adoption of CDCs we
                      have discussed these qualitatively but are unable to quantify the potential costs
-                     to members. </p>
-               </section>
-               <section class="level">
-                  <p>Where the counterfactual is DB, all members are expected to face greater uncertainty
+                     to members.</span></h2>
+            </section>
+            <section id="section_47" class="section heading">
+               <h2><span class="heading">Where the counterfactual is DB, all members are expected to face greater uncertainty
                      in their pension income under CDC given that all the risks and associated costs under
                      CDC are with them rather than their employer. Where the counterfactual is DC, members
-                     may be worse off for the following reasons:</p>
-               </section>
+                     may be worse off for the following reasons:</span></h2>
             </section>
-            <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Not all members will gain from CDCs</i>
-                     </b>
-                  </p>
+            <section id="section_48" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Not all members will gain from CDCs</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Any collective scheme will smooth, to a certain extent, outcomes between members and
                      outcomes over time. So, whilst overall members might benefit, some may experience
@@ -2779,13 +2746,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      that die young subsidise the pensions of those that live longer. </p>
                </section>
             </section>
-            <section id="section_36" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Foregone opportunity</i>
-                     </b>
-                  </p>
+            <section id="section_49" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Foregone opportunity</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>An individual’s preference between an individual and collective pension depends on
                      objective expected outcomes, such as income level and risk / volatility, and their
@@ -2816,24 +2782,22 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      so the cost of foregone opportunity is likely to be low.</p>
                </section>
             </section>
-            <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits to members</b>
-                  </p>
+            <section id="section_50" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits to members</b>
+                     </span></h2>
                <section class="level">
                   <p>Our assessment (in line with consultation responses) is that a CDC that is sufficiently
                      well designed, run, and regulated can provide a more stable outcome for members at
                      a lower cost than individual DC. There are several reasons for this: </p>
                </section>
             </section>
-            <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Ability to smooth out shocks from the investment market to provide more stable pensions</i>
-                     </b>
-                  </p>
+            <section id="section_51" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Ability to smooth out shocks from the investment market to provide more stable pensions</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This is an inherent feature of CDC. The expectation is also supported by existing
                      modelling-based evidence. For example, a study from the Netherlands ‘Benefits of Collective
@@ -2873,13 +2837,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to some extent. </p>
                </section>
             </section>
-            <section id="section_39" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Potentially higher pensions overall (but not for all)</i>
-                     </b>
-                  </p>
+            <section id="section_52" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Potentially higher pensions overall (but not for all)</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>The primary underlying theoretical reason for the potentially superior performance
                      of CDC (compared against DC) is that CDC schemes can invest a high proportion in growth
@@ -2916,14 +2879,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      level of overall pensions than individual DC.</p>
                </section>
             </section>
-            <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Converting DC pots into an income stream for members without the high costs of guaranteeing
-                        income through an annuity</i>
-                     </b>
-                  </p>
+            <section id="section_53" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Converting DC pots into an income stream for members without the high costs of guaranteeing
+                           income through an annuity</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Annuities are insurance policies which pay an annual income for life in exchange for
                      a lump sum. DC members can use their pension pot (or part of it) to buy an annuity
@@ -2935,13 +2897,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      efficiency saving. </p>
                </section>
             </section>
-            <section id="section_41" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>“Hands off” access to a professionally managed investment strategy</i>
-                     </b>
-                  </p>
+            <section id="section_54" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>“Hands off” access to a professionally managed investment strategy</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>DC members have more discretion and responsibility for managing their pension strategies.
                      Depending on individual preferences, some may consider this to be in their best interest,
@@ -2953,11 +2914,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      support CDC.</p>
                </section>
             </section>
-            <section id="section_42" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs to the Regulator</b>
-                  </p>
+            <section id="section_55" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs to the Regulator</b>
+                     </span></h2>
                <section class="level">
                   <p>The Regulator may experience reduced costs as a result of pro-active on-going supervision
                      of CDCs. This could mean that the Regulator has to direct less resource towards CDC
@@ -2977,11 +2937,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to business in that year. </p>
                </section>
             </section>
-            <section id="section_43" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Wider economic and societal impacts</b>
-                  </p>
+            <section id="section_56" class="section heading">
+               <h2><span class="heading">
+                     <b>Wider economic and societal impacts</b>
+                     </span></h2>
                <section class="level">
                   <p>CDCs could bring investment benefits to the wider economy. As mentioned above, CDC
                      schemes are expected to be able to invest (over their lifetimes) a greater proportion
@@ -3001,13 +2960,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      of this Impact Assessment given its complexity.</p>
                </section>
             </section>
-            <section id="section_44" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Intergenerational fairness</i>
-                     </b>
-                  </p>
+            <section id="section_57" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Intergenerational fairness</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>In principle, CDC plan design involves risk sharing, which is likely to occur both
                      between the members of the same cohort and between different cohorts. Critics of CDCs
@@ -3046,11 +3004,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      this in the most appropriate way for them.</p>
                </section>
             </section>
-            <section id="section_45" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Small and Micro Business Assessment (SaMBA)</b>
-                  </p>
+            <section id="section_58" class="section heading">
+               <h2><span class="heading">
+                     <b>Small and Micro Business Assessment (SaMBA)</b>
+                     </span></h2>
                <section class="level">
                   <p>There is no evidence of any disproportionate cost on small and micro businesses for
                      this legislative change. This proposal creates the option for employers to enrol their
@@ -3066,11 +3023,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      by industry in the consultation responses.</p>
                </section>
             </section>
-            <section id="section_46" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Monitoring and Evaluation</b>
-                  </p>
+            <section id="section_59" class="section heading">
+               <h2><span class="heading">
+                     <b>Monitoring and Evaluation</b>
+                     </span></h2>
                <section class="level">
                   <p>The legislative framework aims to provide transparency about the operation and effectiveness
                      of CDC schemes and requires the publication of certain scheme information. In addition,
@@ -3094,19 +3050,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      proposition and as such monitoring will be on-going. </p>
                </section>
             </section>
-            <section id="section_47" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Key assumptions/sensitivities/risks</b>
-                  </p>
+            <section id="section_60" class="section heading">
+               <h2><span class="heading">
+                     <b>Key assumptions/sensitivities/risks</b>
+                     </span></h2>
             </section>
-            <section id="section_48" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Scope of Impact Assessment</i>
-                     </b>
-                  </p>
+            <section id="section_61" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Scope of Impact Assessment</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>This impact assessment only seeks to cost the additional marginal cost of these regulations.
                      There are costs associated with establishing a CDC scheme which are outside of the
@@ -3115,13 +3069,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are judged to outweigh them.</p>
                </section>
             </section>
-            <section id="section_49" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Unknown counterfactual</i>
-                     </b>
-                  </p>
+            <section id="section_62" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Unknown counterfactual</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>The costs and benefits are highly dependent on the counterfactual (whether a firm’s
                      employees would in future be enrolled in a DB scheme, a DC scheme, or a hybrid DB/DC
@@ -3138,13 +3091,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      scheme choice for occupational pensions. </p>
                </section>
             </section>
-            <section id="section_50" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Demand for CDC schemes</i>
-                     </b>
-                  </p>
+            <section id="section_63" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Demand for CDC schemes</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Previous consultations<a class="fn" id="fnref-63" href="#fn-63">63</a><a class="fn" id="fnref-64" href="#fn-64">64</a> demonstrated strong support for legislative changes that would enable CDC schemes
                      to be created. However, at this stage we are only aware of one employer, Royal Mail
@@ -3173,13 +3125,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      can learn from the schemes set up earlier.</p>
                </section>
             </section>
-            <section id="section_51" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Bespoke scheme design</i>
-                     </b>
-                  </p>
+            <section id="section_64" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Bespoke scheme design</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>The regulations for CDC schemes are designed to give businesses the ability to design
                      the scheme around their needs and business. There is significant scope for bespoke
@@ -3199,13 +3150,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      on their bespoke scheme design. </p>
                </section>
             </section>
-            <section id="section_52" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Uncertainty of costs</i>
-                     </b>
-                  </p>
+            <section id="section_65" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Uncertainty of costs</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>CDC schemes are an entirely new additional to the pension system and there are no
                      schemes operating or authorised. This impact assessment with be published before any
@@ -3213,16 +3163,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are published.</p>
                </section>
             </section>
-            <section id="section_53" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Assumptions</b>
-                  </p>
-               <section class="level">
-                  <p>
-                     <i>Average hourly wages</i>
-                     </p>
-               </section>
+            <section id="section_66" class="section heading">
+               <h2><span class="heading">
+                     <b>Assumptions</b>
+                     </span></h2>
+            </section>
+            <section id="section_67" class="section heading">
+               <h2><span class="heading">Average hourly wages</span></h2>
                <section class="level">
                   <p>For average hourly wages we have used the ONS’ Annual Survey of Hours and Earning
                      (ASHE). This provides annual estimates of paid hours worked, weekly, hourly, and annual
@@ -3499,11 +3446,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="level">
                   <p>Source: ASHE Table 15<a class="fn" id="fnref-66" href="#fn-66">66</a></p>
                </section>
-               <section class="level">
-                  <p>
-                     <i>Trustees</i>
-                     </p>
-               </section>
+            </section>
+            <section id="section_68" class="section heading">
+               <h2><span class="heading">Trustees</span></h2>
                <section class="level">
                   <p>Previously we have used the Regulator’s data on ‘Number of Trustees – by scheme size’
                      which estimates three Trustees per Scheme<a class="fn" id="fnref-67" href="#fn-67">67</a>. However, ongoing feedback from the pensions industry to other impact assessments

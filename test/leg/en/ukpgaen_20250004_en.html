@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -1576,7 +1593,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/">
                      <span style="color:#0070C0">
-                        <u><a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/">https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/</a></u>
+                        <u>https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1584,7 +1601,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <span style="color:#000000"></span><a href="https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/"><span style="color:#0070C0"><u><a href="https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/">https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <span style="color:#000000"></span><a href="https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/"><span style="color:#0070C0"><u>https://arbitration.qmul.ac.uk/research/2021-international-arbitration-survey/</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a> 
@@ -1592,7 +1609,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/">
                      <span style="color:#0070C0">
-                        <u><a href="https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/">https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/</a></u>
+                        <u>https://lawcom.gov.uk/project/review-of-the-arbitration-act-1996/</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1605,7 +1622,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.supremecourt.uk/cases/uksc-2020-0091.html">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.supremecourt.uk/cases/uksc-2020-0091.html">https://www.supremecourt.uk/cases/uksc-2020-0091.html</a></u>
+                        <u>https://www.supremecourt.uk/cases/uksc-2020-0091.html</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1618,7 +1635,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.supremecourt.uk/cases/uksc-2018-0100.html">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.supremecourt.uk/cases/uksc-2018-0100.html">https://www.supremecourt.uk/cases/uksc-2018-0100.html</a></u>
+                        <u>https://www.supremecourt.uk/cases/uksc-2018-0100.html</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1626,10 +1643,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <span style="color:#000000"></span><a href="https://www.supremecourt.uk/cases/uksc-2009-0165"><span style="color:#0070C0"><u><a href="https://www.supremecourt.uk/cases/uksc-2009-0165">https://www.supremecourt.uk/cases/uksc-2009-0165</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <span style="color:#000000"></span><a href="https://www.supremecourt.uk/cases/uksc-2009-0165"><span style="color:#0070C0"><u>https://www.supremecourt.uk/cases/uksc-2009-0165</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <span style="color:#000000"></span><a href="https://www.bailii.org/uk/cases/UKHL/2000/15.html"><span style="color:#0070C0"><u><a href="https://www.bailii.org/uk/cases/UKHL/2000/15.html">https://www.bailii.org/uk/cases/UKHL/2000/15.html</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <span style="color:#000000"></span><a href="https://www.bailii.org/uk/cases/UKHL/2000/15.html"><span style="color:#0070C0"><u>https://www.bailii.org/uk/cases/UKHL/2000/15.html</u></span></a><span style="color:#000000"></span></p>
             </div>
          </footer>
       </article>

@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.44%">
@@ -313,7 +331,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -334,7 +353,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -355,7 +375,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:90.01%">
@@ -387,7 +408,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_6" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -436,8 +458,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>
@@ -1033,19 +1055,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_4" class="section num heading">
+            <section id="section_9" class="section num heading">
                <h2><span class="num">
                      <b>A.</b>
+                     </span><span class="heading">
+                     <b>Strategic objective and overview</b>
                      </span></h2>
-               <p>
-                  <b>Strategic objective and overview</b>
-                  </p>
                <section class="level">
                   <p>
                      <b>A.1</b>
@@ -1123,11 +1143,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      persons commit fraud. </p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Failure to Prevent Fraud</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Failure to Prevent Fraud</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">7.</span></h2>
                   <p>The failure to prevent fraud offence is intended to mirror the existing failure to
@@ -1370,11 +1389,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Targeted consultation</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>Targeted consultation</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">19.</span></h2>
                   <p>In June 2021, the Law Commission published a discussion paper considering the present
@@ -1469,13 +1487,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in this IA, if the civil route had been selected.</p>
                </section>
             </section>
-            <section id="section_7" class="section num heading">
+            <section id="section_12" class="section num heading">
                <h2><span class="num">
                      <b>B.</b>
+                     </span><span class="heading">
+                     <b>Rationale for intervention</b>
                      </span></h2>
-               <p>
-                  <b>Rationale for intervention</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">25.</span></h2>
                   <p>Fraud undermines the efficient operation of economies as it undermines the framework
@@ -1505,11 +1522,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence that fraud committed by businesses is a problem in the UK</b>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence that fraud committed by businesses is a problem in the UK</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">27.</span></h2>
                   <p>Fraud is generally believed to be an under-reported crime. </p>
@@ -1548,11 +1564,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Fraud committed by businesses is a recognised problem internationally<a class="fn" id="fnref-18" href="#fn-18">18</a>, however the Home Office does not have reliable international data comparators.</p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Rationale for the introduction of the failure to prevent fraud offence</b>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <b>Rationale for the introduction of the failure to prevent fraud offence</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">33.</span></h2>
                   <p>Individuals within companies can already be prosecuted for committing, encouraging,
@@ -1617,11 +1632,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         countries, especially developing countries, of what is needed to deter bribery.</i>”</p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Discussion of the choice to restrict the offence to large organisations</b>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <b>Discussion of the choice to restrict the offence to large organisations</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">42.</span></h2>
                   <p>Although well over 99 per cent of businesses are micro, small, or medium enterprises,
@@ -1659,11 +1673,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      should it become apparent that smaller organisations should be brought into scope.</p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Discussion on the choice to include entities that are not companies</b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>Discussion on the choice to include entities that are not companies</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">47.</span></h2>
                   <p>The offence applies to large, incorporated bodies and partnerships across all sectors
@@ -1700,13 +1713,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      potential loopholes that might be exploited by unscrupulous actors.</p>
                </section>
             </section>
-            <section id="section_12" class="section num heading">
+            <section id="section_17" class="section num heading">
                <h2><span class="num">
                      <b>C.</b>
+                     </span><span class="heading">
+                     <b>Policy objective </b>
                      </span></h2>
-               <p>
-                  <b>Policy objective </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">49.</span></h2>
                   <p>The intended outcome of these measures is to ensure fair and proportionate liability
@@ -1726,13 +1738,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_13" class="section num heading">
+            <section id="section_18" class="section num heading">
                <h2><span class="num">
                      <b>D.</b>
+                     </span><span class="heading">
+                     <b>Options considered and implementation</b>
                      </span></h2>
-               <p>
-                  <b>Options considered and implementation</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">50.</span></h2>
                   <p>The government has considered two options:</p>
@@ -1804,11 +1815,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <b>objectives</b> and it should generate benefits relative to <b>Option 1</b> ‘Do nothing’.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Preferred option and implementation date</b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Preferred option and implementation date</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">57.</span></h2>
                   <p>
@@ -1824,19 +1834,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      period (expected to be at least six months after publication) is complete. </p>
                </section>
             </section>
-            <section id="section_15" class="section num heading">
+            <section id="section_20" class="section num heading">
                <h2><span class="num">
                      <b>E.</b>
+                     </span><span class="heading">
+                     <b>Appraisal</b>
                      </span></h2>
-               <p>
-                  <b>Appraisal</b>
-                  </p>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Entities in scope</b>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <b>Entities in scope</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>The <b>entities</b> in scope of <b>Option 2: the government’s preferred option</b>, that are appraised (compared to <b>Option 1</b> ‘Do-nothing’), in this section are any large ‘relevant body’ which is a body corporate
@@ -1915,11 +1923,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in scope and reflects the upper bound of impacts of this proposal. </p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>General assumptions and data</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>General assumptions and data</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">65.</span></h2>
                   <p>The analysis is based on the following general assumptions:</p>
@@ -2030,17 +2037,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      validity of the assumptions following the publishing of the guidance. </p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>COSTS</b>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>COSTS</b>
+                     </span></h2>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Set-up costs</b>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <b>Set-up costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">69.</span></h2>
                   <p>The set-up costs are based on costing organisations in scope using an entity-based
@@ -2363,11 +2368,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Familiarisation costs</b>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <b>Familiarisation costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">76.</span></h2>
                   <p>All organisations in-scope are assumed to incur familiarisation costs when implementing
@@ -2515,11 +2519,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Risk assessment</b>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>Risk assessment</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">79.</span></h2>
                   <p>It would be very difficult for large organisations to demonstrate that they have reasonable
@@ -2694,11 +2697,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Communications</b>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <b>Communications</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">83.</span></h2>
                   <p>These costs are based on the project team spending three hours each to draft, clear,
@@ -2832,11 +2834,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Training</b>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <b>Training</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">86.</span></h2>
                   <p>The training costs are a function of UK employment as well as the number of organisations
@@ -2983,11 +2984,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Total Set-up Costs</b>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <b>Total Set-up Costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">90.</span></h2>
                   <p>Total set-up costs (familiarisation, risk assessment, communications, and training)
@@ -3142,11 +3142,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_25" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Ongoing costs</b>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <b>Ongoing costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">91.</span></h2>
                   <p>The methodology for assessing the ongoing cost of FTPF is the same as that described
@@ -3164,11 +3163,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      costs.</p>
                </section>
             </section>
-            <section id="section_26" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Risk assessment</b>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <b>Risk assessment</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">93.</span></h2>
                   <p>Ongoing risk assessment costs are calculated in the same way as they were for set-up.
@@ -3305,11 +3303,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Communications</b>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <b>Communications</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">96.</span></h2>
                   <p>Unlike external communication costs which are one off, organisations incur ongoing
@@ -3445,11 +3442,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Training</b>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <b>Training</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">99.</span></h2>
                   <p>In the low scenario, it is assumed that 70 per cent of companies in scope are required
@@ -3564,11 +3560,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Total ongoing costs</b>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <b>Total ongoing costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">102.</span></h2>
                   <p>The total ongoing cost is estimated by summing the estimates for risk assessment,
@@ -3705,11 +3700,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Total costs</b>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <b>Total costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">104.</span></h2>
                   <p>Summing together set-up/ transition costs and ongoing costs produces total cost for
@@ -3868,11 +3862,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Non- Monetised Costs</b>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <b>Non- Monetised Costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">107.</span></h2>
                   <p>The main non-monetised cost is the possible increase in CJS costs. After consultation
@@ -3894,11 +3887,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      sector bodies will be specifically covered in the post implementation review. </p>
                </section>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits</b>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">109.</span></h2>
                   <p>There is an absence of data on the incidence and associated losses of corporate fraud,
@@ -3911,11 +3903,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and cultural changes. </p>
                </section>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Non-monetised benefits</b>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <b>Non-monetised benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">111.</span></h2>
                   <p>The main benefit of this legislation is the cultural change it is intended to create.
@@ -4395,11 +4386,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary of non-monetised benefits</b>
-                  </p>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary of non-monetised benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">115.</span></h2>
                   <p>This captures large organisations, where challenges prosecuting corporate fraud are
@@ -4423,11 +4413,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      where some SMBs may adopt similar measures.</p>
                </section>
             </section>
-            <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Value for Money (VfM)</b>
-                  </p>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">
+                     <b>Value for Money (VfM)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">119.</span></h2>
                   <p>To be considered value for money a policy must meet its strategic objectives. Failure
@@ -4495,22 +4484,20 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      society and increase its wellbeing. </p>
                </section>
             </section>
-            <section id="section_36" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Place based analysis</b>
-                  </p>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">
+                     <b>Place based analysis</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">127.</span></h2>
                   <p>As the obligations fall on large organisations, the spatial impacts will follow the
                      distribution of entities and their economic activities. </p>
                </section>
             </section>
-            <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Sensitivity Analysis</b>
-                  </p>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">
+                     <b>Sensitivity Analysis</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">128.</span></h2>
                   <p>Sensitivity analysis was undertaken for the key assumptions for where there is remaining
@@ -4521,11 +4508,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      of the policy changes in the face of the assumptions varying. </p>
                </section>
             </section>
-            <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Number of Entities which have Sufficient Measures in Place Already</b>
-                  </p>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">
+                     <b>Number of Entities which have Sufficient Measures in Place Already</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">129.</span></h2>
                   <p>Many organisations will have measures in place to prevent fraud against them. The
@@ -4724,11 +4710,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_39" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Training Costs </b>
-                  </p>
+            <section id="section_44" class="section heading">
+               <h2><span class="heading">
+                     <b>Training Costs </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">135.</span></h2>
                   <p>Training costs are around 70 per cent of the total cost of this legislation in the
@@ -4745,11 +4730,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      NPSV of the policy of these assumptions being different to that used in the estimation.</p>
                </section>
             </section>
-            <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Changes to the Discount Rate for Training </b>
-                  </p>
+            <section id="section_45" class="section heading">
+               <h2><span class="heading">
+                     <b>Changes to the Discount Rate for Training </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">137.</span></h2>
                   <p>One of the important assumptions in the training cost is the discount rate offered
@@ -4958,11 +4942,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_41" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Percentage of Staff That Need to Undergo Training</b>
-                  </p>
+            <section id="section_46" class="section heading">
+               <h2><span class="heading">
+                     <b>Percentage of Staff That Need to Undergo Training</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">139.</span></h2>
                   <p>One of the important assumptions is the assumption around the number of staff that
@@ -5260,11 +5243,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_42" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Changes to the Core Team size </b>
-                  </p>
+            <section id="section_47" class="section heading">
+               <h2><span class="heading">
+                     <b>Changes to the Core Team size </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">142.</span></h2>
                   <p>Another important assumption in this assessment is around core team size. For the
@@ -5393,11 +5375,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_43" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Changes in time taken to complete tasks outlined in the legislation </b>
-                  </p>
+            <section id="section_48" class="section heading">
+               <h2><span class="heading">
+                     <b>Changes in time taken to complete tasks outlined in the legislation </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">144.</span></h2>
                   <p>There are multiple assumptions in place around the time taken for firms to familiarise
@@ -5522,11 +5503,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_44" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Small and micro business assessment (SaMBA)</b>
-                  </p>
+            <section id="section_49" class="section heading">
+               <h2><span class="heading">
+                     <b>Small and micro business assessment (SaMBA)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">146.</span></h2>
                   <p>There will be no direct impact on small, medium and micro-businesses as the offence
@@ -5603,13 +5583,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_45" class="section num heading">
+            <section id="section_50" class="section num heading">
                <h2><span class="num">
                      <b>F.</b>
+                     </span><span class="heading">
+                     <b>Proportionality</b>
                      </span></h2>
-               <p>
-                  <b>Proportionality</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">155.</span></h2>
                   <p>
@@ -5650,19 +5629,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_46" class="section num heading">
+            <section id="section_51" class="section num heading">
                <h2><span class="num">
                      <b>G.</b>
+                     </span><span class="heading">
+                     <b>Risks</b>
                      </span></h2>
-               <p>
-                  <b>Risks</b>
-                  </p>
             </section>
-            <section id="section_47" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Economic and analytical risks, and uncertainties</b>
-                  </p>
+            <section id="section_52" class="section heading">
+               <h2><span class="heading">
+                     <b>Economic and analytical risks, and uncertainties</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">156.</span></h2>
                   <p>
@@ -5833,11 +5810,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_48" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Main assumptions in the analysis</b>
-                  </p>
+            <section id="section_53" class="section heading">
+               <h2><span class="heading">
+                     <b>Main assumptions in the analysis</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">165.</span></h2>
                   <p>
@@ -6023,13 +5999,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the measure comes into force in 2024 and the costs arise from that point on.</p>
                </section>
             </section>
-            <section id="section_49" class="section num heading">
+            <section id="section_54" class="section num heading">
                <h2><span class="num">
                      <b>I.</b>
+                     </span><span class="heading">
+                     <b>Wider impacts</b>
                      </span></h2>
-               <p>
-                  <b>Wider impacts</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">167.</span></h2>
                   <p>
@@ -6058,11 +6033,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_50" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Competition and Innovation Test</b>
-                  </p>
+            <section id="section_55" class="section heading">
+               <h2><span class="heading">
+                     <b>Competition and Innovation Test</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">170.</span></h2>
                   <p>
@@ -6086,11 +6060,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_51" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Justice Impact Test</b>
-                  </p>
+            <section id="section_56" class="section heading">
+               <h2><span class="heading">
+                     <b>Justice Impact Test</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">172.</span></h2>
                   <p>
@@ -6106,13 +6079,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_52" class="section num heading">
+            <section id="section_57" class="section num heading">
                <h2><span class="num">
                      <b>J.</b>
+                     </span><span class="heading">
+                     <b>Trade Impact</b>
                      </span></h2>
-               <p>
-                  <b>Trade Impact</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">173.</span></h2>
                   <p>
@@ -6131,13 +6103,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      as a result of this legislation.</p>
                </section>
             </section>
-            <section id="section_53" class="section num heading">
+            <section id="section_58" class="section num heading">
                <h2><span class="num">
                      <b>K.</b>
+                     </span><span class="heading">
+                     <b>Monitoring and evaluation plan</b>
                      </span></h2>
-               <p>
-                  <b>Monitoring and evaluation plan</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">175.</span></h2>
                   <p>
@@ -6387,14 +6358,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          </div>
          <section class="attachment" data-name="annex">
             <div class="body">
-               <p id="annex_1_p_54">
+               <p id="annex_1_p_58">
                   <b>Annexes</b>
                   </p>
-               <p id="annex_1_p_55">
+               <p id="annex_1_p_59">
                   <b>Annex 1: Detailed methodology for estimating organisations in scope of failure to
                      prevent fraud</b>
                   </p>
-               <p id="annex_1_p_56">
+               <p id="annex_1_p_60">
                   <b>Approach, Entity-based definition</b>
                   </p>
                <div class="blockContainer">
@@ -6423,7 +6394,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p><span class="num">3.</span>In total, there are around 2.2 million companies above the VAT threshold, with a size
                      breakdown given in Table A.3.</p>
                </div>
-               <p id="annex_1_p_57">
+               <p id="annex_1_p_61">
                   <b>Table A.1: Number of companies and LLPs by size, entity based definition </b>
                   </p>
                <table class="ia-table">
@@ -6463,14 +6434,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
                <p>Source: FAME download, accessed 2 August 2022</p>
-               <p id="annex_1_p_58">
+               <p id="annex_1_p_62">
                   <b>Total number of companies in scope</b>
                   </p>
                <div class="blockContainer">
                   <p><span class="num">4.</span>Under <b>Option 2</b>, the total number of large companies in scope using an entity-based definition is
                      22,340, employing 10.6 million people.</p>
                </div>
-               <p id="annex_1_p_59">
+               <p id="annex_1_p_63">
                   <b>Partnerships</b>
                   </p>
                <div class="blockContainer">
@@ -6480,7 +6451,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      that the number of partnerships in scope is less than 50 partnerships, employing 34,000
                      people.</p>
                </div>
-               <p id="annex_1_p_60">
+               <p id="annex_1_p_64">
                   <b>Table A.2: Number of UK partnerships</b>
                   </p>
                <table class="ia-table">
@@ -6532,7 +6503,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
                <p>Source: Business Population Estimates, Table 3, 2021<a class="fn" id="fnref-106" href="#fn-106">106</a></p>
-               <p id="annex_1_p_61">
+               <p id="annex_1_p_65">
                   <b>Table A.3: Employment by partnership size</b>
                   </p>
                <table class="ia-table">
@@ -6586,10 +6557,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p>Source: Business Population Estimates, Table 3, 2021 (see footnote 13).</p>
                <p>Note some size categories had to be estimated as some published figures were suppressed
                   to avoid disclosure.</p>
-               <p id="annex_1_p_62">
+               <p id="annex_1_p_66">
                   <b>Other commercial organisations and UK activities of overseas incorporated companies</b>
                   </p>
-               <p id="annex_1_p_63">
+               <p id="annex_1_p_67">
                   <b>Other commercial organisations</b>
                   </p>
                <div class="blockContainer">
@@ -6628,7 +6599,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the size distribution of these companies follows that of the wider company population
                      with employees.</p>
                </div>
-               <p id="annex_1_p_64">
+               <p id="annex_1_p_68">
                   <b>UK activities of overseas incorporated companies</b>
                   </p>
                <div class="blockContainer">
@@ -6660,7 +6631,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      estimate derived from the BPE was used, employment in UK branches of foreign registered
                      companies should be caught (provided the branch is above the VAT threshold).</p>
                </div>
-               <p id="annex_1_p_65">
+               <p id="annex_1_p_69">
                   <b>Non-commercial organisations</b>
                   </p>
                <div class="blockContainer">
@@ -6689,7 +6660,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <div class="blockContainer">
                   <p><span class="num"></span>Under the entity-based definition: 24,888.</p>
                </div>
-               <p id="annex_1_p_66">
+               <p id="annex_1_p_70">
                   <b>Annex 2: Methodology used to Calculate Costs from proportion of firms who will have
                      to implement new anti-fraud measures in Scenarios and in Sensitivity Analysis </b>
                   </p>
@@ -6719,11 +6690,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to produce a total cost estimates for each interval for the proportion of organisations
                      that need to implement procedures to prevent employees committing fraud.  </p>
                </div>
-               <p id="annex_1_p_67">
+               <p id="annex_1_p_71">
                   <b>Annex 3: Organisations covered by failure to prevent fraud offence and whether in
                      scope of better regulation framework (BRF)</b>
                   </p>
-               <p id="annex_1_p_68">
+               <p id="annex_1_p_72">
                   <b>Table A.4, Organisations covered by FTPF and whether in scope of BRF, 2022.</b>
                   </p>
                <table class="ia-table">
@@ -6895,7 +6866,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tr>
                   </tbody>
                </table>
-               <p id="annex_1_p_69">
+               <p id="annex_1_p_73">
                   <b>Specific Impact Test Checklist</b>
                   </p>
                <table class="ia-table">
@@ -6975,17 +6946,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <hr style="margin-top:2em">
             <div class="footnote">
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Per the Crime Survey for England and Wales, Appendix ,Table 3, fraud constitutes
-                  40 per cent of estimated crime against individuals. <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables"><u><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables">https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables</a></u></a></p>
+                  40 per cent of estimated crime against individuals. <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables"><u>https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  “Corporate Criminal Liability: an options paper”, Law Commission, June 2022: <a href="https://lawcom.gov.uk/project/corporate-criminal-liability/"><u><a href="https://lawcom.gov.uk/project/corporate-criminal-liability/">https://lawcom.gov.uk/project/corporate-criminal-liability/</a></u></a>  and Corporate Criminal Liability Options Paper: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf">https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  “Corporate Criminal Liability: an options paper”, Law Commission, June 2022: <a href="https://lawcom.gov.uk/project/corporate-criminal-liability/"><u>https://lawcom.gov.uk/project/corporate-criminal-liability/</u></a>  and Corporate Criminal Liability Options Paper: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u>https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  By “base fraud offences”, we mean the offences that are covered by the offence of
                   failure to prevent fraud, as set out in Schedule 13 of ECCT 2023. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.lawcom.gov.uk/project/corporate-criminal-liability/"><u><a href="https://www.lawcom.gov.uk/project/corporate-criminal-liability/">https://www.lawcom.gov.uk/project/corporate-criminal-liability/</a></u></a>  page 1 - Ministry of Justice, Criminal Justice system statistics quarterly, September
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.lawcom.gov.uk/project/corporate-criminal-liability/"><u>https://www.lawcom.gov.uk/project/corporate-criminal-liability/</u></a>  page 1 - Ministry of Justice, Criminal Justice system statistics quarterly, September
                   2020, Table Q5.1. The need for cautioned arises because, according to the Ministry
                   of Justice, ambiguity in the status of small business owners can lead to individual
                   defendants being recorded as corporations, and, by implication, vice versa (for instance,
@@ -6995,7 +6966,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   prosecutions due to COVID-19.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  ECCT 2023, Schedule 13: <a href="https://www.legislation.gov.uk/ukpga/2023/56/schedule/13"><u><a href="https://www.legislation.gov.uk/ukpga/2023/56/schedule/13">https://www.legislation.gov.uk/ukpga/2023/56/schedule/13</a></u></a></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  ECCT 2023, Schedule 13: <a href="https://www.legislation.gov.uk/ukpga/2023/56/schedule/13"><u>https://www.legislation.gov.uk/ukpga/2023/56/schedule/13</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  If the entity were a victim of fraud, consideration of fault would not arise.</p>
@@ -7019,7 +6990,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   than £36 million turnover and more than £18 million in total assets.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://www.lawcom.gov.uk/law-commission-seek-views-on-corporate-criminal-liability/"><u><a href="https://www.lawcom.gov.uk/law-commission-seek-views-on-corporate-criminal-liability/">https://www.lawcom.gov.uk/law-commission-seek-views-on-corporate-criminal-liability/</a></u></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://www.lawcom.gov.uk/law-commission-seek-views-on-corporate-criminal-liability/"><u>https://www.lawcom.gov.uk/law-commission-seek-views-on-corporate-criminal-liability/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Other failure to prevent offences, not directly relevant to this IA, were examined.
@@ -7036,38 +7007,38 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   2015.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  “Corporate Criminal Liability: an options paper”, Law Commission, June 2022: <a href="https://lawcom.gov.uk/project/corporate-criminal-liability/"><u><a href="https://lawcom.gov.uk/project/corporate-criminal-liability/">https://lawcom.gov.uk/project/corporate-criminal-liability/</a></u></a> and Corporate Criminal Liability Options Paper: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf">https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  “Corporate Criminal Liability: an options paper”, Law Commission, June 2022: <a href="https://lawcom.gov.uk/project/corporate-criminal-liability/"><u>https://lawcom.gov.uk/project/corporate-criminal-liability/</u></a> and Corporate Criminal Liability Options Paper: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u>https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  See sections 11.110 and 11.111 of the Law Commission’s Corporate Criminal Liability:
-                  an options paper: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf#page=194">https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf#page=194</a></u></a></p>
+                  an options paper: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u>https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf#page=194</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  Government Action on Fraud in COVID-19 Support Schemes - GOV.UK (www.gov.uk) updated
-                  May 2024: <a href="https://www.gov.uk/government/publications/government-action-on-fraud-in-covid-support-schemes/government-action-on-fraud-in-covid-support-schemes"><u><a href="https://www.gov.uk/government/publications/government-action-on-fraud-in-covid-support-schemes/government-action-on-fraud-in-covid-support-schemes">https://www.gov.uk/government/publications/government-action-on-fraud-in-covid-support-schemes/government-action-on-fraud-in-covid-support-schemes</a></u></a></p>
+                  May 2024: <a href="https://www.gov.uk/government/publications/government-action-on-fraud-in-covid-support-schemes/government-action-on-fraud-in-covid-support-schemes"><u>https://www.gov.uk/government/publications/government-action-on-fraud-in-covid-support-schemes/government-action-on-fraud-in-covid-support-schemes</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  The Economic Crime Survey 2020 (www.gov.uk):<a href="https://www.gov.uk/government/publications/economic-crime-survey-2020"><u><a href="https://www.gov.uk/government/publications/economic-crime-survey-2020">https://www.gov.uk/government/publications/economic-crime-survey-2020</a></u></a></p>
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  The Economic Crime Survey 2020 (www.gov.uk):<a href="https://www.gov.uk/government/publications/economic-crime-survey-2020"><u>https://www.gov.uk/government/publications/economic-crime-survey-2020</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  For example, the US Department of Justice lists 30 ongoing federal fraud cases against
-                  corporations: <a href="https://www.justice.gov/corporate-crime/corporate-crime-case-database?f%5B0%5D=cases_index_list_component%3A4271"><u><a href="https://www.justice.gov/corporate-crime/corporate-crime-case-database?f%5B0%5D=cases_index_list_component%3A4271">https://www.justice.gov/corporate-crime/corporate-crime-case-database?f%5B0%5D=cases_index_list_component%3A4271</a></u></a></p>
+                  corporations: <a href="https://www.justice.gov/corporate-crime/corporate-crime-case-database?f%5B0%5D=cases_index_list_component%3A4271"><u>https://www.justice.gov/corporate-crime/corporate-crime-case-database?f%5B0%5D=cases_index_list_component%3A4271</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  Economic Crime and Corporate Transparency Act 2023, sections 196 to 198: <a href="https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies"><u><a href="https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies">https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies</a></u></a></p>
+               <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  Economic Crime and Corporate Transparency Act 2023, sections 196 to 198: <a href="https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies"><u>https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  “The Bribery Act 2010: post-legislative scrutiny” House of Lords Select Committee,
-                  published March 2019: <a href="https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf"><u><a href="https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf">https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf</a></u></a></p>
+                  published March 2019: <a href="https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf"><u>https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  Business population estimates for the UK and regions 2023: statistical release, published
-                  5 October 2023: <a href="https://www.gov.uk/government/statistics/business-population-estimates-2023/business-population-estimates-for-the-uk-and-regions-2023-statistical-release"><u><a href="https://www.gov.uk/government/statistics/business-population-estimates-2023/business-population-estimates-for-the-uk-and-regions-2023-statistical-release">https://www.gov.uk/government/statistics/business-population-estimates-2023/business-population-estimates-for-the-uk-and-regions-2023-statistical-release</a></u></a></p>
+                  5 October 2023: <a href="https://www.gov.uk/government/statistics/business-population-estimates-2023/business-population-estimates-for-the-uk-and-regions-2023-statistical-release"><u>https://www.gov.uk/government/statistics/business-population-estimates-2023/business-population-estimates-for-the-uk-and-regions-2023-statistical-release</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-22" href="#fnref-22">22</a>  For example, the Serious Fraud Office (SFO) website lists 29 serious fraud cases,
                   some completed, some ongoing. The perpetrators or alleged perpetrators range from
-                  individuals to small companies to international consortia: <a href="https://www.sfo.gov.uk/our-cases/"><u><a href="https://www.sfo.gov.uk/our-cases/">https://www.sfo.gov.uk/our-cases/</a></u></a></p>
+                  individuals to small companies to international consortia: <a href="https://www.sfo.gov.uk/our-cases/"><u>https://www.sfo.gov.uk/our-cases/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-23" href="#fnref-23">23</a>  Section 3.69 to 3.72: “Corporate Criminal Liability: an options paper”, Law Commission
@@ -7097,20 +7068,20 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   definition will be updated, while the one in the ECCT 2023 will remain. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  Economic Crime and Corporate Transparency Act 2023, section 201 to 202: <a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26"><u><a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26">https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26</a></u></a></p>
+               <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  Economic Crime and Corporate Transparency Act 2023, section 201 to 202: <a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26"><u>https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-29" href="#fnref-29">29</a> <a href="https://www.gov.uk/government/calls-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence"><u><a href="https://www.gov.uk/government/calls-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence#fn:4">https://www.gov.uk/government/calls-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence#fn:4</a></u></a></p>
+               <p><a class="marker" id="fn-29" href="#fnref-29">29</a> <a href="https://www.gov.uk/government/calls-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence"><u>https://www.gov.uk/government/calls-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence/smarter-regulation-non-financial-reporting-review-call-for-evidence#fn:4</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-30" href="#fnref-30">30</a> <a href="https://www.gov.uk/government/publications/better-regulation-framework/medium-sized-business-regulatory-exemption-assessment-supplementary-guidance--2"><u><a href="https://www.gov.uk/government/publications/better-regulation-framework/medium-sized-business-regulatory-exemption-assessment-supplementary-guidance--2">https://www.gov.uk/government/publications/better-regulation-framework/medium-sized-business-regulatory-exemption-assessment-supplementary-guidance--2</a></u></a></p>
+               <p><a class="marker" id="fn-30" href="#fnref-30">30</a> <a href="https://www.gov.uk/government/publications/better-regulation-framework/medium-sized-business-regulatory-exemption-assessment-supplementary-guidance--2"><u>https://www.gov.uk/government/publications/better-regulation-framework/medium-sized-business-regulatory-exemption-assessment-supplementary-guidance--2</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-31" href="#fnref-31">31</a>  Criminal Finances Act 2017, Part 3: <a href="https://www.legislation.gov.uk/ukpga/2017/22/part/3"><u><a href="https://www.legislation.gov.uk/ukpga/2017/22/part/3">https://www.legislation.gov.uk/ukpga/2017/22/part/3</a></u></a></p>
+               <p><a class="marker" id="fn-31" href="#fnref-31">31</a>  Criminal Finances Act 2017, Part 3: <a href="https://www.legislation.gov.uk/ukpga/2017/22/part/3"><u>https://www.legislation.gov.uk/ukpga/2017/22/part/3</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-32" href="#fnref-32">32</a>  See the guidance, “ Corporate offences for failing to prevent criminal facilitation
-                  of tax evasion”: <a href="https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion"><u><a href="https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion">https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion</a></u></a><u>Corporate offences for failing to prevent criminal facilitation of tax evasion - GOV.UK
+                  of tax evasion”: <a href="https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion"><u>https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion</u></a><u>Corporate offences for failing to prevent criminal facilitation of tax evasion - GOV.UK
                      (www.gov.uk)</u></p>
             </div>
             <div class="footnote">
@@ -7118,11 +7089,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-34" href="#fnref-34">34</a>  The figures were from BPE 2021<u>.</u>  Business population estimates for the UK and regions 2021: statistical release (HTML)
-                  - GOV.UK: <a href="https://www.gov.uk/government/statistics/business-population-estimates-2021"><u><a href="https://www.gov.uk/government/statistics/business-population-estimates-2021">https://www.gov.uk/government/statistics/business-population-estimates-2021</a></u></a></p>
+                  - GOV.UK: <a href="https://www.gov.uk/government/statistics/business-population-estimates-2021"><u>https://www.gov.uk/government/statistics/business-population-estimates-2021</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-35" href="#fnref-35">35</a>  Fame - Digital Marketplace – Fame is a source of company information in the UK and
-                  Ireland: <a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539"><u><a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539">https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539</a></u></a></p>
+                  Ireland: <a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539"><u>https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-36" href="#fnref-36">36</a>  The offence of failure to prevent fraud applies across the UK,</p>
@@ -7134,19 +7105,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   be in scope of the offence.&nbsp;</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-38" href="#fnref-38">38</a>  Economic Crime Survey 2020 - GOV.UK (<a href="http://www.gov.uk/"><u>www.gov.uk</u></a>): <a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020"><u><a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5">https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5</a></u></a></p>
+               <p><a class="marker" id="fn-38" href="#fnref-38">38</a>  Economic Crime Survey 2020 - GOV.UK (<a href="http://www.gov.uk/"><u>www.gov.uk</u></a>): <a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020"><u>https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-39" href="#fnref-39">39</a>  Economic Crime Survey 2020 - GOV.UK (<a href="http://www.gov.uk/"><u>www.gov.uk</u></a>): <a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020"><u><a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5">https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5</a></u></a></p>
+               <p><a class="marker" id="fn-39" href="#fnref-39">39</a>  Economic Crime Survey 2020 - GOV.UK (<a href="http://www.gov.uk/"><u>www.gov.uk</u></a>): <a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020"><u>https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-40" href="#fnref-40">40</a>  Better regulation framework: interim guidance - GOV.UK: <a href="https://www.gov.uk/government/publications/better-regulation-framework"><u><a href="https://www.gov.uk/government/publications/better-regulation-framework">https://www.gov.uk/government/publications/better-regulation-framework</a></u></a></p>
+               <p><a class="marker" id="fn-40" href="#fnref-40">40</a>  Better regulation framework: interim guidance - GOV.UK: <a href="https://www.gov.uk/government/publications/better-regulation-framework"><u>https://www.gov.uk/government/publications/better-regulation-framework</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-41" href="#fnref-41">41</a> <span style="color:#000000"></span><span style="color:#000000">The Green Book (publishing.service.gov.uk)</span><span style="color:#000000">: </span><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1063330/Green_Book_2022.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1063330/Green_Book_2022.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1063330/Green_Book_2022.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-41" href="#fnref-41">41</a> <span style="color:#000000"></span><span style="color:#000000">The Green Book (publishing.service.gov.uk)</span><span style="color:#000000">: </span><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1063330/Green_Book_2022.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1063330/Green_Book_2022.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-42" href="#fnref-42">42</a> <span style="color:#000000"></span><span style="color:#000000">Free </span><span style="color:#000000">Speed Reading Test: How fast do you read? (readingsoft.com): </span><a href="https://readingsoft.com/"><u><a href="https://readingsoft.com/">https://readingsoft.com/</a></u></a></p>
+               <p><a class="marker" id="fn-42" href="#fnref-42">42</a> <span style="color:#000000"></span><span style="color:#000000">Free </span><span style="color:#000000">Speed Reading Test: How fast do you read? (readingsoft.com): </span><a href="https://readingsoft.com/"><u>https://readingsoft.com/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-43" href="#fnref-43">43</a> <span style="color:#000000"></span><span style="color:#000000">Sensitivity analysis has been undertaken to consider the impact on costs if this assumption
@@ -7156,10 +7127,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-44" href="#fnref-44">44</a> <span style="color:#000000"></span><span style="color:#000000">There is no way of disentangling the level of training/communication in place</span><span style="color:#000000">.</span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-45" href="#fnref-45">45</a> <span style="color:#000000"></span><span style="color:#000000">Economic Crime Survey 2020 - GOV.UK (</span><a href="http://www.gov.uk/"><u>www.gov.uk</u></a><span style="color:#000000">): </span><a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020"><u><a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5">https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5</a></u></a></p>
+               <p><a class="marker" id="fn-45" href="#fnref-45">45</a> <span style="color:#000000"></span><span style="color:#000000">Economic Crime Survey 2020 - GOV.UK (</span><a href="http://www.gov.uk/"><u>www.gov.uk</u></a><span style="color:#000000">): </span><a href="https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020"><u>https://www.gov.uk/government/publications/economic-crime-survey-2020/economic-crime-survey-2020#section5</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-46" href="#fnref-46">46</a> <span style="color:#000000"></span><span style="color:#000000">Business population estimates for the UK and regions 202</span><span style="color:#000000">1</span><span style="color:#000000">: statistical release (HTML) - GOV.UK</span><u>: </u><a href="https://www.gov.uk/government/statistics/business-population-estimates-2021"><u><a href="https://www.gov.uk/government/statistics/business-population-estimates-2021">https://www.gov.uk/government/statistics/business-population-estimates-2021</a></u></a></p>
+               <p><a class="marker" id="fn-46" href="#fnref-46">46</a> <span style="color:#000000"></span><span style="color:#000000">Business population estimates for the UK and regions 202</span><span style="color:#000000">1</span><span style="color:#000000">: statistical release (HTML) - GOV.UK</span><u>: </u><a href="https://www.gov.uk/government/statistics/business-population-estimates-2021"><u>https://www.gov.uk/government/statistics/business-population-estimates-2021</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-47" href="#fnref-47">47</a> <span style="color:#000000">Median </span><span style="color:#000000">Earnings and hours worked, occupation by four-digit SOC: ASHE Table 14 - Office for
@@ -7167,7 +7138,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-48" href="#fnref-48">48</a> <span style="color:#000000"></span><span style="color:#000000">See here: </span><span style="color:#000000">Corporate criminal offences of failure to prevent the facilitation of tax evasion
-                     (pinsentmasons.com): </span><a href="https://www.pinsentmasons.com/out-law/guides/corporate-criminal-offences-of-failing-to-prevent-the-facilitation-of-tax-evasion-"><u><a href="https://www.pinsentmasons.com/out-law/guides/corporate-criminal-offences-of-failing-to-prevent-the-facilitation-of-tax-evasion-#:~:text=A%20defence%20of%20reasonable%20prevention,to%20be%20procedures%20in%20place.">https://www.pinsentmasons.com/out-law/guides/corporate-criminal-offences-of-failing-to-prevent-the-facilitation-of-tax-evasion-#:~:text=A%20defence%20of%20reasonable%20prevention,to%20be%20procedures%20in%20place.</a></u></a></p>
+                     (pinsentmasons.com): </span><a href="https://www.pinsentmasons.com/out-law/guides/corporate-criminal-offences-of-failing-to-prevent-the-facilitation-of-tax-evasion-"><u>https://www.pinsentmasons.com/out-law/guides/corporate-criminal-offences-of-failing-to-prevent-the-facilitation-of-tax-evasion-#:~:text=A%20defence%20of%20reasonable%20prevention,to%20be%20procedures%20in%20place.</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-49" href="#fnref-49">49</a> <span style="color:#000000"></span><span style="color:#000000">The Bribery Act 2010 was introduced before the better regulation requirements were
@@ -7176,14 +7147,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-50" href="#fnref-50">50</a> <span style="color:#000000"></span><span style="color:#000000">Insight into awareness and impact of the Bribery Act 2010 Among small and medium sized
-                     enterprises (SMEs)</span><span style="color:#000000">:</span><span style="color:#000000"><u></u></span><a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf">https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</a></u></a><span style="color:#0000FF"><u></u></span><span style="color:#000000"><u>(publishing.service.gov.uk)</u></span></p>
+                     enterprises (SMEs)</span><span style="color:#000000">:</span><span style="color:#000000"><u></u></span><a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u>https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</u></a><span style="color:#0000FF"><u></u></span><span style="color:#000000"><u>(publishing.service.gov.uk)</u></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-51" href="#fnref-51">51</a>  Bribery Act 2010 guidance: <a href="https://www.justice.gov.uk/downloads/legislation/bribery-act-2010-guidance.pdf"><u><a href="https://www.justice.gov.uk/downloads/legislation/bribery-act-2010-guidance.pdf">https://www.justice.gov.uk/downloads/legislation/bribery-act-2010-guidance.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-51" href="#fnref-51">51</a>  Bribery Act 2010 guidance: <a href="https://www.justice.gov.uk/downloads/legislation/bribery-act-2010-guidance.pdf"><u>https://www.justice.gov.uk/downloads/legislation/bribery-act-2010-guidance.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-52" href="#fnref-52">52</a>  Corporate offences for failing to prevent criminal facilitation of tax evasion -
-                  GOV.UK (<a href="http://www.gov.uk/"><u>www.gov.uk</u></a>): <a href="https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion"><u><a href="https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion">https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion</a></u></a></p>
+                  GOV.UK (<a href="http://www.gov.uk/"><u>www.gov.uk</u></a>): <a href="https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion"><u>https://www.gov.uk/government/publications/corporate-offences-for-failing-to-prevent-criminal-facilitation-of-tax-evasion</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-53" href="#fnref-53">53</a>  It is assumed the refresh costs will be 10 per cent of the cost of the original assessment.
@@ -7191,18 +7162,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-54" href="#fnref-54">54</a>  Insight into awareness and impact of the Bribery Act 2010 Among small and medium
-                  sized enterprises (SMEs)<u> (publishing.service.gov.uk)</u>, page 29: <a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf#page=32">https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf#page=32</a></u></a></p>
+                  sized enterprises (SMEs)<u> (publishing.service.gov.uk)</u>, page 29: <a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u>https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf#page=32</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-55" href="#fnref-55">55</a>  ASHE 2023 Figures uplifted by GDP Deflator to 2024 Calendar Year Prices:</p>
                <p>
                   <a href="https://www.gov.uk/government/statistics/gdp-deflators-at-market-prices-and-money-gdp-september-2023-quarterly-national-accounts">
-                     <u><a href="https://www.gov.uk/government/statistics/gdp-deflators-at-market-prices-and-money-gdp-september-2023-quarterly-national-accounts">https://www.gov.uk/government/statistics/gdp-deflators-at-market-prices-and-money-gdp-september-2023-quarterly-national-accounts</a></u>
+                     <u>https://www.gov.uk/government/statistics/gdp-deflators-at-market-prices-and-money-gdp-september-2023-quarterly-national-accounts</u>
                      </a>
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://ukhomeoffice.sharepoint.com/sites/PROC1309/SOCRA%20Work%20Portfolio/Fraud/Impact%20Assessments/CCL/Employee%20earnings%20in%20the%20UK%20-%20Office%20for%20National%20Statistics:">Employee earnings in the UK - Office for National Statistics:  </a><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/bulletins/annualsurveyofhoursandearnings/2021"><u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/bulletins/annualsurveyofhoursandearnings/2021#related-links">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/bulletins/annualsurveyofhoursandearnings/2021#related-links</a></u></a></p>
+               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://ukhomeoffice.sharepoint.com/sites/PROC1309/SOCRA%20Work%20Portfolio/Fraud/Impact%20Assessments/CCL/Employee%20earnings%20in%20the%20UK%20-%20Office%20for%20National%20Statistics:">Employee earnings in the UK - Office for National Statistics:  </a><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/bulletins/annualsurveyofhoursandearnings/2021"><u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/bulletins/annualsurveyofhoursandearnings/2021#related-links</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-57" href="#fnref-57">57</a>  Median hourly pay rates from ASHE for all employees in SOC 242: Business, Research
@@ -7213,41 +7184,41 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   and directors.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-59" href="#fnref-59">59</a> <a href="https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf#page=25">https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf#page=25</a></u></a></p>
+               <p><a class="marker" id="fn-59" href="#fnref-59">59</a> <a href="https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf"><u>https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf#page=25</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-60" href="#fnref-60">60</a>  Based on a reading speed of 300 wpm at 80 per cent comprehension. This is an average
                   reading speed for an adult.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-61" href="#fnref-61">61</a> <a href="https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf#page=24">https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf#page=24</a></u></a></p>
+               <p><a class="marker" id="fn-61" href="#fnref-61">61</a> <a href="https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf"><u>https://assets.publishing.service.gov.uk/media/5a82aaa0e5274a2e8ab58b82/Tackling-tax-evasion-corporate-offences.pdf#page=24</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-62" href="#fnref-62">62</a>  For example, companies like Shell have a web page dedicated to the steps it takes
                   against bribery; even lower risk companies such as Tesco PLC have similar pages. </p>
-               <p>See: Group Anti-Bribery policy (tescoplc.com): <u><a href="https://www.tescoplc.com/sustainability/documents/policies/group-anti-bribery-policy">https://www.tescoplc.com/sustainability/documents/policies/group-anti-bribery-policy</a></u> and Transparency and Anti-Corruption | Shell Global:  <a href="https://www.shell.com/sustainability/transparency-and-sustainability-reporting/transparency-and-anti-corruption.html"><u><a href="https://www.shell.com/sustainability/transparency-and-sustainability-reporting/transparency-and-anti-corruption.html">https://www.shell.com/sustainability/transparency-and-sustainability-reporting/transparency-and-anti-corruption.html</a></u></a></p>
+               <p>See: Group Anti-Bribery policy (tescoplc.com): <u><a href="https://www.tescoplc.com/sustainability/documents/policies/group-anti-bribery-policy">https://www.tescoplc.com/sustainability/documents/policies/group-anti-bribery-policy</a></u> and Transparency and Anti-Corruption | Shell Global:  <a href="https://www.shell.com/sustainability/transparency-and-sustainability-reporting/transparency-and-anti-corruption.html"><u>https://www.shell.com/sustainability/transparency-and-sustainability-reporting/transparency-and-anti-corruption.html</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-63" href="#fnref-63">63</a>   Business population estimates 2021 - GOV.UK: <a href="https://www.gov.uk/government/statistics/business-population-estimates-2021"><u><a href="https://www.gov.uk/government/statistics/business-population-estimates-2021">https://www.gov.uk/government/statistics/business-population-estimates-2021</a></u></a></p>
+               <p><a class="marker" id="fn-63" href="#fnref-63">63</a>   Business population estimates 2021 - GOV.UK: <a href="https://www.gov.uk/government/statistics/business-population-estimates-2021"><u>https://www.gov.uk/government/statistics/business-population-estimates-2021</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-64" href="#fnref-64">64</a>  It is assumed that companies with less than 10 employees receive no discount, but
                   the discount is as high as 40 per cent for the largest companies. This is consistent
-                  with fee schedules on websites offering anti-bribery training, see: <a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010"><u><a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010">https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010</a></u></a></p>
+                  with fee schedules on websites offering anti-bribery training, see: <a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010"><u>https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-65" href="#fnref-65">65</a>  Opportunity cost is defined as the wage rate multiplied by 1.22 to account for non-wage
                   labour costs.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-66" href="#fnref-66">66</a>  See: <a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010"><u><a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010">https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010</a></u></a></p>
+               <p><a class="marker" id="fn-66" href="#fnref-66">66</a>  See: <a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010"><u>https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-67" href="#fnref-67">67</a>  Insight into awareness and impact of the Bribery Act 2010 Among small and medium
-                  sized enterprises (SMEs) (publishing.service.gov.uk): <a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf">https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</a></u></a></p>
+                  sized enterprises (SMEs) (publishing.service.gov.uk): <a href="https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u>https://assets.publishing.service.gov.uk/media/5a809f87e5274a2e8ab5134c/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-68" href="#fnref-68">68</a> OECD Data Explorer • Employment by job tenure intervals - average job tenure: <a href="https://data-explorer.oecd.org/vis?df%5bds%5d=DisseminateFinalDMZ&amp;df%5bid%5d=DSD_TENURE%40DF_TENURE_AVE&amp;df%5bag%5d=OECD.ELS.SAE&amp;dq=.TENURE_EMP.._T._T..A&amp;pd=2015%2C&amp;to%5bTIME_PERIOD%5d=false"><u><a href="https://data-explorer.oecd.org/vis?df[ds]=DisseminateFinalDMZ&amp;df[id]=DSD_TENURE%40DF_TENURE_AVE&amp;df[ag]=OECD.ELS.SAE&amp;dq=.TENURE_EMP.._T._T..A&amp;pd=2015%2C&amp;to[TIME_PERIOD]=false">https://data-explorer.oecd.org/vis?df[ds]=DisseminateFinalDMZ&amp;df[id]=DSD_TENURE%40DF_TENURE_AVE&amp;df[ag]=OECD.ELS.SAE&amp;dq=.TENURE_EMP.._T._T..A&amp;pd=2015%2C&amp;to[TIME_PERIOD]=false</a></u></a></p>
+               <p><a class="marker" id="fn-68" href="#fnref-68">68</a> OECD Data Explorer • Employment by job tenure intervals - average job tenure: <a href="https://data-explorer.oecd.org/vis?df%5bds%5d=DisseminateFinalDMZ&amp;df%5bid%5d=DSD_TENURE%40DF_TENURE_AVE&amp;df%5bag%5d=OECD.ELS.SAE&amp;dq=.TENURE_EMP.._T._T..A&amp;pd=2015%2C&amp;to%5bTIME_PERIOD%5d=false"><u>https://data-explorer.oecd.org/vis?df[ds]=DisseminateFinalDMZ&amp;df[id]=DSD_TENURE%40DF_TENURE_AVE&amp;df[ag]=OECD.ELS.SAE&amp;dq=.TENURE_EMP.._T._T..A&amp;pd=2015%2C&amp;to[TIME_PERIOD]=false</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-69" href="#fnref-69">69</a>  According to the Business Population estimates companies with more than 500 employees
@@ -7256,7 +7227,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-70" href="#fnref-70">70</a>  Insight into awareness and impact of the Bribery Act 2010 Among small and medium
-                  sized enterprises (SMEs) (publishing.service.gov.uk): <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</a></u></a> - page 5 </p>
+                  sized enterprises (SMEs) (publishing.service.gov.uk): <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</u></a> - page 5 </p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-71" href="#fnref-71">71</a>  As the Bribery Act 2010 did not commence until the middle of 2011 and the survey
@@ -7271,43 +7242,43 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   some reported annual cost spend in excess of £5,000. <i>PY not mentioned</i><i> for costs in research</i><i> but assumed to be 201</i><i>4/15</i><i>. </i></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-73" href="#fnref-73">73</a>  Employment by job tenure intervals - average job tenure OECD: <a href="https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE"><u><a href="https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE#">https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE#</a></u></a></p>
+               <p><a class="marker" id="fn-73" href="#fnref-73">73</a>  Employment by job tenure intervals - average job tenure OECD: <a href="https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE"><u>https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE#</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-74" href="#fnref-74">74</a> <a href="https://www.sfo.gov.uk/foi-request/2020-040-bribery-act-2010/"><u><a href="https://www.sfo.gov.uk/foi-request/2020-040-bribery-act-2010/">https://www.sfo.gov.uk/foi-request/2020-040-bribery-act-2010/</a></u></a></p>
+               <p><a class="marker" id="fn-74" href="#fnref-74">74</a> <a href="https://www.sfo.gov.uk/foi-request/2020-040-bribery-act-2010/"><u>https://www.sfo.gov.uk/foi-request/2020-040-bribery-act-2010/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-75" href="#fnref-75">75</a> <a href="https://www.sfo.gov.uk/2021/10/04/serious-fraud-office-secures-third-set-of-petrofac-bribery-convictions/"><u><a href="https://www.sfo.gov.uk/2021/10/04/serious-fraud-office-secures-third-set-of-petrofac-bribery-convictions/">https://www.sfo.gov.uk/2021/10/04/serious-fraud-office-secures-third-set-of-petrofac-bribery-convictions/</a></u></a></p>
+               <p><a class="marker" id="fn-75" href="#fnref-75">75</a> <a href="https://www.sfo.gov.uk/2021/10/04/serious-fraud-office-secures-third-set-of-petrofac-bribery-convictions/"><u>https://www.sfo.gov.uk/2021/10/04/serious-fraud-office-secures-third-set-of-petrofac-bribery-convictions/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-76" href="#fnref-76">76</a> <a href="https://www.sfo.gov.uk/2016/02/19/sweett-group-plc-sentenced-and-ordered-to-pay-2-3-million-after-bribery-act-conviction/"><u><a href="https://www.sfo.gov.uk/2016/02/19/sweett-group-plc-sentenced-and-ordered-to-pay-2-3-million-after-bribery-act-conviction/">https://www.sfo.gov.uk/2016/02/19/sweett-group-plc-sentenced-and-ordered-to-pay-2-3-million-after-bribery-act-conviction/</a></u></a></p>
+               <p><a class="marker" id="fn-76" href="#fnref-76">76</a> <a href="https://www.sfo.gov.uk/2016/02/19/sweett-group-plc-sentenced-and-ordered-to-pay-2-3-million-after-bribery-act-conviction/"><u>https://www.sfo.gov.uk/2016/02/19/sweett-group-plc-sentenced-and-ordered-to-pay-2-3-million-after-bribery-act-conviction/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-77" href="#fnref-77">77</a> <a href="https://www.sfo.gov.uk/2022/11/03/glencore-energy-uk-ltd-will-pay-280965092-95-million-over-400-million-usd-after-an-sfo-investigation-revealed-it-paid-us-29-million-in-bribes-to-gain-preferential-access-to-oil-in-africa/"><u><a href="https://www.sfo.gov.uk/2022/11/03/glencore-energy-uk-ltd-will-pay-280965092-95-million-over-400-million-usd-after-an-sfo-investigation-revealed-it-paid-us-29-million-in-bribes-to-gain-preferential-access-to-oil-in-africa/">https://www.sfo.gov.uk/2022/11/03/glencore-energy-uk-ltd-will-pay-280965092-95-million-over-400-million-usd-after-an-sfo-investigation-revealed-it-paid-us-29-million-in-bribes-to-gain-preferential-access-to-oil-in-africa/</a></u></a></p>
+               <p><a class="marker" id="fn-77" href="#fnref-77">77</a> <a href="https://www.sfo.gov.uk/2022/11/03/glencore-energy-uk-ltd-will-pay-280965092-95-million-over-400-million-usd-after-an-sfo-investigation-revealed-it-paid-us-29-million-in-bribes-to-gain-preferential-access-to-oil-in-africa/"><u>https://www.sfo.gov.uk/2022/11/03/glencore-energy-uk-ltd-will-pay-280965092-95-million-over-400-million-usd-after-an-sfo-investigation-revealed-it-paid-us-29-million-in-bribes-to-gain-preferential-access-to-oil-in-africa/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-78" href="#fnref-78">78</a> <a href="https://www.cps.gov.uk/cps/news/fraudsters-sentenced-million-pound-bribery-and-corruption-coca-cola-enterprises-uk-ltd"><u><a href="https://www.cps.gov.uk/cps/news/fraudsters-sentenced-million-pound-bribery-and-corruption-coca-cola-enterprises-uk-ltd">https://www.cps.gov.uk/cps/news/fraudsters-sentenced-million-pound-bribery-and-corruption-coca-cola-enterprises-uk-ltd</a></u></a></p>
+               <p><a class="marker" id="fn-78" href="#fnref-78">78</a> <a href="https://www.cps.gov.uk/cps/news/fraudsters-sentenced-million-pound-bribery-and-corruption-coca-cola-enterprises-uk-ltd"><u>https://www.cps.gov.uk/cps/news/fraudsters-sentenced-million-pound-bribery-and-corruption-coca-cola-enterprises-uk-ltd</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-79" href="#fnref-79">79</a>  Deferred Prosecution Agreements - Serious Fraud Office (sfo.gov.uk): <a href="https://www.sfo.gov.uk/publications/guidance-policy-and-protocols/guidance-for-corporates/deferred-prosecution-agreements/"><u><a href="https://www.sfo.gov.uk/publications/guidance-policy-and-protocols/guidance-for-corporates/deferred-prosecution-agreements/">https://www.sfo.gov.uk/publications/guidance-policy-and-protocols/guidance-for-corporates/deferred-prosecution-agreements/</a></u></a></p>
+               <p><a class="marker" id="fn-79" href="#fnref-79">79</a>  Deferred Prosecution Agreements - Serious Fraud Office (sfo.gov.uk): <a href="https://www.sfo.gov.uk/publications/guidance-policy-and-protocols/guidance-for-corporates/deferred-prosecution-agreements/"><u>https://www.sfo.gov.uk/publications/guidance-policy-and-protocols/guidance-for-corporates/deferred-prosecution-agreements/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-80" href="#fnref-80">80</a> <a href="https://www.sfo.gov.uk/cases/r-v-bluu-solutions-limited-and-tetris-projects-limited/"><u><a href="https://www.sfo.gov.uk/cases/r-v-bluu-solutions-limited-and-tetris-projects-limited/">https://www.sfo.gov.uk/cases/r-v-bluu-solutions-limited-and-tetris-projects-limited/</a></u></a></p>
+               <p><a class="marker" id="fn-80" href="#fnref-80">80</a> <a href="https://www.sfo.gov.uk/cases/r-v-bluu-solutions-limited-and-tetris-projects-limited/"><u>https://www.sfo.gov.uk/cases/r-v-bluu-solutions-limited-and-tetris-projects-limited/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-81" href="#fnref-81">81</a> <a href="https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million"><u><a href="https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million">https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million</a></u></a></p>
+               <p><a class="marker" id="fn-81" href="#fnref-81">81</a> <a href="https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million"><u>https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-82" href="#fnref-82">82</a>  First ever CPS deferred prosecution agreement for £615 million | The Crown Prosecution
-                  Service: <a href="https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million"><u><a href="https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million">https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million</a></u></a></p>
+                  Service: <a href="https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million"><u>https://www.cps.gov.uk/cps/news/first-ever-cps-deferred-prosecution-agreement-ps615-million</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-83" href="#fnref-83">83</a>  In this context, the Home Office means all organisations that do not meet the criteria
                   to be considered a “large organisation” in the Economic Crime and Corporate Transparency
-                  Act 2023 sections 201 to 202: <a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26"><u><a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26">https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26</a></u></a></p>
+                  Act 2023 sections 201 to 202: <a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26"><u>https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-84" href="#fnref-84">84</a> <a href="https://lordslibrary.parliament.uk/bribery-act-2010-post-legislative-scrutiny/"><u><a href="https://lordslibrary.parliament.uk/bribery-act-2010-post-legislative-scrutiny/">https://lordslibrary.parliament.uk/bribery-act-2010-post-legislative-scrutiny/</a></u></a> : In its assessment of the act, the committee noted that not one witness had “major
+               <p><a class="marker" id="fn-84" href="#fnref-84">84</a> <a href="https://lordslibrary.parliament.uk/bribery-act-2010-post-legislative-scrutiny/"><u>https://lordslibrary.parliament.uk/bribery-act-2010-post-legislative-scrutiny/</u></a> : In its assessment of the act, the committee noted that not one witness had “major
                   criticisms” of the legislation. Similarly, the committee stated that overall: “The
                   structure of the act, the offences it created, its deterrent effect, and its interaction
                   with deferred prosecution agreements, are only some of the aspects which have been
@@ -7323,28 +7294,28 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-86" href="#fnref-86">86</a>  Per the Crime Survey for England and Wales, Appendix ,Table 3, fraud constitutes
-                  40 per cent of estimated crime against individuals: <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables"><u><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables">https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables</a></u></a></p>
+                  40 per cent of estimated crime against individuals: <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables"><u>https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-87" href="#fnref-87">87</a>  The 2024 report on occupational fraud by the Association of Certified Fraud Examiners
-                  estimated that median loss to businesses from a fraud case at $145,000: <a href="https://www.acfe.com/-/media/files/acfe/pdfs/rttn/2024/2024-report-to-the-nations.pdf"><u><a href="https://www.acfe.com/-/media/files/acfe/pdfs/rttn/2024/2024-report-to-the-nations.pdf">https://www.acfe.com/-/media/files/acfe/pdfs/rttn/2024/2024-report-to-the-nations.pdf</a></u></a></p>
+                  estimated that median loss to businesses from a fraud case at $145,000: <a href="https://www.acfe.com/-/media/files/acfe/pdfs/rttn/2024/2024-report-to-the-nations.pdf"><u>https://www.acfe.com/-/media/files/acfe/pdfs/rttn/2024/2024-report-to-the-nations.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-88" href="#fnref-88">88</a>  The Economic and Social Cost of Crime 2018 estimates the cost of fraud to individuals
                   at £1,290:</p>
-               <p><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/732110/the-economic-and-social-costs-of-crime-horr99.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/732110/the-economic-and-social-costs-of-crime-horr99.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/732110/the-economic-and-social-costs-of-crime-horr99.pdf</a></u></a></p>
+               <p><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/732110/the-economic-and-social-costs-of-crime-horr99.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/732110/the-economic-and-social-costs-of-crime-horr99.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-89" href="#fnref-89">89</a>  Fraud Strategy: Stopping Scams and Protecting the Public, May 2023: <a href="https://assets.publishing.service.gov.uk/media/64539087faf4aa0012e132cb/Fraud_Strategy_2023.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/64539087faf4aa0012e132cb/Fraud_Strategy_2023.pdf">https://assets.publishing.service.gov.uk/media/64539087faf4aa0012e132cb/Fraud_Strategy_2023.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-89" href="#fnref-89">89</a>  Fraud Strategy: Stopping Scams and Protecting the Public, May 2023: <a href="https://assets.publishing.service.gov.uk/media/64539087faf4aa0012e132cb/Fraud_Strategy_2023.pdf"><u>https://assets.publishing.service.gov.uk/media/64539087faf4aa0012e132cb/Fraud_Strategy_2023.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-90" href="#fnref-90">90</a>  Crowe’s Financial Cost of Fraud 2021 estimates that the cost of fraud against UK
-                  maybe as high £137 billion: <a href="https://www.crowe.com/uk/insights/financial-cost-fraud-data-2021"><u><a href="https://www.crowe.com/uk/insights/financial-cost-fraud-data-2021">https://www.crowe.com/uk/insights/financial-cost-fraud-data-2021</a></u></a></p>
+                  maybe as high £137 billion: <a href="https://www.crowe.com/uk/insights/financial-cost-fraud-data-2021"><u>https://www.crowe.com/uk/insights/financial-cost-fraud-data-2021</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-91" href="#fnref-91">91</a>  It is assumed that companies with less than 10 employees receive no discount, but
                   the discount is as high as 40 per cent for the largest companies. This is consistent
-                  with fee schedules on websites offering anti-bribery training, see: <a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010"><u><a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010">https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010</a></u></a></p>
+                  with fee schedules on websites offering anti-bribery training, see: <a href="https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010"><u>https://www.virtual-college.co.uk/courses/compliance/the-bribery-act-2010</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-92" href="#fnref-92">92</a>  For example, the Serious Fraud Office (SFO) website lists 29 serious fraud cases,
@@ -7358,14 +7329,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-94" href="#fnref-94">94</a>  This means the existing identification principle, prior to the amendments in the
-                  Economic Crime and Corporate Transparency Act 2023 (sections 196 to 198) at: <a href="https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies"><u><a href="https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies">https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies</a></u></a> Prior to this amendment, a corporate could only be held responsible for an economic
+                  Economic Crime and Corporate Transparency Act 2023 (sections 196 to 198) at: <a href="https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies"><u>https://www.legislation.gov.uk/ukpga/2023/56/part/5/crossheading/attributing-criminal-liability-for-economic-crimes-to-certain-bodies</u></a> Prior to this amendment, a corporate could only be held responsible for an economic
                   crime if the crime was committed by the “directing mind and will” of the company –
                   something that was difficult to establish, particularly in large corporations with
                   complex structures.</p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-95" href="#fnref-95">95</a>  Section 3.69 to 3.72: “Corporate Criminal Liability: an options paper”, Law Commission
-                  2022: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u><a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf#page=55">https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf#page=55</a></u></a></p>
+                  2022: <a href="https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf"><u>https://s3-eu-west-2.amazonaws.com/cloud-platform-e218f50a4812967ba1215eaecede923f/uploads/sites/30/2022/06/Corporate-Criminal-Liability-Options-Paper_LC.pdf#page=55</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-96" href="#fnref-96">96</a>  The Law Commission report states “Even with a modest expansion of the identification
@@ -7398,7 +7369,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#0B0C0C">submissions</span>
                   <span style="color:#0B0C0C"> – Guidance: </span>
                   <a href="https://www.gov.uk/government/publications/proportionality-in-regulatory-submissions-guidance">
-                     <u><a href="https://www.gov.uk/government/publications/proportionality-in-regulatory-submissions-guidance">https://www.gov.uk/government/publications/proportionality-in-regulatory-submissions-guidance</a></u>
+                     <u>https://www.gov.uk/government/publications/proportionality-in-regulatory-submissions-guidance</u>
                      </a>
                   <span style="color:#000000">
                      <b>
@@ -7408,7 +7379,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-98" href="#fnref-98">98</a>  Fame - Digital Marketplace – Fame is a source of company information in the UK and
-                  Ireland:  <a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539"><u><a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539">https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539</a></u></a></p>
+                  Ireland:  <a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539"><u>https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-99" href="#fnref-99">99</a> 
@@ -7418,7 +7389,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">: </span>
                   <span style="color:#000000">interim guidance: </span>
                   <a href="https://www.gov.uk/government/publications/better-regulation-framework">
-                     <u><a href="https://www.gov.uk/government/publications/better-regulation-framework">https://www.gov.uk/government/publications/better-regulation-framework</a></u>
+                     <u>https://www.gov.uk/government/publications/better-regulation-framework</u>
                      </a>
                   </p>
             </div>
@@ -7437,7 +7408,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">:</span>
                   <span style="color:#000000">: </span>
                   <a href="https://www.gov.uk/government/publications/the-magenta-book">
-                     <u><a href="https://www.gov.uk/government/publications/the-magenta-book">https://www.gov.uk/government/publications/the-magenta-book</a></u>
+                     <u>https://www.gov.uk/government/publications/the-magenta-book</u>
                      </a>
                   </p>
             </div>
@@ -7452,7 +7423,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">19, 14 March 2019</span>
                   <span style="color:#000000">:</span>
                   <a href="https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf">
-                     <u><a href="https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf">https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf</a></u>
+                     <u>https://publications.parliament.uk/pa/ld201719/ldselect/ldbribact/303/303.pdf</u>
                      </a>
                   </p>
             </div>
@@ -7460,7 +7431,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-102" href="#fnref-102">102</a>  For the post-implementation review of the Bribery Act, MoJ conducted a review into
                   awareness of the Act among small and medium enterprises  (“Insight into awareness
                   and impact of the Bribery Act 2010 Among small and medium sized enterprises (SMEs)
-                  “), published 2015: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</a></u></a>.  The offence of failure to prevent fraud only applies to large organisations but
+                  “), published 2015: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/440661/insight-into-awareness-and-impact-of-the-bribery-act-2010.pdf</u></a>.  The offence of failure to prevent fraud only applies to large organisations but
                   assessment of the awareness of the offence and the guidance is important.</p>
             </div>
             <div class="footnote">
@@ -7468,13 +7439,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   had sought professional advice.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-104" href="#fnref-104">104</a>  Economic Crime and Corporate Transparency Act 2023 (legislation.gov.uk): <a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26"><u><a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26">https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26</a></u></a></p>
+               <p><a class="marker" id="fn-104" href="#fnref-104">104</a>  Economic Crime and Corporate Transparency Act 2023 (legislation.gov.uk): <a href="https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26"><u>https://www.legislation.gov.uk/ukpga/2023/56/section/202/2023-12-26</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-105" href="#fnref-105">105</a> <span style="color:#000000"></span><span style="color:#000000">Fame - Digital Marketplace</span><span style="color:#000000"> – Fame is a source of company information in the UK and Ireland</span><span style="color:#000000">: </span><a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539"><u><a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539">https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539</a></u></a></p>
+               <p><a class="marker" id="fn-105" href="#fnref-105">105</a> <span style="color:#000000"></span><span style="color:#000000">Fame - Digital Marketplace</span><span style="color:#000000"> – Fame is a source of company information in the UK and Ireland</span><span style="color:#000000">: </span><a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539"><u>https://www.digitalmarketplace.service.gov.uk/g-cloud/services/279752966611539</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-106" href="#fnref-106">106</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1019905/BPE__2021_detailed_tables.ods"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1019905/BPE__2021_detailed_tables.ods">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1019905/BPE__2021_detailed_tables.ods</a></u></a></p>
+               <p><a class="marker" id="fn-106" href="#fnref-106">106</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1019905/BPE__2021_detailed_tables.ods"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1019905/BPE__2021_detailed_tables.ods</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-107" href="#fnref-107">107</a>  The difference between the two is that in the case of the former the foreign entity
@@ -7484,28 +7455,28 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-108" href="#fnref-108">108</a>  Companies register activities: 2021 to 2022 spreadsheet, table C1:   </p>
-               <p><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2021-to-2022"><u><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2021-to-2022">https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2021-to-2022</a></u></a></p>
+               <p><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2021-to-2022"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2021-to-2022</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-109" href="#fnref-109">109</a>  Better Regulation Framework: interim: <a href="https://www.gov.uk/government/publications/better-regulation-framework"><u><a href="https://www.gov.uk/government/publications/better-regulation-framework">https://www.gov.uk/government/publications/better-regulation-framework</a></u></a></p>
+               <p><a class="marker" id="fn-109" href="#fnref-109">109</a>  Better Regulation Framework: interim: <a href="https://www.gov.uk/government/publications/better-regulation-framework"><u>https://www.gov.uk/government/publications/better-regulation-framework</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-110" href="#fnref-110">110</a>  Small Business, Enterprise and Employment Act 2015:  <a href="https://www.legislation.gov.uk/ukpga/2015/26/section/27"><u><a href="https://www.legislation.gov.uk/ukpga/2015/26/section/27">https://www.legislation.gov.uk/ukpga/2015/26/section/27</a></u></a></p>
+               <p><a class="marker" id="fn-110" href="#fnref-110">110</a>  Small Business, Enterprise and Employment Act 2015:  <a href="https://www.legislation.gov.uk/ukpga/2015/26/section/27"><u>https://www.legislation.gov.uk/ukpga/2015/26/section/27</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-111" href="#fnref-111">111</a> <a href="https://www.ncvo.org.uk/news-and-insights/news-index/uk-civil-society-almanac-2021/profile/voluntary-sector-definition/"><u><a href="https://www.ncvo.org.uk/news-and-insights/news-index/uk-civil-society-almanac-2021/profile/voluntary-sector-definition/#/">https://www.ncvo.org.uk/news-and-insights/news-index/uk-civil-society-almanac-2021/profile/voluntary-sector-definition/#/</a></u></a><span style="color:#000000">. For example, only 0.04</span><span style="color:#000000"> per cent</span><span style="color:#000000"> of general charities had income exceeding £100</span><span style="color:#000000"></span><span style="color:#000000">m</span><span style="color:#000000">illion</span><span style="color:#000000"> and over 44</span><span style="color:#000000"> per cent</span><span style="color:#000000"> had an income of less than £10,000.</span><span style="color:#000000"></span><span style="color:#000000">Voluntary organisation </span><span style="color:#000000">size categories in the NCVO data did not map readily to Companies Act </span><span style="color:#000000">2006 </span><span style="color:#000000">thresholds hence the need for assumption was important. </span></p>
+               <p><a class="marker" id="fn-111" href="#fnref-111">111</a> <a href="https://www.ncvo.org.uk/news-and-insights/news-index/uk-civil-society-almanac-2021/profile/voluntary-sector-definition/"><u>https://www.ncvo.org.uk/news-and-insights/news-index/uk-civil-society-almanac-2021/profile/voluntary-sector-definition/#/</u></a><span style="color:#000000">. For example, only 0.04</span><span style="color:#000000"> per cent</span><span style="color:#000000"> of general charities had income exceeding £100</span><span style="color:#000000"></span><span style="color:#000000">m</span><span style="color:#000000">illion</span><span style="color:#000000"> and over 44</span><span style="color:#000000"> per cent</span><span style="color:#000000"> had an income of less than £10,000.</span><span style="color:#000000"></span><span style="color:#000000">Voluntary organisation </span><span style="color:#000000">size categories in the NCVO data did not map readily to Companies Act </span><span style="color:#000000">2006 </span><span style="color:#000000">thresholds hence the need for assumption was important. </span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-112" href="#fnref-112">112</a> <a href="https://www.informdirect.co.uk/company-formation/community-interest-company-cic-advantages-disadvantanges/"><u><a href="https://www.informdirect.co.uk/company-formation/community-interest-company-cic-advantages-disadvantanges/">https://www.informdirect.co.uk/company-formation/community-interest-company-cic-advantages-disadvantanges/</a></u></a></p>
+               <p><a class="marker" id="fn-112" href="#fnref-112">112</a> <a href="https://www.informdirect.co.uk/company-formation/community-interest-company-cic-advantages-disadvantanges/"><u>https://www.informdirect.co.uk/company-formation/community-interest-company-cic-advantages-disadvantanges/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-113" href="#fnref-113">113</a> <a href="https://www.mrassociates.org/knowledge-base/specified-accommodation/cat-1-exempt-accommodation/tell-me-more-about-registered-societies"><u><a href="https://www.mrassociates.org/knowledge-base/specified-accommodation/cat-1-exempt-accommodation/tell-me-more-about-registered-societies">https://www.mrassociates.org/knowledge-base/specified-accommodation/cat-1-exempt-accommodation/tell-me-more-about-registered-societies</a></u></a></p>
+               <p><a class="marker" id="fn-113" href="#fnref-113">113</a> <a href="https://www.mrassociates.org/knowledge-base/specified-accommodation/cat-1-exempt-accommodation/tell-me-more-about-registered-societies"><u>https://www.mrassociates.org/knowledge-base/specified-accommodation/cat-1-exempt-accommodation/tell-me-more-about-registered-societies</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-114" href="#fnref-114">114</a> <a href="https://www.accountancywales.com/social-clubs/faqs/constitutional/registered-societies-formally-industrial-and-provident-societies/"><u><a href="https://www.accountancywales.com/social-clubs/faqs/constitutional/registered-societies-formally-industrial-and-provident-societies/">https://www.accountancywales.com/social-clubs/faqs/constitutional/registered-societies-formally-industrial-and-provident-societies/</a></u></a></p>
+               <p><a class="marker" id="fn-114" href="#fnref-114">114</a> <a href="https://www.accountancywales.com/social-clubs/faqs/constitutional/registered-societies-formally-industrial-and-provident-societies/"><u>https://www.accountancywales.com/social-clubs/faqs/constitutional/registered-societies-formally-industrial-and-provident-societies/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-115" href="#fnref-115">115</a> <a href="https://www.inbrief.co.uk/employees/trade-unions/"><u><a href="https://www.inbrief.co.uk/employees/trade-unions/">https://www.inbrief.co.uk/employees/trade-unions/</a></u></a></p>
+               <p><a class="marker" id="fn-115" href="#fnref-115">115</a> <a href="https://www.inbrief.co.uk/employees/trade-unions/"><u>https://www.inbrief.co.uk/employees/trade-unions/</u></a></p>
             </div>
          </footer>
       </article>

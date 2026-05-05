@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -25188,7 +25205,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.theccc.org.uk/wp-content/uploads/2019/05/Net-Zero-The-UKs-contribution-to-stopping-global-warming.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.theccc.org.uk/wp-content/uploads/2019/05/Net-Zero-The-UKs-contribution-to-stopping-global-warming.pdf">https://www.theccc.org.uk/wp-content/uploads/2019/05/Net-Zero-The-UKs-contribution-to-stopping-global-warming.pdf</a></u>
+                        <u>https://www.theccc.org.uk/wp-content/uploads/2019/05/Net-Zero-The-UKs-contribution-to-stopping-global-warming.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -25199,7 +25216,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/net-zero-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/net-zero-strategy">https://www.gov.uk/government/publications/net-zero-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/net-zero-strategy</u>
                         </span>
                      </a>
                   </p>
@@ -25210,7 +25227,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/carbon-capture-usage-and-storage-ccus-duties-and-functions-of-an-economic-regulator-for-co2-transport-and-storage">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/carbon-capture-usage-and-storage-ccus-duties-and-functions-of-an-economic-regulator-for-co2-transport-and-storage">https://www.gov.uk/government/consultations/carbon-capture-usage-and-storage-ccus-duties-and-functions-of-an-economic-regulator-for-co2-transport-and-storage</a></u>
+                        <u>https://www.gov.uk/government/consultations/carbon-capture-usage-and-storage-ccus-duties-and-functions-of-an-economic-regulator-for-co2-transport-and-storage</u>
                         </span>
                      </a>
                   </p>
@@ -25222,7 +25239,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/british-energy-security-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/british-energy-security-strategy">https://www.gov.uk/government/publications/british-energy-security-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/british-energy-security-strategy</u>
                         </span>
                      </a>
                   </p>
@@ -25233,7 +25250,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/design-of-a-business-model-for-low-carbon-hydrogen">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/design-of-a-business-model-for-low-carbon-hydrogen">https://www.gov.uk/government/consultations/design-of-a-business-model-for-low-carbon-hydrogen</a></u>
+                        <u>https://www.gov.uk/government/consultations/design-of-a-business-model-for-low-carbon-hydrogen</u>
                         </span>
                      </a>
                   </p>
@@ -25244,7 +25261,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/heat-and-buildings-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/heat-and-buildings-strategy">https://www.gov.uk/government/publications/heat-and-buildings-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/heat-and-buildings-strategy</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25257,7 +25274,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/uk-hydrogen-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/uk-hydrogen-strategy">https://www.gov.uk/government/publications/uk-hydrogen-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/uk-hydrogen-strategy</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25270,7 +25287,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/net-zero-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/net-zero-strategy">https://www.gov.uk/government/publications/net-zero-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/net-zero-strategy</u>
                         </span>
                      </a>
                   </p>
@@ -25281,7 +25298,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to 2019’ </span>
                   <a href="https://www.gov.uk/government/statistics/final-uk-greenhouse-gas-emissions-national-statistics-1990-to-2019">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/statistics/final-uk-greenhouse-gas-emissions-national-statistics-1990-to-2019">https://www.gov.uk/government/statistics/final-uk-greenhouse-gas-emissions-national-statistics-1990-to-2019</a></u>
+                        <u>https://www.gov.uk/government/statistics/final-uk-greenhouse-gas-emissions-national-statistics-1990-to-2019</u>
                         </span>
                      </a>
                   </p>
@@ -25292,7 +25309,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future">https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</a></u>
+                        <u>https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25305,7 +25322,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/proposals-for-a-future-system-operator-role">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/proposals-for-a-future-system-operator-role">https://www.gov.uk/government/consultations/proposals-for-a-future-system-operator-role</a></u>
+                        <u>https://www.gov.uk/government/consultations/proposals-for-a-future-system-operator-role</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25313,13 +25330,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-12" href="#fnref-12">12</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future">https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/consultations/reforming-the-energy-industry-codes"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/consultations/reforming-the-energy-industry-codes">https://www.gov.uk/government/consultations/reforming-the-energy-industry-codes</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/consultations/reforming-the-energy-industry-codes"><span style="color:#0070C0"><u>https://www.gov.uk/government/consultations/reforming-the-energy-industry-codes</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/consultations/energy-code-reform-governance-framework"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/consultations/energy-code-reform-governance-framework">https://www.gov.uk/government/consultations/energy-code-reform-governance-framework</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/consultations/energy-code-reform-governance-framework"><span style="color:#0070C0"><u>https://www.gov.uk/government/consultations/energy-code-reform-governance-framework</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-15" href="#fnref-15">15</a> 
@@ -25336,7 +25353,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021">https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</a></u>
+                        <u>https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25349,7 +25366,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021">https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</a></u>
+                        <u>https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25357,13 +25374,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-18" href="#fnref-18">18</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan">https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-18" href="#fnref-18">18</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-19" href="#fnref-19">19</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan">https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-19" href="#fnref-19">19</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/upgrading-our-energy-system-smart-systems-and-flexibility-plan</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021">https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-21" href="#fnref-21">21</a> 
@@ -25371,7 +25388,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/call-for-evidence-a-smart-flexible-energy-system">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/call-for-evidence-a-smart-flexible-energy-system">https://www.gov.uk/government/consultations/call-for-evidence-a-smart-flexible-energy-system</a></u>
+                        <u>https://www.gov.uk/government/consultations/call-for-evidence-a-smart-flexible-energy-system</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25379,13 +25396,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-22" href="#fnref-22">22</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future">https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-22" href="#fnref-22">22</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-23" href="#fnref-23">23</a> <span style="color:#000000"></span><a href="https://www.theccc.org.uk/publication/the-fifth-carbon-budget-the-next-step-towards-a-low-carbon-economy/"><span style="color:#0070C0"><u><a href="https://www.theccc.org.uk/publication/the-fifth-carbon-budget-the-next-step-towards-a-low-carbon-economy/">https://www.theccc.org.uk/publication/the-fifth-carbon-budget-the-next-step-towards-a-low-carbon-economy/</a></u></span></a></p>
+               <p><a class="marker" id="fn-23" href="#fnref-23">23</a> <span style="color:#000000"></span><a href="https://www.theccc.org.uk/publication/the-fifth-carbon-budget-the-next-step-towards-a-low-carbon-economy/"><span style="color:#0070C0"><u>https://www.theccc.org.uk/publication/the-fifth-carbon-budget-the-next-step-towards-a-low-carbon-economy/</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-24" href="#fnref-24">24</a> <span style="color:#000000"></span><a href="https://www.gov.uk/cma-cases/heat-networks-market-study"><span style="color:#0070C0"><u><a href="https://www.gov.uk/cma-cases/heat-networks-market-study">https://www.gov.uk/cma-cases/heat-networks-market-study</a></u></span></a></p>
+               <p><a class="marker" id="fn-24" href="#fnref-24">24</a> <span style="color:#000000"></span><a href="https://www.gov.uk/cma-cases/heat-networks-market-study"><span style="color:#0070C0"><u>https://www.gov.uk/cma-cases/heat-networks-market-study</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-25" href="#fnref-25">25</a> 
@@ -25393,7 +25410,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/heat-and-buildings-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/heat-and-buildings-strategy">https://www.gov.uk/government/publications/heat-and-buildings-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/heat-and-buildings-strategy</u>
                         </span>
                      </a>
                   </p>
@@ -25404,7 +25421,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/net-zero-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/net-zero-strategy">https://www.gov.uk/government/publications/net-zero-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/net-zero-strategy</u>
                         </span>
                      </a>
                   </p>
@@ -25415,7 +25432,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021">https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</a></u>
+                        <u>https://www.gov.uk/government/publications/transitioning-to-a-net-zero-energy-system-smart-systems-and-flexibility-plan-2021</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25428,7 +25445,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future">https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</a></u>
+                        <u>https://www.gov.uk/government/publications/energy-white-paper-powering-our-net-zero-future</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25441,7 +25458,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/999452/strengthening-energy-savings-opportunity-scheme-consultation.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/999452/strengthening-energy-savings-opportunity-scheme-consultation.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/999452/strengthening-energy-savings-opportunity-scheme-consultation.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/999452/strengthening-energy-savings-opportunity-scheme-consultation.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -25452,13 +25469,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1094702/energy-savings-opportunity-scheme-consultation-govt-response.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1094702/energy-savings-opportunity-scheme-consultation-govt-response.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1094702/energy-savings-opportunity-scheme-consultation-govt-response.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1094702/energy-savings-opportunity-scheme-consultation-govt-response.pdf</u>
                         </span>
                      </a>
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-31" href="#fnref-31">31</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/implementing-geological-disposal-working-with-communities-long-term-management-of-higher-activity-radioactive-waste"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/implementing-geological-disposal-working-with-communities-long-term-management-of-higher-activity-radioactive-waste">https://www.gov.uk/government/publications/implementing-geological-disposal-working-with-communities-long-term-management-of-higher-activity-radioactive-waste</a></u></span></a><span style="color:#000000"></span></p>
+               <p><a class="marker" id="fn-31" href="#fnref-31">31</a> <span style="color:#000000"></span><a href="https://www.gov.uk/government/publications/implementing-geological-disposal-working-with-communities-long-term-management-of-higher-activity-radioactive-waste"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/implementing-geological-disposal-working-with-communities-long-term-management-of-higher-activity-radioactive-waste</u></span></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-32" href="#fnref-32">32</a> 
@@ -25466,7 +25483,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/the-regulation-of-nuclear-sites-in-the-final-stages-of-decommissioning-and-clean-up">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/the-regulation-of-nuclear-sites-in-the-final-stages-of-decommissioning-and-clean-up">https://www.gov.uk/government/consultations/the-regulation-of-nuclear-sites-in-the-final-stages-of-decommissioning-and-clean-up</a></u>
+                        <u>https://www.gov.uk/government/consultations/the-regulation-of-nuclear-sites-in-the-final-stages-of-decommissioning-and-clean-up</u>
                         </span>
                      </a>
                   </p>
@@ -25478,7 +25495,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Process Of Being Decommissioned”, 2014 </span>
                   <a href="https://www.oecd-nea.org/jcms/pl_20232/decision-and-recommendation-of-the-steering-committee-concerning-the-application-of-the-paris-convention-to-nuclear-installations-in-the-process-of-being-decommissioned-2014">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.oecd-nea.org/jcms/pl_20232/decision-and-recommendation-of-the-steering-committee-concerning-the-application-of-the-paris-convention-to-nuclear-installations-in-the-process-of-being-decommissioned-2014">https://www.oecd-nea.org/jcms/pl_20232/decision-and-recommendation-of-the-steering-committee-concerning-the-application-of-the-paris-convention-to-nuclear-installations-in-the-process-of-being-decommissioned-2014</a></u>
+                        <u>https://www.oecd-nea.org/jcms/pl_20232/decision-and-recommendation-of-the-steering-committee-concerning-the-application-of-the-paris-convention-to-nuclear-installations-in-the-process-of-being-decommissioned-2014</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25493,7 +25510,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      2016 </span>
                   <a href="https://www.oecd-nea.org/jcms/pl_19768/decision-and-recommendation-concerning-the-application-of-the-paris-convention-on-third-party-liability-in-the-field-of-nuclear-energy-to-nuclear-installations-for-the-disposal-of-certain-types-of-low-level-radioactive-waste?details=true">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.oecd-nea.org/jcms/pl_19768/decision-and-recommendation-concerning-the-application-of-the-paris-convention-on-third-party-liability-in-the-field-of-nuclear-energy-to-nuclear-installations-for-the-disposal-of-certain-types-of-low-level-radioactive-waste?details=true">https://www.oecd-nea.org/jcms/pl_19768/decision-and-recommendation-concerning-the-application-of-the-paris-convention-on-third-party-liability-in-the-field-of-nuclear-energy-to-nuclear-installations-for-the-disposal-of-certain-types-of-low-level-radioactive-waste?details=true</a></u>
+                        <u>https://www.oecd-nea.org/jcms/pl_19768/decision-and-recommendation-concerning-the-application-of-the-paris-convention-on-third-party-liability-in-the-field-of-nuclear-energy-to-nuclear-installations-for-the-disposal-of-certain-types-of-low-level-radioactive-waste?details=true</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25506,7 +25523,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/british-energy-security-strategy/british-energy-security-strategy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/british-energy-security-strategy/british-energy-security-strategy">https://www.gov.uk/government/publications/british-energy-security-strategy/british-energy-security-strategy</a></u>
+                        <u>https://www.gov.uk/government/publications/british-energy-security-strategy/british-energy-security-strategy</u>
                         </span>
                      </a>
                   </p>
@@ -25517,7 +25534,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/powering-up-britain">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/powering-up-britain">https://www.gov.uk/government/publications/powering-up-britain</a></u>
+                        <u>https://www.gov.uk/government/publications/powering-up-britain</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25530,7 +25547,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/consultation-principles-guidance">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/consultation-principles-guidance">https://www.gov.uk/government/publications/consultation-principles-guidance</a></u>
+                        <u>https://www.gov.uk/government/publications/consultation-principles-guidance</u>
                         </span>
                      </a>
                   </p>

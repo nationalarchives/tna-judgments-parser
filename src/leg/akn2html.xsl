@@ -102,6 +102,10 @@
 				<xsl:text> </xsl:text>
 				<xsl:value-of select="@name" />
 			</xsl:if>
+			<xsl:if test="@class">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="@class" />
+			</xsl:if>
 			<xsl:if test="num">
 				<xsl:text> num</xsl:text>
 			</xsl:if>
@@ -151,12 +155,16 @@
 	</p>
 </xsl:template>
 
-<!-- inline -->
-
-<!-- Hide section headings for IA - they're for semantic structure, not display -->
-<xsl:template match="doc[@name='ImpactAssessment']//section/heading">
-	<!-- Hidden for semantic purposes only -->
+<!-- IA cover-sheet sections (class="summary") preserve their visible
+     headers as DOCX-styled paragraphs in the body content. The section
+     <heading> is needed for AKN structure and TOC but rendering it would
+     duplicate the visible header. Other IA sections (e.g. "Declaration",
+     numbered chapters) keep their <heading> and render normally. -->
+<xsl:template match="doc[@name='ImpactAssessment']//section[contains(concat(' ', @class, ' '), ' summary ')]/heading">
+	<!-- Hidden: visible heading lives in the body content. -->
 </xsl:template>
+
+<!-- inline -->
 
 <xsl:template match="num | heading | docType | docNumber | docTitle | docStage | docDate | docProponent | date">
 	<span class="{ local-name() }">
@@ -292,8 +300,16 @@
 	</xsl:element>
 </xsl:template>
 
-<!-- Auto-link bare URLs in footnote text -->
-<xsl:template match="authorialNote//text()">
+<!-- Drop leading tab markers in the first paragraph of a footnote. Some
+     source DOCX files use a tab between the footnote number and text;
+     others don't. Suppressing makes spacing consistent. Priority "2"
+     wins over the generic marker[@name='tab'] template. -->
+<xsl:template match="authorialNote/p[1]/marker[@name='tab'][not(preceding-sibling::node()[normalize-space()])]" priority="2" />
+
+<!-- Auto-link bare URLs in footnote text. Skip text that's already inside
+     an <a> in the source AKN — wrapping it again produces nested <a>s,
+     which are invalid HTML. -->
+<xsl:template match="authorialNote//text()[not(ancestor::a)]">
 	<xsl:analyze-string select="." regex="https?://[^\s&lt;>]+">
 		<xsl:matching-substring>
 			<a href="{.}"><xsl:value-of select="." /></a>

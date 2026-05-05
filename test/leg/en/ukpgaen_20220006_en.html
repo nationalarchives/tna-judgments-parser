@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -4775,11 +4792,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Technical Issues in Charity Law (2015) Law Commission Consultation Paper No 220;
                   and Technical Issues in Charity Law, Supplementary Consultation (2016), both available
-                  at <a href="https://www.lawcom.gov.uk/project/charity-law-technical-issues-in-charity-law/"><span style="color:#0070C0"><u><a href="https://www.lawcom.gov.uk/project/charity-law-technical-issues-in-charity-law/">https://www.lawcom.gov.uk/project/charity-law-technical-issues-in-charity-law/</a></u></span></a>.</p>
+                  at <a href="https://www.lawcom.gov.uk/project/charity-law-technical-issues-in-charity-law/"><span style="color:#0070C0"><u>https://www.lawcom.gov.uk/project/charity-law-technical-issues-in-charity-law/</u></span></a>.</p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Government response to Law Commission report on Technical Issues in Charity Law (22
-                  March 2021), available at <a href="https://www.gov.uk/government/publications/government-response-to-law-commission-report-on-technical-issues-in-charity-law"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/government-response-to-law-commission-report-on-technical-issues-in-charity-law">https://www.gov.uk/government/publications/government-response-to-law-commission-report-on-technical-issues-in-charity-law</a></u></span></a>.</p>
+                  March 2021), available at <a href="https://www.gov.uk/government/publications/government-response-to-law-commission-report-on-technical-issues-in-charity-law"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/government-response-to-law-commission-report-on-technical-issues-in-charity-law</u></span></a>.</p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  SI 1992/2980.</p>

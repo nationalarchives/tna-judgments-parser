@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -167,7 +184,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
             <section id="section_2" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Economic Crime and Corporate Transparency Act</span></h2>
                <p>
                   <b>Economic Crime and Corporate Transparency Act</b>
                   <br>
@@ -182,10 +199,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Overview</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Overview</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>This document presents the Impact Assessment for DBT, formerly BEIS, measures within
@@ -211,10 +227,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Background</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Background</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">3.</span></h2>
                   <p>Recent years have seen growing instances of misuse of companies, concerns over the
@@ -232,10 +247,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Focus of this document</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Focus of this document</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">5.</span></h2>
                   <p>
@@ -812,7 +826,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_6" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   </p>
@@ -1293,18 +1307,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Background information</u>
-                     </b>
-                  </p>
+               <h2><span class="heading">
+                     <b>
+                        <u>Background information</u>
+                        </b>
+                     </span></h2>
             </section>
             <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Overview</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Overview</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>In the UK, two main types of partnerships exist. Limited liability partnerships exist
@@ -1436,10 +1448,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>The use of LPs</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>The use of LPs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">7.</span></h2>
                   <p>The separation of a general partner and limited partners (which are essentially sleeping
@@ -1457,10 +1468,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>The trend in LP registrations</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>The trend in LP registrations</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">9.</span></h2>
                   <p>Over the past twenty years, there have been several changes in the trends in the number
@@ -1524,12 +1534,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Problem under consideration</u>
-                     </b>
-                  </p>
+               <h2><span class="heading">
+                     <b>
+                        <u>Problem under consideration</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">15.</span></h2>
                   <p>Media reports and responses to the BEIS call for evidence and consultation identified
@@ -1574,12 +1583,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Evidence of misuse</u>
-                     </b>
-                  </p>
+               <h2><span class="heading">
+                     <b>
+                        <u>Evidence of misuse</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">20.</span></h2>
                   <p>Although LPs are used for valuable and legitimate reasons, law enforcement and the
@@ -1662,10 +1670,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Call for evidence and consultation </b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Call for evidence and consultation </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">23.</span></h2>
                   <p>In January 2017 BEIS issued a call for evidence entitled, ‘Review of Limited Partnership
@@ -1737,10 +1744,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Focus of this Impact Assessment</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Focus of this Impact Assessment</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">32.</span></h2>
                   <p>This Impact Assessment assesses the policy proposal at the primary legislative stage.
@@ -1799,10 +1805,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Addressing regulatory failures</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Addressing regulatory failures</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">37.</span></h2>
                   <p>Addressing criminal behaviour and establishing and enforcing a set of rules is a primary
@@ -1827,10 +1832,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Reducing information asymmetries</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Reducing information asymmetries</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">40.</span></h2>
                   <p>In economic transactions one party to the transaction usually must acquire information
@@ -1854,10 +1858,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Negative externalities</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Negative externalities</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">42.</span></h2>
                   <p>Lastly, illicit activity can create negative externalities on licit LPs and the UK’s
@@ -1876,12 +1879,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Policy objectives</u>
-                     </b>
-                  </p>
+               <h2><span class="heading">
+                     <b>
+                        <u>Policy objectives</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">44.</span></h2>
                   <p>The policy objectives are to enhance the transparency around LPs; to limit misuse
@@ -1924,7 +1926,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_19" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Option 0 Do nothing</span></h2>
                <p>
                   <b>
                      <u>Option 0: Do nothing</u>
@@ -1942,7 +1944,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_20" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Option 1 (preferred) A reform package that requires legislative action using primary
+                     legislation</span></h2>
                <p>
                   <b>
                      <u>Option 1 (preferred): A reform package that requires legislative action using primary
@@ -1984,10 +1987,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Ensuring that only TCSPs, which are supervised for Anti-Money Laundering purposes,
-                     are able to present new applications for LPs</b>. </p>
+               <h2><span class="heading">
+                     <b>Ensuring that only TCSPs, which are supervised for Anti-Money Laundering purposes,
+                        are able to present new applications for LPs</b>. </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">50.</span></h2>
                   <p>This option will make it mandatory for presenters of new applications for registration
@@ -2003,11 +2005,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Requesting information about a LPs connection to the UK (a) on application for registration,
-                     and (b) on an ongoing basis</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Requesting information about a LPs connection to the UK (a) on application for registration,
+                        and (b) on an ongoing basis</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">52.</span></h2>
                   <p>On an application for registration an LP must provide a proposed PPoB in the UK. LPs
@@ -2042,11 +2043,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Requiring confirmation statements and accounting information from LPs in England and
-                     Wales, and Northern Ireland</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Requiring confirmation statements and accounting information from LPs in England and
+                        Wales, and Northern Ireland</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">54.</span></h2>
                   <p>The requirement for annual confirmation statements is already mandatory for SLPs.<a class="fn" id="fnref-28" href="#fn-28">28</a> The government considers that the information currently required of EWNILPs on applications
@@ -2146,7 +2146,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_24" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Option 2 Non-legislative option</span></h2>
                <p>
                   <b>
                      <u>Option 2: Non-legislative option</u>
@@ -2187,7 +2187,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_25" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Option 0 Do nothing</span></h2>
                <p>
                   <b>Option 0: Do nothing</b>
                   </p>
@@ -2198,7 +2198,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_26" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Option 1 A reform package that requires legislative action using primary</span></h2>
                <p>
                   <b>Option 1: A reform package that requires legislative action using primary </b>
                   <br>
@@ -2758,11 +2758,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Requesting information about a LPs connection to the UK (a) on application and (b)
-                     ongoing</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Requesting information about a LPs connection to the UK (a) on application and (b)
+                        ongoing</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">84.</span></h2>
                   <p>Presenters and LPs will need to familiarise themselves with the extra information
@@ -2782,11 +2781,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Requiring confirmation statements and accounting information from LPs in England and
-                     Wales, and Northern Ireland</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Requiring confirmation statements and accounting information from LPs in England and
+                        Wales, and Northern Ireland</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">86.</span></h2>
                   <p>SLPs, are already required to file annual confirmation statements, thus this measure
@@ -2811,10 +2809,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Deregistration powers for the Registrar</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Deregistration powers for the Registrar</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">89.</span></h2>
                   <p>We expect familiarisation costs to be low. Essentially, those engaged in an LP need
@@ -2998,12 +2995,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Requiring confirmation statements annually for LPs</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Requiring confirmation statements annually for LPs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">93.</span></h2>
                   <p>The proposal to file an annual confirmation statement would only affect new and existing
@@ -3190,12 +3186,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Requiring confirmation statements annually for EWNILPs</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Requiring confirmation statements annually for EWNILPs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">95.</span></h2>
                   <p>As previously discussed, this requirement only applies to EWNILPs, as annual filing
@@ -3206,14 +3201,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>
-                        <u>Ongoing compliance cost summary</u>
-                        </b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>
+                           <u>Ongoing compliance cost summary</u>
+                           </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">96.</span></h2>
                   <p>Figure 10 below summarises the ongoing compliance costs to business. </p>
@@ -3443,10 +3437,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Other costs</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Other costs</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <u>Reduction in legitimate activity</u>
@@ -3488,10 +3481,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits (not monetised)</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Benefits (not monetised)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">100.</span></h2>
                   <p>The expected benefits of the reforms outlined in option 1 (the preferred option) would
@@ -3581,10 +3573,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs and benefits of alternative options</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Costs and benefits of alternative options</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">108.</span></h2>
                   <p>This is a final stage Impact Assessment and the alternatives to option 1 have already
@@ -3596,10 +3587,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <section id="section_36" class="section num heading">
                <h2><span class="num">
                      <b>V.</b>
+                     </span><span class="heading">
+                     <b>Monetised impacts on business</b>
                      </span></h2>
-               <p>
-                  <b>Monetised impacts on business</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">109.</span></h2>
                   <p>We have assumed that all costs are direct costs to business. We thus estimate this
@@ -4582,16 +4572,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>VII. Wider impacts</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>VII. Wider impacts</b>
+                     </span></h2>
             </section>
             <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Equalities assessment</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Equalities assessment</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">117.</span></h2>
                   <p>The Equality Act 2010 protects against unlawful discrimination on the basis of the
@@ -4704,10 +4692,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_39" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Competition and innovation impact test</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Competition and innovation impact test</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">124.</span></h2>
                   <p>The proposed reforms affect only LPs to bring them in line with other company requirements,
@@ -4727,10 +4714,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Families’ assessment</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Families’ assessment</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">126.</span></h2>
                   <p>The policy aims ensure LPs are transparent and in line with other company law frameworks.
@@ -4741,20 +4727,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_41" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Environmental impacts</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Environmental impacts</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">127.</span></h2>
                   <p>There are no obvious direct concerns in this area. </p>
                </section>
             </section>
             <section id="section_42" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Human rights</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Human rights</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">128.</span></h2>
                   <p>It is likely that these reforms will engage the European Convention on Human Rights
@@ -4766,10 +4750,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_43" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Justice system</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Justice system</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">129.</span></h2>
                   <p>A Justice Impact Test (JIT) is the Ministry of Justice tool that helps policymakers
@@ -4779,10 +4762,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_44" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Small and micro businesses assessment </b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Small and micro businesses assessment </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">130.</span></h2>
                   <p>The standard definition of small and micro businesses does not apply neatly to LPs
@@ -4820,10 +4802,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_45" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>VIII.       Monitoring and evaluation</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>VIII.       Monitoring and evaluation</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">134.</span></h2>
                   <p>The department, working with Companies House, will monitor LPs following the reform.
@@ -4883,34 +4864,30 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_46" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Annex Amendments made during Bill passage</span></h2>
                <p>
                   <b>Annex: Amendments made during Bill passage</b>
                   </p>
             </section>
             <section id="section_47" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Economic Crime and Corporate Transparency Act</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Economic Crime and Corporate Transparency Act</b>
+                     </span></h2>
             </section>
             <section id="section_48" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary of Amendments made to DBT Measures</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Summary of Amendments made to DBT Measures</b>
+                     </span></h2>
             </section>
             <section id="section_49" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>September 2024</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>September 2024</b>
+                     </span></h2>
             </section>
             <section id="section_50" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Background</b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Background</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>The Economic Crime and Corporate Transparency Act received Royal Assent in October
@@ -4959,10 +4936,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_51" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Focus of this document </b>
-                  </p>
+               <h2><span class="heading">
+                     <b>Focus of this document </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">5.</span></h2>
                   <p>
@@ -5871,13 +5847,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  Overarching Home Office Impact Assessment reference is HO0413</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  See: <a href="https://www.gov.uk/government/publications/corporate-transparency-and-register-reform"><u><a href="https://www.gov.uk/government/publications/corporate-transparency-and-register-reform">https://www.gov.uk/government/publications/corporate-transparency-and-register-reform</a></u></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  See: <a href="https://www.gov.uk/government/publications/corporate-transparency-and-register-reform"><u>https://www.gov.uk/government/publications/corporate-transparency-and-register-reform</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a> 
                   <span style="color:#000000"> See: </span>
                   <a href="https://bills.parliament.uk/bills/3339">
-                     <u><a href="https://bills.parliament.uk/bills/3339">https://bills.parliament.uk/bills/3339</a></u>
+                     <u>https://bills.parliament.uk/bills/3339</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -5894,7 +5870,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  See: <a href="https://www.gov.uk/guidance/set-up-and-run-a-limited-partnership"><u><a href="https://www.gov.uk/guidance/set-up-and-run-a-limited-partnership">https://www.gov.uk/guidance/set-up-and-run-a-limited-partnership</a></u></a></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  See: <a href="https://www.gov.uk/guidance/set-up-and-run-a-limited-partnership"><u>https://www.gov.uk/guidance/set-up-and-run-a-limited-partnership</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  These partnerships are a type of LP and will be subject to the reforms outlined in
@@ -5906,7 +5882,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   possible. There are still approximately 500 “legacy” tenancies operating on this basis.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  See: <a href="https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence"><u><a href="https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence">https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence</a></u></a><u></u></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  See: <a href="https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence"><u>https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence</u></a><u></u></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  We note that Northern Ireland did not become part of the UK register until 2009.
@@ -5915,7 +5891,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  Between 2000/01 and 2009/10, the effective register in Great Britain grew by 63.6%.
                   In October 2009 the Northern Ireland register merged with the register for Great Britain
-                  to create a UK Register. UK figures are reported from 2009/10 onwards. See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021"><u><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021">https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021</a></u></a>, Table 8 </p>
+                  to create a UK Register. UK figures are reported from 2009/10 onwards. See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021</u></a>, Table 8 </p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Since June 2017 SLPs are required to file a confirmation statement each year. This
@@ -5925,7 +5901,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   control are between them and the SLP.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021"><u><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021">https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021</a></u></a></p>
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  4.4m is the value of the effective register. Effective register size is the total
@@ -5933,19 +5909,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   of liquidation/receivership.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  See: <a href="https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence"><u><a href="https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence">https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence</a></u></a></p>
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  See: <a href="https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence"><u>https://www.gov.uk/government/consultations/review-of-limited-partnership-law-call-for-evidence</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  See: <a href="https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law"><u><a href="https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law">https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law</a></u></a></p>
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  See: <a href="https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law"><u>https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  Information on TCSPs can be found here: <a href="https://www.gov.uk/guidance/money-laundering-regulations-trust-or-company-service-provider-registration"><u><a href="https://www.gov.uk/guidance/money-laundering-regulations-trust-or-company-service-provider-registration">https://www.gov.uk/guidance/money-laundering-regulations-trust-or-company-service-provider-registration</a></u></a></p>
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  Information on TCSPs can be found here: <a href="https://www.gov.uk/guidance/money-laundering-regulations-trust-or-company-service-provider-registration"><u>https://www.gov.uk/guidance/money-laundering-regulations-trust-or-company-service-provider-registration</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  Currently, both presenters and individuals who register more than one (S)LP are required
                   to register with an Anti-Money Laundering (AML) Supervisory Authority to verify that
                   they conduct adequate due diligence on the (S)LPs that they register. Supervisory
-                  authorities available here: <a href="https://www.gov.uk/anti-money-laundering-registration"><u><a href="https://www.gov.uk/anti-money-laundering-registration">https://www.gov.uk/anti-money-laundering-registration</a></u></a></p>
+                  authorities available here: <a href="https://www.gov.uk/anti-money-laundering-registration"><u>https://www.gov.uk/anti-money-laundering-registration</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  The location of the PPoB determines which UK jurisdiction it is registered in – for
@@ -5953,7 +5929,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   Companies House in Scotland and is subject to Scots law.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  See: <a href="https://www.theguardian.com/world/2017/sep/04/the-scottish-firms-that-let-money-flow-from-azerbaijan-to-the-uk"><u><a href="https://www.theguardian.com/world/2017/sep/04/the-scottish-firms-that-let-money-flow-from-azerbaijan-to-the-uk">https://www.theguardian.com/world/2017/sep/04/the-scottish-firms-that-let-money-flow-from-azerbaijan-to-the-uk</a></u></a><u></u>&amp;<u></u><a href="https://www.transparency.org.uk/publications/offshore-in-the-uk/"><u><a href="https://www.transparency.org.uk/publications/offshore-in-the-uk/">https://www.transparency.org.uk/publications/offshore-in-the-uk/</a></u></a></p>
+               <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  See: <a href="https://www.theguardian.com/world/2017/sep/04/the-scottish-firms-that-let-money-flow-from-azerbaijan-to-the-uk"><u>https://www.theguardian.com/world/2017/sep/04/the-scottish-firms-that-let-money-flow-from-azerbaijan-to-the-uk</u></a><u></u>&amp;<u></u><a href="https://www.transparency.org.uk/publications/offshore-in-the-uk/"><u>https://www.transparency.org.uk/publications/offshore-in-the-uk/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  See: <a href="https://www.icij.org/investigations/fincen-files/inside-scandal-rocked-danske-estonia-and-the-shell-company-factories-that-served-it/"><u>International Consortium of Investigative Journalists</u></a></p>
@@ -5970,39 +5946,39 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   of presenters is likely to hold over all relevant time periods.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  See: <a href="https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law"><u><a href="https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law">https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law</a></u></a></p>
+               <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  See: <a href="https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law"><u>https://www.gov.uk/government/consultations/limited-partnerships-reform-of-limited-partnership-law</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-25" href="#fnref-25">25</a>  See: <a href="https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments"><u><a href="https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments">https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments</a></u></a>. </p>
+               <p><a class="marker" id="fn-25" href="#fnref-25">25</a>  See: <a href="https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments"><u>https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments</u></a>. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-26" href="#fnref-26">26</a>  See: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/782656/understanding-organised-crime-mar16-horr103-2nd.pdf"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/782656/understanding-organised-crime-mar16-horr103-2nd.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/782656/understanding-organised-crime-mar16-horr103-2nd.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-26" href="#fnref-26">26</a>  See: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/782656/understanding-organised-crime-mar16-horr103-2nd.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/782656/understanding-organised-crime-mar16-horr103-2nd.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  See: <a href="http://www.transparency.org.uk/publications/offshore-in-the-uk/"><u><a href="http://www.transparency.org.uk/publications/offshore-in-the-uk/#.WungAOj4_yQ">http://www.transparency.org.uk/publications/offshore-in-the-uk/#.WungAOj4_yQ</a></u></a></p>
+               <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  See: <a href="http://www.transparency.org.uk/publications/offshore-in-the-uk/"><u>http://www.transparency.org.uk/publications/offshore-in-the-uk/#.WungAOj4_yQ</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  SLP confirmation statements are used to confirm the details of their beneficial ownership
                   information </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-29" href="#fnref-29">29</a>  See: <a href="https://www.gov.uk/government/publications/specify-the-nature-of-a-change-in-the-limited-partnership-lp6"><u><a href="https://www.gov.uk/government/publications/specify-the-nature-of-a-change-in-the-limited-partnership-lp6">https://www.gov.uk/government/publications/specify-the-nature-of-a-change-in-the-limited-partnership-lp6</a></u></a></p>
+               <p><a class="marker" id="fn-29" href="#fnref-29">29</a>  See: <a href="https://www.gov.uk/government/publications/specify-the-nature-of-a-change-in-the-limited-partnership-lp6"><u>https://www.gov.uk/government/publications/specify-the-nature-of-a-change-in-the-limited-partnership-lp6</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  See: <a href="https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation"><u><a href="https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation">https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation</a></u></a></p>
+               <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  See: <a href="https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation"><u>https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-31" href="#fnref-31">31</a>  See: <a href="https://www.gov.uk/government/publications/companies-register-activities-statistical-release-2019-to-2020/companies-register-activities-2019-to-2020"><u><a href="https://www.gov.uk/government/publications/companies-register-activities-statistical-release-2019-to-2020/companies-register-activities-2019-to-2020">https://www.gov.uk/government/publications/companies-register-activities-statistical-release-2019-to-2020/companies-register-activities-2019-to-2020</a></u></a></p>
+               <p><a class="marker" id="fn-31" href="#fnref-31">31</a>  See: <a href="https://www.gov.uk/government/publications/companies-register-activities-statistical-release-2019-to-2020/companies-register-activities-2019-to-2020"><u>https://www.gov.uk/government/publications/companies-register-activities-statistical-release-2019-to-2020/companies-register-activities-2019-to-2020</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-32" href="#fnref-32">32</a>  See: <a href="https://www.gov.uk/government/publications/company-ownership-transparency-and-trust-impact-assessments"><u><a href="https://www.gov.uk/government/publications/company-ownership-transparency-and-trust-impact-assessments">https://www.gov.uk/government/publications/company-ownership-transparency-and-trust-impact-assessments</a></u></a><u> and <a href="https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation">https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation</a></u></p>
+               <p><a class="marker" id="fn-32" href="#fnref-32">32</a>  See: <a href="https://www.gov.uk/government/publications/company-ownership-transparency-and-trust-impact-assessments"><u>https://www.gov.uk/government/publications/company-ownership-transparency-and-trust-impact-assessments</u></a><u> and <a href="https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation">https://www.gov.uk/government/publications/people-of-significant-control-psc-register-review-of-implementation</a></u></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-33" href="#fnref-33">33</a>  The calculations presented in the cost summary boxes are to the nearest thousand.
                   In the final calculations, the exact values will be used.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-34" href="#fnref-34">34</a>  See: <a href="https://www.gov.uk/government/publications/apply-for-a-registration-of-a-limited-partnership-lp5"><u><a href="https://www.gov.uk/government/publications/apply-for-a-registration-of-a-limited-partnership-lp5">https://www.gov.uk/government/publications/apply-for-a-registration-of-a-limited-partnership-lp5</a></u></a></p>
+               <p><a class="marker" id="fn-34" href="#fnref-34">34</a>  See: <a href="https://www.gov.uk/government/publications/apply-for-a-registration-of-a-limited-partnership-lp5"><u>https://www.gov.uk/government/publications/apply-for-a-registration-of-a-limited-partnership-lp5</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-35" href="#fnref-35">35</a>  Values round up to £173.</p>
@@ -6013,19 +5989,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   and the fee would lead to double counting. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  See: <a href="http://delcode.delaware.gov/title6/c017/index.html"><u><a href="http://delcode.delaware.gov/title6/c017/index.html">http://delcode.delaware.gov/title6/c017/index.html</a></u></a><u></u></p>
+               <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  See: <a href="http://delcode.delaware.gov/title6/c017/index.html"><u>http://delcode.delaware.gov/title6/c017/index.html</u></a><u></u></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-38" href="#fnref-38">38</a> See: <a href="https://www.pwc.lu/en/private-equity/current-challenges-luxembourg-limited-partnership.html"><u><a href="https://www.pwc.lu/en/private-equity/current-challenges-luxembourg-limited-partnership.html">https://www.pwc.lu/en/private-equity/current-challenges-luxembourg-limited-partnership.html</a></u></a></p>
+               <p><a class="marker" id="fn-38" href="#fnref-38">38</a> See: <a href="https://www.pwc.lu/en/private-equity/current-challenges-luxembourg-limited-partnership.html"><u>https://www.pwc.lu/en/private-equity/current-challenges-luxembourg-limited-partnership.html</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-39" href="#fnref-39">39</a>  The department’s correspondence with BVCA</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-40" href="#fnref-40">40</a>  See: <a href="https://www.bellingcat.com/news/uk-and-europe/2017/11/14/british-governments-attempts-fight-corruption-money-laundering-already-failing/"><u><a href="https://www.bellingcat.com/news/uk-and-europe/2017/11/14/british-governments-attempts-fight-corruption-money-laundering-already-failing/">https://www.bellingcat.com/news/uk-and-europe/2017/11/14/british-governments-attempts-fight-corruption-money-laundering-already-failing/</a></u></a></p>
+               <p><a class="marker" id="fn-40" href="#fnref-40">40</a>  See: <a href="https://www.bellingcat.com/news/uk-and-europe/2017/11/14/british-governments-attempts-fight-corruption-money-laundering-already-failing/"><u>https://www.bellingcat.com/news/uk-and-europe/2017/11/14/british-governments-attempts-fight-corruption-money-laundering-already-failing/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-41" href="#fnref-41">41</a>  See: <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u><a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits">https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</a></u></a></p>
+               <p><a class="marker" id="fn-41" href="#fnref-41">41</a>  See: <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u>https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-42" href="#fnref-42">42</a>  We attempted to do so using the FAME database but were unable to clearly identify
@@ -6033,13 +6009,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   requirement this led to low values being returned.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-43" href="#fnref-43">43</a>  See: <a href="https://bills.parliament.uk/bills/3339"><u><a href="https://bills.parliament.uk/bills/3339">https://bills.parliament.uk/bills/3339</a></u></a></p>
+               <p><a class="marker" id="fn-43" href="#fnref-43">43</a>  See: <a href="https://bills.parliament.uk/bills/3339"><u>https://bills.parliament.uk/bills/3339</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-44" href="#fnref-44">44</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u><a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf">https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-44" href="#fnref-44">44</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u>https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-45" href="#fnref-45">45</a>  See: <a href="https://bills.parliament.uk/bills/3339/publications"><u><a href="https://bills.parliament.uk/bills/3339/publications">https://bills.parliament.uk/bills/3339/publications</a></u></a></p>
+               <p><a class="marker" id="fn-45" href="#fnref-45">45</a>  See: <a href="https://bills.parliament.uk/bills/3339/publications"><u>https://bills.parliament.uk/bills/3339/publications</u></a></p>
                <p>Overarching Home Office Impact Assessment reference is HO0413</p>
             </div>
             <div class="footnote">
@@ -6048,52 +6024,54 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <span style="color:#000000">See: </span>
                   <a href="https://www.gov.uk/government/publications/better-regulation-framework">
-                     <u><a href="https://www.gov.uk/government/publications/better-regulation-framework">https://www.gov.uk/government/publications/better-regulation-framework</a></u>
+                     <u>https://www.gov.uk/government/publications/better-regulation-framework</u>
                      </a>
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-47" href="#fnref-47">47</a>  Companies register activities (Statistical release April 2023 to March 2024): <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-april-2023-to-march-2024"><u><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-april-2023-to-march-2024">https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-april-2023-to-march-2024</a></u></a></p>
+               <p><a class="marker" id="fn-47" href="#fnref-47">47</a>  Companies register activities (Statistical release April 2023 to March 2024): <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-april-2023-to-march-2024"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-april-2023-to-march-2024</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-48" href="#fnref-48">48</a>  Whilst There are roughly 58,000 Limited Partnerships on the register, this also includes
                   limited partnerships that are closed as they have not been removed from the register.
                   We have done some further analysis to estimate the share of these entities that are
                   active. See the methodology used here: The Registrar (Identity Verification and Authorised
-                  Corporate Service Providers) Regulations 2024 pg. 24: <a href="https://www.legislation.gov.uk/ukdsi/2024/9780348261905/impacts/2024/96"><u><a href="https://www.legislation.gov.uk/ukdsi/2024/9780348261905/impacts/2024/96">https://www.legislation.gov.uk/ukdsi/2024/9780348261905/impacts/2024/96</a></u></a></p>
+                  Corporate Service Providers) Regulations 2024 pg. 24: <a href="https://www.legislation.gov.uk/ukdsi/2024/9780348261905/impacts/2024/96"><u>https://www.legislation.gov.uk/ukdsi/2024/9780348261905/impacts/2024/96</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-49" href="#fnref-49">49</a>  See: <a href="https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-october-to-december-2023/incorporated-companies-in-the-uk-october-to-december-2023"><u><a href="https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-october-to-december-2023/incorporated-companies-in-the-uk-october-to-december-2023">https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-october-to-december-2023/incorporated-companies-in-the-uk-october-to-december-2023</a></u></a></p>
+               <p><a class="marker" id="fn-49" href="#fnref-49">49</a>  See: <a href="https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-october-to-december-2023/incorporated-companies-in-the-uk-october-to-december-2023"><u>https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-october-to-december-2023/incorporated-companies-in-the-uk-october-to-december-2023</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-50" href="#fnref-50">50</a>  The total register includes <u>all</u> companies required to file accounts with Companies House, whilst on the effective
                   register companies in the course of dissolution are excluded from the count.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-51" href="#fnref-51">51</a>  See: <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14"><u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/</a> datasets/occupation4digitsoc2010ashetable14</u></a><u></u></p>
+               <p><a class="marker" id="fn-51" href="#fnref-51">51</a>  See: <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14"><u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/
+                        datasets/occupation4digitsoc2010ashetable14</u></a><u></u></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-52" href="#fnref-52">52</a>  Non-wage costs include sickness, maternity and paternity pay, National Insurance
                   contributions and pension contributions.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-53" href="#fnref-53">53</a>  See: <a href="https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp"><u><a href="https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp">https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp</a></u></a></p>
+               <p><a class="marker" id="fn-53" href="#fnref-53">53</a>  See: <a href="https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp"><u>https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-54" href="#fnref-54">54</a>  We use 2019 prices to align with the cost assessment produced in the primary legislation
                   impact assessment</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-55" href="#fnref-55">55</a> <a href="https://www.blackkitetranslations.com/quote/wordcount.php"><u><a href="https://www.blackkitetranslations.com/quote/wordcount.php#:~:text=As%20a%20rule%20of%20thumb,average%">https://www.blackkitetranslations.com/quote/wordcount.php#:~:text=As%20a%20rule%20of%20thumb,average%</a> 20400%20to%20500%20words</u></a>. </p>
+               <p><a class="marker" id="fn-55" href="#fnref-55">55</a> <a href="https://www.blackkitetranslations.com/quote/wordcount.php"><u>https://www.blackkitetranslations.com/quote/wordcount.php#:~:text=As%20a%20rule%20of%20thumb,average%
+                        20400%20to%20500%20words</u></a>. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://www.prsa.org/article/how-to-determine-average-reading-time"><u><a href="https://www.prsa.org/article/how-to-determine-average-reading-time">https://www.prsa.org/article/how-to-determine-average-reading-time</a></u></a></p>
+               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://www.prsa.org/article/how-to-determine-average-reading-time"><u>https://www.prsa.org/article/how-to-determine-average-reading-time</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-57" href="#fnref-57">57</a>  See: <a href="https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf">https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-57" href="#fnref-57">57</a>  See: <a href="https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf"><u>https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-58" href="#fnref-58">58</a>  Table 3.9 Overall cost of compliance with PSC regulations See: <a href="https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf">https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf</a></u></a><u></u></p>
+               <p><a class="marker" id="fn-58" href="#fnref-58">58</a>  Table 3.9 Overall cost of compliance with PSC regulations See: <a href="https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf"><u>https://assets.publishing.service.gov.uk/media/5d431904e5274a699238cf8b/review-implementation-psc-register.pdf</u></a><u></u></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-59" href="#fnref-59">59</a>  The Companies and Limited Liability Partnerships (Filing Requirements) Regulations
@@ -6103,7 +6081,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   instead on the public register at Companies House. Given the similarities with this
                   regulation and the changes being made in the PSC amendments – that an entity no longer
                   has to keep a register locally as long as it’s held centrally - its analysis and findings
-                  are very relevant. See: <a href="https://www.legislation.gov.uk/uksi/2016/599/impacts"><u><a href="https://www.legislation.gov.uk/uksi/2016/599/impacts">https://www.legislation.gov.uk/uksi/2016/599/impacts</a></u></a></p>
+                  are very relevant. See: <a href="https://www.legislation.gov.uk/uksi/2016/599/impacts"><u>https://www.legislation.gov.uk/uksi/2016/599/impacts</u></a></p>
             </div>
          </footer>
       </article>

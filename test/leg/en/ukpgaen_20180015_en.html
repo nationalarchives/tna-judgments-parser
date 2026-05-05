@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -2450,7 +2467,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT">
                      <span style="color:#0070C0">
-                        <u><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT">https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT</a></u>
+                        <u>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012A%2FTXT</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -2463,7 +2480,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf">https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf</a></u>
+                        <u>https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -2476,7 +2493,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf">https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf</a></u>
+                        <u>https://www.iaea.org/sites/default/files/publications/documents/infcircs/1978/infcirc263a1.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -2489,7 +2506,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302">
                      <span style="color:#0070C0">
-                        <u><a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302">http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302</a></u>
+                        <u>http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32005R0302</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -2503,7 +2520,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">7 </span>
                   <a href="https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations">https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations</a></u>
+                        <u>https://www.gov.uk/government/publications/nuclear-safeguards-bill-draft-regulations</u>
                         </span>
                      </a>
                   <span style="color:#0070C1">
@@ -2516,7 +2533,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html">
                      <span style="color:#0070C0">
-                        <u><a href="https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html">https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html</a></u>
+                        <u>https://services.parliament.uk/bills/2017-19/nuclearsafeguards/documents.html</u>
                         </span>
                      </a>
                   <span style="color:#000000">

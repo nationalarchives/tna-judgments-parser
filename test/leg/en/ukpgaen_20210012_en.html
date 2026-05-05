@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -4993,24 +5010,24 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          <footer class="footnotes">
             <hr style="margin-top:2em">
             <div class="footnote">
-               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The AIP is available at <a href="http://www.nats-uk.ead-it.com/public/index.php.html"><span style="color:#0070C0"><u><a href="http://www.nats-uk.ead-it.com/public/index.php.html">http://www.nats-uk.ead-it.com/public/index.php.html</a></u></span></a>. Members of the public may also obtain it in printed form (or DVD) by writing to
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The AIP is available at <a href="http://www.nats-uk.ead-it.com/public/index.php.html"><span style="color:#0070C0"><u>http://www.nats-uk.ead-it.com/public/index.php.html</u></span></a>. Members of the public may also obtain it in printed form (or DVD) by writing to
                   Aeronautical Information Service (AIS), NATS Swanwick, Room 3115, Sopwith Way, Southampton,
                   Hants, SO31 7AY.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The consultation can be found here: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/769695/aviation-2050-web.pdf"><span style="color:#0070C0"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/769695/aviation-2050-web.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/769695/aviation-2050-web.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The consultation can be found here: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/769695/aviation-2050-web.pdf"><span style="color:#0070C0"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/769695/aviation-2050-web.pdf</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  The Government response to Annex A can be found here: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841247/consultation-response-on-legislation-for-enforcing-the-development-of-airspace-change-proposals.pdf"><span style="color:#0070C0"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841247/consultation-response-on-legislation-for-enforcing-the-development-of-airspace-change-proposals.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841247/consultation-response-on-legislation-for-enforcing-the-development-of-airspace-change-proposals.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  The Government response to Annex A can be found here: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841247/consultation-response-on-legislation-for-enforcing-the-development-of-airspace-change-proposals.pdf"><span style="color:#0070C0"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/841247/consultation-response-on-legislation-for-enforcing-the-development-of-airspace-change-proposals.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  The Civil Aviation Authority (Air Navigation) Directions 2017 and subsequent amendments
-                  to the directions can be found here: <a href="https://www.caa.co.uk/Commercial-industry/Airspace/Airspace-change/Legislative-framework-to-airspace-change/"><span style="color:#0070C0"><u><a href="https://www.caa.co.uk/Commercial-industry/Airspace/Airspace-change/Legislative-framework-to-airspace-change/">https://www.caa.co.uk/Commercial-industry/Airspace/Airspace-change/Legislative-framework-to-airspace-change/</a></u></span></a></p>
+                  to the directions can be found here: <a href="https://www.caa.co.uk/Commercial-industry/Airspace/Airspace-change/Legislative-framework-to-airspace-change/"><span style="color:#0070C0"><u>https://www.caa.co.uk/Commercial-industry/Airspace/Airspace-change/Legislative-framework-to-airspace-change/</u></span></a></p>
                <p></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  NATS Independent Enquiry (2015) NATS System Failure 12 December 2014 – Final Report
-                  <a href="http://www.nats.aero/wp-content/uploads/2015/05/Independent-Enquiry-Final-Report-2.0.pdf"><span style="color:#0070C0"><u><a href="http://www.nats.aero/wp-content/uploads/2015/05/Independent-Enquiry-Final-Report-2.0.pdf">http://www.nats.aero/wp-content/uploads/2015/05/Independent-Enquiry-Final-Report-2.0.pdf</a></u></span></a></p>
+                  <a href="http://www.nats.aero/wp-content/uploads/2015/05/Independent-Enquiry-Final-Report-2.0.pdf"><span style="color:#0070C0"><u>http://www.nats.aero/wp-content/uploads/2015/05/Independent-Enquiry-Final-Report-2.0.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a> 
@@ -5024,7 +5041,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/modernising-the-licensing-framework-for-air-traffic-services">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/modernising-the-licensing-framework-for-air-traffic-services">https://www.gov.uk/government/consultations/modernising-the-licensing-framework-for-air-traffic-services</a></u>
+                        <u>https://www.gov.uk/government/consultations/modernising-the-licensing-framework-for-air-traffic-services</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -5032,7 +5049,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> The Government response to the consultation <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/590630/modernising-licensing-framework-air-traffic-services-government-consultation-response.pdf"><span style="color:#0070C0"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/590630/modernising-licensing-framework-air-traffic-services-government-consultation-response.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/590630/modernising-licensing-framework-air-traffic-services-government-consultation-response.pdf</a></u></span></a><span style="background-color:#E6E6E6"><span style="color:#2B579A"></span></span></p>
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> The Government response to the consultation <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/590630/modernising-licensing-framework-air-traffic-services-government-consultation-response.pdf"><span style="color:#0070C0"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/590630/modernising-licensing-framework-air-traffic-services-government-consultation-response.pdf</u></span></a><span style="background-color:#E6E6E6"><span style="color:#2B579A"></span></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  S.I. 2016/765<span class="tab">&nbsp;</span></p>
@@ -5044,8 +5061,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  The ANO 2016 was amended by the Air Navigation (Amendment) Order 2020, S.I. 2020/1555.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Consultation Document for “<i>Taking Flight: The Future of Drones in the UK”: </i><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/729458/taking-flight-the-future-of-drones-in-the-uk.pdf"><span style="color:#0070C0"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/729458/taking-flight-the-future-of-drones-in-the-uk.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/729458/taking-flight-the-future-of-drones-in-the-uk.pdf</a></u></span></a><i></i></p>
-               <p>Government Response: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/771673/future-of-drones-in-uk-consultation-response-web.pdf"><span style="color:#0070C0"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/771673/future-of-drones-in-uk-consultation-response-web.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/771673/future-of-drones-in-uk-consultation-response-web.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Consultation Document for “<i>Taking Flight: The Future of Drones in the UK”: </i><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/729458/taking-flight-the-future-of-drones-in-the-uk.pdf"><span style="color:#0070C0"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/729458/taking-flight-the-future-of-drones-in-the-uk.pdf</u></span></a><i></i></p>
+               <p>Government Response: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/771673/future-of-drones-in-uk-consultation-response-web.pdf"><span style="color:#0070C0"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/771673/future-of-drones-in-uk-consultation-response-web.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  Consultation document for “<i>Stop and search: extending police powers to cover offences relating to unmanned aircraft
@@ -5053,11 +5070,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/739629/06_09_18_Stop_and_Search_Consultation_Document_.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/739629/06_09_18_Stop_and_Search_Consultation_Document_.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/739629/06_09_18_Stop_and_Search_Consultation_Document_.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/739629/06_09_18_Stop_and_Search_Consultation_Document_.pdf</u>
                         </span>
                      </a>
                   </p>
-               <p>Government response: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/780367/ss_consultation_gov_response.pdf"><span style="color:#0070C0"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/780367/ss_consultation_gov_response.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/780367/ss_consultation_gov_response.pdf</a></u></span></a></p>
+               <p>Government response: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/780367/ss_consultation_gov_response.pdf"><span style="color:#0070C0"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/780367/ss_consultation_gov_response.pdf</u></span></a></p>
             </div>
          </footer>
       </article>

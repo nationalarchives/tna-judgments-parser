@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -27671,7 +27688,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  ibid.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration">https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration</a></u></span></a></p>
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="http://publicservicetransformation.org/images/articles/news/EmergencyServicesCollabResearch.pdf"><span style="color:#0070C0"><u>Research into emergency services collaboration, Parry et al, 2015</u></span></a></p>
@@ -27689,10 +27706,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-12" href="#fnref-12">12</a> <a href="https://www.ipcc.gov.uk/sites/default/files/Documents/research_stats/complaints_statistics_10-11.PDF"><span style="color:#0070C0"><u>Police Complaints, Statistics for England and Wales 2010/11, IPCC</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> <a href="http://www.college.police.uk/What-we-do/Ethics/Pages/Code-of-Ethics.aspx"><span style="color:#0070C0"><u><a href="http://www.college.police.uk/What-we-do/Ethics/Pages/Code-of-Ethics.aspx">http://www.college.police.uk/What-we-do/Ethics/Pages/Code-of-Ethics.aspx</a></u></span></a></p>
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> <a href="http://www.college.police.uk/What-we-do/Ethics/Pages/Code-of-Ethics.aspx"><span style="color:#0070C0"><u>http://www.college.police.uk/What-we-do/Ethics/Pages/Code-of-Ethics.aspx</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <a href="https://www.gov.uk/government/consultations/improving-police-integrity-reforming-the-police-complaints-and-disciplinary-systems"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/consultations/improving-police-integrity-reforming-the-police-complaints-and-disciplinary-systems">https://www.gov.uk/government/consultations/improving-police-integrity-reforming-the-police-complaints-and-disciplinary-systems</a></u></span></a></p>
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <a href="https://www.gov.uk/government/consultations/improving-police-integrity-reforming-the-police-complaints-and-disciplinary-systems"><span style="color:#0070C0"><u>https://www.gov.uk/government/consultations/improving-police-integrity-reforming-the-police-complaints-and-disciplinary-systems</u></span></a></p>
                <p></p>
             </div>
             <div class="footnote">
@@ -27703,7 +27720,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  Ibid.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-17" href="#fnref-17">17</a> <a href="https://www.ipcc.gov.uk/sites/default/files/Documents/speeches/IPCC_response_to_the_Triennial_Review_report_June_2015.pdf"><span style="color:#0070C0"><u><a href="https://www.ipcc.gov.uk/sites/default/files/Documents/speeches/IPCC_response_to_the_Triennial_Review_report_June_2015.pdf">https://www.ipcc.gov.uk/sites/default/files/Documents/speeches/IPCC_response_to_the_Triennial_Review_report_June_2015.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a> <a href="https://www.ipcc.gov.uk/sites/default/files/Documents/speeches/IPCC_response_to_the_Triennial_Review_report_June_2015.pdf"><span style="color:#0070C0"><u>https://www.ipcc.gov.uk/sites/default/files/Documents/speeches/IPCC_response_to_the_Triennial_Review_report_June_2015.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  "An independent review of the governance arrangements of the Independent Police Complaints
@@ -27744,7 +27761,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   Illegal Trafficking (2013), page 5.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2015.333.01.0062.01.ENG&amp;toc=OJ:L:2015:333:TO"><span style="color:#0070C0"><u><a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2015.333.01.0062.01.ENG&amp;toc=OJ:L:2015:333:TO">http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2015.333.01.0062.01.ENG&amp;toc=OJ:L:2015:333:TO</a></u></span></a></p>
+               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2015.333.01.0062.01.ENG&amp;toc=OJ:L:2015:333:TO"><span style="color:#0070C0"><u>http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2015.333.01.0062.01.ENG&amp;toc=OJ:L:2015:333:TO</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-29" href="#fnref-29">29</a> <a href="https://www.gov.uk/government/statistics/offender-management-statistics-quarterly-july-to-september-2015"><span style="color:#0070C0"><u>Offender Management Statistics Quarterly Bulletin, July to September 2015, MoJ</u></span></a></p>
@@ -27753,13 +27770,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  Managing and removing foreign national offenders, October 2014, NAO</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-31" href="#fnref-31">31</a> <a href="https://www.gov.uk/government/statistics/immigration-statistics-july-to-september-2015-data-tables"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/statistics/immigration-statistics-july-to-september-2015-data-tables">https://www.gov.uk/government/statistics/immigration-statistics-july-to-september-2015-data-tables</a></u></span></a></p>
+               <p><a class="marker" id="fn-31" href="#fnref-31">31</a> <a href="https://www.gov.uk/government/statistics/immigration-statistics-july-to-september-2015-data-tables"><span style="color:#0070C0"><u>https://www.gov.uk/government/statistics/immigration-statistics-july-to-september-2015-data-tables</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-32" href="#fnref-32">32</a>  Ibid.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-33" href="#fnref-33">33</a> <a href="https://www.gov.uk/government/publications/strategy-to-end-violence-against-women-and-girls-2016-to-2020"><span style="color:#000000"><u><a href="https://www.gov.uk/government/publications/strategy-to-end-violence-against-women-and-girls-2016-to-2020">https://www.gov.uk/government/publications/strategy-to-end-violence-against-women-and-girls-2016-to-2020</a></u></span></a></p>
+               <p><a class="marker" id="fn-33" href="#fnref-33">33</a> <a href="https://www.gov.uk/government/publications/strategy-to-end-violence-against-women-and-girls-2016-to-2020"><span style="color:#000000"><u>https://www.gov.uk/government/publications/strategy-to-end-violence-against-women-and-girls-2016-to-2020</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-34" href="#fnref-34">34</a>  Independent Inquiry into Child Sexual Exploitation in Rotherham 1997-2013, Alexis
@@ -27769,7 +27786,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-35" href="#fnref-35">35</a>  Report of Inspection of Rotherham Metropolitan Borough Council, Dame Louise Casey</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-36" href="#fnref-36">36</a> <a href="https://www.gov.uk/government/publications/taxi-and-private-hire-vehicle-licensing-best-practice-guidance"><span style="color:#000000"><u><a href="https://www.gov.uk/government/publications/taxi-and-private-hire-vehicle-licensing-best-practice-guidance">https://www.gov.uk/government/publications/taxi-and-private-hire-vehicle-licensing-best-practice-guidance</a></u></span></a></p>
+               <p><a class="marker" id="fn-36" href="#fnref-36">36</a> <a href="https://www.gov.uk/government/publications/taxi-and-private-hire-vehicle-licensing-best-practice-guidance"><span style="color:#000000"><u>https://www.gov.uk/government/publications/taxi-and-private-hire-vehicle-licensing-best-practice-guidance</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  i) premises occupied or controlled by the individual, ii) premises on which the individual
@@ -27777,7 +27794,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   arrested.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-38" href="#fnref-38">38</a> <a href="https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration">https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration</a></u></span></a></p>
+               <p><a class="marker" id="fn-38" href="#fnref-38">38</a> <a href="https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/policing-and-crime-bill-emergency-services-collaboration</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-39" href="#fnref-39">39</a>  "Local policing body" means a PCC or MOPAC in relation to the metropolitan police
@@ -27817,7 +27834,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   licensing in police forces in England and Wales” published at  <a href="http://www.justiceinspectorates.gov.uk/hmic/wp-content/uploads/firearms-licensing-targeting-the-risk.pdf"><span style="color:#0070C0"><u>www.justiceinspectorates.gov.uk/hmic/wp-content/uploads/firearms-licensing-targeting-the-risk.pdf</u></span></a> (HMIC)</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-47" href="#fnref-47">47</a>  The relevant Home Office guidance can be accessed: <a href="https://www.gov.uk/government/publications/circular-0212015-changes-to-home-office-guidance-on-police-misconduct-unsatisfactory-performance-and-attendance-management-procedures"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/circular-0212015-changes-to-home-office-guidance-on-police-misconduct-unsatisfactory-performance-and-attendance-management-procedures">https://www.gov.uk/government/publications/circular-0212015-changes-to-home-office-guidance-on-police-misconduct-unsatisfactory-performance-and-attendance-management-procedures</a></u></span></a></p>
+               <p><a class="marker" id="fn-47" href="#fnref-47">47</a>  The relevant Home Office guidance can be accessed: <a href="https://www.gov.uk/government/publications/circular-0212015-changes-to-home-office-guidance-on-police-misconduct-unsatisfactory-performance-and-attendance-management-procedures"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/circular-0212015-changes-to-home-office-guidance-on-police-misconduct-unsatisfactory-performance-and-attendance-management-procedures</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-48" href="#fnref-48">48</a>  As the professional body for policing in England and Wales, the College of Policing

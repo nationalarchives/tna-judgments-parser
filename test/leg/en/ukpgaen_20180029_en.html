@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -2296,7 +2313,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">consultation: </span>
                   <a href="https://www.gov.uk/government/consultations/reforming-the-soft-tissue-injury-whiplash-claims-process">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/reforming-the-soft-tissue-injury-whiplash-claims-process">https://www.gov.uk/government/consultations/reforming-the-soft-tissue-injury-whiplash-claims-process</a></u>
+                        <u>https://www.gov.uk/government/consultations/reforming-the-soft-tissue-injury-whiplash-claims-process</u>
                         </span>
                      </a>
                   <span style="color:#0070C0">
@@ -2313,7 +2330,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p>
                   <a href="https://consult.justice.gov.uk/digital-communications/personal-injury-discount-rate/">
                      <span style="color:#0070C0">
-                        <u><a href="https://consult.justice.gov.uk/digital-communications/personal-injury-discount-rate/">https://consult.justice.gov.uk/digital-communications/personal-injury-discount-rate/</a></u>
+                        <u>https://consult.justice.gov.uk/digital-communications/personal-injury-discount-rate/</u>
                         </span>
                      </a>
                   <span style="color:#0070C0">
@@ -2328,7 +2345,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/speeches/queens-speech-2017">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/speeches/queens-speech-2017">https://www.gov.uk/government/speeches/queens-speech-2017</a></u>
+                        <u>https://www.gov.uk/government/speeches/queens-speech-2017</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -2341,7 +2358,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/593431/part-1-response-to-reforming-soft-tissue-injury-claims.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/593431/part-1-response-to-reforming-soft-tissue-injury-claims.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/593431/part-1-response-to-reforming-soft-tissue-injury-claims.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/593431/part-1-response-to-reforming-soft-tissue-injury-claims.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -2373,7 +2390,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/personal-injury-discount-rate-how-it-should-be-set-in-future">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/personal-injury-discount-rate-how-it-should-be-set-in-future">https://www.gov.uk/government/consultations/personal-injury-discount-rate-how-it-should-be-set-in-future</a></u>
+                        <u>https://www.gov.uk/government/consultations/personal-injury-discount-rate-how-it-should-be-set-in-future</u>
                         </span>
                      </a>
                   </p>

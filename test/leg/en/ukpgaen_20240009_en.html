@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -8420,7 +8437,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> (2022) 74 EHRR 17; see also: </span>
                   <a href="https://hudoc.echr.coe.int/eng?i=001-210077">
                      <span style="color:#0070C0">
-                        <u><a href="https://hudoc.echr.coe.int/eng?i=001-210077">https://hudoc.echr.coe.int/eng?i=001-210077</a></u>
+                        <u>https://hudoc.echr.coe.int/eng?i=001-210077</u>
                         </span>
                      </a>
                   </p>
@@ -8431,7 +8448,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <span style="color:#3D3D3D">[2017] 3 All ER 647; see also: </span>
                   <a href="https://investigatorypowerstribunal.org.uk/judgement/privacy-international-and-1-secretary-of-state-for-foreign-and-commonwealth-affairs-2-secretary-of-state-for-the-home-department-3-government-communications-headquarters-4-security-service-5/">
-                     <u><a href="https://investigatorypowerstribunal.org.uk/judgement/privacy-international-and-1-secretary-of-state-for-foreign-and-commonwealth-affairs-2-secretary-of-state-for-the-home-department-3-government-communications-headquarters-4-security-service-5/">https://investigatorypowerstribunal.org.uk/judgement/privacy-international-and-1-secretary-of-state-for-foreign-and-commonwealth-affairs-2-secretary-of-state-for-the-home-department-3-government-communications-headquarters-4-security-service-5/</a></u>
+                     <u>https://investigatorypowerstribunal.org.uk/judgement/privacy-international-and-1-secretary-of-state-for-foreign-and-commonwealth-affairs-2-secretary-of-state-for-the-home-department-3-government-communications-headquarters-4-security-service-5/</u>
                      </a>
                   </p>
             </div>
@@ -8460,7 +8477,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62015CJ0203">
                      <span style="color:#0070C0">
-                        <u><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62015CJ0203">https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62015CJ0203</a></u>
+                        <u>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62015CJ0203</u>
                         </span>
                      </a>
                   </p>
@@ -8471,7 +8488,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/a-question-of-trust-report-of-the-investigatory-powers-review">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/a-question-of-trust-report-of-the-investigatory-powers-review">https://www.gov.uk/government/publications/a-question-of-trust-report-of-the-investigatory-powers-review</a></u>
+                        <u>https://www.gov.uk/government/publications/a-question-of-trust-report-of-the-investigatory-powers-review</u>
                         </span>
                      </a>
                   <span style="color:#000000">

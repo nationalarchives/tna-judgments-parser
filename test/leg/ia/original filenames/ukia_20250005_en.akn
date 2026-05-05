@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/data.akn" />
-          <FRBRdate date="2026-05-01" name="historic-akn-transform" />
+          <FRBRdate date="2026-05-05" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -60,12 +60,15 @@
     <mainBody>
       <toc>
         <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5#summary" level="2"><inline name="tocHeading">1. Summary</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/2" level="2"><inline name="tocHeading">2. I have read the PIR and I am satisfied that it represents a fair and proportionate assessment of ...</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/3" level="2"><inline name="tocHeading">3. Mary Creagh CBE MP</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/4" level="2"><inline name="tocHeading">4. Further information sheet</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/2" level="2"><inline name="tocHeading">1. Summary</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/3" level="2"><inline name="tocHeading">2. Questions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/4" level="2"><inline name="tocHeading">3. Sign-off for Post Implementation Review: Chief economist/Head of Analysis and Minister</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/5" level="2"><inline name="tocHeading">4. I have read the PIR and I am satisfied that it represents a fair and proportionate assessment of ...</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/6" level="2"><inline name="tocHeading">5. Mary Creagh CBE MP</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2013/3113/impacts/2025/5/section/7" level="2"><inline name="tocHeading">6. Further information sheet</inline></tocItem>
       </toc>
-      <hcontainer name="summary" eId="summary">
+      <section class="summary" eId="section_2">
+        <heading>Summary</heading>
         <content>
           <table uk:widths="3.94in 3.25in">
             <tr>
@@ -137,8 +140,9 @@
             </tr>
           </table>
         </content>
-      </hcontainer>
-      <level>
+      </section>
+      <section class="summary" eId="section_3">
+        <heading>Questions</heading>
         <content>
           <table uk:widths="7.19in">
             <tr>
@@ -181,24 +185,22 @@
             </tr>
           </table>
         </content>
-      </level>
-      <level>
+      </section>
+      <section class="summary" eId="section_4">
+        <heading>Sign-off for Post Implementation Review: Chief economist/Head of Analysis and Minister</heading>
         <content>
           <p><span style="color:#000000">Sign-off for Post Implementation Review: Chief economist/Head of Analysis and Minister</span></p>
         </content>
-      </level>
-      <section eId="section_2">
-        <heading>I have read the PIR and I am satisfied that it represents a fair and proportionate assessment of the impact of the measure.</heading>
-        <intro>
-          <p><b><i>I have read the PIR and I am satisfied that it represents a fair and proportionate assessment of the impact of the measure.</i></b></p>
-        </intro>
+      </section>
+      <section eId="section_5">
+        <heading><b><i>I have read the PIR and I am satisfied that it represents a fair and proportionate assessment of the impact of the measure.</i></b></heading>
         <level>
           <content>
             <p>Signed:  <span style="color:#000000"><i>Abi Farrag, Economic Advisor</i></span><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" />Date: <span style="color:#000000">16/12/2024</span></p>
           </content>
         </level>
       </section>
-      <section eId="section_3">
+      <section eId="section_6">
         <heading>Mary Creagh CBE MP</heading>
         <intro>
           <p>Signed:  <span style="color:#000000"><b><i>Mary Creagh CBE MP</i></b></span></p>
@@ -209,11 +211,8 @@
           </content>
         </level>
       </section>
-      <section eId="section_4">
-        <heading>Further information sheet</heading>
-        <intro>
-          <p><span style="color:#000000"><b>Further information sheet</b></span></p>
-        </intro>
+      <section eId="section_7">
+        <heading><span style="color:#000000"><b>Further information sheet</b></span></heading>
         <paragraph>
           <content>
             <p><span style="color:#000000">Please provide additional evidence in subsequent sheets, as required. </span></p>

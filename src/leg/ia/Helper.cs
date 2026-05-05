@@ -61,6 +61,9 @@ class Helper : BaseHelper {
         UpdateFRBRDatesFromDocDate(xml);
         TransformHeaderStructure(xml);
         TransformContentSections(xml);
+        PromoteCoverSheetToSections(xml);
+        BuildSubSectionsFromHeadingDepth(xml);
+        RenumberTopLevelMainBodySections(xml);
         RemoveEmptyHeadings(xml);
         ReplaceThWithTd(xml);
         RemoveUnsupportedElements(xml);
@@ -68,6 +71,8 @@ class Helper : BaseHelper {
         FixNestedAnchors(xml);
         GenerateTableOfContents(xml);
     }
+
+    private const string UKNS = "https://legislation.gov.uk/akn";
 
     private static string CleanContent(string content) {
         return content.Replace("<b>", "").Replace("</b>", "");
@@ -564,6 +569,342 @@ class Helper : BaseHelper {
             System.Text.RegularExpressions.RegexOptions.IgnoreCase);
     }
 
+    /// Promote chapter headings detected from Word style metadata
+    /// (uk:headingDepth set by Builder; see DOCX.Styles.ClassifyHeading)
+    /// into top-level sibling sections under mainBody. Each chapter gets
+    /// its own /section/N URL — the publisher only resolves hierarchical
+    /// /section/N paths, not eId fragments, so nesting would orphan the
+    /// chapters from the TOC.
+    private static void BuildSubSectionsFromHeadingDepth(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        nsmgr.AddNamespace("uk", UKNS);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr) as XmlElement;
+        if (mainBody is null) return;
+
+        var sections = mainBody.SelectNodes("akn:section", nsmgr).Cast<XmlElement>().ToList();
+
+        int totalPromoted = 0;
+        foreach (var hostSection in sections) {
+            var orderedNodes = new List<XmlElement>();
+            CollectFlatBlockSequence(hostSection, orderedNodes);
+
+            // Demote Visual-tier headings that lack enough body in their
+            // subtree — drops signature blocks/address lines that share a
+            // Word style with real chapter headings (Ofcom RIA template).
+            var demoted = ComputeDemotedHeadings(orderedNodes, nsmgr);
+
+            // Body collected before the first promoted heading stays in
+            // the host section (e.g. tables introducing "Regulatory
+            // scorecard" before "Part A"/"Part B" sub-headings).
+            var hostKeep = new List<XmlElement>();
+            var groups = new List<(string heading, List<XmlElement> body)>();
+            string currentHeading = null;
+            var currentBody = new List<XmlElement>();
+
+            foreach (var el in orderedNodes) {
+                int? depth = ReadHeadingDepth(el, nsmgr);
+                if (depth is int && !demoted.Contains(el)) {
+                    string headingText = ReadHeadingText(el, nsmgr);
+                    if (string.IsNullOrWhiteSpace(headingText) || IsFigureOrTableCaption(headingText)) {
+                        (currentHeading == null ? hostKeep : currentBody).Add(el);
+                        continue;
+                    }
+                    if (currentHeading != null)
+                        groups.Add((currentHeading, currentBody));
+                    currentHeading = headingText;
+                    currentBody = new List<XmlElement>();
+                } else {
+                    (currentHeading == null ? hostKeep : currentBody).Add(el);
+                }
+            }
+            if (currentHeading != null)
+                groups.Add((currentHeading, currentBody));
+
+            if (groups.Count < 2) continue;
+
+            var siblings = new List<XmlElement>();
+            foreach (var (heading, body) in groups) {
+                var sib = xml.CreateElement("section", AKN_NAMESPACE);
+                var h = xml.CreateElement("heading", AKN_NAMESPACE);
+                h.InnerText = heading;
+                sib.AppendChild(h);
+                AppendBodyToSection(xml, sib, body);
+                siblings.Add(sib);
+            }
+
+            // Only elements that ended up in the new siblings should be
+            // removed from the host; hostKeep stays put.
+            var consumed = new HashSet<XmlElement>(orderedNodes.Except(hostKeep));
+            RemoveConsumedFromHost(hostSection, consumed);
+
+            // Insert chapters as siblings immediately after the wrapper,
+            // preserving document order.
+            XmlNode insertAfter = hostSection;
+            foreach (var sib in siblings) {
+                mainBody.InsertAfter(sib, insertAfter);
+                insertAfter = sib;
+            }
+
+            totalPromoted += siblings.Count;
+            logger.LogInformation(
+                "Promoted {Count} chapters from {EId} to top-level siblings",
+                siblings.Count, hostSection.GetAttribute("eId"));
+        }
+
+        if (totalPromoted > 0)
+            logger.LogInformation("Promoted {Count} chapters in total", totalPromoted);
+    }
+
+    /// Convert the cover-sheet hcontainer (name="summary") and any orphan
+    /// level elements into top-level sections so the TOC can address them
+    /// via /section/N paths (the publisher doesn't resolve fragments).
+    private static void PromoteCoverSheetToSections(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr) as XmlElement;
+        if (mainBody is null) return;
+
+        int promoted = 0;
+        var summary = mainBody.SelectSingleNode("akn:hcontainer[@name='summary']", nsmgr) as XmlElement;
+        if (summary is not null) {
+            var section = WrapAsSection(xml, summary, "Summary");
+            // Preserve the "summary" marker for CSS targeting the
+            // cover-sheet table layout. AKN allows @class on hierarchy.
+            section.SetAttribute("class", "summary");
+            mainBody.ReplaceChild(section, summary);
+            promoted++;
+        }
+
+        foreach (var level in mainBody.SelectNodes("akn:level", nsmgr).Cast<XmlElement>().ToList()) {
+            string heading = ExtractCoverSheetHeading(level, nsmgr);
+            if (string.IsNullOrEmpty(heading)) continue;
+            var section = WrapAsSection(xml, level, heading);
+            // Mark as cover-sheet so the XSL hides the synthesized heading
+            // (the styled question is preserved as the visible header in the
+            // body content). Other num-less sections like "Declaration"
+            // don't carry this class and render normally.
+            section.SetAttribute("class", "summary");
+            mainBody.ReplaceChild(section, level);
+            promoted++;
+        }
+
+        if (promoted > 0)
+            logger.LogInformation("Promoted {Count} cover-sheet elements to sections", promoted);
+    }
+
+    private static XmlElement WrapAsSection(XmlDocument xml, XmlElement source, string headingText) {
+        var section = xml.CreateElement("section", AKN_NAMESPACE);
+        var heading = xml.CreateElement("heading", AKN_NAMESPACE);
+        heading.InnerText = headingText;
+        section.AppendChild(heading);
+        foreach (XmlNode c in source.ChildNodes.Cast<XmlNode>().ToList())
+            section.AppendChild(c);
+        return section;
+    }
+
+    // Cover-sheet levels typically start with a question paragraph; the
+    // text up to the first "?" is the heading, the answer follows in body.
+    private static string ExtractCoverSheetHeading(XmlElement level, XmlNamespaceManager nsmgr) {
+        var firstP = level.SelectSingleNode(".//akn:p", nsmgr) as XmlElement;
+        string text = firstP?.InnerText?.Trim() ?? "";
+        if (string.IsNullOrEmpty(text)) return null;
+        int q = text.IndexOf('?');
+        if (q >= 0 && q + 1 < text.Length) return text.Substring(0, q + 1);
+        return text.Length > 200 ? text.Substring(0, 200) : text;
+    }
+
+    // Renumber top-level sections sequentially so /section/N URLs stay
+    // contiguous after promotions. Starts from whatever number the first
+    // existing section has (typically 2 — section_1 is reserved for the
+    // preface in this pipeline).
+    private static void RenumberTopLevelMainBodySections(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr) as XmlElement;
+        if (mainBody is null) return;
+        var sections = mainBody.SelectNodes("akn:section", nsmgr).Cast<XmlElement>().ToList();
+        if (sections.Count == 0) return;
+
+        int startNum = 2;
+        var firstEId = sections[0].GetAttribute("eId");
+        var match = System.Text.RegularExpressions.Regex.Match(firstEId, @"section_(\d+)$");
+        if (match.Success) startNum = int.Parse(match.Groups[1].Value);
+
+        for (int i = 0; i < sections.Count; i++) {
+            sections[i].SetAttribute("eId", $"section_{startNum + i}");
+        }
+    }
+
+    /// Read uk:headingDepth from the element directly, or from its inner
+    /// content/p (Builder may have placed the attribute on the <p>).
+    private static int? ReadHeadingDepth(XmlElement el, XmlNamespaceManager nsmgr) {
+        string raw = el.GetAttribute("headingDepth", UKNS);
+        if (!string.IsNullOrEmpty(raw) && int.TryParse(raw, out int d)) return d;
+        var firstP = el.SelectSingleNode("akn:content/akn:p", nsmgr) as XmlElement
+                  ?? el.SelectSingleNode("akn:p", nsmgr) as XmlElement;
+        if (firstP is null) return null;
+        raw = firstP.GetAttribute("headingDepth", UKNS);
+        if (!string.IsNullOrEmpty(raw) && int.TryParse(raw, out int d2)) return d2;
+        return null;
+    }
+
+    // Prefer inner content/p text so paragraph nums (e.g. "404.") don't
+    // bleed into the heading.
+    private static string ReadHeadingText(XmlElement el, XmlNamespaceManager nsmgr) {
+        var p = el.SelectSingleNode("akn:content/akn:p", nsmgr) as XmlElement
+             ?? el.SelectSingleNode("akn:p", nsmgr) as XmlElement;
+        if (p is not null) return p.InnerText?.Trim() ?? "";
+        return el.InnerText?.Trim() ?? "";
+    }
+
+    private static string ReadHeadingSignal(XmlElement el, XmlNamespaceManager nsmgr) {
+        string raw = el.GetAttribute("headingSignal", UKNS);
+        if (!string.IsNullOrEmpty(raw)) return raw;
+        var firstP = el.SelectSingleNode("akn:content/akn:p", nsmgr) as XmlElement
+                  ?? el.SelectSingleNode("akn:p", nsmgr) as XmlElement;
+        if (firstP is null) return null;
+        raw = firstP.GetAttribute("headingSignal", UKNS);
+        return string.IsNullOrEmpty(raw) ? null : raw;
+    }
+
+    // Visual-tier heading must accumulate at least this much body text in
+    // its subtree (up to the next heading of equal or shallower depth) to
+    // be kept; otherwise it's demoted to body. Filters out signature
+    // blocks and address lines styled the same as chapter headings.
+    private const int VisualHeadingMinSubtreeBodyChars = 100;
+
+    private static HashSet<XmlElement> ComputeDemotedHeadings(
+            List<XmlElement> orderedNodes, XmlNamespaceManager nsmgr) {
+        var demoted = new HashSet<XmlElement>();
+
+        var headings = new List<(int idx, int depth, string signal)>();
+        for (int i = 0; i < orderedNodes.Count; i++) {
+            int? d = ReadHeadingDepth(orderedNodes[i], nsmgr);
+            if (d is int dd) {
+                string sig = ReadHeadingSignal(orderedNodes[i], nsmgr) ?? "Authoritative";
+                headings.Add((i, dd, sig));
+            }
+        }
+        if (headings.Count == 0) return demoted;
+
+        var headingIdxs = new HashSet<int>(headings.Select(h => h.idx));
+        for (int h = 0; h < headings.Count; h++) {
+            var (idx, depth, signal) = headings[h];
+            if (signal != "Visual") continue;
+
+            int endIdx = orderedNodes.Count;
+            for (int n = h + 1; n < headings.Count; n++) {
+                if (headings[n].depth <= depth) { endIdx = headings[n].idx; break; }
+            }
+
+            int bodyChars = 0;
+            for (int j = idx + 1; j < endIdx; j++) {
+                if (headingIdxs.Contains(j)) continue;
+                bodyChars += orderedNodes[j].InnerText?.Length ?? 0;
+                if (bodyChars >= VisualHeadingMinSubtreeBodyChars) break;
+            }
+
+            if (bodyChars < VisualHeadingMinSubtreeBodyChars)
+                demoted.Add(orderedNodes[idx]);
+        }
+        return demoted;
+    }
+
+    private static void CollectFlatBlockSequence(XmlElement host, List<XmlElement> sink) {
+        var nsmgr = new XmlNamespaceManager(host.OwnerDocument.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        foreach (XmlNode child in host.ChildNodes) {
+            if (child is not XmlElement el) continue;
+            if (el.LocalName == "section") continue;
+            if (el.LocalName == "heading" || el.LocalName == "num"
+                    || el.LocalName == "intro" || el.LocalName == "wrapUp") continue;
+            if (el.LocalName == "paragraph") {
+                // Numless paragraph: a wrapper the parser uses to bag
+                // headings + body together under one section. Flatten its
+                // <content>'s children so internal headings separate from
+                // body during grouping.
+                bool hasNum = el.SelectSingleNode("akn:num", nsmgr) is not null;
+                if (!hasNum) {
+                    var contentEl = el.SelectSingleNode("akn:content", nsmgr) as XmlElement;
+                    if (contentEl is not null) {
+                        foreach (XmlNode ck in contentEl.ChildNodes)
+                            if (ck is XmlElement cce) sink.Add(cce);
+                        continue;
+                    }
+                }
+                // Numbered paragraph with structural children — recurse
+                // to find heading-marked subparagraphs.
+                if (HasStructuralChildren(el)) {
+                    CollectFlatBlockSequence(el, sink);
+                    continue;
+                }
+                // Numbered atomic: stays as one body element.
+            }
+            sink.Add(el);
+        }
+    }
+
+    // AKN section's content model is exclusive: either bare <content>, or
+    // a sequence of structural children (paragraph/level/etc.). When body
+    // mixes raw blocks (p, table) with structural elements, wrap each
+    // raw-block run in <paragraph><content>...</content></paragraph> so
+    // everything is structural.
+    private static void AppendBodyToSection(XmlDocument xml, XmlElement section, List<XmlElement> body) {
+        XmlElement openContent = null;
+        foreach (var b in body) {
+            var clone = (XmlElement)b.CloneNode(true);
+            bool isStructural = b.LocalName == "paragraph" || b.LocalName == "subparagraph"
+                || b.LocalName == "level" || b.LocalName == "section"
+                || b.LocalName == "hcontainer";
+            if (isStructural) {
+                section.AppendChild(clone);
+                openContent = null;
+            } else {
+                if (openContent is null) {
+                    var wrapper = xml.CreateElement("paragraph", AKN_NAMESPACE);
+                    openContent = xml.CreateElement("content", AKN_NAMESPACE);
+                    wrapper.AppendChild(openContent);
+                    section.AppendChild(wrapper);
+                }
+                openContent.AppendChild(clone);
+            }
+        }
+    }
+
+    private static bool HasStructuralChildren(XmlElement el) {
+        foreach (XmlNode child in el.ChildNodes) {
+            if (child is not XmlElement ce) continue;
+            if (ce.LocalName == "subparagraph" || ce.LocalName == "level"
+                    || ce.LocalName == "section" || ce.LocalName == "paragraph")
+                return true;
+        }
+        return false;
+    }
+
+    private static void RemoveConsumedFromHost(XmlElement host, HashSet<XmlElement> consumed) {
+        var nsmgr = new XmlNamespaceManager(host.OwnerDocument.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+
+        var wrappers = host.SelectNodes("akn:paragraph", nsmgr).Cast<XmlElement>().ToList();
+
+        foreach (var c in consumed) {
+            c.ParentNode?.RemoveChild(c);
+        }
+
+        // Drop wrappers left with no body — only num/empty after consumption.
+        foreach (var w in wrappers) {
+            if (!string.IsNullOrWhiteSpace(w.InnerText)) continue;
+            if (w.SelectNodes("akn:subparagraph", nsmgr).Count > 0) continue;
+            if (w.SelectNodes("akn:paragraph", nsmgr).Count > 0) continue;
+            host.RemoveChild(w);
+        }
+    }
+
     private static void TransformToSemanticSection(XmlDocument xml, XmlNode element, int sectionNumber, string headingText, List<XmlNode> following) {
         var section = xml.CreateElement("section", AKN_NAMESPACE);
         section.SetAttribute("eId", $"section_{sectionNumber}");
@@ -574,10 +915,24 @@ class Helper : BaseHelper {
             section.AppendChild(num);
         }
 
-        // Add heading if we have one
+        // Add heading if we have one. Where the source's first <p> contains
+        // the heading text exactly (typical for level-promoted sections like
+        // "Declaration" and numbered headers like "1. Summary of proposal"),
+        // move its inline children into <heading> so DOCX styling (b, span
+        // colour) survives. Fall back to plain text otherwise.
         if (!string.IsNullOrEmpty(headingText)) {
             var heading = xml.CreateElement("heading", AKN_NAMESPACE);
-            heading.InnerText = headingText;
+            var nsm = CreateNsMgr(xml);
+            var sourceP = element.SelectSingleNode("akn:content/akn:p", nsm) as XmlElement;
+            string srcText = (sourceP?.InnerText ?? "").Trim().TrimEnd(':', ';', '.').Trim();
+            string hdrText = headingText.Trim().TrimEnd(':', ';', '.').Trim();
+            if (sourceP is not null && srcText.Equals(hdrText, System.StringComparison.OrdinalIgnoreCase)) {
+                foreach (XmlNode c in sourceP.ChildNodes.Cast<XmlNode>().ToList())
+                    heading.AppendChild(c);
+                sourceP.ParentNode?.RemoveChild(sourceP);
+            } else {
+                heading.InnerText = headingText;
+            }
             section.AppendChild(heading);
         }
 
@@ -591,15 +946,28 @@ class Helper : BaseHelper {
         }
 
         // Structured branch: intro (blocks) + hierElements + wrapUp (blocks)
-        // 1) Build intro from header's content element (block children) and leading blocks from following
+        // 1) Build intro from header's content. Numbered sections render
+        //    their <heading> inline with <num>; the parser also leaves the
+        //    heading text as a leading <p> in the source content. Skip
+        //    that <p> so the title isn't rendered twice.
         XmlElement intro = null;
         var contentEl = element.SelectSingleNode("akn:content", CreateNsMgr(xml));
         if (contentEl != null && contentEl.HasChildNodes) {
             intro = xml.CreateElement("intro", AKN_NAMESPACE);
+            string normHeading = (headingText ?? "").Trim();
             while (contentEl.HasChildNodes) {
-                intro.AppendChild(contentEl.FirstChild);
+                var child = contentEl.FirstChild;
+                contentEl.RemoveChild(child);
+                if (child is XmlElement ce && ce.LocalName == "p"
+                        && string.Equals((ce.InnerText ?? "").Trim(), normHeading,
+                            System.StringComparison.OrdinalIgnoreCase))
+                    continue;
+                intro.AppendChild(child);
             }
-            section.AppendChild(intro);
+            if (intro.HasChildNodes)
+                section.AppendChild(intro);
+            else
+                intro = null;
         }
 
         element.ParentNode.ReplaceChild(section, element);

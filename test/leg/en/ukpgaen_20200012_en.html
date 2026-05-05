@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -6662,7 +6679,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://eur02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.supremecourt.uk%2Fcases%2Fdocs%2Fuksc-2011-0261-judgment.pdf&amp;data=02%7C01%7CAlice.Roycroft%40beis.gov.uk%7Cebc9cf0583f44ecf016308d808880dd2%7Ccbac700502c143ebb497e6492d1b2dd8%7C0%7C1%7C637268727729961947&amp;sdata=8dZjHxaxxvgcWkvD9u%2FJLnJVVWAT3%2FYvmv2xTzNwMtI%3D&amp;reserved=0">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.supremecourt.uk/cases/docs/uksc-2011-0261-judgment.pdf">https://www.supremecourt.uk/cases/docs/uksc-2011-0261-judgment.pdf</a></u>
+                        <u>https://www.supremecourt.uk/cases/docs/uksc-2011-0261-judgment.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -6691,13 +6708,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Please refer to the data provided in the assessment of 2.1) for further detail.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.gov.uk/government/news/companies-house-support-for-businesses-hit-by-covid-19"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/news/companies-house-support-for-businesses-hit-by-covid-19">https://www.gov.uk/government/news/companies-house-support-for-businesses-hit-by-covid-19</a></u></span></a></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.gov.uk/government/news/companies-house-support-for-businesses-hit-by-covid-19"><span style="color:#0070C0"><u>https://www.gov.uk/government/news/companies-house-support-for-businesses-hit-by-covid-19</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><span style="color:#0070C0"><u><a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits">https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</a></u></span></a></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><span style="color:#0070C0"><u>https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/324713/bis-14-908b-impact-assessments-part-b-director-disqualification-regime-transparency-and-trust.pdf"><span style="color:#0070C0"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/324713/bis-14-908b-impact-assessments-part-b-director-disqualification-regime-transparency-and-trust.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/324713/bis-14-908b-impact-assessments-part-b-director-disqualification-regime-transparency-and-trust.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/324713/bis-14-908b-impact-assessments-part-b-director-disqualification-regime-transparency-and-trust.pdf"><span style="color:#0070C0"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/324713/bis-14-908b-impact-assessments-part-b-director-disqualification-regime-transparency-and-trust.pdf</u></span></a></p>
             </div>
          </footer>
       </article>

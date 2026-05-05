@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -1537,7 +1554,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust_Commission_Report_Britains_promise_to_remember.pdf">
                      <span style="color:#006FC0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust</u>
                         </span>
                      </a>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/398645/Holocaust_Commission_Report_Britains_promise_to_remember.pdf">
@@ -1553,7 +1570,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-international-design-competition">
                      <span style="color:#006FC0">
-                        <u><a href="https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-">https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-</a></u>
+                        <u>https://www.gov.uk/government/news/adjaye-associates-and-ron-arad-architexts-win-uk-holocaust-memorial-</u>
                         </span>
                      </a>
                   <span style="color:#006FC0">
@@ -1571,7 +1588,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.judiciary.uk/wp-content/uploads/2022/07/LHPGT-v-Minister-for-Housing-Judgment-080422.pdf">
                      <span style="color:#006FC0">
-                        <u><a href="https://www.judiciary.uk/wp-content/uploads/2022/07/LHPGT-v-Minister-for-Housing-Judgment-080422.pdf">https://www.judiciary.uk/wp-content/uploads/2022/07/LHPGT-v-Minister-for-Housing-Judgment-080422.pdf</a></u>
+                        <u>https://www.judiciary.uk/wp-content/uploads/2022/07/LHPGT-v-Minister-for-Housing-Judgment-080422.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -1582,7 +1599,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://committees.parliament.uk/publications/44462/documents/221092/default/">
                      <span style="color:#0070C0">
-                        <u><a href="https://committees.parliament.uk/publications/44462/documents/221092/default/">https://committees.parliament.uk/publications/44462/documents/221092/default/</a></u>
+                        <u>https://committees.parliament.uk/publications/44462/documents/221092/default/</u>
                         </span>
                      </a>
                   </p>
@@ -1593,7 +1610,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf">https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/media/66475d69f34f9b5a56adca0b/Holocaust_Memorial_Bill_Select_Committee_Response_WEB.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -1604,7 +1621,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm">
                      <span style="color:#0070C0">
-                        <u><a href="https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm">https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm</a></u>
+                        <u>https://publications.parliament.uk/pa/ld5901/ldselect/ldholmem/68/6802.htm</u>
                         </span>
                      </a>
                   </p>
@@ -1615,7 +1632,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://committees.parliament.uk/publications/46856/documents/241401/default/">
                      <span style="color:#0070C0">
-                        <u><a href="https://committees.parliament.uk/publications/46856/documents/241401/default/">https://committees.parliament.uk/publications/46856/documents/241401/default/</a></u>
+                        <u>https://committees.parliament.uk/publications/46856/documents/241401/default/</u>
                         </span>
                      </a>
                   </p>
@@ -1626,7 +1643,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.legislation.gov.uk/ukla/1900/269/enacted">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.legislation.gov.uk/ukla/1900/269/enacted">https://www.legislation.gov.uk/ukla/1900/269/enacted</a></u>
+                        <u>https://www.legislation.gov.uk/ukla/1900/269/enacted</u>
                         </span>
                      </a>
                   </p>

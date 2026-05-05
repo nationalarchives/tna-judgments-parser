@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.68%">
@@ -468,7 +486,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -499,7 +518,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -526,7 +546,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -712,19 +733,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 1</p>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description: </b>
-                     </span>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description: </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <span style="color:#000000">
@@ -1262,13 +1282,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Executive Summary</b>
-                     </span>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Executive Summary</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>A heat network is a distribution system of insulated pipes that takes heat from a
@@ -1369,13 +1388,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      this area.</p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration</b>
-                     </span>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">9.</span></h2>
                   <p>The heat network market currently has minimal regulation<a class="fn" id="fnref-6" href="#fn-6">6</a> unlike other utilities such as gas and electricity. This means that currently heat
@@ -1414,13 +1432,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and decarbonisation that are not captured in this IA.</p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale for intervention</b>
-                     </span>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale for intervention</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>
@@ -1526,13 +1543,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objective</b>
-                     </span>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objective</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">13.</span></h2>
                   <p>The statutory instruments being implemented alongside this IA have the objective of
@@ -1553,13 +1569,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options</b>
-                     </span>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>There are two overarching options assessed in this IA: a continuation of existing
@@ -1600,13 +1615,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      alongside this IA. </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Non-Regulatory options</b>
-                     </span>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Non-Regulatory options</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">16.</span></h2>
                   <p>There are a few non-regulatory initiatives which partially address issues created
@@ -1652,13 +1666,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and a previous Heat Networks Market Framework consultation<a class="fn" id="fnref-13" href="#fn-13">13</a>. Therefore, non-regulatory options have not been considered further in this IA.</p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Counterfactual</b>
-                     </span>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Counterfactual</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">20.</span></h2>
                   <p>Without these enabling statutory instruments, Ofgem cannot enter the market as the
@@ -1703,13 +1716,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Option 1</b>
-                     </span>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Option 1</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">24.</span></h2>
                   <p>
@@ -1871,13 +1883,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Summary of preferred option and implementation plan</b>
-                     </span>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Summary of preferred option and implementation plan</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">27.</span></h2>
                   <p>
@@ -2034,13 +2045,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Approach to analysis</b>
-                     </span>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Approach to analysis</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">33.</span></h2>
                   <p>
@@ -2175,13 +2185,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Estimated benefits</b>
-                     </span>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Estimated benefits</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">39.</span></h2>
                   <p>
@@ -2195,13 +2204,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Guaranteed Standard of Performance</b>
-                     </span>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Guaranteed Standard of Performance</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">40.</span></h2>
                   <p>
@@ -2276,13 +2284,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Consumer benefit</b>
-                     </span>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Consumer benefit</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">44.</span></h2>
                   <p>
@@ -2361,13 +2368,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Growth of heat network market</b>
-                     </span>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Growth of heat network market</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">50.</span></h2>
                   <p>
@@ -2420,13 +2426,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Pricing policy</b>
-                     </span>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Pricing policy</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">54.</span></h2>
                   <p>
@@ -2539,13 +2544,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Future benefits</b>
-                     </span>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Future benefits</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">62.</span></h2>
                   <p>
@@ -2642,13 +2646,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Estimated costs</b>
-                     </span>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Estimated costs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">69.</span></h2>
                   <p>
@@ -2661,13 +2664,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Heat supplier and operator costs</b>
-                     </span>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Heat supplier and operator costs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">70.</span></h2>
                   <p>
@@ -2783,13 +2785,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Regulatory costs</b>
-                     </span>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Regulatory costs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">76.</span></h2>
                   <p>
@@ -2846,13 +2847,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Consumer advocacy/advice costs</b>
-                     </span>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Consumer advocacy/advice costs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">81.</span></h2>
                   <p>
@@ -2897,13 +2897,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Counterfactual</b>
-                     </span>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Counterfactual</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">85.</span></h2>
                   <p>
@@ -3061,13 +3060,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_25" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>EANDCB</b>
-                     </span>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>EANDCB</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">87.</span></h2>
                   <p>
@@ -3104,13 +3102,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_26" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Cost recovery</b>
-                     </span>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Cost recovery</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">89.</span></h2>
                   <p>
@@ -3168,13 +3165,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Evidence sources</b>
-                     </span>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Evidence sources</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">94.</span></h2>
                   <p>
@@ -3235,13 +3231,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Interactions with other policy</b>
-                     </span>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Interactions with other policy</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">95.</span></h2>
                   <p>
@@ -3336,13 +3331,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Equalities assessment</b>
-                     </span>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Equalities assessment</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">101.</span></h2>
                   <p>An equality impact assessment of the policy has been carried out.<span style="color:#000000"> Heat network consumer protection will directly affect domestic consumers who are
@@ -3389,13 +3383,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Jobs impact</b>
-                     </span>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Jobs impact</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">105.</span></h2>
                   <p>
@@ -3431,13 +3424,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Small and Micro Business Assessment (SaMBA)</b>
-                     </span>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Small and Micro Business Assessment (SaMBA)</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">108.</span></h2>
                   <p>
@@ -3664,13 +3656,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Trade implications of measure</b>
-                     </span>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Trade implications of measure</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">116.</span></h2>
                   <p>
@@ -3735,13 +3726,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Key limitations, risks and uncertainties</b>
-                     </span>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Key limitations, risks and uncertainties</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">119.</span></h2>
                   <p>
@@ -3825,13 +3815,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Sensitivity analysis</b>
-                     </span>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Sensitivity analysis</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">120.</span></h2>
                   <p>
@@ -5092,7 +5081,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://bills.parliament.uk/publications/47261/documents/2122">
                      <span style="color:#0000FF">
-                        <u><a href="https://bills.parliament.uk/publications/47261/documents/2122">https://bills.parliament.uk/publications/47261/documents/2122</a></u>
+                        <u>https://bills.parliament.uk/publications/47261/documents/2122</u>
                         </span>
                      </a>
                   </p>
@@ -5101,7 +5090,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-15" href="#fnref-15">15</a> 
                   <span style="color:#000000"> Green book guidance on how to assess and evaluate policy </span>
                   <a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-governent">
-                     <u><a href="https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-governent">https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-governent</a></u>
+                     <u>https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-governent</u>
                      </a>
                   </p>
                <p></p>
@@ -5184,12 +5173,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.gov.uk/government/statistics/heat-networks-registered-under-the-heat-network-metering-and-billing-regulations-statistics-december-2022">
-                     <u><a href="https://www.gov.uk/government/statistics/heat-networks-registered-under-the-heat-network-metering-and-billing-regulations-statistics-december-2022">https://www.gov.uk/government/statistics/heat-networks-registered-under-the-heat-network-metering-and-billing-regulations-statistics-december-2022</a></u>
+                     <u>https://www.gov.uk/government/statistics/heat-networks-registered-under-the-heat-network-metering-and-billing-regulations-statistics-december-2022</u>
                      </a>
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="https://www.gov.uk/government/consultations/heat-networks-regulation-consumer-protection"><u><a href="https://www.gov.uk/government/consultations/heat-networks-regulation-consumer-protection">https://www.gov.uk/government/consultations/heat-networks-regulation-consumer-protection</a></u></a></p>
+               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="https://www.gov.uk/government/consultations/heat-networks-regulation-consumer-protection"><u>https://www.gov.uk/government/consultations/heat-networks-regulation-consumer-protection</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-29" href="#fnref-29">29</a>  Heat Network Consumer Survey (HNCS) &lt;<a href="https://www.gov.uk/government/publications/heat-networks-consumer-survey-consumer-experiences-on-heat-networks-and-other-heating-systems">https://www.gov.uk/government/publications/heat-networks-consumer-survey-consumer-experiences-on-heat-networks-and-other-heating-systems</a>&gt;  </p>
@@ -5213,12 +5202,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-33" href="#fnref-33">33</a>  Micro business is defined as having up to 10 employees, small business has up to
-                  49 employees. According to Companies House: &lt; <a href="https://www.gov.uk/annual-accounts/microentities-small-and-dormant-companies"><u><a href="https://www.gov.uk/annual-accounts/microentities-small-and-dormant-companies">https://www.gov.uk/annual-accounts/microentities-small-and-dormant-companies</a></u></a></p>
+                  49 employees. According to Companies House: &lt; <a href="https://www.gov.uk/annual-accounts/microentities-small-and-dormant-companies"><u>https://www.gov.uk/annual-accounts/microentities-small-and-dormant-companies</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-34" href="#fnref-34">34</a> 
                   <a href="https://www.gov.uk/government/publications/heat-network-consumer-and-operator-survey-2022">
-                     <u><a href="https://www.gov.uk/government/publications/heat-network-consumer-and-operator-survey-2022">https://www.gov.uk/government/publications/heat-network-consumer-and-operator-survey-2022</a></u>
+                     <u>https://www.gov.uk/government/publications/heat-network-consumer-and-operator-survey-2022</u>
                      </a>
                   </p>
             </div>

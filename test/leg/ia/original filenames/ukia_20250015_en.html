@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <tbody>
                      <tr>
@@ -233,13 +251,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section num heading">
+            <section id="section_3" class="section num heading">
                <h2><span class="num">
                      <b>1.</b>
+                     </span><span class="heading">
+                     <b>Summary of proposal </b>
                      </span></h2>
-               <p>
-                  <b>Summary of proposal </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>The government is proposing to increase the maximum chargeable amounts (‘fee maxima’)
@@ -249,13 +266,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_3" class="section num heading">
+            <section id="section_4" class="section num heading">
                <h2><span class="num">
                      <b>2.</b>
+                     </span><span class="heading">
+                     <b>Strategic case for proposed regulation </b>
                      </span></h2>
-               <p>
-                  <b>Strategic case for proposed regulation </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">2.</span></h2>
                   <p>The proposed increases to maxima are necessary to implement planned fee increases
@@ -266,13 +282,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      achieving a balanced financial position in 2025/26 and going forward.</p>
                </section>
             </section>
-            <section id="section_4" class="section num heading">
+            <section id="section_5" class="section num heading">
                <h2><span class="num">
                      <b>3.</b>
+                     </span><span class="heading">
+                     <b>SMART objectives for intervention</b>
                      </span></h2>
-               <p>
-                  <b>SMART objectives for intervention</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">3.</span></h2>
                   <p>The objective of this intervention is to increase the income generated through immigration
@@ -283,10 +298,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      products and services.</p>
                </section>
             </section>
-            <section id="section_5" class="section num heading">
+            <section id="section_6" class="section num heading">
                <h2><span class="num">
                      <b>4.</b>
-                     </span></h2>
+                     </span><span class="heading">Description of proposed intervention options and explanation of the</span></h2>
                <p>
                   <b>Description of proposed intervention options and explanation of the</b>
                   <span style="color:#000000">
@@ -350,13 +365,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_6" class="section num heading">
+            <section id="section_7" class="section num heading">
                <h2><span class="num">
                      <b>5.</b>
+                     </span><span class="heading">
+                     <b>Summary of long-list and alternatives</b>
                      </span></h2>
-               <p>
-                  <b>Summary of long-list and alternatives</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">6.</span></h2>
                   <p>A range of options have been considered for generating further income to meet costs
@@ -387,23 +401,21 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Business Assessment can be found in the evidence base section of this IA.</p>
                </section>
             </section>
-            <section id="section_7" class="section num heading">
+            <section id="section_8" class="section num heading">
                <h2><span class="num">
                      <b>6.</b>
+                     </span><span class="heading">
+                     <b>Description of shortlisted policy options carried forward </b>
                      </span></h2>
-               <p>
-                  <b>Description of shortlisted policy options carried forward </b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">10.</span></h2>
                   <p>Two options have been considered:</p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Option 0 – ‘Do nothing’</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Option 0 – ‘Do nothing’</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">11.</span></h2>
                   <p>Under <b>Option 0 ‘Do nothing’</b>, fees maxima would remain at their current level and not be increased. This option
@@ -413,11 +425,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      pressure on other fee routes where greater flexibility exists.</p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Option 1 – Increase fee maxima on select immigration and nationality products</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Option 1 – Increase fee maxima on select immigration and nationality products</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>Under <b>Option 1</b> there would be an increase in the maxima for the following routes:</p>
@@ -472,12 +483,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      from the system contribute towards its costs, reducing the contribution of the taxpayer.</p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Direct and indirect business impacts and Small and Micro Business (SaMBA) and medium-sized
-                     business considerations</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>Direct and indirect business impacts and Small and Micro Business (SaMBA) and medium-sized
+                        business considerations</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>As there is no change to the actual fee level under the Fees Order legislation, there
@@ -510,19 +520,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      or sector-specific.</p>
                </section>
             </section>
-            <section id="section_11" class="section num heading">
+            <section id="section_12" class="section num heading">
                <h2><span class="num">
                      <b>7.</b>
+                     </span><span class="heading">
+                     <b>Regulatory scorecard for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Regulatory scorecard for preferred option</b>
-                  </p>
+            </section>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">Part A: Overall and stakeholder impacts</span></h2>
                <section class="paragraph">
-                  <p>
-                     <span style="color:#000000">
-                        <b>Part A: Overall and stakeholder impacts </b>
-                        </span>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:18.79%">
@@ -825,12 +832,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
+            </section>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Part B: Impacts on wider government priorities</span></h2>
                <section class="paragraph">
-                  <p>
-                     <span style="color:#000000">
-                        <b>Part B: Impacts on wider government priorities</b>
-                        </span>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:26.07%">
@@ -935,13 +940,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_12" class="section num heading">
+            <section id="section_15" class="section num heading">
                <h2><span class="num">
                      <b>8.</b>
+                     </span><span class="heading">
+                     <b>Monitoring and evaluation of preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Monitoring and evaluation of preferred option</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">18.</span></h2>
                   <p>The Home Office reviews fees and charges for immigration and nationality applications
@@ -950,32 +954,29 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      do not adversely impact on the UK economy.</p>
                </section>
             </section>
-            <section id="section_13" class="section num heading">
+            <section id="section_16" class="section num heading">
                <h2><span class="num">
                      <b>9.</b>
+                     </span><span class="heading">
+                     <b>Minimising administrative and compliance costs for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Minimising administrative and compliance costs for preferred option</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">19.</span></h2>
                   <p>No new or additional administrative costs or compliance costs are identified to arise
                      from the policy change.</p>
                </section>
             </section>
-            <section id="section_14" class="section num heading">
+            <section id="section_17" class="section num heading">
                <h2><span class="num">
                      <b>10.</b>
+                     </span><span class="heading">
+                     <b>Main assumptions / sensitivities and economic / analytical risks</b>
                      </span></h2>
-               <p>
-                  <b>Main assumptions / sensitivities and economic / analytical risks</b>
-                  </p>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Analytical Framework </b>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <b>Analytical Framework </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">20.</span></h2>
                   <p>The appraisal sets out the economic costs and benefits of the proposed changes to
@@ -1032,11 +1033,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      with reduced visa demand. A full discussion is included in the Evidence Base.</p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Main assumptions</b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Main assumptions</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">27.</span></h2>
                   <p>Quantified impacts are calculated in 2024/25 price base year.</p>
@@ -1087,11 +1087,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in the Evidence Base. </p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Analytical risks</b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>Analytical risks</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">35.</span></h2>
                   <p>The analysis quantifies the impact of potential increases in fees using proxies of
@@ -1121,41 +1120,42 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      for some of the wider uncertainties from data.</p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Declaration</b>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <b>Declaration</b>
+                     </span></h2>
                <section class="level">
-                  <p>Department:</p>
+                  <p>Department:  Home Office</p>
                </section>
                <section class="level">
-                  <p>Contact details for enquiries:  Home Office</p>
+                  <p>Contact details for enquiries:  <span style="color:#000000"></span><span style="color:#000000">feesandincomeplanning.requests@homeoffice.gov.uk</span></p>
                </section>
                <section class="level">
-                  <p>Minister responsible:  <span style="color:#000000"></span><span style="color:#000000">feesandincomeplanning.requests@homeoffice.gov.uk</span></p>
+                  <p>Minister responsible:  Seema Malhotra</p>
                </section>
                <section class="level">
                   <p>
                      <span style="color:#000000">I have read the Impact Assessment and I am satisfied that, given the available evidence,
                         it represents a reasonable view of the likely costs, benefits and impact of the leading
-                        options.</span> Seema Malhotra</p>
+                        options.</span>
+                     <img src="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/images/ukia_2025_15_en_001.gif" alt="">
+                     </p>
                </section>
                <section class="level">
-                  <p>Signed: <img src="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/images/ukia_2025_15_en_001.gif" alt=""></p>
+                  <p>Signed: </p>
                </section>
                <section class="level">
                   <p>Date: <span class="docDate">09 January 2025</span></p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">Summary Analysis and evidence</span></h2>
                <p>
                   <b>Summary: Analysis and evidence</b>
                   </p>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Price base year  2024/25</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Price base year:  2024/25</b>
@@ -1519,21 +1519,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence base </b>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence base </b>
+                     </span></h2>
             </section>
-            <section id="section_22" class="section num heading">
+            <section id="section_25" class="section num heading">
                <h2><span class="num">
                      <b>A.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Strategic objective and overview</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Strategic objective and overview</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>The over-arching strategic objective of this intervention is to support the continued
@@ -1558,16 +1556,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      through legislation.</p>
                </section>
             </section>
-            <section id="section_23" class="section num heading">
+            <section id="section_26" class="section num heading">
                <h2><span class="num">
                      <b>B.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration, with business as usual, and rationale for intervention
+                           </b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration, with business as usual, and rationale for intervention
-                        </b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">3.</span></h2>
                   <p>The proposed increases to maxima are necessary to implement the planned increases
@@ -1580,15 +1577,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      border security, as well as going forward into future years.</p>
                </section>
             </section>
-            <section id="section_24" class="section num heading">
+            <section id="section_27" class="section num heading">
                <h2><span class="num">
                      <b>C.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objective </b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objective </b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">4.</span></h2>
                   <p>The primary objective for this intervention is to increase the income generated through
@@ -1602,21 +1598,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      outweighed by the associated increase in costs in the wider economy.</p>
                </section>
             </section>
-            <section id="section_25" class="section num heading">
+            <section id="section_28" class="section num heading">
                <h2><span class="num">
                      <b>D.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered</b>
-                     </span>
-                  </p>
             </section>
-            <section id="section_26" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Option 0 – ‘Do nothing’</b>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <b>Option 0 – ‘Do nothing’</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">6.</span></h2>
                   <p>Under <b>Option 0 ‘Do nothing’</b>, fees maxima would remain at their current level and not be increased. This option
@@ -1627,11 +1621,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to increase fees on other routes where greater flexibility exists.</p>
                </section>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Option 1 – Increase fee maxima on select immigration and nationality products</b>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <b>Option 1 – Increase fee maxima on select immigration and nationality products</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">7.</span></h2>
                   <p>Under <b>Option 1</b> there would be an increase in the maxima for the following routes:</p>
@@ -1685,10 +1678,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the legislation.</p>
                </section>
             </section>
-            <section id="section_28" class="section num heading">
+            <section id="section_31" class="section num heading">
                <h2><span class="num">
                      <b>E.</b>
-                     </span></h2>
+                     </span><span class="heading">NPSV monetised and non-monetised costs and benefits of each shortlist option (including
+                     administrative burden)</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>NPSV: monetised and non-monetised costs and benefits of each shortlist option (including
@@ -1696,17 +1690,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   </p>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>E.1. General assumptions and data</b>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <b>E.1. General assumptions and data</b>
+                     </span></h2>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Analytical approach</b>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <b>Analytical approach</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">9.</span></h2>
                   <p>The analysis includes the estimated costs and benefits derived from an increase in
@@ -1741,11 +1733,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      (ILR) products are not considered as part of the resident population.</p>
                </section>
             </section>
-            <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Appraisal period</b>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <b>Appraisal period</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">13.</span></h2>
                   <p>The theoretical impact of this IA covers a five-year appraisal period. As the legislation
@@ -1764,11 +1755,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the meantime.</p>
                </section>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Baseline volumes</b>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <b>Baseline volumes</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">15.</span></h2>
                   <p>The baseline volume of applicants for each visa product is based on Home Office internal
@@ -1975,11 +1965,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Grant rates</b>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <b>Grant rates</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">23.</span></h2>
                   <p>The rates of visas granted under each route is calculated using internal Home Office
@@ -2085,11 +2074,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: Home Office analysis</p>
                </section>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Fee maxima, fee levels, and unit costs</b>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <b>Fee maxima, fee levels, and unit costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">24.</span></h2>
                   <p>The analysis measures the impact of increasing the fee maxima on the routes set out
@@ -2319,11 +2307,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Home Office can charge, it is not subject to HMT’s Managing Public Money framework.<a class="fn" id="fnref-9" href="#fn-9">9</a>  An actual uplift in visa fees is also not in scope.</p>
                </section>
             </section>
-            <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Immigration Health Surcharge (IHS)</b>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <b>Immigration Health Surcharge (IHS)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">27.</span></h2>
                   <p>The Immigration (Health Charge) Order 2015 requires temporary migrants who make an
@@ -2342,11 +2329,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      is assumed to remain unchanged across the appraisal period.<a class="fn" id="fnref-11" href="#fn-11">11</a></p>
                </section>
             </section>
-            <section id="section_36" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Immigration Skills Charge (ISC)</b>
-                  </p>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">
+                     <b>Immigration Skills Charge (ISC)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">29.</span></h2>
                   <p>Employers sponsoring migrant workers under Skilled Worker, Global Business Mobility,
@@ -2364,11 +2350,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the ISC is assumed to remain unchanged across the appraisal period.</p>
                </section>
             </section>
-            <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Sponsorship fees</b>
-                  </p>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">
+                     <b>Sponsorship fees</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">31.</span></h2>
                   <p>Domestic businesses wishing to sponsor foreign workers are subject to pay a CoS fee,
@@ -2377,11 +2362,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      is, the sponsored individual), not their dependants.</p>
                </section>
             </section>
-            <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Price elasticity of demand</b>
-                  </p>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">
+                     <b>Price elasticity of demand</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">32.</span></h2>
                   <p>A future increase in visa fees, enabled by the proposal to increase the fee maxima
@@ -2680,17 +2664,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in the central case.  A lower behavioural response will result in a higher NSPV.</p>
                </section>
             </section>
-            <section id="section_39" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>E.2 Impact and monetisation</b>
-                  </p>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">
+                     <b>E.2 Impact and monetisation</b>
+                     </span></h2>
             </section>
-            <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on application volumes</b>
-                  </p>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on application volumes</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">46.</span></h2>
                   <p>
@@ -2925,11 +2907,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      or naturalisation products.</p>
                </section>
             </section>
-            <section id="section_41" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on visa grants volumes</b>
-                  </p>
+            <section id="section_44" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on visa grants volumes</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">50.</span></h2>
                   <p>Table 6 sets out the corresponding effect on visas granted to individuals using central
@@ -3120,23 +3101,20 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_42" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Monetised impact</b>
-                  </p>
+            <section id="section_45" class="section heading">
+               <h2><span class="heading">
+                     <b>Monetised impact</b>
+                     </span></h2>
             </section>
-            <section id="section_43" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs</b>
-                  </p>
+            <section id="section_46" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs</b>
+                     </span></h2>
             </section>
-            <section id="section_44" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Set-up costs</b>
-                  </p>
+            <section id="section_47" class="section heading">
+               <h2><span class="heading">
+                     <b>Set-up costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">51.</span></h2>
                   <p>There are no set-up costs identified to arise in association to Option 1. This is
@@ -3145,17 +3123,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      No capital investment is required to implement future changes.</p>
                </section>
             </section>
-            <section id="section_45" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Ongoing costs</b>
-                  </p>
+            <section id="section_48" class="section heading">
+               <h2><span class="heading">
+                     <b>Ongoing costs</b>
+                     </span></h2>
             </section>
-            <section id="section_46" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Indirect costs</b>
-                  </p>
+            <section id="section_49" class="section heading">
+               <h2><span class="heading">
+                     <b>Indirect costs</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>Loss of visa application revenue to the Home Office from the non-resident population</i>
@@ -3292,11 +3268,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_47" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Total costs</b>
-                  </p>
+            <section id="section_50" class="section heading">
+               <h2><span class="heading">
+                     <b>Total costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">64.</span></h2>
                   <p>
@@ -3315,34 +3290,30 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_48" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits</b>
-                  </p>
+            <section id="section_51" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits</b>
+                     </span></h2>
             </section>
-            <section id="section_49" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Set-up benefits</b>
-                  </p>
+            <section id="section_52" class="section heading">
+               <h2><span class="heading">
+                     <b>Set-up benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">65.</span></h2>
                   <p>There are no set-up or transitional benefits identified to arise from the proposed
                      increases in visa fees.</p>
                </section>
             </section>
-            <section id="section_50" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Ongoing benefits</b>
-                  </p>
+            <section id="section_53" class="section heading">
+               <h2><span class="heading">
+                     <b>Ongoing benefits</b>
+                     </span></h2>
             </section>
-            <section id="section_51" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Direct benefits</b>
-                  </p>
+            <section id="section_54" class="section heading">
+               <h2><span class="heading">
+                     <b>Direct benefits</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>Increase in Home Office revenue</i>
@@ -3371,11 +3342,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      2024/25 prices) over the five-year appraisal period.  </p>
                </section>
             </section>
-            <section id="section_52" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Indirect benefits</b>
-                  </p>
+            <section id="section_55" class="section heading">
+               <h2><span class="heading">
+                     <b>Indirect benefits</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>Reduction in Home Office visa processing costs</i>
@@ -3475,11 +3445,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      2024/25 prices) over the five-year appraisal period.</p>
                </section>
             </section>
-            <section id="section_53" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Total benefits</b>
-                  </p>
+            <section id="section_56" class="section heading">
+               <h2><span class="heading">
+                     <b>Total benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">
                         <b>78.</b>
@@ -3491,11 +3460,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_54" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Transfers</b>
-                  </p>
+            <section id="section_57" class="section heading">
+               <h2><span class="heading">
+                     <b>Transfers</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">79.</span></h2>
                   <p>Some of the impacts from the policy proposal represent a transfer between domestic
@@ -4505,11 +4473,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_55" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on micro, small and medium-sized businesses</b>
-                  </p>
+            <section id="section_58" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on micro, small and medium-sized businesses</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">89.</span></h2>
                   <p>As there is no change to the actual fee level under the Fees Order legislation, there
@@ -4542,11 +4509,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      sponsor workers which may be firm-specific or sector-specific.</p>
                </section>
             </section>
-            <section id="section_56" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Sensitivity analysis</b>
-                  </p>
+            <section id="section_59" class="section heading">
+               <h2><span class="heading">
+                     <b>Sensitivity analysis</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">93.</span></h2>
                   <p>The NPSV estimates discussed above are constructed under central estimates public
@@ -4558,11 +4524,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      simultaneously against the central NPSV scenario.</p>
                </section>
             </section>
-            <section id="section_57" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Volumes</b>
-                  </p>
+            <section id="section_60" class="section heading">
+               <h2><span class="heading">
+                     <b>Volumes</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">94.</span></h2>
                   <p>
@@ -4971,11 +4936,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are not included in the NPSV. </p>
                </section>
             </section>
-            <section id="section_58" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Price elasticity of demand</b>
-                  </p>
+            <section id="section_61" class="section heading">
+               <h2><span class="heading">
+                     <b>Price elasticity of demand</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">100.</span></h2>
                   <p>The price sensitivity of individual migrants and domestic sponsors is highly uncertain.
@@ -4997,11 +4961,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      from £203.5 million to -£258.2 million (PV, 2024/25 prices). </p>
                </section>
             </section>
-            <section id="section_59" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Alternative volume and price elasticity of demand scenarios</b>
-                  </p>
+            <section id="section_62" class="section heading">
+               <h2><span class="heading">
+                     <b>Alternative volume and price elasticity of demand scenarios</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">103.</span></h2>
                   <p>Due to the inherent uncertainty of both baseline volume estimates and the price sensitivity
@@ -5025,11 +4988,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      sector may gain from a hypothetical increase in fees to the new proposed maxima.</p>
                </section>
             </section>
-            <section id="section_60" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Public service provision</b>
-                  </p>
+            <section id="section_63" class="section heading">
+               <h2><span class="heading">
+                     <b>Public service provision</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">106.</span></h2>
                   <p>The level of average cost of public service provision to migrants is uncertain, so
@@ -5054,11 +5016,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      or remaining in the UK by the higher visa fees. </p>
                </section>
             </section>
-            <section id="section_61" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Fiscal revenue</b>
-                  </p>
+            <section id="section_64" class="section heading">
+               <h2><span class="heading">
+                     <b>Fiscal revenue</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">109.</span></h2>
                   <p>The level of the average fiscal revenue collected from migrants is also uncertain,
@@ -5084,15 +5045,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      migrants being deterred from entering or remaining in the UK by the higher visa fees.</p>
                </section>
             </section>
-            <section id="section_62" class="section num heading">
+            <section id="section_65" class="section num heading">
                <h2><span class="num">
                      <b>F.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Costs and benefits to business calculations</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Costs and benefits to business calculations</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">112.</span></h2>
                   <p>The hypothetical Business Net Present Value (BNPV) of the policy is estimated to be
@@ -5539,29 +5499,27 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: Home Office analysis<span style="color:#000000">, rounded to the nearest £100,000</span><span style="color:#000000">; figures may not sum up due to rounding</span></p>
                </section>
             </section>
-            <section id="section_63" class="section num heading">
+            <section id="section_66" class="section num heading">
                <h2><span class="num">
                      <b>G.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Costs and benefits to households’ calculations</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Costs and benefits to households’ calculations</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">113.</span></h2>
                   <p>No quantified household impacts have been estimated.</p>
                </section>
             </section>
-            <section id="section_64" class="section num heading">
+            <section id="section_67" class="section num heading">
                <h2><span class="num">
                      <b>H.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Business environment</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Business environment</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">114.</span></h2>
                   <p>As increases to visa fee maxima do not represent actual changes to the price individuals
@@ -5569,13 +5527,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to lead to changes to the domestic business environment.</p>
                </section>
             </section>
-            <section id="section_65" class="section num heading">
+            <section id="section_68" class="section num heading">
                <h2><span class="num">
                      <b>I.</b>
+                     </span><span class="heading">
+                     <b>Trade implications</b>
                      </span></h2>
-               <p>
-                  <b>Trade implications</b>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">115.</span></h2>
                   <p>
@@ -5640,10 +5597,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      a UK-based company.</p>
                </section>
             </section>
-            <section id="section_66" class="section num heading">
+            <section id="section_69" class="section num heading">
                <h2><span class="num">
                      <b>J.</b>
-                     </span></h2>
+                     </span><span class="heading">Environment Natural capital impact and decarbonisation</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Environment: Natural capital impact and decarbonisation</b>
@@ -5676,15 +5633,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      £36.5 million (PV, 2024/2025 prices).</p>
                </section>
             </section>
-            <section id="section_67" class="section num heading">
+            <section id="section_70" class="section num heading">
                <h2><span class="num">
                      <b>K.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Other wider impacts</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Other wider impacts</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">125.</span></h2>
                   <p>Migrants play an important role in the economy. The impact of proposals that affect
@@ -5755,15 +5711,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      on the skill level of the migrants.</p>
                </section>
             </section>
-            <section id="section_68" class="section num heading">
+            <section id="section_71" class="section num heading">
                <h2><span class="num">
                      <b>L.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks </b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks </b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">130.</span></h2>
                   <p>All estimates presented are indicative. The analysis serves to provide a sense of
@@ -5772,11 +5727,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are outlined below.</p>
                </section>
             </section>
-            <section id="section_69" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Volumes</b>
-                  </p>
+            <section id="section_72" class="section heading">
+               <h2><span class="heading">
+                     <b>Volumes</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">131.</span></h2>
                   <p>The visa demand volume estimates used as a baseline for the appraisal are subject
@@ -5786,11 +5740,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      visas and NPSV estimates, should be treated with caution.</p>
                </section>
             </section>
-            <section id="section_70" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Behavioural response</b>
-                  </p>
+            <section id="section_73" class="section heading">
+               <h2><span class="heading">
+                     <b>Behavioural response</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">132.</span></h2>
                   <p>Internal Home Office analysis has not found evidence of a significant relationship
@@ -5809,11 +5762,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are uncertain on this basis, and should be considered indicative.  </p>
                </section>
             </section>
-            <section id="section_71" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Fiscal impact</b>
-                  </p>
+            <section id="section_74" class="section heading">
+               <h2><span class="heading">
+                     <b>Fiscal impact</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">134.</span></h2>
                   <p>The fiscal impact related to changes in volumes is particularly uncertain. This IA
@@ -5828,11 +5780,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      a migrant may differ, either positively or negatively.  </p>
                </section>
             </section>
-            <section id="section_72" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Wider assumptions</b>
-                  </p>
+            <section id="section_75" class="section heading">
+               <h2><span class="heading">
+                     <b>Wider assumptions</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">135.</span></h2>
                   <p>Some assumptions, for example length of stay and visa grant rates, are based on evidence
@@ -5844,7 +5795,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          </div>
          <section class="attachment" data-name="annex">
             <div class="body">
-               <p id="annex_1_p_73">
+               <p id="annex_1_p_75">
                   <b>Annex</b>
                   </p>
                <table class="ia-table">
@@ -5908,17 +5859,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   the British Nationality (Hong Kong) Act 1997 </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <span class="tab">&nbsp;</span>Migration Advisory Committee, Analysis of the Impact of Migration (January 2012) 
-                  <a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration">https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration</a></u></span></a></p>
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> Migration Advisory Committee, Analysis of the Impact of Migration (January 2012) 
+                  <a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <span class="tab">&nbsp;</span>A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:&nbsp;&nbsp;</p>
-               <p><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk">https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk</a></u></span></a>&nbsp;&nbsp;</p>
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:&nbsp;&nbsp;</p>
+               <p><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk</u></span></a>&nbsp;&nbsp;</p>
                <p></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <span class="tab">&nbsp;</span>Migration Advisory Committee, Analysis of the Impact of Migration (January 2012) 
-                  <a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration">https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration</a></u></span></a></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> Migration Advisory Committee, Analysis of the Impact of Migration (January 2012) 
+                  <a href="https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/analysis-of-the-impacts-of-migration</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  In country volume estimates fluctuate across the appraisal period due to a time lag
@@ -5926,34 +5877,34 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   applications first.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <span class="tab">&nbsp;</span>Low estimate based on a one-week snapshot of flags inputted by carriers in April 2023,
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> Low estimate based on a one-week snapshot of flags inputted by carriers in April 2023,
                   high estimate based on 2018 estimates of non-EEA arrivals and the products they arrived
                   into the UK on, including transit visas. The former may not be representative of other
                   months in the year, the latter uses an old methodology and may not be representative
                   of all nationalities.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <span class="tab">&nbsp;</span>Taxes and fees for sales of service: how they differ and why it is important - Office
-                  for National Statistics (ons.gov.uk)<span style="color:#000000">:&nbsp;&nbsp;</span><a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31"><u><a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31">https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31</a></u></a><span style="color:#000000">&nbsp; </span></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> Taxes and fees for sales of service: how they differ and why it is important - Office
+                  for National Statistics (ons.gov.uk)<span style="color:#000000">:&nbsp;&nbsp;</span><a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31"><u>https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/articles/taxesandfeesforsalesofservicehowtheydifferandwhyitisimportant/2019-05-31</u></a><span style="color:#000000">&nbsp; </span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <span class="tab">&nbsp;</span><span style="color:#000000">Managing public money - GOV.UK:&nbsp;&nbsp;</span><a href="https://www.gov.uk/government/publications/managing-public-money"><u><a href="https://www.gov.uk/government/publications/managing-public-money">https://www.gov.uk/government/publications/managing-public-money</a></u></a><span style="color:#000000">&nbsp;</span></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <span style="color:#000000">Managing public money - GOV.UK:&nbsp;&nbsp;</span><a href="https://www.gov.uk/government/publications/managing-public-money"><u>https://www.gov.uk/government/publications/managing-public-money</u></a><span style="color:#000000">&nbsp;</span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <span class="tab">&nbsp;</span>“Pay for UK healthcare as part of your immigration application”, GOV.UK:  <a href="https://www.gov.uk/healthcare-immigration-application/refunds">https://www.gov.uk/healthcare-immigration-application/refunds</a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> “Pay for UK healthcare as part of your immigration application”, GOV.UK:  <a href="https://www.gov.uk/healthcare-immigration-application/refunds">https://www.gov.uk/healthcare-immigration-application/refunds</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-11" href="#fnref-11">11</a> <span class="tab">&nbsp;</span>Immigration Health Surcharge: equality impact assessment 2023 (accessible) - GOV.UK
-                  (www.gov.uk): <a href="https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible">https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible</a></u></span></a></p>
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a> Immigration Health Surcharge: equality impact assessment 2023 (accessible) - GOV.UK
+                  (www.gov.uk): <a href="https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/immigration-health-surcharge-ihs-equality-impact-assessment-2023/immigration-health-surcharge-equality-impact-assessment-2023-accessible</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-12" href="#fnref-12">12</a> <span class="tab">&nbsp;</span>Some exemptions may apply. Exemptions are set out in UK visa sponsorship for employers:
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a> Some exemptions may apply. Exemptions are set out in UK visa sponsorship for employers:
                   Immigration skills charge - GOV.UK:  <a href="https://www.gov.uk/uk-visa-sponsorship-employers/immigration-skills-charge">https://www.gov.uk/uk-visa-sponsorship-employers/immigration-skills-charge</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> <span class="tab">&nbsp;</span>A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a> A review of evidence relating to the elasticity of demand for visas in the UK – GOV.UK:
                   </p>
-               <p><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk">https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk</a></u></span></a></p>
+               <p><a href="https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/a-review-of-evidence-relating-to-the-elasticity-of-demand-for-visas-in-the-uk</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <span style="color:#000000">Lichter, A., Peichl, A. &amp; Siegloch, S. (2013) Labor demand elasticities in Europe:
@@ -5961,16 +5912,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <span style="color:#000000">Blundell, Richard, Antoine&nbsp;Bozio, and Guy&nbsp;Laroque. 2011. "Labor Supply and the Extensive
-                     Margin." American Economic Review, 101 (3): 482-86.&nbsp;</span><a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482"><u><a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482">https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482</a></u></a><span style="color:#000000">&nbsp; </span></p>
+                     Margin." American Economic Review, 101 (3): 482-86.&nbsp;</span><a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482"><u>https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482</u></a><span style="color:#000000">&nbsp; </span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> <span class="tab">&nbsp;</span>Blundell, Richard, Antoine Bozio, and Guy Laroque. 2011. "Labor Supply and the Extensive
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> Blundell, Richard, Antoine Bozio, and Guy Laroque. 2011. "Labor Supply and the Extensive
                   Margin." American Economic Review, 101 (3): 482-86. <a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482">https://www.aeaweb.org/articles?id=10.1257/aer.101.3.482</a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-17" href="#fnref-17">17</a> 
-                  <span class="tab">&nbsp;</span>An internal academic literature review was used to tailor the estimates from the DfT’s
-                  UK aviation forecasts 2017: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf</a></u></span></a></p>
+                  An internal academic literature review was used to tailor the estimates from the DfT’s
+                  UK aviation forecasts 2017: <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/781281/uk-aviation-forecasts-2017.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  E.g. <a href="https://www.legislation.gov.uk/ukia/2023/121/pdfs/ukia_20230121_en.pdf"><span style="color:#0000FF"><u>Impact assessment for Immigration and Nationality (Fees) Regulations (Amendment) 2023
@@ -6003,7 +5954,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            RPC Opinion: N/A (legislation.gov.uk)</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-23" href="#fnref-23">23</a> <span class="tab">&nbsp;</span>Low estimate based on a one-week snapshot of flags inputted by carriers in April 2023,
+               <p><a class="marker" id="fn-23" href="#fnref-23">23</a> Low estimate based on a one-week snapshot of flags inputted by carriers in April 2023,
                   high estimate based on 2018 estimates of non-EEA arrivals and the products they arrived
                   into the UK on, including transit visas. The former may not be representative of other
                   months in the year, the latter uses an old methodology and may not be representative
@@ -6011,11 +5962,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  Gould (1994) ‘Immigrant Links to the Home Country: Empirical Implications for U.S.
-                  Bilateral Trade Flows’ <a href="https://www.jstor.org/stable/2109884"><span style="color:#0000FF"><u><a href="https://www.jstor.org/stable/2109884">https://www.jstor.org/stable/2109884</a></u></span></a></p>
+                  Bilateral Trade Flows’ <a href="https://www.jstor.org/stable/2109884"><span style="color:#0000FF"><u>https://www.jstor.org/stable/2109884</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-25" href="#fnref-25">25</a>  Oxford Economics, The value of international business travel – A report for GMTC,
-                  2016 <a href="https://ukevents.org.uk/component/phocadownload/category/5-industry-research?download=329:the-value-of-international-business-travel"><span style="color:#0000FF"><u><a href="https://ukevents.org.uk/component/phocadownload/category/5-industry-research?download=329:the-value-of-international-business-travel">https://ukevents.org.uk/component/phocadownload/category/5-industry-research?download=329:the-value-of-international-business-travel</a></u></span></a></p>
+                  2016 <a href="https://ukevents.org.uk/component/phocadownload/category/5-industry-research?download=329:the-value-of-international-business-travel"><span style="color:#0000FF"><u>https://ukevents.org.uk/component/phocadownload/category/5-industry-research?download=329:the-value-of-international-business-travel</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-26" href="#fnref-26">26</a>  International Passenger Survey (IPS) travelpac 2018</p>
@@ -6025,11 +5976,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  2021 Government greenhouse gas conversion factors for company reporting: Methodology
-                  paper (publishing.service.gov.uk): <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1049346/2021-ghg-conversion-factors-methodology.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1049346/2021-ghg-conversion-factors-methodology.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1049346/2021-ghg-conversion-factors-methodology.pdf</a></u></span></a></p>
+                  paper (publishing.service.gov.uk): <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1049346/2021-ghg-conversion-factors-methodology.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1049346/2021-ghg-conversion-factors-methodology.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-29" href="#fnref-29">29</a>  Valuation of greenhouse gas emissions: for policy appraisal and evaluation - GOV.UK
-                  (www.gov.uk): <a href="https://www.gov.uk/government/publications/valuing-greenhouse-gas-emissions-in-policy-appraisal/valuation-of-greenhouse-gas-emissions-for-policy-appraisal-and-evaluation"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/valuing-greenhouse-gas-emissions-in-policy-appraisal/valuation-of-greenhouse-gas-emissions-for-policy-appraisal-and-evaluation">https://www.gov.uk/government/publications/valuing-greenhouse-gas-emissions-in-policy-appraisal/valuation-of-greenhouse-gas-emissions-for-policy-appraisal-and-evaluation</a></u></span></a></p>
+                  (www.gov.uk): <a href="https://www.gov.uk/government/publications/valuing-greenhouse-gas-emissions-in-policy-appraisal/valuation-of-greenhouse-gas-emissions-for-policy-appraisal-and-evaluation"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/valuing-greenhouse-gas-emissions-in-policy-appraisal/valuation-of-greenhouse-gas-emissions-for-policy-appraisal-and-evaluation</u></span></a></p>
             </div>
          </footer>
       </article>

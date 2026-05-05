@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -1833,7 +1850,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament#:~:text=hereditament%20means%20property%20which%20is,item%20in%20the%20valuation%20list%2C&amp;text=Mazars%20%5B2015%5D%20RA%20373%20as%20to%20what%20constitutes%20a%20hereditament">https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament#:~:text=hereditament%20means%20property%20which%20is,item%20in%20the%20valuation%20list%2C&amp;text=Mazars%20%5B2015%5D%20RA%20373%20as%20to%20what%20constitutes%20a%20hereditament</a></u>
+                        <u>https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament#:~:text=hereditament%20means%20property%20which%20is,item%20in%20the%20valuation%20list%2C&amp;text=Mazars%20%5B2015%5D%20RA%20373%20as%20to%20what%20constitutes%20a%20hereditament</u>
                         </span>
                      </a>
                   <span style="color:#000000">.</span>
@@ -1863,7 +1880,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">, 26 August 2018 </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/736163/ICG_-_Government_response_doc_-_24_Aug_clean_version__with_Minister_s_photo_and_signature__AC.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/736163/ICG_-_Government_response_doc_-_24_Aug_clean_version__with_Minister_s_photo_and_signature__AC.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/736163/ICG_-_Government_response_doc_-_24_Aug_clean_version__with_Minister_s_photo_and_signature__AC.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/736163/ICG_-_Government_response_doc_-_24_Aug_clean_version__with_Minister_s_photo_and_signature__AC.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1879,7 +1896,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament">https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament</a></u>
+                        <u>https://www.gov.uk/guidance/rating-manual-section-3-valuation-principles/part-1-hereditament</u>
                         </span>
                      </a>
                   <span style="color:#000000">

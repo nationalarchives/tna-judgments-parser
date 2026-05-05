@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -52944,7 +52961,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/levelling-up-the-united-kingdom">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/levelling-up-the-united-kingdom">https://www.gov.uk/government/publications/levelling-up-the-united-kingdom</a></u>
+                        <u>https://www.gov.uk/government/publications/levelling-up-the-united-kingdom</u>
                         </span>
                      </a>
                   </p>
@@ -52960,7 +52977,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://publications.parliament.uk/pa/cm5802/cmselect/cmcomloc/36/3602.htm">
                      <span style="color:#0070C0">
-                        <u><a href="https://publications.parliament.uk/pa/cm5802/cmselect/cmcomloc/36/3602.htm">https://publications.parliament.uk/pa/cm5802/cmselect/cmcomloc/36/3602.htm</a></u>
+                        <u>https://publications.parliament.uk/pa/cm5802/cmselect/cmcomloc/36/3602.htm</u>
                         </span>
                      </a>
                   </p>
@@ -52971,7 +52988,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/progress-on-devolution-in-england-government-response-to-the-select-committee-report">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/progress-on-devolution-in-england-government-response-to-the-select-committee-report">https://www.gov.uk/government/publications/progress-on-devolution-in-england-government-response-to-the-select-committee-report</a></u>
+                        <u>https://www.gov.uk/government/publications/progress-on-devolution-in-england-government-response-to-the-select-committee-report</u>
                         </span>
                      </a>
                   </p>
@@ -52982,7 +52999,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/technical-consultation-on-street-naming">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/technical-consultation-on-street-naming">https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/technical-consultation-on-street-naming</a></u>
+                        <u>https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/technical-consultation-on-street-naming</u>
                         </span>
                      </a>
                   </p>
@@ -52993,7 +53010,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/outcome/government-response-to-the-technical-consultation-on-street-naming">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/outcome/government-response-to-the-technical-consultation-on-street-naming">https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/outcome/government-response-to-the-technical-consultation-on-street-naming</a></u>
+                        <u>https://www.gov.uk/government/consultations/technical-consultation-on-street-naming/outcome/government-response-to-the-technical-consultation-on-street-naming</u>
                         </span>
                      </a>
                   </p>
@@ -53004,7 +53021,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/build-back-better-high-streets">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/build-back-better-high-streets">https://www.gov.uk/government/publications/build-back-better-high-streets</a></u>
+                        <u>https://www.gov.uk/government/publications/build-back-better-high-streets</u>
                         </span>
                      </a>
                   </p>
@@ -53015,7 +53032,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/development-corporation-reform-technical-consultation">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/development-corporation-reform-technical-consultation">https://www.gov.uk/government/consultations/development-corporation-reform-technical-consultation</a></u>
+                        <u>https://www.gov.uk/government/consultations/development-corporation-reform-technical-consultation</u>
                         </span>
                      </a>
                   </p>
@@ -53026,7 +53043,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.localdatacompany.com/blog/q2-brc-retail-vacancy">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.localdatacompany.com/blog/q2-brc-retail-vacancy">https://www.localdatacompany.com/blog/q2-brc-retail-vacancy</a></u>
+                        <u>https://www.localdatacompany.com/blog/q2-brc-retail-vacancy</u>
                         </span>
                      </a>
                   </p>
@@ -53037,7 +53054,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/statistics/non-domestic-rating-stock-of-properties-2020">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/statistics/non-domestic-rating-stock-of-properties-2020">https://www.gov.uk/government/statistics/non-domestic-rating-stock-of-properties-2020</a></u>
+                        <u>https://www.gov.uk/government/statistics/non-domestic-rating-stock-of-properties-2020</u>
                         </span>
                      </a>
                   </p>
@@ -53048,7 +53065,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/planning-for-the-future">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/planning-for-the-future">https://www.gov.uk/government/consultations/planning-for-the-future</a></u>
+                        <u>https://www.gov.uk/government/consultations/planning-for-the-future</u>
                         </span>
                      </a>
                   </p>
@@ -53059,7 +53076,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://committees.parliament.uk/work/634/the-future-of-the-planning-system-in-england/publications/">
                      <span style="color:#0070C0">
-                        <u><a href="https://committees.parliament.uk/work/634/the-future-of-the-planning-system-in-england/publications/">https://committees.parliament.uk/work/634/the-future-of-the-planning-system-in-england/publications/</a></u>
+                        <u>https://committees.parliament.uk/work/634/the-future-of-the-planning-system-in-england/publications/</u>
                         </span>
                      </a>
                   </p>
@@ -53070,7 +53087,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.rics.org/content/dam/ricsglobal/documents/about-rics/corporate-governance/royal-charter.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.rics.org/content/dam/ricsglobal/documents/about-rics/corporate-governance/royal-charter.pdf">https://www.rics.org/content/dam/ricsglobal/documents/about-rics/corporate-governance/royal-charter.pdf</a></u>
+                        <u>https://www.rics.org/content/dam/ricsglobal/documents/about-rics/corporate-governance/royal-charter.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
