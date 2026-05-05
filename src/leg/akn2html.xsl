@@ -377,6 +377,15 @@
 				<a class="toc-link" href="/{$IA-toc-url}">Back to Table of Contents</a>
 			</xsl:otherwise>
 		</xsl:choose>
+		<nav class="section-nav">
+			<!-- Disabled placeholders. Frontend hooks them up to point at
+			     the previous/next section's URL when those views exist. -->
+			<a class="section-link prev-section disabled" aria-disabled="true">Previous section</a>
+			<a class="section-link next-section disabled" aria-disabled="true">Next section</a>
+		</nav>
+		<!-- Back to full view: disabled on the whole-doc HTML (you are
+		     already on full view); frontend activates it on section views. -->
+		<a class="full-view-link disabled" aria-disabled="true">Back to full view</a>
 	</header>
 </xsl:template>
 
