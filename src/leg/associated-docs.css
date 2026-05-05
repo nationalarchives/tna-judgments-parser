@@ -132,11 +132,33 @@ article[data-doc-type='ImpactAssessment'] th > p:empty {
 	padding: 4pt;
 }
 
-/* IA TOC Link */
-.toc-container { display: flex; justify-content: center; align-items: center;}
-.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: inherit}
-.toc-box a { color: inherit; text-decoration: none;}
-.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
 
 /* Shared heading styles for text-oriented leg documents */
 article[data-doc-type='ExplanatoryNotes'] .preface,
