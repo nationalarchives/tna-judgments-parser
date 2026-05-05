@@ -365,21 +365,19 @@
 			'contents'), '/')"/>
 	</xsl:variable>
 
-	<div class="toc-container">
-		<div class="toc-box">
-			<xsl:choose>
-				<xsl:when test="$parameters/*:parameters/*:notes-type = 'memorandum' ">
-					<a href="/{$EM-toc-url}">Explanatory Memorandum Table of Contents</a>
-				</xsl:when>
-				<xsl:when test="$parameters/*:parameters/*:notes-type = 'notes' ">
-					<a href="/{$EN-toc-url}">Explanatory Notes Table of Contents</a>
-				</xsl:when>
-				<xsl:otherwise>
-					<a href="/{$IA-toc-url}">Impact Assessment Table of Contents</a>
-				</xsl:otherwise>
-			</xsl:choose>
-		</div>
-	</div>
+	<header class="toc-header">
+		<xsl:choose>
+			<xsl:when test="$parameters/*:parameters/*:notes-type = 'memorandum' ">
+				<a class="toc-link" href="/{$EM-toc-url}">Back to Table of Contents</a>
+			</xsl:when>
+			<xsl:when test="$parameters/*:parameters/*:notes-type = 'notes' ">
+				<a class="toc-link" href="/{$EN-toc-url}">Back to Table of Contents</a>
+			</xsl:when>
+			<xsl:otherwise>
+				<a class="toc-link" href="/{$IA-toc-url}">Back to Table of Contents</a>
+			</xsl:otherwise>
+		</xsl:choose>
+	</header>
 </xsl:template>
 
 <!-- end of templates -->
