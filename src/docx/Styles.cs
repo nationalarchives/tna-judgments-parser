@@ -97,6 +97,44 @@ static class Styles {
         return GetStyleProperty(style, getValue);
     }
 
+    internal enum HeadingSignal {
+        Authoritative,
+        // Bold + size only. Some templates style address blocks and
+        // signature lines the same way as chapter headings, so callers must
+        // confirm with content-based checks.
+        Visual
+    }
+
+    internal record struct HeadingClassification(int Depth, HeadingSignal Signal);
+
+    /// Returns depth (1..6) + signal tier, or null for body paragraphs.
+    /// Tries: outlineLvl on the style or its basedOn chain, "Heading\d"
+    /// name match, then bold + size as a visual fallback.
+    internal static HeadingClassification? ClassifyHeading(MainDocumentPart? main, string? styleId) {
+        if (main is null || string.IsNullOrEmpty(styleId)) return null;
+        Style? style = GetStyle(main, styleId);
+        if (style is null) return null;
+
+        var outlineLvl = style.GetInheritedProperty(s => s.StyleParagraphProperties?.OutlineLevel);
+        if (outlineLvl?.Val?.Value is int level && level >= 0 && level < 6)
+            return new HeadingClassification(level + 1, HeadingSignal.Authoritative);
+
+        var m = System.Text.RegularExpressions.Regex.Match(styleId!, @"^heading\s*(\d)$",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        if (m.Success) {
+            int d = int.Parse(m.Groups[1].Value);
+            if (d >= 1 && d <= 6) return new HeadingClassification(d, HeadingSignal.Authoritative);
+        }
+
+        var bold = style.GetInheritedProperty(s => s.StyleRunProperties?.Bold);
+        var fontSize = style.GetInheritedProperty(s => s.StyleRunProperties?.FontSize?.Val);
+        if (bold is null || fontSize?.Value is null) return null;
+        if (!int.TryParse(fontSize.Value, out int sizeHalfPts)) return null;
+        if (sizeHalfPts < 26) return null;
+        int visualDepth = sizeHalfPts >= 36 ? 1 : (sizeHalfPts >= 30 ? 2 : 3);
+        return new HeadingClassification(visualDepth, HeadingSignal.Visual);
+    }
+
 }
 
 }
