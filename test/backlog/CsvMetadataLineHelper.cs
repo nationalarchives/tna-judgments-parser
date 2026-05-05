@@ -22,7 +22,7 @@ public static class CsvMetadataLineHelper
         FilePath = "",
         Extension = ".pdf",
         DecisionDateTime = DateTime.MinValue,
-        CaseNo = "ABC/2023/001",
+        CaseNo = ["ABC/2023/001"],
         Respondent = "The respondent"
     };
 

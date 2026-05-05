@@ -36,10 +36,12 @@ internal record CsvLine
 
     public required DateTime DecisionDateTime { get; set; }
 
-    [Required(AllowEmptyStrings = false)]
-    public required string CaseNo { get; set; }
+    [Optional]
+    [TypeConverter(typeof(DelimitedArrayConverter))]
+    public string[] CaseNo { get; set; } = [];
 
     [Optional]
+    [TypeConverter(typeof(DelimitedArrayConverter))]
     public string[] Jurisdictions { get; set; } = [];
 
     [Optional]

@@ -48,9 +48,9 @@ public class TestRead : IDisposable
     {
         using var csvStream = new StringReader(
             """
-            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
-            123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
-            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
+            id,FilePath,Extension,decision_datetime,court,claimants,respondent,skip
+            123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 ,UKUT-IAC , Smith , Secretary of State for the Home Department,
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,UKFTT-TC,Jones,HMRC,skip me
             """
         );
 
@@ -176,7 +176,6 @@ public class TestRead : IDisposable
     [InlineData(nameof(CsvLine.FilePath))]
     [InlineData(nameof(CsvLine.Extension))]
     [InlineData(nameof(CsvLine.DecisionDateTime))]
-    [InlineData(nameof(CsvLine.CaseNo))]
     [InlineData(nameof(CsvLine.Court))]
     [InlineData("claimants")] // missing claimants/appellants has a different validation message
     [InlineData(nameof(CsvLine.Respondent))]
@@ -208,6 +207,7 @@ public class TestRead : IDisposable
     [InlineData("     ", new string[] { })]
     [InlineData(",   ,  ", new string[] { })]
     [InlineData("\"Community,Environment\"", new[] { "Community", "Environment" })]
+    [InlineData("Community;Environment", new[] { "Community", "Environment" })]
     [InlineData("\"Community, Environment,Other , Another ,\"",
         new[] { "Community", "Environment", "Other", "Another" })]
     [InlineData("\"Community, Environment,,  ,Other , Another ,\"",
@@ -228,6 +228,34 @@ public class TestRead : IDisposable
 
         var line = Assert.Single(result);
         Assert.Equal(expectedJurisdictions, line.Jurisdictions);
+    }
+
+    [Theory]
+    [InlineData("", new string[] { })]
+    [InlineData("     ", new string[] { })]
+    [InlineData("\",   ;  \"", new string[] { })]
+    [InlineData("\"IA/2025/001,IA/2025/002\"", new[] { "IA/2025/001", "IA/2025/002" })]
+    [InlineData("IA/2025/001;IA/2025/002", new[] { "IA/2025/001", "IA/2025/002" })]
+    [InlineData("\"IA/2025/001; IA/2025/002,IA/2025/003 ; IA/2025/004 ;\"",
+        new[] { "IA/2025/001", "IA/2025/002", "IA/2025/003", "IA/2025/004" })]
+    [InlineData("\"IA/2025/001, IA/2025/002,, ; ,IA/2025/003 , IA/2025/004 ,\"",
+        new[] { "IA/2025/001", "IA/2025/002", "IA/2025/003", "IA/2025/004" })]
+    [InlineData("\"IA/2025/001\"", new[] { "IA/2025/001" })]
+    [InlineData("IA/2025/001", new[] { "IA/2025/001" })]
+    public void Read_WithCaseNos_StoresTrimmedNonEmptyCaseNos(string csvCaseNos,
+        string[] expectedCaseNos)
+    {
+        using var csvStream = new StringReader(
+            $"""
+             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions,skip
+             125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,{csvCaseNos},UKUT-IAC,Taylor,Home Office,Environment,
+             """
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
+
+        var line = Assert.Single(result);
+        Assert.Equal(expectedCaseNos, line.CaseNo);
     }
 
     [Fact]
@@ -335,7 +363,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/001",
+                CaseNo = ["IA/2025/001"],
                 Jurisdictions = [],
                 Claimants = "Smith",
                 Appellants = null,
@@ -357,7 +385,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case2.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/002",
+                CaseNo = ["IA/2025/002"],
                 Jurisdictions = [],
                 Claimants = null,
                 Appellants = "Jones",
@@ -379,7 +407,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case3.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 17, 11, 00, 00, DateTimeKind.Utc),
-                CaseNo = "GRC/2025/003",
+                CaseNo = ["GRC/2025/003"],
                 Jurisdictions = [],
                 Claimants = "Williams",
                 Appellants = null,
@@ -401,7 +429,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case4.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 18, 12, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/004",
+                CaseNo = ["IA/2025/004"],
                 Jurisdictions = [],
                 Claimants = null,
                 Appellants = "Brown",
@@ -423,7 +451,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case5.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/005",
+                CaseNo = ["IA/2025/005"],
                 Jurisdictions = ["Community", "Environment"],
                 Claimants = "Taylor",
                 Appellants = null,
@@ -445,7 +473,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case6.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/006",
+                CaseNo = ["IA/2025/006"],
                 Jurisdictions = ["Community", "Environment", "Other", "Another"],
                 Claimants = "Taylor",
                 Appellants = null,
@@ -467,7 +495,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case7.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/007",
+                CaseNo = ["IA/2025/007"],
                 Jurisdictions = ["Environment"],
                 Claimants = "Davies",
                 Appellants = null,
@@ -488,7 +516,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case8.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/008",
+                CaseNo = ["IA/2025/008"],
                 Jurisdictions = [],
                 Claimants = "Berry",
                 Appellants = null,
@@ -510,7 +538,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case9.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/009",
+                CaseNo = ["IA/2025/009"],
                 Jurisdictions = [],
                 Claimants = "Berry",
                 Appellants = null,
@@ -588,7 +616,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/001",
+                CaseNo = ["IA/2025/001"],
                 Jurisdictions = [],
                 Claimants = "Smith",
                 Appellants = null,

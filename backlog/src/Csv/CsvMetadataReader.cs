@@ -44,9 +44,10 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
             TrimOptions = TrimOptions.Trim | TrimOptions.InsideQuotes
         };
         using var csv = new CsvReader(textReader, config);
-
-        csv.Context.TypeConverterCache.AddConverter<BooleanSkipConverter>(new BooleanSkipConverter());
         csv.Context.RegisterClassMap(new CsvLineMap(csvName, csvHash));
+
+        //Get boolean skip converter from type converter cache once now so it can be used to skip records
+        var booleanSkipConverter = csv.Context.TypeConverterCache.GetConverter(typeof(CsvLine).GetMember(nameof(CsvLine.Skip)).Single());
 
         var records = new List<CsvLine>();
         skippedCsvLineIdentifiers = [];
@@ -65,7 +66,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 
             var successfullyRetrievedSkipField = csv.TryGetField<bool>(
                 nameof(CsvLine.Skip),
-                csv.Context.TypeConverterCache.GetConverter<BooleanSkipConverter>(),
+                booleanSkipConverter,
                 out var skipFieldValue
             );
 
@@ -158,15 +159,6 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     v => string.IsNullOrWhiteSpace(v.Field)
                         ? "Decision date must be provided"
                         : "Unsupported decision date. Ensure dates are in yyyy-MM-dd format");
-            Map(l => l.Jurisdictions)
-                .Optional()
-                .Convert(convertFromStringArgs =>
-                {
-                    // Get value
-                    convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
-                    return field?.Split(',').Select(item => item.Trim())
-                                .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
-                });
 
             Map(l => l.FullCsvLineContents)
                 .Convert(convertFromStringArgs =>

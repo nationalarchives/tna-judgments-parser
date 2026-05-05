@@ -77,7 +77,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
             Jurisdictions = line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
             Date = new WNamedDate { Date = line.DecisionDateTime.ToString("yyyy-MM-dd"), Name = "decision" },
             Name = line.FirstPartyName + " v " + line.Respondent,
-            CaseNumbers = [line.CaseNo],
+            CaseNumbers = line.CaseNo.ToList(),
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
@@ -102,7 +102,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
         List<IMetadataField> metadataFields =
         [
             CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileProperties, new CsvProperties(csvLine.CsvProperties.Name, csvLine.CsvProperties.Hash, csvLine.FullCsvLineContents)),
-            CreateExternalMetadataField(MetadataFieldName.CaseNumber, csvLine.CaseNo),
+            .. CreateExternalMetadataFields(MetadataFieldName.CaseNumber, () => csvLine.CaseNo),
             .. CreateExternalMetadataFields(MetadataFieldName.Category, () => csvLine.Categories),
             CreateExternalMetadataField(MetadataFieldName.Court, csvLine.Court),
             CreateExternalMetadataField(MetadataFieldName.Date, csvLine.DecisionDateTime),

@@ -220,7 +220,7 @@ internal class BacklogParserWorker(
                     Extensions = new Api.Extensions
                     {
                         SourceFormat = mimeType,
-                        CaseNumbers = [csvLine.CaseNo],
+                        CaseNumbers = csvLine.CaseNo.ToList(),
                         Parties = csvLine.Parties.ToList(),
                         Categories = csvLine.Categories.ToList(),
                         WebArchivingLink = csvLine.WebArchiving
