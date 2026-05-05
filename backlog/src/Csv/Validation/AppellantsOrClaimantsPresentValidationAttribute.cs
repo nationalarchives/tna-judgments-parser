@@ -18,8 +18,8 @@ public sealed class AppellantsOrClaimantsPresentValidationAttribute : Validation
         }
 
         // Check that exactly one of claimants or appellants is provided
-        var hasClaimants = !string.IsNullOrWhiteSpace(line.claimants);
-        var hasAppellants = !string.IsNullOrWhiteSpace(line.appellants);
+        var hasClaimants = !string.IsNullOrWhiteSpace(line.Claimants);
+        var hasAppellants = !string.IsNullOrWhiteSpace(line.Appellants);
 
         return (hasClaimants, hasAppellants) switch
         {

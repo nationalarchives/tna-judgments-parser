@@ -47,7 +47,5 @@ interface IOutsideMetadata {
 
     List<ICategory> Categories { get; }
 
-    string NCN { get; }
-
     string WebArchivingLink { get; }
 }

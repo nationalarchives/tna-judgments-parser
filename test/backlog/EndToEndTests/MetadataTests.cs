@@ -8,6 +8,10 @@ using System.Xml;
 
 using Backlog.Csv;
 
+using Microsoft.Extensions.Logging;
+
+using UK.Gov.Legislation.Judgments;
+
 using Xunit;
 
 namespace test.backlog.EndToEndTests;
@@ -73,7 +77,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", JudgmentsFilePath);
 
         var headerLine =
-            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving";
+            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving,skip,NCN";
         var csvMetadataLines = new List<string> { headerLine };
         csvMetadataLines.AddRange(metadataLines.Select(metadataLine =>
         {
@@ -83,8 +87,13 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                 jurisdictions = $"\"{jurisdictions}\"";
             }
 
-            return
-                $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.decision_datetime:yyyy-MM-dd},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions},{metadataLine.webarchiving}";
+            var caseNumbers = string.Join(',', metadataLine.CaseNo);
+            if (metadataLine.CaseNo.Length > 1)
+            {
+                caseNumbers = $"\"{caseNumbers}\"";
+            }
+
+            return $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.DecisionDateTime:yyyy-MM-dd},{caseNumbers},{metadataLine.Court},{metadataLine.Appellants},{metadataLine.Claimants},{metadataLine.Respondent},{jurisdictions},{metadataLine.WebArchiving},{(metadataLine.Skip ? "skip" : "")},{metadataLine.Ncn}";
         }));
 
         var metadataPath = courtMetadataPath ??
@@ -106,13 +115,14 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             id = docWithoutJurisdictionsId.ToString(),
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
-            decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "new case number",
-            court = "UKUT-LC",
-            claimants = "new claimants",
-            respondent = "new respondent",
+            DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
+            CaseNo = ["new case number"],
+            Court = "UKUT-LC",
+            Claimants = "new claimants",
+            Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
-            webarchiving = "my web archiving link"
+            WebArchiving = "my web archiving link",
+            Ncn = "[1989] UKUT 1234 (LC)"
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -136,9 +146,9 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
                child => child.Should().HaveName("uk:parser"),
                child => child.Should().Match("uk:hash", "4684bfd014fadda75dc2bd683fb4edf8df0f42656a2ac85013bb3dfb14ca512e"),
-               child => child.Should().Match("uk:year", "2022"),
-               child => child.Should().Match("uk:number", "121"),
-               child => child.Should().Match("uk:cite", "[2022] UKUT 121 (LC)"),
+               child => child.Should().Match("uk:year", "1989"),
+               child => child.Should().Match("uk:number", "1234"),
+               child => child.Should().Match("uk:cite", "[1989] UKUT 1234 (LC)"),
                child => child.Should().Match("uk:webarchiving", "my web archiving link")
            );
 
@@ -158,13 +168,14 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             id = "42",
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".pdf",
-            decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "new case number",
-            court = "UKUT-LC",
-            claimants = "new claimants",
-            respondent = "new respondent",
+            DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
+            CaseNo = ["new case number"],
+            Court = "UKUT-LC",
+            Ncn = "new ncn",
+            Claimants = "new claimants",
+            Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
-            webarchiving = "my web archiving link"
+            WebArchiving = "my web archiving link"
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -180,6 +191,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         doc.HasSingleNodeWithName("proprietary")
            .Which().HasChildrenMatching(
                child => child.Should().Match("uk:court", "UKUT-LC"),
+               child => child.Should().Match("uk:cite", "new ncn"),
                child => child.Should().Match("uk:caseNumber", "new case number"),
                child => child.Should().Match("uk:party", "new claimants", ("role", "Claimant")),
                child => child.Should().Match("uk:party", "new respondent", ("role", "Respondent")),
@@ -207,11 +219,11 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             id = DocIdWithJurisdiction.ToString(),
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
-            decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "new case number",
-            court = "UKFTT-GRC",
-            appellants = "new appellants",
-            respondent = "new respondent",
+            DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
+            CaseNo = ["new case number"],
+            Court = "UKFTT-GRC",
+            Appellants = "new appellants",
+            Respondent = "new respondent",
             Jurisdictions = ["A jurisdiction which is not in the original document"]
         };
         WriteCourtMetadataCsv(metadataLine);
@@ -221,9 +233,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
 
         //Assert
         Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
-        Assert.Contains(
-            "MetadataConflictException: Jurisdictions found in document are missing in supplied outside metadata",
-            TestOutputHelper.Output);
+        ConsolidatedLogger.VerifyLog<MetadataConflictException>("Jurisdictions found in document are missing in supplied outside metadata", LogLevel.Error);
     }
 
     [Fact]
@@ -239,11 +249,11 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             id = DocIdWithJurisdiction.ToString(),
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
-            decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "EA/2023/0132",
-            court = "UKFTT-GRC",
-            appellants = "NIGEL RAWLINS",
-            respondent = "THE INFORMATION COMMISSIONER",
+            DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
+            CaseNo = ["EA/2023/0132"],
+            Court = "UKFTT-GRC",
+            Appellants = "NIGEL RAWLINS",
+            Respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights", "new jurisdiction"]
         };
         WriteCourtMetadataCsv(metadataLine);
@@ -317,11 +327,12 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             id = DocIdWithJurisdiction.ToString(),
             FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
-            decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
-            CaseNo = "EA/2023/0132",
-            court = "UKFTT-GRC",
-            appellants = "NIGEL RAWLINS",
-            respondent = "THE INFORMATION COMMISSIONER",
+            DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
+            CaseNo = ["EA/2023/0132"],
+            Ncn = "[2023] UKFTT 916 (GRC)",
+            Court = "UKFTT-GRC",
+            Appellants = "NIGEL RAWLINS",
+            Respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights"]
         };
         WriteCourtMetadataCsv(metadataLine);
