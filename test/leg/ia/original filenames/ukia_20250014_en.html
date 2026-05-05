@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -192,7 +209,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </section>
             <section id="section_2" class="section heading">
-               <h2></h2>
+               <h2><span class="heading">Higher education tuition fees and loan limits and student finance for the 2025 to
+                     2026 academic year</span></h2>
                <p>
                   <span style="color:#104F75">
                      <b>Higher education: tuition fees and loan limits and student finance for the 2025 to
@@ -201,20 +219,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </section>
             <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Equality Impact Assessment</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Equality Impact Assessment</b>
+                        </span>
+                     </span></h2>
             </section>
             <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>January 2025</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>January 2025</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <span style="color:#104F75">
@@ -224,12 +240,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Summary of policy changes and equality impacts</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Summary of policy changes and equality impacts</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Under the Equality Act 2010, the Department for Education (DfE), as a public authority,
                      is legally obliged to give due regard to equality issues when making policy decisions.
@@ -280,12 +295,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Overall assessment</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Overall assessment</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>The increase in maximum tuition fees and loan limits for full-time, full-time accelerated
                      and part-time undergraduate courses by forecast RPIX inflation of 3.1%<a class="fn" id="fnref-1" href="#fn-1">1</a> is expected to have a broadly neutral impact as the increase is in nominal terms
@@ -423,12 +437,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>The influence of cost of study, debt and finance on higher education decision making</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>The influence of cost of study, debt and finance on higher education decision making</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>There is an extensive evidence base on the influence that the cost of study, debt
                      aversion and the availability of student finance have on the decisions students make
@@ -436,12 +449,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Overall attitudes to student debt</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Overall attitudes to student debt</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Attitudes to student loans, in general, have become more favourable over time. Research
@@ -459,12 +471,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Impact of student debt on students with protected characteristics</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Impact of student debt on students with protected characteristics</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Some individuals may be deterred from entering HE because of fear of debt. Individuals
@@ -492,12 +503,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>The wider costs of HE</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>The wider costs of HE</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Some students feel constrained about HE choices due to affordability and/or costs.
@@ -527,12 +537,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Impact of costs on decision making for students with protected characteristics</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Impact of costs on decision making for students with protected characteristics</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Recent research shows that young people in the lowest income category were least likely
@@ -551,20 +560,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>The case for uplifting tuition fees and student support</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>The case for uplifting tuition fees and student support</b>
+                        </span>
+                     </span></h2>
             </section>
             <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Tuition fee limits</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Tuition fee limits</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>The planned increase in tuition fee limits for full-time and part-time undergraduate
                      courses and accelerated degree courses in England for students starting in academic
@@ -592,12 +599,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Student loan and grant support</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Student loan and grant support</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>HE represents a significant investment in terms of time and money. On average, undergraduate
                      HE borrowers who started their studies in academic year 2023/24 are forecast to enter
@@ -614,12 +620,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Changes to tuition fees and loan limits for academic year 2025/26</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Changes to tuition fees and loan limits for academic year 2025/26</b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">Maximum fees for the 2025/26 academic year will increase by 3.1%:</span></h2>
                   <section class="paragraph num">
@@ -649,12 +654,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Undergraduate courses</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Undergraduate courses</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Maximum tuition fees and loan limits for full and part time undergraduate courses
                      in academic year 2025/26 at Approved (Fee Cap) and Approved providers in England are
@@ -1030,12 +1034,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Full Time Tuition Fees and Fee Loans for new and continuing students </b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Full Time Tuition Fees and Fee Loans for new and continuing students </b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#0D0D0D">Maximum tuition fees for full-time courses and full-time distance learning courses
@@ -1179,12 +1182,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Part Time Tuition Fees and Fee Loans for part time higher education courses </b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Part Time Tuition Fees and Fee Loans for part time higher education courses </b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#0D0D0D">Maximum tuition fees for part-time courses starting on or after 1 September 2012 at
@@ -1249,12 +1251,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Foundation years (full and part-time)</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Foundation years (full and part-time)</b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#0D0D0D">Maximum tuition fees and fee loans for full-time classroom-based foundation years</span>
@@ -1370,29 +1371,26 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
             </section>
             <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Changes to loans, grants and allowances for academic year 2025/26</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Changes to loans, grants and allowances for academic year 2025/26</b>
+                        </span>
+                     </span></h2>
             </section>
             <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Support for Undergraduate Courses</b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Support for Undergraduate Courses</b>
+                        </span>
+                     </span></h2>
             </section>
             <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Loans for living costs for new full-time students and continuing full-time students
-                        starting their courses on or after 1 August 2016 </b>
-                     </span>
-                  </p>
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Loans for living costs for new full-time students and continuing full-time students
+                           starting their courses on or after 1 August 2016 </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Maximum loans for living costs for new full-time undergraduate students and eligible
@@ -1429,15 +1427,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         </p>
                   </section>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#104F75">
-                        <b>Loans for living costs for new full-time students and continuing full-time students
-                           starting their courses on or after 1 August 2016 who are entitled to certain benefits
-                           </b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Loans for living costs for new full-time students and continuing full-time students
+                     starting their courses on or after 1 August 2016 who are entitled to certain benefits</span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Maximum loans for living costs for new full-time undergraduate students and eligible
@@ -1475,15 +1468,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         </p>
                   </section>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#104F75">
-                        <b>Loans for living costs for new full-time students and continuing full-time students
-                           starting their courses on or after 1 August 2016 who are aged 60 or over at the start
-                           of their course</b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">Loans for living costs for new full-time students and continuing full-time students
+                     starting their courses on or after 1 August 2016 who are aged 60 or over at the start
+                     of their course</span></h2>
                <section class="level">
                   <p>Maximum loan for living costs in 2025/26 for new full-time undergraduate students
                      and eligible continuing full-time undergraduate students starting their courses on
@@ -1491,14 +1480,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      year of their course, will be increased by 3.1% to £4,461.</p>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Maintenance Grants and Special Support Grants for full-time students who started their
-                        courses before 1 August 2016</b>
-                     </span>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Maintenance Grants and Special Support Grants for full-time students who started their
+                           courses before 1 August 2016</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Maximum maintenance grant and special support grant for eligible continuing full-time
@@ -1507,14 +1495,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Loans for living costs for full-time students who started their courses before 1 August
-                        2016 </b>
-                     </span>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Loans for living costs for full-time students who started their courses before 1 August
+                           2016 </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Maximum loans for living costs for eligible undergraduate students, who started their
@@ -1550,13 +1537,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_25" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Long Courses Loans </b>
-                     </span>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Long Courses Loans </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Maximum long courses (living costs) loans for new and continuing undergraduate students
@@ -1594,13 +1580,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_26" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Dependants’ Grants </b>
-                     </span>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Dependants’ Grants </b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#0D0D0D">Maximum amounts for dependants’ grants (adult dependants’ grant, childcare grant and
@@ -1631,13 +1616,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Disabled Students’ Allowance </b>
-                     </span>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Disabled Students’ Allowance </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Maximum disabled students’ allowance (DSA) will be increased by 3.1% to £27,783 for
@@ -1645,13 +1629,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Part-time loans for living costs </b>
-                     </span>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Part-time loans for living costs </b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#0D0D0D">Maximum loan for living costs in 2025/26 for new part-time undergraduate students
@@ -1690,21 +1673,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Support for Postgraduate Courses</b>
-                     </span>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Support for Postgraduate Courses</b>
+                        </span>
+                     </span></h2>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Maximum loans for new students starting Postgraduate Courses in 2025/26</b>
-                     </span>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Maximum loans for new students starting Postgraduate Courses in 2025/26</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Maximum loans for new students starting postgraduate master’s degree courses in 2025/26
                      will increase by 3.1% to £12,858.</p>
@@ -1716,13 +1697,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Disabled Students’ Allowance for Postgraduate Students </b>
-                     </span>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Disabled Students’ Allowance for Postgraduate Students </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#0D0D0D">Maximum disabled students’ allowance will be increased by 3.1% to £27,783 for new
@@ -1730,21 +1710,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Analysis of equality impacts by proposed measure</b>
-                     </span>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Analysis of equality impacts by proposed measure</b>
+                        </span>
+                     </span></h2>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Maximum Tuition fee and loan limits</b>
-                     </span>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Maximum Tuition fee and loan limits</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>In academic year 2022/23, nearly 993,000 full-time English domiciled undergraduate
                      students had their tuition fees mainly funded by SLC<a class="fn" id="fnref-22" href="#fn-22">22</a>. This represented around 84.5% of the total English domiciled undergraduate students
@@ -2064,13 +2042,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      study.</p>
                </section>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Differential analysis by protected characteristic</b>
-                     </span>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Differential analysis by protected characteristic</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Tables 5 to 13 below break down the population of full-time English domiciled undergraduates
                      paying tuition fees at an English HE provider for the following characteristics: sex,
@@ -2483,13 +2460,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: HESA Student Record</p>
                </section>
             </section>
-            <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Disability</b>
-                     </span>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Disability</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Students with a known disability could be negatively impacted although not disproportionately.
                      While they are neither over nor under-represented in the population of students paying
@@ -2620,13 +2596,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: HESA Student Record</p>
                </section>
             </section>
-            <section id="section_36" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Gender identity</b>
-                     </span>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Gender identity</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Students who do not have the same gender as the one assigned at birth are moderately
                      over-represented in the population of students who pay their fees via SLC loans. We
@@ -2749,13 +2724,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: HESA Student Record</p>
                </section>
             </section>
-            <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Religion or other belief</b>
-                     </span>
-                  </p>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Religion or other belief</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Students who are Muslim could be disproportionately negatively impacted This is because
                      they are slightly over-represented in the population of students who pay fees via
@@ -3007,13 +2981,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: HESA Student Record</p>
                </section>
             </section>
-            <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Sexual orientation</b>
-                     </span>
-                  </p>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Sexual orientation</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Students who are bisexual, gay or lesbian or other sexual orientation are moderately
                      over-represented in the population of students who pay their fees via SLC loans. We
@@ -3169,13 +3142,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_39" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Ethnicity</b>
-                     </span>
-                  </p>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Ethnicity</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Students who are Black, Asian, Mixed or other ethnic groups could be at risk of negative
                      impacts. This is because they are more likely to be debt averse meaning that there
@@ -3356,13 +3328,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Socio-economic background</b>
-                     </span>
-                  </p>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Socio-economic background</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>While not a protected characteristic, the most disadvantaged group of students (as
                      represented by those in POLAR4 Quintile 1) could be disproportionately negatively
@@ -3514,13 +3485,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_41" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Region</b>
-                     </span>
-                  </p>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Region</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>While not a protected characteristic, there is significant variation in take-up of
                      SLC tuition fee loans across regions. Students from East Midlands, East of England,
@@ -3765,13 +3735,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_42" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Foundation years</b>
-                     </span>
-                  </p>
+            <section id="section_44" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Foundation years</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>All students choosing classroom-based foundation years as their entry route into HE
                      will benefit from lower tuition fees and loans which should lower the total level
@@ -3849,13 +3818,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_43" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Differential analysis by protected characteristic</b>
-                     </span>
-                  </p>
+            <section id="section_45" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Differential analysis by protected characteristic</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Tables 14 to 18 below set out the extent to which protected groups in classroom-based
                      foundation years are under- or over-represented compared to other foundation year
@@ -4061,13 +4029,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      entry routes into HE exist. </p>
                </section>
             </section>
-            <section id="section_44" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Disability</b>
-                     </span>
-                  </p>
+            <section id="section_46" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Disability</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <b>Table 15: Academic year 2022/23 student characteristics by </b>
@@ -4204,13 +4171,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      negative for students because sufficient alternative entry routes to HE are available.</p>
                </section>
             </section>
-            <section id="section_45" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Ethnicity</b>
-                     </span>
-                  </p>
+            <section id="section_47" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Ethnicity</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <b>Table 16: Academic year 2022/23 student characteristics by </b>
@@ -4605,13 +4571,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      impacted by the lowering of tuition fees but not disproportionately.</p>
                </section>
             </section>
-            <section id="section_46" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Other Protected Characteristics </b>
-                     </span>
-                  </p>
+            <section id="section_48" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Other Protected Characteristics </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>With regards other protected characteristics – specifically gender re-assignment,
                      marriage and civil partnership, pregnancy and maternity, and sexual orientation –
@@ -4631,13 +4596,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      policy develops and will consider new data, once available.</p>
                </section>
             </section>
-            <section id="section_47" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Disadvantage</b>
-                     </span>
-                  </p>
+            <section id="section_49" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Disadvantage</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <b>Table 18: Academic year 2022/23 student characteristics by disadvantage (POLAR quintile</b>
@@ -4854,13 +4818,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      given the government’s opportunity mission. </p>
                </section>
             </section>
-            <section id="section_48" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Student finance loans, grants and allowances</b>
-                     </span>
-                  </p>
+            <section id="section_50" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Student finance loans, grants and allowances</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>It is expected that the planned changes to student loans, grants and allowances for
                      academic year 2025/26 will have a neutral impact.</p>
@@ -5215,13 +5178,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_49" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Differential analysis by protected characteristic</b>
-                     </span>
-                  </p>
+            <section id="section_51" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Differential analysis by protected characteristic</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Table 21 above shows the protected characteristics profile of student support recipients
                      for each product type. This analysis focuses on age, sex and disability. Ethnicity
@@ -5237,13 +5199,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      full-time students receiving a loan for living costs (maintenance loan) was around
                      1.15m.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#104F75">
-                        <b>Age </b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_52" class="section heading">
+               <h2><span class="heading">Age</span></h2>
                <section class="level">
                   <p>Older students (21 years or above) are likely to be disproportionately impacted by
                      changes in the following student finance products: part-time loans for living costs
@@ -5258,13 +5216,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      face. This also makes them comparatively more debt averse (i.e. at greater risk of
                      being discouraged from participating in HE if they deem it unaffordable).</p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#104F75">
-                        <b>Sex </b>
-                        </span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_53" class="section heading">
+               <h2><span class="heading">Sex</span></h2>
                <section class="level">
                   <p>Female students are likely to be disproportionately impacted by changes in the following
                      student finance products: part-time loans for living costs for undergraduate courses;
@@ -5279,13 +5233,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      more debt averse in the same way as older students.</p>
                </section>
             </section>
-            <section id="section_50" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Disability </b>
-                     </span>
-                  </p>
+            <section id="section_54" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Disability </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Students claiming DSA<a class="fn" id="fnref-37" href="#fn-37">37</a> are likely to be disproportionately impacted by changes in the following student
                      finance products: part-time loans for living costs for undergraduate courses, and
@@ -5297,13 +5250,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      way as female and older students.</p>
                </section>
             </section>
-            <section id="section_51" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#104F75">
-                     <b>Family Test Analysis</b>
-                     </span>
-                  </p>
+            <section id="section_55" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#104F75">
+                        <b>Family Test Analysis</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Our Family Test Analysis indicates that in general a 3.1% increase to loans and grants
                      for living costs for 2025/26 would not have a particular impact on families. The increase

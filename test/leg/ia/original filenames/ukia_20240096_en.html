@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.22%">
@@ -446,7 +464,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -469,7 +488,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -507,7 +527,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -708,8 +729,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   </p>
@@ -1209,13 +1230,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Background</u>
-                     </b>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Background</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>The Economic Crime and Corporate Transparency Act (ECCTA) received Royal Assent in
@@ -1481,13 +1501,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Focus of this Impact Assessment</u>
-                     </b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Focus of this Impact Assessment</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">5.</span></h2>
                   <p>This Impact Assessment supports the Registrar (Identity Verification and Authorised
@@ -1545,11 +1564,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      direct effect from the Act, including their contribution to the EANDCB.</p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Identity verification</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Identity verification</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">8.</span></h2>
                   <p>The ECCTA requires all new and existing directors, PSCs and most presenters filing
@@ -1651,11 +1669,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Authorised Corporate Service Providers (ACSPs)</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Authorised Corporate Service Providers (ACSPs)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>The ECCTA also reforms how third parties/agents are used to complete filings on behalf
@@ -1772,13 +1789,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Problem under consideration</u>
-                     </b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Problem under consideration</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">15.</span></h2>
                   <p>Prior to ECCTA, the legal framework required Companies House to accept information
@@ -1880,11 +1896,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Addressing criminal behaviour</b>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>Addressing criminal behaviour</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">20.</span></h2>
                   <p>Establishing and enforcing a common set of rules is a key and well-established role
@@ -1921,11 +1936,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      law enforcement.</p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Reducing negative externalities</b>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <b>Reducing negative externalities</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">24.</span></h2>
                   <p>Illicit activity can impose negative externalities on licit UK corporate entities
@@ -1936,13 +1950,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      responsible jurisdiction.<a class="fn" id="fnref-11" href="#fn-11">11</a></p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Reducing information asymmetries</b>
-                     </span>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Reducing information asymmetries</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">25.</span></h2>
                   <p>In economic transactions one party to the transaction usually must acquire information
@@ -2157,13 +2170,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Policy objectives</u>
-                     </b>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Policy objectives</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">28.</span></h2>
                   <p>Based on the above, the intended impacts of the policy are to:</p>
@@ -2205,16 +2217,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Description of options considered</u>
-                     </b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Description of options considered</u>
+                        </b>
+                     </span></h2>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">Option 0 Do nothing</span></h2>
                <p>
                   <b>Option 0: Do nothing</b>
                   </p>
@@ -2243,8 +2254,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">Option 1 Introduction of identity verification and ACSPs (preferred option</span></h2>
                <p>
                   <b>Option 1: Introduction of identity verification and ACSPs (preferred option</b>)</p>
                <section class="paragraph num">
@@ -2560,8 +2571,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">Option 0 Do nothing</span></h2>
                <p>
                   <b>
                      <u>Option 0: Do nothing</u>
@@ -2573,8 +2584,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      do nothing. We separate these out in Section IVC. </p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">Option 1 Introduction of identity verification and ACSPs (preferred option</span></h2>
                <p>
                   <b>
                      <u>Option 1: Introduction of identity verification and ACSPs (preferred option</u>
@@ -2588,19 +2599,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to the regulations. </p>
                </section>
             </section>
-            <section id="section_17" class="section num heading">
+            <section id="section_21" class="section num heading">
                <h2><span class="num">
                      <b>A.</b>
+                     </span><span class="heading">
+                     <b>Introduction of identity verification</b>
                      </span></h2>
-               <p>
-                  <b>Introduction of identity verification</b>
-                  </p>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Numbers in scope</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>Numbers in scope</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>To estimate the costs of this policy, we need to understand the number of individuals
@@ -2689,13 +2698,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      verify.</p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>The stock of unique officers who will need to be identity verified</i>
-                     </b>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>The stock of unique officers who will need to be identity verified</i>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>
@@ -3233,13 +3241,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>The flow of unique officers who will need to be identity verified</i>
-                     </b>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>The flow of unique officers who will need to be identity verified</i>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">89.</span></h2>
                   <p>We now estimate the flow of individuals who will need to identity verify over the
@@ -3814,13 +3821,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      is applied across all three scenarios.<a class="fn" id="fnref-44" href="#fn-44">44</a> We apply the estimated decline in the flow of new officers from 2026 onwards.</p>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <i>Confirming identity verification</i>
-                     </b>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <i>Confirming identity verification</i>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">104.</span></h2>
                   <p>There is a difference between verifying the identity of an individual versus notifying
@@ -4365,13 +4371,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      onwards.</p>
                </section>
             </section>
-            <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Monetised costs</u>
-                     </b>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Monetised costs</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">120.</span></h2>
                   <p>Whilst we have reasonable data on the number of individuals that need to be ID verified,
@@ -4428,11 +4433,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Annual Survey of Hourly Earnings (ASHE) in 2023, uplifted by<b></b>20% to account for non-wage labour costs.<a class="fn" id="fnref-50" href="#fn-50">50</a><a class="fn" id="fnref-51" href="#fn-51">51</a> Using the GDP deflator to bring this into 2019 prices, this is £25.20 per hour.<a class="fn" id="fnref-52" href="#fn-52">52</a></p>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Familiarisation costs</b>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <b>Familiarisation costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">124.</span></h2>
                   <p>Familiarisation costs will apply to all individuals that need to verify their identities.
@@ -4473,11 +4477,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      change to be £6.30.</p>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Verifying the stock and flow of unique officers</b>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <b>Verifying the stock and flow of unique officers</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">128.</span></h2>
                   <p>This section outlines the one-off costs for business of having to comply with the
@@ -4589,11 +4592,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      (central) and £25.20 (high).</p>
                </section>
             </section>
-            <section id="section_25" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Confirming identity verification</b>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <b>Confirming identity verification</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">138.</span></h2>
                   <p>The process for confirming verification varies for presenters, directors and PSCs,
@@ -4631,15 +4633,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and £4.20 (high).</p>
                </section>
             </section>
-            <section id="section_26" class="section num heading">
+            <section id="section_30" class="section num heading">
                <h2><span class="num">
                      <b>B.</b>
+                     </span><span class="heading">
+                     <span style="color:#000000">
+                        <b>ACSPs</b>
+                        </span>
                      </span></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>ACSPs</b>
-                     </span>
-                  </p>
                <section class="paragraph num">
                   <h2><span class="num">141.</span></h2>
                   <p>In this section we include the costs to ACSPs for registering with Companies House
@@ -4653,11 +4654,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      estimate a cost.</p>
                </section>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Numbers in scope</b>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <b>Numbers in scope</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>
@@ -4718,13 +4718,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      flow to be very low. Due to this, this is not captured within our estimates.</p>
                </section>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Monetised costs</u>
-                     </b>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Monetised costs</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">148.</span></h2>
                   <p>The main costs for ACSPs are: </p>
@@ -4749,11 +4748,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      costs were outlined within the primary stage Impact Assessment.</p>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Familiarisation costs</b>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <b>Familiarisation costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">150.</span></h2>
                   <p>Engagement with HMRC tells us that all supervisors currently provide regular guidance
@@ -4787,11 +4785,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      change to be £6.30 (central estimate).<a class="fn" id="fnref-59" href="#fn-59">59</a></p>
                </section>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Registering with Companies House</b>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <b>Registering with Companies House</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">155.</span></h2>
                   <p>In order to become registered ACSPs, in addition to providing all the necessary information
@@ -5156,10 +5153,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_31" class="section num heading">
+            <section id="section_35" class="section num heading">
                <h2><span class="num">
                      <b>C.</b>
-                     </span></h2>
+                     </span><span class="heading">Overview Introducing identity verification and Authorised Corporate Service Providers</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Overview: Introducing identity verification and Authorised Corporate Service Providers</b>
@@ -5308,8 +5305,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">Note ACSP registration costs are included under do nothing. Totals may not sum due
+                     to rounding</span></h2>
                <p>
                   <b>Note: ACSP registration costs are included under do nothing. Totals may not sum due
                      to rounding</b>
@@ -5601,13 +5599,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Risks</u>
-                     </b>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Risks</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">181.</span></h2>
                   <p>The section below outlines wider policy risks we have identified within the policy
@@ -5745,26 +5742,24 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Public sector impact</u>
-                     </b>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Public sector impact</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">193.</span></h2>
                   <p>The impact on the public sector has been considered within the primary legislation
                      Impact Assessment. Most notably, <b><i>IV. Costs of Companies House transformation</i></b><b></b>looks at the cost of these proposals to Companies House.<a class="fn" id="fnref-70" href="#fn-70">70</a></p>
                </section>
             </section>
-            <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Competition and innovation impact test</u>
-                     </b>
-                  </p>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Competition and innovation impact test</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">194.</span></h2>
                   <p>The proposed reforms affect all companies across sectors, and we thus have not identified
@@ -5784,13 +5779,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      positive impact on innovation.</p>
                </section>
             </section>
-            <section id="section_36" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>A summary of the potential trade implications of measures</u>
-                     </b>
-                  </p>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>A summary of the potential trade implications of measures</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">196.</span></h2>
                   <p>All UK companies and all PSCs and Directors of UK companies, wherever they are resident,
@@ -5810,37 +5804,34 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Environmental impacts</u>
-                     </b>
-                  </p>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Environmental impacts</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">197.</span></h2>
                   <p>There are no obvious direct concerns in this area. </p>
                </section>
             </section>
-            <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Human rights</u>
-                     </b>
-                  </p>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Human rights</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">198.</span></h2>
                   <p>The Human Rights analysis was conducted for the purposes for the human rights memorandum.</p>
                </section>
             </section>
-            <section id="section_39" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Justice system</u>
-                     </b>
-                  </p>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Justice system</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">199.</span></h2>
                   <p>A Justice Impact Test (JIT) is the Ministry of Justice tool that helps policymakers
@@ -5849,13 +5840,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Ministry of Justice.</p>
                </section>
             </section>
-            <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Impact on small, micro and medium businesses</u>
-                     </b>
-                  </p>
+            <section id="section_44" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Impact on small, micro and medium businesses</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">200.</span></h2>
                   <p>The measures in this reform package will impact all businesses – including micro,
@@ -5952,70 +5942,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
                <section class="paragraph num">
-                  <h2><span class="num">
-                        <b>VII.</b>
-                        </span></h2>
-                  <p>
-                     <b>Monitoring and evaluation</b>
-                     </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">207.</span></h2>
-                  <p>DBT and Companies House are jointly developing an approach to monitoring and evaluating
-                     the reforms. This includes setting up data processes, identifying key metrics, and
-                     developing research plans to assess the longer-term success of the corporate transparency
-                     reforms in the Economic Crime (Transparency and Enforcement) Act 2022 and the ECCTA
-                     2023. Given the interdependency of the reforms and what they aim to achieve, the outcomes
-                     and impacts of the legislation are looked at in their entirety. </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">208.</span></h2>
-                  <p>The monitoring and evaluation framework is based around the Theory of Change (Figure
-                     10).<a class="fn" id="fnref-75" href="#fn-75">75</a><a class="fn" id="fnref-76" href="#fn-76">76</a> This builds upon the logic model presented in the primary stage Impact Assessment.</p>
-               </section>
-               <section class="paragraph num">
                   <h2><span class="num">209.</span></h2>
                   <p>Companies House and DBT will monitor the impacts of the reforms being made to Companies
                      House a) as these reforms are introduced, and experienced by users, and b) on an ongoing
                      basis to help understand the impact of the changes being made at Companies House.
                      This links to the ‘outputs’ in the Theory of Change. Some of these metrics will be
                      relevant to the introduction of identity verification, which will likely include:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">•</span></h2>
-                     <p>Number of times Companies House intelligence hub has shared data with other organisations;</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">•</span></h2>
-                     <p>Number of times other organisations have shared data with Companies House through
-                        the intelligence hub;</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">•</span></h2>
-                     <p>Number of times the new querying power is used (and type of query)</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">•</span></h2>
-                     <p>Number (and type) of financial penalties imposed by the Registrar.</p>
-                  </section>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">210.</span></h2>
-                  <p>Companies House and DBT are also considering projects to evaluate the long-term success
-                     of the reforms, to assess the ‘outcomes’ and ‘impacts’ as outlined in the logic model
-                     – to support the metric monitoring. This includes repeating the externally commissioned
-                     research valuing the data on the company data, which was valued in excess of £1-3
-                     billion a year in 2019. This would test whether the value of the data has increased
-                     and thus whether identity verification has contributed to this.  Additional ongoing
-                     research looks at the value of company data for tackling crime pre- and post-reform.
-                     Previous qualitative research found that law enforcement already regards company information
-                     as an essential resource for investigating fraud. Further improving the value of company
-                     data for law enforcement purposes is a core objective of the reforms.</p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">211.</span></h2>
-                  <p>The evidence collected through monitoring and evaluation for the reform package as
-                     a whole will be presented in different outputs. These include Companies House implementation
-                     reports to Parliament and future Reviews.</p>
                </section>
                <section class="paragraph">
                   <p>
@@ -6290,15 +6222,63 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         </tr>
                      </tbody>
                   </table>
-                  <section class="subparagraph num">
-                     <h2><span class="num">
-                           <b>VIII.</b>
-                           </span></h2>
-                     <p>
-                        <b>Annex</b>
-                        </p>
-                  </section>
                </section>
+            </section>
+            <section id="section_45" class="section heading">
+               <h2><span class="heading">Monitoring and evaluation</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">207.</span></h2>
+                  <p>DBT and Companies House are jointly developing an approach to monitoring and evaluating
+                     the reforms. This includes setting up data processes, identifying key metrics, and
+                     developing research plans to assess the longer-term success of the corporate transparency
+                     reforms in the Economic Crime (Transparency and Enforcement) Act 2022 and the ECCTA
+                     2023. Given the interdependency of the reforms and what they aim to achieve, the outcomes
+                     and impacts of the legislation are looked at in their entirety. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">208.</span></h2>
+                  <p>The monitoring and evaluation framework is based around the Theory of Change (Figure
+                     10).<a class="fn" id="fnref-75" href="#fn-75">75</a><a class="fn" id="fnref-76" href="#fn-76">76</a> This builds upon the logic model presented in the primary stage Impact Assessment.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Number of times Companies House intelligence hub has shared data with other organisations;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Number of times other organisations have shared data with Companies House through
+                     the intelligence hub;</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Number of times the new querying power is used (and type of query)</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Number (and type) of financial penalties imposed by the Registrar.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">210.</span></h2>
+                  <p>Companies House and DBT are also considering projects to evaluate the long-term success
+                     of the reforms, to assess the ‘outcomes’ and ‘impacts’ as outlined in the logic model
+                     – to support the metric monitoring. This includes repeating the externally commissioned
+                     research valuing the data on the company data, which was valued in excess of £1-3
+                     billion a year in 2019. This would test whether the value of the data has increased
+                     and thus whether identity verification has contributed to this.  Additional ongoing
+                     research looks at the value of company data for tackling crime pre- and post-reform.
+                     Previous qualitative research found that law enforcement already regards company information
+                     as an essential resource for investigating fraud. Further improving the value of company
+                     data for law enforcement purposes is a core objective of the reforms.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">211.</span></h2>
+                  <p>The evidence collected through monitoring and evaluation for the reform package as
+                     a whole will be presented in different outputs. These include Companies House implementation
+                     reports to Parliament and future Reviews.</p>
+               </section>
+            </section>
+            <section id="section_46" class="section heading">
+               <h2><span class="heading">Annex</span></h2>
                <section class="paragraph">
                   <p>
                      <b>Figure 9.2: Introduction of IDV over 10-year appraisal period</b>
@@ -6842,14 +6822,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-2" href="#fnref-2">2</a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  See: <a href="https://bills.parliament.uk/bills/3339"><u><a href="https://bills.parliament.uk/bills/3339">https://bills.parliament.uk/bills/3339</a></u></a></p>
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  See: <a href="https://bills.parliament.uk/bills/3339"><u>https://bills.parliament.uk/bills/3339</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  A person with significant control (PSC) is someone who owns or controls your company.
-                  They’re sometimes called ‘beneficial owners’. See: <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs"><u><a href="https://www.gov.uk/guidance/people-with-significant-control-pscs">https://www.gov.uk/guidance/people-with-significant-control-pscs</a></u></a></p>
+                  They’re sometimes called ‘beneficial owners’. See: <a href="https://www.gov.uk/guidance/people-with-significant-control-pscs"><u>https://www.gov.uk/guidance/people-with-significant-control-pscs</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u><a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness">https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness</a> EnergyandIndustrialStrategy.pdf</u></a></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u>https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness
+                        EnergyandIndustrialStrategy.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  This refers to all presenters that are not Authorised Corporate Service Providers
@@ -6875,19 +6856,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   For example, if the country only recently started rolling out biometric passports.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  See: <a href="https://www.gov.uk/guidance/money-laundering-regulations-your-responsibilities"><u><a href="https://www.gov.uk/guidance/money-laundering-regulations-your-responsibilities">https://www.gov.uk/guidance/money-laundering-regulations-your-responsibilities</a></u></a></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  See: <a href="https://www.gov.uk/guidance/money-laundering-regulations-your-responsibilities"><u>https://www.gov.uk/guidance/money-laundering-regulations-your-responsibilities</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  See for original case studies: <a href="https://www.gov.uk/government/publications/corporate-transparency-and-register-reform"><u><a href="https://www.gov.uk/government/publications/corporate-transparency-and-register-reform">https://www.gov.uk/government/publications/corporate-transparency-and-register-reform</a></u></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  See for original case studies: <a href="https://www.gov.uk/government/publications/corporate-transparency-and-register-reform"><u>https://www.gov.uk/government/publications/corporate-transparency-and-register-reform</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  See: <a href="http://www.transparency.org.uk/publications/offshore-in-the-uk/"><u><a href="http://www.transparency.org.uk/publications/offshore-in-the-uk/#.WungAOj4_yQ">http://www.transparency.org.uk/publications/offshore-in-the-uk/#.WungAOj4_yQ</a></u></a></p>
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  See: <a href="http://www.transparency.org.uk/publications/offshore-in-the-uk/"><u>http://www.transparency.org.uk/publications/offshore-in-the-uk/#.WungAOj4_yQ</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  See: <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u><a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits">https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</a></u></a></p>
+               <p><a class="marker" id="fn-12" href="#fnref-12">12</a>  See: <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u>https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  See Table 2.2. of <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u><a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits">https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</a></u></a></p>
+               <p><a class="marker" id="fn-13" href="#fnref-13">13</a>  See Table 2.2. of <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u>https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  Unfortunately we have not been able to split our ACSP population into sole traders
@@ -6895,7 +6876,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   baseline. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  See: <a href="https://www.gov.uk/government/consultations/corporate-transparency-and-register-reform"><u><a href="https://www.gov.uk/government/consultations/corporate-transparency-and-register-reform">https://www.gov.uk/government/consultations/corporate-transparency-and-register-reform</a></u></a></p>
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  See: <a href="https://www.gov.uk/government/consultations/corporate-transparency-and-register-reform"><u>https://www.gov.uk/government/consultations/corporate-transparency-and-register-reform</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  A non-ACSP presenter&nbsp;is anyone submitting filings to Companies House (including incorporations)
@@ -6911,7 +6892,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   requirements.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u><a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness">https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness</a> EnergyandIndustrialStrategy.pdf</u></a></p>
+               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u>https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness
+                        EnergyandIndustrialStrategy.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  In appropriate circumstances, the Registrar has a discretionary power to require
@@ -6919,7 +6901,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   check into question.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  See: <a href="https://www.sign-in.service.gov.uk/"><u><a href="https://www.sign-in.service.gov.uk/">https://www.sign-in.service.gov.uk/</a></u></a></p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  See: <a href="https://www.sign-in.service.gov.uk/"><u>https://www.sign-in.service.gov.uk/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  A company or organisation that has a significant degree of influence or control over
@@ -6927,7 +6909,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   they are corporate entities rather than natural persons.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-22" href="#fnref-22">22</a>  See: <a href="https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments"><u><a href="https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments">https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments</a></u></a>.</p>
+               <p><a class="marker" id="fn-22" href="#fnref-22">22</a>  See: <a href="https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments"><u>https://www.gov.uk/government/collections/impact-assessments-guidance-for-government-departments</u></a>.</p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-23" href="#fnref-23">23</a>  Our ten-year appraisal period covers 2024 to 2033. However, since identity verification
@@ -6947,7 +6929,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   of the board of directors</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023"><u><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023">https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023</a></u></a></p>
+               <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  Directorships are not the same as the count of directors as an individual may hold
@@ -6982,13 +6964,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-33" href="#fnref-33">33</a> 
                   <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14">
-                     <u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14</a></u>
+                     <u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14</u>
                      </a>, soc code 4214, 2023 provisional data.</p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-34" href="#fnref-34">34</a> 
                   <a href="https://www.simpleformations.com/blog/company-secretaries-the-basics.html">
-                     <u><a href="https://www.simpleformations.com/blog/company-secretaries-the-basics.html">https://www.simpleformations.com/blog/company-secretaries-the-basics.html</a></u>
+                     <u>https://www.simpleformations.com/blog/company-secretaries-the-basics.html</u>
                      </a>
                   </p>
             </div>
@@ -7006,7 +6988,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   more frequently.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  See: <a href="https://www.sign-in.service.gov.uk/"><u><a href="https://www.sign-in.service.gov.uk/">https://www.sign-in.service.gov.uk/</a></u></a></p>
+               <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  See: <a href="https://www.sign-in.service.gov.uk/"><u>https://www.sign-in.service.gov.uk/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-38" href="#fnref-38">38</a>  It’s possible that this may be an overestimate as some of these officers: a) may
@@ -7020,10 +7002,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-40" href="#fnref-40">40</a>  From 1st April to 31st March</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-41" href="#fnref-41">41</a>  See: <a href="https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-july-to-september-2023"><u><a href="https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-july-to-september-2023">https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-july-to-september-2023</a></u></a></p>
+               <p><a class="marker" id="fn-41" href="#fnref-41">41</a>  See: <a href="https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-july-to-september-2023"><u>https://www.gov.uk/government/statistics/incorporated-companies-in-the-uk-july-to-september-2023</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-42" href="#fnref-42">42</a>  See: <a href="https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE"><u><a href="https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE#">https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE#</a></u></a></p>
+               <p><a class="marker" id="fn-42" href="#fnref-42">42</a>  See: <a href="https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE"><u>https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE#</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-43" href="#fnref-43">43</a>  The analysis published alongside the uplift in Companies House fees, estimated an
@@ -7032,17 +7014,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   unusual growth in the register seen during Covid-19 has been used a proxy for the
                   estimated decline. This proxy is considered to represent the portion of businesses
                   who will likely dissolve as a result of the additional administrative requirements.
-                  See: <a href="https://www.legislation.gov.uk/uksi/2024/155/pdfs/uksiod_20240155_en_001.pdf"><u><a href="https://www.legislation.gov.uk/uksi/2024/155/pdfs/uksiod_20240155_en_001.pdf">https://www.legislation.gov.uk/uksi/2024/155/pdfs/uksiod_20240155_en_001.pdf</a></u></a></p>
+                  See: <a href="https://www.legislation.gov.uk/uksi/2024/155/pdfs/uksiod_20240155_en_001.pdf"><u>https://www.legislation.gov.uk/uksi/2024/155/pdfs/uksiod_20240155_en_001.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-44" href="#fnref-44">44</a>  As outlined above, it’s likely that this is an overestimate, but we use this to be
                   conservative.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-45" href="#fnref-45">45</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023"><u><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023">https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023</a></u></a></p>
+               <p><a class="marker" id="fn-45" href="#fnref-45">45</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-46" href="#fnref-46">46</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023"><u><a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023">https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023</a></u></a></p>
+               <p><a class="marker" id="fn-46" href="#fnref-46">46</a>  See: <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2022-to-2023</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-47" href="#fnref-47">47</a>  To estimate the average number of new appointments, we multiplied the total number
@@ -7063,20 +7045,22 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   costs were included in the primary legislation IA.  </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-50" href="#fnref-50">50</a>  See: <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14"><u><a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/">https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/</a> occupation 4digitsoc2010ashetable14</u></a></p>
+               <p><a class="marker" id="fn-50" href="#fnref-50">50</a>  See: <a href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/occupation4digitsoc2010ashetable14"><u>https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/
+                        occupation 4digitsoc2010ashetable14</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-51" href="#fnref-51">51</a>  Non-wage costs include sickness, maternity and paternity pay, National Insurance
                   contributions and pension contributions.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-52" href="#fnref-52">52</a>  See: <a href="https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp"><u><a href="https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp">https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp</a></u></a></p>
+               <p><a class="marker" id="fn-52" href="#fnref-52">52</a>  See: <a href="https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp"><u>https://www.gov.uk/government/collections/gdp-deflators-at-market-prices-and-money-gdp</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-53" href="#fnref-53">53</a> <a href="https://www.blackkitetranslations.com/quote/wordcount.php"><u><a href="https://www.blackkitetranslations.com/quote/wordcount.php#:~:text=As%20a%20rule%20of%20thumb,average%">https://www.blackkitetranslations.com/quote/wordcount.php#:~:text=As%20a%20rule%20of%20thumb,average%</a> 20400%20to%20500%20words</u></a>. </p>
+               <p><a class="marker" id="fn-53" href="#fnref-53">53</a> <a href="https://www.blackkitetranslations.com/quote/wordcount.php"><u>https://www.blackkitetranslations.com/quote/wordcount.php#:~:text=As%20a%20rule%20of%20thumb,average%
+                        20400%20to%20500%20words</u></a>. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-54" href="#fnref-54">54</a> <a href="https://www.prsa.org/article/how-to-determine-average-reading-time"><u><a href="https://www.prsa.org/article/how-to-determine-average-reading-time">https://www.prsa.org/article/how-to-determine-average-reading-time</a></u></a></p>
+               <p><a class="marker" id="fn-54" href="#fnref-54">54</a> <a href="https://www.prsa.org/article/how-to-determine-average-reading-time"><u>https://www.prsa.org/article/how-to-determine-average-reading-time</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-55" href="#fnref-55">55</a>  We do not know who will be verifying their identity in the instance of a non-ACSP
@@ -7087,10 +7071,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   presenters, we use the wage rate of directors as a conservative estimate.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-profiles"><u><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-profiles#collecting-multiple-pieces-of-evidence">https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-profiles#collecting-multiple-pieces-of-evidence</a></u></a></p>
+               <p><a class="marker" id="fn-56" href="#fnref-56">56</a> <a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-profiles"><u>https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-profiles#collecting-multiple-pieces-of-evidence</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-57" href="#fnref-57">57</a>  See: <a href="https://www.gov.uk/get-a-passport-urgently"><u><a href="https://www.gov.uk/get-a-passport-urgently">https://www.gov.uk/get-a-passport-urgently</a></u></a></p>
+               <p><a class="marker" id="fn-57" href="#fnref-57">57</a>  See: <a href="https://www.gov.uk/get-a-passport-urgently"><u>https://www.gov.uk/get-a-passport-urgently</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-58" href="#fnref-58">58</a>  This may potentially be an overestimate, as individuals themselves can also buy software
@@ -7109,10 +7093,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-60" href="#fnref-60">60</a> <span style="color:#000000"> ‘Provisions and their impacts are out of scope from the definition of Regulatory
                      Provisions where they are in connection with: imposing, abolishing, varying or in
-                     connection with any tax, duty, levy or other charge’ See: </span><a href="https://www.gov.uk/government/publications/better-regulation-framework"><u><a href="https://www.gov.uk/government/publications/better-regulation-framework">https://www.gov.uk/government/publications/better-regulation-framework</a></u></a><span style="color:#000000"></span></p>
+                     connection with any tax, duty, levy or other charge’ See: </span><a href="https://www.gov.uk/government/publications/better-regulation-framework"><u>https://www.gov.uk/government/publications/better-regulation-framework</u></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-61" href="#fnref-61">61</a>  See: <a href="https://www.gov.uk/company-filing-software/filing-annual-accounts-returns-and-tax-accounts"><u><a href="https://www.gov.uk/company-filing-software/filing-annual-accounts-returns-and-tax-accounts">https://www.gov.uk/company-filing-software/filing-annual-accounts-returns-and-tax-accounts</a></u></a></p>
+               <p><a class="marker" id="fn-61" href="#fnref-61">61</a>  See: <a href="https://www.gov.uk/company-filing-software/filing-annual-accounts-returns-and-tax-accounts"><u>https://www.gov.uk/company-filing-software/filing-annual-accounts-returns-and-tax-accounts</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-62" href="#fnref-62">62</a>  Filing alone does not satisfy the requirement for AML supervision. This could mean
@@ -7122,25 +7106,25 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   not been captured within our analysis.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-63" href="#fnref-63">63</a>  See: <a href="https://www.gov.uk/guidance/money-laundering-regulations-registration-fees"><u><a href="https://www.gov.uk/guidance/money-laundering-regulations-registration-fees">https://www.gov.uk/guidance/money-laundering-regulations-registration-fees</a></u></a></p>
+               <p><a class="marker" id="fn-63" href="#fnref-63">63</a>  See: <a href="https://www.gov.uk/guidance/money-laundering-regulations-registration-fees"><u>https://www.gov.uk/guidance/money-laundering-regulations-registration-fees</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-64" href="#fnref-64">64</a> <span style="color:#000000"> ‘Provisions and their impacts are out of scope from the definition of Regulatory
                      Provisions where they are in connection with: imposing, abolishing, varying or in
-                     connection with any tax, duty, levy or other charge’ See: </span><a href="https://www.gov.uk/government/publications/better-regulation-framework"><u><a href="https://www.gov.uk/government/publications/better-regulation-framework">https://www.gov.uk/government/publications/better-regulation-framework</a></u></a><span style="color:#000000"></span></p>
+                     connection with any tax, duty, levy or other charge’ See: </span><a href="https://www.gov.uk/government/publications/better-regulation-framework"><u>https://www.gov.uk/government/publications/better-regulation-framework</u></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-65" href="#fnref-65">65</a>  See: <a href="https://www.legislation.gov.uk/uksi/2017/692/impacts"><u><a href="https://www.legislation.gov.uk/uksi/2017/692/impacts">https://www.legislation.gov.uk/uksi/2017/692/impacts</a></u></a></p>
+               <p><a class="marker" id="fn-65" href="#fnref-65">65</a>  See: <a href="https://www.legislation.gov.uk/uksi/2017/692/impacts"><u>https://www.legislation.gov.uk/uksi/2017/692/impacts</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-66" href="#fnref-66">66</a>  The directive led to tightening of regulation for e-money, so is also different in
                   scope to what would be expected of software firms.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-67" href="#fnref-67">67</a>  See: <a href="https://www.gov.uk/government/publications/better-regulation-framework"><u><a href="https://www.gov.uk/government/publications/better-regulation-framework">https://www.gov.uk/government/publications/better-regulation-framework</a></u></a></p>
+               <p><a class="marker" id="fn-67" href="#fnref-67">67</a>  See: <a href="https://www.gov.uk/government/publications/better-regulation-framework"><u>https://www.gov.uk/government/publications/better-regulation-framework</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-68" href="#fnref-68">68</a>  See: <a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual"><u><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual">https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual</a></u></a></p>
+               <p><a class="marker" id="fn-68" href="#fnref-68">68</a>  See: <a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual"><u>https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-69" href="#fnref-69">69</a>  Our ten-year appraisal period covers 2024 to 2033. However, since identity verification
@@ -7148,10 +7132,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   of costs.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-70" href="#fnref-70">70</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u><a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness">https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness</a> EnergyandIndustrialStrategy.pdf</u></a></p>
+               <p><a class="marker" id="fn-70" href="#fnref-70">70</a>  See: <a href="https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusinessEnergyandIndustrialStrategy.pdf"><u>https://publications.parliament.uk/pa/bills/cbill/58-03/0154/1.ImpactAssessmentfromDepartmentforBusiness
+                        EnergyandIndustrialStrategy.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-71" href="#fnref-71">71</a> <a href="https://www.spencerstuart.com/research-and-insight/uk-board-index/the-board"><u><a href="https://www.spencerstuart.com/research-and-insight/uk-board-index/the-board#:~:text=The%20average%20board%20size%20is,Group%20Holdings%2C%20with%2015%20members">https://www.spencerstuart.com/research-and-insight/uk-board-index/the-board#:~:text=The%20average%20board%20size%20is,Group%20Holdings%2C%20with%2015%20members</a></u></a>. </p>
+               <p><a class="marker" id="fn-71" href="#fnref-71">71</a> <a href="https://www.spencerstuart.com/research-and-insight/uk-board-index/the-board"><u>https://www.spencerstuart.com/research-and-insight/uk-board-index/the-board#:~:text=The%20average%20board%20size%20is,Group%20Holdings%2C%20with%2015%20members</u></a>. </p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-72" href="#fnref-72">72</a>  For example, the Business Population estimates suggests that there are 1.1 million
@@ -7160,10 +7145,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   employees which employ 1.4 million, i.e roughly 674 per company. <a href="https://assets.publishing.service.gov.uk/media/65169e937c2c4a000d95e23b/bpe_2023_detailed_tables.xlsx">https://assets.publishing.service.gov.uk/media/65169e937c2c4a000d95e23b/bpe_2023_detailed_tables.xlsx</a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-73" href="#fnref-73">73</a>  See: <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u><a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits">https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</a></u></a></p>
+               <p><a class="marker" id="fn-73" href="#fnref-73">73</a>  See: <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u>https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-74" href="#fnref-74">74</a>  See: <a href="https://www.gov.uk/government/publications/understanding-the-reasons-for-forming-a-company"><u><a href="https://www.gov.uk/government/publications/understanding-the-reasons-for-forming-a-company">https://www.gov.uk/government/publications/understanding-the-reasons-for-forming-a-company</a></u></a></p>
+               <p><a class="marker" id="fn-74" href="#fnref-74">74</a>  See: <a href="https://www.gov.uk/government/publications/understanding-the-reasons-for-forming-a-company"><u>https://www.gov.uk/government/publications/understanding-the-reasons-for-forming-a-company</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-75" href="#fnref-75">75</a>  A theory of change is a framework that explains how a policy intervention is expected

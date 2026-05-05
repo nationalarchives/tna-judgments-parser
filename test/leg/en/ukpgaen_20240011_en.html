@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -1089,7 +1106,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://petition.parliament.uk/archived/petitions/200205">
                      <span style="color:#0070C0">
-                        <u><a href="https://petition.parliament.uk/archived/petitions/200205">https://petition.parliament.uk/archived/petitions/200205</a></u>
+                        <u>https://petition.parliament.uk/archived/petitions/200205</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1102,7 +1119,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.ciwf.org.uk/media/press-releases-statements/2023/09/dame-joanna-lumley-urges-uk-government-to-ban-live-exports">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.ciwf.org.uk/media/press-releases-statements/2023/09/dame-joanna-lumley-urges-uk-government-to-ban-live-exports">https://www.ciwf.org.uk/media/press-releases-statements/2023/09/dame-joanna-lumley-urges-uk-government-to-ban-live-exports</a></u>
+                        <u>https://www.ciwf.org.uk/media/press-releases-statements/2023/09/dame-joanna-lumley-urges-uk-government-to-ban-live-exports</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1115,7 +1132,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://bills.parliament.uk/bills/2880">
                      <span style="color:#0070C0">
-                        <u><a href="https://bills.parliament.uk/bills/2880">https://bills.parliament.uk/bills/2880</a></u>
+                        <u>https://bills.parliament.uk/bills/2880</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1128,7 +1145,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf">https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf</a></u>
+                        <u>https://consult.defra.gov.uk/transforming-farm-animal-health-and-welfare-team/improvements-to-animal-welfare-in-transport/supporting_documents/fawcopiniononthewelfareofanimalsduringtransport.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1141,7 +1158,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/live-animal-exports-improvements-to-animal-welfare-in-transport">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/live-animal-exports-improvements-to-animal-welfare-in-transport">https://www.gov.uk/government/consultations/live-animal-exports-improvements-to-animal-welfare-in-transport</a></u>
+                        <u>https://www.gov.uk/government/consultations/live-animal-exports-improvements-to-animal-welfare-in-transport</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1152,7 +1169,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a> 
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1011728/animal-welfare-in-transport-consultation-response.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1165,7 +1182,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/">https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/</a></u>
+                        <u>https://www.gov.scot/publications/consultation-farm-animal-welfare-committees-opinion-welfare-animals-during-transport-scottish-government-response/</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -1178,7 +1195,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/">https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/</a></u>
+                        <u>https://www.gov.scot/publications/farm-animal-welfare-committee-opinion-welfare-animals-during-transport-summary-report/</u>
                         </span>
                      </a>
                   <span style="color:#000000">

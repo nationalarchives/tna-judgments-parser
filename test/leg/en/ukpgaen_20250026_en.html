@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -4433,17 +4450,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <section class="paragraph num">
                         <h2><span class="num">272.</span></h2>
                         <p>
-                           <span style="color:#000000">This is a new provision.</span>
-                           </p>
-                     </section>
-                     <section class="paragraph num">
-                        <h2><span class="num">273.</span></h2>
-                        <p>
-                           <span style="color:#000000">The Property Ombudsman ruled in March 2023 that blanket bans on renting to households
-                              with children violated the equalities rules laid out in its Code of Practice, due
-                              to their disproportionately affecting women. Section 33 makes it explicit that discrimination
-                              relating to children in the private rented sector is illegal, regardless of the sex
-                              of the parent or carer. Example: Proportionate means of achieving a legitimate aimA
+                           <span style="color:#000000">This is a new provision. Example: Proportionate means of achieving a legitimate aimA
                               letting agent is advertising a small bedroom to rent in a house in multiple occupation
                               (HMO). The agent clearly sets out the size of the bedroom and amenities available
                               in the advert. A prospective tenant with two teenage children comes across the advert
@@ -4455,6 +4462,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                               argue under section 33, subsection (2)(a) that refusing to enter into a tenancy of
                               the dwelling in order to adhere to overcrowding regulation is a proportionate means
                               of achieving a legitimate aim and as a result the ban is lawful.</span>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">273.</span></h2>
+                        <p>
+                           <span style="color:#000000">The Property Ombudsman ruled in March 2023 that blanket bans on renting to households
+                              with children violated the equalities rules laid out in its Code of Practice, due
+                              to their disproportionately affecting women. Section 33 makes it explicit that discrimination
+                              relating to children in the private rented sector is illegal, regardless of the sex
+                              of the parent or carer. </span>
                            </p>
                      </section>
                      <section class="level">
@@ -4544,22 +4561,22 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                            <span style="color:#000000">County courts have previously ruled that such behaviours violate the Equality Act
                               2010, based on sex and disability status. Section 34 makes it explicit that discrimination
                               relating to benefit status in the private rented sector, regardless of sex and disability
-                              status, is illegal.</span>
+                              status, is illegal. Example: Posting a 'No DSS' AdvertA landlord asks a letting agent
+                              to post a ‘No DSS’ advert in relation to a property. A prospective tenant who is in
+                              receipt of benefits sees the advert during a search for a new let. The tenant reports
+                              the letting agent to the local council on the basis that the advert discriminates
+                              against benefit recipients. The local council investigates the claim and is satisfied
+                              on the balance of probabilities that the advert discriminated against benefit claimants.
+                              The letting agent informs the local council that they were instructed by the landlord
+                              to post the advert. Under these provisions the local council can take enforcement
+                              action against the letting agent, landlord, or both. In this case the local council
+                              notifies the letting agent and the landlord of the breach and takes appropriate enforcement
+                              action.</span>
                            </p>
                      </section>
                      <section class="level">
                         <p>
-                           <span style="color:#0070C0">Section 35: Discriminatory terms in a tenancy relating to children or benefits status
-                              Example: Posting a 'No DSS' AdvertA landlord asks a letting agent to post a ‘No DSS’
-                              advert in relation to a property. A prospective tenant who is in receipt of benefits
-                              sees the advert during a search for a new let. The tenant reports the letting agent
-                              to the local council on the basis that the advert discriminates against benefit recipients.
-                              The local council investigates the claim and is satisfied on the balance of probabilities
-                              that the advert discriminated against benefit claimants. The letting agent informs
-                              the local council that they were instructed by the landlord to post the advert. Under
-                              these provisions the local council can take enforcement action against the letting
-                              agent, landlord, or both. In this case the local council notifies the letting agent
-                              and the landlord of the breach and takes appropriate enforcement action.</span>
+                           <span style="color:#0070C0">Section 35: Discriminatory terms in a tenancy relating to children or benefits status</span>
                            </p>
                      </section>
                      <section class="level">

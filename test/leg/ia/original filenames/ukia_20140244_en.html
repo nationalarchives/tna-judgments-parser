@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.44%">
@@ -489,7 +507,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -516,7 +535,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -546,7 +566,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:51.98%">
@@ -755,14 +776,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 1</p>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">Description</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Description:  </b>
@@ -1233,8 +1254,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 2</p>
@@ -1736,8 +1757,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 3</p>
@@ -2228,8 +2249,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 4</p>
@@ -2725,8 +2746,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 5</p>
@@ -3214,19 +3235,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration</b>
-                     </span>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The problem under consideration is the impact that current patent law has on stakeholders
@@ -3286,13 +3305,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale for intervention</b>
-                     </span>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale for intervention</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">“The Plan for Growth”</span>
@@ -3605,13 +3623,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objective</b>
-                     </span>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objective</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">As previously discussed (see "Problem under consideration" above), current UK law
@@ -3683,13 +3700,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      save the money they currently spend assessing the risk of infringement.  </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered (including do nothing) and costs/benefits</b>
-                     </span>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered (including do nothing) and costs/benefits</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The policy options we have considered are 1) do nothing, 2) change UK legislation,
@@ -3698,24 +3714,22 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Option 1 - do nothing</u>
-                     </b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Option 1 - do nothing</u>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Maintaining the <i>status quo i.e.</i> keeping the exception as it currently stands.  Only activities carried out for achieving
                      authorisation of generic drugs or biosimilar drugs using the generic route will be
                      exempt from infringement.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs/Benefits</b>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs/Benefits</b>
+                     </span></h2>
                <section class="level">
                   <p>The “do nothing” option is compared against itself and therefore its costs and benefits
                      are necessarily zero, as is its Net Present Value. </p>
@@ -3781,17 +3795,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to outweigh the costs.  </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs/Benefits</b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs/Benefits</b>
+                     </span></h2>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs</b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs</b>
+                     </span></h2>
                <section class="level">
                   <p>We asked stakeholders to provide evidence of the losses which would be incurred if
                      the law was changed.  Respondents to the formal consultation indicated that deciding
@@ -3851,11 +3863,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits </b>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits </b>
+                     </span></h2>
                <section class="level">
                   <p>The main benefit of this option to stakeholders would be a more certain legal position
                      for clinical trials in patent law.  This would remove the time and costs of assessing
@@ -4039,13 +4050,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      effect.</p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Option 3 – clarify current legislation</u>
-                     </b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Option 3 – clarify current legislation</u>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>Clarification of current legislation would involve assessing current case law to produce
                      non-statutory guidelines as to what is understood to be exempt according to any relevant
@@ -4070,11 +4080,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      For this reason we do not consider clarification of legislation a viable option.</p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs</b>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs</b>
+                     </span></h2>
                <section class="level">
                   <p>The difficulty in clarifying which acts are exempt or infringing may result in stakeholders
                      not having confidence in the guidance provided by Government and would therefore undertake
@@ -4090,11 +4099,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      be significant. </p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits</b>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits</b>
+                     </span></h2>
                <section class="level">
                   <p>If it were possible to adequately define all acts which are not infringing in this
                      area under the current law, and if stakeholders had confidence in this clarification,
@@ -4144,11 +4152,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      reasons, this policy option is not considered viable.  </p>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs/Benefits</b>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs/Benefits</b>
+                     </span></h2>
                <section class="level">
                   <p>Costs and benefits for option 4 are the same as outlined for option 2 on pages 13-14.
                      However an additional cost to be considered is that due to the slower process of option
@@ -4169,13 +4176,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      comments were received which provide any further information on this option.</p>
                </section>
             </section>
-            <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Option 5 – encourage industry agreements.</u>
-                     </b>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Option 5 – encourage industry agreements.</u>
+                        </b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">There are a number of possible alternatives for this option: i) providing a draft
@@ -4198,13 +4204,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Costs</b>
-                     </span>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Costs</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>We are unable to monetise costs for this option. </p>
                </section>
@@ -4222,13 +4227,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Benefits</b>
-                     </span>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Benefits</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The benefits, if this were to be successful across the sectors, are again the same
@@ -4240,13 +4244,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      comments were received which provide any further information on this option.</p>
                </section>
             </section>
-            <section id="section_25" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks and assumptions</b>
-                     </span>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and assumptions</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">
@@ -4357,13 +4360,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_26" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Direct Costs and Benefits to Business Calculations (following OITO methodology)</b>
-                     </span>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Direct Costs and Benefits to Business Calculations (following OITO methodology)</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Under the “One In, Two Out” rule, a measure that has a net cost to business must have
@@ -4378,13 +4380,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Wider impacts</b>
-                     </span>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wider impacts</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">
@@ -4501,13 +4502,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Summary and preferred option with description of implementation plan</b>
-                     </span>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Summary and preferred option with description of implementation plan</b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#000000">Our chosen option is option 2 – changing UK legislation to exempt from infringement
@@ -4537,11 +4537,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evaluation of preferred option</b>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <b>Evaluation of preferred option</b>
+                     </span></h2>
                <section class="level">
                   <p>The proposed change is being introduced as part of a package of changes to the Patents
                      Act 1977. The IPO will monitor and evaluate the impact of these changes on an on-going
@@ -4574,7 +4573,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a> 
                   <span style="color:#000000"> “The Plan for Growth”, available at </span>
                   <a href="http://cdn.hm-treasury.gov.uk/2011budget_growth.pdf">
-                     <u><a href="http://cdn.hm-treasury.gov.uk/2011budget_growth.pdf">http://cdn.hm-treasury.gov.uk/2011budget_growth.pdf</a></u>
+                     <u>http://cdn.hm-treasury.gov.uk/2011budget_growth.pdf</u>
                      </a>
                   <span style="color:#000000"> (</span>
                   <span style="color:#000000">paragraph 2.207</span>
@@ -4646,7 +4645,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="http://www.bis.gov.uk/assets/biscore/economics-and-statistics/docs/10-541-bis-economics-paper-02.pdf">
-                     <u><a href="http://www.bis.gov.uk/assets/biscore/economics-and-statistics/docs/10-541-bis-economics-paper-02.pdf">http://www.bis.gov.uk/assets/biscore/economics-and-statistics/docs/10-541-bis-economics-paper-02.pdf</a></u>
+                     <u>http://www.bis.gov.uk/assets/biscore/economics-and-statistics/docs/10-541-bis-economics-paper-02.pdf</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -4660,7 +4659,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="http://www.ey.com/Publication/vwLUAssets/Beyond_borders_2012/$FILE/Beyond_borders_2012.pdf">
-                     <u><a href="http://www.ey.com/Publication/vwLUAssets/Beyond_borders_2012/$FILE/Beyond_borders_2012.pdf">http://www.ey.com/Publication/vwLUAssets/Beyond_borders_2012/$FILE/Beyond_borders_2012.pdf</a></u>
+                     <u>http://www.ey.com/Publication/vwLUAssets/Beyond_borders_2012/$FILE/Beyond_borders_2012.pdf</u>
                      </a>
                   <span style="color:#000000"> - see page 80</span>
                   <span style="color:#000000"> “European Clinical Pipeline by country, 2011” relates to biotechnological drugs in
@@ -4672,7 +4671,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="http://www.berr.gov.uk/files/file49805.pdf">
-                     <u><a href="http://www.berr.gov.uk/files/file49805.pdf">http://www.berr.gov.uk/files/file49805.pdf</a></u>
+                     <u>http://www.berr.gov.uk/files/file49805.pdf</u>
                      </a>
                   <span style="color:#000000"> - see “The UK Pipeline” page 6, figures 1 and 2.</span>
                   </p>

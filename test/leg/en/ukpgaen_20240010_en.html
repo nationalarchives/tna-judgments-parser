@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -7322,7 +7339,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> Aircraft Accident and Incident Investigation: </span>
                   <a href="https://elibrary.icao.int/reader/229733/&amp;returnUrl%3DaHR0cHM6Ly9lbGlicmFyeS5pY2FvLmludC9leHBsb3JlO3NlYXJjaFRleHQ9YW5uZXglMjAxMzttYWluU2VhcmNoPTE7dGhlbWVOYW1lPUJsdWUtVGhlbWU%3D?productType=eBook">
                      <span style="color:#0070C0">
-                        <u><a href="https://elibrary.icao.int/reader/229733/&amp;returnUrl%3DaHR0cHM6Ly9lbGlicmFyeS5pY2FvLmludC9leHBsb3JlO3NlYXJjaFRleHQ9YW5uZXglMjAxMzttYWluU2VhcmNoPTE7dGhlbWVOYW1lPUJsdWUtVGhlbWU%3D?productType=eBook">https://elibrary.icao.int/reader/229733/&amp;returnUrl%3DaHR0cHM6Ly9lbGlicmFyeS5pY2FvLmludC9leHBsb3JlO3NlYXJjaFRleHQ9YW5uZXglMjAxMzttYWluU2VhcmNoPTE7dGhlbWVOYW1lPUJsdWUtVGhlbWU%3D?productType=eBook</a></u>
+                        <u>https://elibrary.icao.int/reader/229733/&amp;returnUrl%3DaHR0cHM6Ly9lbGlicmFyeS5pY2FvLmludC9leHBsb3JlO3NlYXJjaFRleHQ9YW5uZXglMjAxMzttYWluU2VhcmNoPTE7dGhlbWVOYW1lPUJsdWUtVGhlbWU%3D?productType=eBook</u>
                         </span>
                      </a>
                   </p>
@@ -7340,7 +7357,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> MAIB safety digests: </span>
                   <a href="https://www.gov.uk/government/collections/maib-safety-digests">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/collections/maib-safety-digests">https://www.gov.uk/government/collections/maib-safety-digests</a></u>
+                        <u>https://www.gov.uk/government/collections/maib-safety-digests</u>
                         </span>
                      </a>
                   </p>
@@ -7357,7 +7374,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">roject: </span>
                   <a href="https://lawcom.gov.uk/project/automated-vehicles/">
                      <span style="color:#0070C0">
-                        <u><a href="https://lawcom.gov.uk/project/automated-vehicles/">https://lawcom.gov.uk/project/automated-vehicles/</a></u>
+                        <u>https://lawcom.gov.uk/project/automated-vehicles/</u>
                         </span>
                      </a>
                   </p>
@@ -7369,7 +7386,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">Connected &amp; Automated Mobility 2025: </span>
                   <a href="https://www.gov.uk/government/publications/connected-and-automated-mobility-2025-realising-the-benefits-of-self-driving-vehicles">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/publications/connected-and-automated-mobility-2025-realising-the-benefits-of-self-driving-vehicles">https://www.gov.uk/government/publications/connected-and-automated-mobility-2025-realising-the-benefits-of-self-driving-vehicles</a></u>
+                        <u>https://www.gov.uk/government/publications/connected-and-automated-mobility-2025-realising-the-benefits-of-self-driving-vehicles</u>
                         </span>
                      </a>
                   <span style="color:#000000">

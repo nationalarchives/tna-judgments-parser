@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:25.32%">
@@ -806,17 +824,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <i>
-                        </i>
-                     </span>
-                  <span style="color:#000000">
-                     <b>Miatta Fahnbulleh</b>
-                     </span>
-                  </p>
+            <section id="section_3" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <i>
+                           </i>
+                        </span>
+                     <span style="color:#000000">
+                        <b>Miatta Fahnbulleh</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <b>
@@ -1320,11 +1337,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Executive Summary</b>
-                  </p>
+            <section id="section_4" class="section heading">
+               <h2><span class="heading">
+                     <b>Executive Summary</b>
+                     </span></h2>
                <section class="level">
                   <p>The government has an ambitious package of policy measures to help the United Kingdom
                      enhance its energy security, become less dependent on global gas markets, and reduce
@@ -1385,16 +1401,21 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      costs.</p>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Introduction &amp; Background</b>
-                  </p>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Background</span>
-                     </p>
+            <section id="section_5" class="section heading">
+               <h2><span class="heading">
+                     <b>Introduction &amp; Background</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.</span></h2>
+                  <p>Some further reasons for intervention related to the above include:</p>
                </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.</span></h2>
+                  <p>The main aims of the policy are:</p>
+               </section>
+            </section>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Background</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>In 2008, Parliament passed the Climate Change Act 2008 (‘the Act’) which sets a legally
@@ -1442,11 +1463,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      most widespread solution. This would require continued market growth to over one million
                      annual heat pump installations by the early-2030s. </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Rationale for intervention</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">Rationale for intervention</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">6.</span></h2>
                   <p>The current market for heat pumps is relatively small: around 40,500 heat pumps were
@@ -1504,38 +1523,32 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and efficient way to bring down the cost of electricity and the running costs of low-carbon
                      technologies.</p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">12.</span></h2>
-                  <p>Some further reasons for intervention related to the above include:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">a)</span></h2>
-                     <p>Intervention in this market is needed to reduce the cost of decarbonising heat in
-                        buildings, as well as meeting legally-binding Carbon Budgets. Given the price effects
-                        of market failures set out above, support for the heat pump market, through a clear
-                        market growth trajectory underpinned by a market-wide obligation, is likely to improve
-                        investor certainty and generate growth and development of the supply chain.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">b)</span></h2>
-                     <p>Consumer research has shown that consumers are unfamiliar with heat pumps as an alternative
-                        to fossil fuel heating systems<a class="fn" id="fnref-3" href="#fn-3">3</a>. This lack of consumer awareness reduces their ability to choose the heating appliance
-                        based on merit, and thus constraining the technology’s ability to compete in the market.
-                        One outcome from an intervention in the market would be to raise consumer awareness,
-                        addressing this market failure.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">c)</span></h2>
-                     <p>Additional research and development and economies of scale are also expected to follow
-                        a successful intervention in the heat pump market. This will result in spill-over
-                        benefits to society, which are not currently reflected in the price of low-carbon
-                        heating.</p>
-                  </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">a)</span></h2>
+                  <p>Intervention in this market is needed to reduce the cost of decarbonising heat in
+                     buildings, as well as meeting legally-binding Carbon Budgets. Given the price effects
+                     of market failures set out above, support for the heat pump market, through a clear
+                     market growth trajectory underpinned by a market-wide obligation, is likely to improve
+                     investor certainty and generate growth and development of the supply chain.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Policy objective</span>
-                     </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">b)</span></h2>
+                  <p>Consumer research has shown that consumers are unfamiliar with heat pumps as an alternative
+                     to fossil fuel heating systems<a class="fn" id="fnref-3" href="#fn-3">3</a>. This lack of consumer awareness reduces their ability to choose the heating appliance
+                     based on merit, and thus constraining the technology’s ability to compete in the market.
+                     One outcome from an intervention in the market would be to raise consumer awareness,
+                     addressing this market failure.</p>
                </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">c)</span></h2>
+                  <p>Additional research and development and economies of scale are also expected to follow
+                     a successful intervention in the heat pump market. This will result in spill-over
+                     benefits to society, which are not currently reflected in the price of low-carbon
+                     heating.</p>
+               </section>
+            </section>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">Policy objective</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">13.</span></h2>
                   <p>The Energy Act 2023 granted the Secretary of State the powers to introduce a market-based
@@ -1554,28 +1567,23 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      pathway to net zero a viable option at least-cost. Substantial further growth in annual
                      installations will be needed by the early 2030s.</p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">15.</span></h2>
-                  <p>The main aims of the policy are:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">1.</span></h2>
-                     <p>To support the development of the UK heat pump market to make heat pumps a mainstream
-                        consumer solution competing with gas boilers by the end of this Parliament. Working
-                        alongside other policies, the CHMM will help ensure the installation of at least 77,000
-                        heat pumps a year in existing homes between 2024/25 and 2028/29.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">2.</span></h2>
-                     <p>To contribute to decarbonising heating in the UK and to meeting our legally-binding
-                        carbon budgets.</p>
-                  </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">1.</span></h2>
+                  <p>To support the development of the UK heat pump market to make heat pumps a mainstream
+                     consumer solution competing with gas boilers by the end of this Parliament. Working
+                     alongside other policies, the CHMM will help ensure the installation of at least 77,000
+                     heat pumps a year in existing homes between 2024/25 and 2028/29.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.</span></h2>
+                  <p>To contribute to decarbonising heating in the UK and to meeting our legally-binding
+                     carbon budgets.</p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Outline of policy options</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Outline of policy options</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">16.</span></h2>
                   <p>The policy options considered in this impact assessment are:</p>
@@ -1689,11 +1697,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      where no policy is introduced (option 0). </p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Option 1 (preferred option)</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Option 1 (preferred option)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">25.</span></h2>
                   <p>The government is introducing, through secondary legislation under the primary powers
@@ -1836,11 +1843,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      impact of payments-in-lieu on businesses.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Analytical approach</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>Analytical approach</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">41.</span></h2>
                   <p>
@@ -1886,11 +1892,20 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         be assessed in combination with the strategic considerations. </span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Heat Pump Deployment assumptions</span>
-                     </p>
+               <section class="paragraph num">
+                  <h2><span class="num">51.</span></h2>
+                  <p>Analysis has been conducted to estimate the costs and benefits associated with low-carbon
+                     heating technologies, relative to the counterfactual. The quantified costs and benefits
+                     contributing to the SNPV are:</p>
                </section>
+               <section class="paragraph num">
+                  <h2><span class="num">52.</span></h2>
+                  <p>There are several non-monetised costs and benefits that are not captured in the cost-benefit
+                     analysis, including:</p>
+               </section>
+            </section>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">Heat Pump Deployment assumptions</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">45.</span></h2>
                   <p>
@@ -1961,121 +1976,108 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         CHMM scheme years</span>
                      </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">51.</span></h2>
-                  <p>Analysis has been conducted to estimate the costs and benefits associated with low-carbon
-                     heating technologies, relative to the counterfactual. The quantified costs and benefits
-                     contributing to the SNPV are:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">a.</span></h2>
-                     <p>
-                        <b>Additional upfront capital costs (Capex)</b> - These are the total additional upfront costs of the purchase and installation of
-                        low-carbon heating technologies, compared to the purchase and installation costs of
-                        the counterfactual heating system. This includes additional ancillary costs such as
-                        new radiators for heat pumps and incorporates cost reductions assumed to materialise
-                        as the market scales up.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">b.</span></h2>
-                     <p>
-                        <b>Generation costs and benefits</b> - The estimated value of the change in energy demand due to low-carbon heating technologies
-                        displacing counterfactual heating systems. This is also known as the long run variable
-                        cost (LRVC) impact. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">c.</span></h2>
-                     <p>
-                        <b>Carbon savings</b> – The estimated value of the carbon abated in both the traded and non-traded sectors
-                        due to heat from low-carbon sources replacing heat from fossil fuels.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">d.</span></h2>
-                     <p>
-                        <b>Air quality impacts</b> – The estimated value of the public health impacts of changes to emissions of nitrogen
-                        oxides and particulate matter. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">e.</span></h2>
-                     <p>
-                        <b>Maintenance</b> – The difference between the annual costs to maintain the different heating systems.
-                        For simplicity, we have assumed these costs to be the same across all scenarios and
-                        we have therefore not included them in the tables below.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">f.</span></h2>
-                     <p>
-                        <b>Hidden costs</b> – These include the time taken by householders to liaise with the installer, prepare
-                        the property for installation and any oversight. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">g.</span></h2>
-                     <p>
-                        <b>Admin and familiarisation costs </b>– The costs associated with understanding the obligation and with compliance with
-                        the scheme once in force.</p>
-                  </section>
-               </section>
-               <section class="level">
+               <section class="subparagraph num">
+                  <h2><span class="num">a.</span></h2>
                   <p>
-                     <span style="color:#2F5496">Non-monetised costs and benefits</span>
-                     </p>
+                     <b>Additional upfront capital costs (Capex)</b> - These are the total additional upfront costs of the purchase and installation of
+                     low-carbon heating technologies, compared to the purchase and installation costs of
+                     the counterfactual heating system. This includes additional ancillary costs such as
+                     new radiators for heat pumps and incorporates cost reductions assumed to materialise
+                     as the market scales up.</p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">52.</span></h2>
-                  <p>There are several non-monetised costs and benefits that are not captured in the cost-benefit
-                     analysis, including:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">a.</span></h2>
-                     <p>
-                        <b>Supply chain development</b> – by incentivising additional deployment of low-carbon heat technologies relative
-                        to the counterfactual, the scheme supports the development of low-carbon heat supply
-                        chains. This will provide a basis for the mass roll-out of low-carbon heating in the
-                        2020s and subsequent decades, which will be needed to achieve the government’s target
-                        of net zero carbon emissions by 2050. It will also help create green jobs and create
-                        opportunities for UK manufacturers. If monetised, this would have a positive impact
-                        on the SNPV.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">b.</span></h2>
-                     <p>
-                        <b>Green jobs</b> – the expansion of heat pump deployment is expected to support significant numbers
-                        of low-carbon and renewable energy (‘LCREE’) jobs. For instance the Heat Pump Association
-                        estimated that growth to 600,000 heat pump installations per year would support 30,000
-                        LCREE jobs, predominantly in the installation and maintenance of heat pumps. This
-                        policy will contribute to securing these long-term low-carbon jobs.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">c.</span></h2>
-                     <p>
-                        <b>Innovation and cost reductions</b> – <span style="color:#000000">DESNZ</span> expects that supporting low-carbon heat deployment will reduce costs and possibly
-                        increase performance over time, as supply chains develop and barriers that customers
-                        currently face are reduced through technologies being deployed successfully. The cost
-                        reduction and performance improvement benefits from low-carbon heating technologies
-                        installed after the period in scope of the market mechanism are not quantified in
-                        this impact assessment. If monetised, they would have a positive impact on the SNPV.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">d.</span></h2>
-                     <p>
-                        <b>Health benefits</b> – switching away from fossil fuels can lead to improved indoor air quality for occupants,
-                        improving their health. If monetised, this would have a positive impact on the SNPV.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">
-                           <b>e.</b>
-                           </span></h2>
-                     <p>
-                        <b>Consumer familiarity and perception towards renewable heat</b> - the <span style="color:#000000">DESNZ</span> Public Attitudes Tracker indicates that 51% of the public have little to no familiarity
-                        with air source heat pumps<a class="fn" id="fnref-5" href="#fn-5">5</a>. However, customers who have installed renewable heating technologies have expressed
-                        high levels of satisfaction<a class="fn" id="fnref-6" href="#fn-6">6</a>. Heat pumps would require consumers and businesses to operate their heating systems
-                        in an unfamiliar way compared to conventional heating systems. The installation of
-                        hundreds of thousands low-carbon heating appliances will improve the familiarity of
-                        the public with technologies essential to reach the net zero target. If monetised,
-                        this would have a positive impact on the SNPV.</p>
-                  </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">b.</span></h2>
+                  <p>
+                     <b>Generation costs and benefits</b> - The estimated value of the change in energy demand due to low-carbon heating technologies
+                     displacing counterfactual heating systems. This is also known as the long run variable
+                     cost (LRVC) impact. </p>
                </section>
-               <section class="level">
-                  <p>Modelling approach and results</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">c.</span></h2>
+                  <p>
+                     <b>Carbon savings</b> – The estimated value of the carbon abated in both the traded and non-traded sectors
+                     due to heat from low-carbon sources replacing heat from fossil fuels.</p>
                </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">d.</span></h2>
+                  <p>
+                     <b>Air quality impacts</b> – The estimated value of the public health impacts of changes to emissions of nitrogen
+                     oxides and particulate matter. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">e.</span></h2>
+                  <p>
+                     <b>Maintenance</b> – The difference between the annual costs to maintain the different heating systems.
+                     For simplicity, we have assumed these costs to be the same across all scenarios and
+                     we have therefore not included them in the tables below.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">f.</span></h2>
+                  <p>
+                     <b>Hidden costs</b> – These include the time taken by householders to liaise with the installer, prepare
+                     the property for installation and any oversight. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">g.</span></h2>
+                  <p>
+                     <b>Admin and familiarisation costs </b>– The costs associated with understanding the obligation and with compliance with
+                     the scheme once in force.</p>
+               </section>
+            </section>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">Non-monetised costs and benefits</span></h2>
+               <section class="subparagraph num">
+                  <h2><span class="num">a.</span></h2>
+                  <p>
+                     <b>Supply chain development</b> – by incentivising additional deployment of low-carbon heat technologies relative
+                     to the counterfactual, the scheme supports the development of low-carbon heat supply
+                     chains. This will provide a basis for the mass roll-out of low-carbon heating in the
+                     2020s and subsequent decades, which will be needed to achieve the government’s target
+                     of net zero carbon emissions by 2050. It will also help create green jobs and create
+                     opportunities for UK manufacturers. If monetised, this would have a positive impact
+                     on the SNPV.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">b.</span></h2>
+                  <p>
+                     <b>Green jobs</b> – the expansion of heat pump deployment is expected to support significant numbers
+                     of low-carbon and renewable energy (‘LCREE’) jobs. For instance the Heat Pump Association
+                     estimated that growth to 600,000 heat pump installations per year would support 30,000
+                     LCREE jobs, predominantly in the installation and maintenance of heat pumps. This
+                     policy will contribute to securing these long-term low-carbon jobs.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">c.</span></h2>
+                  <p>
+                     <b>Innovation and cost reductions</b> – <span style="color:#000000">DESNZ</span> expects that supporting low-carbon heat deployment will reduce costs and possibly
+                     increase performance over time, as supply chains develop and barriers that customers
+                     currently face are reduced through technologies being deployed successfully. The cost
+                     reduction and performance improvement benefits from low-carbon heating technologies
+                     installed after the period in scope of the market mechanism are not quantified in
+                     this impact assessment. If monetised, they would have a positive impact on the SNPV.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">d.</span></h2>
+                  <p>
+                     <b>Health benefits</b> – switching away from fossil fuels can lead to improved indoor air quality for occupants,
+                     improving their health. If monetised, this would have a positive impact on the SNPV.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">
+                        <b>e.</b>
+                        </span></h2>
+                  <p>
+                     <b>Consumer familiarity and perception towards renewable heat</b> - the <span style="color:#000000">DESNZ</span> Public Attitudes Tracker indicates that 51% of the public have little to no familiarity
+                     with air source heat pumps<a class="fn" id="fnref-5" href="#fn-5">5</a>. However, customers who have installed renewable heating technologies have expressed
+                     high levels of satisfaction<a class="fn" id="fnref-6" href="#fn-6">6</a>. Heat pumps would require consumers and businesses to operate their heating systems
+                     in an unfamiliar way compared to conventional heating systems. The installation of
+                     hundreds of thousands low-carbon heating appliances will improve the familiarity of
+                     the public with technologies essential to reach the net zero target. If monetised,
+                     this would have a positive impact on the SNPV.</p>
+               </section>
+            </section>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Modelling approach and results</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">53.</span></h2>
                   <p>We have estimated the aggregate costs and benefits of the estimated additional clean
@@ -2083,11 +2085,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      all the appliances installed are assumed to have reached the end of their lifetime.
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Fuel Source Displaced</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">Fuel Source Displaced</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">54.</span></h2>
                   <p>The design of the obligation leaves the obligated parties (and their consumer base)
@@ -2228,11 +2228,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <span style="color:#000000">More detail on the modelling assumptions used and their source is given in the Annex.</span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Impact appraisal</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">Impact appraisal</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">60.</span></h2>
                   <p>
@@ -2747,11 +2745,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Risks and Uncertainties</b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>Risks and Uncertainties</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">68.</span></h2>
                   <p>In this section, sensitivity analysis is performed against our central case, the impact
@@ -3097,12 +3094,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Sensitivity Charts</span>
-                     <a class="fn" id="fnref-8" href="#fn-8">8</a>
-                     </p>
+               <section class="paragraph num">
+                  <h2><span class="num">75.</span></h2>
+                  <p>While the SNPV value presented is positive, there are the following non-monetised
+                     risks and uncertainties to consider: </p>
                </section>
+            </section>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">Sensitivity Charts In Scenario 6: Target carry-forward we have not considered a ‘low’
+                     scenario as there is no low variant of the sensitivity, relative to the central assumption
+                     of zero carry-forward.</span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Figure 1 – SNPV Sensitivity Analysis of the Scheme Regulations </span>
@@ -3113,11 +3114,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <img src="http://www.legislation.gov.uk/uksi/2025/81/impacts/2025/17/images/ukia_2025_17_en_002.gif" alt="">
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Limitations</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">Limitations</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">74.</span></h2>
                   <p>Despite the sensitivity analysis conducted to flex assumptions; we are also aware
@@ -3127,35 +3126,29 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      gas emissions<a class="fn" id="fnref-9" href="#fn-9">9</a> suggests that when capital is tied up in a specific project, alternative profitable
                      use of such capital is ruled out and there is a foregone social benefit. </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">75.</span></h2>
-                  <p>While the SNPV value presented is positive, there are the following non-monetised
-                     risks and uncertainties to consider: </p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">a.</span></h2>
-                     <p>
-                        <b>Risk of non-compliance</b>. HMT Green Book guidance requires that central scenarios assume compliance with regulation.
-                        However, should obligated parties decide to make payment in lieu of heat pump sales,
-                        this will reduce the growth of the heat pump market and corresponding benefits. The
-                        rate of the payment in lieu has been set to mitigate this risk. This is discussed
-                        further in the impacts on business section below. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">b.</span></h2>
-                     <p>
-                        <b>Impact on cost reductions</b>. Possible supply chain constraints might decrease the ability of the policy to reduce
-                        heat pump costs over time. The government is taking steps to mitigate this risk including
-                        a £5m Heat Training Grant to support trainees in England taking training relevant
-                        to heat pumps and heat networks. This is expected to support 10,000 training opportunities
-                        up to 2025, including at least 6,000 for heat pumps. </p>
-                  </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">a.</span></h2>
+                  <p>
+                     <b>Risk of non-compliance</b>. HMT Green Book guidance requires that central scenarios assume compliance with regulation.
+                     However, should obligated parties decide to make payment in lieu of heat pump sales,
+                     this will reduce the growth of the heat pump market and corresponding benefits. The
+                     rate of the payment in lieu has been set to mitigate this risk. This is discussed
+                     further in the impacts on business section below. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">b.</span></h2>
+                  <p>
+                     <b>Impact on cost reductions</b>. Possible supply chain constraints might decrease the ability of the policy to reduce
+                     heat pump costs over time. The government is taking steps to mitigate this risk including
+                     a £5m Heat Training Grant to support trainees in England taking training relevant
+                     to heat pumps and heat networks. This is expected to support 10,000 training opportunities
+                     up to 2025, including at least 6,000 for heat pumps. </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Distributional impact</b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>Distributional impact</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">76.</span></h2>
                   <p>The government is committed to keeping the overall policy framework for net zero under
@@ -3177,11 +3170,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      costs of low-carbon alternatives such as heat pumps. </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Equality impact</b>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <b>Equality impact</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">78.</span></h2>
                   <p>Under the Public Sector Equality Duty, the government must have due regard to the
@@ -3277,11 +3269,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and good relations between groups.</p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on Business</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on Business</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">84.</span></h2>
                   <p>The impact of the Clean Heat Market Mechanism on businesses, both in the heating appliance
@@ -3322,11 +3313,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      or those with only limited activities in the UK. It also ensures that the administrative
                      complexity and costs of administering the obligation are kept proportionate.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Familiarisation and admin costs</span>
-                     </p>
+               <section class="paragraph num">
+                  <h2><span class="num">91.</span></h2>
+                  <p>The cost to businesses of meeting their CHMM obligations are difficult to assess with
+                     confidence. At the lower end of the range, they could amount only to the familiarisation
+                     and administrative costs estimated in the section above. However, the difference in
+                     cost between heat pump and fossil fuel systems and the presence of market barriers
+                     and failures means that there are scenarios where businesses may need to subsidise
+                     heat pumps to induce households to install them. For each installation, the size of
+                     such subsidy required would be affected by several factors:</p>
                </section>
+            </section>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Familiarisation and admin costs</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">88.</span></h2>
                   <p>In delivering their obligation, businesses will incur familiarisation and administrative
@@ -3467,52 +3466,40 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Obligation costs</span>
-                     </p>
+            </section>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">Obligation costs</span></h2>
+               <section class="subparagraph num">
+                  <h2><span class="num">a.</span></h2>
+                  <p>The speed at which heat pump costs fall relative to fossil fuel systems as the market
+                     develops. </p>
                </section>
-               <section class="paragraph num">
-                  <h2><span class="num">91.</span></h2>
-                  <p>The cost to businesses of meeting their CHMM obligations are difficult to assess with
-                     confidence. At the lower end of the range, they could amount only to the familiarisation
-                     and administrative costs estimated in the section above. However, the difference in
-                     cost between heat pump and fossil fuel systems and the presence of market barriers
-                     and failures means that there are scenarios where businesses may need to subsidise
-                     heat pumps to induce households to install them. For each installation, the size of
-                     such subsidy required would be affected by several factors:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">a.</span></h2>
-                     <p>The speed at which heat pump costs fall relative to fossil fuel systems as the market
-                        develops. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">b.</span></h2>
-                     <p>Consumer familiarity and willingness to pay a premium for heat pump installations
-                        (over boiler replacements) and how these changes over time. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">c.</span></h2>
-                     <p>The extent to which other policies supporting the deployment of heat pumps reduce
-                        costs. This could be directly with subsidy such as the Boiler Upgrade Scheme and Warm
-                        Homes Social Housing Decarbonisation Fund. Other policies, including financial support
-                        for training and/or manufacturing will also lower costs to businesses.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">d.</span></h2>
-                     <p>The difference in annual running costs for customers between heat pumps and fossil
-                        fuel systems. This is determined by retail energy prices and associated policy. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">e.</span></h2>
-                     <p>The development of the market for installation credits and the extent to which businesses
-                        wish to use these to meet their obligations. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">f.</span></h2>
-                     <p>The extent to which higher revenues from heat pump sales and increased market share
-                        are of value to businesses. </p>
-                  </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">b.</span></h2>
+                  <p>Consumer familiarity and willingness to pay a premium for heat pump installations
+                     (over boiler replacements) and how these changes over time. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">c.</span></h2>
+                  <p>The extent to which other policies supporting the deployment of heat pumps reduce
+                     costs. This could be directly with subsidy such as the Boiler Upgrade Scheme and Warm
+                     Homes Social Housing Decarbonisation Fund. Other policies, including financial support
+                     for training and/or manufacturing will also lower costs to businesses.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">d.</span></h2>
+                  <p>The difference in annual running costs for customers between heat pumps and fossil
+                     fuel systems. This is determined by retail energy prices and associated policy. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">e.</span></h2>
+                  <p>The development of the market for installation credits and the extent to which businesses
+                     wish to use these to meet their obligations. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">f.</span></h2>
+                  <p>The extent to which higher revenues from heat pump sales and increased market share
+                     are of value to businesses. </p>
                </section>
                <section class="paragraph num">
                   <h2><span class="num">92.</span></h2>
@@ -3649,11 +3636,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      we use the maximum possible average annual cost (£8m) for our overall cost to business
                      calculation. </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Direct costs to businesses</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">Direct costs to businesses</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">100.</span></h2>
                   <p>Combining the familiarisation and administrative costs with the estimated obligation
@@ -3718,8 +3703,6 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         </tr>
                      </tbody>
                   </table>
-               </section>
-               <section class="paragraph">
                   <p>Table 10: Annual Direct Cost to Business</p>
                   <table class="ia-table">
                      <colgroup>
@@ -4143,11 +4126,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      cost and others a net benefit, through benefitting from trading surplus credits under
                      the mechanism. </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Indirect costs to businesses</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">Indirect costs to businesses</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">104.</span></h2>
                   <p>The policy should have a significant positive impact for installers and maintenance
@@ -4208,11 +4189,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the EANDCB assessment calculation for the policy.</p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Competition and Trade Impact</b>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <b>Competition and Trade Impact</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">109.</span></h2>
                   <p>We do not assess that the policy will lead to significant negative impacts on competition
@@ -4257,11 +4237,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      ancillary services related to the heat pump market.</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Small and Micro Business Assessment (SaMBA)</b>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <b>Small and Micro Business Assessment (SaMBA)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">113.</span></h2>
                   <p>Micro businesses do not directly incur costs as a result of the scheme regulations.
@@ -4314,47 +4293,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      for around 33,000 by 2028<a class="fn" id="fnref-17" href="#fn-17">17</a>, according to the Heat Pump Association. </p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Monitoring and Evaluation</b>
-                  </p>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Aims and Objectives</span>
-                     </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">117.</span></h2>
-                  <p>Given the scope and potential impact of the CHMM, a robust monitoring and evaluation
-                     approach will be implemented. The monitoring and evaluation will demonstrate the outcomes
-                     and impact of the proposed scheme, providing a measure of success against the policy
-                     objectives described above. It will also yield evidence to inform future low-carbon
-                     heat policy development. Undertaking ongoing M&amp;E throughout the lifetime of the CHMM
-                     will support the identification of risks and highlight areas for improvement, allowing
-                     for in-flight policy changes. </p>
-               </section>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <b>Monitoring and Evaluation</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">118.</span></h2>
                   <p>The aims of the monitoring are to:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">a.</span></h2>
-                     <p>Support regular reporting of the realisation of scheme outcomes and benefits.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">b.</span></h2>
-                     <p>Yield monitoring data which can be utilised alongside evaluation to assess whether
-                        the CHMM met its objectives.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">c.</span></h2>
-                     <p>Support scheme management by tracking of delivery and amendments to the scheme. </p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">d.</span></h2>
-                     <p>Alongside evaluation, identify barriers and opportunities experienced during delivery
-                        to support the design of future policies.</p>
-                  </section>
                </section>
                <section class="paragraph num">
                   <h2><span class="num">119.</span></h2>
@@ -4365,35 +4310,64 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      it’s intended impacts, in order to provide an independent assessment of whether the
                      scheme was a success, to support accountability and to produce learnings for future
                      policy development. The aims of an evaluation could be to:</p>
-                  <section class="subparagraph num">
-                     <h2><span class="num">1.</span></h2>
-                     <p>Assess the extent to which realised outcomes and impacts were attributable to the
-                        CHMM/EoH Programme.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">2.</span></h2>
-                     <p>Consider whether the CHMM/EoH Programme supported the realisation of wider impacts
-                        or had unforeseen impacts.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">3.</span></h2>
-                     <p>Alongside monitoring, identify barriers and opportunities experienced during delivery
-                        to support the design of future policies.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">4.</span></h2>
-                     <p>Assess whether the CHMM/EoH Programme constituted value-for-money.</p>
-                  </section>
-                  <section class="subparagraph num">
-                     <h2><span class="num">5.</span></h2>
-                     <p>Provide an evidence base to support scheme communications.</p>
-                  </section>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Monitoring metrics</span>
-                     </p>
+            </section>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">Aims and Objectives</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">117.</span></h2>
+                  <p>Given the scope and potential impact of the CHMM, a robust monitoring and evaluation
+                     approach will be implemented. The monitoring and evaluation will demonstrate the outcomes
+                     and impact of the proposed scheme, providing a measure of success against the policy
+                     objectives described above. It will also yield evidence to inform future low-carbon
+                     heat policy development. Undertaking ongoing M&amp;E throughout the lifetime of the CHMM
+                     will support the identification of risks and highlight areas for improvement, allowing
+                     for in-flight policy changes. </p>
                </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">a.</span></h2>
+                  <p>Support regular reporting of the realisation of scheme outcomes and benefits.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">b.</span></h2>
+                  <p>Yield monitoring data which can be utilised alongside evaluation to assess whether
+                     the CHMM met its objectives.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">c.</span></h2>
+                  <p>Support scheme management by tracking of delivery and amendments to the scheme. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">d.</span></h2>
+                  <p>Alongside evaluation, identify barriers and opportunities experienced during delivery
+                     to support the design of future policies.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">1.</span></h2>
+                  <p>Assess the extent to which realised outcomes and impacts were attributable to the
+                     CHMM/EoH Programme.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.</span></h2>
+                  <p>Consider whether the CHMM/EoH Programme supported the realisation of wider impacts
+                     or had unforeseen impacts.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">3.</span></h2>
+                  <p>Alongside monitoring, identify barriers and opportunities experienced during delivery
+                     to support the design of future policies.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.</span></h2>
+                  <p>Assess whether the CHMM/EoH Programme constituted value-for-money.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">5.</span></h2>
+                  <p>Provide an evidence base to support scheme communications.</p>
+               </section>
+            </section>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">Monitoring metrics</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">120.</span></h2>
                   <p>The scheme administrator is required to collect detailed monitoring data and this
@@ -4645,11 +4619,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Evaluation</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">Evaluation</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">121.</span></h2>
                   <p>Arrangements for the evaluation of the CHMM are currently subject to a decision as
@@ -4674,11 +4646,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      undertaken to assess the CHMM or the EoH Programme in which it resides, against their
                      respective objectives.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#1F3763">Approach &amp; Methodology</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">Approach &amp; Methodology</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">124.</span></h2>
                   <p>Any design would see the evaluation providing an assessment of whether the CHMM realised
@@ -4710,11 +4680,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      will also be an opportunity to pursue wider areas of inquiry relevant to the CHMM
                      and Clean Heat policy more broadly.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#1F3763">Evaluation delivery, outputs and timelines</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">Evaluation delivery, outputs and timelines</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">128.</span></h2>
                   <p>It is most likely that this evaluation will adopt a hybrid delivery approach, whereby
@@ -4759,15 +4727,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <h2><span class="num">133.</span></h2>
                   <p>Appropriate budget and resources are being sought within DESNZ to deliver the evaluation.</p>
                </section>
-               <section class="level">
-                  <p>
-                     <b>Annex</b> – full list of modelling assumptions and risks</p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">General assumptions</span>
-                     </p>
-               </section>
+            </section>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">Annex – full list of modelling assumptions and risks</span></h2>
+            </section>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">General assumptions</span></h2>
                <section class="paragraph">
                   <p>Table 13: Appliances Characteristics in Central Scenario*</p>
                   <table class="ia-table">
@@ -5138,14 +5103,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#2F5496">Sensitivity analysis assumptions</span>
-                     </p>
-               </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">Sensitivity analysis assumptions</span></h2>
+            </section>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">S1 Energy prices</span></h2>
                <p>
                   <b>S1: Energy prices</b>
                   </p>
@@ -5153,8 +5116,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Low and high fuel price projections come from the HMT Green Book supplementary guidance.<a class="fn" id="fnref-28" href="#fn-28">28</a></p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">S2 Carbon prices</span></h2>
                <p>
                   <b>S2: Carbon prices</b>
                   </p>
@@ -5162,8 +5125,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Low and high carbon values series comes from the HMT Green Book supplementary guidance.<a class="fn" id="fnref-29" href="#fn-29">29</a></p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">S3 Efficiency of heating system</span></h2>
                <p>
                   <b>S3: Efficiency of heating system</b>
                   </p>
@@ -5173,8 +5136,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      from the Electrification of Heat Demonstration Project<a class="fn" id="fnref-30" href="#fn-30">30</a>.</p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">S4 Future capital cost reduction for heat pumps – Low/High</span></h2>
                <p>
                   <b>S4: Future capital cost reduction for heat pumps – Low/High</b>
                   </p>
@@ -5186,8 +5149,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      cost reduction from 2025 to 2030. </p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">S5 Low/High hybrid deployment</span></h2>
                <p>
                   <b>S5: Low/High hybrid deployment</b>
                   </p>
@@ -5199,8 +5162,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the gas boiler meeting the remaining 35%. </p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">S6 Target carry-forward</span></h2>
                <p>
                   <b>S6: Target carry-forward</b>
                   </p>
@@ -5231,47 +5194,21 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  BSRIA (2024),<b> ‘</b>Domestic boilers market analysis 2023<b>‘</b></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  DESNZ (2023), Winter public attitudes tracker - See Figure 2.1 <a href="https://assets.publishing.service.gov.uk/media/65fc5d5e65ca2f001b7da82c/DESNZ_Public_Attitudes_Tracker_Winter_2023_Heat_and_Energy_in_the_Home__Revised_.pdf"><u><a href="https://assets.publishing.service.gov.uk/media/65fc5d5e65ca2f001b7da82c/DESNZ_Public_Attitudes_Tracker_Winter_2023_Heat_and_Energy_in_the_Home__Revised_.pdf">https://assets.publishing.service.gov.uk/media/65fc5d5e65ca2f001b7da82c/DESNZ_Public_Attitudes_Tracker_Winter_2023_Heat_and_Energy_in_the_Home__Revised_.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  DESNZ (2023), Winter public attitudes tracker - See Figure 2.1 <a href="https://assets.publishing.service.gov.uk/media/65fc5d5e65ca2f001b7da82c/DESNZ_Public_Attitudes_Tracker_Winter_2023_Heat_and_Energy_in_the_Home__Revised_.pdf"><u>https://assets.publishing.service.gov.uk/media/65fc5d5e65ca2f001b7da82c/DESNZ_Public_Attitudes_Tracker_Winter_2023_Heat_and_Energy_in_the_Home__Revised_.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a> BEIS (2019), RHI evaluation interim report</p>
-               <p><a href="https://www.gov.uk/government/publications/rhi-evaluation-interim-report-applicant-reaction-to-reform-announcements"><u><a href="https://www.gov.uk/government/publications/rhi-evaluation-interim-report-applicant-reaction-to-reform-announcements">https://www.gov.uk/government/publications/rhi-evaluation-interim-report-applicant-reaction-to-reform-announcements</a></u></a></p>
+               <p><a href="https://www.gov.uk/government/publications/rhi-evaluation-interim-report-applicant-reaction-to-reform-announcements"><u>https://www.gov.uk/government/publications/rhi-evaluation-interim-report-applicant-reaction-to-reform-announcements</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  DESNZ (2024), Boiler Upgrade Scheme’s, August statistics – See Table 1.4* <a href="https://assets.publishing.service.gov.uk/media/66f29e3b7da73f171776408d/Boiler_Upgrade_Scheme__BUS__Statistics_August_2024.xlsx"><u><a href="https://assets.publishing.service.gov.uk/media/66f29e3b7da73f171776408d/Boiler_Upgrade_Scheme__BUS__Statistics_August_2024.xlsx">https://assets.publishing.service.gov.uk/media/66f29e3b7da73f171776408d/Boiler_Upgrade_Scheme__BUS__Statistics_August_2024.xlsx</a></u></a></p>
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  DESNZ (2024), Boiler Upgrade Scheme’s, August statistics – See Table 1.4* <a href="https://assets.publishing.service.gov.uk/media/66f29e3b7da73f171776408d/Boiler_Upgrade_Scheme__BUS__Statistics_August_2024.xlsx"><u>https://assets.publishing.service.gov.uk/media/66f29e3b7da73f171776408d/Boiler_Upgrade_Scheme__BUS__Statistics_August_2024.xlsx</u></a></p>
                <p>*For simplicity, we merged Oil, LPG and Coal fuel households into a combined Fossil
                   Fuel off gas grid total and we excluded installations whose fuel type displaced is
                   “None”, “Other” or “Unknown”. </p>
                <p></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> 
-                  <span style="color:#2F5496">
-                     </span>
-                  <span style="color:#2F5496">In </span>
-                  <span style="color:#2F5496">S</span>
-                  <span style="color:#2F5496">cenario</span>
-                  <span style="color:#2F5496">
-                     </span>
-                  <span style="color:#2F5496">6</span>
-                  <span style="color:#2F5496">: Target carry-forward we have not considered a </span>
-                  <span style="color:#2F5496">‘</span>
-                  <span style="color:#2F5496">low</span>
-                  <span style="color:#2F5496">’</span>
-                  <span style="color:#2F5496"> scenario</span>
-                  <span style="color:#2F5496"> as there is no</span>
-                  <span style="color:#2F5496"> low</span>
-                  <span style="color:#2F5496">
-                     </span>
-                  <span style="color:#2F5496">variant of the </span>
-                  <span style="color:#2F5496">sensitivity</span>
-                  <span style="color:#2F5496">, relative to the central assumption of zero carry-</span>
-                  <span style="color:#2F5496">forward</span>
-                  <span style="color:#2F5496">.</span>
-                  </p>
-            </div>
-            <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  BEIS (2023), Green Book supplementary guidance, <a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal"><u><a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal">https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal</a></u></a></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  BEIS (2023), Green Book supplementary guidance, <a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal"><u>https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal</u></a></p>
                <p></p>
             </div>
             <div class="footnote">
@@ -5307,18 +5244,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-14" href="#fnref-14">14</a>  BEIS (2023), Heating and cooling installer study,</p>
-               <p><a href="https://www.gov.uk/government/publications/heating-and-cooling-installer-study"><u><a href="https://www.gov.uk/government/publications/heating-and-cooling-installer-study">https://www.gov.uk/government/publications/heating-and-cooling-installer-study</a></u></a></p>
+               <p><a href="https://www.gov.uk/government/publications/heating-and-cooling-installer-study"><u>https://www.gov.uk/government/publications/heating-and-cooling-installer-study</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  Companies Act (2006), <a href="https://www.legislation.gov.uk/ukpga/2006/46/part/15/chapter/1/crossheading/companies-subject-to-the-small-companies-regime"><u><a href="https://www.legislation.gov.uk/ukpga/2006/46/part/15/chapter/1/crossheading/companies-subject-to-the-small-companies-regime">https://www.legislation.gov.uk/ukpga/2006/46/part/15/chapter/1/crossheading/companies-subject-to-the-small-companies-regime</a></u></a></p>
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  Companies Act (2006), <a href="https://www.legislation.gov.uk/ukpga/2006/46/part/15/chapter/1/crossheading/companies-subject-to-the-small-companies-regime"><u>https://www.legislation.gov.uk/ukpga/2006/46/part/15/chapter/1/crossheading/companies-subject-to-the-small-companies-regime</u></a></p>
                <p></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-16" href="#fnref-16">16</a>  Heat Pump Association (2019), Installer survey results,</p>
-               <p><a href="https://www.heatpumps.org.uk/wp-content/uploads/2019/11/Installer-Skills-Survey-Summary.pdf"><u><a href="https://www.heatpumps.org.uk/wp-content/uploads/2019/11/Installer-Skills-Survey-Summary.pdf">https://www.heatpumps.org.uk/wp-content/uploads/2019/11/Installer-Skills-Survey-Summary.pdf</a></u></a></p>
+               <p><a href="https://www.heatpumps.org.uk/wp-content/uploads/2019/11/Installer-Skills-Survey-Summary.pdf"><u>https://www.heatpumps.org.uk/wp-content/uploads/2019/11/Installer-Skills-Survey-Summary.pdf</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  Heat Pump Association (2023), <a href="https://www.heatpumps.org.uk/about/installers/"><u><a href="https://www.heatpumps.org.uk/about/installers/">https://www.heatpumps.org.uk/about/installers/</a></u></a></p>
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a>  Heat Pump Association (2023), <a href="https://www.heatpumps.org.uk/about/installers/"><u>https://www.heatpumps.org.uk/about/installers/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  The EoH Programme comprises the Boiler Upgrade Scheme, Heat Pump Investment Accelerator
@@ -5343,7 +5280,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  Catapult Electrification of Heat Interim Report Table 8.1 - <a href="https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report"><u><a href="https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report">https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report</a></u></a></p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a>  Catapult Electrification of Heat Interim Report Table 8.1 - <a href="https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report"><u>https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  Existing performance based on <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/180950/In-situ_monitoring_of_condensing_boilers_final_report.pdf"><u>In-situ monitoring of condensing boilers report</u></a>, future performance on the <a href="https://www.gov.uk/government/consultations/improving-boiler-standards-and-efficiency"><u>2022 consultation to improve boiler standards and efficiency</u></a><u>.</u></p>
@@ -5385,7 +5322,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-25" href="#fnref-25">25</a>  UCL (2017), <a href="https://discovery.ucl.ac.uk/id/eprint/1566603/"><u><a href="https://discovery.ucl.ac.uk/id/eprint/1566603/">https://discovery.ucl.ac.uk/id/eprint/1566603/</a></u></a></p>
+               <p><a class="marker" id="fn-25" href="#fnref-25">25</a>  UCL (2017), <a href="https://discovery.ucl.ac.uk/id/eprint/1566603/"><u>https://discovery.ucl.ac.uk/id/eprint/1566603/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-26" href="#fnref-26">26</a> 
@@ -5425,13 +5362,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   offsets the increase in price due to the installation of a wet distribution system.<span class="tab">&nbsp;</span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  BEIS (2023), Green Book supplementary guidance, <a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal"><u><a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal">https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal</a></u></a></p>
+               <p><a class="marker" id="fn-28" href="#fnref-28">28</a>  BEIS (2023), Green Book supplementary guidance, <a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal"><u>https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-29" href="#fnref-29">29</a>  BEIS (2023), Green Book supplementary guidance, <a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal"><u><a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal">https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal</a></u></a></p>
+               <p><a class="marker" id="fn-29" href="#fnref-29">29</a>  BEIS (2023), Green Book supplementary guidance, <a href="https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal"><u>https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  Catapult Electrification of Heat Interim Report Table 8.1 - <a href="https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report"><u><a href="https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report">https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report</a></u></a></p>
+               <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  Catapult Electrification of Heat Interim Report Table 8.1 - <a href="https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report"><u>https://es.catapult.org.uk/report/electrification-of-heat-interim-heat-pump-performance-data-analysis-report</u></a></p>
             </div>
          </footer>
       </article>

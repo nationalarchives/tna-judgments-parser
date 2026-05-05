@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:0%">
@@ -433,7 +451,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -461,7 +480,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -495,7 +515,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -524,7 +545,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_6" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:62.09%">
@@ -712,20 +734,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>
                   <b>Preferred </b>Policy Option</p>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description:  </b>
-                     </span>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description:  </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <span style="color:#000000">
@@ -1213,17 +1234,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Problem under consideration; </b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Problem under consideration; </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>
@@ -1376,13 +1395,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Findings from the consultation</b>
-                     </span>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Findings from the consultation</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">8.</span></h2>
                   <p>
@@ -1465,13 +1483,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Eligibility and qualifying conditions:  </b>
-                     </span>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Eligibility and qualifying conditions:  </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">10.</span></h2>
                   <p>
@@ -1495,13 +1512,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>The length of entitlement and when the entitlement can be taken:</b>
-                     </span>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>The length of entitlement and when the entitlement can be taken:</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>
@@ -1545,13 +1561,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Notice and evidence requirements. </b>
-                     </span>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Notice and evidence requirements. </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>
@@ -1589,13 +1604,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Employment protections and parents’ right to return to the same job.</b>
-                     </span>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Employment protections and parents’ right to return to the same job.</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">16.</span></h2>
                   <p>
@@ -1739,11 +1753,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      combine work with caring for the child and the mother.</p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Rationale for intervention:</b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>Rationale for intervention:</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">27.</span></h2>
                   <p>In general, provision of minimum standards ensures that societal benefits can be realised
@@ -1833,11 +1846,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      regardless of who they work for.</p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Policy objective; </b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>Policy objective; </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">34.</span></h2>
                   <p>
@@ -1867,13 +1879,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>The main options being considered are:</b>
-                     </span>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>The main options being considered are:</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Option 1 - Do nothing</span>
@@ -1998,11 +2009,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      will qualify for that.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Monetised costs and benefits</b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Monetised costs and benefits</b>
+                     </span></h2>
                <section class="level">
                   <p>Modelling approach: </p>
                </section>
@@ -2035,13 +2045,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      approach taken in the Parental Bereavement Leave Impact Assessment<a class="fn" id="fnref-13" href="#fn-13">13</a>. </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Eligible parents:</b>
-                     </span>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Eligible parents:</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">44.</span></h2>
                   <p>As with other family related entitlements, such as the Parental Bereavement Leave
@@ -2476,13 +2485,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      2021</p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Take-up</b>
-                     </span>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Take-up</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">53.</span></h2>
                   <p>Estimating how many parents will take-up Neonatal Care Leave and Pay is complex and
@@ -2636,11 +2644,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs and benefits</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs and benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>Both the costs and benefits identified in the Impact Assessment are categorised in
@@ -2752,19 +2759,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Monetised benefits</b>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>Monetised benefits</b>
+                     </span></h2>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Statutory payments to employees</u>
-                     </b>
-                  </p>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Statutory payments to employees</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">60.</span></h2>
                   <p>Assigning a value to the social benefits, which could arise from the proposals is
@@ -2865,11 +2870,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      with a baby in neonatal care for 1 week:</p>
                </section>
             </section>
-            <section id="section_20" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Non-monetised benefits</b>
-                  </p>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">
+                     <b>Non-monetised benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">62.</span></h2>
                   <p>Many of the benefits to parents, children and employers that could flow from the policy
@@ -2961,11 +2965,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      further labour market benefits in the long term. </p>
                </section>
             </section>
-            <section id="section_21" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits to neonates</b>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits to neonates</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">68.</span></h2>
                   <p>Parents of neonates experience higher levels of anxiety, depression and post-traumatic
@@ -2979,19 +2982,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      time to promote attachment.</p>
                </section>
             </section>
-            <section id="section_22" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs to Business</b>
-                  </p>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs to Business</b>
+                     </span></h2>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>One-off familiarisation costs</u>
-                     </b>
-                  </p>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>One-off familiarisation costs</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">69.</span></h2>
                   <p>The new policy will mean that businesses will have to spend time familiarising themselves
@@ -3276,13 +3277,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_24" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Administrative costs</u>
-                     </b>
-                  </p>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Administrative costs</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">74.</span></h2>
                   <p>The cost of processing requests for Neonatal leave and Pay are estimated based on
@@ -3701,13 +3701,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_25" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Absence costs</u>
-                     </b>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Absence costs</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">76.</span></h2>
                   <p>These costs fall upon businesses as a result of employees taking Neonatal Leave. This
@@ -3731,13 +3730,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_26" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>
-                     <u>Reorganisation costs</u>
-                     </b>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <b>
+                        <u>Reorganisation costs</u>
+                        </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">77.</span></h2>
                   <p>Reorganisation costs are incurred by employers regardless of whether the leave taken
@@ -3828,13 +3826,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_27" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Wage-like costs</b>
-                     </span>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wage-like costs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">78.</span></h2>
                   <p>Employers administer statutory pay on behalf of Government. Large employers (defined
@@ -3997,11 +3994,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      assume that Maternity and Paternity Leave is sufficient.</p>
                </section>
             </section>
-            <section id="section_28" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs to the Exchequer</b>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs to the Exchequer</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>
@@ -4125,11 +4121,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and maintenance.</p>
                </section>
             </section>
-            <section id="section_29" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary</b>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">87.</span></h2>
                   <p>The table below summarises all the monetised costs and benefits presented within the
@@ -4408,12 +4403,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_30" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Rationale and evidence that justify the level of analysis used in the IA (proportionality
-                     approach):</b>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <b>Rationale and evidence that justify the level of analysis used in the IA (proportionality
+                        approach):</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">88.</span></h2>
                   <p>We have commissioned new data analysis, made use of existing data sources available
@@ -4449,11 +4443,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      take-up rate changes over such a long period. </p>
                </section>
             </section>
-            <section id="section_31" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Data sources</b>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <b>Data sources</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">91.</span></h2>
                   <p>The evidence underpinning the population of neonatal parents in this Impact Assessment
@@ -4493,11 +4486,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         will be eligible for Neonatal Leave and Pay. </span></p>
                </section>
             </section>
-            <section id="section_32" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Small and Micro – Business Assessment (SaMBA)</b>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <b>Small and Micro – Business Assessment (SaMBA)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">94.</span></h2>
                   <p>
@@ -4776,11 +4768,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      overall employee population in terms of how they were distributed across small &amp; large.</p>
                </section>
             </section>
-            <section id="section_33" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Competition Assessment</b>
-                  </p>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <b>Competition Assessment</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">98.</span></h2>
                   <p>As part of seeking clearance for a regulatory proposal through developing an Impact
@@ -4807,11 +4798,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      impact assessment. </p>
                </section>
             </section>
-            <section id="section_34" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Equality Assessment </b>
-                  </p>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">
+                     <b>Equality Assessment </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">100.</span></h2>
                   <p>As a part of the Equality Act 2010, the Department for Business, Energy and Industrial
@@ -4977,11 +4967,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: BEIS internal analysis, Labour Force Survey, Jul-Sep 2021</p>
                </section>
             </section>
-            <section id="section_35" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Disability</b>
-                  </p>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">
+                     <b>Disability</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">103.</span></h2>
                   <p>The policy is designed to have a positive impact on all parents which find themselves
@@ -5054,11 +5043,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: BEIS internal analysis, Labour Force Survey, Jul-Sep 2021</p>
                </section>
             </section>
-            <section id="section_36" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Gender</b>
-                  </p>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">
+                     <b>Gender</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">104.</span></h2>
                   <p>Both fathers/partners, mothers and potentially parents in a surrogacy arrangement
@@ -5130,11 +5118,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: BEIS internal analysis, Labour Force Survey, Jul-Sep 2021</p>
                </section>
             </section>
-            <section id="section_37" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Pregnancy and Maternity</b>
-                  </p>
+            <section id="section_42" class="section heading">
+               <h2><span class="heading">
+                     <b>Pregnancy and Maternity</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">105.</span></h2>
                   <p>The design of the policy is to give parents an entitlement to replace the leave, where
@@ -5144,11 +5131,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      directly supports pregnant women and new mothers.</p>
                </section>
             </section>
-            <section id="section_38" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Ethnicity</b>
-                  </p>
+            <section id="section_43" class="section heading">
+               <h2><span class="heading">
+                     <b>Ethnicity</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">106.</span></h2>
                   <p>It is important to assess how the policy impacts different ethnic groups. Exploration
@@ -5278,11 +5264,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Source: BEIS internal analysis, Labour Force Survey, Jul-Sep 2021</p>
                </section>
             </section>
-            <section id="section_39" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Remaining Characteristics </b>
-                  </p>
+            <section id="section_44" class="section heading">
+               <h2><span class="heading">
+                     <b>Remaining Characteristics </b>
+                     </span></h2>
                <section class="level">
                   <p>The policy is intended to have a positive impact on parents of children spending time
                      in neonatal care. There is no evidence to suggest a greater or lesser likelihood of
@@ -5294,11 +5279,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and intended parents (in surrogacy arrangements) are eligible for the leave and pay.</p>
                </section>
             </section>
-            <section id="section_40" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on Trade and Investment</b>
-                  </p>
+            <section id="section_45" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on Trade and Investment</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">107.</span></h2>
                   <p>This is a regulatory policy concerned with giving affected parents a new employment
@@ -5309,17 +5293,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      have impact either Trade or Investment.</p>
                </section>
             </section>
-            <section id="section_41" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Risks and Assumptions </b>
-                  </p>
+            <section id="section_46" class="section heading">
+               <h2><span class="heading">
+                     <b>Risks and Assumptions </b>
+                     </span></h2>
             </section>
-            <section id="section_42" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Modelling risk and assumptions</b>
-                  </p>
+            <section id="section_47" class="section heading">
+               <h2><span class="heading">
+                     <b>Modelling risk and assumptions</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">108.</span></h2>
                   <p>The analysis within the Impact Assessment is dependent on a number of key assumptions.
@@ -5699,7 +5681,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   is in level terms, to calculate this as %, we divide by the statutory rate for 2021/22,
                   which yields:<span style="color:#000000">This is then applied to each employee estimated to take-up the policy to derive both
                      Exchequer and the business contribution to statutory payments at an aggregate level.</span></p>
-               <p id="annex_2_p_43">
+               <p id="annex_2_p_47">
                   <b>Table 15: Estimated number of parents taking Neonatal Care Leave/Pay by length</b>
                   </p>
                <table class="ia-table">
@@ -6616,7 +6598,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.bliss.org.uk/news/two-thirds-of-dads-forced-to-return-to-work-while-their-baby-was-still-in-neonatal-care">
-                     <u><a href="https://www.bliss.org.uk/news/two-thirds-of-dads-forced-to-return-to-work-while-their-baby-was-still-in-neonatal-care">https://www.bliss.org.uk/news/two-thirds-of-dads-forced-to-return-to-work-while-their-baby-was-still-in-neonatal-care</a></u>
+                     <u>https://www.bliss.org.uk/news/two-thirds-of-dads-forced-to-return-to-work-while-their-baby-was-still-in-neonatal-care</u>
                      </a>
                   <span style="color:#000000">
                      </span>
@@ -6625,7 +6607,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a> 
                   <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/childhoodinfantandperinatalmortalityinenglandandwales/2020">
-                     <u><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/childhoodinfantandperinatalmortalityinenglandandwales/2020">https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/childhoodinfantandperinatalmortalityinenglandandwales/2020</a></u>
+                     <u>https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/childhoodinfantandperinatalmortalityinenglandandwales/2020</u>
                      </a>
                   </p>
             </div>
@@ -6637,10 +6619,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.bliss.org.uk/research-campaigns/neonatal-care-statistics/statistics-about-neonatal-care"><u><a href="https://www.bliss.org.uk/research-campaigns/neonatal-care-statistics/statistics-about-neonatal-care">https://www.bliss.org.uk/research-campaigns/neonatal-care-statistics/statistics-about-neonatal-care</a></u></a></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.bliss.org.uk/research-campaigns/neonatal-care-statistics/statistics-about-neonatal-care"><u>https://www.bliss.org.uk/research-campaigns/neonatal-care-statistics/statistics-about-neonatal-care</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.bliss.org.uk/research-campaigns/our-campaigns/neonatal-leave-and-pay"><u><a href="https://www.bliss.org.uk/research-campaigns/our-campaigns/neonatal-leave-and-pay#:~:text=A%20Bliss%20survey%20of%20over,still%20receiving%20specialist%20neonatal%20care&amp;text=24%20per%20cent%20of%20dads,asked%20for%20more%20time%20off">https://www.bliss.org.uk/research-campaigns/our-campaigns/neonatal-leave-and-pay#:~:text=A%20Bliss%20survey%20of%20over,still%20receiving%20specialist%20neonatal%20care&amp;text=24%20per%20cent%20of%20dads,asked%20for%20more%20time%20off</a></u></a></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.bliss.org.uk/research-campaigns/our-campaigns/neonatal-leave-and-pay"><u>https://www.bliss.org.uk/research-campaigns/our-campaigns/neonatal-leave-and-pay#:~:text=A%20Bliss%20survey%20of%20over,still%20receiving%20specialist%20neonatal%20care&amp;text=24%20per%20cent%20of%20dads,asked%20for%20more%20time%20off</u></a></p>
                <p></p>
             </div>
             <div class="footnote">
@@ -6679,7 +6661,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  <a href="https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/births/births-time-series-data">https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/births/births-time-series-data</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <a href="https://committees.parliament.uk/writtenevidence/5345/pdf/"><u><a href="https://committees.parliament.uk/writtenevidence/5345/pdf/">https://committees.parliament.uk/writtenevidence/5345/pdf/</a></u></a></p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <a href="https://committees.parliament.uk/writtenevidence/5345/pdf/"><u>https://committees.parliament.uk/writtenevidence/5345/pdf/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  Parental Rights Survey, 2018/19 (Publication forthcoming)</p>
@@ -6728,10 +6710,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-33" href="#fnref-33">33</a>  ONS, Index of Labour Costs per Hour UK (2019 Q4 - 2020 Q3 average)</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-34" href="#fnref-34">34</a> <a href="https://www.cbi.org.uk/media-centre/articles/time-for-employers-to-place-workplace-health-and-wellbeing-front-of-mind-cbibupahca-heathcare/"><u><a href="https://www.cbi.org.uk/media-centre/articles/time-for-employers-to-place-workplace-health-and-wellbeing-front-of-mind-cbibupahca-heathcare/">https://www.cbi.org.uk/media-centre/articles/time-for-employers-to-place-workplace-health-and-wellbeing-front-of-mind-cbibupahca-heathcare/</a></u></a></p>
+               <p><a class="marker" id="fn-34" href="#fnref-34">34</a> <a href="https://www.cbi.org.uk/media-centre/articles/time-for-employers-to-place-workplace-health-and-wellbeing-front-of-mind-cbibupahca-heathcare/"><u>https://www.cbi.org.uk/media-centre/articles/time-for-employers-to-place-workplace-health-and-wellbeing-front-of-mind-cbibupahca-heathcare/</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-35" href="#fnref-35">35</a> <a href="https://www.imperial.ac.uk/neonatal-data-analysis-unit/neonatal-data-analysis-unit/contributing-to-the-national-neonatal-research-database/"><u><a href="https://www.imperial.ac.uk/neonatal-data-analysis-unit/neonatal-data-analysis-unit/contributing-to-the-national-neonatal-research-database/">https://www.imperial.ac.uk/neonatal-data-analysis-unit/neonatal-data-analysis-unit/contributing-to-the-national-neonatal-research-database/</a></u></a></p>
+               <p><a class="marker" id="fn-35" href="#fnref-35">35</a> <a href="https://www.imperial.ac.uk/neonatal-data-analysis-unit/neonatal-data-analysis-unit/contributing-to-the-national-neonatal-research-database/"><u>https://www.imperial.ac.uk/neonatal-data-analysis-unit/neonatal-data-analysis-unit/contributing-to-the-national-neonatal-research-database/</u></a></p>
                <p></p>
             </div>
             <div class="footnote">

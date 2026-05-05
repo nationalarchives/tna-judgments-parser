@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.17%">
@@ -455,7 +473,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -481,7 +500,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -513,7 +533,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -713,19 +734,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 1</p>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description: </b>
-                     </span>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description: </b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <span style="color:#000000">
@@ -1185,94 +1205,77 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base</b>
-                  </p>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">Problem under consideration and rationale for intervention</span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">Planning fees make an important contribution to meeting the costs of a local planning
-                        authority’s planning application service but do not fully cover service costs. Any
-                        shortfall must be financed through additional paid-for discretionary services or through
-                        the local authority’s general budget, which in turn falls on the taxpayer. This is
-                        a challenge for local authorities currently facing significant budget pressures, resulting
-                        in the funding of planning services being reduced in real terms by 36% between 2010-11
-                        and 2019-20</span>
-                     <a class="fn" id="fnref-3" href="#fn-3">3</a>
-                     <span style="color:#000000">. The Government increased all planning application fees from 6 December 2023, by
-                        35% for major applications and 25% for all other applications. The Government also
-                        introduced an annual indexation mechanism, from 1 April 2025, through which all fees
-                        will be increased annually by the rate of inflation in the preceding September, up
-                        to a maximum of 10%. So all fees will be increasing by 1.7% from 1 April 2025. Despite
-                        the 2023 fee increase, income from fees still falls short of the cost of dealing with
-                        the applications. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">There is a general imbalance within the current planning application fee structure.
-                        Nationally, 80% of planning applications provide only 20% of the fee income. The greatest
-                        imbalance is for householder applications, applications for prior approval, applications
-                        to discharge a condition and applications to vary or remove a condition. For example,
-                        it costs a local authority over twice as much to process a householder application
-                        than the fee received, £258 compared to £528.In 2023-24 there were 173,300] decisions
-                        on householder applications. Due to the high volume of householder applications, which
-                        account for over 50% of all planning applications, the low fee impacts the financial
-                        sustainability of local planning authorities, particularly in local authorities which
-                        do not receive many larger applications, the fees for which are more likely to cover
-                        the cost of deciding the applications.</span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">There are also some application types for which no fee is currently charged, such
-                        as listed buildings consent and works on protected trees, which add to the financial
-                        pressure on local planning authorities. In addition to applications for which fees
-                        are not currently charged, there are other planning services which local planning
-                        authorities carry out without a fee. These include enforcement activity and assessing
-                        potential local plan site allocations. Providing these statutory services is a cost
-                        burden on local authorities. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">According to the Local Government Revenue Outturn figures for 2023-24, the current
-                        planning system cost £1.27billion, of which the planning application service cost
-                        £819million. Income from planning application fees was £381million. When also including
-                        the fees income from other discretionary services, the overall funding shortfall for
-                        the planning application service was £362million (approximately 44%). </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">Whilst the income from planning fees can vary for individual local planning authorities
-                        from year to year depending on the numbers and types of applications, overall underfunding
-                        leads to a consequential under-resourcing of the planning application service, which
-                        in turn leads to a reduction in overall performance levels. This holds up development,
-                        including housing supply. The income from fees has fallen in recent years, largely
-                        due to the decrease in the number of planning applications. The fee increase from
-                        6 December 2023 only took effect in the final few months of the last financial year,
-                        so its full impact has not been realised. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">The Government recognises that this resourcing deficit needs to be addressed so that
-                        local planning authorities have the resources they need to deliver a service that
-                        people expect as well as meeting our ambitions for planning reform. Local planning
-                        authorities need more resources, so that they can make good, timely decisions. Government
-                        also has the objective to reduce the burden on the taxpayer, and for the planning
-                        application service to be principally funded by those who use it. Well-resourced local
-                        planning authorities will be able to build their capability and capacity, and improve
-                        their performance. </span>
-                     </p>
-               </section>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base</b>
+                     </span></h2>
+            </section>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">Problem under consideration and rationale for intervention</span></h2>
+            </section>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">Planning fees make an important contribution to meeting the costs of a local planning
+                     authority’s planning application service but do not fully cover service costs. Any
+                     shortfall must be financed through additional paid-for discretionary services or through
+                     the local authority’s general budget, which in turn falls on the taxpayer. This is
+                     a challenge for local authorities currently facing significant budget pressures, resulting
+                     in the funding of planning services being reduced in real terms by 36% between 2010-11
+                     and 2019-20 https://www.nao.org.uk/wp-content/uploads/2021/11/The-local-government-finance-system-in-England-overview-and-challenges.pdf.
+                     The Government increased all planning application fees from 6 December 2023, by 35%
+                     for major applications and 25% for all other applications. The Government also introduced
+                     an annual indexation mechanism, from 1 April 2025, through which all fees will be
+                     increased annually by the rate of inflation in the preceding September, up to a maximum
+                     of 10%. So all fees will be increasing by 1.7% from 1 April 2025. Despite the 2023
+                     fee increase, income from fees still falls short of the cost of dealing with the applications.</span></h2>
+            </section>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">There is a general imbalance within the current planning application fee structure.
+                     Nationally, 80% of planning applications provide only 20% of the fee income. The greatest
+                     imbalance is for householder applications, applications for prior approval, applications
+                     to discharge a condition and applications to vary or remove a condition. For example,
+                     it costs a local authority over twice as much to process a householder application
+                     than the fee received, £258 compared to £528.In 2023-24 there were 173,300] decisions
+                     on householder applications. Due to the high volume of householder applications, which
+                     account for over 50% of all planning applications, the low fee impacts the financial
+                     sustainability of local planning authorities, particularly in local authorities which
+                     do not receive many larger applications, the fees for which are more likely to cover
+                     the cost of deciding the applications.</span></h2>
+            </section>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">There are also some application types for which no fee is currently charged, such
+                     as listed buildings consent and works on protected trees, which add to the financial
+                     pressure on local planning authorities. In addition to applications for which fees
+                     are not currently charged, there are other planning services which local planning
+                     authorities carry out without a fee. These include enforcement activity and assessing
+                     potential local plan site allocations. Providing these statutory services is a cost
+                     burden on local authorities.</span></h2>
+            </section>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">According to the Local Government Revenue Outturn figures for 2023-24, the current
+                     planning system cost £1.27billion, of which the planning application service cost
+                     £819million. Income from planning application fees was £381million. When also including
+                     the fees income from other discretionary services, the overall funding shortfall for
+                     the planning application service was £362million (approximately 44%).</span></h2>
+            </section>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Whilst the income from planning fees can vary for individual local planning authorities
+                     from year to year depending on the numbers and types of applications, overall underfunding
+                     leads to a consequential under-resourcing of the planning application service, which
+                     in turn leads to a reduction in overall performance levels. This holds up development,
+                     including housing supply. The income from fees has fallen in recent years, largely
+                     due to the decrease in the number of planning applications. The fee increase from
+                     6 December 2023 only took effect in the final few months of the last financial year,
+                     so its full impact has not been realised.</span></h2>
+            </section>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">The Government recognises that this resourcing deficit needs to be addressed so that
+                     local planning authorities have the resources they need to deliver a service that
+                     people expect as well as meeting our ambitions for planning reform. Local planning
+                     authorities need more resources, so that they can make good, timely decisions. Government
+                     also has the objective to reduce the burden on the taxpayer, and for the planning
+                     application service to be principally funded by those who use it. Well-resourced local
+                     planning authorities will be able to build their capability and capacity, and improve
+                     their performance.</span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Increasing fees to a level closer to the cost to the local planning authority of processing
@@ -1285,50 +1288,36 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         including businesses.</span>
                      </p>
                </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">The only way to increase fee income is by raising planning application fees. Planning
-                        application fees are set nationally, through secondary legislation, therefore Government
-                        intervention is required. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">We consulted on our proposals to increase certain planning fees, for 8 weeks, from
-                        30 July 2024, as part of the wider consultation on </span>
-                     <span style="color:#000000">
-                        <i>Proposed reforms to the National Planning Policy Framework and other changes to the
-                           planning system</i>
-                        </span>
-                     <span style="color:#000000">. We proposed that fees for householder planning applications should be increased
-                        to full cost recovery, estimated to be £528. We also sought views on other types of
-                        planning applications for which the fee was considered to be inadequate. We had 1,343
-                        respondents to our question on increasing the householder fee to full cost recovery,
-                        from a wide range of respondents, with 72% supporting this proposal. The responses
-                        were generally supportive of our proposals. The government response to the consultation
-                        can be read here / will be published here - </span>
-                     <a href="https://www.gov.uk/government/consultations/proposed-reforms-to-the-national-planning-policy-framework-and-other-changes-to-the-planning-system">
-                        <u>https://www.gov.uk/government/consultations/proposed-reforms-to-the-national-planning-policy-framework-and-other-changes-to-the-planning-system</u>
-                        </a>
-                     <span style="color:#000000">. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">In the longer term, we intend to introduce a power for local planning authorities
-                        to be able to vary or set their own fees, so that local authorities can recover all
-                        their costs for the planning application service. </span>
-                     </p>
-               </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale and evidence to justify the level of analysis used in the IA (proportionality
-                        approach)</b>
-                     </span>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">The only way to increase fee income is by raising planning application fees. Planning
+                     application fees are set nationally, through secondary legislation, therefore Government
+                     intervention is required.</span></h2>
+            </section>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">We consulted on our proposals to increase certain planning fees, for 8 weeks, from
+                     30 July 2024, as part of the wider consultation on Proposed reforms to the National
+                     Planning Policy Framework and other changes to the planning system. We proposed that
+                     fees for householder planning applications should be increased to full cost recovery,
+                     estimated to be £528. We also sought views on other types of planning applications
+                     for which the fee was considered to be inadequate. We had 1,343 respondents to our
+                     question on increasing the householder fee to full cost recovery, from a wide range
+                     of respondents, with 72% supporting this proposal. The responses were generally supportive
+                     of our proposals. The government response to the consultation can be read here / will
+                     be published here - https://www.gov.uk/government/consultations/proposed-reforms-to-the-national-planning-policy-framework-and-other-changes-to-the-planning-system.</span></h2>
+            </section>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">In the longer term, we intend to introduce a power for local planning authorities
+                     to be able to vary or set their own fees, so that local authorities can recover all
+                     their costs for the planning application service.</span></h2>
+            </section>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale and evidence to justify the level of analysis used in the IA (proportionality
+                           approach)</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The proposals were anticipated to have a business impact and therefore a detailed
@@ -1338,81 +1327,61 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered</b>
-                     </span>
-                  </p>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">We have considered two options for increasing planning fees:</span>
-                     </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">1.</span></h2>
-                  <p>
-                     <span style="color:#000000">Option 1 – Do nothing</span>
-                     </p>
-               </section>
-               <section class="paragraph num">
-                  <h2><span class="num">2.</span></h2>
-                  <p>
-                     <span style="color:#000000">Option 2 – Increase fees for householder applications, prior approval applications,
-                        discharge of conditions and applications to vary or remove a condition</span>
-                     </p>
-               </section>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered</b>
+                        </span>
+                     </span></h2>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Option 1 – Do nothing</b>
-                     </span>
-                  </p>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">Under this option there is no change to planning fees. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">Fees for submitting planning applications generally represent a fraction of overall
-                        application costs</span>
-                     <a class="fn" id="fnref-4" href="#fn-4">4</a>
-                     <span style="color:#000000"> (including scheme development and application preparation), and an even smaller share
-                        of overall development costs. Although fees will increase, due to the annual inflation
-                        increase, as other development costs continue to increase, there will always be a
-                        deficit between the fee and the cost to the local planning authority of deciding the
-                        application because the fundamental, structural issue will not have been addressed.</span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">In 2023-24 there was a shortfall of £362million between the income for the planning
-                        application service and the cost to local authorities of processing these applications.
-                        If we do nothing, and despite the annual indexation of fees from 1 April 2025, this
-                        shortfall will remain, as both fees and costs increase. This will continue year on
-                        year. The continuing shortfall will continue to be met by the general taxpayer, which
-                        will put additional and increasing pressures on local authority budgets. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">To do nothing would result in a continued decline in local authority performance in
-                        relation to planning, as the income continues to drop in real terms, year on year,
-                        with a consequential increasing adverse impact on delivery of new development.</span>
-                     </p>
-               </section>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">We have considered two options for increasing planning fees:</span></h2>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Option 2 – Increase some fees (preferred)</b>
-                     </span>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">Option 1 – Do nothing</span></h2>
+            </section>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Option 2 – Increase fees for householder applications, prior approval applications,
+                     discharge of conditions and applications to vary or remove a condition</span></h2>
+            </section>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Option 1 – Do nothing</b>
+                        </span>
+                     </span></h2>
+            </section>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">Under this option there is no change to planning fees.</span></h2>
+            </section>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">Fees for submitting planning applications generally represent a fraction of overall
+                     application costs Costs from a 2009 benchmarking exercise by Arup: https://www.thenbs.com/PublicationIndex/documents/details?Pub=DCLG&amp;DocID=290411
+                     (including scheme development and application preparation), and an even smaller share
+                     of overall development costs. Although fees will increase, due to the annual inflation
+                     increase, as other development costs continue to increase, there will always be a
+                     deficit between the fee and the cost to the local planning authority of deciding the
+                     application because the fundamental, structural issue will not have been addressed.</span></h2>
+            </section>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">In 2023-24 there was a shortfall of £362million between the income for the planning
+                     application service and the cost to local authorities of processing these applications.
+                     If we do nothing, and despite the annual indexation of fees from 1 April 2025, this
+                     shortfall will remain, as both fees and costs increase. This will continue year on
+                     year. The continuing shortfall will continue to be met by the general taxpayer, which
+                     will put additional and increasing pressures on local authority budgets.</span></h2>
+            </section>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">To do nothing would result in a continued decline in local authority performance in
+                     relation to planning, as the income continues to drop in real terms, year on year,
+                     with a consequential increasing adverse impact on delivery of new development.</span></h2>
+            </section>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Option 2 – Increase some fees (preferred)</b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#000000">This is the preferred option, and the option which we consulted on as part of the
@@ -1481,13 +1450,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Policy objective</b>
-                     </span>
-                  </p>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objective</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The policy objective is to improve the speed and quality of the planning service provided
@@ -1516,13 +1484,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Summary and preferred option with description of implementation plan</b>
-                     </span>
-                  </p>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Summary and preferred option with description of implementation plan</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The preferred option (Option 2) will be implemented through secondary legislation.
@@ -1535,14 +1502,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Monetised and non-monetised costs and benefits of each option (including administrative
-                        burden)</b>
-                     </span>
-                  </p>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Monetised and non-monetised costs and benefits of each option (including administrative
+                           burden)</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The analysis assumes that the changes in fees will have not change developer behaviour
@@ -1767,13 +1733,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Direct costs and benefits to business calculations</b>
-                     </span>
-                  </p>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Direct costs and benefits to business calculations</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>The direct costs to business from increased applications fees can be found in the
                      tables above. The estimated costs to business by year (between Q2 2025 and Q1 2035)
@@ -1782,13 +1747,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      timely decision-making. </p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks and assumptions</b>
-                     </span>
-                  </p>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and assumptions</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The model assumptions, with justifications and risks are as follows: </span>
@@ -1839,13 +1803,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Impact on small and micro businesses</b>
-                     </span>
-                  </p>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Impact on small and micro businesses</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Increasing fees will have an impact on those small and micro businesses who submit
@@ -1856,13 +1819,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Wider impacts (consider the impacts of your proposals)</b>
-                     </span>
-                  </p>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wider impacts (consider the impacts of your proposals)</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The wider impacts of this policy will be seen in a better resourced and better performing
@@ -1872,64 +1834,55 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>A summary of the potential trade implications of measure</b>
-                     </span>
-                  </p>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>A summary of the potential trade implications of measure</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">There are no trade implications.</span>
                      </p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Monitoring and Evaluation</b>
-                     </span>
-                  </p>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">If the policy is successful, local authorities will receive more income from planning
-                        application fees and invest this into their planning application service. We could
-                        monitor this through the collated annual returns to government which are published
-                        in a table (RO5</span>
-                     <a class="fn" id="fnref-7" href="#fn-7">7</a>
-                     <span style="color:#000000">), which should show an increase in income and spend on development management (planning
-                        application service). However, if the number of applications reduces significantly
-                        as a result of general economic or housing market conditions, the impact of the policy
-                        in terms of increased income may be diminished. </span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">As a consequence of the increased income, we expect that, with the additional resources,
-                        the performance of local authorities in terms of speed and quality of decision-making
-                        will improve. Although it is recognised that performance can be influenced by other
-                        factors, for example staff recruitment and retention and demand for services which
-                        is expected to increase in order to meet government commitments for housing delivery
-                        and economic growth.  Planning performance is monitored through arrangements introduced
-                        by the Growth and Infrastructure Act 2013. Under-performing local planning authorities
-                        may be designated, if they fail to meet published speed and quality criteria.</span>
-                     </p>
-               </section>
-               <section class="level">
-                  <p>
-                     <span style="color:#000000">We intend to conduct a benchmarking exercise of planning fees in 2025 so that, if
-                        a separate measure to localise planning fees, i.e. to empower local planning authorities
-                        to set their own planning fees, one of the measures in the proposed Planning and Infrastructure
-                        Bill, secures Royal Assent, we will be ready to implement the localisation of fees
-                        through secondary legislation. One of the proposed fees localisation models was to
-                        continue to set a national fee, from which local authorities would be able to vary
-                        fees. The outcome of the benchmarking exercise will inform the setting of any future
-                        national fees, irrespective of whether or not some form of localisation of fees takes
-                        place.</span>
-                     </p>
-               </section>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Monitoring and Evaluation</b>
+                        </span>
+                     </span></h2>
+            </section>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">If the policy is successful, local authorities will receive more income from planning
+                     application fees and invest this into their planning application service. We could
+                     monitor this through the collated annual returns to government which are published
+                     in a table (RO5 https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing),
+                     which should show an increase in income and spend on development management (planning
+                     application service). However, if the number of applications reduces significantly
+                     as a result of general economic or housing market conditions, the impact of the policy
+                     in terms of increased income may be diminished.</span></h2>
+            </section>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">As a consequence of the increased income, we expect that, with the additional resources,
+                     the performance of local authorities in terms of speed and quality of decision-making
+                     will improve. Although it is recognised that performance can be influenced by other
+                     factors, for example staff recruitment and retention and demand for services which
+                     is expected to increase in order to meet government commitments for housing delivery
+                     and economic growth.  Planning performance is monitored through arrangements introduced
+                     by the Growth and Infrastructure Act 2013. Under-performing local planning authorities
+                     may be designated, if they fail to meet published speed and quality criteria.</span></h2>
+            </section>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">We intend to conduct a benchmarking exercise of planning fees in 2025 so that, if
+                     a separate measure to localise planning fees, i.e. to empower local planning authorities
+                     to set their own planning fees, one of the measures in the proposed Planning and Infrastructure
+                     Bill, secures Royal Assent, we will be ready to implement the localisation of fees
+                     through secondary legislation. One of the proposed fees localisation models was to
+                     continue to set a national fee, from which local authorities would be able to vary
+                     fees. The outcome of the benchmarking exercise will inform the setting of any future
+                     national fees, irrespective of whether or not some form of localisation of fees takes
+                     place.</span></h2>
             </section>
          </div>
          <footer class="footnotes">
@@ -1941,40 +1894,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation"><u>Improving planning performance: criteria for designation - GOV.UK</u></a><u> - </u><u><a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation">https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation</a></u></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> 
-                  <span style="color:#000000">
-                     <b>
-                        </b>
-                     </span>
-                  <a href="https://www.nao.org.uk/wp-content/uploads/2021/11/The-local-government-finance-system-in-England-overview-and-challenges.pdf">
-                     <b>
-                        <u><a href="https://www.nao.org.uk/wp-content/uploads/2021/11/The-local-government-finance-system-in-England-overview-and-challenges.pdf">https://www.nao.org.uk/wp-content/uploads/2021/11/The-local-government-finance-system-in-England-overview-and-challenges.pdf</a></u>
-                        </b>
-                     </a>
-                  </p>
-            </div>
-            <div class="footnote">
-               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> 
-                  <span style="color:#000000">
-                     <b>
-                        </b>
-                     </span>
-                  <span style="color:#000000">
-                     <b>Costs from a 2009 benchmarking exercise by Arup: </b>
-                     </span>
-                  <a href="https://www.thenbs.com/PublicationIndex/documents/details?Pub=DCLG&amp;DocID=290411">
-                     <b>
-                        <u><a href="https://www.thenbs.com/PublicationIndex/documents/details?Pub=DCLG&amp;DocID=290411">https://www.thenbs.com/PublicationIndex/documents/details?Pub=DCLG&amp;DocID=290411</a></u>
-                        </b>
-                     </a>
-                  </p>
-            </div>
-            <div class="footnote">
                <p><a class="marker" id="fn-5" href="#fnref-5">5</a> 
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing">
-                     <u><a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing">https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</a></u>
+                     <u>https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</u>
                      </a>
                   </p>
             </div>
@@ -1983,20 +1907,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation">
-                     <u><a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation">https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation</a></u>
-                     </a>
-                  </p>
-            </div>
-            <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> 
-                  <span style="color:#000000">
-                     <b>
-                        </b>
-                     </span>
-                  <a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing">
-                     <b>
-                        <u><a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing">https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</a></u>
-                        </b>
+                     <u>https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation</u>
                      </a>
                   </p>
             </div>

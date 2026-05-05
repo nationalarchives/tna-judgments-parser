@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:29.1%">
@@ -417,7 +435,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -443,7 +462,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -476,7 +496,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -495,7 +516,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_6" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:61.53%">
@@ -654,8 +676,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 1</p>
@@ -1033,17 +1055,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Problem under consideration and rationale for intervention</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Problem under consideration and rationale for intervention</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>S&amp;S declarations are used by HMRC and Border Force to risk-assess goods before they
@@ -1075,12 +1095,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      cost on industry is above £5m and therefore we are providing this IA for scrutiny.</p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Rationale and evidence to justify the level of analysis used in the IA (proportionality
-                     approach)</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Rationale and evidence to justify the level of analysis used in the IA (proportionality
+                        approach)</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">4.</span></h2>
                   <p>This IA analysis incorporates policy assumptions from engagement with industry and
@@ -1089,11 +1108,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      ranges where there is particular uncertainty, reflected in the final figures.</p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Description of options considered.</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>Description of options considered.</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">
@@ -1150,21 +1168,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      administrative burden without undermining the UK’s ability to secure the border.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Non-legislative options</b>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>Non-legislative options</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">9.</span></h2>
                   <p>There are no non-legislative options to achieve the desired outcomes. </p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Policy objective</b>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <b>Policy objective</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">10.</span></h2>
                   <p>There are three objectives for these measures:</p>
@@ -1190,11 +1206,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and subsequently better risking and fewer high harm goods entering the country. </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary and preferred option with description of implementation plan</b>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary and preferred option with description of implementation plan</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">12.</span></h2>
                   <p>The measures will be given effect by secondary legislation and the publication of
@@ -1211,17 +1226,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      channels.</p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs and benefits estimation</b>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs and benefits estimation</b>
+                     </span></h2>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary</b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>This policy is expected to impact on the cost placed on businesses to comply with
@@ -1275,17 +1288,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Detailed methodology</b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>Detailed methodology</b>
+                     </span></h2>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Number of S&amp;S declarations</b>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <b>Number of S&amp;S declarations</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">21.</span></h2>
                   <p>The costs of the policy only apply to EU declarations, however HMRC has estimated
@@ -1533,11 +1544,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      model and being reassured that both analyses have compatible results.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs</b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <i>Overview</i>
@@ -2343,11 +2353,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      steps while producing these tables numbers may not sum exactly</p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits</b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">38.</span></h2>
                   <p>While the costs of the policy only affect imports from the EU, the reduction in the
@@ -2682,11 +2691,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      has not been possible to monetise them, it is worth noting these additional benefits.</p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Net costs of the policy</b>
-                  </p>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">
+                     <b>Net costs of the policy</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">50.</span></h2>
                   <p>The net benefits minus costs are shown in the table below. </p>
@@ -3352,11 +3360,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      there are calculable ENS costs for fast parcel operators. </p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Risks and assumptions</b>
-                  </p>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">
+                     <b>Risks and assumptions</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">53.</span></h2>
                   <p>There is limited evidence available on ENS declarations, so modelling assumptions
@@ -3364,11 +3371,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the text.</p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on small and micro businesses</b>
-                  </p>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on small and micro businesses</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">54.</span></h2>
                   <p>The S&amp;S new model ensures that those businesses already set up to import from non-EU
@@ -3401,9 +3407,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>ENS declarations are required across all movements for the policy to work effectively.
                      HMG would be unable to meet its objectives if a specific exemption were provided.</p>
                </section>
-               <section class="level">
-                  <p>Wider impacts</p>
-               </section>
+            </section>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">Wider impacts</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">59.</span></h2>
                   <p>This measure will not directly impact individuals. ENS declarations are a requirement
@@ -3434,9 +3440,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      intelligence-informed approach to risking and intervention, as well as facilitating
                      the flow of legitimate trade by reducing the number of ‘false positive’ hits.</p>
                </section>
-               <section class="level">
-                  <p>A summary of the potential trade implications of measure</p>
-               </section>
+            </section>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">A summary of the potential trade implications of measure</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">63.</span></h2>
                   <p>We do not expect this measure to have a significant impact on trade. S&amp;S declarations
@@ -3455,9 +3461,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      HMG continues to engage with industry so they are ready to start meeting these new
                      requirements. </p>
                </section>
-               <section class="level">
-                  <p>Monitoring and evaluation</p>
-               </section>
+            </section>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">Monitoring and evaluation</span></h2>
                <section class="paragraph num">
                   <h2><span class="num">65.</span></h2>
                   <p>  The monitoring and evaluation of the strategy will follow the guidance of the Green

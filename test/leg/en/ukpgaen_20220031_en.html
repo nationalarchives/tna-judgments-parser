@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -25272,7 +25289,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/445640/Learning_not_blaming_acc.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/445640/Learning_not_blaming_acc.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/445640/Learning_not_blaming_acc.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/445640/Learning_not_blaming_acc.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25300,7 +25317,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <a href="https://apps.who.int/iris/bitstream/handle/10665/275451/WHO-RHR-18.15-eng.pdf?ua=1">
                      <a href="https://apps.who.int/iris/bitstream/handle/10665/275451/WHO-RHR-18.15-eng.pdf?ua=1">
                         <span style="color:#0070C0">
-                           <u><a href="https://apps.who.int/iris/bitstream/handle/10665/275451/WHO-RHR-18.15-eng.pdf?ua=1">https://apps.who.int/iris/bitstream/handle/10665/275451/WHO-RHR-18.15-eng.pdf?ua=1</a></u>
+                           <u>https://apps.who.int/iris/bitstream/handle/10665/275451/WHO-RHR-18.15-eng.pdf?ua=1</u>
                            </span>
                         </a>
                      </a>
@@ -25322,7 +25339,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/655794/Regulatory_Reform_Consultation_Document.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/655794/Regulatory_Reform_Consultation_Document.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/655794/Regulatory_Reform_Consultation_Document.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/655794/Regulatory_Reform_Consultation_Document.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -25335,7 +25352,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/820566/Promoting_professionalism_reforming_regulation_consultation_reponse.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/820566/Promoting_professionalism_reforming_regulation_consultation_reponse.pdf#:~:text=Promoting%20professionalism%2C%20reforming%20regulation%20set%20out%20high%20level,and%20more%20responsive%20to%20the%20needs%20of%20patients%2C">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/820566/Promoting_professionalism_reforming_regulation_consultation_reponse.pdf#:~:text=Promoting%20professionalism%2C%20reforming%20regulation%20set%20out%20high%20level,and%20more%20responsive%20to%20the%20needs%20of%20patients%2C</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/820566/Promoting_professionalism_reforming_regulation_consultation_reponse.pdf#:~:text=Promoting%20professionalism%2C%20reforming%20regulation%20set%20out%20high%20level,and%20more%20responsive%20to%20the%20needs%20of%20patients%2C</u>
                         </span>
                      </a>
                   </p>
@@ -25346,7 +25363,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/consultations/reducing-bureaucracy-in-the-health-and-social-care-system-call-for-evidence/outcome/busting-bureaucracy-empowering-frontline-staff-by-reducing-excess-bureaucracy-in-the-health-and-care-system-in-england">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.gov.uk/government/consultations/reducing-bureaucracy-in-the-health-and-social-care-system-call-for-evidence/outcome/busting-bureaucracy-empowering-frontline-staff-by-reducing-excess-bureaucracy-in-the-health-and-care-system-in-england">https://www.gov.uk/government/consultations/reducing-bureaucracy-in-the-health-and-social-care-system-call-for-evidence/outcome/busting-bureaucracy-empowering-frontline-staff-by-reducing-excess-bureaucracy-in-the-health-and-care-system-in-england</a></u>
+                        <u>https://www.gov.uk/government/consultations/reducing-bureaucracy-in-the-health-and-social-care-system-call-for-evidence/outcome/busting-bureaucracy-empowering-frontline-staff-by-reducing-excess-bureaucracy-in-the-health-and-care-system-in-england</u>
                         </span>
                      </a>
                   </p>
@@ -25359,7 +25376,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/978833/Regulating_healthcare_professionals__protecting_the_public.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/978833/Regulating_healthcare_professionals__protecting_the_public.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/978833/Regulating_healthcare_professionals__protecting_the_public.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/978833/Regulating_healthcare_professionals__protecting_the_public.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -25382,7 +25399,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.lawcom.gov.uk/project/regulation-of-health-and-social-care-professionals/">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.lawcom.gov.uk/project/regulation-of-health-and-social-care-professionals/">https://www.lawcom.gov.uk/project/regulation-of-health-and-social-care-professionals/</a></u>
+                        <u>https://www.lawcom.gov.uk/project/regulation-of-health-and-social-care-professionals/</u>
                         </span>
                      </a>
                   </p>
@@ -25402,7 +25419,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.legislation.gov.uk/ukpga/2003/21/contents">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.legislation.gov.uk/ukpga/2003/21/contents">https://www.legislation.gov.uk/ukpga/2003/21/contents</a></u>
+                        <u>https://www.legislation.gov.uk/ukpga/2003/21/contents</u>
                         </span>
                      </a>
                   <span style="color:#000000">. Accessed 21 May. 2021.</span>
@@ -25433,7 +25450,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">, </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/929234/independent-review-of-nhs-hospital-food-report.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/929234/independent-review-of-nhs-hospital-food-report.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/929234/independent-review-of-nhs-hospital-food-report.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/929234/independent-review-of-nhs-hospital-food-report.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -25474,7 +25491,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> 1 Jan. 2011, </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">
                      <span style="color:#1155CC">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">. Accessed 18 Jun. 2021.</span>
@@ -25487,7 +25504,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> 1 Jan. 2011, </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">
                      <span style="color:#1155CC">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">. Accessed 18 Jun. 2021.</span>
@@ -25500,7 +25517,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> 1 Jan. 2011, </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">. Accessed 18 Jun. 2021.</span>
@@ -25513,7 +25530,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000"> 1 Jan. 2011, </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/216094/dh_123492.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">. Accessed 18 Jun. 2021.</span>

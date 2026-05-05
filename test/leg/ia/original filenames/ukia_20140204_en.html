@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.44%">
@@ -465,7 +483,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -491,7 +510,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -526,7 +546,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:51.84%">
@@ -735,8 +756,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   </p>
@@ -1256,19 +1277,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base</b>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base</b>
+                     </span></h2>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration and rationale for intervention </b>
-                     </span>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration and rationale for intervention </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">
@@ -1687,11 +1706,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and, in doing so, improving road safety.</p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Aims and Objectives</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Aims and Objectives</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">22.</span></h2>
                   <p>The overall aim of these proposals is to improve road safety by reducing the risk
@@ -1712,11 +1730,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Proposals in Context</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Proposals in Context</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">23.</span></h2>
                   <p>The North Review’s recommendations in relation to drug driving law proposed a five
@@ -1772,11 +1789,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      plan and is not included in this assessment.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>The new specific drug driving offence</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>The new specific drug driving offence</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">27.</span></h2>
                   <p>The Crime and Courts Act 2013 created a new offence for use across Great Britain by
@@ -1840,11 +1856,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      limit. </p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>New Offence and Regulations</b>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>New Offence and Regulations</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">33.</span></h2>
                   <p>For the offence to be put into operation, regulations need to be made specifying the
@@ -2073,11 +2088,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Proceedings</b>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <b>Proceedings</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">37.</span></h2>
                   <p>We have provided analysis for the above scenario. The introduction of the new criminal
@@ -2349,11 +2363,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Casualties</b>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <b>Casualties</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">51.</span></h2>
                   <p>The key objective for the new offence is to contribute to improving road safety. It
@@ -2774,13 +2787,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Unit Costs</b>
-                     </span>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Unit Costs</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">61.</span></h2>
                   <p>
@@ -3609,11 +3621,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      and legal aid.   </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Appraisal </b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>Appraisal </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">66.</span></h2>
                   <p>Due to the limitations of the available evidence, the costs and benefits are subject
@@ -4240,11 +4251,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      any next steps that might be needed regarding the new offence in 2016.</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Risks and Assumptions</b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>Risks and Assumptions</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">92.</span></h2>
                   <p>This Impact Assessment for the specific offence of drug driving assumes the availability
@@ -4305,11 +4315,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>The costs in this assessment do not include publicity or campaigning costs.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Equality Impact Assessment </b>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <b>Equality Impact Assessment </b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>This Equality Impact Assessment (EIA) relates to the drugs and corresponding limits
@@ -4405,11 +4414,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      consulted widely with interested experts and stakeholders.   </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Analysis </b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Analysis </b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <u>Impact on victims</u>: </p>
@@ -4568,11 +4576,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      justification. </p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Regulatory Policy Committee (RPC) comments</b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>Regulatory Policy Committee (RPC) comments</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>Whilst the RPC provided an overall green rated assessment of the impact assessment
@@ -4648,7 +4655,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <hr style="margin-top:2em">
             <div class="footnote">
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  North Report of the Review of Drink and Drug Driving Law (published in June 2010),
-                  <a href="http://webarchive.nationalarchives.gov.uk/20100921035225/http:/northreview.independent.gov.uk/"><u><a href="http://webarchive.nationalarchives.gov.uk/20100921035225/http:/northreview.independent.gov.uk/">http://webarchive.nationalarchives.gov.uk/20100921035225/http:/northreview.independent.gov.uk/</a></u></a></p>
+                  <a href="http://webarchive.nationalarchives.gov.uk/20100921035225/http:/northreview.independent.gov.uk/"><u>http://webarchive.nationalarchives.gov.uk/20100921035225/http:/northreview.independent.gov.uk/</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  Contributory Factor Type: Report Accidents by Severity GB 2012 (Reported Road Casualties
@@ -4657,10 +4664,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   proportion of the GB population.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Reported Road Casualties GB 2012 - <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012"><u><a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012">https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012</a></u></a>. </p>
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Reported Road Casualties GB 2012 - <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012"><u>https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012</u></a>. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Reported Road Casualties GB 2012 - <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012"><u><a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012">https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012</a></u></a></p>
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  Reported Road Casualties GB 2012 - <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012"><u>https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  DRUID, Driving under the Influence of Drugs, Alcohol and Medicines, Main DRUID Results,
@@ -4679,13 +4686,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   road accident fatalities’.  TRL Report 495.  Crowthorne: TRL.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  Contributory Factors in Road Casualties Great Britain 2012 <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012"><u><a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012">https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012</a></u></a></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  Contributory Factors in Road Casualties Great Britain 2012 <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012"><u>https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2012</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-9" href="#fnref-9">9</a> Department for Transport (2011) <i>Strategic Framework for Road Safety</i> and Broughton, J. (2009) <i>Post-2010 Casualty Forecasting</i>, TRL.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="http://www.trl.co.uk/online_store/reports_publications/trl_reports/cat_road_user_safety/report_post-2010_casualty_forecasting.htm"><u><a href="http://www.trl.co.uk/online_store/reports_publications/trl_reports/cat_road_user_safety/report_post-2010_casualty_forecasting.htm">http://www.trl.co.uk/online_store/reports_publications/trl_reports/cat_road_user_safety/report_post-2010_casualty_forecasting.htm</a></u></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="http://www.trl.co.uk/online_store/reports_publications/trl_reports/cat_road_user_safety/report_post-2010_casualty_forecasting.htm"><u>http://www.trl.co.uk/online_store/reports_publications/trl_reports/cat_road_user_safety/report_post-2010_casualty_forecasting.htm</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  Reported Road Casualties Great Britain by region (i.e. England and Wales)</p>
@@ -4712,17 +4719,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   (3).</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  Expert Panel report ‘Driving under the influence of drugs’ is available at <a href="https://www.gov.uk/government/publications/driving-under-the-influence-of-drugs--2"><u><a href="https://www.gov.uk/government/publications/driving-under-the-influence-of-drugs--2">https://www.gov.uk/government/publications/driving-under-the-influence-of-drugs--2</a></u></a><i>.</i></p>
+               <p><a class="marker" id="fn-18" href="#fnref-18">18</a>  Expert Panel report ‘Driving under the influence of drugs’ is available at <a href="https://www.gov.uk/government/publications/driving-under-the-influence-of-drugs--2"><u>https://www.gov.uk/government/publications/driving-under-the-influence-of-drugs--2</u></a><i>.</i></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  Controlled drugs associated with medical uses are those where the amount of prescriptions
                   issued each year runs into the many thousands. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/98433/ia-drug-driving-offence.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/98433/ia-drug-driving-offence.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/98433/ia-drug-driving-offence.pdf</a></u></a>. </p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/98433/ia-drug-driving-offence.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/98433/ia-drug-driving-offence.pdf</u></a>. </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-21" href="#fnref-21">21</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/188288/ppp-breath-tests-1112-tabs.xls"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/188288/ppp-breath-tests-1112-tabs.xls">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/188288/ppp-breath-tests-1112-tabs.xls</a></u></a></p>
+               <p><a class="marker" id="fn-21" href="#fnref-21">21</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/188288/ppp-breath-tests-1112-tabs.xls"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/188288/ppp-breath-tests-1112-tabs.xls</u></a></p>
                <p></p>
             </div>
             <div class="footnote">
@@ -4757,7 +4764,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Amanda Killoran, Una Canning, Nick Doyle, Linda Sheppard; March 2010)</span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  DRUID, ‘<a href="http://www.druid-project.eu/cln_031/nn_107548/Druid/EN/deliverales-list/downloads/Deliverable__3__3__1,templateId=raw,property=publicationFile.pdf/Deliverable_3_3_1.pdf"><u>Cost-benefit analysis of drug driving enforcement by the police’</u></a> 2011 page 13, <a href="http://www.druid-project.eu/cln_031/nn_107548/Druid/EN/deliverales-list/downloads/Deliverable__3__3__1,templateId=raw,property=publicationFile.pdf/Deliverable_3_3_1.pdf"><u><a href="http://www.druid-project.eu/cln_031/nn_107548/Druid/EN/deliverales-list/downloads/Deliverable__3__3__1,templateId=raw,property=publicationFile.pdf/Deliverable_3_3_1.pdf">http://www.druid-project.eu/cln_031/nn_107548/Druid/EN/deliverales-list/downloads/Deliverable__3__3__1,templateId=raw,property=publicationFile.pdf/Deliverable_3_3_1.pdf</a></u></a></p>
+               <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  DRUID, ‘<a href="http://www.druid-project.eu/cln_031/nn_107548/Druid/EN/deliverales-list/downloads/Deliverable__3__3__1,templateId=raw,property=publicationFile.pdf/Deliverable_3_3_1.pdf"><u>Cost-benefit analysis of drug driving enforcement by the police’</u></a> 2011 page 13, <a href="http://www.druid-project.eu/cln_031/nn_107548/Druid/EN/deliverales-list/downloads/Deliverable__3__3__1,templateId=raw,property=publicationFile.pdf/Deliverable_3_3_1.pdf"><u>http://www.druid-project.eu/cln_031/nn_107548/Druid/EN/deliverales-list/downloads/Deliverable__3__3__1,templateId=raw,property=publicationFile.pdf/Deliverable_3_3_1.pdf</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-31" href="#fnref-31">31</a>  Elvik, R. 2001. “Cost-benefit analysis of police enforcement.” Working Paper 1, Enhanced
@@ -4779,10 +4786,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   (<a href="http://www.dft.gov.uk/webtag/documents/expert/pdf/u3_5_6-vot-op-cost-120723.pdf)">http://www.dft.gov.uk/webtag/documents/expert/pdf/u3_5_6-vot-op-cost-120723.pdf)</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-35" href="#fnref-35">35</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/203847/3-court-proceedings-dec12.xls"><span style="color:#000000"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/203847/3-court-proceedings-dec12.xls">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/203847/3-court-proceedings-dec12.xls</a></u></span></a></p>
+               <p><a class="marker" id="fn-35" href="#fnref-35">35</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/203847/3-court-proceedings-dec12.xls"><span style="color:#000000"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/203847/3-court-proceedings-dec12.xls</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-36" href="#fnref-36">36</a>  Information provided by Ministry of Justice and referencing <a href="https://www.gov.uk/government/organisations/ministry-of-justice/series/courts-and-sentencing-statistics"><u><a href="https://www.gov.uk/government/organisations/ministry-of-justice/series/courts-and-sentencing-statistics">https://www.gov.uk/government/organisations/ministry-of-justice/series/courts-and-sentencing-statistics</a></u></a></p>
+               <p><a class="marker" id="fn-36" href="#fnref-36">36</a>  Information provided by Ministry of Justice and referencing <a href="https://www.gov.uk/government/organisations/ministry-of-justice/series/courts-and-sentencing-statistics"><u>https://www.gov.uk/government/organisations/ministry-of-justice/series/courts-and-sentencing-statistics</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  Information provided by Ministry of Justice</p>
@@ -4847,11 +4854,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-56" href="#fnref-56">56</a>  Mills, H., Skodbo, S. and Blyth, P. (2013). <i>Understanding the organised crime: estimating the scale and the social and economic
-                     costs</i>. Home Office Research Report 73 <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/246390/horr73.pdf"><u><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/246390/horr73.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/246390/horr73.pdf</a></u></a></p>
+                     costs</i>. Home Office Research Report 73 <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/246390/horr73.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/246390/horr73.pdf</u></a></p>
                <p></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-57" href="#fnref-57">57</a>  Home Office. (2013). <i>Drug Misuse Declared: Findings from the 2012/13 Crime Survey for England and </i>Wales <a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales"><u><a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales">https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales</a></u></a></p>
+               <p><a class="marker" id="fn-57" href="#fnref-57">57</a>  Home Office. (2013). <i>Drug Misuse Declared: Findings from the 2012/13 Crime Survey for England and </i>Wales <a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales"><u>https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-58" href="#fnref-58">58</a>  <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/98030/impact-assessment.pdf">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/98030/impact-assessment.pdf</a></p>
@@ -4860,22 +4867,22 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-59" href="#fnref-59">59</a>  <a href="http://assets.dft.gov.uk/statistics/releases/road-accidents-and-safety-annual-report-2011/rrcgb2011-05.pdf">http://assets.dft.gov.uk/statistics/releases/road-accidents-and-safety-annual-report-2011/rrcgb2011-05.pdf</a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-60" href="#fnref-60">60</a>  Home Office. (2013). <i>Drug Misuse Declared: Findings from the 2012/13 Crime Survey for England and </i>Wales: <a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales"><u><a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales">https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales</a></u></a></p>
+               <p><a class="marker" id="fn-60" href="#fnref-60">60</a>  Home Office. (2013). <i>Drug Misuse Declared: Findings from the 2012/13 Crime Survey for England and </i>Wales: <a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales"><u>https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales</u></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-61" href="#fnref-61">61</a> <span style="color:#000000"> Department of Health/National Treatment Agency. Statistics from the National Drug
                      Treatment Monitoring System (NDTMS). Statistics relating to young people England,
-                     1 April 2012– 31 March 2013 </span><a href="http://www.nta.nhs.uk/uploads/annualypstatistics2012-13-final%5b0%5d.pdf"><u><a href="http://www.nta.nhs.uk/uploads/annualypstatistics2012-13-final%5b0%5d.pdf">http://www.nta.nhs.uk/uploads/annualypstatistics2012-13-final%5b0%5d.pdf</a></u></a><span style="color:#000000"></span></p>
+                     1 April 2012– 31 March 2013 </span><a href="http://www.nta.nhs.uk/uploads/annualypstatistics2012-13-final%5b0%5d.pdf"><u>http://www.nta.nhs.uk/uploads/annualypstatistics2012-13-final%5b0%5d.pdf</u></a><span style="color:#000000"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-62" href="#fnref-62">62</a> <u></u><a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales"><u><a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales">https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales</a></u></a></p>
+               <p><a class="marker" id="fn-62" href="#fnref-62">62</a> <u></u><a href="https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales"><u>https://www.gov.uk/government/publications/drug-misuse-findings-from-the-2012-to-2013-csew/drug-misuse-findings-from-the-2012-to-2013-crime-survey-for-england-and-wales</u></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-63" href="#fnref-63">63</a>  Data in this section is sourced from Reported Road Casualties GB 2012 - <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2011"><u><a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-201">https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-201</a></u></a><u>2</u> and adjusted to England and Wales.</p>
+               <p><a class="marker" id="fn-63" href="#fnref-63">63</a>  Data in this section is sourced from Reported Road Casualties GB 2012 - <a href="https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-2011"><u>https://www.gov.uk/government/publications/reported-road-casualties-great-britain-annual-report-201</u></a><u>2</u> and adjusted to England and Wales.</p>
                <p></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-64" href="#fnref-64">64</a> <a href="https://www.gov.uk/government/publications/criminal-justice-statistics-quarterly-update-to-december-2012"><u><a href="https://www.gov.uk/government/publications/criminal-justice-statistics-quarterly-update-to-december-2012">https://www.gov.uk/government/publications/criminal-justice-statistics-quarterly-update-to-december-2012</a></u></a></p>
+               <p><a class="marker" id="fn-64" href="#fnref-64">64</a> <a href="https://www.gov.uk/government/publications/criminal-justice-statistics-quarterly-update-to-december-2012"><u>https://www.gov.uk/government/publications/criminal-justice-statistics-quarterly-update-to-december-2012</u></a></p>
             </div>
          </footer>
       </article>

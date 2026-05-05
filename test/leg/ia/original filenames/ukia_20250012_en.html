@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <tbody>
                      <tr>
@@ -227,11 +245,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Background</b>
-                  </p>
+            <section id="section_3" class="section heading">
+               <h2><span class="heading">
+                     <b>Background</b>
+                     </span></h2>
                <section class="level">
                   <p>Higher education (HE) policy is a devolved matter with each nation of the UK having
                      its own policies with regards to tuition fees, funding and student finance. In this
@@ -239,11 +256,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      England only.</p>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Tuition fee and loan limits</b>
-                  </p>
+            <section id="section_4" class="section heading">
+               <h2><span class="heading">
+                     <b>Tuition fee and loan limits</b>
+                     </span></h2>
                <section class="level">
                   <p>Tuition fees are the amount of money paid by students to HE providers to cover the
                      costs of teaching. Tuition fees for students with home fee status enrolled at an English
@@ -314,11 +330,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>The HE funding model in England</b>
-                  </p>
+            <section id="section_5" class="section heading">
+               <h2><span class="heading">
+                     <b>The HE funding model in England</b>
+                     </span></h2>
                <section class="level">
                   <p>The teaching of UK domiciled undergraduate students at Approved (fee cap) providers
                      in England is funded by a combination of income from tuition fees paid by the student
@@ -358,13 +373,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_5" class="section num heading">
+            <section id="section_6" class="section num heading">
                <h2><span class="num">
                      <b>1.</b>
+                     </span><span class="heading">
+                     <b>Summary of proposal </b>
                      </span></h2>
-               <p>
-                  <b>Summary of proposal </b>
-                  </p>
                <section class="level">
                   <p>Maximum tuition fee (and loan) limits for new and continuing students with home fee
                      status at HE providers registered with the Office for Students, the independent regulator
@@ -373,19 +387,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      rise to £9,535.</p>
                </section>
             </section>
-            <section id="section_6" class="section num heading">
+            <section id="section_7" class="section num heading">
                <h2><span class="num">
                      <b>2.</b>
+                     </span><span class="heading">
+                     <b>Strategic case for proposed regulation </b>
                      </span></h2>
-               <p>
-                  <b>Strategic case for proposed regulation </b>
-                  </p>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Problem Under Consideration</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Problem Under Consideration</b>
+                     </span></h2>
                <section class="level">
                   <p>The HE reforms of 2012/13, which included raising tuition fee caps to £9,000, were
                      aimed at increasing funding into the HE sector in England and placing it a more financially
@@ -527,13 +539,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      students away from funding research to subsidising the teaching of UK domiciled students.</p>
                </section>
             </section>
-            <section id="section_8" class="section num heading">
+            <section id="section_9" class="section num heading">
                <h2><span class="num">
                      <b>3.</b>
+                     </span><span class="heading">
+                     <b>SMART objectives for intervention</b>
                      </span></h2>
-               <p>
-                  <b>SMART objectives for intervention</b>
-                  </p>
                <section class="level">
                   <p>The government recognises and values the benefits of HE to the local and national
                      economy and recognises the benefits of attending HE to the graduate. IFS research
@@ -587,17 +598,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_9" class="section num heading">
+            <section id="section_10" class="section num heading">
                <h2><span class="num">
                      <b>4.</b>
+                     </span><span class="heading">
+                     <b>Description of proposed intervention options and explanation of the logical change
+                        process whereby this achieves SMART objectives</b>
                      </span></h2>
-               <p>
-                  <b>Description of proposed intervention options and explanation of the logical change
-                     process whereby this achieves SMART objectives</b>
-                  </p>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">Option 1 Tuition fee limits raised for AY 2025/26 by setting cash amounts (based on
+                     forecast inflation) – secondary legislation (Preferred option)</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Option 1: Tuition fee limits raised for AY 2025/26 by setting cash amounts (based
@@ -655,13 +666,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_11" class="section num heading">
+            <section id="section_12" class="section num heading">
                <h2><span class="num">
                      <b>5.</b>
+                     </span><span class="heading">
+                     <b>Summary of long-list and alternatives</b>
                      </span></h2>
-               <p>
-                  <b>Summary of long-list and alternatives</b>
-                  </p>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#000000">The following criteria and objectives have been applied to assess each option in the
@@ -695,13 +705,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Long list and alternative options that have been considered </b>
-                     </span>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Long list and alternative options that have been considered </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">
@@ -715,8 +724,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      at £9,250 per year for academic year 2025/26</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Option 1 Tuition fee limits raised for AY 2025/26 (preferred option)</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Option 1: Tuition fee limits raised for AY 2025/26 (preferred option)</b>
@@ -731,8 +740,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      remainder of the 10-year appraisal period.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">Option 2 Non-regulatory option (uncapped fees) – Rejected</span></h2>
                <p>
                   <b>Option 2: Non-regulatory option (uncapped fees) – Rejected</b>
                   </p>
@@ -767,8 +776,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>For these reasons, the non-regulatory option has been rejected.</p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">Option 3 Alternative options (increasing the cap by an amount greater than inflation)
+                     – Rejected</span></h2>
                <p>
                   <b>Option 3: Alternative options (increasing the cap by an amount greater than inflation)
                      – Rejected</b>
@@ -791,8 +801,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      would affect the affordability to the taxpayer. </p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">Option 4 Alternative options (increasing Strategic Priority Grant (SPG) funding, rather
+                     than raising fees) – Rejected</span></h2>
                <p>
                   <b>Option 4: Alternative options (increasing Strategic Priority Grant (SPG) funding,
                      rather than raising fees) – Rejected</b>
@@ -975,13 +986,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_17" class="section num heading">
+            <section id="section_18" class="section num heading">
                <h2><span class="num">
                      <b>6.</b>
+                     </span><span class="heading">
+                     <b>Description of shortlisted policy options carried forward </b>
                      </span></h2>
-               <p>
-                  <b>Description of shortlisted policy options carried forward </b>
-                  </p>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#000000">The short-listed options are:</span>
@@ -1025,8 +1035,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      impacts. </p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">Option 1 Tuition fee limits raised for AY 2025/26</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Option 1: Tuition fee limits raised for AY 2025/26</b>
@@ -1038,15 +1048,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      increase by £285 to £9,535<a class="fn" id="fnref-30" href="#fn-30">30</a> for academic year 2025/26. </p>
                </section>
             </section>
-            <section id="section_19" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>
-                        <i>Impact on small and micro businesses</i>
-                        </b>
-                     </span>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>
+                           <i>Impact on small and micro businesses</i>
+                           </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Small businesses are defined in the Better Regulation Framework guidance as those
@@ -1395,13 +1404,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_20" class="section num heading">
+            <section id="section_21" class="section num heading">
                <h2><span class="num">
                      <b>7.</b>
+                     </span><span class="heading">
+                     <b>Regulatory scorecard for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Regulatory scorecard for preferred option</b>
-                  </p>
                <section class="level">
                   <p>
                      <span style="color:#222222">Please provide quantitative estimates and qualitative descriptions of impacts under
@@ -1436,10 +1444,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <span style="color:#222222">&nbsp;Please see BRF guidance technical annex for definitions.</span>
                      </p>
                </section>
+            </section>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">Part A: Overall and stakeholder impacts</span></h2>
                <section class="paragraph">
-                  <p>
-                     <b>Part A: Overall and stakeholder impacts </b>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:18.79%">
@@ -1838,10 +1846,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
+            </section>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Part B: Impacts on wider government priorities</span></h2>
                <section class="paragraph">
-                  <p>
-                     <b>Part B: Impacts on wider government priorities</b>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:26.74%">
@@ -1973,13 +1981,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_21" class="section num heading">
+            <section id="section_24" class="section num heading">
                <h2><span class="num">
                      <b>8.</b>
+                     </span><span class="heading">
+                     <b>Monitoring and evaluation of preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Monitoring and evaluation of preferred option</b>
-                  </p>
                <section class="level">
                   <p>The Department for Education is committed to evidence-based policy making through
                      effective monitoring and evaluation. </p>
@@ -2087,13 +2094,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      we do not anticipate this happening until after 2028. </p>
                </section>
             </section>
-            <section id="section_22" class="section num heading">
+            <section id="section_25" class="section num heading">
                <h2><span class="num">
                      <b>9.</b>
+                     </span><span class="heading">
+                     <b>Minimising administrative and compliance costs for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Minimising administrative and compliance costs for preferred option</b>
-                  </p>
                <section class="level">
                   <p>Administrative burdens of complying with this regulation are assessed to be low. The
                      regulation is related to tuition fee loans and limits. The regulation itself does
@@ -2109,28 +2115,29 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      counterfactual. </p>
                </section>
             </section>
-            <section id="section_23" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Declaration</b>
-                  </p>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">
+                     <b>Declaration</b>
+                     </span></h2>
                <section class="level">
-                  <p>Department:</p>
+                  <p>Department:  Department for Education</p>
                </section>
                <section class="level">
-                  <p>Contact details for enquiries:  Department for Education</p>
+                  <p>Contact details for enquiries:</p>
                </section>
                <section class="level">
-                  <p>Minister responsible:</p>
+                  <p>Minister responsible:  Bridget Phillipson </p>
                </section>
                <section class="level">
                   <p>
                      <span style="color:#000000">I have read the Impact Assessment, and I am satisfied that, given the available evidence,
                         it represents a reasonable view of the likely costs, benefits and impact of the leading
-                        options.</span> Bridget Phillipson </p>
+                        options.</span>
+                     <img src="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/12/images/ukia_2025_12_en_002.gif" alt="">
+                     </p>
                </section>
                <section class="level">
-                  <p>Signed: <img src="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/12/images/ukia_2025_12_en_002.gif" alt=""></p>
+                  <p>Signed: </p>
                </section>
                <section class="level">
                   <p>Date: <span class="docDate">15.01.2025</span></p>
@@ -2139,7 +2146,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          </div>
          <section class="attachment" data-name="annex">
             <div class="body">
-               <p id="annex_1_p_24">
+               <p id="annex_1_p_26">
                   <b>Annex A: Detailed assumptions and analysis of short listed options</b>
                   </p>
                <p>
@@ -2214,13 +2221,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   follow a similar trend in entry rates to HE as those from more advantaged backgrounds,
                   suggesting the former groups are not more disproportionately impacted. The analysis
                   uses a student receiving free school meals (FSM) at age 15 has a measure of indicates/advantage.</p>
-               <p id="annex_1_p_25">
+               <p id="annex_1_p_27">
                   <b>Figure A-1: Entry rates to UK HE (undergraduate) from English domiciled 18 year olds</b>
                   </p>
                <p>
                   <img src="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/12/images/ukia_2025_12_en_010.gif" alt="">
                   </p>
-               <p id="annex_1_p_26">
+               <p id="annex_1_p_28">
                   <b>Figure A-2: Entry rates to UK HE from English Domiciled 18-year-olds (advantaged vs
                      disadvantaged groups</b>
                   </p>
@@ -2281,7 +2288,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   fee for a home undergraduate student uplifted by inflation.</p>
                <p>This modelling provides a ‘best estimate’ of the increase in UK tuition fee income
                   in academic year 2025/26.</p>
-               <p id="annex_1_p_27">
+               <p id="annex_1_p_29">
                   <b>
                      <i>Sector-level impacts</i>
                      </b>
@@ -2295,7 +2302,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">The figures set out above do not consider increased spending HE providers may undertake
                      to invest in teaching and learning to maintain their course offer for students. </span>
                   </p>
-               <p id="annex_1_p_28">
+               <p id="annex_1_p_30">
                   <b>
                      <i>Provider-level impacts</i>
                      </b>
@@ -2307,7 +2314,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   which are teaching intensive and more reliant on undergraduate tuition fee income
                   will likely be proportionately more affected by an increase in fees (as shown in Figure
                   A-3 below). </p>
-               <p id="annex_1_p_29">
+               <p id="annex_1_p_31">
                   <b>Figure A-3: Whisker plot chart showing variation in % of provider income gained as
                      a result of an increase to tuition fee income for different types of providers</b>
                   </p>
@@ -2343,7 +2350,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      26/27. Their overall loan balance will grow, making their balance from first year
                      harder to repay.</span>
                   </p>
-               <p id="annex_1_p_30">
+               <p id="annex_1_p_32">
                   <b>Table A-2: Fiscal impact of an increase to tuition fee limits and loans relative to
                      baseline of fee freeze, financial year (£m)</b>
                   </p>
@@ -2579,7 +2586,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tr>
                   </tbody>
                </table>
-               <p id="annex_1_p_31">
+               <p id="annex_1_p_33">
                   <b>Table A 3: Fiscal impact of an increase to tuition fee limits and loans relative to
                      baseline of fee freeze, academic year (£m)</b>
                   </p>
@@ -2989,7 +2996,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          <footer class="footnotes">
             <hr style="margin-top:2em">
             <div class="footnote">
-               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  HM Government White Paper (2011), found here <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/31384/11-944-higher-education-students-at-heart-of-system.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/31384/11-944-higher-education-students-at-heart-of-system.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/31384/11-944-higher-education-students-at-heart-of-system.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  HM Government White Paper (2011), found here <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/31384/11-944-higher-education-students-at-heart-of-system.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/31384/11-944-higher-education-students-at-heart-of-system.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The maximum fee limit for part-time courses is set at 75% of the maximum limit for
@@ -3004,7 +3011,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   of the Department for Education to eligible students enrolled on a HE course.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Specifically, <a href="https://www.legislation.gov.uk/ukdsi/2018/9780111170946"><span style="color:#0000FF"><u><a href="https://www.legislation.gov.uk/ukdsi/2018/9780111170946">https://www.legislation.gov.uk/ukdsi/2018/9780111170946</a></u></span></a>  and <a href="https://www.legislation.gov.uk/ukdsi/2018/9780111175637"><span style="color:#0000FF"><u><a href="https://www.legislation.gov.uk/ukdsi/2018/9780111175637">https://www.legislation.gov.uk/ukdsi/2018/9780111175637</a></u></span></a><span style="color:#0000FF"></span></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Specifically, <a href="https://www.legislation.gov.uk/ukdsi/2018/9780111170946"><span style="color:#0000FF"><u>https://www.legislation.gov.uk/ukdsi/2018/9780111170946</u></span></a>  and <a href="https://www.legislation.gov.uk/ukdsi/2018/9780111175637"><span style="color:#0000FF"><u>https://www.legislation.gov.uk/ukdsi/2018/9780111175637</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  Providers in this category receive direct grant funding for teaching and research
@@ -3024,10 +3031,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   of graduate skills. Higher level skills are an important driver of productivity economic
                   growth and standards of living and are critically important for the delivery of high-quality
                   public services in the areas of education, health and social care. See for example,
-                  <a href="https://discovery.ucl.ac.uk/id/eprint/1531411/1/Callender_cost%20sharing_book.chapter.pdf"><span style="color:#0000FF"><u><a href="https://discovery.ucl.ac.uk/id/eprint/1531411/1/Callender_cost%20sharing_book.chapter.pdf">https://discovery.ucl.ac.uk/id/eprint/1531411/1/Callender_cost%20sharing_book.chapter.pdf</a></u></span></a><span style="color:#0000FF"></span><span style="color:#0000FF"> and </span><a href="https://econ.lse.ac.uk/staff/nb/Barr_HEReview100215.pdf"><span style="color:#0000FF"><u><a href="https://econ.lse.ac.uk/staff/nb/Barr_HEReview100215.pdf">https://econ.lse.ac.uk/staff/nb/Barr_HEReview100215.pdf</a></u></span></a></p>
+                  <a href="https://discovery.ucl.ac.uk/id/eprint/1531411/1/Callender_cost%20sharing_book.chapter.pdf"><span style="color:#0000FF"><u>https://discovery.ucl.ac.uk/id/eprint/1531411/1/Callender_cost%20sharing_book.chapter.pdf</u></span></a><span style="color:#0000FF"></span><span style="color:#0000FF"> and </span><a href="https://econ.lse.ac.uk/staff/nb/Barr_HEReview100215.pdf"><span style="color:#0000FF"><u>https://econ.lse.ac.uk/staff/nb/Barr_HEReview100215.pdf</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24"><span style="color:#0000FF"><u><a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24">https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24</a></u></span></a><span style="color:#0000FF"></span></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24"><span style="color:#0000FF"><u>https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  Note that EU students moved from being included in ‘total UK and EU’ fees to ‘total
@@ -3035,7 +3042,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <span style="color:#0D0D0D"></span><span style="color:#0D0D0D">Real prices are calculated using RPIX, which is the interest rate attached to tuition
-                     fees via legislation</span><span style="color:#0D0D0D">, found here </span><a href="https://ifs.org.uk/education-spending/higher-education"><span style="color:#0000FF"><u><a href="https://ifs.org.uk/education-spending/higher-education#:~:text=Past%20changes%20to%20the%20system&amp;text=According%20to%20stated%20government%20policy,to%20remain%20frozen%20until%202025">https://ifs.org.uk/education-spending/higher-education#:~:text=Past%20changes%20to%20the%20system&amp;text=According%20to%20stated%20government%20policy,to%20remain%20frozen%20until%202025</a></u></span></a></p>
+                     fees via legislation</span><span style="color:#0D0D0D">, found here </span><a href="https://ifs.org.uk/education-spending/higher-education"><span style="color:#0000FF"><u>https://ifs.org.uk/education-spending/higher-education#:~:text=Past%20changes%20to%20the%20system&amp;text=According%20to%20stated%20government%20policy,to%20remain%20frozen%20until%202025</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-11" href="#fnref-11">11</a> 
@@ -3057,7 +3064,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-14" href="#fnref-14">14</a> 
                   <a href="https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf">
                      <span style="color:#0000FF">
-                        <u><a href="https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf">https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf</a></u>
+                        <u>https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf</u>
                         </span>
                      </a>
                   <span style="color:#0000FF">
@@ -3067,27 +3074,27 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             <div class="footnote">
                <p><a class="marker" id="fn-15" href="#fnref-15">15</a>  The OfS have estimated that the employer National Insurance Contribution changes
                   announced at the Autumn Budget 2024 could cost the HE sector in the region of around
-                  £430 million each year from 2025-26, source found here <a href="https://www.officeforstudents.org.uk/media/nn2fnrkx/financial-sustainability-november-2024.pdf"><span style="color:#0000FF"><u><a href="https://www.officeforstudents.org.uk/media/nn2fnrkx/financial-sustainability-november-2024.pdf">https://www.officeforstudents.org.uk/media/nn2fnrkx/financial-sustainability-november-2024.pdf</a></u></span></a><span style="color:#0000FF"></span></p>
+                  £430 million each year from 2025-26, source found here <a href="https://www.officeforstudents.org.uk/media/nn2fnrkx/financial-sustainability-november-2024.pdf"><span style="color:#0000FF"><u>https://www.officeforstudents.org.uk/media/nn2fnrkx/financial-sustainability-november-2024.pdf</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> <a href="https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf"><span style="color:#0000FF"><u><a href="https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf">https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> <a href="https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf"><span style="color:#0000FF"><u>https://www.officeforstudents.org.uk/media/ly1buqlj/financial-sustainability-report2024.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-17" href="#fnref-17">17</a> Live page of redundancies, restructures and reorganisations and closures taking place
-                  across the sector, found here <a href="https://qmucu.org/qmul-transformation/uk-he-shrinking/"><span style="color:#0000FF"><u><a href="https://qmucu.org/qmul-transformation/uk-he-shrinking/">https://qmucu.org/qmul-transformation/uk-he-shrinking/</a></u></span></a><span style="color:#0000FF"></span></p>
+                  across the sector, found here <a href="https://qmucu.org/qmul-transformation/uk-he-shrinking/"><span style="color:#0000FF"><u>https://qmucu.org/qmul-transformation/uk-he-shrinking/</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-18" href="#fnref-18">18</a> <a href="https://ifs.org.uk/publications/impact-undergraduate-degrees-lifetime-earnings"><span style="color:#0000FF"><u><a href="https://ifs.org.uk/publications/impact-undergraduate-degrees-lifetime-earnings">https://ifs.org.uk/publications/impact-undergraduate-degrees-lifetime-earnings</a></u></span></a></p>
+               <p><a class="marker" id="fn-18" href="#fnref-18">18</a> <a href="https://ifs.org.uk/publications/impact-undergraduate-degrees-lifetime-earnings"><span style="color:#0000FF"><u>https://ifs.org.uk/publications/impact-undergraduate-degrees-lifetime-earnings</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-19" href="#fnref-19">19</a>  RPIX is the measure of inflation used for changes in fees as set in legislation</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <a href="https://www.hesa.ac.uk/data-and-analysis/students/whos-in-he"><span style="color:#0000FF"><u><a href="https://www.hesa.ac.uk/data-and-analysis/students/whos-in-he">https://www.hesa.ac.uk/data-and-analysis/students/whos-in-he</a></u></span></a></p>
+               <p><a class="marker" id="fn-20" href="#fnref-20">20</a> <a href="https://www.hesa.ac.uk/data-and-analysis/students/whos-in-he"><span style="color:#0000FF"><u>https://www.hesa.ac.uk/data-and-analysis/students/whos-in-he</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-21" href="#fnref-21">21</a>  Table 3B (i): Tuition Fee Loans paid to higher education providers on behalf of full-time
-                  undergraduate students - Academic years 2013/14 to 2022/23 <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F655cda8ed03a8d000d07fe0d%2Fslcsp052023.xlsx&amp;wdOrigin=BROWSELINK">found</a> here <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F655cda8ed03a8d000d07fe0d%2Fslcsp052023.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F655cda8ed03a8d000d07fe0d%2Fslcsp052023.xlsx&amp;wdOrigin=BROWSELINK">https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F655cda8ed03a8d000d07fe0d%2Fslcsp052023.xlsx&amp;wdOrigin=BROWSELINK</a></u></span></a><span style="color:#0000FF"></span></p>
+                  undergraduate students - Academic years 2013/14 to 2022/23 <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F655cda8ed03a8d000d07fe0d%2Fslcsp052023.xlsx&amp;wdOrigin=BROWSELINK">found</a> here <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F655cda8ed03a8d000d07fe0d%2Fslcsp052023.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u>https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fassets.publishing.service.gov.uk%2Fmedia%2F655cda8ed03a8d000d07fe0d%2Fslcsp052023.xlsx&amp;wdOrigin=BROWSELINK</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-22" href="#fnref-22">22</a>  The forecast for Q1 is used for the calendar year following the start of the relevant
@@ -3097,7 +3104,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   2025.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-23" href="#fnref-23">23</a>  RPIX value taken from Autumn OBR forecast, <a href="https://obr.uk/economic-and-fiscal-outlooks/"><span style="color:#0000FF"><u><a href="https://obr.uk/economic-and-fiscal-outlooks/">https://obr.uk/economic-and-fiscal-outlooks/</a></u></span></a> and detailed forecast tables found here <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK">https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</a></u></span></a><span style="color:#0000FF"></span></p>
+               <p><a class="marker" id="fn-23" href="#fnref-23">23</a>  RPIX value taken from Autumn OBR forecast, <a href="https://obr.uk/economic-and-fiscal-outlooks/"><span style="color:#0000FF"><u>https://obr.uk/economic-and-fiscal-outlooks/</u></span></a> and detailed forecast tables found here <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u>https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-24" href="#fnref-24">24</a>  Figure rounded down to the nearest £5</p>
@@ -3107,7 +3114,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   with a share of any additional funding.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-26" href="#fnref-26">26</a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK">https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</a></u></span></a><span style="color:#0000FF"></span></p>
+               <p><a class="marker" id="fn-26" href="#fnref-26">26</a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u>https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-27" href="#fnref-27">27</a>  Figure rounded down to the nearest £5</p>
@@ -3117,13 +3124,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   can be significantly above the maximum tuition fee limit for undergraduate courses.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-29" href="#fnref-29">29</a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK">https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</a></u></span></a><span style="color:#0000FF"></span></p>
+               <p><a class="marker" id="fn-29" href="#fnref-29">29</a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u>https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-30" href="#fnref-30">30</a>  Figure rounded down to the nearest £5</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-31" href="#fnref-31">31</a> <a href="https://www.officeforstudents.org.uk/data-and-analysis/student-number-data/get-the-current-student-numbers-data/"><span style="color:#0000FF"><u><a href="https://www.officeforstudents.org.uk/data-and-analysis/student-number-data/get-the-current-student-numbers-data/">https://www.officeforstudents.org.uk/data-and-analysis/student-number-data/get-the-current-student-numbers-data/</a></u></span></a></p>
+               <p><a class="marker" id="fn-31" href="#fnref-31">31</a> <a href="https://www.officeforstudents.org.uk/data-and-analysis/student-number-data/get-the-current-student-numbers-data/"><span style="color:#0000FF"><u>https://www.officeforstudents.org.uk/data-and-analysis/student-number-data/get-the-current-student-numbers-data/</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-32" href="#fnref-32">32</a>  A provider level ratio is used if available, otherwise the median ratio from 2018/19
@@ -3136,11 +3143,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   repayment threshold</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-34" href="#fnref-34">34</a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK">https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</a></u></span></a></p>
+               <p><a class="marker" id="fn-34" href="#fnref-34">34</a> <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK"><span style="color:#0000FF"><u>https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fobr.uk%2Fdocs%2Fdlm_uploads%2FEconomy_Detailed_forecast_tables_October_2024.xlsx&amp;wdOrigin=BROWSELINK</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-35" href="#fnref-35">35</a> <span style="color:#0D0D0D"></span><span style="color:#0D0D0D">Real prices are calculated using RPIX, which is the interest rate attached to tuition
-                     fees via legislation</span><span style="color:#0D0D0D"> found here </span><a href="https://ifs.org.uk/education-spending/higher-education"><span style="color:#0000FF"><u><a href="https://ifs.org.uk/education-spending/higher-education#:~:text=Past%20changes%20to%20the%20system&amp;text=According%20to%20stated%20government%20policy,to%20remain%20frozen%20until%202025">https://ifs.org.uk/education-spending/higher-education#:~:text=Past%20changes%20to%20the%20system&amp;text=According%20to%20stated%20government%20policy,to%20remain%20frozen%20until%202025</a></u></span></a></p>
+                     fees via legislation</span><span style="color:#0D0D0D"> found here </span><a href="https://ifs.org.uk/education-spending/higher-education"><span style="color:#0000FF"><u>https://ifs.org.uk/education-spending/higher-education#:~:text=Past%20changes%20to%20the%20system&amp;text=According%20to%20stated%20government%20policy,to%20remain%20frozen%20until%202025</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-36" href="#fnref-36">36</a>  The point a borrower becomes liable to begin repaying a loan, normally the start
@@ -3150,10 +3157,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  The government is forecast to subsidise 29% of the full-time undergraduate higher
-                  education Plan 5 loans issued in financial year 2023-24. <a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24"><span style="color:#0000FF"><u><a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24">https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24</a></u></span></a><span style="color:#0000FF"></span></p>
+                  education Plan 5 loans issued in financial year 2023-24. <a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24"><span style="color:#0000FF"><u>https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24</u></span></a><span style="color:#0000FF"></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-38" href="#fnref-38">38</a> <a href="https://questions-statements.parliament.uk/written-statements/detail/2022-02-24/hcws630"><span style="color:#0000FF"><u><a href="https://questions-statements.parliament.uk/written-statements/detail/2022-02-24/hcws630">https://questions-statements.parliament.uk/written-statements/detail/2022-02-24/hcws630</a></u></span></a></p>
+               <p><a class="marker" id="fn-38" href="#fnref-38">38</a> <a href="https://questions-statements.parliament.uk/written-statements/detail/2022-02-24/hcws630"><span style="color:#0000FF"><u>https://questions-statements.parliament.uk/written-statements/detail/2022-02-24/hcws630</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-39" href="#fnref-39">39</a>  This is calculated by dividing total UK full-time undergraduate tuition fee income

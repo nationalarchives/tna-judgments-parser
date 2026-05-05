@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <tbody>
                      <tr>
@@ -226,13 +244,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section num heading">
+            <section id="section_3" class="section num heading">
                <h2><span class="num">
                      <b>1.</b>
+                     </span><span class="heading">
+                     <b>Summary of proposal </b>
                      </span></h2>
-               <p>
-                  <b>Summary of proposal </b>
-                  </p>
                <section class="level">
                   <p>​​​A foundation year (sometimes referred to as Year 0) is a one-year programme of
                      study, typically offered by universities, to enable students without the necessary
@@ -252,13 +269,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_3" class="section num heading">
+            <section id="section_4" class="section num heading">
                <h2><span class="num">
                      <b>2.</b>
+                     </span><span class="heading">
+                     <b>Strategic case for proposed regulation </b>
                      </span></h2>
-               <p>
-                  <b>Strategic case for proposed regulation </b>
-                  </p>
                <section class="level">
                   <p>Foundation years are recognised as a valuable pathway into higher education (HE) for
                      adult learners, including those from under-represented or disadvantaged backgrounds.
@@ -467,11 +483,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Why is government action necessary?</b>
-                  </p>
+            <section id="section_5" class="section heading">
+               <h2><span class="heading">
+                     <b>Why is government action necessary?</b>
+                     </span></h2>
                <section class="level">
                   <p>Effective price-cap regulation is needed to ensure that HE and the underlying funding
                      and student finance system remains fair, affordable and delivers good value for money
@@ -1644,13 +1659,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_5" class="section num heading">
+            <section id="section_6" class="section num heading">
                <h2><span class="num">
                      <b>3.</b>
+                     </span><span class="heading">
+                     <b>SMART objectives for intervention</b>
                      </span></h2>
-               <p>
-                  <b>SMART objectives for intervention</b>
-                  </p>
                <section class="level">
                   <p>Under the preferred option, maximum tuition fee and loan limits for foundation years
                      in classroom-based subjects (currently designated as Price Group D by the OfS) would
@@ -1760,10 +1774,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_6" class="section num heading">
+            <section id="section_7" class="section num heading">
                <h2><span class="num">
                      <b>4.</b>
-                     </span></h2>
+                     </span><span class="heading">Description of proposed intervention options and explanation of the</span></h2>
                <p>
                   <b>Description of proposed intervention options and explanation of the</b>
                   <span style="color:#000000">
@@ -1817,11 +1831,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary and preferred option and description of implementation plan</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary and preferred option and description of implementation plan</b>
+                     </span></h2>
                <section class="level">
                   <p>As part of the policy development process a range of different options were considered.
                      These are discussed in section 5 below.</p>
@@ -1905,13 +1918,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_8" class="section num heading">
+            <section id="section_9" class="section num heading">
                <h2><span class="num">
                      <b>5.</b>
+                     </span><span class="heading">
+                     <b>Summary of long-list and alternatives</b>
                      </span></h2>
-               <p>
-                  <b>Summary of long-list and alternatives</b>
-                  </p>
                <section class="level">
                   <p>In May 2019, the Independent Panel (chaired by Sir Philip Augar) that supported the
                      Review of Post-18 Education and Funding recommended withdrawing financial support
@@ -2021,13 +2033,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      paying higher fees. </p>
                </section>
             </section>
-            <section id="section_9" class="section num heading">
+            <section id="section_10" class="section num heading">
                <h2><span class="num">
                      <b>6.</b>
+                     </span><span class="heading">
+                     <b>Description of shortlisted policy options carried forward </b>
                      </span></h2>
-               <p>
-                  <b>Description of shortlisted policy options carried forward </b>
-                  </p>
                <section class="level heading">
                   <h2><span class="heading">The options under consideration are:&nbsp;</span></h2>
                   <section class="paragraph num">
@@ -2072,11 +2083,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Provider-Level Impact</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>Provider-Level Impact</b>
+                     </span></h2>
                <section class="level">
                   <p>The impact assessment published alongside the HE consultation response in July 2023
                      set out the case for change and the expected costs and benefits to providers, students
@@ -2119,15 +2129,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      by the policy given they do not offer foundation years in classroom-based subjects.</p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>
-                        <i>Methodological approach and modelling assumptions</i>
-                        </b>
-                     </span>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>
+                           <i>Methodological approach and modelling assumptions</i>
+                           </b>
+                        </span>
+                     </span></h2>
                <section class="level heading">
                   <h2><span class="heading">
                         <span style="color:#000000">The expected impacts on HE providers, students and the taxpayer of lowering the maximum
@@ -2904,19 +2913,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in academic year 2022/23. </p>
                </section>
             </section>
-            <section id="section_12" class="section num heading">
+            <section id="section_13" class="section num heading">
                <h2><span class="num">
                      <b>7.</b>
+                     </span><span class="heading">
+                     <b>Regulatory scorecard for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Regulatory scorecard for preferred option</b>
-                  </p>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Summary of preferred policy option</b>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <b>Summary of preferred policy option</b>
+                     </span></h2>
                <section class="level">
                   <p>The option is to lower the maximum tuition fee and loan limit to £5,760 for foundation
                      years in classroom-based subjects from academic year 2025/26. The figure of £5,760
@@ -2932,12 +2939,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      foundation years, and ensuring that students can access lower cost foundation years
                      at a fairer price.</p>
                </section>
+            </section>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">Part A: Overall and stakeholder impacts</span></h2>
                <section class="paragraph">
-                  <p>
-                     <span style="color:#000000">
-                        <b>Part A: Overall and stakeholder impacts </b>
-                        </span>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:18.79%">
@@ -3440,12 +3445,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </tbody>
                   </table>
                </section>
+            </section>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">Part B: Impacts on wider government priorities</span></h2>
                <section class="paragraph">
-                  <p>
-                     <span style="color:#000000">
-                        <b>Part B: Impacts on wider government priorities</b>
-                        </span>
-                     </p>
                   <table class="ia-table">
                      <colgroup>
                         <col style="width:26.74%">
@@ -3580,13 +3583,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_14" class="section num heading">
+            <section id="section_17" class="section num heading">
                <h2><span class="num">
                      <b>8.</b>
+                     </span><span class="heading">
+                     <b>Monitoring and evaluation of preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Monitoring and evaluation of preferred option</b>
-                  </p>
                <section class="level">
                   <p>
                      <span style="color:#000000">In line with the Better Regulation Framework, the department will undertake a post-implementation
@@ -3722,13 +3724,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      can be tested against final outcomes post academic year 2025/26.</p>
                </section>
             </section>
-            <section id="section_15" class="section num heading">
+            <section id="section_18" class="section num heading">
                <h2><span class="num">
                      <b>9.</b>
+                     </span><span class="heading">
+                     <b>Minimising administrative and compliance costs for preferred option</b>
                      </span></h2>
-               <p>
-                  <b>Minimising administrative and compliance costs for preferred option</b>
-                  </p>
                <section class="level">
                   <p>Administrative burdens of complying with this regulation are assessed to be low. The
                      regulation is related to tuition fee loans and limits. The regulation itself does
@@ -3744,35 +3745,36 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      counterfactual.</p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Declaration</b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Declaration</b>
+                     </span></h2>
                <section class="level">
-                  <p>Department:</p>
+                  <p>Department:  Department for Education</p>
                </section>
                <section class="level">
-                  <p>Contact details for enquiries:  Department for Education</p>
+                  <p>Contact details for enquiries:</p>
                </section>
                <section class="level">
-                  <p>Minister responsible:</p>
+                  <p>Minister responsible:  The Rt Hon Baroness Smith of Malvern</p>
                </section>
                <section class="level">
                   <p>
                      <span style="color:#000000">I have read the Impact Assessment, and I am satisfied that, given the available evidence,
                         it represents a reasonable view of the likely costs, benefits and impact of the leading
-                        options.</span> The Rt Hon Baroness Smith of Malvern</p>
+                        options.</span>
+                     <img src="image3.wmf" alt="">
+                     </p>
                </section>
                <section class="level">
-                  <p>Signed: <img src="image3.wmf" alt=""></p>
+                  <p>Signed: </p>
                </section>
                <section class="level">
                   <p>Date:     <span class="docDate"><b>15</b><b>th</b><b> January 2025</b></span></p>
                </section>
             </section>
-            <section id="section_17" class="section heading">
-               <h2></h2>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">Summary Analysis and evidence</span></h2>
                <p>
                   <b>Summary: Analysis and evidence</b>
                   </p>
@@ -3781,8 +3783,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      evidence base.</p>
                </section>
             </section>
-            <section id="section_18" class="section heading">
-               <h2></h2>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">Price base year  2025</span></h2>
                <p>
                   <span style="color:#000000">
                      <b>Price base year:  2025</b>
@@ -4068,7 +4070,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">. For more information see </span>
                   <a href="https://www.officeforstudents.org.uk/media/2ptb3ono/guide-to-funding-2024-25.pdf">
                      <span style="color:#0000FF">
-                        <u><a href="https://www.officeforstudents.org.uk/media/2ptb3ono/guide-to-funding-2024-25.pdf">https://www.officeforstudents.org.uk/media/2ptb3ono/guide-to-funding-2024-25.pdf</a></u>
+                        <u>https://www.officeforstudents.org.uk/media/2ptb3ono/guide-to-funding-2024-25.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -4082,7 +4084,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  Ibid.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://assets.publishing.service.gov.uk/media/5ceeb35740f0b62373577770/Review_of_post_18_education_and_funding.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/media/5ceeb35740f0b62373577770/Review_of_post_18_education_and_funding.pdf">https://assets.publishing.service.gov.uk/media/5ceeb35740f0b62373577770/Review_of_post_18_education_and_funding.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://assets.publishing.service.gov.uk/media/5ceeb35740f0b62373577770/Review_of_post_18_education_and_funding.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/media/5ceeb35740f0b62373577770/Review_of_post_18_education_and_funding.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  Ibid.</p>
@@ -4121,16 +4123,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/693188/Influence_of_finance_on_higher_education_decision-making.pdf">
                      <span style="color:#0000FF">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/693188/Influence_of_finance_on_higher_education_decision-making.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/693188/Influence_of_finance_on_higher_education_decision-making.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/693188/Influence_of_finance_on_higher_education_decision-making.pdf</u>
                         </span>
                      </a>
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://www.gov.uk/government/publications/the-student-finance-system-impact-on-disadvantaged-young-people"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/the-student-finance-system-impact-on-disadvantaged-young-people">https://www.gov.uk/government/publications/the-student-finance-system-impact-on-disadvantaged-young-people</a></u></span></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://www.gov.uk/government/publications/the-student-finance-system-impact-on-disadvantaged-young-people"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/the-student-finance-system-impact-on-disadvantaged-young-people</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  The figures above should be reviewed with caution. Common Aggregation Hierarchy (<a href="https://www.hesa.ac.uk/collection/coding-manual-tools/hecoscahdata/cah"><span style="color:#0000FF"><u><a href="https://www.hesa.ac.uk/collection/coding-manual-tools/hecoscahdata/cah">https://www.hesa.ac.uk/collection/coding-manual-tools/hecoscahdata/cah</a></u></span></a>) provides standard groupings which can be applied to both HECoS (2019/20 onwards)
+               <p><a class="marker" id="fn-11" href="#fnref-11">11</a>  The figures above should be reviewed with caution. Common Aggregation Hierarchy (<a href="https://www.hesa.ac.uk/collection/coding-manual-tools/hecoscahdata/cah"><span style="color:#0000FF"><u>https://www.hesa.ac.uk/collection/coding-manual-tools/hecoscahdata/cah</u></span></a>) provides standard groupings which can be applied to both HECoS (2019/20 onwards)
                   and JACS (pre-2019/20) to enable consistent analysis across both coding frames. However,
                   JACS and HECoS remain distinct coding frames; thus, CAH will only provide indicative
                   comparisons for time series analysis.</p>
@@ -4146,16 +4148,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   21%). </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-14" href="#fnref-14">14</a> <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="https://www.rand.org/pubs/research_reports/RR571.html"><span style="color:#0000FF"><u><a href="https://www.rand.org/pubs/research_reports/RR571.html">https://www.rand.org/pubs/research_reports/RR571.html</a></u></span></a></p>
+               <p><a class="marker" id="fn-15" href="#fnref-15">15</a> <a href="https://www.rand.org/pubs/research_reports/RR571.html"><span style="color:#0000FF"><u>https://www.rand.org/pubs/research_reports/RR571.html</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> <a href="http://ftp.iza.org/dp8364.pdf"><span style="color:#0000FF"><u><a href="http://ftp.iza.org/dp8364.pdf">http://ftp.iza.org/dp8364.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-16" href="#fnref-16">16</a> <a href="http://ftp.iza.org/dp8364.pdf"><span style="color:#0000FF"><u>http://ftp.iza.org/dp8364.pdf</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-17" href="#fnref-17">17</a> <a href="https://ifs.org.uk/sites/default/files/output_url_files/wp1117.pdf"><span style="color:#0000FF"><u><a href="https://ifs.org.uk/sites/default/files/output_url_files/wp1117.pdf">https://ifs.org.uk/sites/default/files/output_url_files/wp1117.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-17" href="#fnref-17">17</a> <a href="https://ifs.org.uk/sites/default/files/output_url_files/wp1117.pdf"><span style="color:#0000FF"><u>https://ifs.org.uk/sites/default/files/output_url_files/wp1117.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-18" href="#fnref-18">18</a> 
@@ -4163,7 +4165,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf">
                      <span style="color:#0000FF">
-                        <u><a href="https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf">https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -4176,7 +4178,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/higher-education-reform-consultation-analysis-research-report">
                      <span style="color:#0000FF">
-                        <u><a href="https://www.gov.uk/government/publications/higher-education-reform-consultation-analysis-research-report">https://www.gov.uk/government/publications/higher-education-reform-consultation-analysis-research-report</a></u>
+                        <u>https://www.gov.uk/government/publications/higher-education-reform-consultation-analysis-research-report</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -4189,7 +4191,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf">
                      <span style="color:#0000FF">
-                        <u><a href="https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf">https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/media/64b158dc9959000013002b06/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_equality_analysis.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -4202,7 +4204,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf">
                      <span style="color:#0000FF">
-                        <u><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf</a></u>
+                        <u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1170788/Understanding_the_costs_of_foundation_years_study_research_report.pdf</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -4215,28 +4217,28 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://www.gov.uk/government/publications/higher-education-tuition-fees-for-foundation-years">
                      <span style="color:#0000FF">
-                        <u><a href="https://www.gov.uk/government/publications/higher-education-tuition-fees-for-foundation-years">https://www.gov.uk/government/publications/higher-education-tuition-fees-for-foundation-years</a></u>
+                        <u>https://www.gov.uk/government/publications/higher-education-tuition-fees-for-foundation-years</u>
                         </span>
                      </a>
                   </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-23" href="#fnref-23">23</a> <a href="https://www.gov.uk/government/publications/post-18-review-of-education-and-funding-independent-panel-report"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/post-18-review-of-education-and-funding-independent-panel-report">https://www.gov.uk/government/publications/post-18-review-of-education-and-funding-independent-panel-report</a></u></span></a></p>
+               <p><a class="marker" id="fn-23" href="#fnref-23">23</a> <a href="https://www.gov.uk/government/publications/post-18-review-of-education-and-funding-independent-panel-report"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/post-18-review-of-education-and-funding-independent-panel-report</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-24" href="#fnref-24">24</a> <a href="https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform">https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform</a></u></span></a></p>
+               <p><a class="marker" id="fn-24" href="#fnref-24">24</a> <a href="https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform"><span style="color:#0000FF"><u>https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-25" href="#fnref-25">25</a> <a href="https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf">https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-25" href="#fnref-25">25</a> <a href="https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-26" href="#fnref-26">26</a> <a href="https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform">https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform</a></u></span></a></p>
+               <p><a class="marker" id="fn-26" href="#fnref-26">26</a> <a href="https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform"><span style="color:#0000FF"><u>https://www.gov.uk/government/consultations/higher-education-policy-statement-and-reform</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-27" href="#fnref-27">27</a> <a href="https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf">https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-27" href="#fnref-27">27</a> <a href="https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/media/64b16c60995900000d002b25/Understanding_the_costs_of_foundation_years_study_research_report.pdf</u></span></a></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="https://assets.publishing.service.gov.uk/media/64b1427707d4b8000d3472dc/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_impact_assessments_and_analysis.pdf"><span style="color:#0000FF"><u><a href="https://assets.publishing.service.gov.uk/media/64b1427707d4b8000d3472dc/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_impact_assessments_and_analysis.pdf">https://assets.publishing.service.gov.uk/media/64b1427707d4b8000d3472dc/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_impact_assessments_and_analysis.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-28" href="#fnref-28">28</a> <a href="https://assets.publishing.service.gov.uk/media/64b1427707d4b8000d3472dc/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_impact_assessments_and_analysis.pdf"><span style="color:#0000FF"><u>https://assets.publishing.service.gov.uk/media/64b1427707d4b8000d3472dc/Higher_education_policy_statement_and_reform_-_government_consultation_response_-_impact_assessments_and_analysis.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-29" href="#fnref-29">29</a>  FECs identified through the College accounts academic year 2022 to 2023 data. The
@@ -4251,7 +4253,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span>
                   <a href="https://explore-education-statistics.service.gov.uk/methodology/student-loan-forecasts-for-england">
                      <span style="color:#0000FF">
-                        <u><a href="https://explore-education-statistics.service.gov.uk/methodology/student-loan-forecasts-for-england">https://explore-education-statistics.service.gov.uk/methodology/student-loan-forecasts-for-england</a></u>
+                        <u>https://explore-education-statistics.service.gov.uk/methodology/student-loan-forecasts-for-england</u>
                         </span>
                      </a>
                   <span style="color:#000000">
@@ -4270,19 +4272,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-33" href="#fnref-33">33</a>  The hourly funding rate for a high skilled band course under the new funding arrangements
-                  is £9.60, details found here: <a href="https://www.gov.uk/government/publications/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision"><span style="color:#0000FF"><u><a href="https://www.gov.uk/government/publications/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision">https://www.gov.uk/government/publications/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision</a></u></span></a></p>
+                  is £9.60, details found here: <a href="https://www.gov.uk/government/publications/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision/further-education-adult-skills-funding-rates-and-funding-for-innovative-provision</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-34" href="#fnref-34">34</a>  Income loss reflects average annual loss over appraisal period (2025/26 to 2034/35).</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-35" href="#fnref-35">35</a> <a href="https://www.llakes.ac.uk/wp-content/uploads/2021/03/RP-58.-Callender-and-Mason.pdf"><span style="color:#0000FF"><u><a href="https://www.llakes.ac.uk/wp-content/uploads/2021/03/RP-58.-Callender-and-Mason.pdf">https://www.llakes.ac.uk/wp-content/uploads/2021/03/RP-58.-Callender-and-Mason.pdf</a></u></span></a></p>
+               <p><a class="marker" id="fn-35" href="#fnref-35">35</a> <a href="https://www.llakes.ac.uk/wp-content/uploads/2021/03/RP-58.-Callender-and-Mason.pdf"><span style="color:#0000FF"><u>https://www.llakes.ac.uk/wp-content/uploads/2021/03/RP-58.-Callender-and-Mason.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-36" href="#fnref-36">36</a>  Assumes continued growth of 14% for initial year of reform only (2025/26). </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  See RAB charge forecasts here: <a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24"><span style="color:#0000FF"><u><a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24">https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24</a></u></span></a></p>
+               <p><a class="marker" id="fn-37" href="#fnref-37">37</a>  See RAB charge forecasts here: <a href="https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24"><span style="color:#0000FF"><u>https://explore-education-statistics.service.gov.uk/find-statistics/student-loan-forecasts-for-england/2023-24</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-38" href="#fnref-38">38</a>  The RAB charge is the estimated cost to government of providing a subsidy for the

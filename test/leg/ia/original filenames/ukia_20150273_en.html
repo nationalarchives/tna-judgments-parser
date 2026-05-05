@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.39%">
@@ -478,7 +496,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -505,7 +524,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -535,7 +555,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:51.19%">
@@ -737,19 +758,18 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 1</p>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description</b>
-                     </span>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description</b>
+                        </span>
+                     </span></h2>
                <section class="paragraph">
                   <p>
                      <span style="color:#000000">
@@ -1206,17 +1226,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Background</b>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <b>Background</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">1.</span></h2>
                   <p>At Budget 2013 the Government committed to “investigate options for improving access
@@ -1389,11 +1407,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>What is the problem under consideration?</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>What is the problem under consideration?</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">14.</span></h2>
                   <p>Since the Budget 2013, work by HM Treasury and the Bank of England has identified
@@ -1502,11 +1519,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      greater credit data sharing with non-bank providers.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>What is the Case for Change?</b>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <b>What is the Case for Change?</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">23.</span></h2>
                   <p>The SME credit market remains particularly concentrated. The Government considers
@@ -1575,14 +1591,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      optimally priced.</p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Policy Options</b>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <b>Policy Options</b>
+                     </span></h2>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">Option 0  Baseline scenario – Do nothing</span></h2>
                <p>
                   <b>Option 0:  Baseline scenario – Do nothing</b>
                   </p>
@@ -1594,8 +1609,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      are zero as nothing will change. </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Option 1  – Preferred measure</span></h2>
                <p>
                   <b>Option 1:  – Preferred measure</b>
                   </p>
@@ -1626,11 +1641,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      where the SME in question had given permission.</p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs</b>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">35.</span></h2>
                   <p>The costs associated with option 1 are broken down into categories below.</p>
@@ -1822,11 +1836,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Benefits</b>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <b>Benefits</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">47.</span></h2>
                   <p>
@@ -1939,11 +1952,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      players.</p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>One in Two Out Regulatory Costs</b>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <b>One in Two Out Regulatory Costs</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">56.</span></h2>
                   <p>This policy is a pro-competition measure.  The SME credit market is extremely concentrated
@@ -2055,11 +2067,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      improved credit scoring.</p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Equalities Impact</b>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <b>Equalities Impact</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">63.</span></h2>
                   <p>The Government expects the equalities impact of this measure to be neutral. Age, religion,
@@ -2069,11 +2080,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the result could be marginally positive. </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Impact on small firms and micro-business</b>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <b>Impact on small firms and micro-business</b>
+                     </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">64.</span></h2>
                   <p>This policy will not come into force until second half of 2014 so is out of scope

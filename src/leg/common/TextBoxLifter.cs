@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 
 using Office10Wps = DocumentFormat.OpenXml.Office2010.Word.DrawingShape;
+using DrawingWp = DocumentFormat.OpenXml.Drawing.Wordprocessing;
 
 namespace UK.Gov.Legislation.Common {
 
@@ -60,18 +61,22 @@ internal static class TextBoxLifter {
             var anchorParagraph = alternate.Ancestors<Paragraph>().FirstOrDefault();
             if (anchorParagraph?.Parent == null) continue;
 
-            // Word's wp:anchor uses absolute positioning, so the anchor paragraph
-            // is typically a positioning point that visually overlays a *later*
-            // paragraph (e.g. the "Title:" cell in an IA summary form). Merge
-            // the text-box's runs INTO that label paragraph so the result is a
-            // single "Title: <value>" line that the SemanticEnricher already
-            // knows how to split. If the anchor paragraph itself already has the
-            // label text (e.g. ukia_20250013 "Price base year:" with the value
-            // boxed alongside), merge into it instead. If we can't find a label,
-            // fall back to inserting the box's paragraphs as siblings of the anchor.
-            var labelParagraph = HasSubstantiveText(anchorParagraph)
-                ? anchorParagraph
-                : FindLabelParagraphAfter(anchorParagraph);
+            // Anchor (wp:anchor): absolute coords; the text-box visually
+            // overlays a *later* paragraph (typical IA cover-sheet form).
+            // Inline (wp:inline): flows in line; if the textbox is the only
+            // content in its paragraph, the visible label is the *previous*
+            // paragraph (typical Declaration block).
+            // If the anchor paragraph itself has the label text, merge there.
+            bool isInline = alternate.Descendants<DrawingWp.Inline>().Any();
+            Paragraph labelParagraph;
+            if (HasSubstantiveText(anchorParagraph)) {
+                labelParagraph = anchorParagraph;
+            } else if (isInline) {
+                labelParagraph = FindLabelParagraphBefore(anchorParagraph)
+                    ?? FindLabelParagraphAfter(anchorParagraph);
+            } else {
+                labelParagraph = FindLabelParagraphAfter(anchorParagraph);
+            }
             if (labelParagraph != null) {
                 // If the label paragraph ends with a w:tab (Word used it to leave
                 // visual room for the now-lifted text-box value), strip it — we
@@ -112,6 +117,14 @@ internal static class TextBoxLifter {
             // Skip another anchor-only paragraph (empty save for shape drawings)
             // so a run of consecutive text-box anchors all attach to the next
             // real label paragraph after them.
+            if (HasSubstantiveText(p)) return p;
+        }
+        return null;
+    }
+
+    private static Paragraph FindLabelParagraphBefore(Paragraph anchor) {
+        for (var n = anchor.PreviousSibling(); n != null; n = n.PreviousSibling()) {
+            if (n is not Paragraph p) continue;
             if (HasSubstantiveText(p)) return p;
         }
         return null;

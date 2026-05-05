@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -5742,17 +5759,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          <footer class="footnotes">
             <hr style="margin-top:2em">
             <div class="footnote">
-               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The Conservative Party Manifesto 2015: <a href="https://www.conservatives.com/manifesto2015"><span style="color:#0070C0"><u><a href="https://www.conservatives.com/manifesto2015">https://www.conservatives.com/manifesto2015</a></u></span></a></p>
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  The Conservative Party Manifesto 2015: <a href="https://www.conservatives.com/manifesto2015"><span style="color:#0070C0"><u>https://www.conservatives.com/manifesto2015</u></span></a></p>
                <p></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The Conservative Party Manifesto 2015: <a href="https://www.conservatives.com/manifesto2015"><span style="color:#0070C0"><u><a href="https://www.conservatives.com/manifesto2015">https://www.conservatives.com/manifesto2015</a></u></span></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  The Conservative Party Manifesto 2015: <a href="https://www.conservatives.com/manifesto2015"><span style="color:#0070C0"><u>https://www.conservatives.com/manifesto2015</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a> 
                   <a href="http://conservativehome.blogs.com/files/conservative-manifesto-2010.pdf">
                      <span style="color:#0070C0">
-                        <u><a href="http://conservativehome.blogs.com/files/conservative-manifesto-2010.pdf">http://conservativehome.blogs.com/files/conservative-manifesto-2010.pdf</a></u>
+                        <u>http://conservativehome.blogs.com/files/conservative-manifesto-2010.pdf</u>
                         </span>
                      </a>
                   </p>
@@ -5761,7 +5778,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-4" href="#fnref-4">4</a> 
                   <a href="https://www.cites.org/eng/res/index.php">
                      <span style="color:#0070C0">
-                        <u><a href="https://www.cites.org/eng/res/index.php">https://www.cites.org/eng/res/index.php</a></u>
+                        <u>https://www.cites.org/eng/res/index.php</u>
                         </span>
                      </a>
                   </p>
@@ -5770,7 +5787,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-5" href="#fnref-5">5</a> 
                   <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:01997R0338-20170204&amp;rid=1">
                      <span style="color:#0070C0">
-                        <u><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:01997R0338-20170204&amp;rid=1">https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:01997R0338-20170204&amp;rid=1</a></u>
+                        <u>https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:01997R0338-20170204&amp;rid=1</u>
                         </span>
                      </a>
                   </p>
@@ -5779,7 +5796,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a> 
                   <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32006R0865&amp;from=EN">
                      <span style="color:#0070C0">
-                        <u><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32006R0865&amp;from=EN">https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32006R0865&amp;from=EN</a></u>
+                        <u>https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32006R0865&amp;from=EN</u>
                         </span>
                      </a>
                   </p>
@@ -5788,7 +5805,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-7" href="#fnref-7">7</a> 
                   <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32012R0792&amp;from=EN">
                      <span style="color:#0070C0">
-                        <u><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32012R0792&amp;from=EN">https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32012R0792&amp;from=EN</a></u>
+                        <u>https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32012R0792&amp;from=EN</u>
                         </span>
                      </a>
                   </p>
@@ -5797,7 +5814,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-8" href="#fnref-8">8</a> 
                   <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32015R0736&amp;from=EN">
                      <span style="color:#0070C0">
-                        <u><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32015R0736&amp;from=EN">https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32015R0736&amp;from=EN</a></u>
+                        <u>https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32015R0736&amp;from=EN</u>
                         </span>
                      </a>
                   </p>

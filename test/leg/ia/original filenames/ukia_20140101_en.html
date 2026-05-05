@@ -85,34 +85,51 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for header summary tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
 	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
 	border: 1px solid black;
 }
 
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
-/* IA semantic containers */
-.hcontainer.summary {
-	/* Semantic container - styling handled by inner table */
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
 }
 
 .blockContainer {
@@ -166,7 +183,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
       </div>
       <article id="doc" data-doc-type="ImpactAssessment">
          <div class="body">
-            <section id="summary" class="hcontainer summary">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:19.46%">
@@ -492,7 +510,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -518,7 +537,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:100%">
@@ -550,7 +570,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section class="level">
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
                <table class="ia-table">
                   <colgroup>
                      <col style="width:51.84%">
@@ -767,8 +788,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </tbody>
                </table>
             </section>
-            <section id="section_2" class="section heading">
-               <h2></h2>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
                <p>
                   <b>Summary: Analysis &amp; Evidence</b>
                   <span class="tab">&nbsp;</span>Policy Option 1</p>
@@ -1252,19 +1273,17 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </table>
                </section>
             </section>
-            <section id="section_3" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evidence Base (for summary sheets)</b>
-                  </p>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base (for summary sheets)</b>
+                     </span></h2>
             </section>
-            <section id="section_4" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Problem under consideration; </b>
-                     </span>
-                  </p>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Problem under consideration; </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>The law currently allows a variety of acts to be performed by government departments
                      and other public bodies without infringing copyright, to enable them to complete their
@@ -1317,13 +1336,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_5" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Rationale for intervention; </b>
-                     </span>
-                  </p>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale for intervention; </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Copyright incentivises and rewards the creation of new works, including for example
                      literary works (e.g. letters). It does this by giving creators and producers of creative
@@ -1347,11 +1365,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      be widened without negative impact on copyright owners.</p>
                </section>
             </section>
-            <section id="section_6" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Policy objective</b>
-                  </p>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">
+                     <b>Policy objective</b>
+                     </span></h2>
                <section class="level">
                   <p>The primary aim of this measure is to allow more information held by public bodies
                      to be made easily accessible to the public. This would mean that material open to
@@ -1384,13 +1401,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      public bodies to copy only to the extent that is necessary and reasonable, are maintained.</p>
                </section>
             </section>
-            <section id="section_7" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Description of options considered (including do nothing);</b>
-                     </span>
-                  </p>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered (including do nothing);</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>Option 0 - Do nothing</p>
                </section>
@@ -1404,13 +1420,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      one proposed.</p>
                </section>
             </section>
-            <section id="section_8" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Option 0 - Do nothing</b>
-                     </span>
-                  </p>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Option 0 - Do nothing</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The current copyright exception for public administration and reporting will remain
@@ -1466,11 +1481,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_9" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Costs and Benefits of Option 1:</b>
-                  </p>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">
+                     <b>Costs and Benefits of Option 1:</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">
@@ -1662,13 +1676,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_10" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Costs: </b>
-                     </span>
-                  </p>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Costs: </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">In the consultation response submitted by the ICO, it was acknowledged that making
@@ -1724,13 +1737,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         on the size of department and the level of third party information it holds.</span></p>
                </section>
             </section>
-            <section id="section_11" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Risks and assumptions;</b>
-                     </span>
-                  </p>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and assumptions;</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">We have assumed that this exception will have no impact on sales of copyright works.
@@ -1745,13 +1757,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_12" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Direct Costs and Benefits to Business Calculations (following OIOO methodology)</b>
-                     </span>
-                  </p>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Direct Costs and Benefits to Business Calculations (following OIOO methodology)</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Under the “One In, One Out” rule, whereby a measure that has a net cost to business
@@ -1762,13 +1773,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_13" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Wider impacts;</b>
-                     </span>
-                  </p>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wider impacts;</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">As well as bringing efficiency and cost savings, amending this exception will deliver
@@ -1777,13 +1787,12 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_14" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Summary </b>
-                     </span>
-                  </p>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Summary </b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">The benefits of introducing this exception would be the reduction in administrative
@@ -1795,24 +1804,22 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="section_15" class="section heading">
-               <h2></h2>
-               <p>
-                  <span style="color:#000000">
-                     <b>Preferred Option</b>
-                     </span>
-                  </p>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Preferred Option</b>
+                        </span>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">Option 1.</span>
                      </p>
                </section>
             </section>
-            <section id="section_16" class="section heading">
-               <h2></h2>
-               <p>
-                  <b>Evaluation</b>
-                  </p>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <b>Evaluation</b>
+                     </span></h2>
                <section class="level">
                   <p>
                      <span style="color:#000000">A full evaluation strategy and Post Implementation Review is being developed for the
@@ -1893,7 +1900,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <span style="color:#000000">(Available at: </span>
-                  <a href="http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf"><a href="http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf">http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf</a></a>
+                  <a href="http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf">http://www.mod.uk/NR/rdonlyres/A080AF4D-C9AB-4E32-9A34-E4345E294EE4/0/Transfer_ufo_files_NAO.pdf</a>
                   <span style="color:#000000"> ).</span>
                   </p>
             </div>
@@ -1902,7 +1909,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <span style="color:#000000">
                      </span>
                   <span style="color:#000000">Available at: </span>
-                  <a href="http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary"><a href="http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary">http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary</a></a>
+                  <a href="http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary">http://www.homeoffice.gov.uk/publications/about-us/legislation/freedom-bill/extending-foi-ia?view=Binary</a>
                   <span style="color:#000000">
                      </span>
                   </p>
