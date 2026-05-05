@@ -17,6 +17,11 @@ class Builder : AkN.Builder {
     override protected string UKNS => "https://legislation.gov.uk/akn";
     private const string UKM_NS = "http://www.legislation.gov.uk/namespaces/metadata";
 
+    // IA's section detection (in BaseHelper.ApplyDocumentSpecificProcessing)
+    // consumes uk:headingDepth/headingSignal attributes; BaseHelper strips
+    // them before returning. Other AkN.Builder subclasses leave this off.
+    protected override bool EmitHeadingMetadata => true;
+
     private readonly string manifestationName;
 
     private Builder(string manifestationName) {

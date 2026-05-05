@@ -78,6 +78,22 @@ class WLine : ILine, ILineable {
     public string? Style {
         get => properties?.ParagraphStyleId?.Val;
     }
+
+    private DOCX.Styles.HeadingClassification? _heading;
+    private bool _headingComputed;
+    private DOCX.Styles.HeadingClassification? Heading {
+        get {
+            if (_headingComputed) return _heading;
+            _headingComputed = true;
+            if (properties is null) return _heading = null;
+            string? styleId = Style;
+            if (string.IsNullOrEmpty(styleId)) return _heading = null;
+            var main = DOCX.Main.Get(properties);
+            return _heading = DOCX.Styles.ClassifyHeading(main, styleId);
+        }
+    }
+    public int? WordHeadingDepth => Heading?.Depth;
+    public string? WordHeadingSignal => Heading?.Signal.ToString();
 #nullable disable
 
     public AlignmentValues? Alignment {

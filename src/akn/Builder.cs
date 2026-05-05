@@ -379,11 +379,21 @@ abstract class Builder {
 
     private string ContainingParagraphStyle;
 
+    /// Subclasses opt into emitting Word-style heading classification on
+    /// blocks. Only the legislation pipeline consumes it (IA's section
+    /// detection); judgment/PS/lawmaker outputs stay byte-identical.
+    protected virtual bool EmitHeadingMetadata => false;
+
     protected virtual XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
         if (line.Style is not null)
             block.SetAttribute("class", line.Style);
+        if (EmitHeadingMetadata && line.WordHeadingDepth is int depth) {
+            block.SetAttribute("headingDepth", UKNS, depth.ToString());
+            if (line.WordHeadingSignal is string signal)
+                block.SetAttribute("headingSignal", UKNS, signal);
+        }
         Dictionary<string, string> styles = line.GetCSSStyles();
         if (styles.Count > 0)
             block.SetAttribute("style", CSS.SerializeInline(styles));
@@ -837,6 +847,28 @@ abstract class Builder {
 
     protected void AddHash(XmlDocument akn) {
         AddHash(akn, UKNS);
+    }
+
+    // Strip the heading-classification attrs Block emits. Leg pipelines
+    // consume them first via ApplyDocumentSpecificProcessing then call
+    // this; non-leg consumers call it before returning.
+    internal static void StripHeadingMetadataAttributes(XmlDocument akn) {
+        StripHeadingAttrsFrom(akn.DocumentElement);
+    }
+
+    private static void StripHeadingAttrsFrom(XmlElement el) {
+        if (el is null) return;
+        var toRemove = new List<XmlAttribute>();
+        foreach (XmlAttribute a in el.Attributes) {
+            if (a.LocalName == "headingDepth" || a.LocalName == "headingSignal")
+                toRemove.Add(a);
+        }
+        foreach (var a in toRemove)
+            el.RemoveAttributeNode(a);
+        foreach (XmlNode child in el.ChildNodes) {
+            if (child is XmlElement ce)
+                StripHeadingAttrsFrom(ce);
+        }
     }
 
     protected static void AddHash(XmlDocument akn, string ns, string prefix = "uk", string localName = "hash") {
