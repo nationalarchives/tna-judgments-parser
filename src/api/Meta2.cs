@@ -66,8 +66,6 @@ internal class MetaWrapper : IOutsideMetadata {
 
     public List<ICategory> Categories => Meta.Extensions?.Categories ?? [];
 
-    public string NCN => Meta.Extensions?.NCN;
-
     public string WebArchivingLink => Meta.Extensions?.WebArchivingLink;
 }
 

@@ -12,39 +12,47 @@ using Backlog.Src;
 
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 using Microsoft.Extensions.Logging;
 
 namespace Backlog.Csv;
 
-class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
+internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 {
     private string csvName = "unknown.csv";
     private string csvHash = "unknown";
 
-    internal List<CsvLine> Read(string csvPath, out List<string> csvParseErrors)
+    internal List<CsvLine> Read(string csvPath, out List<string> skippedCsvLineIdentifiers,
+        out List<string> csvParseErrors, out int numAllLinesInCsv)
     {
         csvName = Path.GetFileName(csvPath);
         csvHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
-        
+
         using var streamReader = new StreamReader(csvPath);
-        return Read(streamReader, out csvParseErrors);
+        return Read(streamReader, out skippedCsvLineIdentifiers, out csvParseErrors, out numAllLinesInCsv);
     }
 
-    internal List<CsvLine> Read(TextReader textReader, out List<string> csvParseErrors)
+    internal List<CsvLine> Read(TextReader textReader, out List<string> skippedCsvLineIdentifiers,
+        out List<string> csvParseErrors, out int numAllLinesInCsv)
     {
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             ShouldSkipRecord = args => false,
             IgnoreBlankLines = true,
-            PrepareHeaderForMatch = args => args.Header.ToLower(),
-            TrimOptions = TrimOptions.Trim | TrimOptions.InsideQuotes,
+            PrepareHeaderForMatch = args => args.Header.ToLower().Replace("_", ""),
+            TrimOptions = TrimOptions.Trim | TrimOptions.InsideQuotes
         };
         using var csv = new CsvReader(textReader, config);
-
         csv.Context.RegisterClassMap(new CsvLineMap(csvName, csvHash));
+
+        //Get boolean skip converter from type converter cache once now so it can be used to skip records
+        var booleanSkipConverter = csv.Context.TypeConverterCache.GetConverter(typeof(CsvLine).GetMember(nameof(CsvLine.Skip)).Single());
+
         var records = new List<CsvLine>();
+        skippedCsvLineIdentifiers = [];
         csvParseErrors = [];
+        numAllLinesInCsv = 0;
 
         // Read the header first
         csv.Read();
@@ -53,42 +61,80 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         // Now read data rows
         while (csv.Read())
         {
-            try
+            numAllLinesInCsv++;
+            var currentLineNumber = csv.Context.Parser!.Row;
+
+            var successfullyRetrievedSkipField = csv.TryGetField<bool>(
+                nameof(CsvLine.Skip),
+                booleanSkipConverter,
+                out var skipFieldValue
+            );
+
+            if (successfullyRetrievedSkipField && skipFieldValue)
             {
-                var record = csv.GetRecord<CsvLine>();
-
-                // Use DataAnnotations validation
-                var validationContext = new ValidationContext(record);
-                var validationResults = new List<ValidationResult>();
-
-                if (Validator.TryValidateObject(record, validationContext, validationResults, true))
-                {
-                    records.Add(record);
-                }
-                else
-                {
-                    var errors = string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
-                                                                    .Select(r => r.ErrorMessage));
-
-                    csvParseErrors.Add($"Line {csv.Context.Parser!.Row}: {errors}");
-                    logger.LogError("CSV validation errors [{Errors}] at row {ParserRow}", errors,
-                        csv.Context.Parser?.Row);
-                }
+                skippedCsvLineIdentifiers.Add($"Line {currentLineNumber}");
+                logger.LogInformation("Skipping line {LineNumber} because it was marked to skip in the csv",
+                    currentLineNumber);
+                continue;
             }
-            catch (Exception ex)
-            {
-                var exceptionMessage = ex is CsvHelperException
-                    ? ex.Message.Substring(0, ex.Message.IndexOf(Environment.NewLine, StringComparison.Ordinal))
-                    : ex.Message;
 
-                var rawLine = csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty);
-                csvParseErrors.Add(
-                    $"Line {csv.Context.Parser!.Row}: {exceptionMessage} [{rawLine}]");
-                logger.LogError(ex, "Error parsing row {ParserRow}", csv.Context.Parser?.Row);
+            var processCsvRecordResult = ProcessCsvRecord(csv);
+
+            switch (processCsvRecordResult)
+            {
+                case { ErrorMessage: { } errorMessage, Record: null }:
+                    csvParseErrors.Add($"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
+                    break;
+                case { Record: { } record, ErrorMessage: null }:
+                    records.Add(record);
+                    break;
+                default:
+                    throw new NotSupportedException("ProcessCsvRecord always returns either a record or an error message");
             }
         }
 
         return records;
+    }
+
+    private static (CsvLine? Record, string? ErrorMessage) ProcessCsvRecord(CsvReader csv)
+    {
+        try
+        {
+            var record = csv.GetRecord<CsvLine>();
+
+            // Use DataAnnotations validation
+            var validationResults = new List<ValidationResult>();
+
+            if (Validator.TryValidateObject(record, new ValidationContext(record), validationResults, true))
+            {
+                return (record, null);
+            }
+
+            return (null, string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
+                                                             .Select(r => r.ErrorMessage)));
+        }
+        catch (FieldValidationException ex) //created by failed `Validate`s in `CsvLineMap`
+        {
+            return (null, $"\"{ex.Field}\" failed validation with message: {GetCsvHelperExceptionMessage(ex)}");
+        }
+        catch (TypeConverterException ex)
+        {
+            return (null,
+                $"Could not convert field `{ex.MemberMapData.Member?.Name ?? "unknown"}` with value \"{ex.Text}\" to type `{ex.MemberMapData.Type.Name}`");
+        }
+        catch (CsvHelperException ex)
+        {
+            return (null, GetCsvHelperExceptionMessage(ex));
+        }
+    }
+
+    /// <summary>
+    ///     CsvHelperException.Message contains a lot of irrelevant information on multiple lines, but we only want the first
+    ///     part which says why something failed
+    /// </summary>
+    private static string GetCsvHelperExceptionMessage(CsvHelperException ex)
+    {
+        return ex.Message.Substring(0, ex.Message.IndexOf(Environment.NewLine, StringComparison.Ordinal));
     }
 
     private sealed class CsvLineMap : ClassMap<CsvLine>
@@ -106,35 +152,20 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         private void Configure()
         {
             AutoMap(CultureInfo.InvariantCulture);
-            Map(l => l.decision_datetime)
+
+            Map(l => l.DecisionDateTime)
                 .TypeConverterOption.DateTimeStyles(DateTimeStyles.AllowWhiteSpaces & DateTimeStyles.AssumeUniversal)
-                .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d")); // Ensure dates start with the year
-            Map(l => l.Jurisdictions)
-                .Optional()
-                .Convert(convertFromStringArgs =>
-                {
-                    // Get value
-                    convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
-                    return field?.Split(',').Select(item => item.Trim()).Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
-                });
-            Map(l => l.Skip)
-                .Optional()
-                .Convert(convertFromStringArgs =>
-                {
-                    convertFromStringArgs.Row.TryGetField<string>(nameof(CsvLine.Skip), out var field);
-                    return field?.Trim().ToLower() switch
-                    {
-                        null or "" or "n" or "no" or "f" or "false" or "0" => false,
-                        _ => true // return true when there is any value that is not explicitly negative
-                    };
-                });
+                .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d"),
+                    v => string.IsNullOrWhiteSpace(v.Field)
+                        ? "Decision date must be provided"
+                        : "Unsupported decision date. Ensure dates are in yyyy-MM-dd format");
 
             Map(l => l.FullCsvLineContents)
                 .Convert(convertFromStringArgs =>
                 {
                     var headerNames = convertFromStringArgs.Row.HeaderRecord!;
                     return headerNames.ToDictionary(headerName => headerName.Trim(),
-                                          headerName => convertFromStringArgs.Row[headerName] ?? string.Empty);
+                        headerName => convertFromStringArgs.Row[headerName] ?? string.Empty);
                 });
 
             Map(l => l.CsvProperties)

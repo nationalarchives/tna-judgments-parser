@@ -21,16 +21,16 @@ public class TestMakeMetadata
         var line = new CsvLine
         {
             id = "123",
-            court = "UKFTT-GRC",
-            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            headnote_summary = "This is a test headnote summary",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = "Human Rights",
-            sec_subcategory = "Article 8",
+            Court = "UKFTT-GRC",
+            DecisionDateTime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
+            CaseNo = ["ABC/2023/001"],
+            Claimants = "John Smith",
+            Respondent = "HMRC",
+            HeadnoteSummary = "This is a test headnote summary",
+            MainCategory = "Immigration",
+            MainSubcategory = "Asylum",
+            SecCategory = "Human Rights",
+            SecSubcategory = "Article 8",
             FilePath = "/path/to/test-document.pdf",
             Extension = ".pdf"
         };
@@ -68,13 +68,13 @@ public class TestMakeMetadata
         {
             id = "124",
             FilePath = "/test/data/test.pdf",
-            court = "UKFTT-GRC",
-            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
-            CaseNo = "ABC/2023/002",
-            appellants = "Jane Doe",
-            respondent = "Home Office",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
+            Court = "UKFTT-GRC",
+            DecisionDateTime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
+            CaseNo = ["ABC/2023/002"],
+            Appellants = "Jane Doe",
+            Respondent = "Home Office",
+            MainCategory = "Immigration",
+            MainSubcategory = "Asylum",
             Extension = ".pdf"
         };
 
@@ -155,8 +155,8 @@ public class TestMakeMetadata
         // Arrange - Date on or after 2010-01-18
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = new DateTime(2010, 01, 10,  14, 30, 00, DateTimeKind.Utc)
+            Court = "UKFTT-GRC",
+            DecisionDateTime = new DateTime(2010, 01, 10,  14, 30, 00, DateTimeKind.Utc)
         };
 
         // Act
@@ -172,7 +172,7 @@ public class TestMakeMetadata
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            CaseNo = "IA/12345/2023",
+            CaseNo = ["IA/12345/2023"],
         };
 
         // Act
@@ -188,7 +188,7 @@ public class TestMakeMetadata
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            decision_datetime = new DateTime(2023, 12, 25,  15, 45, 30, DateTimeKind.Utc),
+            DecisionDateTime = new DateTime(2023, 12, 25,  15, 45, 30, DateTimeKind.Utc),
         };
 
         // Act
@@ -200,12 +200,12 @@ public class TestMakeMetadata
     }
 
     [Fact]
-    public void MakeMetadata_WithNCN_SetsNCNProperty()
+    public void MakeMetadata_WithNCN_SetsCiteProperty()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "[2023] UKUT 123 (IAC)"
+            Ncn = "[2023] UKUT 123 (IAC)"
         };
 
         // Act
@@ -213,11 +213,11 @@ public class TestMakeMetadata
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal("[2023] UKUT 123 (IAC)", result.NCN);
+        Assert.Equal("[2023] UKUT 123 (IAC)", result.Cite);
     }
 
     [Fact]
-    public void MakeMetadata_WithoutNCN_NCNPropertyIsNull()
+    public void MakeMetadata_WithoutNCN_CitePropertyIsNull()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
@@ -230,7 +230,7 @@ public class TestMakeMetadata
 
         // Assert
         Assert.NotNull(result);
-        Assert.Null(result.NCN);
+        Assert.Null(result.Cite);
     }
 
     [Fact]
@@ -239,7 +239,7 @@ public class TestMakeMetadata
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            webarchiving = "http://webarchivelink"
+            WebArchiving = "http://webarchivelink"
         };
 
         // Act

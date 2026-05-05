@@ -15,7 +15,7 @@ public class TestCsvLine
     public void FirstPartyName_WithClaimants_ReturnsClaimants()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { claimants = "John Smith", respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Claimants = "John Smith", Respondent = "HMRC" };
 
         // Act
         var result = csvLine.FirstPartyName;
@@ -28,7 +28,7 @@ public class TestCsvLine
     public void FirstPartyName_WithAppellants_ReturnsAppellants()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { appellants = "Jane Doe", respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Appellants = "Jane Doe", Respondent = "HMRC" };
 
         // Act
         var result = csvLine.FirstPartyName;
@@ -41,7 +41,7 @@ public class TestCsvLine
     public void FirstPartyRole_WithClaimants_ReturnsClaimant()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { claimants = "John Smith", respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Claimants = "John Smith", Respondent = "HMRC" };
 
         // Act
         var result = csvLine.FirstPartyRole;
@@ -54,7 +54,7 @@ public class TestCsvLine
     public void FirstPartyRole_WithAppellants_ReturnsAppellant()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { appellants = "Jane Doe", respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Appellants = "Jane Doe", Respondent = "HMRC" };
 
         // Act
         var result = csvLine.FirstPartyRole;
@@ -67,7 +67,7 @@ public class TestCsvLine
     public void Parties_WithClaimantsAndRespondent_ReturnsClaimantThenRespondent()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { claimants = "Alice", appellants = null, respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Claimants = "Alice", Appellants = null, Respondent = "HMRC" };
 
         // Act
         var parties = csvLine.Parties;
@@ -84,7 +84,7 @@ public class TestCsvLine
     public void Parties_WithAppellantsAndRespondent_ReturnsAppellantThenRespondent()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { appellants = "Bob", claimants = null, respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Appellants = "Bob", Claimants = null, Respondent = "HMRC" };
 
         // Act
         var parties = csvLine.Parties;
@@ -101,7 +101,7 @@ public class TestCsvLine
     public void Parties_WithBothClaimantsAndAppellants_Throws()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { claimants = "Alice", appellants = "Bob", respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Claimants = "Alice", Appellants = "Bob", Respondent = "HMRC" };
 
         // Act & Assert
         Assert.Throws<InvalidOperationException>(() => { _ = csvLine.Parties; });
@@ -126,7 +126,7 @@ public class TestCsvLine
     public void Categories_WithMainOnly_ReturnsMain()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { main_category = "Equal Pay Act" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { MainCategory = "Equal Pay Act" };
 
         // Act
         var categories = csvLine.Categories;
@@ -142,8 +142,8 @@ public class TestCsvLine
         // Arrange
         var csvLine = CsvMetadataLineHelper.DummyLine with
         {
-            main_category = "Equal Pay Act",
-            main_subcategory = "Equal value"
+            MainCategory = "Equal Pay Act",
+            MainSubcategory = "Equal value"
         };
 
         // Act
@@ -160,7 +160,7 @@ public class TestCsvLine
     public void Categories_WithSecondaryOnly_ReturnsSecondary()
     {
         // Arrange
-        var csvLine = CsvMetadataLineHelper.DummyLine with { sec_category = "Practice and Procedure" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { SecCategory = "Practice and Procedure" };
 
         // Act
         var categories = csvLine.Categories;
@@ -176,8 +176,8 @@ public class TestCsvLine
         // Arrange
         var csvLine = CsvMetadataLineHelper.DummyLine with
         {
-            sec_category = "Practice and Procedure",
-            sec_subcategory = "Costs"
+            SecCategory = "Practice and Procedure",
+            SecSubcategory = "Costs"
         };
 
         // Act
@@ -196,10 +196,10 @@ public class TestCsvLine
         // Arrange
         var csvLine = CsvMetadataLineHelper.DummyLine with
         {
-            main_category = "Equal Pay Act",
-            main_subcategory = "Equal value",
-            sec_category = "Practice and Procedure",
-            sec_subcategory = "Costs"
+            MainCategory = "Equal Pay Act",
+            MainSubcategory = "Equal value",
+            SecCategory = "Practice and Procedure",
+            SecSubcategory = "Costs"
         };
 
         // Act

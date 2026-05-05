@@ -190,11 +190,11 @@ namespace Backlog.Src
             {
                 AddCategory(proprietary, cat);
             }
-            if (!string.IsNullOrWhiteSpace(Data.NCN))
+            if (!string.IsNullOrWhiteSpace(Data.Cite))
             {
                 XmlElement cite = CreateAndAppendUK("cite", proprietary);
                 proprietary.AppendChild(cite);
-                cite.AppendChild(Document.CreateTextNode(Data.NCN));
+                cite.AppendChild(Document.CreateTextNode(Data.Cite));
             }
             if (!string.IsNullOrWhiteSpace(Data.WebArchivingLink))
             {
