@@ -28,6 +28,7 @@ internal class BacklogParserWorker(
 {
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
     {
+        var parserRunId = Guid.NewGuid();
         var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var skippedCsvLineIdentifiers,
             out var csvParseErrors, out var numAllLinesInCsv);
         if (lines.Count == 0)
@@ -65,7 +66,7 @@ internal class BacklogParserWorker(
                 }
 
                 logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                var bundle = GenerateBundle(line, autoPublish);
+                var bundle = GenerateBundle(line, autoPublish, parserRunId);
 
                 var bundleFileName = bundle.Uuid + ".tar.gz";
                 var output = Path.Combine(pathToOutputFolder, bundleFileName);
@@ -249,7 +250,7 @@ internal class BacklogParserWorker(
         return response;
     }
 
-    private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish)
+    private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish, Guid parserRunId)
     {
         var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
             ? csvLine.Uuid
@@ -266,8 +267,7 @@ internal class BacklogParserWorker(
 
         var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(csvLine.FileName, mimeType,
-            contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, csvLine.FileName, mimeType, contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
 
         return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
     }

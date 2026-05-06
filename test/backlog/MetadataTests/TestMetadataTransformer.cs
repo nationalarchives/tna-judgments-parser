@@ -8,8 +8,6 @@ using Backlog.Src;
 
 using Microsoft.Extensions.Time.Testing;
 
-using test.backlog;
-
 using TRE.Metadata;
 using TRE.Metadata.Enums;
 using TRE.Metadata.MetadataFieldTypes;
@@ -27,9 +25,10 @@ public class TestMetadataTransformer
 {
     private readonly FakeTimeProvider fakeTimeProvider = new();
     private readonly MetadataTransformer metadataTransformer;
+
     public TestMetadataTransformer()
     {
-        metadataTransformer = new(fakeTimeProvider);   
+        metadataTransformer = new MetadataTransformer(fakeTimeProvider);
     }
 
     [Fact]
@@ -41,8 +40,17 @@ public class TestMetadataTransformer
         var responseMeta = new Api.Meta { DocumentType = "decision" };
 
         // Act
-        var result = metadataTransformer.CreateFullTreMetadata("test.pdf", sourceMimeType, contentHash, autoPublish, [],
-            responseMeta, [], false);
+        var result = metadataTransformer.CreateFullTreMetadata(
+            Guid.NewGuid(),
+            "test.pdf",
+            sourceMimeType,
+            contentHash,
+            autoPublish,
+            [],
+            responseMeta,
+            [],
+            false
+        );
 
         // Assert
         Assert.Equal(autoPublish, result.Parameters.IngestorOptions.AutoPublish);
@@ -58,8 +66,10 @@ public class TestMetadataTransformer
         const string cite = "[2026] IMTU 3312";
         const string date = "2025-07-30";
         const string name = "a v b";
-        DateTimeOffset expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+        var expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
         fakeTimeProvider.AdjustTime(expectedDate);
+
+        var parserRunId = Guid.NewGuid();
 
         var extensions = new Api.Extensions
         {
@@ -82,11 +92,20 @@ public class TestMetadataTransformer
             Name = name
         };
 
-        // Act
-        List<IMetadataField> externalMetadataFields = [];
+        List<IMetadataField> externalMetadataFields = [new MetadataField<string> { Value = "test field" }];
 
-        var result = metadataTransformer.CreateFullTreMetadata("test.docx", "application/pdf", "1234-456-789", true, [],
-            responseMeta, externalMetadataFields, xmlContainsDocumentText);
+        // Act
+        var result = metadataTransformer.CreateFullTreMetadata(
+            parserRunId,
+            "test.docx",
+            "application/pdf",
+            "1234-456-789",
+            true,
+            [],
+            responseMeta,
+            externalMetadataFields,
+            xmlContainsDocumentText
+        );
 
         // Assert
         Assert.Null(result.Parameters.PARSER.Uri);
@@ -97,6 +116,8 @@ public class TestMetadataTransformer
         Assert.Equal(extensions, result.Parameters.PARSER.Extensions);
         Assert.Empty(result.Parameters.PARSER.Attachments);
         Assert.Equal(DocumentType.Decision, result.Parameters.PARSER.DocumentType);
+
+        Assert.Equal(parserRunId, result.Parameters.PARSER.ParserRunId);
         Assert.Empty(result.Parameters.PARSER.ErrorMessages);
         Assert.Equal(externalMetadataFields, result.Parameters.PARSER.MetadataFields);
         Assert.Equal(xmlContainsDocumentText, result.Parameters.PARSER.XmlContainsDocumentText);
@@ -121,6 +142,7 @@ public class TestMetadataTransformer
 
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
+            Guid.NewGuid(),
             sourceFilename,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -138,9 +160,12 @@ public class TestMetadataTransformer
     }
 
     [Fact]
-    public void CreateFullTreMetadata_Generates_UniqueReference()
+    public void CreateFullTreMetadata_Generates_UniqueTreReference()
     {
+        var parserRunId = Guid.NewGuid();
+
         var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
+            parserRunId,
             "test-file.docx",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -151,6 +176,7 @@ public class TestMetadataTransformer
             false
         );
         var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
+            parserRunId,
             "test-file.docx",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
