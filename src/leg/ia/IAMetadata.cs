@@ -16,8 +16,6 @@ namespace UK.Gov.Legislation.ImpactAssessments {
 /// </summary>
 class IAMetadata : DocumentMetadata {
 
-    public DateTime? LastModified { get; init; }
-    
     // Additional metadata from CSV mapping (derived from XML metadata files)
     public string DocumentStage { get; init; }
     public string DocumentMainType { get; init; }
@@ -72,7 +70,6 @@ class IAMetadata : DocumentMetadata {
             ShortUriComponent = shortUri,
             ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
-            LastModified = modified,
             Name = name,
             CSS = css,
             LegislationUri = legislationUri,

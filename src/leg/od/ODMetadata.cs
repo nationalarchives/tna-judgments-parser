@@ -16,8 +16,6 @@ namespace UK.Gov.Legislation.OtherDocuments {
 /// </summary>
 class ODMetadata : DocumentMetadata {
 
-    public DateTime? LastModified { get; init; }
-
     public string DocumentMainType { get; init; }
     public string Department { get; init; }
     public string OdDate { get; init; }
@@ -58,7 +56,6 @@ class ODMetadata : DocumentMetadata {
             ShortUriComponent = shortUri,
             ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
-            LastModified = modified,
             Name = name,
             CSS = css,
             LegislationUri = legislationUri,
