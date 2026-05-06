@@ -115,19 +115,21 @@ internal class BacklogParserWorker(
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
-            ? $"[{string.Join(", ", skippedCsvLineIdentifiers)}]"
+            ? StringJoinFirstFive(skippedCsvLineIdentifiers, ", ")
             : string.Empty;
-
+        var successfulFileExtensionBreakdown = string.Join(", ", successfulNewLines.GroupBy(l => l.Extension).Select(g => $"{g.Count()} {g.Key}"));
+        
         logger.LogInformation("""
                               ---------------------------
                               Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
-                                - {NewLinesCount} lines were new
-                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds}
+                                - {NewLinesCount} lines were new ({SuccessfulFileExtensionBreakdown})
+                                - {MarkedToSkipLineCount} lines were marked in the csv to skip ({MarkedToSkipIds})
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
             numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
             numAllLinesInCsv,
             successfulNewLines.Count,
+            successfulFileExtensionBreakdown,
             numSkippedCsvLines, markedAsSkipIds,
             alreadyDoneLines.Count
         );
@@ -162,27 +164,32 @@ internal class BacklogParserWorker(
                     f => f.line.id);
 
             var groupedErrorDescriptions = failedIdsGroupedByErrorMessage.Select(groupOfErrors =>
-            {
-                var affectedIds = groupOfErrors.Count() <= 5
-                    ? string.Join(", ", groupOfErrors)
-                    : string.Join(", ", groupOfErrors.Take(5)) + "...";
-                return
-                    $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({affectedIds})";
-            });
-
+                $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({StringJoinFirstFive(groupOfErrors, ", ")})");
+            var failedFileExtensionBreakdown = string.Join(", ", failedToProcessLines.GroupBy(l => l.line.Extension).Select(g => $"{g.Count()} {g.Key}"));
 
             logger.LogError("""
                             ---------------------------
-                            Failed to process {FailedLineCount} lines, of which:
+                            Failed to process {FailedLineCount} lines ({FailedFileExtensionBreakdown}), of which:
                             {GroupedErrorDescriptions}
                             """,
-                failedToProcessLines.Count, string.Join(Environment.NewLine, groupedErrorDescriptions));
+                failedToProcessLines.Count,
+                failedFileExtensionBreakdown,
+                StringJoinFirstFive(groupedErrorDescriptions, Environment.NewLine)
+            );
         }
 
         if (failedToProcessLines.Count == 0 && csvParseErrors.Count == 0)
         {
             logger.LogInformation("No failed lines");
         }
+    }
+
+    private static string StringJoinFirstFive(IEnumerable<string> unenumeratedCollection, string separator)
+    {
+        var array = unenumeratedCollection as string[] ?? unenumeratedCollection.ToArray();
+        return array.Length <= 5
+            ? string.Join(separator, array)
+            : string.Join(separator, array.Take(5)) + "...";
     }
 
     private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent, bool isStub)

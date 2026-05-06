@@ -228,8 +228,8 @@ namespace test.backlog.EndToEndTests
                               .VerifyLog("""
                                          ---------------------------
                                          Successfully processed 4 of 4 csv lines, of which:
-                                           - 2 lines were new
-                                           - 1 lines were marked in the csv to skip [Line 5]
+                                           - 2 lines were new (1 .docx, 1 .pdf)
+                                           - 1 lines were marked in the csv to skip (Line 5)
                                            - 1 lines were skipped because they had been processed in a previous run
                                          """, LogLevel.Information);
         }
