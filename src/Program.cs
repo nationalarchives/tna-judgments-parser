@@ -189,7 +189,15 @@ public class Program {
 
         byte[] docx = File.ReadAllBytes(input.FullName);
         var renderer = UK.Gov.Legislation.Common.Rendering.RendererFactory.FromEnvironment();
-        var parsed = parse(docx, input.Name, true, manifestationName, true, renderer);
+        // Strict mode: LEG_STRICT_RENDER=true makes the parser throw
+        // UnrenderableDrawingException when a drawing can't be rendered, which
+        // surfaces as a per-document failure in the parse-akn batch job.
+        // Default (false) keeps the historic lenient behaviour: emit a
+        // placeholder for unrenderable drawings and continue producing AKN.
+        bool allowUnrendered = !string.Equals(
+            Environment.GetEnvironmentVariable("LEG_STRICT_RENDER"),
+            "true", StringComparison.OrdinalIgnoreCase);
+        var parsed = parse(docx, input.Name, true, manifestationName, allowUnrendered, renderer);
 
         // Save images alongside whichever file output is requested. Prefer --output's
         // directory; fall back to --output-html's. Both go to the same place if both
