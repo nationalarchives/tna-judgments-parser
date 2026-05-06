@@ -16,8 +16,6 @@ namespace UK.Gov.Legislation.CodesOfPractice {
 /// </summary>
 class CoPMetadata : DocumentMetadata {
 
-    public DateTime? LastModified { get; init; }
-
     public string DocumentMainType { get; init; }
     public string Department { get; init; }
     public string CopDate { get; init; }
@@ -58,7 +56,6 @@ class CoPMetadata : DocumentMetadata {
             ShortUriComponent = shortUri,
             ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
-            LastModified = modified,
             Name = name,
             CSS = css,
             LegislationUri = legislationUri,

@@ -16,8 +16,6 @@ namespace UK.Gov.Legislation.ExplanatoryMemoranda {
 /// </summary>
 class EMMetadata : DocumentMetadata {
 
-    public DateTime? LastModified { get; init; }
-    
     // Additional metadata from CSV mapping
     public string DocumentMainType { get; init; }
     public string Department { get; init; }
@@ -62,7 +60,6 @@ class EMMetadata : DocumentMetadata {
             ShortUriComponent = shortUri,
             ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
-            LastModified = modified,
             Name = name,
             CSS = css,
             LegislationUri = legislationUri,

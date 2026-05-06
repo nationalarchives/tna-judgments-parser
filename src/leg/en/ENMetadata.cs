@@ -12,8 +12,6 @@ namespace UK.Gov.Legislation.ExplanatoryNotes {
 
 class ENMetadata : DocumentMetadata {
 
-    public DateTime? LastModified { get; init; }
-
     public string DocumentMainType { get; init; }
     public string EnType { get; init; }
     public string EnDate { get; init; }
@@ -45,7 +43,6 @@ class ENMetadata : DocumentMetadata {
             ShortUriComponent = shortUri,
             ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
-            LastModified = modified,
             Name = name,
             CSS = css,
             LegislationUri = mappingRecord.LegislationUri,

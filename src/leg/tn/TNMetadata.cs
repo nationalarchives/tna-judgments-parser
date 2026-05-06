@@ -16,8 +16,6 @@ namespace UK.Gov.Legislation.TranspositionNotes {
 /// </summary>
 class TNMetadata : DocumentMetadata {
 
-    public DateTime? LastModified { get; init; }
-
     // Additional metadata from CSV mapping
     public string DocumentMainType { get; init; }
     public string Department { get; init; }
@@ -58,7 +56,6 @@ class TNMetadata : DocumentMetadata {
             ShortUriComponent = shortUri,
             ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
-            LastModified = modified,
             Name = name,
             CSS = css,
             LegislationUri = legislationUri,

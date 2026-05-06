@@ -166,44 +166,6 @@ class Builder : AkN.Builder {
         XmlElement parser = doc.CreateElement("ukm", "Parser", UKM_NS);
         proprietary.AppendChild(parser);
         parser.SetAttribute("Value", AkN.Metadata.GetParserVersion());
-        
-        // Add dc:modified for all documents that have lastModified information
-        // This provides a consistent location for file modification timestamp
-        string modifiedValue = null;
-        
-        // For IA documents, use the LastModified property
-        if (data is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
-            modifiedValue = FormatDateOnly(iaData.LastModified);
-        }
-        // For EM documents, use the LastModified property
-        else if (data is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue) {
-            modifiedValue = FormatDateOnly(emData.LastModified);
-        }
-        // For EN documents, use the LastModified property
-        else if (data is ExplanatoryNotes.ENMetadata enData && enData.LastModified.HasValue) {
-            modifiedValue = FormatDateOnly(enData.LastModified);
-        }
-        // For TN documents, use the LastModified property
-        else if (data is TranspositionNotes.TNMetadata tnData && tnData.LastModified.HasValue) {
-            modifiedValue = FormatDateOnly(tnData.LastModified);
-        }
-        // For CoP documents, use the LastModified property
-        else if (data is CodesOfPractice.CoPMetadata copData && copData.LastModified.HasValue) {
-            modifiedValue = FormatDateOnly(copData.LastModified);
-        }
-        // For OD documents, use the LastModified property
-        else if (data is OtherDocuments.ODMetadata odData && odData.LastModified.HasValue) {
-            modifiedValue = FormatDateOnly(odData.LastModified);
-        }
-        else if (data.ExpressionDateName == "lastModified" && data.ExpressionDate != null) {
-            modifiedValue = data.ExpressionDate;
-        }
-        
-        if (modifiedValue != null) {
-            XmlElement modified = doc.CreateElement("dc", "modified", "http://purl.org/dc/elements/1.1/");
-            proprietary.AppendChild(modified);
-            modified.AppendChild(doc.CreateTextNode(modifiedValue));
-        }
 
         // Add DC metadata properties
         string dcTitle = BuildDcTitle(data);
