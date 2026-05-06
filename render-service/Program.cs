@@ -31,8 +31,9 @@ public static class Program {
         var builder = WebApplication.CreateBuilder(args);
 
         builder.WebHost.ConfigureKestrel(o => {
-            // Request body is JSON only (URL string). Anything bigger is rejected before we touch it.
-            o.Limits.MaxRequestBodySize = 64 * 1024;
+            // Cap at the same DOCX size limit. /render takes JSON (small body); /render-bytes takes raw
+            // DOCX up to MaxDocxBytes. One global cap is simplest and matches /render's per-byte check.
+            o.Limits.MaxRequestBodySize = config.MaxDocxBytes;
         });
 
         builder.Services.AddSingleton(config);
@@ -60,6 +61,7 @@ public static class Program {
         }));
 
         app.MapPost("/render", HandleRender);
+        app.MapPost("/render-bytes", HandleRenderBytes);
 
         return app;
     }
@@ -142,6 +144,64 @@ public static class Program {
         log.LogInformation(
             "[{Rid}] ok host={Host} bytes={Bytes} drawings={Count} render_ms={Ms}",
             requestId, uri.Host, docx.Length, drawings.Count, sw.ElapsedMilliseconds);
+        return Results.Json(new { drawings = encoded });
+    }
+
+    // Direct-bytes endpoint for in-VPC callers (e.g. parser EC2) that already hold the DOCX
+    // bytes locally and don't want the round-trip of generating a presigned URL.  Same render
+    // pipeline; same response shape.
+    private static async Task<IResult> HandleRenderBytes(
+            HttpContext ctx,
+            DocxToImageRenderer renderer,
+            Config config,
+            ILogger<Program_LoggerCategory> log,
+            CancellationToken ct) {
+
+        string requestId = Guid.NewGuid().ToString("N").Substring(0, 12);
+
+        if (ctx.Request.ContentLength is long cl && cl > config.MaxDocxBytes) {
+            return Results.Json(new { error = "docx_too_large", limit = config.MaxDocxBytes }, statusCode: 413);
+        }
+
+        byte[] docx;
+        try {
+            using var ms = new MemoryStream();
+            await ctx.Request.Body.CopyToAsync(ms, ct);
+            if (ms.Length == 0) {
+                return Results.Json(new { error = "empty_body" }, statusCode: 400);
+            }
+            if (ms.Length > config.MaxDocxBytes) {
+                return Results.Json(new { error = "docx_too_large", limit = config.MaxDocxBytes }, statusCode: 413);
+            }
+            docx = ms.ToArray();
+        } catch (Microsoft.AspNetCore.Http.BadHttpRequestException) {
+            // Kestrel rejected oversized body before we got here.
+            return Results.Json(new { error = "docx_too_large", limit = config.MaxDocxBytes }, statusCode: 413);
+        }
+
+        var sw = Stopwatch.StartNew();
+        IReadOnlyList<byte[]> drawings;
+        try {
+            drawings = await Task.Run(() => renderer.RenderAllDrawings(docx, ct), ct);
+        } catch (OperationCanceledException) {
+            return Results.Json(new { error = "render_cancelled" }, statusCode: 504);
+        } catch (Exception ex) {
+            log.LogError(ex, "[{Rid}] render failed", requestId);
+            return Results.Json(new { error = "render_failed" }, statusCode: 500);
+        }
+        sw.Stop();
+
+        if (drawings.Count == 0) {
+            log.LogInformation(
+                "[{Rid}] no_drawings (bytes) bytes={Bytes} render_ms={Ms}",
+                requestId, docx.Length, sw.ElapsedMilliseconds);
+            return Results.Json(new { error = "no_drawings_found" }, statusCode: 422);
+        }
+
+        var encoded = drawings.Select(b => b == null ? null : Convert.ToBase64String(b)).ToArray();
+        log.LogInformation(
+            "[{Rid}] ok (bytes) bytes={Bytes} drawings={Count} render_ms={Ms}",
+            requestId, docx.Length, drawings.Count, sw.ElapsedMilliseconds);
         return Results.Json(new { drawings = encoded });
     }
 

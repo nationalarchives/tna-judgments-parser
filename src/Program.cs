@@ -188,7 +188,8 @@ public class Program {
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
 
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = parse(docx, input.Name, true, manifestationName, true, null);
+        var renderer = UK.Gov.Legislation.Common.Rendering.RendererFactory.FromEnvironment();
+        var parsed = parse(docx, input.Name, true, manifestationName, true, renderer);
 
         // Save images alongside whichever file output is requested. Prefer --output's
         // directory; fall back to --output-html's. Both go to the same place if both
