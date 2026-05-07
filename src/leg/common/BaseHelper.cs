@@ -60,6 +60,8 @@ abstract class BaseHelper {
         if (simplify)
             Simplifier.Simplify(xml);
 
+        StripLeadingTabMarkers(xml);
+
         ApplyDocumentSpecificProcessing(xml);
 
         // IA consumed uk:headingDepth/headingSignal above; strip the rest.
@@ -83,6 +85,35 @@ abstract class BaseHelper {
             dd.Images = existing;
         else if (doc is Models.UndividedDocument ud)
             ud.Images = existing;
+    }
+
+    /// <summary>
+    /// Drop a leading <marker name="tab"/> from each <p> when nothing real
+    /// precedes it. Word docs sometimes start a paragraph with a tab as a
+    /// hangover from a hanging-indent style — semantically meaningless but
+    /// still rendered as a stray nbsp. Tabs that appear after real content
+    /// (e.g. "1.1<tab>This...") are kept so they can do their normal
+    /// inter-token spacing job.
+    /// </summary>
+    private static void StripLeadingTabMarkers(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
+        var paragraphs = xml.SelectNodes("//akn:p", nsmgr);
+        if (paragraphs == null) return;
+        foreach (XmlNode p in paragraphs) {
+            XmlNode firstSubstantive = null;
+            foreach (XmlNode child in p.ChildNodes) {
+                if (child.NodeType == XmlNodeType.Text && string.IsNullOrWhiteSpace(child.Value))
+                    continue;
+                firstSubstantive = child;
+                break;
+            }
+            if (firstSubstantive is XmlElement el
+                && el.LocalName == "marker"
+                && el.GetAttribute("name") == "tab") {
+                p.RemoveChild(el);
+            }
+        }
     }
 
     private static void SyncTotalImagesWithXml(XmlDocument xml) {

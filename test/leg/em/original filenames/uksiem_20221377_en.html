@@ -17,15 +17,18 @@ table { border-collapse: collapse }
 th, td { border: thin dotted; padding: 3pt }
 td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
-span.fn { vertical-align: super; font-size: small }
+.fn { vertical-align: super; font-size: small }
 
 /* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
  * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
  * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
  * case by making the paragraph a flex row — content before the tab stays left,
- * the tab pushes everything after it to the right edge. */
-p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
-p > span.tab { flex: 1 1 auto }
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -455,54 +458,45 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <section class="subparagraph">
                         <p>
                            <span class="tab">&nbsp;</span>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Twelfth replenishment (2000) £511.3 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Thirteenth replenishment (2002) £964.8 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
                            <span class="tab">&nbsp;</span>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Fourteenth replenishment (2006) £1,430 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Fifteenth replenishment (2008) £2,134 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
                            <span class="tab">&nbsp;</span>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Sixteenth replenishment (2011) £2,664 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Seventeenth replenishment (2014) £3,300 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
                            <span class="tab">&nbsp;</span>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Seventeenth replenishment (additional payment) (2016) £350 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
                            <span class="tab">&nbsp;</span>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Eighteenth replenishment (2017) £3,336 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Nineteenth replenishment (2020) £3,062 million</p>
                      </section>
@@ -517,18 +511,15 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      <section class="subparagraph">
                         <p>
                            <span class="tab">&nbsp;</span>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Seventeenth replenishment (2014) £2,564 million </p>
                      </section>
                      <section class="subparagraph">
                         <p>
                            <span class="tab">&nbsp;</span>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Seventeenth replenishment (additional payment) (2016) £102 million</p>
                      </section>
                      <section class="subparagraph">
                         <p>
-                           <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>
                            <span class="tab">&nbsp;</span>Eighteenth replenishment (2017) £2,886 million</p>
                      </section>
@@ -813,10 +804,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a> ()<span class="tab">&nbsp;</span>Resolution No. 248 is also available online at <a href="https://documents1.worldbank.org/curated/en/099841004042214431/pdf/IDU0071008f30a7bf04ecd0b4e00311325799dc2.pdf">https://documents1.worldbank.org/curated/en/099841004042214431/pdf/IDU0071008f30a7bf04ecd0b4e00311325799dc2.pdf</a>.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.worldbank.org/en/news/press-release/2022/06/21/world-bank-approves-2-3-billion-program-to-address-escalating-food-insecurity-in-eastern-and-southern-africa">https://www.worldbank.org/en/news/press-release/2022/06/21/world-bank-approves-2-3-billion-program-to-address-escalating-food-insecurity-in-eastern-and-southern-africa</a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  <a href="https://www.worldbank.org/en/news/press-release/2022/06/21/world-bank-approves-2-3-billion-program-to-address-escalating-food-insecurity-in-eastern-and-southern-africa">https://www.worldbank.org/en/news/press-release/2022/06/21/world-bank-approves-2-3-billion-program-to-address-escalating-food-insecurity-in-eastern-and-southern-africa</a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://www.worldbank.org/en/news/press-release/2022/06/23/world-bank-boosts-pastoral-economies-and-climate-action-in-the-horn-of-africa">https://www.worldbank.org/en/news/press-release/2022/06/23/world-bank-boosts-pastoral-economies-and-climate-action-in-the-horn-of-africa</a></p>
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  <a href="https://www.worldbank.org/en/news/press-release/2022/06/23/world-bank-boosts-pastoral-economies-and-climate-action-in-the-horn-of-africa">https://www.worldbank.org/en/news/press-release/2022/06/23/world-bank-boosts-pastoral-economies-and-climate-action-in-the-horn-of-africa</a></p>
                <p></p>
             </div>
          </footer>

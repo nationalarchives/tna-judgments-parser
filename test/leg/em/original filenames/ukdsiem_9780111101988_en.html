@@ -1,0 +1,777 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1em;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	grid-column: 1;
+	justify-self: start;
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+/* Sits on the right; disabled on the whole-doc HTML (you are already
+ * on full view). Frontend activates with an href on section views. */
+.full-view-link {
+	grid-column: 3;
+	justify-self: end;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.full-view-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.full-view-link:not(.disabled) {
+	color: #000;
+}
+.full-view-link:not(.disabled):hover, .full-view-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+/* Section nav buttons. Mirror legislation.gov.uk's .userFunctionalElement
+ * (screen.css:1083) so frontend devs can hook up prev/next without
+ * restyling. Disabled state shows on whole-doc view; activating a link
+ * colours it #016398 (the live "active" hue). Arrow glyphs replace the
+ * sprite icons used on legislation.gov.uk so no image asset is needed. */
+.section-nav {
+	grid-column: 2;
+	justify-self: center;
+	display: inline-flex;
+	gap: 0.5em;
+	align-items: center;
+}
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.15em 0.65em 0.2em;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	text-align: center;
+	font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+	background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+}
+/* Tiny CSS-drawn triangles, recolour with the link's currentColor so
+ * disabled/active states inherit through naturally. */
+.prev-section::before {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0.42em 0.32em 0;
+	border-color: transparent currentColor transparent transparent;
+}
+.next-section::after {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0 0.32em 0.42em;
+	border-color: transparent transparent transparent currentColor;
+}
+.section-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.section-link:not(.disabled) {
+	color: #016398;
+	border-color: #069;
+}
+.section-link:not(.disabled):hover, .section-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <header class="toc-header"><a class="toc-link" href="/contents">Back to Table of Contents</a><nav class="section-nav"><a class="section-link prev-section disabled" aria-disabled="true">Previous section</a><a class="section-link next-section disabled" aria-disabled="true">Next section</a></nav><a class="full-view-link disabled" aria-disabled="true">Back to full view</a></header>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE REPRESENTATION OF THE PEOPLE (ENGLAND AND WALES) (DESCRIPTION OF ELECTORAL REGISTERS
+                  AND AMENDMENT) REGULATIONS 2013</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2013 No. [XXXX]</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>AND</b>
+               </p>
+            <p class="center">
+               <b>THE REPRESENTATION OF THE PEOPLE (SCOTLAND) (DESCRIPTION OF ELECTORAL REGISTERS AND
+                  AMENDMENT) REGULATIONS 2013</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2013 No. [XXXX]</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section id="paragraph_1" class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>This explanatory memorandum has been prepared by the Cabinet Office and the Scotland
+                  Office and is laid before Parliament by Command of Her Majesty.</p>
+            </section>
+            <section id="paragraph_2" class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Purpose of the instrument</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>Both these sets of Regulations make changes enabled by the Electoral Registration
+                     and Administration Act 2013 (c. 6) relating to the introduction of Individual Electoral
+                     Registration in place of household registration, and changes relating to the conduct
+                     of elections. They also provide revised text describing the two versions of the electoral
+                     register. </p>
+               </section>
+            </section>
+            <section id="paragraph_3" class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to the Joint Committee on Statutory Instruments </b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None</p>
+               </section>
+            </section>
+            <section id="paragraph_4" class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative Context</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The powers under which these Regulations are made are set out in Schedule 1 to the
+                     Regulations.  The regulations relating to Individual Electoral Registration are closely
+                     linked to the Electoral Registration and Administration Act 2013 (Transitional Provisions)
+                     Order 2013; this explanatory memorandum should be read alongside the memorandum for
+                     that Order.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>Under section 201(2) of the Representation of the People Act 1983 (the 1983 Act),
+                     the making of these instruments is subject to the affirmative resolution procedure.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.3</span></h2>
+                  <p>Article 3 of the Lord President of the Council Order 2010 (S.I. 2010/1837) provides
+                     that the powers conferred on the Secretary of State under the 1983 Act (with exceptions
+                     which are not relevant to these Regulations) are exercisable concurrently by the Secretary
+                     of State and the Lord President of the Council.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.4</span></h2>
+                  <p>The Secretary of State for Scotland exercises the powers under the 1983 Act in Scotland.
+                     However since the Individual Electoral Registration Digital Service and the verification
+                     procedures for new applications under IER are being run on a UK basis, the Lord President
+                     of the Council will carry out functions related to those concurrently with the Secretary
+                     of State for Scotland.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.5</span></h2>
+                  <p>This explanatory memorandum covers both regulations for England and Wales and for
+                     Scotland, amending their respective versions of the Representation of the People Regulations
+                     2001. Both the existing regulations and the two instruments covered by this explanatory
+                     memorandum are almost identical, varying only in accordance the differences between
+                     Scottish law and that in England and Wales to achieve the same policy objectives.</p>
+               </section>
+            </section>
+            <section id="paragraph_5" class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Territorial Extent and Application</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>These instruments apply to England and Wales or to<i> </i>Scotland, as set out in their titles.</p>
+               </section>
+            </section>
+            <section id="paragraph_6" class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>
+                     <b>
+                        </b>
+                     <span class="tab">&nbsp;</span>The Minister for Political and Constitutional Reform has made the following statement
+                     regarding Human Rights: </p>
+                  <section class="subparagraph">
+                     <p>In my view the provisions of the Draft Representation of the People (England and Wales)(Description
+                        of Electoral Registers and Amendment) Regulations 2013 are compatible with the Convention
+                        rights.</p>
+                  </section>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>
+                     <b>
+                        </b>
+                     <span class="tab">&nbsp;</span>The Secretary of State for Scotland has made the following statement regarding Human
+                     Rights: </p>
+                  <section class="subparagraph">
+                     <p>In my view the provisions of the Draft Representation of the People (Scotland)(Description
+                        of Electoral Registers and Amendment) Regulations 2013 are compatible with the Convention
+                        rights.</p>
+                  </section>
+               </section>
+            </section>
+            <section id="paragraph_7" class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy background</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>The Electoral Registration and Administration Act (the “ERA Act”) 2013 amends the
+                     Representation of the People Act 1983 to replace the existing household registration
+                     system with Individual Electoral Registration (IER). Under IER electors will be asked
+                     to provide identifying information which will be used to verify their identity before
+                     they are added to the electoral register, helping to tackle fraud and improve the
+                     integrity of our electoral system. Many of the regulations in these instruments set
+                     out the activities and documents that will make up the individual registration system.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>Applications to register under IER will have to include the applicant’s ‘personal
+                     identifiers’: their name, date of birth and national insurance number (NINO). The
+                     Electoral Commission will design application forms, including the requirements for
+                     the information set out in regulation 10. This form, once approved by the Lord President
+                     of the Council, will be sent to all potential electors identified by the electoral
+                     registration officer (ERO) through the annual canvass or other information; applicants
+                     may then apply using the form or online using the new digital portal.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>The personal identifiers will be matched against records held by the Department for
+                     Work and Pensions. The results of this match will be communicated to the ERO and must
+                     be taken into account in establishing that the applicant is who they say they are
+                     – a key factor in processing an application to register, alongside establishing their
+                     eligibility in age and nationality and their residence. These instruments also set
+                     out the restrictions around retention of these identifiers and a new criminal offence
+                     for unlawful disclosure of this information.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.4</span></h2>
+                  <p>If the required personal identifiers cannot be provided, or if data-matching on them
+                     is unsuccessful, applicants will be asked to provide documentary evidence from an
+                     extensive list, specified in regulations and supporting guidance (see paragraph 9.1
+                     below), in order to verify their identity.  If these documents cannot be provided
+                     the ERO will ask the applicant to have their application attested by another elector
+                     who is registered in the same local authority area and is of ‘good standing’ there.
+                     Different evidence is permitted from special category applicants.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.5</span></h2>
+                  <p>The annual canvass of households will continue to take place under these regulations,
+                     but it will no longer be the way onto the register.  Instead it will be used to confirm
+                     for the ERO that those registered are still resident and alert the ERO to any departures
+                     from the residence or any new potential electors. EROs must send a canvass form to
+                     every residential property; the ERO must have made at least one visit to the property
+                     and send two follow-up canvass forms if the residents do not reply at any time with
+                     the information requested. The regulations set out that it is the information requested
+                     on the form that an ERO requires, not necessarily the paper form itself, allowing
+                     electronic returns to be made (for example in large homes of multiple occupancy) and
+                     the continuation of no-change notifications by residence through text messages and
+                     phone calls already used in some areas.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.6</span></h2>
+                  <p>EROs must invite a person to register within 28 days of finding out that they are
+                     resident and potentially eligible. If the person does not apply, the ERO must have
+                     made at least one visit to the property and sent two follow-up invitations to encourage
+                     an application before their duties are complete and before a requirement to register
+                     may be issued (at the ERO’s discretion). If no application is made following the issuing
+                     of a requirement to register, the ERO has the choice to impose a civil penalty of
+                     £80.  Once this penalty is imposed, the person may annul it entirely by applying to
+                     register or successfully applying for a review of the ERO’s decision or successfully
+                     appealing the imposition. If the penalty is paid but no application is made, the person
+                     remains liable to be invited and (later) required to register.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.7</span></h2>
+                  <p>Although the transitional activities are primarily set out in the Electoral Registration
+                     and Administration Act 2013 (Transitional Provisions) Order 2013 a transitional measure
+                     is included in these regulations (regulation 14(2)) to allow EROs to carry out ‘confirmation
+                     data-matching’ on the records of people whose details were received in the postponed
+                     2013/14 annual canvass but who were too young to be registered as electors or attainers
+                     (i.e. those who were 16 but will not turn 18 during the life of the register published
+                     after that canvass) to ensure that more young people will be data-matched and fewer
+                     will need to make IER applications.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.8</span></h2>
+                  <p>An elector’s choice on whether their name and address are omitted from the open-access
+                     register (also known as the edited register) will persist unless or until they complete
+                     a new application to register, or wish to change their existing choice. Electors will
+                     be able to change their choice on the open-access register/edited register at any
+                     time by contacting their ERO and providing their full name and address; a return of
+                     canvass form will not constitute a valid request. Publication of updates to the open-access
+                     register will be brought in line with the full electoral register to give effect to
+                     new requests on a monthly basis. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.9</span></h2>
+                  <p>There will be two versions of the ‘form of words’ to describe the difference between
+                     the two electoral registers: a short version and a long version. EROs must use the
+                     short version on registration forms, pre-printed canvass forms, and where they have
+                     authorised applications to be submitted by telephone or in person. The long version
+                     will be used in all other instances where an ERO provides electors with information
+                     on the two electoral registers. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.10</span></h2>
+                  <p>The right to be registered anonymously (subject to meeting the criteria)<span style="color:#1F497D"> </span>is retained under IER. Regulation 21 inserts additional relevant court orders and
+                     injunctions accepted as evidence in support of an application for anonymous registration
+                     across Great Britain</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.11</span></h2>
+                  <p>The ERA Act also made a number of changes to the conduct of elections, and these Regulations
+                     make related provisions which support many of them. The key conduct-related measures
+                     provided for in these regulations are as follows </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.12</span></h2>
+                  <p>The ERA Act makes provision for the extension of the electoral timetable for UK Parliamentary
+                     elections from 17 to 25 working days and also adjusts a number of the deadlines within
+                     the timetable to allow more time for the postal vote process and to facilitate the
+                     administration of elections more generally, which should result in efficiency savings.
+                     This is principally by enabling postal votes to be issued as soon as practicable,
+                     after the close of nominations at an election, rather than after the 11th day before
+                     the poll which is the present earliest time postal votes may be issued. These Regulations
+                     also make consequential provisions, including enabling postal voters to change their
+                     voting arrangements by cancelling their postal vote and changing to another voting
+                     method up to the current deadline, should they so wish.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.13</span></h2>
+                  <p>Postal vote identifier rejection notifications. EROs will inform electors after a
+                     poll if the signature or date of birth, which they supply on the postal voting statement,
+                     failed to match those held on record or had simply been left blank. This is to ensure
+                     those people can participate effectively in future elections and not have their ballot
+                     papers rejected at successive polls because of a signature degradation or because
+                     they are making inadvertent errors. EROs will not be obliged to inform individuals
+                     where fraud is suspected.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.14</span></h2>
+                  <p>The identifiers supplied in all postal votes in each poll will be checked. This builds
+                     upon current practice by Returning Officers at recent national elections, and ensures
+                     all postal votes are subject to the same high level of scrutiny.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.15</span></h2>
+                  <p>Extension of emergency proxy provisions to those absent on the grounds of business
+                     or service. This is to ensure that those who are absent at short notice for business
+                     or service reasons are eligible to apply for an emergency proxy vote in the days before
+                     the election and do not lose the opportunity to vote.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.16</span></h2>
+                  <p>Updates to voting forms for accessibility. The Cabinet Office has user-tested revised
+                     forms with representative samples of the voting public (including poll cards and postal
+                     voting statements) for use at UK Parliamentary elections. The intention is to ensure
+                     that the forms which voters use at elections are as clear and easy to use as possible,
+                     to improve effective engagement in the voting process. These Regulations complement
+                     the draft Representation of the People (Ballot Paper) Regulations 2013, which make
+                     improvements to the layout of the parliamentary ballot paper.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.17</span></h2>
+                  <p>Regulation 30 of the Scottish regulations changes the last date that a postal voter
+                     can apply for a replacement for a lost postal ballot paper from 3 to 4 days before
+                     the day of the poll.&nbsp; This change brings the Scottish regulations into line with the
+                     existing England and Wales regulations, which already have the 4 day deadline.&nbsp; This
+                     change has been made so that the same deadline applies throughout Great Britain</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.18</span></h2>
+                  <p>Consolidation: The Law Commission is currently undertaking a review into electoral
+                     law.</p>
+               </section>
+            </section>
+            <section id="paragraph_8" class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation outcome</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>The Electoral Commission and the Information Commissioner have been consulted on these
+                     instruments as required by section 53(5) of the Representation of the People Act 1983
+                     and section 7(1) of the Political Parties, Elections and Referendums Act 2000. In
+                     addition, the Cabinet Office have conducted weekly meetings with the Electoral Commission
+                     and the Association of Electoral Administrators from March to June 2013 to draw out
+                     issues ahead of formal consultation. The Government also undertook targeted engagement
+                     with these and other stakeholders following the publication of proposed draft secondary
+                     legislation in September 2012.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.2</span></h2>
+                  <p>The Electoral Commission’s response to the formal consultation welcomed the Government’s
+                     approach to the implementation of IER; they also made a number of recommendations.
+                     The Commission has recommended that EROs should be able to accept applications that
+                     contain all the required information but are not submitted on an EC designed form
+                     or through the IER Digital Service; the Government has agreed that such applications
+                     should be accepted, although EROs will only be able to issue the authorised forms.
+                     The Commission also recommended that overseas electors should be allowed to make online
+                     applications via the IER Digital Service; these Regulations enable a secure online
+                     channel for these applications, but do not mandate that they are accepted until this
+                     channel is in place. They welcomed the minimum standards for following up annual canvass
+                     forms and invitations to register, including the introduction of the civil penalty.
+                     The Commission recommended that the Regulations should be interpreted to allow third-party
+                     completion to enable people with severe disabilities to have their applications completed
+                     by another person; the ERA Act does not allow third-party applications, but these
+                     regulations allow the personal details to be completed by a carer or similarly-placed
+                     person, as long as the declaration is made by the applicant. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.3</span></h2>
+                  <p>The Information Commissioner’s Office welcomed the provisions relating to the two
+                     versions of the electoral register, and that electors would be presented with more
+                     detailed information about the common uses of the register. They questioned the inclusion
+                     of reference to it being harder for electors to access some goods or services if they
+                     are omitted from the edited register; the Government has decided to remove this sentence.
+                     They also welcomed the offence in these instruments and the transitional provisions
+                     order around unlawful disclosure of information.  The Government is willing to share
+                     the guidance that EROs will receive from the Secretary of State on IER (see Paragraph
+                     9.1 below), as they have requested.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.4</span></h2>
+                  <p>The Electoral Commission’s response welcomed the Government’s approach to the updating
+                     of the conduct provisions in these Regulations; they also made certain recommendations.
+                     The Government has changed the regulations in response to the Commission’s recommendation
+                     that all types of postal voter can cancel their postal vote and change their voting
+                     arrangements up to the present deadline of the 11th day before an election, provided
+                     they have not already attempted to vote and sent it to the Local Returning Officer.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.5</span></h2>
+                  <p>The Commission also suggested minor changes to the drafting of the regulations, which
+                     have been considered and some have been incorporated into this instrument. We have
+                     also made some amendments to the drafting of the voting forms, in response to comments
+                     received during consultation.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.6</span></h2>
+                  <p>These instruments have also been developed through close engagement with the Electoral
+                     Commission, Association of Electoral Administrators and the Scottish Assessors Association.
+                     The Department of Work and Pensions, Ministry of Justice, the Tribunals Procedure
+                     Committee, the Society of Local Authority Chief Executives, other Government departments,
+                     and other stakeholder groups representing the interest of under-registered groups
+                     have also been consulted.</p>
+               </section>
+            </section>
+            <section id="paragraph_9" class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Guidance</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>The Electoral Commission will continue to issue guidance to EROs about electoral registration
+                     and the conduct of elections, including covering all aspects of the transition to
+                     and operation of IER. Under section 1 of the ERA Act, the Minister will also issue
+                     guidance (in force for the first five years of the operation of IER) on the determination
+                     of applications.  This guidance will be distributed in a joint document with the guidance
+                     issued by the Electoral Commission to make it as useful as possible for EROs.</p>
+               </section>
+            </section>
+            <section id="paragraph_10" class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>There is no impact on business, charities or voluntary bodies. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The attached impact assessments were produced relating to the conduct elements of
+                     the ERA Act which remain applicable to these instruments. A separate full regulatory
+                     impact assessment has not been prepared for these instruments because no impacts on
+                     the private, public or voluntary sectors is foreseen, other than those set out in
+                     the attached impact assessments prepared for the ERA Act.  </p>
+               </section>
+            </section>
+            <section id="paragraph_11" class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Regulating small business</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The legislation does not apply to small business. </p>
+               </section>
+            </section>
+            <section id="paragraph_12" class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring &amp; review</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>The Electoral Commission and the Cabinet Office will continue to monitor the completeness
+                     and accuracy of the electoral register throughout and after the transition to IER.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>The Commission will make an assessment of the completeness and accuracy of the registers
+                     in use in April 2014 and December 2015 (i.e. before and after the transition on current
+                     Government plans). This will be assessed against a Cabinet Office baseline measurement
+                     of 86% completeness and 85% accuracy, calculated in earlier studies by the Commission
+                     on the registers in December 2010 and April 2011 respectively. The Commission’s annual
+                     ‘Winter Tracker’ public opinion survey will also continue to record the perceived
+                     accessibility of registration</p>
+               </section>
+            </section>
+            <section id="paragraph_13" class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+               <section class="subparagraph">
+                  <p>
+                     <b>Carol Gokce </b>at the Cabinet Office, tel 0207 271 2679: email: <a href="mailto:carol.gokce@cabinet-office.gsi.gov.uk"><span style="color:#0000FF"><u>carol.gokce@cabinet-office.gsi.gov.uk</u></span></a> can answer any queries regarding the instrument.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

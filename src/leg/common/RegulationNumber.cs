@@ -19,8 +19,21 @@ class RegulationNumber {
         new Regex(@"^\d{4} No\. \d+ \(([LS])\. (\d+)\)$")
     };
 
+    // Patterns for *draft* SI/SR/SSI numbers — accepted by Is() so the EM
+    // header splitter can still recognise the heading block, but never used
+    // by MakeURI() (a draft has no real number to put in a URI).
+    private static Regex[] DraftPatterns = new Regex[] {
+        // Draft SI: "<year> No.", optionally followed by a [PLACEHOLDER]
+        // (e.g. [XXXX], [DRAFT], [TBD]). Trailing whitespace tolerated.
+        new Regex(@"^\d{4} No\.(\s*\[[^\]]+\])?\s*$"),
+        // Paired-EM placeholder where the year is also missing.
+        new Regex(@"^No\.\s*$")
+    };
+
     internal static bool Is(string text) {
-        return Patterns.Any(t => t.Item1.IsMatch(text));
+        if (Patterns.Any(t => t.Item1.IsMatch(text)))
+            return true;
+        return DraftPatterns.Any(p => p.IsMatch(text));
     }
 
     internal static string MakeURI(string s) {
