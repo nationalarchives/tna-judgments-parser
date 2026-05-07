@@ -93,21 +93,45 @@ internal static class TocGenerator {
     }
 
     private static int PopulateMultiXPath(XmlDocument xml, XmlElement toc, string expressionUri, XmlNamespaceManager nsmgr) {
-        // Historical EM behaviour: tocNumber always increments per loop iteration, even
-        // when an Add method returns early (skipped entries still consume a number).
-        // Preserved so pre-existing EM fixtures round-trip byte-identical.
+        // Walk mainBody children in document order, single pass. tocNumber increments
+        // per emitted entry so eIds are dense (paragraph_1, paragraph_2, ...) and
+        // match the order paragraphs appear in the body.
+        //
+        // Historical (pre-LEG-em-toc-doc-order): three sequential XPath passes --
+        // paragraphs-with-intro, sections, then paragraphs-with-num-but-no-intro --
+        // sharing one tocNumber counter that incremented per iteration even on
+        // skipped emits. The result was that an EM's first body paragraph (which
+        // typically has a num but no <intro>, e.g. the boilerplate "This explanatory
+        // memorandum has been prepared by..."  paragraph) landed in the THIRD pass
+        // and ended up at the bottom of the TOC with the highest eId, while later
+        // paragraphs took eIds 1..N-1. Regenerated all EM fixtures to match the
+        // single-pass document order behaviour.
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr);
+        if (mainBody == null) return 0;
+
         int tocNumber = 1;
         int added = 0;
+        foreach (XmlNode child in mainBody.ChildNodes) {
+            if (child is not XmlElement el) continue;
+            int before = toc.ChildNodes.Count;
 
-        added += WalkAndEmit(xml, toc, "//akn:mainBody/akn:paragraph[akn:intro]", nsmgr, ref tocNumber,
-            (p, n) => AddTocItemFromParagraph(xml, toc, p, expressionUri, nsmgr, n));
+            if (el.LocalName == "paragraph") {
+                // Prefer the with-intro emitter; fall back to the flat (no-intro)
+                // emitter for paragraphs that have a num but only <content>.
+                if (el.SelectSingleNode("akn:intro/akn:p", nsmgr) != null) {
+                    AddTocItemFromParagraph(xml, toc, el, expressionUri, nsmgr, tocNumber);
+                } else if (el.SelectSingleNode("akn:num", nsmgr) != null) {
+                    AddTocItemFromFlatParagraph(xml, toc, el, expressionUri, nsmgr, tocNumber);
+                }
+            } else if (el.LocalName == "section") {
+                AddTocItemFromSection(xml, toc, el, expressionUri, nsmgr, tocNumber);
+            }
 
-        added += WalkAndEmit(xml, toc, "//akn:mainBody/akn:section[akn:heading]", nsmgr, ref tocNumber,
-            (s, n) => AddTocItemFromSection(xml, toc, s, expressionUri, nsmgr, n));
-
-        added += WalkAndEmit(xml, toc, "//akn:mainBody/akn:paragraph[akn:num and not(akn:intro)]", nsmgr, ref tocNumber,
-            (p, n) => AddTocItemFromFlatParagraph(xml, toc, p, expressionUri, nsmgr, n));
-
+            if (toc.ChildNodes.Count > before) {
+                added++;
+                tocNumber++;
+            }
+        }
         return added;
     }
 
