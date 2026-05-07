@@ -45,6 +45,12 @@ abstract class BaseHelper {
         using var session = RenderSession.Begin(
             renderer ?? new NullRenderer(), docxBytes, filename, allowUnrenderedCharts);
 
+        // Stash docx bytes for the duration of the parse so DocxLastModified
+        // can fall back to a direct ZIP read of docProps/core.xml when the
+        // SDK's PackageProperties.Modified misses it (LibreOffice's bad rels
+        // URI; see DocxLastModified for details).
+        using var bytesScope = docxBytes is null ? null : DocxLastModified.WithDocxBytes(docxBytes);
+
         TextBoxLifter.Lift(docx);
 
         IDocument doc = ParseDocument(docx, filename);
