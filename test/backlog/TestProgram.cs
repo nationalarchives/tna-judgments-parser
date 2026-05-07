@@ -1,31 +1,39 @@
 #nullable enable
 
-using Microsoft.Extensions.DependencyInjection;
-
 using System;
 
-using Xunit;
-using Microsoft.Extensions.Time.Testing;
-using UK.Gov.Legislation.Judgments.Parse;
+using Microsoft.Extensions.DependencyInjection;
+
 using test.backlog.EndToEndTests;
+
+using Xunit;
 
 namespace test.backlog;
 
-public class TestProgram(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
+public class TestProgram(ITestOutputHelper testOutputHelper)
+    : BaseEndToEndTests(
+        testOutputHelper) // This isn't an end to end test but it does touch static state shared with the end to end tests
 {
-    [Fact]
-    public void ConfigureDependencyInjection_HasAccurateTimeProviderByDefault()
+    protected override void Dispose(bool disposing)
     {
-        // Ensure that we're not running with dependency injections
-        Backlog.Src.Program.DependencyInjectionOverrides.Clear();
-        
-        ServiceProvider serviceProvider = Backlog.Src.Program.ConfigureDependencyInjection("pathToDataFolder", "trackerPath", "judgmentsFilePath", "hmctsFilePath", "bucketName");
-        
-        DateTimeOffset timeProviderTime = serviceProvider.GetRequiredService<TimeProvider>().GetUtcNow();
-        
-        Assert.IsNotType<FakeTimeProvider>(serviceProvider.GetRequiredService<TimeProvider>());
-        Assert.Equal(timeProviderTime, DateTime.UtcNow, TimeSpan.FromSeconds(1));
+        //Set IS_TEST to true so that the main dispose can clean up any state changes
+        Environment.SetEnvironmentVariable("IS_TEST", "true");
+        base.Dispose(disposing);
+    }
 
-        
+    [Fact]
+    public void ConfigureDependencyInjection_RegistersSystemTimeProvider()
+    {
+        // Ensure that we're not running with test dependency injections
+        Environment.SetEnvironmentVariable("IS_TEST", null);
+
+        var services = new ServiceCollection();
+
+        Backlog.Src.Program.ConfigureDependencyInjection(services, "pathToDataFolder", "trackerPath", "judgmentsFilePath", "hmctsFilePath", "bucketName");
+
+        using var serviceProvider = services.BuildServiceProvider();
+        var timeProvider = serviceProvider.GetRequiredService<TimeProvider>();
+
+        Assert.Same(TimeProvider.System, timeProvider);
     }
 }
