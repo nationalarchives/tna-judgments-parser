@@ -29,10 +29,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -702,7 +698,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <h2><span class="num">11.2</span></h2>
                   <p>This instrument is covered by the Government's 6th Statement of New Regulation (July
                      to December 2013). That statement also covers the implementation of certain new accounting
-                     exemptions for micro sized companies via the first phase of the<span style="color:#0000FF"></span>implementation of the “Micros Directive”<a class="fn" id="fnref-18" href="#fn-18">18</a>. When qualifying as micro-sized, subject to exclusions for certain financial services
+                     exemptions for micro sized companies via the first phase of the<span style="color:#0000FF"> </span>implementation of the “Micros Directive”<a class="fn" id="fnref-18" href="#fn-18">18</a>. When qualifying as micro-sized, subject to exclusions for certain financial services
                      providers, unlimited companies affected by this instrument will be able to take advantage
                      of the accounting exemptions being made available.</p>
                </section>
@@ -823,8 +819,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                                        the entities referred to in the second subparagraph where all members having unlimited
                                        liability are themselves either limited companies or the entities set out in the second
                                        subparagraph. </p>
-                                    <p>
-                                       </p>
+                                    <p>  </p>
                                  </td>
                                  <td>
                                     <p>For partnerships and limited partnerships, Regulation 3 of the 2008 Regulations, as
@@ -845,8 +840,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                                        the exemption in that section from preparing and filing accounts under Part 15 of
                                        the Companies Act those unlimited companies all of whose members are entities listed
                                        in the bullet-point list above.</p>
-                                    <p>
-                                       </p>
+                                    <p>  </p>
                                  </td>
                               </tr>
                               <tr>
@@ -934,11 +928,9 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                                     <p>• those members of the partnership or unlimited company having unlimited liability,
                                        that are incorporated in other EEA States, have not filed the  partnership’s or unlimited
                                        company’s accounts with their own accounts;</p>
-                                    <p>
-                                       </p>
+                                    <p> </p>
                                     <p>• the remaining members having unlimited liability are incorporated outside the EEA.</p>
-                                    <p>
-                                       </p>
+                                    <p> </p>
                                  </td>
                                  <td>
                                     <p>The scope of application of the requirements for publication of the accounts at a
@@ -1015,8 +1007,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                                        State.</p>
                                     <p></p>
                                     <p>The UK does not take up this option for unlimited companies.</p>
-                                    <p>
-                                       </p>
+                                    <p> </p>
                                  </td>
                               </tr>
                               <tr>
@@ -1056,8 +1047,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                                     <p></p>
                                     <p>As the UK does not take up the relevant options for unlimited companies, this requirement
                                        is not applied to them.</p>
-                                    <p>
-                                       </p>
+                                    <p>   </p>
                                  </td>
                               </tr>
                               <tr>
@@ -1145,7 +1135,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  SI 2011/99.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-7" href="#fnref-7">7</a> <a href="http://www.legislation.gov.uk/id/uksi/1993/1820"><span style="color:#0000FF"><u>SI 1993/1820</u></span></a>.</p>
+               <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  <a href="http://www.legislation.gov.uk/id/uksi/1993/1820"><span style="color:#0000FF"><u>SI 1993/1820</u></span></a>.</p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  SR (NI) 1994/133.</p>

@@ -29,10 +29,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -697,10 +693,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                         transfer deadline of 30 September 2025.</p>
                   </section>
                   <section class="level">
-                     <p>
-                        <span class="tab">&nbsp;</span>
-                        <b>Regulation (EU) No 2018/1976</b>
-                        </p>
+                     <p> <span class="tab">&nbsp;</span><b>Regulation (EU) No 2018/1976</b></p>
                   </section>
                   <section class="paragraph num">
                      <h2><span class="num">7.20</span></h2>
@@ -1052,19 +1045,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          <footer class="footnotes">
             <hr style="margin-top:2em">
             <div class="footnote">
-               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.icao.int/safety/safetymanagement/pages/guidancematerial.aspx"><span style="color:#0563C1"><u>https://www.icao.int/safety/safetymanagement/pages/guidancematerial.aspx</u></span></a></p>
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  <a href="https://www.icao.int/safety/safetymanagement/pages/guidancematerial.aspx"><span style="color:#0563C1"><u>https://www.icao.int/safety/safetymanagement/pages/guidancematerial.aspx</u></span></a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="http://publicapps.caa.co.uk/docs/33/CAAOID0022withTables.pdf"><span style="color:#0563C1"><u>http://publicapps.caa.co.uk/docs/33/CAAOID0022withTables.pdf</u></span></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  <a href="http://publicapps.caa.co.uk/docs/33/CAAOID0022withTables.pdf"><span style="color:#0563C1"><u>http://publicapps.caa.co.uk/docs/33/CAAOID0022withTables.pdf</u></span></a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-3" href="#fnref-3">3</a> <a href="https://consultations.caa.co.uk/ga/uk-general-aviation-opportunities-after-easa/"><span style="color:#0563C1"><u>https://consultations.caa.co.uk/ga/uk-general-aviation-opportunities-after-easa/</u></span></a></p>
+               <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  <a href="https://consultations.caa.co.uk/ga/uk-general-aviation-opportunities-after-easa/"><span style="color:#0563C1"><u>https://consultations.caa.co.uk/ga/uk-general-aviation-opportunities-after-easa/</u></span></a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-4" href="#fnref-4">4</a> <a href="https://www.easa.europa.eu/en/document-library/notices-of-proposed-amendment/npa-2019-05"><span style="color:#0563C1"><u>https://www.easa.europa.eu/en/document-library/notices-of-proposed-amendment/npa-2019-05</u></span></a></p>
+               <p><a class="marker" id="fn-4" href="#fnref-4">4</a>  <a href="https://www.easa.europa.eu/en/document-library/notices-of-proposed-amendment/npa-2019-05"><span style="color:#0563C1"><u>https://www.easa.europa.eu/en/document-library/notices-of-proposed-amendment/npa-2019-05</u></span></a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> <a href="https://consultations.caa.co.uk/corporate-communications/ga-pilot-licensing-training-phase-1/"><span style="color:#0563C1"><u>https://consultations.caa.co.uk/corporate-communications/ga-pilot-licensing-training-phase-1/</u></span></a></p>
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a>  <a href="https://consultations.caa.co.uk/corporate-communications/ga-pilot-licensing-training-phase-1/"><span style="color:#0563C1"><u>https://consultations.caa.co.uk/corporate-communications/ga-pilot-licensing-training-phase-1/</u></span></a> </p>
             </div>
          </footer>
       </article>

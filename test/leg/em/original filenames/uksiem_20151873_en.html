@@ -29,10 +29,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -583,10 +579,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          <footer class="footnotes">
             <hr style="margin-top:2em">
             <div class="footnote">
-               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf"><span style="color:#0000FF"><u>http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf</u></span></a></p>
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  <a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf"><span style="color:#0000FF"><u>http://www.lgbce.org.uk/__data/assets/pdf_file/0003/25185/Herts-final-recommendations-final.pdf</u></span></a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0005/23288/Hertfordshire-Draft-Recommendations-Sept2014.pdf"><span style="color:#0000FF"><u>http://www.lgbce.org.uk/__data/assets/pdf_file/0005/23288/Hertfordshire-Draft-Recommendations-Sept2014.pdf</u></span></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="http://www.lgbce.org.uk/__data/assets/pdf_file/0005/23288/Hertfordshire-Draft-Recommendations-Sept2014.pdf"><span style="color:#0000FF"><u>http://www.lgbce.org.uk/__data/assets/pdf_file/0005/23288/Hertfordshire-Draft-Recommendations-Sept2014.pdf</u></span></a> </p>
             </div>
          </footer>
       </article>

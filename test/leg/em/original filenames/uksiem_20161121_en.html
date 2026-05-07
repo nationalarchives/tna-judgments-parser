@@ -29,10 +29,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -320,7 +316,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </span></h2>
                <section class="paragraph num">
                   <h2><span class="num">2.1</span></h2>
-                  <p>These Regulations<b></b>make provision to confer certain immunities and privileges on members, and members
+                  <p>These Regulations<b> </b>make provision to confer certain immunities and privileges on members, and members
                      of staff of the Independent Reporting Commission (“the Commission”), including agents
                      of, or other persons carrying out work for the Commission.   </p>
                </section>
@@ -458,7 +454,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      to tackle).   Third, absent these immunities, there would be a risk that the Commission
                      would become bogged down in litigation and be unable fully to discharge its functions
                      which are intended to be carried out, at least initially, over a limited period of
-                     time.<i></i>Fourth, the immunities from suit and legal process also serve to make sure that the
+                     time.<i>  </i>Fourth, the immunities from suit and legal process also serve to make sure that the
                      Commission is able to receive the information it needs to accurately assess progress
                      towards ending paramilitary activity connected with Northern Ireland, and therefore
                      are central to the fulfilment of its functions.  A body such as the Commission cannot
@@ -611,7 +607,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  A copy of the agreement can be found at <a href="https://www.gov.uk/uk-treaties"><span style="color:#000000">https://www.gov.uk/uk-treaties</span></a><span style="color:#000000"> during week commencing 19 September 2016. </span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/479116/A_Fresh_Start_-_The_Stormont_Agreement_and_Implementation_Plan_-_Final_Version_20_Nov_2015_for_PDF.pdf"><span style="color:#000000">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/479116/A_Fresh_Start_-_The_Stormont_Agreement_and_Implementation_Plan_-_Final_Version_20_Nov_2015_for_PDF.pdf</span></a></p>
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/479116/A_Fresh_Start_-_The_Stormont_Agreement_and_Implementation_Plan_-_Final_Version_20_Nov_2015_for_PDF.pdf"><span style="color:#000000">https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/479116/A_Fresh_Start_-_The_Stormont_Agreement_and_Implementation_Plan_-_Final_Version_20_Nov_2015_for_PDF.pdf</span></a> </p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-3" href="#fnref-3">3</a>  <a href="https://www.gov.uk/government/publications/the-stormont-house-agreement">https://www.gov.uk/government/publications/the-stormont-house-agreement</a></p>

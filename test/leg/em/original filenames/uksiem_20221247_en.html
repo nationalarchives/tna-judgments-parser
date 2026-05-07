@@ -29,10 +29,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -1270,7 +1266,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   CHP Northern Ireland GOOs respectively.</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> <a href="https://ec.europa.eu/info/sites/info/files/brexit_files/info_site/energy_origin_en.pdf"><span style="color:#0563C1"><u>https://ec.europa.eu/info/sites/info/files/brexit_files/info_site/energy_origin_en.pdf</u></span></a></p>
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a>  <a href="https://ec.europa.eu/info/sites/info/files/brexit_files/info_site/energy_origin_en.pdf"><span style="color:#0563C1"><u>https://ec.europa.eu/info/sites/info/files/brexit_files/info_site/energy_origin_en.pdf</u></span></a></p>
             </div>
             <div class="footnote">
                <p><a class="marker" id="fn-7" href="#fnref-7">7</a>  Regulation 10(2) of the 2007 Regulations defines a public authority as “…any Minister,
@@ -1278,13 +1274,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   office.”</p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-8" href="#fnref-8">8</a> <a href="https://www.gov.uk/government/publications/generating-low-carbon-electricity/generating-low-carbon-electricity"><span style="color:#0563C1"><u>https://www.gov.uk/government/publications/generating-low-carbon-electricity/generating-low-carbon-electricity</u></span></a></p>
+               <p><a class="marker" id="fn-8" href="#fnref-8">8</a>  <a href="https://www.gov.uk/government/publications/generating-low-carbon-electricity/generating-low-carbon-electricity"><span style="color:#0563C1"><u>https://www.gov.uk/government/publications/generating-low-carbon-electricity/generating-low-carbon-electricity</u></span></a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-9" href="#fnref-9">9</a> <a href="https://www.gov.uk/government/consultations/feed-in-tariffs-and-contracts-for-difference-proposals-relating-to-guarantees-of-origin"><span style="color:#0563C1"><u>https://www.gov.uk/government/consultations/feed-in-tariffs-and-contracts-for-difference-proposals-relating-to-guarantees-of-origin</u></span></a></p>
+               <p><a class="marker" id="fn-9" href="#fnref-9">9</a>  <a href="https://www.gov.uk/government/consultations/feed-in-tariffs-and-contracts-for-difference-proposals-relating-to-guarantees-of-origin"><span style="color:#0563C1"><u>https://www.gov.uk/government/consultations/feed-in-tariffs-and-contracts-for-difference-proposals-relating-to-guarantees-of-origin</u></span></a> </p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-10" href="#fnref-10">10</a> <a href="https://www.gov.uk/government/consultations/combined-heat-and-power-pathway-to-decarbonisation-call-for-evidence"><span style="color:#0563C1"><u>https://www.gov.uk/government/consultations/combined-heat-and-power-pathway-to-decarbonisation-call-for-evidence</u></span></a></p>
+               <p><a class="marker" id="fn-10" href="#fnref-10">10</a>  <a href="https://www.gov.uk/government/consultations/combined-heat-and-power-pathway-to-decarbonisation-call-for-evidence"><span style="color:#0563C1"><u>https://www.gov.uk/government/consultations/combined-heat-and-power-pathway-to-decarbonisation-call-for-evidence</u></span></a> </p>
             </div>
          </footer>
       </article>
