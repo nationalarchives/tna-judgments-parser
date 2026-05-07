@@ -29,10 +29,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -718,10 +714,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
          <footer class="footnotes">
             <hr style="margin-top:2em">
             <div class="footnote">
-               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997"><span style="color:#0563C1"><u>Consultation on proposed amendments to the Architects Act 1997 - GOV.UK (www.gov.uk)</u></span></a><span style="color:#0563C1"><u> - <a href="https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997">https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997</a></u></span></p>
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a>  <a href="https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997"><span style="color:#0563C1"><u>Consultation on proposed amendments to the Architects Act 1997 - GOV.UK (www.gov.uk)</u></span></a><span style="color:#0563C1"><u> - <a href="https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997">https://www.gov.uk/government/consultations/consultation-on-proposed-amendments-to-the-architects-act-1997</a></u></span></p>
             </div>
             <div class="footnote">
-               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://publications.parliament.uk/pa/jt5803/jtselect/jtstatin/149/report.html#Statutory-Instrument-2"><span style="color:#0563C1"><u>Twenty-Sixth Report of Session 2022–23 - Joint Committee on Statutory Instruments
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a>  <a href="https://publications.parliament.uk/pa/jt5803/jtselect/jtstatin/149/report.html#Statutory-Instrument-2"><span style="color:#0563C1"><u>Twenty-Sixth Report of Session 2022–23 - Joint Committee on Statutory Instruments
                            (parliament.uk)</u></span></a><span style="color:#0563C1"><u> - <a href="https://publications.parliament.uk/pa/jt5803/jtselect/jtstatin/149/report.html#Statutory-Instrument-2">https://publications.parliament.uk/pa/jt5803/jtselect/jtstatin/149/report.html#Statutory-Instrument-2</a></u></span></p>
             </div>
          </footer>

@@ -29,10 +29,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -401,7 +397,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </p>
                <section class="subparagraph num">
                   <h2><span class="num">5.1</span></h2>
-                  <p>These instruments apply to England and Wales or to<i></i>Scotland, as set out in their titles.</p>
+                  <p>These instruments apply to England and Wales or to<i> </i>Scotland, as set out in their titles.</p>
                </section>
             </section>
             <section id="paragraph_6" class="paragraph num">
@@ -414,7 +410,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="subparagraph num">
                   <h2><span class="num">6.1</span></h2>
                   <p>
-                     <b></b>
+                     <b>
+                        </b>
                      <span class="tab">&nbsp;</span>The Minister for Political and Constitutional Reform has made the following statement
                      regarding Human Rights: </p>
                   <section class="subparagraph">
@@ -426,7 +423,8 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                <section class="subparagraph num">
                   <h2><span class="num">6.2</span></h2>
                   <p>
-                     <b></b>
+                     <b>
+                        </b>
                      <span class="tab">&nbsp;</span>The Secretary of State for Scotland has made the following statement regarding Human
                      Rights: </p>
                   <section class="subparagraph">
@@ -543,7 +541,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </section>
                <section class="subparagraph num">
                   <h2><span class="num">7.10</span></h2>
-                  <p>The right to be registered anonymously (subject to meeting the criteria)<span style="color:#1F497D"></span>is retained under IER. Regulation 21 inserts additional relevant court orders and
+                  <p>The right to be registered anonymously (subject to meeting the criteria)<span style="color:#1F497D"> </span>is retained under IER. Regulation 21 inserts additional relevant court orders and
                      injunctions accepted as evidence in support of an application for anonymous registration
                      across Great Britain</p>
                </section>

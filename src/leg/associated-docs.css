@@ -24,10 +24,6 @@ span.fn { vertical-align: super; font-size: small }
  * push the heading to the right edge. */
 p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
 p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
-/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
- * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
- * don't render a stray leading nbsp that looks like a typo. */
-p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
