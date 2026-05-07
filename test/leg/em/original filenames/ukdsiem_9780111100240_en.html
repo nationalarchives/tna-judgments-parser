@@ -1,0 +1,871 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1em;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	grid-column: 1;
+	justify-self: start;
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+/* Sits on the right; disabled on the whole-doc HTML (you are already
+ * on full view). Frontend activates with an href on section views. */
+.full-view-link {
+	grid-column: 3;
+	justify-self: end;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.full-view-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.full-view-link:not(.disabled) {
+	color: #000;
+}
+.full-view-link:not(.disabled):hover, .full-view-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+/* Section nav buttons. Mirror legislation.gov.uk's .userFunctionalElement
+ * (screen.css:1083) so frontend devs can hook up prev/next without
+ * restyling. Disabled state shows on whole-doc view; activating a link
+ * colours it #016398 (the live "active" hue). Arrow glyphs replace the
+ * sprite icons used on legislation.gov.uk so no image asset is needed. */
+.section-nav {
+	grid-column: 2;
+	justify-self: center;
+	display: inline-flex;
+	gap: 0.5em;
+	align-items: center;
+}
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.15em 0.65em 0.2em;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	text-align: center;
+	font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+	background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+}
+/* Tiny CSS-drawn triangles, recolour with the link's currentColor so
+ * disabled/active states inherit through naturally. */
+.prev-section::before {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0.42em 0.32em 0;
+	border-color: transparent currentColor transparent transparent;
+}
+.next-section::after {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0 0.32em 0.42em;
+	border-color: transparent transparent transparent currentColor;
+}
+.section-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.section-link:not(.disabled) {
+	color: #016398;
+	border-color: #069;
+}
+.section-link:not(.disabled):hover, .section-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <header class="toc-header"><a class="toc-link" href="/contents">Back to Table of Contents</a><nav class="section-nav"><a class="section-link prev-section disabled" aria-disabled="true">Previous section</a><a class="section-link next-section disabled" aria-disabled="true">Next section</a></nav><a class="full-view-link disabled" aria-disabled="true">Back to full view</a></header>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE WORKING TIME (AMENDMENT) REGULATIONS</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2013 No. [XXXX]</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section id="paragraph_1" class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>This explanatory memorandum has been prepared by the Department for Environment, Food
+                  and Rural Affairs and is laid before Parliament by Command of Her Majesty.</p>
+            </section>
+            <section id="paragraph_2" class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Purpose of the instrument</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>To align the position for workers employed in agriculture in England and Wales with
+                     the position for workers in most other sectors under the Working Time Regulations
+                     1998 (“the 1998 Regulations”). </p>
+               </section>
+            </section>
+            <section id="paragraph_3" class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to the Joint Committee on Statutory Instruments </b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None</p>
+               </section>
+            </section>
+            <section id="paragraph_4" class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative Context</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The Enterprise and Regulatory Reform Act 2013 provides for the abolition of the separate
+                     employment regime for agricultural workers in England and Wales.  As from 1 October
+                     2013, workers employed in agriculture in England and Wales will be protected by the
+                     same statutory employment terms and conditions as workers in most other sectors of
+                     the economy.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>Agricultural workers are already protected by the 1998 Regulations, but there are
+                     certain exemptions in<span style="color:#000000"> the Regulations which are specific to them. These are in relation to the date of
+                        the commencement of the leave year and leave notices.  </span>These technical amendments to the 1998 Regulations are a consequence of the move to
+                     a single employment regime. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.3</span></h2>
+                  <p>
+                     <span style="color:#000000">Currently, the 1998 Regulations provide that for most workers other than those only
+                        employed in agriculture, the leave year begins on the date provided for in a relevant
+                        agreement (regulation 13).  Where there is no provision in a relevant agreement and
+                        employment began on or before 1 October 1998, then the date is 1 October. Where employment
+                        commenced after 1 October 1998, the leave year begins on the date or anniversary of
+                        the date of commencement of employment.  Under article 45 of the Agricultural Wages
+                        (England and Wales) Order 2012, the leave year for all agricultural workers begins
+                        on 1 October.</span>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.4</span></h2>
+                  <p>
+                     <span style="color:#000000">The 1998 Regulations also set out a system for workers and employers to give notice
+                        about taking leave (regulation 15), which again does not currently apply to workers
+                        only employed in agriculture.  In essence, these provisions require a worker to notify
+                        an employer of the intention to take leave at least twice as many days in advance
+                        of the first day of leave as the number of leave days requested. Similarly, if the
+                        employer requires a worker to take leave, the employer must give notice of this within
+                        the same timescale. If a worker has requested leave and an employer does not agree
+                        to the worker taking that leave, the employer must give notice of this to the worker
+                        at least as many days in advance as the number of leave days requested. There are
+                        no similar provisions under the Agricultural Wages (England and Wales) Order 2012.</span>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.5</span></h2>
+                  <p>
+                     <span style="color:#000000">These Regulations will align the position for agricultural workers in England and
+                        Wales regarding commencement of leave year and notice for taking leave with the position
+                        for workers in most other sectors under the 1998 Regulations.  However, saving provisions
+                        will preserve a worker’s existing arrangements for the commencement of leave year
+                        and for notice of leave taking until the end of the current employment. </span>
+                     </p>
+               </section>
+            </section>
+            <section id="paragraph_5" class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Territorial Extent and Application</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>This instrument extends to Great Britain but the amendments of the 1998 Regulations
+                     only apply to workers employed in agriculture in England and Wales.</p>
+               </section>
+            </section>
+            <section id="paragraph_6" class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>The Secretary of State for Environment, Food and Rural Affairs has made the following
+                     statement regarding Human Rights: </p>
+               </section>
+               <section class="subparagraph">
+                  <p>In my view the provisions of the Working Time (Amendment) Regulations 2013 are compatible
+                     with the Convention rights.</p>
+               </section>
+            </section>
+            <section id="paragraph_7" class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy background</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>What is being done and why </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>Government is committed to providing an environment for all sectors of the economy
+                     in which private enterprise and businesses can flourish.  A key coalition objective
+                     is to simplify employment legislation and remove unnecessary burdens from businesses.
+                     As part of this, the Government has brought forward legislation through the Enterprise
+                     and Regulatory Reform Act 2013 (c. 24) to abolish the Agricultural Wages Board for
+                     England and Wales in order to bring employment in agriculture into line with other
+                     sectors of the economy.  As from 1 October 2013, there will no longer be a separate
+                     employment regime for agricultural workers in England and Wales, but they will be
+                     protected by the National Minimum Wage Act 1998 (c. 39) and the 1998 Regulations as
+                     are other workers.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>Agricultural workers with contractual rights as at 1 October 2013 reflecting an Agricultural
+                     Wages Order made by the Agricultural Wages Board) will retain those rights until,
+                     either their contract is varied by mutual agreement, or their employment comes to
+                     an end.   This will include where a worker is entitled to enhanced rights under the
+                     1998 Regulations, for example in relation to leave entitlement and rest breaks. However,
+                     agricultural workers will retain rights accrued under the Agricultural Wages (England
+                     and Wales) Order 2012 in relation to the commencement of their leave year and notice
+                     of leave taking until the end of their current employment.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>The removal of the separate agricultural minimum wage regime will lift regulatory
+                     burdens from farm and horticultural businesses and provide for the introduction of
+                     flexible modern employment practices.  It will make it easier for employers and workers
+                     to come to arrangements which suit their own particular circumstances. This should
+                     boost job opportunities and growth, and contribute to a successful and prosperous
+                     future for the industry.   </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Consolidation</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.4</span></h2>
+                  <p>Not applicable</p>
+               </section>
+            </section>
+            <section id="paragraph_8" class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <span class="tab">&nbsp;</span>
+                  <b>Consultation outcome</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>There has not been a separate consultation on the amendments to the 1998 Regulations
+                     as they are technical amendments which are a consequence of the   Government policy
+                     to abolish the Agricultural Wages Board and agricultural minimum wage regime, on which
+                     there has already been a consultation.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.2</span></h2>
+                  <p>The Government consulted on the future of the Agricultural Wages Board for England
+                     and Wales and related Agricultural Wages Committees and Agricultural Dwelling-House
+                     Committees in England for four weeks from 16 October to 12 November 2012. Copies of
+                     the consultation documents can be found at:</p>
+               </section>
+               <section class="subparagraph">
+                  <p>
+                     <a href="https://www.gov.uk/government/consultations/the-future-of-the-agricultural-wages-board-for-england-and-wales-and-agricultural-wages-committees-and-agricultural-dwelling-house-advisory-committees-in-england">
+                        <span style="color:#0000FF">
+                           <u>https://www.gov.uk/government/consultations/the-future-of-the-agricultural-wages-board-for-england-and-wales-and-agricultural-wages-committees-and-agricultural-dwelling-house-advisory-committees-in-england</u>
+                           </span>
+                        </a>
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.3</span></h2>
+                  <p>The proposal to abolish the Agricultural Wages Board and related English committees
+                     was originally announced in July 2010.  Since then the policy has been discussed at
+                     meetings of the Board and the annual general meetings of the Agricultural Wages Committees
+                     in England. Views of stakeholders were already well known when the consultation was
+                     launched in October 2012 but the Government wanted to allow an opportunity for formal
+                     consultation in case there were arguments for retention that it had not previously
+                     considered. The four week period for the consultation was in line with the Government’s
+                     New Consultation Principles, which advocate a more proportionate and targeted approach,
+                     designed to encourage active consideration of what period is appropriate to each individual
+                     exercise rather than defaulting to a 12-week period, particularly where there has
+                     already been previous engagement.  In addition to the formal list of consultees, Defra
+                     wrote to around 13,000 people and organisations that regularly received copies of
+                     the Agricultural Wages Orders and during the consultation period arranged six special
+                     meetings of the English Agricultural Wages Committees in different regions of the
+                     country. David Heath, Minister of State for Agriculture and Food, also held a meeting
+                     with the Chair of the Board and the leaders of the two sides of the Board (employers
+                     and workers) to hear their views.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.4</span></h2>
+                  <p>The consultation on the future of the Agricultural Wages Board asked four questions:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Do you agree that employment legislation in the agriculture sector should be simplified?</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Do you agree that agricultural workers in England and Wales should be brought within
+                        the same minimum employment terms and conditions as workers in all other sectors of
+                        the economy?</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Do you agree with the Government’s proposal to abolish the Agricultural Wages Board,
+                        Agricultural Wages Committees, Agricultural Dwelling House Advisory Committees, and
+                        the agricultural minimum wage regime?</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Do you have any additional points or options you would like Ministers to consider
+                        before making their final decision?</p>
+                  </section>
+               </section>
+               <section class="subparagraph">
+                  <p>A numerical summary of the responses to the first three of these questions is set
+                     out in the table below:</p>
+                  <table>
+                     <colgroup>
+                        <col style="width:21.67%">
+                        <col style="width:12.71%">
+                        <col style="width:2.54%">
+                        <col style="width:6.73%">
+                        <col style="width:11.96%">
+                        <col style="width:5.98%">
+                        <col style="width:12.56%">
+                        <col style="width:13.3%">
+                        <col style="width:12.56%">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Question</span>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Total Number of responses</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">Yes</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">% of all responses received</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">No</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">% of all responses received</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">No preference expressed</span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">% of all responses received</span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>1. Do you agree that employment legislation in the agriculture sector should be simplified?</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p>946</p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>397</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>42%</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>69</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>7%</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>480</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>51%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>2. Do you agree that agricultural workers in England and Wales should be brought within
+                                 the same minimum terms and conditions as workers in all other sectors of the economy?</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p>946 </p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>336</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>36%</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>171 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>18%</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>439 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>46%</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>3. Do you agree with the Government’s proposal to abolish the Agricultural Wages Board,
+                                 Agricultural Wages Committees, Agricultural Dwelling House Advisory  Committees and
+                                 the agricultural minimum wage regime?</p>
+                           </td>
+                           <td>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p>946</p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p></p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>347 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>37%</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>580 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>61%</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>19</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>2%</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.5</span></h2>
+                  <p>In response to question 4, additional comments made by those who responded included:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Abolition of the Agricultural Wages Board and agricultural minimum wage regime should
+                        be carried out as soon as possible.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Government should look at other areas where regulatory burdens on farmers could
+                        be reduced, including the gangmaster licensing legislation.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The consultation period was too short and there had not been adequate publicity.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Agricultural Wages Board should be retained, but simplified and modernised.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The Gangmasters Licensing Authority should be maintained and adequately funded.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>There needs to be effective communication of what the changes will mean for agricultural
+                        workers and employers.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Sufficient resources should be provided to Her Majesty’s Revenue and Customs to ensure
+                        the effective enforcement of the National Minimum Wage regime in the agriculture sector.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>The National Farmers Union should organise a voluntary committee to provide guidance
+                        on wage setting.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>Agricultural workers in England and Wales will be disadvantaged compared to those
+                        in Scotland and Northern Ireland where the separate Agricultural Wages Boards will
+                        be retained.</p>
+                  </section>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.6</span></h2>
+                  <p>The Government carefully considered the responses to the consultation</p>
+               </section>
+               <section class="subparagraph">
+                  <p>exercise. While the responses to question 3 indicated a majority in favour of the
+                     retention of the Agricultural Wages Board, the Government did not consider that any
+                     new arguments had been put forward which would persuade it to alter its long stated
+                     intention to abolish the Agricultural Wages Board and related Committees, and bring
+                     employment in agriculture in line with that in other sectors of the economy.  Moreover,
+                     key industry bodies, such as the National Farmers Union, Tenant Farmers Association,
+                     Country Land and Business Association and also professional organisations such as
+                     the Central Association of Agricultural Valuers supported the abolition of the Agricultural
+                     Wages Board.  </p>
+               </section>
+            </section>
+            <section id="paragraph_9" class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Guidance</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>Defra will be making guidance available for workers and employers as to what the introduction
+                     of the National Minimum Wage and the 1998 Regulations will mean for them. </p>
+               </section>
+            </section>
+            <section id="paragraph_10" class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>No significant impact on business, charities or voluntary bodies is foreseen as a
+                     result of these amendments. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>No significant impact on the public sector is foreseen.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.3</span></h2>
+                  <p>An Impact Assessment has not been prepared for this instrument.</p>
+               </section>
+            </section>
+            <section id="paragraph_11" class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Regulating small business</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The legislation applies to small business. </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.2</span></h2>
+                  <p>These are technical amendments, which are not expected to have any significant impact
+                     on business. Hence it is not considered necessary to make adjustment for small businesses.
+                     </p>
+               </section>
+            </section>
+            <section id="paragraph_12" class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring &amp; review</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>Defra collects a range of statistics in the agricultural sector, including information</p>
+               </section>
+               <section class="subparagraph">
+                  <p> about agricultural employment, and will continue to do so after the abolition of
+                     the AWB</p>
+               </section>
+            </section>
+            <section id="paragraph_13" class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+               <section class="subparagraph">
+                  <p>
+                     <span class="tab">&nbsp;</span>Judith Marsden at the Department for Environment, Food and Rural Affairs Tel: 0207-238-5748/07827-821645
+                     or email: <a href="mailto:Judith.marsden@defra.gsi.gov.uk"><span style="color:#0000FF"><u>Judith.marsden@defra.gsi.gov.uk</u></span></a>  can answer any queries regarding the instrument.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1em;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	grid-column: 1;
+	justify-self: start;
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+/* Sits on the right; disabled on the whole-doc HTML (you are already
+ * on full view). Frontend activates with an href on section views. */
+.full-view-link {
+	grid-column: 3;
+	justify-self: end;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.full-view-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.full-view-link:not(.disabled) {
+	color: #000;
+}
+.full-view-link:not(.disabled):hover, .full-view-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+/* Section nav buttons. Mirror legislation.gov.uk's .userFunctionalElement
+ * (screen.css:1083) so frontend devs can hook up prev/next without
+ * restyling. Disabled state shows on whole-doc view; activating a link
+ * colours it #016398 (the live "active" hue). Arrow glyphs replace the
+ * sprite icons used on legislation.gov.uk so no image asset is needed. */
+.section-nav {
+	grid-column: 2;
+	justify-self: center;
+	display: inline-flex;
+	gap: 0.5em;
+	align-items: center;
+}
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.15em 0.65em 0.2em;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	text-align: center;
+	font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+	background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+}
+/* Tiny CSS-drawn triangles, recolour with the link's currentColor so
+ * disabled/active states inherit through naturally. */
+.prev-section::before {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0.42em 0.32em 0;
+	border-color: transparent currentColor transparent transparent;
+}
+.next-section::after {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0 0.32em 0.42em;
+	border-color: transparent transparent transparent currentColor;
+}
+.section-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.section-link:not(.disabled) {
+	color: #016398;
+	border-color: #069;
+}
+.section-link:not(.disabled):hover, .section-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <header class="toc-header"><a class="toc-link" href="/contents">Back to Table of Contents</a><nav class="section-nav"><a class="section-link prev-section disabled" aria-disabled="true">Previous section</a><a class="section-link next-section disabled" aria-disabled="true">Next section</a></nav><a class="full-view-link disabled" aria-disabled="true">Back to full view</a></header>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE POLITICAL PARTIES, ELECTIONS AND REFERENDUMS (CIVIL SANCTIONS) (AMENDMENT) ORDER
+                  2013</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2013 No. [XXXX]</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section id="paragraph_1" class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>This explanatory memorandum has been prepared by the Cabinet Office and is laid before
+                  Parliament by Command of Her Majesty.</p>
+            </section>
+            <section id="paragraph_2" class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Purpose of the instrument</b>
+                  </p>
+            </section>
+            <section id="paragraph_3" class="paragraph num">
+               <h2><span class="num">2.1</span></h2>
+               <p>The instrument empowers the Electoral Commission (EC) to impose certain sanctions
+                  on political parties and other organisations, as well as on individuals, for certain
+                  prescribed offences.  It also extends to non-compliance penalties the power of the
+                  EC to recover penalties as payable under a court order.  </p>
+            </section>
+            <section id="paragraph_4" class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to the Joint Committee on Statutory Instruments</b>
+                  </p>
+            </section>
+            <section id="paragraph_5" class="paragraph num">
+               <h2><span class="num">3.1</span></h2>
+               <p>None.</p>
+            </section>
+            <section id="paragraph_6" class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative Context</b>
+                  </p>
+            </section>
+            <section id="paragraph_7" class="paragraph num">
+               <h2><span class="num">4.1</span></h2>
+               <p>This instrument makes two amendments to the Political Parties, Elections and Referendums
+                  (Civil Sanctions) Order 2010.C. It is made under powers in Schedule 19C to the Political
+                  Parties, Elections and Referendums Act 2000 and is subject to the affirmative resolution
+                  procedure. There is a statutory requirement to consult the EC.</p>
+            </section>
+            <section id="paragraph_8" class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Territorial Extent and Application</b>
+                  </p>
+            </section>
+            <section id="paragraph_9" class="paragraph num">
+               <h2><span class="num">5.1</span></h2>
+               <p>This instrument applies to all of the United Kingdom.</p>
+            </section>
+            <section id="paragraph_10" class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+            </section>
+            <section id="paragraph_11" class="paragraph num">
+               <h2><span class="num">6.1</span></h2>
+               <p>The Minister for Political and Constitutional Reform has made the following statement</p>
+               <section class="subparagraph">
+                  <p>regarding Human Rights:</p>
+               </section>
+               <section class="subparagraph">
+                  <p>In my view the provisions of the Political Parties, Elections and Referendums (Civil
+                     Sanctions) (Amendment) Order 2013 are compatible with the Convention rights.</p>
+               </section>
+            </section>
+            <section id="paragraph_12" class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy background</b>
+                  </p>
+            </section>
+            <section id="paragraph_13" class="paragraph num">
+               <h2><span class="num">7.1</span></h2>
+               <p>The Political Parties and Elections Act 2009 amended the Political Parties, Elections
+                  and Referendums Act 2000 to provide the EC with new investigatory powers and powers
+                  to impose civil sanctions.  Effect was given to these powers through the Political
+                  Parties, Elections and Referendums (Civil Sanctions) Order 2010. </p>
+            </section>
+            <section id="paragraph_14" class="paragraph num">
+               <h2><span class="num">7.2</span></h2>
+               <p>The Electoral Commission have the following civil sanctions available to them:</p>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Fixed monetary penalty – a £200 penalty.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Variable monetary penalty – a maximum £20,000 penalty.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Compliance notice – this is a notice setting out action that must be taken by the
+                     person or organisation that has breached the law so that the breach does not continue
+                     or recur.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Restoration notice – this is a notice setting out actions that must be undertaken
+                     to restore the position, as far as possible, to what it would have been had there
+                     been no breach.  </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Stop notice – this is a notice which prohibits a person or organisation from carrying
+                     on or beginning a specified activity until the steps set out in the notice are taken.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">•</span></h2>
+                  <p>Enforcement undertaking – this is an agreement proposed by a regulated organisation
+                     or individual to undertake specified actions which will bring it into compliance or
+                     restore the position, to what it would have been had there been no breach.  </p>
+               </section>
+            </section>
+            <section id="paragraph_15" class="paragraph num">
+               <h2><span class="num">7.3</span></h2>
+               <p>The Political Parties, Elections and Referendums (Civil Sanctions) Order 2010 lists
+                  the prescribed offences, as well as the prescribed restrictions and requirements,
+                  which apply to all the sanctions listed in paragraph 7.2.  Such offences include incurring
+                  campaign expenditure without authority, exceeding limits on campaign expenditure,
+                  failure to deliver donation reports to the Electoral Commission within the time limit,
+                  the requirement to keep accounts and requirements to give the nature and value of
+                  non-cash donations.</p>
+            </section>
+            <section id="paragraph_16" class="paragraph num">
+               <h2><span class="num">7.4</span></h2>
+               <p>The EC, in light of their experiences of using the new powers available to them, requested
+                  that the Cabinet Office make two amendments to improve the sanctions regime in operation.
+                  The first extends the powers relating to fixed monetary penalties and discretionary
+                  requirements to cover registered political parties, recognised third parties campaigning
+                  at an election and permitted participants in a referendum. At present they only cover
+                  individuals.</p>
+            </section>
+            <section id="paragraph_17" class="paragraph num">
+               <h2><span class="num">7.5</span></h2>
+               <p>The Order also adds non-compliance penalties to those payments which in England, Wales
+                  and Northern Ireland may be recovered as if payable under a court order, and in Scotland
+                  may be recovered as a civil debt. In practice, in England, Wales and Northern Ireland
+                  this means that if such a penalty is unpaid, the EC do not need to make a claim in
+                  the courts in order to enforce payment; instead, they can proceed straight to taking
+                  enforcement action as though they had already obtained a court judgement following
+                  such a claim.</p>
+            </section>
+            <section id="paragraph_18" class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation outcome</b>
+                  </p>
+            </section>
+            <section id="paragraph_19" class="paragraph num">
+               <h2><span class="num">8.1</span></h2>
+               <p>The EC have been consulted on this instrument in accordance with paragraph 17(1) and
+                  (3) of Schedule 19C to the Political Parties, Elections and Referendums Act 2000.</p>
+            </section>
+            <section id="paragraph_20" class="paragraph num">
+               <h2><span class="num">8.2</span></h2>
+               <p>The EC are content that the instrument achieves their policy objectives.  There response
+                  can be found at: <a href="http://www.electoralcommission.org.uk/__data/assets/pdf_file/0009/155646/Polical-Parties-Elections-and-Referendums-Civil-Sanctions-SI-consultation-response-13-June-2013.pdf"><span style="color:#0000FF"><u>http://www.electoralcommission.org.uk/__data/assets/pdf_file/0009/155646/Polical-Parties-Elections-and-Referendums-Civil-Sanctions-SI-consultation-response-13-June-2013.pdf</u></span></a></p>
+            </section>
+            <section id="paragraph_21" class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Guidance</b>
+                  </p>
+            </section>
+            <section id="paragraph_22" class="paragraph num">
+               <h2><span class="num">9.1</span></h2>
+               <p>The EC provide advice to political parties, recognised third parties and permitted
+                  participants on their regulatory obligations via the EC’s website.</p>
+            </section>
+            <section id="paragraph_23" class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact</b>
+                  </p>
+            </section>
+            <section id="paragraph_24" class="paragraph num">
+               <h2><span class="num">10.1</span></h2>
+               <p>A full regulatory impact assessment has not been prepared for this instrument because
+                  no, or no significant impact on the private, voluntary or public sector is foreseen.</p>
+            </section>
+            <section id="paragraph_25" class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Regulating small business</b>
+                  </p>
+            </section>
+            <section id="paragraph_26" class="paragraph num">
+               <h2><span class="num">11.1</span></h2>
+               <p>The legislation does not apply to small business.</p>
+            </section>
+            <section id="paragraph_27" class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring &amp; review</b>
+                  </p>
+            </section>
+            <section id="paragraph_28" class="paragraph num">
+               <h2><span class="num">12.1</span></h2>
+               <p>These are minor amendments and there are no plans to undertake a formal review of
+                  their impact.</p>
+            </section>
+            <section id="paragraph_29" class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>James Copeland at the Cabinet Office, Tel: 0207 271 2756, email: <a href="mailto:James.copeland@cabinet-office.gsi.gov.uk"><span style="color:#0000FF"><u>James.copeland@cabinet-office.gsi.gov.uk</u></span></a> can answer any queries regarding the instrument.</p>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>
