@@ -22,7 +22,7 @@ class BaseMetadata : DocumentMetadata {
         string number = BaseHeaderSplitter.GetDocumentNumber(header);
         string uri = number is null ? null : RegulationNumber.MakeURI(number) + config.UriSuffix;
         // Tuple<string, int> altNum = RegulationNumber.ExtractAltNumber(number);
-        DateTime? modified = doc.PackageProperties.Modified;
+        DateTime? modified = DocxLastModified.Get(doc);
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
         return new BaseMetadata {
             ShortUriComponent = uri,
