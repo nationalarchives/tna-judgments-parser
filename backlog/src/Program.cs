@@ -8,13 +8,16 @@ using System.IO;
 using Amazon.S3;
 
 using Backlog.Csv;
+using Backlog.Options;
 using Backlog.Utilities;
 
-using DotNetEnv;
+using DotNetEnv.Configuration;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 using UK.Gov.NationalArchives.Judgments.Api;
 
@@ -134,34 +137,49 @@ public class Program
 
     private static int RunBacklogParser(bool isDryRun, uint? id, bool autoPublish)
     {
-        Env.Load(); // required for bucket name
+        var builder = Host.CreateApplicationBuilder();
+        builder.Configuration.AddDotNetEnv();
 
-        var judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH") ?? "";
-        var hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH") ?? "";
-        var pathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv");
-        var pathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
-        var pathToOutputFolder = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
-        Directory.CreateDirectory(pathToOutputFolder);
-        var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
-        var bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME") ??
-                         throw new InvalidOperationException("BUCKET_NAME environment variable not set");
+        builder.Services.AddOptions<BacklogParserOptions>()
+               .Bind(builder.Configuration.GetSection(BacklogParserOptions.SectionName))
+               .Configure(options =>
+               {
+                   options.IsDryRun = isDryRun;
+                   options.SingleIdToRun = id;
+                   options.AutoPublish = autoPublish;
+               });
 
-        var services = new ServiceCollection();
-        ConfigureDependencyInjection(services, pathToDataFolder, trackerPath, judgmentsFilePath,
-            hmctsFilePath, bucketName);
-        var serviceProvider = services.BuildServiceProvider();
+        builder.Services.AddLogging(loggingBuilder =>
+        {
+            var serviceProvider = loggingBuilder.Services.BuildServiceProvider();
+            var options = serviceProvider.GetRequiredService<IOptions<BacklogParserOptions>>();
+            var logFilePath = Path.Combine(options.Value.DataFolderPath, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
+            loggingBuilder.AddConsole()
+                          .AddFile(logFilePath,
+                              outputTemplate:
+                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
+        });
+
+        ConfigureDependencyInjection(builder.Services);
+
+        var appHost = builder.Build();
+
+        var serviceProvider = appHost.Services;
+        var backlogParserOptions = serviceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value;
 
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
         try
         {
             logger.LogInformation("Using Parser version: {ParserVersion}",
                 UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion());
-            logger.LogInformation("Using data folder: {PathToDataFolder}", pathToDataFolder);
-            logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
+            logger.LogInformation("Using data folder: {PathToDataFolder}", backlogParserOptions.DataFolderPath);
+            logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}",
+                backlogParserOptions.CourtMetadataFilePath);
 
             var backlogParserWorker = serviceProvider.GetRequiredService<BacklogParserWorker>();
+            Directory.CreateDirectory(backlogParserOptions.OutputFolderPath);
 
-            return backlogParserWorker.Run(isDryRun, id, pathToCourtMetadataFile, autoPublish, pathToOutputFolder);
+            return backlogParserWorker.Run();
         }
         catch (Exception e)
         {
@@ -169,7 +187,6 @@ public class Program
             return 1;
         }
     }
-
 
     private static List<(Type serviceType, object instance, bool replace)> _dependencyInjectionOverrides = [];
 
@@ -181,28 +198,16 @@ public class Program
             ? _dependencyInjectionOverrides
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
 
-    internal static void ConfigureDependencyInjection(IServiceCollection services, string pathToDataFolder, string trackerPath,
-        string judgmentsFilePath, string hmctsFilePath, string bucketName)
+    internal static void ConfigureDependencyInjection(IServiceCollection services)
     {
-        services.AddLogging(loggingBuilder =>
-        {
-            var logFilePath = Path.Combine(pathToDataFolder, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
-            loggingBuilder.AddConsole()
-                          .AddFile(logFilePath,
-                              outputTemplate:
-                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
-        });
-        services
-            .AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
-                UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
+        services.AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator, UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddSingleton<Parser>();
         services.AddSingleton<BacklogParserWorker>();
         services.AddSingleton<CsvMetadataReader>();
-        services.AddSingleton<BacklogFiles>(serviceProvider => new BacklogFiles(serviceProvider.GetRequiredService<ILogger<BacklogFiles>>(), pathToDataFolder,
-            judgmentsFilePath, hmctsFilePath));
-        services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
+        services.AddSingleton<BacklogFiles>();
+        services.AddSingleton<Tracker>();
         services.AddSingleton<IAmazonS3, AmazonS3Client>();
-        services.AddSingleton<Bucket>(serviceProvider => new Bucket(serviceProvider.GetRequiredService<IAmazonS3>(), bucketName));
+        services.AddSingleton<Bucket>();
         services.AddSingleton<MetadataTransformer>();
         services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
 

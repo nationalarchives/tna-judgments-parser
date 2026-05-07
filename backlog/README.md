@@ -162,20 +162,18 @@ This is created and populated by the Backlog Parser. It tracks which judgments h
 
 ### Environment Variables
 
-The module uses environment variables for configuration. All paths default to the application's base directory if not specified.
+The module uses environment variables for configuration. Backlog Parser settings are bound from the `BacklogParser` configuration section, so environment variables use the `BacklogParser__` prefix.
 
-| Variable              | Description                                                                                            | Default                                                         |
-|-----------------------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `COURT_METADATA_PATH` | Path to the CSV file containing court metadata                                                         | `{BaseDir}/court_metadata.csv`                                  |
-| `DATA_FOLDER_PATH`    | Path to the folder containing judgment data files                                                      | `{BaseDir}`                                                     |
-| `TRACKER_PATH`        | Path to the CSV file tracking uploaded judgments                                                       | `{BaseDir}/uploaded-production.csv`                             |
-| `OUTPUT_PATH`         | Path where generated bundle files will be saved                                                        | `{BaseDir}`                                                     |
-| `JUDGMENTS_FILE_PATH` | The filepath prefix used in the court metadata csv (used to crossference with file-metadata.csv paths) | `""`                                                            |
-| `HMCTS_FILES_PATH`    | The filepath prefix used in the file-metadata csv (used to crossference with court metadata csv paths) | `""`                                                            |
-| `AWS_REGION`          | AWS region for S3 bucket operations                                                                    | Defaults to the region configured in AWS deployment environment |
-| `BUCKET_NAME`         | AWS bucket to upload processed files and xml to                                                        | None - must be set if not using dry run mode                    |
-
-where `{BaseDir}` is where the application's assemblies are (usually `backlog/bin/Debug/net8.0` when running locally)
+| Variable                                        | Description                                                                                               | Default                                                         |
+|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `BacklogParser__CourtMetadataFilePath`          | Path to the CSV file containing court metadata                                                            | None - required                                                 |
+| `BacklogParser__DataFolderPath`                 | Path to the folder containing judgment data files                                                         | None - required                                                 |
+| `BacklogParser__TrackerFilePath`                | Path to the CSV file tracking uploaded judgments                                                          | None - required                                                 |
+| `BacklogParser__OutputFolderPath`               | Path to where generated bundle files will be saved                                                        | None - required                                                 |
+| `BacklogParser__MetadataProvidedFilePathPrefix` | The filepath prefix used in the court metadata csv (used to cross-reference with file-metadata.csv paths) | `""`                                                            |
+| `BacklogParser__TransferMetadataFilePathPrefix` | The filepath prefix used in the file-metadata csv (used to cross-reference with court metadata csv paths) | `""`                                                            |
+| `BacklogParser__BucketName`                     | AWS bucket to upload processed files and xml to                                                           | None - must be set unless using dry run mode                    |
+| `AWS_REGION`                                    | AWS region for S3 bucket operations                                                                       | Defaults to the region configured in AWS deployment environment |
 
 #### AWS Configuration
 

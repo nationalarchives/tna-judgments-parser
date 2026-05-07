@@ -20,6 +20,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
 {
     private const int DocIdWithJurisdiction = 70;
     private const string JudgmentsFilePath = @"JudgmentFiles\";
+    private const string HmctsFilePath = "data/HMCTS_Judgment_Files/";
     private string? courtMetadataPath;
     private string? tempDataDir;
 
@@ -59,23 +60,20 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         var trackerPath = Path.Combine(tempDataDir, "uploaded-production.csv");
 
         SetPathEnvironmentVariables(tempDataDir, outputPath, courtMetadataPath, trackerPath);
+        SetMetadataPrefixEnvironmentVariables(JudgmentsFilePath, HmctsFilePath);
     }
 
     private static void WriteTransferMetaDataCsv(string uuid, string tdrMetadataDir, string originalFileName)
     {
-        const string hmctsFilePath = "data/HMCTS_Judgment_Files/";
-        Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", hmctsFilePath);
         var transferMetadataContent =
             $@"file_reference,file_name,file_type,file_size,clientside_original_filepath,rights_copyright,legal_status,held_by,date_last_modified,closure_type,closure_start_date,closure_period,foi_exemption_code,foi_exemption_asserted,title_closed,title_alternate,description,description_closed,description_alternate,language,end_date,file_name_translation,original_filepath,parent_reference,former_reference_department,UUID
-TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyright,Public Record(s),""The National Archives, Kew"",2023-01-01T00:00:00,Open,,,,,false,,,false,,English,,,,,,{uuid}";
+TEST1,{originalFileName},File,1024,{HmctsFilePath}{originalFileName},Crown Copyright,Public Record(s),""The National Archives, Kew"",2023-01-01T00:00:00,Open,,,,,false,,,false,,English,,,,,,{uuid}";
         var transferMetadataPath = Path.Combine(tdrMetadataDir, "file-metadata.csv");
         File.WriteAllText(transferMetadataPath, transferMetadataContent);
     }
 
     private void WriteCourtMetadataCsv(params CsvLine[] metadataLines)
     {
-        Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", JudgmentsFilePath);
-
         var headerLine =
             "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving,skip,NCN";
         var csvMetadataLines = new List<string> { headerLine };
