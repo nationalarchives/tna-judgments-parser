@@ -23,9 +23,16 @@ span.fn { vertical-align: super; font-size: small }
  * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
  * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
  * case by making the paragraph a flex row — content before the tab stays left,
- * the tab pushes everything after it to the right edge. */
-p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
-p > span.tab { flex: 1 1 auto }
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+/* Leading-tab spans are Word indent artefacts (the paragraph already gets its
+ * indent from <section class="subparagraph">'s 0.5in margin). Hide them so we
+ * don't render a stray leading nbsp that looks like a typo. */
+p > span.tab:first-child { display: none }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -293,14 +300,14 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                </p>
          </div>
          <div class="body">
-            <section id="paragraph_12" class="paragraph num">
+            <section id="paragraph_1" class="paragraph num">
                <h2><span class="num">
                      <b>1.</b>
                      </span></h2>
                <p>This explanatory memorandum has been prepared by the Home Office and is laid before
                   Parliament by Command of Her Majesty.</p>
             </section>
-            <section id="paragraph_1" class="paragraph num">
+            <section id="paragraph_2" class="paragraph num">
                <h2><span class="num">
                      <b>2.</b>
                      </span></h2>
@@ -318,7 +325,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Act 2012.</p>
                </section>
             </section>
-            <section id="paragraph_2" class="paragraph num">
+            <section id="paragraph_3" class="paragraph num">
                <h2><span class="num">
                      <b>3.</b>
                      </span></h2>
@@ -330,7 +337,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>None.</p>
                </section>
             </section>
-            <section id="paragraph_3" class="paragraph num">
+            <section id="paragraph_4" class="paragraph num">
                <h2><span class="num">
                      <b>4.</b>
                      </span></h2>
@@ -358,7 +365,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      of such material.</p>
                </section>
             </section>
-            <section id="paragraph_13" class="paragraph num">
+            <section id="paragraph_5" class="paragraph num">
                <h2><span class="num">
                      <b>5.</b>
                      </span></h2>
@@ -366,11 +373,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <b>Territorial Extent and Application</b>
                   </p>
             </section>
-            <section id="paragraph_14" class="paragraph num">
+            <section id="paragraph_6" class="paragraph num">
                <h2><span class="num">5.1</span></h2>
                <p>This instrument applies to all of the United Kingdom. </p>
             </section>
-            <section id="paragraph_4" class="paragraph num">
+            <section id="paragraph_7" class="paragraph num">
                <h2><span class="num">
                      <b>6.</b>
                      </span></h2>
@@ -394,7 +401,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="paragraph_5" class="paragraph num">
+            <section id="paragraph_8" class="paragraph num">
                <h2><span class="num">
                      <b>7.</b>
                      </span></h2>
@@ -522,7 +529,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      </p>
                </section>
             </section>
-            <section id="paragraph_6" class="paragraph num">
+            <section id="paragraph_9" class="paragraph num">
                <h2><span class="num">
                      <b>8.</b>
                      </span></h2>
@@ -555,7 +562,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in developing the guidance and has made a number of changes to it as a result.</p>
                </section>
             </section>
-            <section id="paragraph_7" class="paragraph num">
+            <section id="paragraph_10" class="paragraph num">
                <h2><span class="num">
                      <b>9.</b>
                      </span></h2>
@@ -593,7 +600,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   </section>
                </section>
             </section>
-            <section id="paragraph_8" class="paragraph num">
+            <section id="paragraph_11" class="paragraph num">
                <h2><span class="num">9.2</span></h2>
                <p>The guidance includes direction on:</p>
                <section class="subparagraph num">
@@ -613,7 +620,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p>Engagement with the Commissioner for the Retention and Use of Biometric Material.</p>
                </section>
             </section>
-            <section id="paragraph_15" class="paragraph num">
+            <section id="paragraph_12" class="paragraph num">
                <h2><span class="num">
                      <b>10.</b>
                      </span></h2>
@@ -621,19 +628,19 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <b>Impact</b>
                   </p>
             </section>
-            <section id="paragraph_16" class="paragraph num">
+            <section id="paragraph_13" class="paragraph num">
                <h2><span class="num">10.1</span></h2>
                <p>There is no foreseeable impact on business, charities or voluntary bodies. </p>
             </section>
-            <section id="paragraph_17" class="paragraph num">
+            <section id="paragraph_14" class="paragraph num">
                <h2><span class="num">10.2</span></h2>
                <p>The impact on the public sector is less than £5million.</p>
             </section>
-            <section id="paragraph_18" class="paragraph num">
+            <section id="paragraph_15" class="paragraph num">
                <h2><span class="num">10.3</span></h2>
                <p>An Impact Assessment has not been prepared for this instrument.</p>
             </section>
-            <section id="paragraph_19" class="paragraph num">
+            <section id="paragraph_16" class="paragraph num">
                <h2><span class="num">
                      <b>11.</b>
                      </span></h2>
@@ -641,11 +648,11 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <b>Regulating small business</b>
                   </p>
             </section>
-            <section id="paragraph_20" class="paragraph num">
+            <section id="paragraph_17" class="paragraph num">
                <h2><span class="num">11.1</span></h2>
                <p>The legislation does not apply to small business. </p>
             </section>
-            <section id="paragraph_21" class="paragraph num">
+            <section id="paragraph_18" class="paragraph num">
                <h2><span class="num">
                      <b>12.</b>
                      </span></h2>
@@ -653,21 +660,21 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <b>Monitoring &amp; review</b>
                   </p>
             </section>
-            <section id="paragraph_9" class="paragraph num">
+            <section id="paragraph_19" class="paragraph num">
                <h2><span class="num">12.1</span></h2>
                <p>The Guidance provides for the monitoring of the use of the powers to retain</p>
                <section class="subparagraph">
                   <p>biometric material for national security purposes.</p>
                </section>
             </section>
-            <section id="paragraph_10" class="paragraph num">
+            <section id="paragraph_20" class="paragraph num">
                <h2><span class="num">12.2</span></h2>
                <p>Statistical data on the use of the powers should be provided on a quarterly</p>
                <section class="subparagraph">
                   <p>basis to the Home Office.</p>
                </section>
             </section>
-            <section id="paragraph_11" class="paragraph num">
+            <section id="paragraph_21" class="paragraph num">
                <h2><span class="num">
                      <b>13.</b>
                      </span></h2>
