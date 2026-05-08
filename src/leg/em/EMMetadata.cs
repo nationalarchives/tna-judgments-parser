@@ -33,7 +33,7 @@ class EMMetadata : DocumentMetadata {
             name = config.DefaultDocumentType;
         }
 
-        DateTime? modified = doc.PackageProperties.Modified;
+        DateTime? modified = DocxLastModified.Get(doc);
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
 
         // Look up metadata by filename (CSV has a filename column)

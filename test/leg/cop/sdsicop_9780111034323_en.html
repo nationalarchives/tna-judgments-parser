@@ -17,15 +17,18 @@ table { border-collapse: collapse }
 th, td { border: thin dotted; padding: 3pt }
 td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
-span.fn { vertical-align: super; font-size: small }
+.fn { vertical-align: super; font-size: small }
 
 /* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
  * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
  * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
  * case by making the paragraph a flex row — content before the tab stays left,
- * the tab pushes everything after it to the right edge. */
-p:has(> span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
-p > span.tab { flex: 1 1 auto }
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
 .footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
@@ -1540,12 +1543,10 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      in danger.</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">9.7</span>
-                     <span class="tab">&nbsp;</span> A separate record for each person searched must be available should a copy be required.</p>
+                  <p><span class="num">9.7</span> A separate record for each person searched must be available should a copy be required.</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">9.8</span>
-                     <span class="tab">&nbsp;</span> The record of the grounds for making a search must, briefly but informatively, explain
+                  <p><span class="num">9.8</span> The record of the grounds for making a search must, briefly but informatively, explain
                      the reason for suspecting the person concerned, by reference to information and/or
                      intelligence about, or some specific behaviour by, the person concerned.</p>
                </div>
@@ -1627,8 +1628,7 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                   <p><span class="num">(ii)</span>a case being reported to the procurator fiscal</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">(e)</span>
-                     <span class="tab">&nbsp;</span>the number of authorisations issued under section 60 of the Criminal Justice and Public
+                  <p><span class="num">(e)</span>the number of authorisations issued under section 60 of the Criminal Justice and Public
                      Order Act 1994</p>
                </div>
                <div class="blockContainer">
@@ -1917,7 +1917,6 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      manner as per any physical variation encountered due to disability during searching.</p>
                </div>
                <p>
-                  <span class="tab">&nbsp;</span>
                   <b>Note</b>: It may be necessary to share information about the person’s gender identity with
                   other custody related organisations and other police staff. Such disclosure should
                   only be made in relation to the transgender person when to do so would be relevant,
@@ -2022,15 +2021,13 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      Annex B);</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">(d)</span>
-                     <span class="tab">&nbsp;</span>the search shall take place in an area where the detainee cannot be seen by anyone
+                  <p><span class="num">(d)</span>the search shall take place in an area where the detainee cannot be seen by anyone
                      who does not need to be present, nor by a member of the opposite sex (see Annex B),
                      except a responsible adult who has been specifically requested by the detainee and
                      who has agreed to be present during the conduct of the search;</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">(e)</span>
-                     <span class="tab">&nbsp;</span>Unless sub-paragraph (f) applies, whenever a strip search involves exposure of intimate
+                  <p><span class="num">(e)</span>Unless sub-paragraph (f) applies, whenever a strip search involves exposure of intimate
                      body parts, constables must ensure that the number of persons who witness the search
                      must be kept to the absolute minimum necessary, although there must always be at least
                      two persons other than the person who is being searched present during the search.
@@ -2057,27 +2054,23 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      removing further clothing;</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">(h)</span>
-                     <span class="tab">&nbsp;</span>If necessary to assist the search, the detainee may be required to hold their arms
+                  <p><span class="num">(h)</span>If necessary to assist the search, the detainee may be required to hold their arms
                      in the air or to stand with their legs apart and bend forward so a visual examination
                      may be made of the genital and anal areas, provided no physical contact is made with
                      a body orifice;</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">(i)</span>
-                     <span class="tab">&nbsp;</span>If articles are found, the detainee shall be asked to hand them over. If articles
+                  <p><span class="num">(i)</span>If articles are found, the detainee shall be asked to hand them over. If articles
                      are found within any body orifice other than the mouth, and the detainee refuses to
                      hand them over, their removal would constitute an intimate search, which must be carried
                      out as in Part B; </p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">(j)</span>
-                     <span class="tab">&nbsp;</span>A strip search shall be conducted as quickly as possible, and the detainee allowed
+                  <p><span class="num">(j)</span>A strip search shall be conducted as quickly as possible, and the detainee allowed
                      to dress as soon as the procedure is complete.</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">(k)</span>
-                     <span class="tab">&nbsp;</span>Where it is decided that the detainee should be subject to a strip search, the reason
+                  <p><span class="num">(k)</span>Where it is decided that the detainee should be subject to a strip search, the reason
                      for this should be recorded and the name of the authorising officer should also be
                      included.</p>
                </div>
@@ -2164,20 +2157,16 @@ article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only
                      the refusal (if any).</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">•</span>
-                     <span class="tab">&nbsp;</span>which parts of the person’s body were searched;</p>
+                  <p><span class="num">•</span>which parts of the person’s body were searched;</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">•</span>
-                     <span class="tab">&nbsp;</span>who carried out the search;</p>
+                  <p><span class="num">•</span>who carried out the search;</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">•</span>
-                     <span class="tab">&nbsp;</span>who was present; and</p>
+                  <p><span class="num">•</span>who was present; and</p>
                </div>
                <div class="blockContainer">
-                  <p><span class="num">•</span>
-                     <span class="tab">&nbsp;</span>the result.</p>
+                  <p><span class="num">•</span>the result.</p>
                </div>
             </div>
          </section>
