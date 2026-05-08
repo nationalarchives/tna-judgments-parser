@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -113,6 +114,14 @@ namespace test.backlog.EndToEndTests
             Assert.Equal(expectedXml, actualXml);
         }
 
+        private string GetParserRunIdFromCapturedMetadataJson(string capturedKey)
+        {
+            var actualMetadataJson =
+                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+
+            return Regex.Match(actualMetadataJson, $"\"parser_run_id\":\"({GuidRegex()})\"").Groups[1].Value;
+        }
+
         private void AssertCapturedContentContainsExpectedMetadataJson(string capturedKey,
             string expectedMetadataJsonResourceName)
         {
@@ -188,11 +197,16 @@ namespace test.backlog.EndToEndTests
             mockS3Client.AssertNumberOfUploads(3);
             mockS3Client.AssertUploadsWereValid();
 
-            // Verify tracker was updated for all processed items
+            var capturedParserRunIds = new List<string>();
             foreach (var key in mockS3Client.CapturedKeys)
             {
+                // Verify tracker was updated for all processed items
                 Assert.Contains(GetUuidFromKey(key), File.ReadAllText(trackerPath));
+                capturedParserRunIds.Add(GetParserRunIdFromCapturedMetadataJson(key));
             }
+            
+            //Ensure that the parser run ids with each document is the same
+            Assert.Single(capturedParserRunIds.Distinct());
         }
 
         [Fact]
