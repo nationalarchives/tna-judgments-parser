@@ -77,6 +77,13 @@ class BaseHeaderSplitter {
             }
             throw new System.NotImplementedException();
         }
+        // If we ran out of blocks without ever reaching AfterDocNumber, the
+        // header was never confirmed (most often: a multi-line-title scan
+        // that never found a regulation number). Clear partial output so the
+        // body parser sees the original blocks, matching the explicit Fail
+        // path above.
+        if (state != State.Done && state != State.AfterDocNumber)
+            Enriched.Clear();
     }
 
     internal static string GetDocumentType(List<IBlock> header, LegislativeDocumentConfig config) {
@@ -93,24 +100,44 @@ class BaseHeaderSplitter {
         return null;
     }
 
+    private static bool IsBlank(WLine line) =>
+        string.IsNullOrWhiteSpace(line.NormalizedContent);
+
     private void Start(IBlock block) {
         if (block is not WLine line) {
             state = State.Fail;
             return;
         }
+        // Some templates open with one or more empty paragraphs before
+        // "EXPLANATORY MEMORANDUM TO"; skip them and stay in Start.
+        if (IsBlank(line))
+            return;
         if (line is WOldNumberedParagraph) {
             state = State.Fail;
             return;
         }
-        bool isTitle = Config.DocumentTitles.Any(title => title.Equals(line.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
-        if (!isTitle) {
-            state = State.Fail;
+        string content = line.NormalizedContent;
+        bool isTitle = Config.DocumentTitles.Any(title => title.Equals(content, System.StringComparison.InvariantCultureIgnoreCase));
+        if (isTitle) {
+            DocType2 docType = new DocType2 { Contents = line.Contents };
+            WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
+            Enriched.Add(newLine);
+            state = State.AfterDocType;
             return;
         }
-        DocType2 docType = new DocType2 { Contents = line.Contents };
-        WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
-        Enriched.Add(newLine);
-        state = State.AfterDocType;
+        // Some templates run "EXPLANATORY MEMORANDUM TO <regulation title>"
+        // on a single line; tag the whole line as DocType and skip the
+        // separate title state, since the title text is embedded inside.
+        bool isPrefix = Config.DocumentTitles.Any(title =>
+            content.StartsWith(title + " ", System.StringComparison.InvariantCultureIgnoreCase));
+        if (isPrefix) {
+            DocType2 docType = new DocType2 { Contents = line.Contents };
+            WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
+            Enriched.Add(newLine);
+            state = State.AfterRegulationTitle;
+            return;
+        }
+        state = State.Fail;
     }
 
     private void AfterDocType(IBlock block) {
@@ -118,6 +145,9 @@ class BaseHeaderSplitter {
             state = State.Fail;
             return;
         }
+        // Skip blank paragraphs between the document-type line and the title.
+        if (IsBlank(line))
+            return;
         Enriched.Add(line);
         state = State.AfterRegulationTitle;
     }
@@ -127,8 +157,15 @@ class BaseHeaderSplitter {
             state = State.Fail;
             return;
         }
+        // Skip blank paragraphs between title and number.
+        if (IsBlank(line))
+            return;
+        // Some templates split the title across multiple paragraphs (e.g.
+        // an Order title followed by "(NORTHERN IRELAND) 2016" on its own
+        // line). Treat any non-blank, non-number line as a title
+        // continuation and stay in this state until we find the number.
         if (!RegulationNumber.Is(line.NormalizedContent)) {
-            state = State.Fail;
+            Enriched.Add(line);
             return;
         }
         DocNumber2 docNumber = new DocNumber2 { Contents = line.Contents };
