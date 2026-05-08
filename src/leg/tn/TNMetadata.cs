@@ -31,7 +31,7 @@ class TNMetadata : DocumentMetadata {
             name = config.DefaultDocumentType;
         }
 
-        DateTime? modified = doc.PackageProperties.Modified;
+        DateTime? modified = DocxLastModified.Get(doc);
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
 
         string shortUri;
