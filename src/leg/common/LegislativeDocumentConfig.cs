@@ -69,7 +69,7 @@ public class LegislativeDocumentConfig {
     /// </summary>
     public static LegislativeDocumentConfig ForExplanatoryMemoranda() {
         return new LegislativeDocumentConfig {
-            DocumentTitles = new[] { "Explanatory Memorandum To", "Policy Note" },
+            DocumentTitles = new[] { "Explanatory Memorandum To", "Explanatory Memorandum", "Policy Note" },
             SectionTitleStyle = "EMSectionTitle",
             Level1SubheadingStyle = "EMLevel1Subheading",
             Level2SubheadingStyle = "EMLevel2Subheading",
@@ -77,6 +77,7 @@ public class LegislativeDocumentConfig {
             DefaultDocumentType = "ExplanatoryMemorandum",
             DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
                 { "Explanatory Memorandum To", "ExplanatoryMemorandum" },
+                { "Explanatory Memorandum", "ExplanatoryMemorandum" },
                 { "Policy Note", "PolicyNote" }
             }
         };
