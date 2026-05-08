@@ -39,6 +39,7 @@ public class Program {
     private static readonly Option<string> ProcedureOption = new("--procedure"){ Description = "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"};
     private static readonly Option<string[]> LanguageOption = new("--language"){ Description = "the language(s) of the document - the default is English", AllowMultipleArgumentsPerToken = true};
     private static readonly Option<string> ManifestationNameOption = new("--manifestation-name"){ Description = "value for FRBRManifestation/FRBRdate/@name identifying the workflow (default: historic-akn-transform)"};
+    private static readonly Option<bool> ValidateAknOption = new("--validate-akn"){ Description = "instead of transforming, validate --input as an AKN file and emit JSON to stdout" };
 
     static Program() {
         Command = new RootCommand {
@@ -54,8 +55,42 @@ public class Program {
             ProcedureOption,
             LanguageOption,
             ManifestationNameOption,
+            ValidateAknOption,
         };
-        Command.SetAction(Transform);
+        Command.SetAction(Dispatch);
+    }
+
+    static int Dispatch(ParseResult parseResult) {
+        if (parseResult.GetValue(ValidateAknOption))
+            return ValidateAkn(parseResult);
+        return Transform(parseResult);
+    }
+
+    static int ValidateAkn(ParseResult parseResult) {
+        FileInfo input = parseResult.GetValue(InputOption);
+        var xml = new System.Xml.XmlDocument();
+        xml.Load(input.FullName);
+        var subErrs = Validator.Shared.Validate(xml);
+        var aknErrs = Validator.Shared.ValidateAgainstMainAkn(xml);
+        var nsmgr = new System.Xml.XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
+        string expressionUri = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRthis", nsmgr) as System.Xml.XmlElement)?.GetAttribute("value");
+        string frbrDateName = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as System.Xml.XmlElement)?.GetAttribute("name");
+        string frbrDateValue = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as System.Xml.XmlElement)?.GetAttribute("date");
+        bool hasPreface = xml.SelectSingleNode("//akn:preface", nsmgr) != null;
+        var bodyChildren = xml.SelectNodes("//akn:mainBody/*", nsmgr);
+        bool hasBody = bodyChildren != null && bodyChildren.Count > 0;
+        var report = new {
+            file = input.Name,
+            expressionUri,
+            frbrDate = new { name = frbrDateName, date = frbrDateValue },
+            hasPreface,
+            hasBody,
+            subschemaErrors = subErrs.ConvertAll(e => new { line = e.Exception?.LineNumber ?? 0, msg = e.Message }),
+            mainAknErrors = aknErrs.ConvertAll(e => new { line = e.Exception?.LineNumber ?? 0, msg = e.Message }),
+        };
+        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(report));
+        return (subErrs.Count == 0 && aknErrs.Count == 0) ? 0 : 1;
     }
 
     public static int Main(string[] args) {
