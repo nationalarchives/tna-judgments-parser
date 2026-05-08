@@ -1,4 +1,5 @@
 name: Run Integrations Tests
+permissions: {}
 
 on:
   pull_request:
@@ -14,11 +15,15 @@ jobs:
   run-tests:
     name: Run Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       # Checkout the code
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: true
 
       # Set up .NET environment (assuming C# is the primary language)
       - name: Setup .NET

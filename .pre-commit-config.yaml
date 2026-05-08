@@ -1,0 +1,45 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      # - id: check-json  # devcontainer.json fails, has comments
+      - id: check-merge-conflict
+      # - id: check-xml. # Sultan Others.xml fails
+      - id: check-yaml
+      # - id: end-of-file-fixer  # many fail
+      - id: forbid-submodules
+      - id: mixed-line-ending
+      - id: no-commit-to-branch
+      # - id: trailing-whitespace. # many fail
+
+
+  # - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+  #   rev: v17.9.0
+  #   hooks:
+  #     - id: stylelint
+  #       args: [--fix]
+  #       language: node
+  #       additional_dependencies:
+  #         - stylelint@17.9.0
+  #         - stylelint-config-standard-scss@17.0.0
+  #         - stylelint-config-clean-order@8.0.1
+
+  # - repo: https://github.com/pre-commit/mirrors-prettier
+  #   rev: v4.0.0-alpha.8
+  #   hooks:
+  #     - id: prettier
+  #       types_or: [yaml, json, xml, markdown, scss, javascript]
+
+  - repo: https://github.com/renovatebot/pre-commit-hooks
+    rev: 43.141.2
+    hooks:
+      - id: renovate-config-validator
+        args: [--strict]
+        files: ^renovate\.json$
+
+  - repo: https://github.com/woodruffw/zizmor-pre-commit
+    rev: v1.24.1
+    hooks:
+      - id: zizmor
