@@ -9,6 +9,37 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 namespace UK.Gov.Legislation.Common {
 
+/// <summary>
+/// Walks the opening blocks of a leg .docx and pulls out the document
+/// type, title, and regulation number, returning them wrapped with
+/// DocType2/DocNumber2 markers so the AKN Builder can render them as
+/// the &lt;preface&gt; (centred docType + title + docNumber).
+///
+/// State machine:
+///
+///   Start           → AfterDocType         (matched DocumentTitle)
+///   Start           → AfterRegulationTitle (matched "&lt;DocumentTitle&gt; &lt;title&gt;" on one line)
+///   AfterDocType    → AfterRegulationTitle (consumed the title line)
+///   AfterRegTitle   → AfterRegulationTitle (consumed a multi-line title continuation)
+///   AfterRegTitle   → AfterDocNumber       (matched <see cref="RegulationNumber.Is"/>)
+///   AfterDocNumber  → Done                 (optional second paired EM via TryParseSecondTitleAndNumber)
+///   any             → Fail                 (clears Enriched; body parser sees the original blocks)
+///
+/// Variants supported (real production patterns; each has a repro in
+/// the validator's results.ndjson):
+///
+///  * Leading blank paragraphs before "EXPLANATORY MEMORANDUM TO"
+///  * Leading non-paragraph blocks (cover-page tables)
+///  * Blank paragraphs between heading lines
+///  * Multi-line titles (continuation paragraphs before the number)
+///  * "EXPLANATORY MEMORANDUM TO &lt;title&gt;" on a single line
+///  * "EXPLANATORY MEMORANDUM" with no "TO"
+///  * Draft / unassigned regulation numbers (see <see cref="RegulationNumber"/>)
+///
+/// Returning an empty Enriched list is the explicit signal "no header
+/// here" — the body parser will then see the original block list
+/// unchanged.
+/// </summary>
 class BaseHeaderSplitter {
 
     protected readonly LegislativeDocumentConfig Config;
@@ -104,10 +135,12 @@ class BaseHeaderSplitter {
         string.IsNullOrWhiteSpace(line.NormalizedContent);
 
     private void Start(IBlock block) {
-        if (block is not WLine line) {
-            state = State.Fail;
+        // Skip non-paragraph leading blocks (tables, figures) — some
+        // templates put a cover-page table before "EXPLANATORY MEMORANDUM
+        // TO" — and stay in Start so the splitter picks the heading up
+        // on the next iteration.
+        if (block is not WLine line)
             return;
-        }
         // Some templates open with one or more empty paragraphs before
         // "EXPLANATORY MEMORANDUM TO"; skip them and stay in Start.
         if (IsBlank(line))
