@@ -1,4 +1,10 @@
 ignore:
+  iac:
+    a933f7a2-ea43-40c8-8816-38ea2a4e36a1:
+      /TRE/DockerfileV2:
+        reason: FALSE_POSITIVE
+        comment: "This image is deployed exclusively as an AWS Lambda container image. Lambda automatically runs container images with a default least-privileged Linux user when no USER instruction is specified, unlike standard Docker runtimes."
+
   sensitive_data:
     ALL:
       /test/judgments/test1.docx:
