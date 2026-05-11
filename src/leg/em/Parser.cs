@@ -70,7 +70,7 @@ partial class Parser : BaseLegislativeDocumentParser {
     }
 
     protected override List<IBlock> Header() {
-        List<IBlock> header = BaseHeaderSplitter.Split(PreParsed.Body, Config);
+        List<IBlock> header = EMHeaderSplitter.Split(PreParsed.Body, Config);
         i = header.Count;
         return header;
     }

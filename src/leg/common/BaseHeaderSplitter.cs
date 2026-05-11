@@ -54,7 +54,7 @@ class BaseHeaderSplitter {
         return enricher.Enriched;
     }
 
-    private enum State {
+    protected enum State {
         Start,
         AfterDocType,
         AfterRegulationTitle,
@@ -63,20 +63,20 @@ class BaseHeaderSplitter {
         Fail
     };
 
-    private State state = State.Start;
+    protected State state = State.Start;
 
-    private readonly List<IBlock> Blocks;
+    protected readonly List<IBlock> Blocks;
 
-    private int I = 0;
+    protected int I = 0;
 
-    private readonly List<IBlock> Enriched = new List<IBlock>(3);
+    protected readonly List<IBlock> Enriched = new List<IBlock>(3);
 
     protected BaseHeaderSplitter(IEnumerable<IBlock> blocks, LegislativeDocumentConfig config) {
         Blocks = blocks is List<IBlock> list ? list : new List<IBlock>(blocks);
         Config = config;
     }
 
-    private void Enrich() {
+    protected void Enrich() {
         while (I < Blocks.Count) {
             var block = Blocks[I];
             if (state == State.Start) {
@@ -170,28 +170,20 @@ class BaseHeaderSplitter {
             state = State.AfterRegulationTitle;
             return;
         }
-        // Aggressive fallback: some EMs omit the "EXPLANATORY MEMORANDUM TO"
-        // label and open with the regulation title directly. If a known
-        // regulation-number shape appears within the next few non-blank
-        // blocks, treat this line as a single-line DocType (same as the
-        // prefix-match path) so the body parser doesn't see the heading
-        // as body content.
-        //
-        // Gated by config: IA / EN / TN / CoP / OD cover sheets also contain
-        // regulation numbers within a few blocks of the opening line, but
-        // their opening line isn't the regulation title — wrapping it as
-        // a DocType produces a spurious preface and breaks body structure.
-        if (Config.AllowAggressiveHeaderFallback && HasRegulationNumberShapeWithin(maxNonBlankLookAhead: 4)) {
-            DocType2 docType = new DocType2 { Contents = line.Contents };
-            WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
-            Enriched.Add(newLine);
-            state = State.AfterRegulationTitle;
-            return;
-        }
+        HandleUnrecognisedStartLine(line);
+    }
+
+    /// <summary>
+    /// Extension point: the first non-blank line didn't match any configured
+    /// DocumentTitle. Default fails the splitter. Implementations must set
+    /// <see cref="state"/>; if recovering, also add to <see cref="Enriched"/>
+    /// and advance to AfterDocType or AfterRegulationTitle.
+    /// </summary>
+    protected virtual void HandleUnrecognisedStartLine(WLine line) {
         state = State.Fail;
     }
 
-    private bool HasRegulationNumberShapeWithin(int maxNonBlankLookAhead) {
+    protected bool HasRegulationNumberShapeWithin(int maxNonBlankLookAhead) {
         int seen = 0;
         for (int j = I + 1; j < Blocks.Count && seen < maxNonBlankLookAhead; j++) {
             if (Blocks[j] is not WLine candidate)
@@ -240,16 +232,7 @@ class BaseHeaderSplitter {
         // preface has the expected three-line structure rather than
         // failing the whole header. The body parser handles this block
         // (we don't add it to Enriched).
-        // EM-only: the body's first numbered paragraph means the cover sheet
-        // is done. If we never found a regulation number, the most recent
-        // title-continuation line is most likely the number in a shape we
-        // don't recognise (broken brackets, asterisks). Promote it.
-        // Gated because IA / EN / TN / CoP / OD cover sheets have arbitrary
-        // metadata between title and body — promoting the last line would
-        // wrap something like "Date: 13/01/2025" as the regulation number.
-        if (Config.AllowAggressiveHeaderFallback
-            && line is WOldNumberedParagraph
-            && PromoteLastTitleLineToDocNumber()) {
+        if (line is WOldNumberedParagraph numbered && TryPromoteOnBodyMarker(numbered)) {
             state = State.Done;
             return;
         }
@@ -261,13 +244,20 @@ class BaseHeaderSplitter {
     }
 
     /// <summary>
-    /// Take the last accumulated title line out of Enriched and wrap it
-    /// as a DocNumber2 marker. Used by the structural fallback when we
-    /// reach the body without finding a recognised regulation number.
-    /// Returns false if there's no title line yet (only DocType has been
-    /// added), in which case the caller should let the splitter Fail.
+    /// Extension point: a body-numbered paragraph arrived while still in
+    /// AfterRegulationTitle. Default returns false (no promotion); return
+    /// true after mutating <see cref="Enriched"/> to move the caller to
+    /// State.Done.
     /// </summary>
-    private bool PromoteLastTitleLineToDocNumber() {
+    protected virtual bool TryPromoteOnBodyMarker(WOldNumberedParagraph numbered) {
+        return false;
+    }
+
+    /// <summary>
+    /// Wraps the last entry in <see cref="Enriched"/> as a DocNumber2.
+    /// Returns false if only the DocType has been added.
+    /// </summary>
+    protected bool PromoteLastTitleLineToDocNumber() {
         if (Enriched.Count < 2)
             return false;
         int idx = Enriched.Count - 1;

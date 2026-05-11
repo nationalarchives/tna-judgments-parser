@@ -33,31 +33,6 @@ public class LegislativeDocumentConfig {
     public bool SectionTitleRequiresNumber { get; set; } = true;
 
     /// <summary>
-    /// Whether the header splitter may apply EM-specific aggressive recovery
-    /// when the canonical "DocType / title / regulation-number" three-line
-    /// shape isn't found. Two behaviours are gated by this flag:
-    ///
-    ///   1. Start fallback — treat an unrecognised first line as a single-line
-    ///      DocType when a regulation-number shape appears within the next few
-    ///      non-blank blocks. For EMs that omit the "EXPLANATORY MEMORANDUM TO"
-    ///      label and open with the regulation title.
-    ///   2. AfterRegulationTitle promotion — when the splitter has collected a
-    ///      DocType + title-continuation lines and then hits a body-numbered
-    ///      paragraph without finding a recognised regulation number, promote
-    ///      the most recent title line to DocNumber (assumes it's a regulation
-    ///      number in a shape we don't recognise: broken brackets, asterisks).
-    ///
-    /// Both assumptions hold for EM cover sheets ("Explanatory Memorandum TO
-    /// &lt;regulation title&gt; / &lt;regulation number&gt; / 1. Body...") but
-    /// fail on IA / EN / TN / CoP / OD cover sheets where the lines between
-    /// DocType and the first numbered body paragraph are arbitrary metadata
-    /// (Type of measure, Department, Contact, Date). Don't enable this flag
-    /// for those doc types or the splitter will misread their cover sheet
-    /// as a preface and corrupt the body structure.
-    /// </summary>
-    public bool AllowAggressiveHeaderFallback { get; set; } = false;
-
-    /// <summary>
     /// The URI suffix to append to regulation URIs (e.g., "/ia", "/em")
     /// </summary>
     public string UriSuffix { get; set; }
@@ -100,7 +75,6 @@ public class LegislativeDocumentConfig {
             Level2SubheadingStyle = "EMLevel2Subheading",
             UriSuffix = "/memorandum",
             DefaultDocumentType = "ExplanatoryMemorandum",
-            AllowAggressiveHeaderFallback = true,
             DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
                 { "Explanatory Memorandum To", "ExplanatoryMemorandum" },
                 { "Explanatory Memorandum", "ExplanatoryMemorandum" },
