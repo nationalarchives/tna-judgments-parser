@@ -66,8 +66,6 @@ abstract class BaseHelper {
         if (simplify)
             Simplifier.Simplify(xml);
 
-        StripLeadingTabMarkers(xml);
-
         ApplyDocumentSpecificProcessing(xml);
 
         // IA consumed uk:headingDepth/headingSignal above; strip the rest.
@@ -101,10 +99,23 @@ abstract class BaseHelper {
     /// (e.g. "1.1<tab>This...") are kept so they can do their normal
     /// inter-token spacing job.
     /// </summary>
-    private static void StripLeadingTabMarkers(XmlDocument xml) {
+    /// <remarks>
+    /// EM-only behaviour by call-site choice (invoked from
+    /// <c>ExplanatoryMemoranda.Helper.ApplyDocumentSpecificProcessing</c>).
+    /// Other leg doc types use leading tabs as part of their rendering
+    /// convention — IA in particular has bulleted list items where the
+    /// leading tab IS the bullet indent. Even within EM, paragraphs inside
+    /// <c>&lt;authorialNote&gt;</c> (footnote marker separator), table
+    /// cells, and the <c>&lt;paragraph&gt;</c> wrapper used for numbered
+    /// list items are excluded so the strip doesn't damage their
+    /// rendering convention.
+    /// </remarks>
+    internal static void StripLeadingTabMarkers(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
-        var paragraphs = xml.SelectNodes("//akn:p", nsmgr);
+        var paragraphs = xml.SelectNodes(
+            "//akn:p[not(ancestor::akn:authorialNote) and not(ancestor::akn:td) and not(ancestor::akn:th) and not(parent::akn:content[parent::akn:paragraph])]",
+            nsmgr);
         if (paragraphs == null) return;
         foreach (XmlNode p in paragraphs) {
             XmlNode firstSubstantive = null;
