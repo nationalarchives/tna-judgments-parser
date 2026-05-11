@@ -19,7 +19,7 @@ namespace Backlog.Src;
 
 internal class MetadataTransformer(TimeProvider timeProvider)
 {
-    internal FullTreMetadata CreateFullTreMetadata(string sourceFilename, string sourceMimeType,
+    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string sourceFilename, string sourceMimeType,
         string contentHash, bool autoPublish, Image[] images, Meta responseMeta,
         List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
@@ -46,6 +46,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
                     Extensions = responseMeta.Extensions,
                     Attachments = responseMeta.Attachments ?? [],
                     DocumentType = Enum.Parse<DocumentType>(responseMeta.DocumentType, true),
+                    ParserRunId = parserRunId,
                     ErrorMessages = [],
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile

@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,10 +19,21 @@ public partial record ParserProcessMetadata
     public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.SnakeCaseLower, false), new MetadataFieldJsonConverter() }
+        Converters =
+        {
+            new JsonStringEnumConverter(JsonNamingPolicy.SnakeCaseLower, false),
+            new MetadataFieldJsonConverter()
+        }
     };
-    
+
     [JsonPropertyName("documentType")] public DocumentType DocumentType { get; init; }
+
+    /// <summary>
+    ///     A UUID to identify the parser run. This does not need to be unique per document; it should be unique per invocation
+    ///     of the parser.
+    /// </summary>
+    [JsonPropertyName("parser_run_id")]
+    public required Guid ParserRunId { get; init; }
 
     /// <summary>
     ///     A list of error messages raised whilst parsing this document.
