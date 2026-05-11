@@ -22,11 +22,6 @@ interface ILine : IBlock, IBordered {
 
     string Style { get; }
 
-    int? WordHeadingDepth => null;
-
-    /// "Authoritative" or "Visual" — see DOCX.Styles.HeadingSignal.
-    string WordHeadingSignal => null;
-
     AlignmentValues? Alignment { get; }
 
     string LeftIndent { get; }

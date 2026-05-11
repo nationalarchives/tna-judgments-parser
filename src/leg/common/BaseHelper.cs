@@ -69,7 +69,7 @@ abstract class BaseHelper {
         ApplyDocumentSpecificProcessing(xml);
 
         // IA consumed uk:headingDepth/headingSignal above; strip the rest.
-        Judgments.AkomaNtoso.Builder.StripHeadingMetadataAttributes(xml);
+        LegHeadingClassifier.StripHeadingMetadataAttributes(xml);
 
         SyncTotalImagesWithXml(xml);
 
