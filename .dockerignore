@@ -1,0 +1,31 @@
+# .dockerignore
+
+# config
+.devcontainer/
+.idea/
+.git/
+.github/
+
+.DS_Store
+.editorconfig
+.gitignore
+.wiz
+renovate.json
+lm-run.ps1
+
+# local .NET build artefacts
+*/bin/
+bin/
+*/obj/
+obj/
+
+# documentation
+docs/
+*.md
+
+# tests
+test/
+NationalArchives.FindCaseLaw.Utils.Tests/
+
+# backlog parser (not needed for normal parser deployment)
+backlog/

@@ -1,24 +1,32 @@
-FROM public.ecr.aws/lambda/dotnet:8@sha256:9f93cda1784ec3d6b1618120dd5c2ca77ee9b1b5be27177e06f2550fcf05fffa AS base
+FROM public.ecr.aws/lambda/dotnet:8@sha256:30f104fa1a87d9830b3e75e6db85374c9da531e176e044963f7cdb6561764482 AS base
 WORKDIR /var/task
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:4b1cdaa57eed2cecabcf29bdb9bce11e8ca1c287d39dfd2c8b534663ea94d493 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:27ee23dc62a99643cfab2dc291582b6f2611ddc2598a0ff0958ddd0972012e52 AS build-env
 
 WORKDIR /src
-COPY ["TRE/TRE.csproj",""]
-COPY . ./
+# Copy each csproj over then restore so this expensive operation can be cached
+COPY ["NationalArchives.FindCaseLaw.Utils/NationalArchives.FindCaseLaw.Utils.csproj", "NationalArchives.FindCaseLaw.Utils/NationalArchives.FindCaseLaw.Utils.csproj"]
+RUN dotnet restore NationalArchives.FindCaseLaw.Utils/NationalArchives.FindCaseLaw.Utils.csproj
+COPY ["judgments.csproj", "judgments.csproj"]
+RUN dotnet restore judgments.csproj
+COPY ["TRE/TRE.csproj", "TRE/TRE.csproj"]
 RUN dotnet restore TRE/TRE.csproj
+# Copy the rest of the repo over
+COPY . ./
 
 FROM build-env AS publish
 
-RUN dotnet publish TRE/TRE.csproj -c Release -o /src --no-restore
+RUN dotnet publish TRE/TRE.csproj -c Release -o /app/publish --no-restore
 
 FROM base AS final
 
-RUN dnf upgrade -y
-RUN dnf clean all --enablerepo=\*
+# Use one RUN so package metadata does not clog image layer
+RUN dnf upgrade -y && \
+    dnf clean all --enablerepo=\* && \
+    rm -rf /var/cache/dnf
 
 WORKDIR /var/task
 
-COPY --from=publish /src ${LAMBDA_TASK_ROOT}
+COPY --from=publish /app/publish ${LAMBDA_TASK_ROOT}
 
 CMD ["TRE::UK.Gov.NationalArchives.CaseLaw.TRE.Lambda::FunctionHandler"]
