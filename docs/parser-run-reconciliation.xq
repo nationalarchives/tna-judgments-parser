@@ -4,7 +4,22 @@ import module namespace recon = "http://nationalarchives.gov.uk/parser-run-recon
 declare namespace dls = "http://marklogic.com/xdmp/dls";
 
 declare variable $parserRunId as xs:string external;
-declare variable $expectedIds as xs:string* external;
+declare variable $expectedBundleReferences as xs:string* external;
+
+declare function local:extract-bundle-reference($doc as node()) as xs:string? {
+  let $properties := xdmp:document-properties(fn:base-uri($doc))
+  let $annotation-text := string-join(
+    for $a in $properties//dls:annotation
+    return normalize-space(string($a)),
+    " "
+  )
+  let $match := fn:analyze-string($annotation-text, '"reference"\s*:\s*"([0-9a-fA-F-]{36})"')/fn:match[1]/fn:group[@nr = "1"][1]
+  return
+    if (exists($match)) then
+      fn:lower-case(normalize-space(string($match)))
+    else
+      ()
+};
 
 let $latest-version-query := cts:collection-query("http://marklogic.com/collections/dls/latest-version")
 
@@ -29,7 +44,9 @@ let $ingested := recon:uniq(
       $parser-run-query
     ))
   )
-  return substring-before(fn:base-uri($d), ".xml")
+  let $bundle-reference := local:extract-bundle-reference($d)
+  where exists($bundle-reference)
+  return $bundle-reference
 )
 
 let $published := recon:uniq(
@@ -41,10 +58,12 @@ let $published := recon:uniq(
       $published-property-query
     ))
   )
-  return substring-before(fn:base-uri($d), ".xml")
+  let $bundle-reference := local:extract-bundle-reference($d)
+  where exists($bundle-reference)
+  return $bundle-reference
 )
 
-let $result := recon:result($expectedIds, $ingested, $published)
+let $result := recon:result($expectedBundleReferences, $ingested, $published)
 
 return object-node {
   "parserRunId": $parserRunId,

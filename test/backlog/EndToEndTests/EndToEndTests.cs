@@ -21,11 +21,11 @@ namespace test.backlog.EndToEndTests
         private static readonly string ExpectedParserVersion = typeof(Metadata)
                                                                .Assembly
                                                                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
-                                                               .InformationalVersion;
+                                                               .InformationalVersion ?? string.Empty;
 
-        private string outputDir;
-        private string trackerPath;
-        private string dataDir;
+        private string outputDir = string.Empty;
+        private string trackerPath = string.Empty;
+        private string dataDir = string.Empty;
 
         protected override void Dispose(bool disposing)
         {
@@ -122,6 +122,13 @@ namespace test.backlog.EndToEndTests
             return Regex.Match(actualMetadataJson, $"\"parser_run_id\":\"({GuidRegex()})\"").Groups[1].Value;
         }
 
+        private static string[] ReadManifestLines(string manifestPath)
+        {
+            return File.ReadAllLines(manifestPath)
+                       .Where(line => !string.IsNullOrWhiteSpace(line))
+                       .ToArray();
+        }
+
         private void AssertCapturedContentContainsExpectedMetadataJson(string capturedKey,
             string expectedMetadataJsonResourceName)
         {
@@ -143,7 +150,7 @@ namespace test.backlog.EndToEndTests
         {
             var document = XDocument.Parse(xml, LoadOptions.PreserveWhitespace);
             XNamespace uk = "https://caselaw.nationalarchives.gov.uk/akn";
-            return document.Descendants(uk + "parser").FirstOrDefault()?.Value;
+            return document.Descendants(uk + "parser").FirstOrDefault()?.Value ?? string.Empty;
         }
 
         [Theory]
@@ -198,15 +205,64 @@ namespace test.backlog.EndToEndTests
             mockS3Client.AssertUploadsWereValid();
 
             var capturedParserRunIds = new List<string>();
+            var trackerContents = File.ReadAllText(trackerPath);
             foreach (var key in mockS3Client.CapturedKeys)
             {
                 // Verify tracker was updated for all processed items
-                Assert.Contains(GetUuidFromKey(key), File.ReadAllText(trackerPath));
+                Assert.Contains(GetUuidFromKey(key), trackerContents);
                 capturedParserRunIds.Add(GetParserRunIdFromCapturedMetadataJson(key));
             }
             
             //Ensure that the parser run ids with each document is the same
             Assert.Single(capturedParserRunIds.Distinct());
+
+            // Verify manifest CSV structure and contents
+            var manifestPath = Directory.GetFiles(outputDir, "batch-manifest-*.csv").Single();
+            var manifestLines = ReadManifestLines(manifestPath);
+            var capturedKeys = mockS3Client.CapturedKeys.ToArray();
+            var parserRunIdFilePath = Directory.GetFiles(outputDir, "parser-run-id-*.txt").Single();
+            var bundleReferencesFilePath = Directory.GetFiles(outputDir, "bundle-references-*.txt").Single();
+            
+            // Verify header and row count
+            Assert.Equal(capturedKeys.Length + 1, manifestLines.Length);
+            Assert.Equal("parser_run_id,bundle_reference,bundle_filename,source_filename,source_uuid,parser_uri,parser_cite", manifestLines[0]);
+
+            var manifestRows = manifestLines.Skip(1).Select(line => line.Split(',')).ToArray();
+            Assert.Equal(capturedKeys.Length, manifestRows.Length);
+            Assert.All(manifestRows, row => Assert.Equal(7, row.Length));
+
+            // All rows should have the same parser_run_id (col 0)
+            Assert.All(manifestRows, row => Assert.Equal(capturedParserRunIds[0], row[0]));
+
+            // Verify direct reconciliation inputs were written alongside the manifest
+            Assert.Equal(capturedParserRunIds[0], File.ReadAllText(parserRunIdFilePath).Trim());
+
+            // Verify bundle filenames (col 2) match captured S3 keys
+            var bundleFilenamesFromManifest = manifestRows.Select(r => r[2]).OrderBy(x => x).ToArray();
+            var capturedKeysOrdered = capturedKeys.OrderBy(k => k).ToArray();
+            Assert.Equal(capturedKeysOrdered, bundleFilenamesFromManifest);
+
+            var expectedBundleReferences = manifestRows.Select(r => r[1]).OrderBy(x => x).ToArray();
+            var bundleReferencesFromFile = File.ReadAllLines(bundleReferencesFilePath).OrderBy(x => x).ToArray();
+            Assert.Equal(expectedBundleReferences, bundleReferencesFromFile);
+
+            // Verify source filenames (col 3) match test data
+            var sourceFilenames = manifestRows.Select(r => r[3]).OrderBy(x => x).ToArray();
+            Assert.Contains("test1.doc", sourceFilenames);
+            Assert.Contains("test2.docx", sourceFilenames);
+            Assert.Contains("test3.pdf", sourceFilenames);
+
+            // Verify bundle_reference (col 1) and source_uuid (col 4) are valid GUIDs
+            foreach (var row in manifestRows)
+            {
+                Assert.True(Guid.TryParse(row[1], out _));
+                Assert.True(Guid.TryParse(row[4], out _));
+                Assert.EndsWith(".tar.gz", row[2]);
+            }
+
+            // Log manifest contents for verification
+            PrintToOutputWithNumberedLines("Manifest CSV contents:");
+            PrintToOutputWithNumberedLines(manifestLines);
         }
 
         [Fact]

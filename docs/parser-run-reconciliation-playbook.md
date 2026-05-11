@@ -1,73 +1,85 @@
 # Parser Run Reconciliation Playbook
 
-> WIP: this is the current general approach, but Steps 1, 2, and 3 must still be tested end-to-end in MarkLogic and CloudWatch before being treated as fully validated runbook procedure.
+This playbook is for backlog batch runs only.
 
-## Key files
+## Files Used
 
-- Canonical MarkLogic query: `docs/parser-run-reconciliation.xq`
-- Shared reconciliation logic: `docs/parser-run-reconciliation-lib.xqy`
-- Local logic tests: `docs/run-parser-run-reconciliation-tests.sh`
-- Local fixture-flow tests: `docs/run-parser-run-reconciliation-fixture-tests.sh`
-
-## External dependencies
-
-- MarkLogic ingestion path (source of stored document shape): [ds-caselaw-ingester](https://github.com/nationalarchives/ds-caselaw-ingester)
-- API client used in ingestion flow: [ds-caselaw-custom-api-client](https://github.com/nationalarchives/ds-caselaw-custom-api-client)
-- Any field-path assumptions in this playbook (for example `documentId`, `parser_run_id`, `published`) must be validated against what these services persist in MarkLogic.
+- [docs/parser-run-reconciliation.xq](docs/parser-run-reconciliation.xq)
+- [docs/parser-run-reconciliation-lib.xqy](docs/parser-run-reconciliation-lib.xqy)
+- [docs/run-parser-run-reconciliation-tests.sh](docs/run-parser-run-reconciliation-tests.sh)
+- [docs/run-parser-run-reconciliation-fixture-tests.sh](docs/run-parser-run-reconciliation-fixture-tests.sh)
 
 ## Inputs
 
-- parserRunId
-- expectedIds (MarkLogic document URIs without `.xml`, for example `uksc/2025/123`)
-- CloudWatch time window that covers the full run
+- `parser-run-id-<parserRunId>.txt` from the backlog output folder
+- `bundle-references-<parserRunId>.txt` from the backlog output folder
+- `batch-manifest-<parserRunId>.csv` from the backlog output folder (optional trace file)
+- MarkLogic access (Query Console or equivalent)
+- CloudWatch Logs Insights access
 
-## 1) Reconcile in one XQuery
+## Identifier Rules
 
-Run `docs/parser-run-reconciliation.xq` and pass `parserRunId` and `expectedIds` as external variables.
-The reconciliation logic is implemented in `docs/parser-run-reconciliation-lib.xqy`.
+- `parser_run_id`: one value for the whole batch
+- `bundle_reference`: unique TRE reference per bundle; this is the reconciliation key
 
-If you only have `expected.txt`, load it first in your client and pass lines as `$expectedIds`.
+## Step 1: Take The Reconciliation Inputs From Backlog Output
+
+Backlog now writes the reconciliation inputs directly. Use the files from the same output folder as the batch bundles.
+
+Required files:
+
+- `parser-run-id-<parserRunId>.txt`
+- `bundle-references-<parserRunId>.txt`
+
+Sanity checks:
+
+- `parser-run-id-<parserRunId>.txt` contains exactly one line
+- `bundle-references-<parserRunId>.txt` is non-empty
+- `bundle-references-<parserRunId>.txt` count should match processed bundle count
+
+## Step 2: Run Reconciliation Query In MarkLogic
+
+Run [docs/parser-run-reconciliation.xq](docs/parser-run-reconciliation.xq) with external variables:
+
+- `$parserRunId`: value from `parser-run-id-<parserRunId>.txt`
+- `$expectedBundleReferences`: all lines from `bundle-references-<parserRunId>.txt`
+
+Query output includes:
+
+- `counts.expected`
+- `counts.ingested`
+- `counts.published`
+- `counts.missing`
+- `counts.unpublished`
+- arrays: `missing`, `unpublished`, `published`
 
 Definitions:
 
-- missing = expected - ingested
-- unpublished = ingested - published
-- published = published
+- `missing = expected - ingested`
+- `unpublished = ingested - published`
 
-Identifier note:
+## Step 3: CloudWatch Accounting
 
-- `docs/parser-run-reconciliation.xq` now uses MarkLogic document URI as the reconciliation key (`fn:base-uri($doc)` with `.xml` suffix removed).
-- `published` is read as a MarkLogic document property (not an XML body element), matching `ds-caselaw-custom-api-client` behavior.
-- parser run matching uses `dls:annotation` in document properties, where `ds-caselaw-ingester` stores version annotation payloads.
-
-## Local verification scope
-
-- `docs/parser-run-reconciliation-tests.xq` validates the reconciliation set logic only (`expected`, `ingested`, `published` -> `missing`, `unpublished`).
-- `docs/parser-run-reconciliation-fixture-tests.xq` validates a MarkLogic-like flow locally by applying parser-run and published filters over fixture documents before reconciliation.
-- Neither local test executes MarkLogic `cts:search`. Use MarkLogic execution of `docs/parser-run-reconciliation.xq` for full end-to-end verification.
-
-## 2) CloudWatch accounting
-
-Replace <PARSER_RUN_ID> and run:
+Replace `<PARSER_RUN_ID>` and run:
 
 ```sql
 fields @message
 | filter @message like /<PARSER_RUN_ID>/
 | stats
-    countif(@message like /Received event/) as received,
-    countif(@message like /Ingestion complete/) as ingestion_complete,
-    countif(@message like /Runtime\.OutOfMemory/) as oom,
-    countif(@message like /Task timed out|timed out/) as timeout,
-    countif(@message like /bad doc|validation|unsupported|invalid/) as bad_doc
+  countif(@message like /Received event/) as received,
+  countif(@message like /Ingestion complete/) as ingestion_complete,
+  countif(@message like /Runtime\.OutOfMemory/) as oom,
+  countif(@message like /Task timed out|timed out/) as timeout,
+  countif(@message like /bad doc|validation|unsupported|invalid/) as bad_doc
 ```
 
 Compute:
 
-- unaccounted = received - (ingestion_complete + oom + timeout + bad_doc)
+- `unaccounted = received - (ingestion_complete + oom + timeout + bad_doc)`
 
-If unaccounted != 0, run the next query.
+If `unaccounted != 0`, run the next query.
 
-## 3) Find docs with no terminal outcome
+## Step 4: Find Records With No Terminal Outcome
 
 ```sql
 fields @timestamp, @message
@@ -75,24 +87,32 @@ fields @timestamp, @message
 | parse @message /documentId[=: ]+\"?(?<documentId>[^\",\s]+)/
 | parse @message /(?<kind>Received event|Ingestion complete|Runtime\.OutOfMemory|Task timed out|bad doc|validation|unsupported|invalid)/
 | stats
-    countif(kind="Received event") as received,
-    countif(kind="Ingestion complete") as ingestion_complete,
-    countif(kind="Runtime.OutOfMemory") as oom,
-    countif(kind="Task timed out") as timeout,
-    countif(kind="bad doc" or kind="validation" or kind="unsupported" or kind="invalid") as bad_doc
+  countif(kind="Received event") as received,
+  countif(kind="Ingestion complete") as ingestion_complete,
+  countif(kind="Runtime.OutOfMemory") as oom,
+  countif(kind="Task timed out") as timeout,
+  countif(kind="bad doc" or kind="validation" or kind="unsupported" or kind="invalid") as bad_doc
   by documentId
 | filter received > 0 and (ingestion_complete + oom + timeout + bad_doc) = 0
 | sort documentId asc
 ```
 
-## 4) Triage
+## Step 5: Triage
 
-- missing: SQS DLQ -> SQS metrics (Sent/Received/Deleted) -> SNS metrics (Published/Delivered/Failed) -> SNS filter/policies
-- unpublished: CloudWatch by documentId + parser_run_id; check publish exception, timeout, retry-only behavior
-- published: no action
+- For entries in `missing`: trace by `bundle_reference`, then check queueing/delivery path (SQS DLQ, SNS delivery/filter)
+- For entries in `unpublished`: inspect publish path logs for the same `bundle_reference` and `parser_run_id`
 
-## Done criteria
+## Done Criteria
 
-- missing count = 0
-- unpublished count = 0
-- unaccounted = 0
+- `counts.missing = 0`
+- `counts.unpublished = 0`
+- `unaccounted = 0`
+
+## Optional Local Guardrails
+
+Before operational use, run local logic checks:
+
+```bash
+docs/run-parser-run-reconciliation-tests.sh
+docs/run-parser-run-reconciliation-fixture-tests.sh
+```

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 
 using Backlog.Csv;
 
@@ -29,6 +30,7 @@ internal class BacklogParserWorker(
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
     {
         var parserRunId = Guid.NewGuid();
+        var manifestRows = new List<BatchManifestRow>();
         var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var skippedCsvLineIdentifiers,
             out var csvParseErrors, out var numAllLinesInCsv);
         if (lines.Count == 0)
@@ -72,6 +74,7 @@ internal class BacklogParserWorker(
                 var output = Path.Combine(pathToOutputFolder, bundleFileName);
                 logger.LogInformation("  Writing to output: {Output}", output);
                 File.WriteAllBytes(output, bundle.TarGz);
+                manifestRows.Add(bundle.ManifestRow);
 
                 if (isDryRun)
                 {
@@ -101,6 +104,21 @@ internal class BacklogParserWorker(
 
         LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
             skippedCsvLineIdentifiers, numAllLinesInCsv);
+
+        if (manifestRows.Count > 0)
+        {
+            var manifestPath = Path.Combine(pathToOutputFolder, $"batch-manifest-{parserRunId}.csv");
+            WriteManifest(manifestPath, manifestRows);
+            logger.LogInformation("Wrote batch manifest to: {ManifestPath}", manifestPath);
+
+            var parserRunIdPath = Path.Combine(pathToOutputFolder, $"parser-run-id-{parserRunId}.txt");
+            WriteParserRunId(parserRunIdPath, parserRunId);
+            logger.LogInformation("Wrote parser run id to: {ParserRunIdPath}", parserRunIdPath);
+
+            var bundleReferencesPath = Path.Combine(pathToOutputFolder, $"bundle-references-{parserRunId}.txt");
+            WriteBundleReferences(bundleReferencesPath, manifestRows);
+            logger.LogInformation("Wrote bundle references to: {BundleReferencesPath}", bundleReferencesPath);
+        }
 
         if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
         {
@@ -269,7 +287,57 @@ internal class BacklogParserWorker(
 
         var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, csvLine.FileName, mimeType, contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
 
-        return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, tdrUuid, images);
+    }
+
+    private static void WriteManifest(string manifestPath, IEnumerable<BatchManifestRow> manifestRows)
+    {
+        var lines = new List<string>
+        {
+            "parser_run_id,bundle_reference,bundle_filename,source_filename,source_uuid,parser_uri,parser_cite"
+        };
+
+        lines.AddRange(manifestRows.Select(row => string.Join(",", new[]
+        {
+            EscapeCsv(row.ParserRunId.ToString()),
+            EscapeCsv(row.BundleReference),
+            EscapeCsv(row.BundleFileName),
+            EscapeCsv(row.SourceFilename),
+            EscapeCsv(row.SourceUuid),
+            EscapeCsv(row.ParserUri),
+            EscapeCsv(row.ParserCite)
+        })));
+
+        File.WriteAllLines(manifestPath, lines, Encoding.UTF8);
+    }
+
+    private static void WriteParserRunId(string parserRunIdPath, Guid parserRunId)
+    {
+        File.WriteAllText(parserRunIdPath, parserRunId + Environment.NewLine, Encoding.UTF8);
+    }
+
+    private static void WriteBundleReferences(string bundleReferencesPath, IEnumerable<BatchManifestRow> manifestRows)
+    {
+        var lines = manifestRows
+            .Select(row => row.BundleReference)
+            .Where(reference => !string.IsNullOrWhiteSpace(reference))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(reference => reference, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        File.WriteAllLines(bundleReferencesPath, lines, Encoding.UTF8);
+    }
+
+    private static string EscapeCsv(string? value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return string.Empty;
+        }
+
+        var needsQuoting = value.Contains(',') || value.Contains('"') || value.Contains('\n') || value.Contains('\r');
+        var escaped = value.Replace("\"", "\"\"");
+        return needsQuoting ? $"\"{escaped}\"" : escaped;
     }
 
     public static string Hash(byte[] content)

@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Backlog.Src
     {
         internal string Uuid { get; init; }
         internal byte[] TarGz { get; init; }
+        internal BatchManifestRow ManifestRow { get; init; }
 
         internal static Bundle Make(Response response, FullTreMetadata fullTreMetadata, byte[] sourceContent,
-            string sourceFilename, IEnumerable<Image> images)
+            string sourceFilename, string sourceUuid, IEnumerable<Image> images)
         {
             var treReference = fullTreMetadata.Parameters.TRE.Reference;
 
@@ -47,7 +49,15 @@ namespace Backlog.Src
             return new Bundle
             {
                 Uuid = treReference,
-                TarGz = tarGz
+                TarGz = tarGz,
+                ManifestRow = new BatchManifestRow(
+                    fullTreMetadata.Parameters.PARSER.ParserRunId,
+                    treReference,
+                    $"{treReference}.tar.gz",
+                    sourceFilename,
+                    sourceUuid,
+                    response.Meta.Uri,
+                    response.Meta.Cite)
             };
         }
 
@@ -72,4 +82,13 @@ namespace Backlog.Src
             tar.CloseEntry();
         }
     }
+
+    internal sealed record BatchManifestRow(
+        Guid ParserRunId,
+        string BundleReference,
+        string BundleFileName,
+        string SourceFilename,
+        string SourceUuid,
+        string? ParserUri,
+        string? ParserCite);
 }
