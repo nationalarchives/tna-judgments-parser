@@ -176,7 +176,12 @@ class BaseHeaderSplitter {
         // blocks, treat this line as a single-line DocType (same as the
         // prefix-match path) so the body parser doesn't see the heading
         // as body content.
-        if (HasRegulationNumberShapeWithin(maxNonBlankLookAhead: 4)) {
+        //
+        // Gated by config: IA / EN / TN / CoP / OD cover sheets also contain
+        // regulation numbers within a few blocks of the opening line, but
+        // their opening line isn't the regulation title — wrapping it as
+        // a DocType produces a spurious preface and breaks body structure.
+        if (Config.AllowAggressiveHeaderFallback && HasRegulationNumberShapeWithin(maxNonBlankLookAhead: 4)) {
             DocType2 docType = new DocType2 { Contents = line.Contents };
             WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
             Enriched.Add(newLine);
@@ -235,7 +240,16 @@ class BaseHeaderSplitter {
         // preface has the expected three-line structure rather than
         // failing the whole header. The body parser handles this block
         // (we don't add it to Enriched).
-        if (line is WOldNumberedParagraph && PromoteLastTitleLineToDocNumber()) {
+        // EM-only: the body's first numbered paragraph means the cover sheet
+        // is done. If we never found a regulation number, the most recent
+        // title-continuation line is most likely the number in a shape we
+        // don't recognise (broken brackets, asterisks). Promote it.
+        // Gated because IA / EN / TN / CoP / OD cover sheets have arbitrary
+        // metadata between title and body — promoting the last line would
+        // wrap something like "Date: 13/01/2025" as the regulation number.
+        if (Config.AllowAggressiveHeaderFallback
+            && line is WOldNumberedParagraph
+            && PromoteLastTitleLineToDocNumber()) {
             state = State.Done;
             return;
         }
