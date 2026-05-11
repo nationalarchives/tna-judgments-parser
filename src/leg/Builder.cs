@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Linq;
 
+using UK.Gov.Legislation.Common;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Models;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
+using WLine = UK.Gov.Legislation.Judgments.Parse.WLine;
 
 namespace UK.Gov.Legislation {
 
@@ -17,10 +19,22 @@ class Builder : AkN.Builder {
     override protected string UKNS => "https://legislation.gov.uk/akn";
     private const string UKM_NS = "http://www.legislation.gov.uk/namespaces/metadata";
 
-    // IA's section detection (in BaseHelper.ApplyDocumentSpecificProcessing)
-    // consumes uk:headingDepth/headingSignal attributes; BaseHelper strips
-    // them before returning. Other AkN.Builder subclasses leave this off.
-    protected override bool EmitHeadingMetadata => true;
+    /// <summary>
+    /// IA's section detection (BaseHelper.ApplyDocumentSpecificProcessing)
+    /// consumes uk:headingDepth and uk:headingSignal attributes off each
+    /// block; <see cref="BaseHelper"/> calls
+    /// <see cref="LegHeadingClassifier.StripHeadingMetadataAttributes"/>
+    /// before returning so they don't reach the final AKN.
+    /// </summary>
+    protected override void DecorateBlockElement(XmlElement block, ILine line) {
+        if (line is not WLine wline)
+            return;
+        var classification = LegHeadingClassifier.Classify(wline.main, wline.Style);
+        if (classification is null)
+            return;
+        block.SetAttribute("headingDepth", UKNS, classification.Value.Depth.ToString());
+        block.SetAttribute("headingSignal", UKNS, classification.Value.Signal.ToString());
+    }
 
     private readonly string manifestationName;
 

@@ -6,7 +6,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using Xunit;
 
-using DocxStyles = UK.Gov.Legislation.Judgments.DOCX.Styles;
+using LegHeadingClassifier = UK.Gov.Legislation.Common.LegHeadingClassifier;
 using OoxmlStyles = DocumentFormat.OpenXml.Wordprocessing.Styles;
 
 namespace UK.Gov.Legislation.DOCX.Test {
@@ -43,10 +43,10 @@ public class TestClassifyHeading {
             new StyleParagraphProperties(new OutlineLevel { Val = 0 }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            var c = DocxStyles.ClassifyHeading(main, "MyHeading");
+            var c = LegHeadingClassifier.Classify(main, "MyHeading");
             Assert.NotNull(c);
             Assert.Equal(1, c.Value.Depth);
-            Assert.Equal(DocxStyles.HeadingSignal.Authoritative, c.Value.Signal);
+            Assert.Equal(LegHeadingClassifier.HeadingSignal.Authoritative, c.Value.Signal);
         }
     }
 
@@ -56,9 +56,9 @@ public class TestClassifyHeading {
             new StyleParagraphProperties(new OutlineLevel { Val = 5 }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            var c = DocxStyles.ClassifyHeading(main, "Sub6");
+            var c = LegHeadingClassifier.Classify(main, "Sub6");
             Assert.Equal(6, c.Value.Depth);
-            Assert.Equal(DocxStyles.HeadingSignal.Authoritative, c.Value.Signal);
+            Assert.Equal(LegHeadingClassifier.HeadingSignal.Authoritative, c.Value.Signal);
         }
     }
 
@@ -69,7 +69,7 @@ public class TestClassifyHeading {
             new StyleParagraphProperties(new OutlineLevel { Val = 9 }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            Assert.Null(DocxStyles.ClassifyHeading(main, "Body"));
+            Assert.Null(LegHeadingClassifier.Classify(main, "Body"));
         }
     }
 
@@ -78,9 +78,9 @@ public class TestClassifyHeading {
         var s = ParaStyle("Heading2");
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            var c = DocxStyles.ClassifyHeading(main, "Heading2");
+            var c = LegHeadingClassifier.Classify(main, "Heading2");
             Assert.Equal(2, c.Value.Depth);
-            Assert.Equal(DocxStyles.HeadingSignal.Authoritative, c.Value.Signal);
+            Assert.Equal(LegHeadingClassifier.HeadingSignal.Authoritative, c.Value.Signal);
         }
     }
 
@@ -93,9 +93,9 @@ public class TestClassifyHeading {
                 new FontSize { Val = "36" }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            var c = DocxStyles.ClassifyHeading(main, "BigBold");
+            var c = LegHeadingClassifier.Classify(main, "BigBold");
             Assert.Equal(1, c.Value.Depth);
-            Assert.Equal(DocxStyles.HeadingSignal.Visual, c.Value.Signal);
+            Assert.Equal(LegHeadingClassifier.HeadingSignal.Visual, c.Value.Signal);
         }
     }
 
@@ -107,9 +107,9 @@ public class TestClassifyHeading {
                 new FontSize { Val = "30" }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            var c = DocxStyles.ClassifyHeading(main, "MidBold");
+            var c = LegHeadingClassifier.Classify(main, "MidBold");
             Assert.Equal(2, c.Value.Depth);
-            Assert.Equal(DocxStyles.HeadingSignal.Visual, c.Value.Signal);
+            Assert.Equal(LegHeadingClassifier.HeadingSignal.Visual, c.Value.Signal);
         }
     }
 
@@ -122,7 +122,7 @@ public class TestClassifyHeading {
                 new FontSize { Val = "24" }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            Assert.Null(DocxStyles.ClassifyHeading(main, "BodyBold"));
+            Assert.Null(LegHeadingClassifier.Classify(main, "BodyBold"));
         }
     }
 
@@ -132,7 +132,7 @@ public class TestClassifyHeading {
             new StyleRunProperties(new FontSize { Val = "36" }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            Assert.Null(DocxStyles.ClassifyHeading(main, "BigPlain"));
+            Assert.Null(LegHeadingClassifier.Classify(main, "BigPlain"));
         }
     }
 
@@ -143,9 +143,9 @@ public class TestClassifyHeading {
         var child = ParaStyle("Child", new BasedOn { Val = "Parent" });
         var (ms, main) = BuildDoc(parent, child);
         using (ms) {
-            var c = DocxStyles.ClassifyHeading(main, "Child");
+            var c = LegHeadingClassifier.Classify(main, "Child");
             Assert.Equal(2, c.Value.Depth);
-            Assert.Equal(DocxStyles.HeadingSignal.Authoritative, c.Value.Signal);
+            Assert.Equal(LegHeadingClassifier.HeadingSignal.Authoritative, c.Value.Signal);
         }
     }
 
@@ -157,9 +157,9 @@ public class TestClassifyHeading {
             new StyleParagraphProperties(new OutlineLevel { Val = 2 }));
         var (ms, main) = BuildDoc(s);
         using (ms) {
-            var c = DocxStyles.ClassifyHeading(main, "Heading7");
+            var c = LegHeadingClassifier.Classify(main, "Heading7");
             Assert.Equal(3, c.Value.Depth);
-            Assert.Equal(DocxStyles.HeadingSignal.Authoritative, c.Value.Signal);
+            Assert.Equal(LegHeadingClassifier.HeadingSignal.Authoritative, c.Value.Signal);
         }
     }
 
@@ -167,7 +167,7 @@ public class TestClassifyHeading {
     public void UnknownStyle_ReturnsNull() {
         var (ms, main) = BuildDoc();
         using (ms) {
-            Assert.Null(DocxStyles.ClassifyHeading(main, "DoesNotExist"));
+            Assert.Null(LegHeadingClassifier.Classify(main, "DoesNotExist"));
         }
     }
 
@@ -175,8 +175,8 @@ public class TestClassifyHeading {
     public void EmptyStyleId_ReturnsNull() {
         var (ms, main) = BuildDoc();
         using (ms) {
-            Assert.Null(DocxStyles.ClassifyHeading(main, ""));
-            Assert.Null(DocxStyles.ClassifyHeading(main, null));
+            Assert.Null(LegHeadingClassifier.Classify(main, ""));
+            Assert.Null(LegHeadingClassifier.Classify(main, null));
         }
     }
 }
