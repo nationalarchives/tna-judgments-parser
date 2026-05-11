@@ -20,8 +20,10 @@ RUN dotnet publish TRE/TRE.csproj -c Release -o /src --no-restore
 
 FROM base AS final
 
-RUN dnf upgrade -y
-RUN dnf clean all --enablerepo=\*
+# Use one RUN so package metadata does not clog image layer
+RUN dnf upgrade -y && \
+    dnf clean all --enablerepo=\* && \
+    rm -rf /var/cache/dnf
 
 WORKDIR /var/task
 
