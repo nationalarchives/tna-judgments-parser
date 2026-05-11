@@ -305,60 +305,57 @@ abstract class Builder {
         /* The purpose is to find the correct cell above for vertically merged cells. */
         List<List<XmlElement>> allCellsWithRepeats = new List<List<XmlElement>>();
 
-        try {
-            List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
-            int iRow = 0;
-            foreach (List<ICell> row in rows) {
+        List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
+        int iRow = 0;
+        foreach (List<ICell> row in rows) {
 
-                List<XmlElement> thisRowOfCellsWithRepeats = new List<XmlElement>();
-                allCellsWithRepeats.Add(thisRowOfCellsWithRepeats);
+            List<XmlElement> thisRowOfCellsWithRepeats = new List<XmlElement>();
+            allCellsWithRepeats.Add(thisRowOfCellsWithRepeats);
 
-                bool rowIsHeader = model.Rows.ElementAt(iRow).IsHeader;
-                XmlElement tr = doc.CreateElement("tr", ns);
-                int iCell = 0;
-                foreach (ICell cell in row) {
-                    if (cell.VMerge == VerticalMerge.Continuation) {
-                        // the cell above for which this is a continuation
-                        XmlElement above = allCellsWithRepeats[iRow - 1][iCell];
-                        incrementRowspan(above);
-                        this.blocks(above, cell.Contents);
-                        int colspanAbove = getColspan(above);
-                        for (int i = 0; i < colspanAbove; i++)
-                            thisRowOfCellsWithRepeats.Add(above);
-                        iCell += colspanAbove;
-                        continue;
-                    }
-                    XmlElement td = doc.CreateElement(rowIsHeader ? "th" : "td", ns);
-                    if (cell.ColSpan is not null)
-                        td.SetAttribute("colspan", cell.ColSpan.ToString());
-                    Dictionary<string, string> styles = cell.GetCSSStyles();
-                    if (styles.TryGetValue("background-color", out string bg) &&
-                        (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
-                        styles.Remove("background-color");
-                    foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
-                        styles.Remove(key);
-                    if (styles.TryGetValue("background-color", out string bgValue) && IsDarkColor(bgValue) && !styles.ContainsKey("color"))
-                        styles["color"] = "#ffffff";
-                    if (styles.Any())
-                        td.SetAttribute("style", CSS.SerializeInline(styles));
-                    tr.AppendChild(td);
-                    this.blocks(td, cell.Contents);
-
-                    int colspan = cell.ColSpan ?? 1;
-                    for (int i = 0; i < colspan; i++)
-                        thisRowOfCellsWithRepeats.Add(td);
-                    iCell += colspan;
+            bool rowIsHeader = model.Rows.ElementAt(iRow).IsHeader;
+            XmlElement tr = doc.CreateElement("tr", ns);
+            int iCell = 0;
+            foreach (ICell cell in row) {
+                if (cell.VMerge == VerticalMerge.Continuation) {
+                    // the cell above for which this is a continuation
+                    XmlElement above = allCellsWithRepeats[iRow - 1][iCell];
+                    incrementRowspan(above);
+                    this.blocks(above, cell.Contents);
+                    int colspanAbove = getColspan(above);
+                    for (int i = 0; i < colspanAbove; i++)
+                        thisRowOfCellsWithRepeats.Add(above);
+                    iCell += colspanAbove;
+                    continue;
                 }
-                if (tr.HasChildNodes) {   // some rows might contain nothing but merged cells
-                    table.AppendChild(tr);
-                } else {
-                    // if row is not added, rowspans in row above may need to be adjusted, e.g., [2024] EWHC 2920 (KB)
-                    List<XmlElement> above = allCellsWithRepeats[iRow - 1];
-                    DecrementRowspans(above);
-                }
-                iRow += 1;
+                XmlElement td = doc.CreateElement(rowIsHeader ? "th" : "td", ns);
+                if (cell.ColSpan is not null)
+                    td.SetAttribute("colspan", cell.ColSpan.ToString());
+                Dictionary<string, string> styles = cell.GetCSSStyles();
+                if (styles.TryGetValue("background-color", out string bg) &&
+                    (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
+                    styles.Remove("background-color");
+                foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
+                    styles.Remove(key);
+                if (styles.TryGetValue("background-color", out string bgValue) && IsDarkColor(bgValue) && !styles.ContainsKey("color"))
+                    styles["color"] = "#ffffff";
+                if (styles.Any())
+                    td.SetAttribute("style", CSS.SerializeInline(styles));
+                tr.AppendChild(td);
+                this.blocks(td, cell.Contents);
+
+                int colspan = cell.ColSpan ?? 1;
+                for (int i = 0; i < colspan; i++)
+                    thisRowOfCellsWithRepeats.Add(td);
+                iCell += colspan;
             }
-        } finally {
+            if (tr.HasChildNodes) {   // some rows might contain nothing but merged cells
+                table.AppendChild(tr);
+            } else {
+                // if row is not added, rowspans in row above may need to be adjusted, e.g., [2024] EWHC 2920 (KB)
+                List<XmlElement> above = allCellsWithRepeats[iRow - 1];
+                DecrementRowspans(above);
+            }
+            iRow += 1;
         }
     }
 
