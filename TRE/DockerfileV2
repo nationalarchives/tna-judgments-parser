@@ -16,7 +16,7 @@ COPY . ./
 
 FROM build-env AS publish
 
-RUN dotnet publish TRE/TRE.csproj -c Release -o /src --no-restore
+RUN dotnet publish TRE/TRE.csproj -c Release -o /app/publish --no-restore
 
 FROM base AS final
 
@@ -27,6 +27,6 @@ RUN dnf upgrade -y && \
 
 WORKDIR /var/task
 
-COPY --from=publish /src ${LAMBDA_TASK_ROOT}
+COPY --from=publish /app/publish ${LAMBDA_TASK_ROOT}
 
 CMD ["TRE::UK.Gov.NationalArchives.CaseLaw.TRE.Lambda::FunctionHandler"]
