@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.Extensions.Logging;
+using SixLabors.ImageSharp;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Models;
@@ -72,7 +73,7 @@ class LegImageProcessor {
             // Convert to GIF
             byte[] gifData;
             try {
-                gifData = Imaging.Convert.ConvertToGif(image.Read());
+                gifData = ConvertToGif(image.Read());
                 logger.LogDebug("Converted {Name} to GIF", image.Name);
             } catch (Exception e) {
                 logger.LogWarning("Cannot convert {Name} to GIF: {Message}. Skipping image.", image.Name, e.Message);
@@ -105,6 +106,13 @@ class LegImageProcessor {
 
         logger.LogInformation("Processed {Count} images with S3 naming convention", renamedImages.Count);
         return renamedImages;
+    }
+
+    private static byte[] ConvertToGif(byte[] source) {
+        using var image = Image.Load(source);
+        using var stream = new MemoryStream();
+        image.SaveAsGif(stream);
+        return stream.ToArray();
     }
 
 }
