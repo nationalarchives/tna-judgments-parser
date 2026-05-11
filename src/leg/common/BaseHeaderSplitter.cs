@@ -193,18 +193,48 @@ class BaseHeaderSplitter {
         // Skip blank paragraphs between title and number.
         if (IsBlank(line))
             return;
+        if (RegulationNumber.Is(line.NormalizedContent)) {
+            DocNumber2 docNumber = new DocNumber2 { Contents = line.Contents };
+            WLine newLine = WLine.Make(line, new List<IInline>(1) { docNumber });
+            Enriched.Add(newLine);
+            state = State.AfterDocNumber;
+            return;
+        }
+        // Structural fallback: if we hit a numbered body paragraph
+        // ("1. This explanatory memorandum…") and we've already collected
+        // a title line, the most recent collected line is almost certainly
+        // the regulation number in a shape we don't recognise (broken
+        // brackets, asterisks, etc.). Promote it to DocNumber so the
+        // preface has the expected three-line structure rather than
+        // failing the whole header. The body parser handles this block
+        // (we don't add it to Enriched).
+        if (line is WOldNumberedParagraph && PromoteLastTitleLineToDocNumber()) {
+            state = State.Done;
+            return;
+        }
         // Some templates split the title across multiple paragraphs (e.g.
         // an Order title followed by "(NORTHERN IRELAND) 2016" on its own
         // line). Treat any non-blank, non-number line as a title
         // continuation and stay in this state until we find the number.
-        if (!RegulationNumber.Is(line.NormalizedContent)) {
-            Enriched.Add(line);
-            return;
-        }
-        DocNumber2 docNumber = new DocNumber2 { Contents = line.Contents };
-        WLine newLine = WLine.Make(line, new List<IInline>(1) { docNumber });
-        Enriched.Add(newLine);
-        state = State.AfterDocNumber;
+        Enriched.Add(line);
+    }
+
+    /// <summary>
+    /// Take the last accumulated title line out of Enriched and wrap it
+    /// as a DocNumber2 marker. Used by the structural fallback when we
+    /// reach the body without finding a recognised regulation number.
+    /// Returns false if there's no title line yet (only DocType has been
+    /// added), in which case the caller should let the splitter Fail.
+    /// </summary>
+    private bool PromoteLastTitleLineToDocNumber() {
+        if (Enriched.Count < 2)
+            return false;
+        int idx = Enriched.Count - 1;
+        if (Enriched[idx] is not WLine last)
+            return false;
+        DocNumber2 docNumber = new DocNumber2 { Contents = last.Contents };
+        Enriched[idx] = WLine.Make(last, new List<IInline>(1) { docNumber });
+        return true;
     }
 
     internal static string GetDocumentNumber(List<IBlock> header) {
