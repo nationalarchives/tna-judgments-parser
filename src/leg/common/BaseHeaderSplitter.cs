@@ -170,7 +170,34 @@ class BaseHeaderSplitter {
             state = State.AfterRegulationTitle;
             return;
         }
+        // Aggressive fallback: some EMs omit the "EXPLANATORY MEMORANDUM TO"
+        // label and open with the regulation title directly. If a known
+        // regulation-number shape appears within the next few non-blank
+        // blocks, treat this line as a single-line DocType (same as the
+        // prefix-match path) so the body parser doesn't see the heading
+        // as body content.
+        if (HasRegulationNumberShapeWithin(maxNonBlankLookAhead: 4)) {
+            DocType2 docType = new DocType2 { Contents = line.Contents };
+            WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
+            Enriched.Add(newLine);
+            state = State.AfterRegulationTitle;
+            return;
+        }
         state = State.Fail;
+    }
+
+    private bool HasRegulationNumberShapeWithin(int maxNonBlankLookAhead) {
+        int seen = 0;
+        for (int j = I + 1; j < Blocks.Count && seen < maxNonBlankLookAhead; j++) {
+            if (Blocks[j] is not WLine candidate)
+                continue;
+            if (IsBlank(candidate))
+                continue;
+            seen += 1;
+            if (RegulationNumber.Is(candidate.NormalizedContent))
+                return true;
+        }
+        return false;
     }
 
     private void AfterDocType(IBlock block) {
