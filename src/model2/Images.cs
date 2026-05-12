@@ -62,6 +62,12 @@ public class WImageRef : IImageRef {
 
     private readonly Uri uri;
 
+    /// <summary>
+    /// Like <see cref="WImageRef(MainDocumentPart, Drawing)"/>, but returns
+    /// <c>null</c> if the drawing has no blip (chart-only / SmartArt /
+    /// unsupported drawing kinds). Callers that prefer null-on-failure
+    /// over a WImageRef with a null URI use this factory.
+    /// </summary>
     public static WImageRef Make(MainDocumentPart main, Drawing drawing) {
         DrawingML.Blip blip = drawing.Descendants<DrawingML.Blip>().FirstOrDefault();
         if (blip is null) {
@@ -70,14 +76,20 @@ public class WImageRef : IImageRef {
             logger.LogWarning("dropping drawing with no blip (graphicData uri={Uri})", graphicUri);
             return null;
         }
-        return new WImageRef(main, drawing, blip);
+        return new WImageRef(main, drawing);
     }
 
-    private WImageRef(MainDocumentPart main, Drawing drawing, DrawingML.Blip blip) {
+    public WImageRef(MainDocumentPart main, Drawing drawing) {
         bool isAbsolutelyPositioned = drawing.ChildElements.OfType<DrawingML.Wordprocessing.Anchor>().Any(); // types are WrapSquare, WrapTight, WrapThrough, WrapTopBottom and WrapNone
         if (isAbsolutelyPositioned)
             logger.LogWarning("image is absolutely positioned");
-        this.uri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
+        DrawingML.Blip blip = drawing.Descendants<DrawingML.Blip>().FirstOrDefault();
+        if (blip is null) {
+            logger.LogWarning("unable to represent drawing");
+            logger.LogWarning(drawing.OuterXml);
+        } else {
+            this.uri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
+        }
 
         /* alt text */
         // var props = drawing.Descendants().OfType<DrawingML.Wordprocessing.DocProperties>().FirstOrDefault();
