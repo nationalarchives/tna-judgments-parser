@@ -16,20 +16,12 @@ using OD = UK.Gov.Legislation.OtherDocuments;
 namespace UK.Gov.Legislation {
 
 /// <summary>
-/// Entry point that the shared CLI delegates to for leg-doc-type
-/// processing. Holds everything in <c>Program.cs</c> that was
-/// leg-specific: the hint→doc-type dispatch, the per-doc-type
-/// Helper.Parse plumbing, the <c>--output-html</c> rendering, the
-/// renderer + LEG_STRICT_RENDER environment toggle, and the
-/// <c>document.xml</c> ZIP overload.
+/// Entry point the shared CLI delegates to for leg-doc-type processing.
+/// Keeps Program.cs free of leg-specific dispatch, options handling, and
+/// the document.xml ZIP overload.
 /// </summary>
 public static class LegCLI {
 
-    /// <summary>
-    /// Returns true if the given <paramref name="hint"/> is a recognised
-    /// leg doc type. <c>Program.cs</c> uses this as the early-exit check
-    /// before falling through to judgment / lawmaker dispatch.
-    /// </summary>
     public static bool IsLegHint(string hint) {
         if (string.IsNullOrEmpty(hint)) return false;
         return hint.Equals("em", StringComparison.InvariantCultureIgnoreCase)
@@ -41,9 +33,8 @@ public static class LegCLI {
     }
 
     /// <summary>
-    /// Dispatch a leg-doc-type transform. Caller is expected to have
-    /// established that <paramref name="hint"/> is a leg hint via
-    /// <see cref="IsLegHint"/>.
+    /// Caller is expected to have checked <see cref="IsLegHint"/> first;
+    /// passing a non-leg hint throws.
     /// </summary>
     public static void Transform(
             string hint,
@@ -92,9 +83,6 @@ public static class LegCLI {
             "true", StringComparison.OrdinalIgnoreCase);
         var parsed = parse(docx, input.Name, true, manifestationName, allowUnrendered, renderer);
 
-        // Save images alongside whichever file output is requested. Prefer --output's
-        // directory; fall back to --output-html's. Both go to the same place if both
-        // are set in the same directory (SaveImages overwrites idempotently).
         string imageDir = output is not null
             ? Path.GetDirectoryName(output.FullName)
             : (outputHtml is not null ? Path.GetDirectoryName(outputHtml.FullName) : null);
