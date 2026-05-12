@@ -1,7 +1,7 @@
 FROM public.ecr.aws/lambda/dotnet:8@sha256:79ce04c6a453ee91a526b1b1117976906576c9020623c028279498c0aa0af3e0 AS base
 WORKDIR /var/task
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:27ee23dc62a99643cfab2dc291582b6f2611ddc2598a0ff0958ddd0972012e52 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:ebecce75fb42c4c14db108f88054d20a93b0b9e6dfbacad56c8f744c342cf9ef AS build-env
 
 WORKDIR /src
 # Copy each csproj over then restore so this expensive operation can be cached
