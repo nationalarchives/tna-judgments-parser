@@ -164,10 +164,10 @@ public class Program
 
         var appHost = builder.Build();
 
-        var serviceProvider = appHost.Services;
-        var backlogParserOptions = serviceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value;
+        using var scope = appHost.Services.CreateScope();
+        var backlogParserOptions = scope.ServiceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value;
 
-        var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
         try
         {
             logger.LogInformation("Using Parser version: {ParserVersion}",
@@ -176,7 +176,7 @@ public class Program
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}",
                 backlogParserOptions.CourtMetadataFilePath);
 
-            var backlogParserWorker = serviceProvider.GetRequiredService<BacklogParserWorker>();
+            var backlogParserWorker = scope.ServiceProvider.GetRequiredService<BacklogParserWorker>();
             Directory.CreateDirectory(backlogParserOptions.OutputFolderPath);
 
             return backlogParserWorker.Run();
@@ -200,16 +200,16 @@ public class Program
 
     internal static void ConfigureDependencyInjection(IServiceCollection services)
     {
-        services.AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator, UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
-        services.AddSingleton<Parser>();
-        services.AddSingleton<BacklogParserWorker>();
-        services.AddSingleton<CsvMetadataReader>();
-        services.AddSingleton<BacklogFiles>();
-        services.AddSingleton<Tracker>();
-        services.AddSingleton<IAmazonS3, AmazonS3Client>();
-        services.AddSingleton<Bucket>();
-        services.AddSingleton<MetadataTransformer>();
-        services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
+        services.AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator, UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
+        services.AddScoped<Parser>();
+        services.AddScoped<BacklogParserWorker>();
+        services.AddScoped<CsvMetadataReader>();
+        services.AddScoped<BacklogFiles>();
+        services.AddScoped<Tracker>();
+        services.AddScoped<IAmazonS3, AmazonS3Client>();
+        services.AddScoped<Bucket>();
+        services.AddScoped<MetadataTransformer>();
+        services.AddScoped<TimeProvider>(_ => TimeProvider.System);
 
         if (IsTest())
         {
