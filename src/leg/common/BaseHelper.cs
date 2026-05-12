@@ -66,6 +66,8 @@ abstract class BaseHelper {
         if (simplify)
             Simplifier.Simplify(xml);
 
+        StripLeadingTabMarkers(xml);
+
         ApplyDocumentSpecificProcessing(xml);
 
         // IA consumed uk:headingDepth/headingSignal above; strip the rest.
@@ -100,21 +102,23 @@ abstract class BaseHelper {
     /// inter-token spacing job.
     /// </summary>
     /// <remarks>
-    /// EM-only behaviour by call-site choice (invoked from
-    /// <c>ExplanatoryMemoranda.Helper.ApplyDocumentSpecificProcessing</c>).
-    /// Other leg doc types use leading tabs as part of their rendering
-    /// convention — IA in particular has bulleted list items where the
-    /// leading tab IS the bullet indent. Even within EM, paragraphs inside
-    /// <c>&lt;authorialNote&gt;</c> (footnote marker separator), table
-    /// cells, and the <c>&lt;paragraph&gt;</c> wrapper used for numbered
-    /// list items are excluded so the strip doesn't damage their
-    /// rendering convention.
+    /// Excluded contexts where a leading tab is part of the rendering
+    /// convention rather than a hangover:
+    /// <list type="bullet">
+    ///   <item><c>&lt;authorialNote&gt;</c> descendants — footnote marker
+    ///   separator.</item>
+    ///   <item><c>&lt;td&gt;</c> / <c>&lt;th&gt;</c> descendants —
+    ///   table-cell alignment.</item>
+    ///   <item>Descendants of a <c>&lt;paragraph&gt;</c> that has no
+    ///   <c>&lt;num&gt;</c> child — bare list items (e.g. IA bullets)
+    ///   where the leading tab IS the visual bullet indent.</item>
+    /// </list>
     /// </remarks>
-    internal static void StripLeadingTabMarkers(XmlDocument xml) {
+    private static void StripLeadingTabMarkers(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
         var paragraphs = xml.SelectNodes(
-            "//akn:p[not(ancestor::akn:authorialNote) and not(ancestor::akn:td) and not(ancestor::akn:th) and not(parent::akn:content[parent::akn:paragraph])]",
+            "//akn:p[not(ancestor::akn:authorialNote) and not(ancestor::akn:td) and not(ancestor::akn:th) and not(ancestor::akn:paragraph[not(akn:num)])]",
             nsmgr);
         if (paragraphs == null) return;
         foreach (XmlNode p in paragraphs) {
