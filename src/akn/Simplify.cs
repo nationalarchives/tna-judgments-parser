@@ -138,15 +138,21 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             State = copy;
         }
 
+        /// <summary>
+        /// Extension point: subclasses may opt out of stripping <c>class</c>/
+        /// <c>style</c> from particular elements (e.g. table cells whose
+        /// presentation should round-trip into HTML). Default returns true
+        /// for every element — the base simplifier strips uniformly, as on main.
+        /// </summary>
+        protected virtual bool ShouldStripStyleAttributes(XmlElement e) => true;
+
         protected void UpdateStateAndRemoveStyleAttributes(XmlElement e)
         {
             foreach (KeyValuePair<string, string> item in GetClassProperties(e))
                 State[item.Key] = item.Value;
             foreach (KeyValuePair<string, string> item in GetStyleProperties(e))
                 State[item.Key] = item.Value;
-            // Preserve cell-level style/class on <td>/<th>: these carry semantic
-            // presentation (background colour, borders) that callers want round-tripped to HTML.
-            if (e.LocalName == "td" || e.LocalName == "th")
+            if (!ShouldStripStyleAttributes(e))
                 return;
             e.RemoveAttribute("class", "");
             e.RemoveAttribute("style", "");
@@ -206,35 +212,8 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             span.ParentNode.RemoveChild(span);
         }
 
-        protected void VisitText(XmlText text)
+        protected virtual void VisitText(XmlText text)
         {
-            // Background colour and foreground colour (e.g. RAG-coloured run names
-            // like "Green", "Amber", "Red") need a styled <span> wrapper. Sit above
-            // the bold/italic handlers so the visible colour band wraps the bold tag.
-            string bg = State.GetValueOrDefault("background-color");
-            if (!string.IsNullOrEmpty(bg) && bg != "auto" && bg != "transparent" && bg != "initial" && bg != "white" && bg != "#ffffff" && bg != "#FFFFFF")
-            {
-                var span = text.OwnerDocument.CreateElement("span", Builder.ns);
-                span.SetAttribute("style", "background-color:" + bg);
-                text.ParentNode.ReplaceChild(span, text);
-                span.AppendChild(text);
-                State.Remove("background-color");
-                VisitText(text);
-                State["background-color"] = bg;
-                return;
-            }
-            string fg = State.GetValueOrDefault("color");
-            if (!string.IsNullOrEmpty(fg) && fg != "auto" && fg != "initial" && fg != "inherit")
-            {
-                var span = text.OwnerDocument.CreateElement("span", Builder.ns);
-                span.SetAttribute("style", "color:" + fg);
-                text.ParentNode.ReplaceChild(span, text);
-                span.AppendChild(text);
-                State.Remove("color");
-                VisitText(text);
-                State["color"] = fg;
-                return;
-            }
             if (State.GetValueOrDefault("font-weight") == "bold")
             {
                 var b = text.OwnerDocument.CreateElement("b", Builder.ns);

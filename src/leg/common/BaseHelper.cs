@@ -64,7 +64,7 @@ abstract class BaseHelper {
         XmlDocument xml = Builder.Build(doc, manifestationName);
         docx.Dispose();
         if (simplify)
-            Simplifier.Simplify(xml);
+            LegSimplifier.Simplify(xml);
 
         StripLeadingTabMarkers(xml);
 
