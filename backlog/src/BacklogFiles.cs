@@ -4,7 +4,10 @@ using System;
 using System.IO;
 using System.Linq;
 
+using Backlog.Options;
+
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Backlog.Src
 {
@@ -12,21 +15,21 @@ namespace Backlog.Src
     /// Provides file operations for processing backlog documents, including UUID lookup,
     /// file reading, and copying operations between tribunal and transfer metadata systems.
     /// </summary>
-    class BacklogFiles
+    internal class BacklogFiles
     {
         private readonly string transferMetadataPath;
         private readonly ILogger<BacklogFiles> logger;
-        private readonly string judgmentsFilePath;
-        private readonly string hmctsFilePath;
+        private readonly IOptions<BacklogParserOptions> backlogParserOptions;
         private readonly DirectoryInfo courtDocumentsDirectory;
 
-        public BacklogFiles(ILogger<BacklogFiles> logger, string pathToDataFolder, string judgmentsFilePath, string hmctsFilePath)
+        public BacklogFiles(ILogger<BacklogFiles> logger, IOptions<BacklogParserOptions> backlogParserOptions)
         {
             this.logger = logger;
-            this.judgmentsFilePath = judgmentsFilePath;
-            this.hmctsFilePath = hmctsFilePath;
+            this.backlogParserOptions = backlogParserOptions;
+
+            var pathToDataFolder = backlogParserOptions.Value.DataFolderPath;
             transferMetadataPath = Path.Combine(pathToDataFolder, TDR_METADATA_DIR, METADATA_FILENAME);
-            
+
             courtDocumentsDirectory = new DirectoryInfo(Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR));
             if (!courtDocumentsDirectory.Exists)
             {
@@ -38,7 +41,7 @@ namespace Backlog.Src
         private const string TDR_METADATA_DIR = "tdr_metadata";
         private const string COURT_DOCUMENTS_DIR = "court_documents";
         private const string METADATA_FILENAME = "file-metadata.csv";
-        
+
         private const int MIN_METADATA_COLUMNS = 27; // Minimum columns expected in transfer metadata
 
         private const int FILE_TYPE_COLUMN = 2; // file_type is column 3 (0-indexed)
@@ -49,15 +52,20 @@ namespace Backlog.Src
         /// Extracts the relative file path from tribunal metadata by removing the base judgments file path prefix.
         /// This normalizes full file paths to relative paths for consistent matching against transfer metadata.
         /// </summary>
-        /// <param name="filePath">The full file path from tribunal metadata to normalize</param>
-        /// <param name="judgmentsFilePath">The base judgments file path prefix to remove from the full path</param>
+        /// <param name="metadataProvidedFilePath">The full file path from tribunal metadata to normalize</param>
         /// <returns>The relative file path for matching against transfer metadata</returns>
-        /// <exception cref="ArgumentException">Thrown when filePath does not start with judgmentsFilePath</exception>
-        private static string GetFilePathFromTribunalMetadata(string filePath, string judgmentsFilePath)
+        /// <exception cref="ArgumentException">Thrown when filePath does not start with metadataProvidedFilePathPrefix</exception>
+        private string GetFilePathFromTribunalMetadata(string metadataProvidedFilePath)
         {
-            if (!filePath.StartsWith(judgmentsFilePath))
-                throw new ArgumentException($"FilePath {filePath} must start with {judgmentsFilePath}", nameof(filePath));
-            var relativePath = filePath.Substring(judgmentsFilePath.Length);
+            var metadataProvidedFilePathPrefix = backlogParserOptions.Value.MetadataProvidedFilePathPrefix;
+            if (!metadataProvidedFilePath.StartsWith(metadataProvidedFilePathPrefix))
+            {
+                throw new ArgumentException(
+                    $"FilePath {metadataProvidedFilePath} must start with {metadataProvidedFilePathPrefix}",
+                    nameof(metadataProvidedFilePath));
+            }
+
+            var relativePath = metadataProvidedFilePath.Substring(metadataProvidedFilePathPrefix.Length);
             return relativePath;
         }
 
@@ -65,15 +73,17 @@ namespace Backlog.Src
         /// Retrieves the UUID for a given metadata line by performing path normalization and lookup 
         /// in the transfer metadata CSV file. Combines tribunal metadata path extraction with UUID searching.
         /// </summary>
-        /// <param name="metaFilePath"></param>
+        /// <param name="metadataProvidedFilePath"></param>
         /// <returns>UUID from the transfer metadata file corresponding to the metadata line</returns>
         /// <exception cref="FileNotFoundException">Thrown when no matching UUID is found in transfer metadata</exception>
         /// <exception cref="ArgumentException">Thrown when file path normalization fails</exception>
-        internal string FindUuidInTransferMetadata(string metaFilePath)
+        internal string FindUuidInTransferMetadata(string metadataProvidedFilePath)
         {
-            var tribunalDataFilePath = GetFilePathFromTribunalMetadata(metaFilePath, judgmentsFilePath);
-            
-            logger.LogInformation("Finding UUID for {TribunalDataFilePath} in transfer metadata file {TransferMetadataPath}", tribunalDataFilePath, transferMetadataPath);
+            var tribunalDataFilePath = GetFilePathFromTribunalMetadata(metadataProvidedFilePath);
+
+            logger.LogInformation(
+                "Finding UUID for {TribunalDataFilePath} in transfer metadata file {TransferMetadataPath}",
+                tribunalDataFilePath, transferMetadataPath);
 
             if (!File.Exists(transferMetadataPath))
                 throw new FileNotFoundException($"Metadata file not found at {transferMetadataPath}");
@@ -88,8 +98,9 @@ namespace Backlog.Src
                 if (!fileType.Equals("File")) continue;
 
                 var filePath = parts[FILE_PATH_COLUMN];
-                if (!filePath.StartsWith(hmctsFilePath)) continue;
-                var metadataRelativePath = filePath.Substring(hmctsFilePath.Length);
+                if (!filePath.StartsWith(backlogParserOptions.Value.TransferMetadataFilePathPrefix)) continue;
+
+                var metadataRelativePath = filePath.Substring(backlogParserOptions.Value.TransferMetadataFilePathPrefix.Length);
 
                 if (metadataRelativePath.Replace('\\', '/').Equals(tribunalDataFilePath.Replace('\\', '/')))
                     return parts[UUID_COLUMN];
@@ -124,5 +135,4 @@ namespace Backlog.Src
             return File.ReadAllBytes(filesWithUuid.Single().FullName);
         }
     }
-
 }

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using Backlog.Options;
 using Backlog.Src;
 
 using CsvHelper;
@@ -15,17 +16,19 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Backlog.Csv;
 
-internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
+internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<BacklogParserOptions> backlogParserOptions)
 {
     private string csvName = "unknown.csv";
     private string csvHash = "unknown";
 
-    internal List<CsvLine> Read(string csvPath, out List<string> skippedCsvLineIdentifiers,
-        out List<string> csvParseErrors, out int numAllLinesInCsv)
+    internal List<CsvLine> Read(out List<string> skippedCsvLineIdentifiers, out List<string> csvParseErrors,
+        out int numAllLinesInCsv)
     {
+        var csvPath = backlogParserOptions.Value.CourtMetadataFilePath;
         csvName = Path.GetFileName(csvPath);
         csvHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
 

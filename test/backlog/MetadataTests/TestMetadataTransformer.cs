@@ -28,7 +28,8 @@ public class TestMetadataTransformer
 
     public TestMetadataTransformer()
     {
-        metadataTransformer = new MetadataTransformer(fakeTimeProvider);
+        var options = BacklogParserOptionsHelper.Create(autoPublish: true);
+        metadataTransformer = new MetadataTransformer(options, fakeTimeProvider);
     }
 
     [Fact]
@@ -45,7 +46,6 @@ public class TestMetadataTransformer
             "test.pdf",
             sourceMimeType,
             contentHash,
-            autoPublish,
             [],
             responseMeta,
             [],
@@ -96,11 +96,7 @@ public class TestMetadataTransformer
 
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,
-            "test.docx",
-            "application/pdf",
-            "1234-456-789",
-            true,
+            parserRunId,"test.docx", "application/pdf", "1234-456-789",
             [],
             responseMeta,
             externalMetadataFields,
@@ -146,7 +142,6 @@ public class TestMetadataTransformer
             sourceFilename,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
-            false,
             images,
             new Api.Meta { DocumentType = "decision" },
             [],
@@ -169,7 +164,6 @@ public class TestMetadataTransformer
             "test-file.docx",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
-            false,
             [],
             new Api.Meta { DocumentType = "decision" },
             [],
@@ -180,7 +174,6 @@ public class TestMetadataTransformer
             "test-file.docx",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
-            false,
             [],
             new Api.Meta { DocumentType = "decision" },
             [],

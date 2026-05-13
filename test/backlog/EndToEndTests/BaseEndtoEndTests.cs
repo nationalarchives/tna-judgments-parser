@@ -73,16 +73,16 @@ public abstract class BaseEndToEndTests : IDisposable
 
 
         // Clean up environment variables
-        Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
-        Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
-        Environment.SetEnvironmentVariable("TRACKER_PATH", null);
-        Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
+        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", null);
+        Environment.SetEnvironmentVariable("BacklogParser__DataFolderPath", null);
+        Environment.SetEnvironmentVariable("BacklogParser__TrackerFilePath", null);
+        Environment.SetEnvironmentVariable("BacklogParser__OutputFolderPath", null);
 
         Environment.SetEnvironmentVariable("IS_TEST", null);
         Environment.SetEnvironmentVariable("AWS_REGION", null);
 
-        Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", null);
-        Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", null);
+        Environment.SetEnvironmentVariable("BacklogParser__MetadataProvidedFilePathPrefix", null);
+        Environment.SetEnvironmentVariable("BacklogParser__TransferMetadataFilePathPrefix", null);
     }
 
     protected static void SetPathEnvironmentVariables(string dataDir, string? outputPath = null,
@@ -92,10 +92,16 @@ public abstract class BaseEndToEndTests : IDisposable
         courtMetadataPath ??= Path.Combine(dataDir, "court_metadata.csv");
         trackerPath ??= Path.Combine(dataDir, "uploaded-production.csv");
 
-        Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
-        Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
-        Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
-        Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
+        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", courtMetadataPath);
+        Environment.SetEnvironmentVariable("BacklogParser__DataFolderPath", dataDir);
+        Environment.SetEnvironmentVariable("BacklogParser__TrackerFilePath", trackerPath);
+        Environment.SetEnvironmentVariable("BacklogParser__OutputFolderPath", outputPath);
+    }
+
+    protected static void SetMetadataPrefixEnvironmentVariables(string metadataProvidedFilePathPrefix, string transferMetadataFilePathPrefix)
+    {
+        Environment.SetEnvironmentVariable("BacklogParser__MetadataProvidedFilePathPrefix", metadataProvidedFilePathPrefix);
+        Environment.SetEnvironmentVariable("BacklogParser__TransferMetadataFilePathPrefix", transferMetadataFilePathPrefix);
     }
 
     protected static void AssertProgramExitedSuccessfully(int exitCode)

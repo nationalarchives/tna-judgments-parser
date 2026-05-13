@@ -154,8 +154,7 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment
             ConfigureTestEnvironment(testCaseName);
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentFilePath);
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", hmctsFilesPath);
+            SetMetadataPrefixEnvironmentVariables(judgmentFilePath, hmctsFilesPath);
             // This time is the "now" that is used in the "expected metadata" JSON fixture
             var expectedTime = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
             fakeTimeProvider.AdjustTime(expectedTime);
@@ -186,8 +185,7 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment for multi-line CSV test
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
+            SetMetadataPrefixEnvironmentVariables( "JudgmentFiles\\", "data/HMCTS_Judgment_Files/");
 
             // Act - Run without --id to process full CSV
             var exitCode = Backlog.Src.Program.Main();
@@ -214,8 +212,7 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
+            SetMetadataPrefixEnvironmentVariables("JudgmentFiles\\", "data/HMCTS_Judgment_Files/");
 
             // Pre-populate tracker to mark first item as already processed
             await File.WriteAllTextAsync(trackerPath, "100/JudgmentFiles\\j100\\test1.doc,some-uuid-1,132345678901234567\n",
@@ -253,8 +250,7 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
+            SetMetadataPrefixEnvironmentVariables( "JudgmentFiles\\", "data/HMCTS_Judgment_Files/");
 
             // Act
             var exitCode = Backlog.Src.Program.Main("--id", "102");
@@ -310,8 +306,7 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment
             ConfigureTestEnvironment("Money Worries Ltd v Office of Fair Trading");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "Documents\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/Consumer Credit Appeals/Documents/");
+            SetMetadataPrefixEnvironmentVariables( "Documents\\", "data/Consumer Credit Appeals/Documents/");
             fakeTimeProvider.AdjustTime(new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero));
 
             // Act

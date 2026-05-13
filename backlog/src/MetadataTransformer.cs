@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Backlog.Csv;
+using Backlog.Options;
 using Backlog.TreMetadata;
+
+using Microsoft.Extensions.Options;
 
 using TRE.Metadata;
 using TRE.Metadata.Enums;
@@ -17,11 +20,11 @@ using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
 
-internal class MetadataTransformer(TimeProvider timeProvider)
+internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
 {
     internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string sourceFilename, string sourceMimeType,
-        string contentHash, bool autoPublish, Image[] images, Meta responseMeta,
-        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
+        string contentHash, Image[] images, Meta responseMeta, List<IMetadataField> externalMetadataFields,
+        bool xmlContainsDocumentText)
     {
         var metadata = new FullTreMetadata
         {
@@ -61,7 +64,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
                 },
                 IngestorOptions = new IngestorOptions
                 {
-                    AutoPublish = autoPublish,
+                    AutoPublish = backlogParserOptions.Value.AutoPublish,
                     Source = new SourceDocument { Format = sourceMimeType, Hash = contentHash }
                 }
             }

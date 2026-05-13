@@ -6,7 +6,10 @@ using System.IO;
 using System.Linq;
 
 using Backlog.Csv;
+using Backlog.Options;
 using Backlog.Src;
+
+using Microsoft.Extensions.Options;
 
 using test.Mocks;
 
@@ -16,7 +19,8 @@ namespace test.backlog.MetadataTests;
 
 public class TestRead : IDisposable
 {
-    private readonly CsvMetadataReader csvMetadataReader = new(new MockLogger<CsvMetadataReader>().Object);
+    private readonly CsvMetadataReader csvMetadataReader;
+    private readonly IOptions<BacklogParserOptions> backlogParserOptions;
     private readonly string testDataDirectory;
 
     public TestRead()
@@ -24,14 +28,10 @@ public class TestRead : IDisposable
         // Create a unique temporary directory for test files (used by some tests accessing the real file system)
         testDataDirectory = Path.Combine(Path.GetTempPath(), nameof(TestRead), Guid.NewGuid().ToString());
         Directory.CreateDirectory(testDataDirectory);
-    }
-
-    private string MakeRealCsvFile(string csvContent)
-    {
-        var csvPath = Path.Combine(testDataDirectory, "metadata.csv");
-
-        File.WriteAllText(csvPath, csvContent);
-        return csvPath;
+        
+        var courtMetadataFilePath = Path.Combine(testDataDirectory, "metadata.csv");
+        backlogParserOptions = BacklogParserOptionsHelper.Create(courtMetadataFilePath: courtMetadataFilePath);
+        csvMetadataReader = new(new MockLogger<CsvMetadataReader>().Object, backlogParserOptions);
     }
 
     public void Dispose()
@@ -701,12 +701,12 @@ public class TestRead : IDisposable
     public void Read_WithNonExistentFile_ThrowsFileNotFoundException()
     {
         // Arrange - Create helper with non-existent CSV path
-        var nonExistentPath = Path.Combine(testDataDirectory, "does-not-exist.csv");
+        backlogParserOptions.Value.CourtMetadataFilePath = Path.Combine(testDataDirectory, "does-not-exist.csv");
 
         // Act & Assert
         Assert.Throws<FileNotFoundException>(() =>
         {
-            _ = csvMetadataReader.Read(nonExistentPath, out _, out _, out _);
+            _ = csvMetadataReader.Read(out _, out _, out _);
         });
     }
 
@@ -714,12 +714,11 @@ public class TestRead : IDisposable
     public void Read_WithEmptyFile_ReturnsEmptyList()
     {
         // Arrange - Create empty CSV file with just headers
-        var emptyCsvPath =
-            MakeRealCsvFile(
-                "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary");
+        File.WriteAllText(backlogParserOptions.Value.CourtMetadataFilePath,
+            "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary");
 
         // Act
-        var lines = csvMetadataReader.Read(emptyCsvPath, out _, out _, out _);
+        var lines = csvMetadataReader.Read(out _, out _, out _);
 
         // Assert
         Assert.Empty(lines);
@@ -729,13 +728,15 @@ public class TestRead : IDisposable
     public void Read_FromPath_PopulatesCsvPropertiesWithNameAndHash()
     {
         // Arrange
-        const string csvContent = "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip\n" +
-                                  "123,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,";
-        var csvPath = MakeRealCsvFile(csvContent);
-        var expectedHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
+        const string csvContent = """
+                                  id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+                                  123,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,
+                                  """;
+        File.WriteAllText(backlogParserOptions.Value.CourtMetadataFilePath, csvContent);
+        var expectedHash = BacklogParserWorker.Hash(File.ReadAllBytes(backlogParserOptions.Value.CourtMetadataFilePath));
 
         // Act
-        var result = csvMetadataReader.Read(csvPath, out _, out _, out _);
+        var result = csvMetadataReader.Read(out _, out _, out _);
 
         // Assert
         var line = Assert.Single(result);
