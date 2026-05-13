@@ -178,7 +178,8 @@ public class Program
                    options.IsDryRun = isDryRun;
                    options.SingleIdToRun = id;
                    options.AutoPublish = autoPublish;
-               });
+               })
+               .Services.AddSingleton<IValidateOptions<BacklogParserOptions>, BacklogParserOptionsValidation>();
 
         // We need access to the DataFolderPath right now to configure where the log file goes, but we can't get to our
         // bound options object until after the full service configuration has occurred. This means we need to grab the
