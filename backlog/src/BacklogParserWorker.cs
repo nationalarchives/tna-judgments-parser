@@ -26,7 +26,7 @@ internal class BacklogParserWorker(
     BacklogFiles backlogFiles,
     CsvMetadataReader csvMetadataReader,
     Tracker tracker,
-    Bucket bucket,
+    IBucket bucket,
     MetadataTransformer metadataTransformer,
     IOptions<BacklogParserOptions> backlogParserOptions)
 {
@@ -78,15 +78,7 @@ internal class BacklogParserWorker(
                 logger.LogInformation("  Writing to output: {Output}", output);
                 File.WriteAllBytes(output, bundle.TarGz);
 
-                if (backlogParserOptions.Value.IsDryRun)
-                {
-                    logger.LogInformation("  This is a dry run - not uploading to S3");
-                }
-                else
-                {
-                    logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                    await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
-                }
+                await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
                 tracker.MarkDone(line, bundle.Uuid);
                 successfulNewLines.Add(line);
