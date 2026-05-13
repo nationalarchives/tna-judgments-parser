@@ -13,6 +13,7 @@ using Backlog.Utilities;
 
 using DotNetEnv.Configuration;
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
@@ -137,32 +138,7 @@ public class Program
 
     private static int RunBacklogParser(bool isDryRun, uint? id, bool autoPublish)
     {
-        var builder = Host.CreateApplicationBuilder();
-        builder.Configuration.AddDotNetEnv();
-
-        builder.Services.AddOptions<BacklogParserOptions>()
-               .Bind(builder.Configuration.GetSection(BacklogParserOptions.SectionName))
-               .Configure(options =>
-               {
-                   options.IsDryRun = isDryRun;
-                   options.SingleIdToRun = id;
-                   options.AutoPublish = autoPublish;
-               });
-
-        builder.Services.AddLogging(loggingBuilder =>
-        {
-            var serviceProvider = loggingBuilder.Services.BuildServiceProvider();
-            var options = serviceProvider.GetRequiredService<IOptions<BacklogParserOptions>>();
-            var logFilePath = Path.Combine(options.Value.DataFolderPath, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
-            loggingBuilder.AddConsole()
-                          .AddFile(logFilePath,
-                              outputTemplate:
-                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
-        });
-
-        ConfigureDependencyInjection(builder.Services);
-
-        var appHost = builder.Build();
+        var appHost = CreateAppHost(isDryRun, id, autoPublish);
 
         using var scope = appHost.Services.CreateScope();
         var backlogParserOptions = scope.ServiceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value;
@@ -186,6 +162,38 @@ public class Program
             logger.LogCritical(e, "Backlog Parser fell over");
             return 1;
         }
+    }
+
+    private static IHost CreateAppHost(bool isDryRun, uint? id, bool autoPublish)
+    {
+        var builder = Host.CreateApplicationBuilder();
+        builder.Configuration.AddDotNetEnv();
+
+        builder.Services.AddOptions<BacklogParserOptions>()
+               .Bind(builder.Configuration.GetSection(BacklogParserOptions.SectionName))
+               .Configure(options =>
+               {
+                   options.IsDryRun = isDryRun;
+                   options.SingleIdToRun = id;
+                   options.AutoPublish = autoPublish;
+               });
+
+        // We need access to the DataFolderPath right now to configure where the log file goes, but we can't get to our
+        // bound options object until after the full service configuration has occurred. This means we need to grab the
+        // DataFolderPath value directly, bypassing the options setup
+        var dataFolderPath = builder.Configuration.GetSection(BacklogParserOptions.SectionName)
+                                    .GetValue<string>(nameof(BacklogParserOptions.DataFolderPath))!;
+
+        builder.Services.AddLogging(loggingBuilder =>
+        {
+            loggingBuilder.AddConsole()
+                          .AddFile(Path.Combine(dataFolderPath, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt"),
+                              outputTemplate:
+                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
+        });
+        ConfigureDependencyInjection(builder.Services);
+
+        return builder.Build();
     }
 
     private static List<(Type serviceType, object instance, bool replace)> _dependencyInjectionOverrides = [];
