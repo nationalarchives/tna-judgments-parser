@@ -11,8 +11,6 @@ namespace Backlog.Options;
 public sealed class BacklogParserOptions
 {
     public static readonly string SectionName = "BacklogParser";
-    public string MetadataProvidedFilePathPrefix { get; set; } = string.Empty;
-    public string TransferMetadataFilePathPrefix { get; set; } = string.Empty;
 
     [Required]
     public required string CourtMetadataFilePath { get; set; }

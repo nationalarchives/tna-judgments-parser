@@ -32,7 +32,8 @@ public class TestMakeMetadata
             SecCategory = "Human Rights",
             SecSubcategory = "Article 8",
             FilePath = "/path/to/test-document.pdf",
-            Extension = ".pdf"
+            Extension = ".pdf",
+            Uuid = "00000000-0000-0000-0000-000000000123"
         };
 
         // Act
@@ -75,7 +76,8 @@ public class TestMakeMetadata
             Respondent = "Home Office",
             MainCategory = "Immigration",
             MainSubcategory = "Asylum",
-            Extension = ".pdf"
+            Extension = ".pdf",
+            Uuid = "00000000-0000-0000-0000-000000000124"
         };
 
         // Act
