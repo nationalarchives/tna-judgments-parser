@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
+using System.IO.Abstractions;
 
 using Amazon.S3;
 
@@ -227,6 +228,7 @@ public class Program
 
         services.AddScoped<MetadataTransformer>();
         services.AddScoped<TimeProvider>(_ => TimeProvider.System);
+        services.AddSingleton<IFileSystem, FileSystem>();
 
         if (IsTest())
         {

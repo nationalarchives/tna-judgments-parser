@@ -10,7 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../judgments.csproj"/>
+    <PackageReference Include="TestableIO.System.IO.Abstractions.Wrappers" Version="22.1.1" />
+    <ProjectReference Include="../judgments.csproj" />
     <PackageReference Include="AWSSDK.SSO" Version="4.0.2.27" />
     <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.3.28" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
