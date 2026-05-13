@@ -125,7 +125,7 @@ TEST1,{originalFileName},File,1024,{HmctsFilePath}{originalFileName},Crown Copyr
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -178,7 +178,7 @@ TEST1,{originalFileName},File,1024,{HmctsFilePath}{originalFileName},Crown Copyr
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -227,7 +227,7 @@ TEST1,{originalFileName},File,1024,{HmctsFilePath}{originalFileName},Crown Copyr
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         //Assert
         Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
@@ -257,7 +257,7 @@ TEST1,{originalFileName},File,1024,{HmctsFilePath}{originalFileName},Crown Copyr
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         // Assert program finished successfully
         AssertProgramExitedSuccessfully(exitCode);
@@ -336,7 +336,7 @@ TEST1,{originalFileName},File,1024,{HmctsFilePath}{originalFileName},Crown Copyr
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);

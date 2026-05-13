@@ -160,7 +160,7 @@ namespace test.backlog.EndToEndTests
             fakeTimeProvider.AdjustTime(expectedTime);
 
             // Act
-            var exitCode = Backlog.Src.Program.Main("--id", docId.ToString(), "--auto-publish");
+            var exitCode = Backlog.Program.Main("--id", docId.ToString(), "--auto-publish");
 
             // Assert - Program exited successfully
             AssertProgramExitedSuccessfully(exitCode);
@@ -188,7 +188,7 @@ namespace test.backlog.EndToEndTests
             SetMetadataPrefixEnvironmentVariables( "JudgmentFiles\\", "data/HMCTS_Judgment_Files/");
 
             // Act - Run without --id to process full CSV
-            var exitCode = Backlog.Src.Program.Main();
+            var exitCode = Backlog.Program.Main();
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
@@ -219,7 +219,7 @@ namespace test.backlog.EndToEndTests
                 TestContext.Current.CancellationToken);
 
             // Act
-            var exitCode = Backlog.Src.Program.Main();
+            var exitCode = Backlog.Program.Main();
 
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
@@ -253,7 +253,7 @@ namespace test.backlog.EndToEndTests
             SetMetadataPrefixEnvironmentVariables( "JudgmentFiles\\", "data/HMCTS_Judgment_Files/");
 
             // Act
-            var exitCode = Backlog.Src.Program.Main("--id", "102");
+            var exitCode = Backlog.Program.Main("--id", "102");
 
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
@@ -270,7 +270,7 @@ namespace test.backlog.EndToEndTests
             ConfigureTestEnvironment("EmptyCSVTest");
 
             // Act
-            var exitCode = Backlog.Src.Program.Main();
+            var exitCode = Backlog.Program.Main();
 
             // Assert
             Assert.Equal(1, exitCode);
@@ -281,7 +281,7 @@ namespace test.backlog.EndToEndTests
         public void ProcessBacklogJudgment_WithInvalidIdArgument_ReturnsError()
         {
             // Act
-            var exitCode = Backlog.Src.Program.Main("--id", "invalid");
+            var exitCode = Backlog.Program.Main("--id", "invalid");
 
             // Assert
             Assert.Equal(1, exitCode);
@@ -291,7 +291,7 @@ namespace test.backlog.EndToEndTests
         public void ProcessBacklogJudgment_WithInvalidArguments_ReturnsError()
         {
             // Act
-            var exitCode = Backlog.Src.Program.Main("--unknown-arg");
+            var exitCode = Backlog.Program.Main("--unknown-arg");
 
             // Assert
             Assert.Equal(1, exitCode);
@@ -311,7 +311,7 @@ namespace test.backlog.EndToEndTests
 
             // Act
             var args = new[] { "--id", "20" }.Concat(extraArgs).ToArray();
-            var exitCode = Backlog.Src.Program.Main(args);
+            var exitCode = Backlog.Program.Main(args);
 
             // Assert
             AssertProgramExitedSuccessfully(exitCode);

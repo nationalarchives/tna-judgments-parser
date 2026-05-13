@@ -29,7 +29,7 @@ public class TestProgram(ITestOutputHelper testOutputHelper)
 
         var services = new ServiceCollection();
 
-        Backlog.Src.Program.ConfigureDependencyInjection(services);
+        Backlog.Program.ConfigureDependencyInjection(services);
 
         using var serviceProvider = services.BuildServiceProvider();
         var timeProvider = serviceProvider.GetRequiredService<TimeProvider>();

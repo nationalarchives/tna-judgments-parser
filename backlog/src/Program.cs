@@ -9,6 +9,7 @@ using Amazon.S3;
 
 using Backlog.Csv;
 using Backlog.Options;
+using Backlog.Src;
 using Backlog.Utilities;
 
 using DotNetEnv.Configuration;
@@ -22,7 +23,7 @@ using Microsoft.Extensions.Options;
 
 using UK.Gov.NationalArchives.Judgments.Api;
 
-namespace Backlog.Src;
+namespace Backlog;
 
 public class Program
 {
