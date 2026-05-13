@@ -9,6 +9,7 @@ using Amazon.S3;
 
 using Backlog.Csv;
 using Backlog.Options;
+using Backlog.Src;
 using Backlog.Utilities;
 
 using DotNetEnv.Configuration;
@@ -22,7 +23,7 @@ using Microsoft.Extensions.Options;
 
 using UK.Gov.NationalArchives.Judgments.Api;
 
-namespace Backlog.Src;
+namespace Backlog;
 
 public class Program
 {
@@ -155,7 +156,7 @@ public class Program
             var backlogParserWorker = scope.ServiceProvider.GetRequiredService<BacklogParserWorker>();
             Directory.CreateDirectory(backlogParserOptions.OutputFolderPath);
 
-            return backlogParserWorker.Run();
+            return backlogParserWorker.RunAsync().Result;
         }
         catch (Exception e)
         {
@@ -191,7 +192,7 @@ public class Program
                               outputTemplate:
                               "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
         });
-        ConfigureDependencyInjection(builder.Services);
+        ConfigureDependencyInjection(builder.Services, isDryRun);
 
         return builder.Build();
     }
@@ -206,7 +207,7 @@ public class Program
             ? _dependencyInjectionOverrides
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
 
-    internal static void ConfigureDependencyInjection(IServiceCollection services)
+    internal static void ConfigureDependencyInjection(IServiceCollection services, bool isDryRun = false)
     {
         services.AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator, UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddScoped<Parser>();
@@ -214,8 +215,16 @@ public class Program
         services.AddScoped<CsvMetadataReader>();
         services.AddScoped<BacklogFiles>();
         services.AddScoped<Tracker>();
-        services.AddScoped<IAmazonS3, AmazonS3Client>();
-        services.AddScoped<Bucket>();
+        if (isDryRun)
+        {
+            services.AddScoped<IBucket, DryRunBucket>();
+        }
+        else
+        {
+            services.AddScoped<IAmazonS3, AmazonS3Client>();
+            services.AddScoped<IBucket, Bucket>();
+        }
+
         services.AddScoped<MetadataTransformer>();
         services.AddScoped<TimeProvider>(_ => TimeProvider.System);
 

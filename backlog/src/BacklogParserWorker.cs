@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 using Backlog.Csv;
 using Backlog.Options;
@@ -25,11 +26,11 @@ internal class BacklogParserWorker(
     BacklogFiles backlogFiles,
     CsvMetadataReader csvMetadataReader,
     Tracker tracker,
-    Bucket bucket,
+    IBucket bucket,
     MetadataTransformer metadataTransformer,
     IOptions<BacklogParserOptions> backlogParserOptions)
 {
-    public int Run()
+    public async Task<int> RunAsync()
     {
         var parserRunId = Guid.NewGuid();
         var lines = csvMetadataReader.Read(out var skippedCsvLineIdentifiers, out var csvParseErrors,
@@ -77,15 +78,7 @@ internal class BacklogParserWorker(
                 logger.LogInformation("  Writing to output: {Output}", output);
                 File.WriteAllBytes(output, bundle.TarGz);
 
-                if (backlogParserOptions.Value.IsDryRun)
-                {
-                    logger.LogInformation("  This is a dry run - not uploading to S3");
-                }
-                else
-                {
-                    logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                    bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
-                }
+                await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
                 tracker.MarkDone(line, bundle.Uuid);
                 successfulNewLines.Add(line);

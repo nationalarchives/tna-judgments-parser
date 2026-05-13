@@ -1,3 +1,5 @@
+#nullable enable
+
 using Backlog.Options;
 
 using Microsoft.Extensions.Options;
@@ -13,7 +15,9 @@ public static class BacklogParserOptionsHelper
         string courtMetadataFilePath = @"c:\my-data-dir\court-metadata.csv",
         string outputFolderPath = @"c:\my-data-dir\output",
         string trackerFilePath = @"c:\my-data-dir\tracker.csv",
-        bool autoPublish = false
+        bool autoPublish = false,
+        bool isDryRun = false,
+        string? bucketName = null
     )
     {
         return Options.Create(new BacklogParserOptions
@@ -24,7 +28,9 @@ public static class BacklogParserOptionsHelper
             CourtMetadataFilePath = courtMetadataFilePath,
             OutputFolderPath = outputFolderPath,
             TrackerFilePath = trackerFilePath,
-            AutoPublish = autoPublish
+            AutoPublish = autoPublish,
+            IsDryRun = isDryRun,
+            BucketName = bucketName
         });
     }
 }
