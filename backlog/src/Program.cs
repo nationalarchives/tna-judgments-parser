@@ -146,8 +146,10 @@ public class Program
         var bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME") ??
                          throw new InvalidOperationException("BUCKET_NAME environment variable not set");
 
-        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath,
+        var services = new ServiceCollection();
+        ConfigureDependencyInjection(services, pathToDataFolder, trackerPath, judgmentsFilePath,
             hmctsFilePath, bucketName);
+        var serviceProvider = services.BuildServiceProvider();
 
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
         try
@@ -179,10 +181,9 @@ public class Program
             ? _dependencyInjectionOverrides
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
 
-    internal static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
+    internal static void ConfigureDependencyInjection(IServiceCollection services, string pathToDataFolder, string trackerPath,
         string judgmentsFilePath, string hmctsFilePath, string bucketName)
     {
-        var services = new ServiceCollection();
         services.AddLogging(loggingBuilder =>
         {
             var logFilePath = Path.Combine(pathToDataFolder, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
@@ -209,11 +210,9 @@ public class Program
         {
             OverrideDependencyInjection(services);
         }
-
-        return services.BuildServiceProvider();
     }
 
-    private static void OverrideDependencyInjection(ServiceCollection services)
+    private static void OverrideDependencyInjection(IServiceCollection services)
     {
         foreach (var (serviceType, instance, replace) in DependencyInjectionOverrides)
         {
