@@ -331,13 +331,7 @@ abstract class Builder {
                 if (cell.ColSpan is not null)
                     td.SetAttribute("colspan", cell.ColSpan.ToString());
                 Dictionary<string, string> styles = cell.GetCSSStyles();
-                if (styles.TryGetValue("background-color", out string bg) &&
-                    (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
-                    styles.Remove("background-color");
-                foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
-                    styles.Remove(key);
-                if (styles.TryGetValue("background-color", out string bgValue) && IsDarkColor(bgValue) && !styles.ContainsKey("color"))
-                    styles["color"] = "#ffffff";
+                ApplyTableCellStyleCleanup(cell, styles);
                 if (styles.Any())
                     td.SetAttribute("style", CSS.SerializeInline(styles));
                 tr.AppendChild(td);
@@ -357,6 +351,17 @@ abstract class Builder {
             }
             iRow += 1;
         }
+    }
+
+    /// <summary>
+    /// Extension point: subclasses may mutate the cell's serialised
+    /// styles dictionary before it's emitted onto the AKN
+    /// <c>&lt;td&gt;</c> / <c>&lt;th&gt;</c> element. Default no-op —
+    /// the base builder emits whatever the model produced. Doc-type
+    /// subclasses use this to strip cosmetic-only styles, override
+    /// foreground colours on dark backgrounds, etc.
+    /// </summary>
+    protected virtual void ApplyTableCellStyleCleanup(ICell cell, Dictionary<string, string> styles) {
     }
 
     internal static bool IsDarkColor(string color) {
