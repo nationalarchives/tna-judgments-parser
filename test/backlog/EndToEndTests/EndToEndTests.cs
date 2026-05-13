@@ -278,6 +278,19 @@ namespace test.backlog.EndToEndTests
         }
 
         [Fact]
+        public void ProcessBacklogJudgment_WithInvalidConfiguration_ReturnsError()
+        {
+            ConfigureTestEnvironment("Sultan Others");
+            SetPathEnvironmentVariables("not/a/data/directory", "", "not/a/courtmetadata.csv");
+            
+            // Act
+            var exitCode = Backlog.Program.Main();
+
+            // Assert
+            Assert.Equal(1, exitCode);
+        }
+
+        [Fact]
         public void ProcessBacklogJudgment_WithInvalidIdArgument_ReturnsError()
         {
             // Act

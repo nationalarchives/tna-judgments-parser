@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
+using System.IO.Abstractions;
 
 using Amazon.S3;
 
@@ -177,7 +178,8 @@ public class Program
                    options.IsDryRun = isDryRun;
                    options.SingleIdToRun = id;
                    options.AutoPublish = autoPublish;
-               });
+               })
+               .Services.AddSingleton<IValidateOptions<BacklogParserOptions>, BacklogParserOptionsValidation>();
 
         // We need access to the DataFolderPath right now to configure where the log file goes, but we can't get to our
         // bound options object until after the full service configuration has occurred. This means we need to grab the
@@ -227,6 +229,7 @@ public class Program
 
         services.AddScoped<MetadataTransformer>();
         services.AddScoped<TimeProvider>(_ => TimeProvider.System);
+        services.AddSingleton<IFileSystem, FileSystem>();
 
         if (IsTest())
         {
