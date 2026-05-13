@@ -48,14 +48,14 @@ internal class CourtType : AbstractCourtType
 
         new()
         {
-            Re1 = new Regex("^FIRST-TIER TRIBUNAL$", RegexOptions.IgnoreCase),
+            Re1 = Courts.FirstTierTribunalIdentifierRegex(),
             Re2 = new Regex("^TAX CHAMBER$", RegexOptions.IgnoreCase),
             Court = Courts.FirstTierTribunal_Tax
         },
 
         new()
         {
-            Re1 = new Regex("^First-tier Tribunal$", RegexOptions.IgnoreCase),
+            Re1 = Courts.FirstTierTribunalIdentifierRegex(),
             Re2 = new Regex(@"^\(?General Regulatory Chamber\)?$", RegexOptions.IgnoreCase),
             Court = Courts.FirstTierTribunal_GRC
         },
