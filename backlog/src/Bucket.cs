@@ -14,7 +14,7 @@ namespace Backlog.Src;
 
 public class Bucket(IAmazonS3 client, IOptions<BacklogParserOptions> backlogParserOptions)
 {
-    public async Task<PutObjectResponse> UploadBundle(string key, byte[] bundle)
+    public async Task UploadBundleAsync(string key, byte[] bundle)
     {
         PutObjectRequest request = new()
         {
@@ -23,6 +23,6 @@ public class Bucket(IAmazonS3 client, IOptions<BacklogParserOptions> backlogPars
             ContentType = "application/gzip",
             InputStream = new MemoryStream(bundle)
         };
-        return await client.PutObjectAsync(request);
+        await client.PutObjectAsync(request);
     }
 }

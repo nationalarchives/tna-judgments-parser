@@ -156,7 +156,7 @@ public class Program
             var backlogParserWorker = scope.ServiceProvider.GetRequiredService<BacklogParserWorker>();
             Directory.CreateDirectory(backlogParserOptions.OutputFolderPath);
 
-            return backlogParserWorker.Run();
+            return backlogParserWorker.RunAsync().Result;
         }
         catch (Exception e)
         {
