@@ -56,6 +56,9 @@ public class Bucket(IAmazonS3 client, IOptions<BacklogParserOptions> backlogPars
             ContentType = "application/gzip",
             InputStream = new MemoryStream(bundle)
         };
-        await client.PutObjectAsync(request);
+        var response = await client.PutObjectAsync(request);
+
+        if (response.HttpStatusCode != System.Net.HttpStatusCode.OK)
+            throw new ProblemUploadingFileToS3Exception($"Failed to upload {key} to S3");
     }
 }

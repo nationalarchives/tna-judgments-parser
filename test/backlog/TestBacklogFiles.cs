@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
+using Backlog;
 using Backlog.Options;
 using Backlog.Src;
 

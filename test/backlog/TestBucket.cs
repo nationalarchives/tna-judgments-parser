@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -65,6 +66,9 @@ public class TestBucket(ITestOutputHelper testOutputHelper)
         var options = BacklogParserOptionsHelper.Create(bucketName: "my-bucket");
         var mockLogger = new MockLogger<Bucket>();
         var mockAmazonS3 = new Mock<IAmazonS3>();
+        mockAmazonS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
+                    .ReturnsAsync(new PutObjectResponse { HttpStatusCode = HttpStatusCode.OK });
+        
         var bucket = new Bucket(mockAmazonS3.Object, options, mockLogger.Object);
 
         await bucket.UploadBundleAsync("test-key.tar.gz", [1, 2, 3]);
@@ -76,5 +80,21 @@ public class TestBucket(ITestOutputHelper testOutputHelper)
                                                         && putObjectRequest.ContentType == "application/gzip"
                                                         && putObjectRequest.InputStream.Length == 3),
             It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task Bucket_UploadBundleAsync_WhenS3UploadFails_ThrowsProblemUploadingFileToS3Exception()
+    {
+        var options = BacklogParserOptionsHelper.Create(bucketName: "my-bucket");
+        var mockLogger = new MockLogger<Bucket>();
+        var mockAmazonS3 = new Mock<IAmazonS3>();
+        mockAmazonS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
+                    .ReturnsAsync(new PutObjectResponse { HttpStatusCode = HttpStatusCode.InternalServerError });
+
+        var bucket = new Bucket(mockAmazonS3.Object, options, mockLogger.Object);
+
+        await Assert.ThrowsAsync<ProblemUploadingFileToS3Exception>(() =>
+            bucket.UploadBundleAsync("test-key.tar.gz", [1, 2, 3])
+        );
     }
 }
