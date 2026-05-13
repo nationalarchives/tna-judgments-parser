@@ -15,6 +15,12 @@ class Relationships {
 
     private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Judgments.DOCX.Relationships>();
 
+    // no longer needed in DocumentFormat.OpenXml 3.0; see https://github.com/dotnet/Open-XML-SDK/issues/1637
+    // public static readonly RelationshipErrorHandler.Rewriter MalformedUriRewriter = (part, id, uri) => {
+    //     logger.LogError("malformed URI: {uri}", uri);
+    //     return "http://error?original=" + uri;
+    // };
+
     public static Uri GetUriForImage(StringValue relationshipId, OpenXmlElement context) {
         OpenXmlElement root = context;
         while (root.Parent is not null)
