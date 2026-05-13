@@ -239,7 +239,10 @@ class Inline2 {
         IEnumerable<IInline> contents = ParseRuns(main, link.ChildElements);
         if (link.Id is not null) {
             Uri uri = DOCX.Relationships.GetUriForHyperlink(link);
-            if (uri.IsAbsoluteUri) {
+            // OpenXML 3.x assigns a random rewritten://<guid> URI when the
+            // source hyperlink target was malformed/empty. Treat as un-emittable
+            // (caller pattern: keep text, drop the <a> wrapper).
+            if (uri.IsAbsoluteUri && uri.Scheme != "rewritten") {
                 contents = Merger.Merge(contents);
                 WHyperlink2 link2 = new  WHyperlink2() { Href = uri.AbsoluteUri, Contents = contents };
                 return new List<IInline>(1) { link2 };

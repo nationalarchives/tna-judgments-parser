@@ -15,19 +15,6 @@ class Relationships {
 
     private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Judgments.DOCX.Relationships>();
 
-    /// <summary>
-    /// Normalises URIs rewritten by OpenXML 3.x for malformed hyperlink targets.
-    /// The SDK replaces empty/invalid targets with random "rewritten://" GUIDs,
-    /// making output non-deterministic. This maps them to a stable empty-link URL.
-    /// </summary>
-    private static Uri NormaliseRewrittenUri(Uri uri) {
-        if (uri != null && uri.IsAbsoluteUri && uri.Scheme == "rewritten") {
-            logger.LogWarning("malformed hyperlink URI rewritten by OpenXML: {uri}", uri);
-            return new Uri("http://malformed-hyperlink/");
-        }
-        return uri;
-    }
-
     public static Uri GetUriForImage(StringValue relationshipId, OpenXmlElement context) {
         OpenXmlElement root = context;
         while (root.Parent is not null)
@@ -70,7 +57,7 @@ class Relationships {
             relationships = endnotes.EndnotesPart.HyperlinkRelationships;
         else
             throw new Exception();
-        return NormaliseRewrittenUri(relationships.Where(r => r.Id == relationshipId).First().Uri);
+        return relationships.Where(r => r.Id == relationshipId).First().Uri;
     }
 
     public static Uri GetUriForHyperlink(Hyperlink link) {
