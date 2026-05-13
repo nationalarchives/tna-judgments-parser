@@ -36,6 +36,26 @@ class Builder : AkN.Builder {
         block.SetAttribute("headingSignal", UKNS, classification.Value.Signal.ToString());
     }
 
+    /// <summary>
+    /// Leg HTML output drops cosmetic table-cell styles that Word
+    /// inherits but the rendered legislation pages don't want to
+    /// surface: white / transparent backgrounds (the page background
+    /// shows through anyway), and any <c>border-*</c> Word stamped
+    /// onto individual cells (the table-level border styling is
+    /// consistent across legislation HTML). For cells with a
+    /// genuinely dark background we force <c>color: #ffffff</c> so
+    /// black text doesn't disappear against it.
+    /// </summary>
+    protected override void ApplyTableCellStyleCleanup(ICell cell, Dictionary<string, string> styles) {
+        if (styles.TryGetValue("background-color", out string bg) &&
+            (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
+            styles.Remove("background-color");
+        foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
+            styles.Remove(key);
+        if (styles.TryGetValue("background-color", out string bgValue) && AkN.Builder.IsDarkColor(bgValue) && !styles.ContainsKey("color"))
+            styles["color"] = "#ffffff";
+    }
+
     private readonly string manifestationName;
 
     private Builder(string manifestationName) {
