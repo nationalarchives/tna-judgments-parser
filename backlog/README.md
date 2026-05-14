@@ -87,13 +87,11 @@ The expected directory structure for data processing is:
 
 ```plaintext
 data/
-├── tdr_metadata/
-│   └── file-metadata.csv              # Maps original judgment filenames to UUIDs (only required if UUID isn't provided in the Court Metadata CSV)
-└── court_documents/                   # Contains the actual judgment documents
-    ├── {uuid}                         # (e.g. a1b2c3d4-e5f6-7890-abcd-ef1234567890, 6f4d2e8b-3c91-4a7f-9d25-1b8e6c0f7a42.pdf)
-    ├── Some subfolder/                # Optional subfolder structure
-    │   └── {uuid}
-    └── {uuid}
+├── court_documents/                   # Contains the actual judgment documents
+│   ├── {uuid}                         # (e.g. a1b2c3d4-e5f6-7890-abcd-ef1234567890, 6f4d2e8b-3c91-4a7f-9d25-1b8e6c0f7a42.pdf)
+│   ├── Some subfolder/                # Optional subfolder structure
+│   │   └── {uuid}
+│   └── {uuid}
 └── {court_metadata.csv}               # Metadata extracted from tribunal-specific spreadsheets about courts and their judgments
 ```
 
@@ -115,11 +113,12 @@ The CSV file must contain the following columns for each judgment:
 
 - `Id` - Unique identifier for each judgment record
 - `Court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
-- `FilePath` - Path to the judgment file relative to the base directory (UUID without extension)
+- `FilePath` - Original file name and path from the original system (pre-FCL)
 - `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
 - `Decision_datetime` - Date when the decision was made (format: "yyyy-MM-dd")
 - `Claimants` OR `Appellants` - Name(s) of the claimant(s)/appellant(s)
 - `Respondent` - Name(s) of the respondent(s)
+- `Uuid` - The TDR-cleansed filenames
 - `Skip` - Leave blank or set to `n`, `0` or `false` to process the record. Fill in anything to skip it (e.g. `skip`, `Already in FCL`, `Duplicate`)
 
 #### Optional Columns
@@ -134,7 +133,6 @@ The following columns are optional:
 - `Headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
 - `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a semicolon or comma separated list in quotes (e.g. `jurisdiction1;jurisdiction2` or `"jurisdiction1,jurisdiction2"`)
 - `CaseNo` - Case number(s). This can be a single item or a semicolon or comma separated list in quotes (e.g. `case1;case2` or `"case1,case2"`)
-- `Uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
 - `Webarchiving` - Link to the webarchive for this judgment
 
 **Note**: If required columns are missing, the system will throw a validation error listing the missing columns but if optional columns are missing or misspelt then there will be no warning.
@@ -142,10 +140,10 @@ The following columns are optional:
 #### CSV Line Example
 
 ```csv
-id,court,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory
-123,UKFTT-GRC,a1b2c3d4-e5f6-7890-abcd-ef1234567890,.pdf,2025-01-15 09:00:00,GRC/2025/001,Smith,Secretary of State,Immigration,Appeal Rights
-124,EWHC-QBD-Admin,b2c3d4e5-f6g7-8901-bcde-f23456789012,.docx,2025-01-16 10:00:00,IA/2025/002,Jones,HMRC,Tax,VAT Appeals
-125,UKUT-IAC,c3d4e5f6-g7h8-9012-cdef-34567890123a,.doc,2025-01-17 11:00:00,UKUT/2025/003,Williams,Home Office,Immigration,Entry Clearance
+id,court,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,UUID
+123,UKFTT-GRC,a1b2c3d4-e5f6-7890-abcd-ef1234567890,.pdf,2025-01-15 09:00:00,GRC/2025/001,Smith,Secretary of State,Immigration,Appeal Rights,fdd915f7-dfe1-474b-89cc-4819b2ba11f7
+124,EWHC-QBD-Admin,b2c3d4e5-f6g7-8901-bcde-f23456789012,.docx,2025-01-16 10:00:00,IA/2025/002,Jones,HMRC,Tax,VAT Appeals,3477100b-f093-4013-8df1-f26bc279bc44
+125,UKUT-IAC,c3d4e5f6-g7h8-9012-cdef-34567890123a,.doc,2025-01-17 11:00:00,UKUT/2025/003,Williams,Home Office,Immigration,Entry Clearance,0f333347-33ae-4f04-af63-d07306995c3a
 ```
 
 - Line 1 = ID 123 (Smith vs Secretary of State)
@@ -170,8 +168,6 @@ The module uses environment variables for configuration. Backlog Parser settings
 | `BacklogParser__DataFolderPath`                 | Path to the folder containing judgment data files                                                         | None - required                                                 |
 | `BacklogParser__TrackerFilePath`                | Path to the CSV file tracking uploaded judgments                                                          | None - required                                                 |
 | `BacklogParser__OutputFolderPath`               | Path to where generated bundle files will be saved                                                        | None - required                                                 |
-| `BacklogParser__MetadataProvidedFilePathPrefix` | The filepath prefix used in the court metadata csv (used to cross-reference with file-metadata.csv paths) | `""`                                                            |
-| `BacklogParser__TransferMetadataFilePathPrefix` | The filepath prefix used in the file-metadata csv (used to cross-reference with court metadata csv paths) | `""`                                                            |
 | `BacklogParser__BucketName`                     | AWS bucket to upload processed files and xml to                                                           | None - must be set unless using dry run mode                    |
 | `AWS_REGION`                                    | AWS region for S3 bucket operations                                                                       | Defaults to the region configured in AWS deployment environment |
 

@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 using Backlog.Csv;
 using Backlog.Options;
+using Backlog.Src;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-namespace Backlog.Src;
+namespace Backlog;
 
 /// <summary>
 ///     This is the main entry point to the bulk backlog parsing process
@@ -249,11 +250,7 @@ internal class BacklogParserWorker(
 
     private Bundle GenerateBundle(CsvLine csvLine, Guid parserRunId)
     {
-        var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
-            ? csvLine.Uuid
-            : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
-
-        var sourceContent = backlogFiles.ReadFile(tdrUuid);
+        var sourceContent = backlogFiles.ReadFile(csvLine.Uuid);
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);

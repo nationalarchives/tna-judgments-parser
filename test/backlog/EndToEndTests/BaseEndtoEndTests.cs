@@ -81,8 +81,6 @@ public abstract class BaseEndToEndTests : IDisposable
         Environment.SetEnvironmentVariable("IS_TEST", null);
         Environment.SetEnvironmentVariable("AWS_REGION", null);
 
-        Environment.SetEnvironmentVariable("BacklogParser__MetadataProvidedFilePathPrefix", null);
-        Environment.SetEnvironmentVariable("BacklogParser__TransferMetadataFilePathPrefix", null);
     }
 
     protected static void SetPathEnvironmentVariables(string dataDir, string? outputPath = null,
@@ -98,11 +96,6 @@ public abstract class BaseEndToEndTests : IDisposable
         Environment.SetEnvironmentVariable("BacklogParser__OutputFolderPath", outputPath);
     }
 
-    protected static void SetMetadataPrefixEnvironmentVariables(string metadataProvidedFilePathPrefix, string transferMetadataFilePathPrefix)
-    {
-        Environment.SetEnvironmentVariable("BacklogParser__MetadataProvidedFilePathPrefix", metadataProvidedFilePathPrefix);
-        Environment.SetEnvironmentVariable("BacklogParser__TransferMetadataFilePathPrefix", transferMetadataFilePathPrefix);
-    }
 
     protected static void AssertProgramExitedSuccessfully(int exitCode)
     {
