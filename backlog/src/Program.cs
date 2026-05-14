@@ -11,6 +11,7 @@ using Amazon.S3;
 using Backlog.Csv;
 using Backlog.Options;
 using Backlog.Src;
+using Backlog.Tracking;
 using Backlog.Utilities;
 
 using DotNetEnv.Configuration;
@@ -216,7 +217,7 @@ public class Program
         services.AddScoped<BacklogParserWorker>();
         services.AddScoped<CsvMetadataReader>();
         services.AddScoped<BacklogFiles>();
-        services.AddScoped<Tracker>();
+        services.AddScoped<ITracker, Tracker>();
         if (isDryRun)
         {
             services.AddScoped<IBucket, DryRunBucket>();

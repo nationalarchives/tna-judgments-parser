@@ -212,7 +212,11 @@ namespace test.backlog.EndToEndTests
             ConfigureTestEnvironment("MultiLineTest");
 
             // Pre-populate tracker to mark first item as already processed
-            await File.WriteAllTextAsync(trackerPath, "100/JudgmentFiles\\j100\\test1.doc,some-uuid-1,132345678901234567\n",
+            await File.WriteAllTextAsync(trackerPath, """
+                                                      SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated
+                                                      11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
+                                                      22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
+                                                      """,
                 TestContext.Current.CancellationToken);
 
             // Act
@@ -223,12 +227,16 @@ namespace test.backlog.EndToEndTests
 
             // Should process fewer items than total (since one was already done)
             // The exact count depends on test data - we'll verify this doesn't process ALL items
-            var trackerContent = await File.ReadAllTextAsync(trackerPath, TestContext.Current.CancellationToken);
-            var trackerLines = trackerContent.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-
-            // Should have the original entry plus new entries
-            Assert.True(trackerLines.Length > 1, "Tracker should have original entry plus new entries");
-            Assert.True(trackerLines[0].Contains("some-uuid-1"), "First line should be the pre-existing entry");
+            var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
+           
+            // Should have the header plus original entry plus new successful entries
+            Assert.Collection(trackerLines, 
+                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
+                line => Assert.True(line == "11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
+                line => Assert.True(line == "22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
+                line => Assert.True(line.StartsWith("22222222-2222-2222-2222-222222222222") && line.Contains("SentToIngester"), "This line should have been retried"),
+                line => Assert.True(line.StartsWith("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
+                );
 
             // Log file should mention skips
             ConsolidatedLogger.VerifyLog("Skipping line 5 because it was marked to skip in the csv", LogLevel.Information)
@@ -255,8 +263,11 @@ namespace test.backlog.EndToEndTests
             AssertProgramExitedSuccessfully(exitCode);
 
             var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
-            var singleLine = Assert.Single(trackerLines);
-            Assert.StartsWith("102/JudgmentFiles\\j102\\test3.pdf,", singleLine);
+            Assert.Collection(trackerLines, 
+                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
+                line => Assert.True(line.StartsWith("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
+            );
+
         }
 
         [Fact]
