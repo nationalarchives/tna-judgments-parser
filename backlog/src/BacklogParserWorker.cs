@@ -34,6 +34,7 @@ internal class BacklogParserWorker(
     public async Task<int> RunAsync()
     {
         var parserRunId = Guid.NewGuid();
+        logger.LogInformation("Starting parser run {ParserRunId}", parserRunId);
         var lines = csvMetadataReader.Read(out var skippedCsvLineIdentifiers, out var csvParseErrors,
             out var numAllLinesInCsv);
         if (lines.Count == 0)
