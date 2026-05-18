@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using Microsoft.Extensions.Logging;
 
-namespace UK.Gov.Legislation.Judgments.DOCX {
+namespace UK.Gov.Legislation.Judgments.DOCX;
 
 readonly struct NumberInfo {
     internal string Number { get; init; }
@@ -125,8 +124,6 @@ class Numbering2 {
         NumberingInstance instance = Numbering.GetNumbering(main, numberingId);
         if (instance is null)
             return null;
-        AbstractNum abstractNum = Numbering.GetAbstractNum(main, instance);
-        Int32Value abstractNumberId = abstractNum.AbstractNumberId;
         Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
         if (baseLevel is null)  // [2023] UKFTT 00089 (TC), a very strange case
             return null;
@@ -213,144 +210,22 @@ class Numbering2 {
             return format.Val.Value;
         }
 
-        Match match = Regex.Match(format.Val.Value, "^%(\\d)$");
-        if (match.Success) {
-            OneCombinator combine = num => num;
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.$");
-        if (match.Success) {
-            OneCombinator combine = num => num + ".";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\. $");   // EWHC/Comm/2012/1065
-        if (match.Success) {
-            OneCombinator combine = num => num + ". ";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)$");
-        if (match.Success) {
-            OneCombinator combine = num => "(" + num + ")";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, "^%(\\d)\\)$");
-        if (match.Success) {
-            OneCombinator combine = num => num + ")";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.\)$");   // EWCA/Civ/2013/1686
-        if (match.Success) {
-            OneCombinator combine = num => num + ".)";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, "^\"%(\\d)\\)$");   // EWCA/Civ/2006/939
-        if (match.Success) {
-            OneCombinator combine = num => "\"" + num + ")";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)\\.$"); // EWCA/Civ/2012/1411
-        if (match.Success) {
-            OneCombinator combine = num => "(" + num + ").";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\.\\)$"); // EWCA/Crim/2005/1986
-        if (match.Success) {
-            OneCombinator combine = num => "(" + num + ".)";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        match = Regex.Match(format.Val.Value, "^\\(%(\\d)a\\)$");
-        if (match.Success) {
-            OneCombinator combine = num => "(" + num + "a)";
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        
-        match = Regex.Match(format.Val.Value, @"^%(\d+)([^%]+)$");   // EWHC/Ch/2017/3634
-        if (match.Success) {
-            string suffix = match.Groups[2].Value;
-            OneCombinator combine = num => num + suffix;
-            return One(main, paragraph, numberingId, match, combine);
-        }
-        // match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");   // EWHC/Admin/2015/3437
-        // if (match.Success) {
-        //     TwoCombinator combine = (num1, num2) => num1 + "." + num2;
-        //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
-        // }
-        // match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.$");
-        // if (match.Success) {
-        //     TwoCombinator combine = (num1, num2) => num1 + "." + num2 + ".";
-        //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
-        // }
-        // match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");
-        // if (match.Success) {
-        //     TwoCombinator combine = (num1, num2) => { return num1 + "." + num2; };
-        //     return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
-        // }
-        match = Regex.Match(format.Val.Value, @"^([^%]*)%(\d)([^%]*)%(\d)([^%]*)$");
-        if (match.Success) {
-            string prefix = match.Groups[1].Value;
-            int ilvl1 = int.Parse(match.Groups[2].Value) - 1;
-            string middle = match.Groups[3].Value;
-            int ilvl2 = int.Parse(match.Groups[4].Value) - 1;
-            string suffix = match.Groups[5].Value;
-            TwoCombinator combine = (num1, num2) => { return prefix + num1 + middle + num2 + suffix; };
-            return Two(main, paragraph, numberingId, ilvl1, ilvl2, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)$");
-        if (match.Success) {
-            ThreeCombinator three = (num1, num2, num3) => { return num1 + "." + num2 + "." + num3; };
-            return Three(main, paragraph, numberingId, match, three);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)[\.)]$");
-        if (match.Success) {
-            char last = format.Val.Value[^1];
-            string three(string num1, string num2, string num3) { return num1 + "." + num2 + "." + num3 + last; }
-            return Three(main, paragraph, numberingId, match, three);
-        }
-        match = Regex.Match(format.Val.Value, @"^\(%(\d)\.%(\d)\.%(\d)$");  // EWHC/Admin/2010/3192
-        if (match.Success) {
-            ThreeCombinator three = (num1, num2, num3) => "(" + num1 + "." + num2 + "." + num3;
-            return Three(main, paragraph, numberingId, match, three);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)$");
-        if (match.Success) {
-            FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4; };
-            return Four(main, paragraph, numberingId,  match, four);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)-%(\d)-%(\d)-%(\d)$");
-        if (match.Success) {
-            FourCombinator four = (num1, num2, num3, num4) => { return num1 + "-" + num2 + "-" + num3 + "-" + num4; };
-            return Four(main, paragraph, numberingId, match, four);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)\.$");
-        if (match.Success) {
-            FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "."; };
-            return Four(main, paragraph, numberingId, match, four);
-        }
-        match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)\.%(\d)(\.)?$");
-        if (match.Success) {
-            FiveCombinator combine = (num1, num2, num3, num4, num5) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "." + num5 + match.Groups[6].Value; };
-            return Five(main, paragraph, numberingId, match, combine);
-        }
+        /* Transform numbers */
+        var result = Regex.Replace(format.Val.Value, @"%(\d)+",
+            m => TransformLevelNumber(m, main, paragraph, numberingId));
 
-        match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)$");    // EWHC/Comm/2015/150
-        if (match.Success) {
-            string prefix = match.Groups[1].Value;
-            int ilvl = int.Parse(match.Groups[2].Value) - 1;
-            OneCombinator combine = (num) => { return prefix + num; };
-            return One(main, paragraph, numberingId, ilvl, combine);
-        }
-        match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d+)([^%]+)$");    // EWHC/Ch/2012/1411
-        if (match.Success) {
-            string prefix = match.Groups[1].Value;
-            int ilvl = int.Parse(match.Groups[2].Value) - 1;
-            string suffix = match.Groups[3].Value;
-            OneCombinator combine = num => prefix + num + suffix;
-            return One(main, paragraph, numberingId, ilvl, combine);
-        }
-
-        throw new Exception("unsupported level text: " + format.Val.Value);
+        return result;
     }
 
+    internal static string TransformLevelNumber(Match m, MainDocumentPart main, Paragraph paragraph, int numberingId)
+    {
+        var levelIndex = int.Parse(m.Groups[1].Value) - 1;
+        var lvl = Numbering.GetLevel(main, numberingId, levelIndex);
+        var n = Numbering3.CalculateN(main, paragraph, levelIndex);
+
+        return FormatN(n, lvl.NumberingFormat.Val.Value);
+    }
+    
     internal static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
         AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
             .OfType<AbstractNum>()
@@ -363,100 +238,6 @@ class Numbering2 {
         return level?.StartNumberingValue?.Val ?? 1;
     }
 
-    private delegate string OneCombinator(string num1);
-
-    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, OneCombinator combine) {
-        int ilvl = int.Parse(match.Groups[1].Value) - 1;
-        return One(main, paragraph, numberingId, ilvl, combine);
-    }
-    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int ilvl, OneCombinator combine) {
-        Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-        int n = CalculateN(main, paragraph, ilvl);
-        string num = FormatN(n, lvl.NumberingFormat);
-        return combine(num);
-    }
-
-    private delegate string TwoCombinator(string num1, string num2);
-
-    private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int ilvl1, int ilvl2, TwoCombinator combine) {
-        Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-        Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-        int n1 = CalculateN(main, paragraph, ilvl1);
-        int n2 = CalculateN(main, paragraph, ilvl2);
-        string num1 = FormatN(n1, lvl1.NumberingFormat);
-        string num2 = FormatN(n2, lvl2.NumberingFormat);
-        return combine(num1, num2);
-    }
-
-    private delegate string ThreeCombinator(string num1, string num2, string num3);
-
-    private static string Three(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, ThreeCombinator combine) {
-        int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-        int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-        int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
-        Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-        Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-        Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-        int n1 = CalculateN(main, paragraph, ilvl1);
-        int n2 = CalculateN(main, paragraph, ilvl2);
-        int n3 = CalculateN(main, paragraph, ilvl3);
-        string num1 = FormatN(n1, lvl1.NumberingFormat);
-        string num2 = FormatN(n2, lvl2.NumberingFormat);
-        string num3 = FormatN(n3, lvl3.NumberingFormat);
-        return combine(num1, num2, num3);
-    }
-
-    private delegate string FourCombinator(string num1, string num2, string num3, string num4);
-
-    private static string Four(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, FourCombinator combine) {
-        int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-        int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-        int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
-        int ilvl4 = int.Parse(match.Groups[4].Value) - 1;
-        Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-        Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-        Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-        Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
-        int n1 = CalculateN(main, paragraph, ilvl1);
-        int n2 = CalculateN(main, paragraph, ilvl2);
-        int n3 = CalculateN(main, paragraph, ilvl3);
-        int n4 = CalculateN(main, paragraph, ilvl4);
-        string num1 = FormatN(n1, lvl1.NumberingFormat);
-        string num2 = FormatN(n2, lvl2.NumberingFormat);
-        string num3 = FormatN(n3, lvl3.NumberingFormat);
-        string num4 = FormatN(n4, lvl4.NumberingFormat);
-        return combine(num1, num2, num3, num4);
-    }
-
-    private delegate string FiveCombinator(string num1, string num2, string num3, string num4, string num5);
-
-    private static string Five(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, FiveCombinator combine) {
-        int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
-        int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-        int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
-        int ilvl4 = int.Parse(match.Groups[4].Value) - 1;
-        int ilvl5 = int.Parse(match.Groups[5].Value) - 1;
-        Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
-        Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-        Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-        Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
-        Level lvl5 = Numbering.GetLevel(main, numberingId, ilvl5);
-        int n1 = CalculateN(main, paragraph, ilvl1);
-        int n2 = CalculateN(main, paragraph, ilvl2);
-        int n3 = CalculateN(main, paragraph, ilvl3);
-        int n4 = CalculateN(main, paragraph, ilvl4);
-        int n5 = CalculateN(main, paragraph, ilvl5);
-        string num1 = FormatN(n1, lvl1.NumberingFormat);
-        string num2 = FormatN(n2, lvl2.NumberingFormat);
-        string num3 = FormatN(n3, lvl3.NumberingFormat);
-        string num4 = FormatN(n4, lvl4.NumberingFormat);
-        string num5 = FormatN(n5, lvl5.NumberingFormat);
-        return combine(num1, num2, num3, num4, num5);
-    }
-
-    private static string FormatN(int n, NumberingFormat format) {
-        return FormatN(n, format.Val.Value);
-    }
     private static string FormatN(int n, NumberFormatValues format) {
         if (format == NumberFormatValues.Decimal)
             return n.ToString();
@@ -556,13 +337,11 @@ class Numbering2 {
             if (ilvl != baseIlvl)
                 throw new Exception();
             Level lvl = Numbering.GetLevel(main, numberingId, ilvl);    // this is redundant
-            int n = CalculateN(main, paragraph, ilvl);
+            int n = Numbering3.CalculateN(main, paragraph, ilvl);
             n -= 1;
-            string num = FormatN(n, lvl.NumberingFormat);
+            string num = FormatN(n, lvl.NumberingFormat.Val.Value);
             return num + ".";
         }
         throw new Exception();
     }
-}
-
 }
