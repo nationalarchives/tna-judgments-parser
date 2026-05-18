@@ -113,14 +113,14 @@ class Numbering2 {
 
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
 
-        string formatted = Magic2(main, paragraph, numId.Value, ilvl);
+        string formatted = GetLevelIndicatorForParagraph(main, paragraph, numId.Value, ilvl);
         if (string.IsNullOrEmpty(formatted))
             return null;
 
         return new NumberInfo() { Number = formatted, Props = level.NumberingSymbolRunProperties };
     }
 
-    private static string Magic2(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
+    private static string GetLevelIndicatorForParagraph(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
         if (Numbering.GetNumbering(main, numberingId) is null)
             return null;
         var baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
@@ -365,7 +365,7 @@ class Numbering2 {
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
         if (!numId.HasValue)
             return null;
-        string formatted = Magic2(main, paragraph, numId.Value, ilvl);
+        string formatted = GetLevelIndicatorForParagraph(main, paragraph, numId.Value, ilvl);
         while (ilvl > 0) {
             ilvl -= 1;
             string higherLevel = Magic3(main, paragraph, numId.Value, ilvl);  // assumes number format involves only one level
