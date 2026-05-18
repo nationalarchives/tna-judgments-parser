@@ -121,100 +121,150 @@ class Numbering2 {
     }
 
     private static string Magic2(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
-        NumberingInstance instance = Numbering.GetNumbering(main, numberingId);
-        if (instance is null)
+        if (Numbering.GetNumbering(main, numberingId) is null)
             return null;
-        Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
+        var baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);
         if (baseLevel is null)  // [2023] UKFTT 00089 (TC), a very strange case
             return null;
-        LevelText format = baseLevel.LevelText;
+
+        var numberingFormatVal = baseLevel.NumberingFormat?.Val;
+        var docxLevelTextFormat = baseLevel.LevelText?.Val?.Value;
 
         /* None */
-        if (baseLevel.NumberingFormat.Val == NumberFormatValues.None) { // EWHC/QB/2009/406
-            if (string.IsNullOrEmpty(format.Val.Value))
+        if (numberingFormatVal == NumberFormatValues.None) { // EWHC/QB/2009/406
+            if (string.IsNullOrEmpty(docxLevelTextFormat))
                 return "";
-            logger.LogDebug("None number format: " + format.Val.Value);
-            return Regex.Replace(format.Val.Value, @"%\d", "");  // EWHC/Ch/2014/4092, [2023] EWHC 1526 (Admin)
+            logger.LogDebug("None number format: {LevelFormat}", docxLevelTextFormat);
+            return Regex.Replace(docxLevelTextFormat, @"%\d", "");  // EWHC/Ch/2014/4092, [2023] EWHC 1526 (Admin)
         }
 
         /* Bullet */
-        if (baseLevel.NumberingFormat.Val == NumberFormatValues.Bullet) {
-            if (format.Val.Value == "-")
-                return "-";
-            if (format.Val.Value == ".")    // EWHC/QB/2018/2066
-                return ".";
-            if (format.Val.Value == "•")    // EWCA/Civ/2018/2098
-                return "•";
-            if (format.Val.Value == "·")    // EWHC/Admin/2012/2542
-                return format.Val.Value;
-            if (format.Val.Value == "o")    // EWCA/Civ/2013/923
-                return "◦";
-            if (format.Val.Value == "–")    // EWCA/Civ/2013/1015
-                return "–"; // en dash ??
-            if (format.Val.Value == "")    // \uf0b7 EWHC/QB/2018/2066
-                return "•";
-            if (format.Val.Value == "")    // \uf0a7 EWCA/Civ/2013/11
-                return "•";
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf0a0))    // EWHC/Admin/2017/2768
-                return Char.ConvertFromUtf32(0x2219);   // small square "bullet operator"
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf02d))    // EWHC/Patents/2008/2127
-                return Char.ConvertFromUtf32(0x2013);   // en dash (maybe it should be bold?)
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf0d8))  // EWHC/QB/2010/484
-                return format.Val.Value;
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf0de))  // EWHC/Ch/2013/3745
-                return Char.ConvertFromUtf32(0x21d2); // Rightwards Double Arrow
-            if (format.Val.Value == Char.ConvertFromUtf32(0x2014))    // "em dash"
-                return format.Val.Value;
-            if (format.Val.Value == Char.ConvertFromUtf32(0xad))    // "soft hyphen" EWHC/Admin/2017/1754
-                return "-";
-            if (format.Val.Value == "“")    // EWHC/Admin/2017/2461
-                return format.Val.Value;
-            if (string.IsNullOrEmpty(format.Val.Value)) { // EWCA/Civ/2014/312
-                logger.LogDebug("empty bullet");
-                return "";
-            }
-            if (string.IsNullOrWhiteSpace(format.Val.Value)) {
-                logger.LogDebug("whitespace bullet: \"" + format.Val.Value + "\"");
-                return format.Val.Value;
-            }
-            if (baseLevel.NumberingSymbolRunProperties?.RunFonts?.Ascii?.Value is not null && baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))    // EWHC/Comm/2016/2615
-                return format.Val.Value;
-            if (format.Val.Value == "●")    // "EWHC/Admin/2021/1249"
-                return format.Val.Value;
-            if (format.Val.Value == "*")    // "EWHC/Admin/2021/710"
-                return format.Val.Value;
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf0d5))    // "right arrow?" EWCA/Civ/2004/1294
-                return format.Val.Value;
-            // if (format.Val.Value == "%1")  // 00223_ukut_iac_2015_mk_sierra leone
+        if (numberingFormatVal == NumberFormatValues.Bullet)
+        {
+            if (baseLevel.NumberingSymbolRunProperties?.RunFonts?.Ascii?.Value is not null &&
+                baseLevel.NumberingSymbolRunProperties.RunFonts.Ascii.Value.StartsWith("Wingdings"))
 
-            if (format.Val.Value == Char.ConvertFromUtf32(0xf020)) { // [2024] EWHC 2427 (Ch)
-                logger.LogWarning("removing bullet xf020");
-                return null;
+            {
+                // EWHC/Comm/2016/2615
+                return docxLevelTextFormat;
             }
 
-            logger.LogWarning("unknown bullet text: {}", format.Val.Value);
-            return Char.ConvertFromUtf32(0x2022);  // default bullet
+            return TransformBullet(docxLevelTextFormat);
         }
 
         /* Other */
-        if (string.IsNullOrEmpty(format.Val.Value)) {
+        if (string.IsNullOrEmpty(docxLevelTextFormat)) {
             logger.LogDebug("empty number");
             return "";
         }
-        if (string.IsNullOrWhiteSpace(format.Val.Value)) {    // EWCA/Civ/2015/1262, WHC/Ch/2008/1978
-            logger.LogDebug("whitespace number: \"" + format.Val.Value + "\"");
-            return format.Val.Value;
+        if (string.IsNullOrWhiteSpace(docxLevelTextFormat)) {    // EWCA/Civ/2015/1262, WHC/Ch/2008/1978
+            logger.LogDebug("whitespace number: \"{WhitespaceNumber}\"", docxLevelTextFormat);
+            return docxLevelTextFormat;
         }
-        if (!format.Val.Value.Contains('%')) {    // EWCA/Civ/2003/1769
-            logger.LogDebug("static number: \"" + format.Val.Value + "\"");
-            return format.Val.Value;
+        if (!docxLevelTextFormat.Contains('%')) {    // EWCA/Civ/2003/1769
+            logger.LogDebug("static number: \"{StaticNumber}\"", docxLevelTextFormat);
+            return docxLevelTextFormat;
         }
 
         /* Transform numbers */
-        var result = Regex.Replace(format.Val.Value, @"%(\d)+",
+        var result = Regex.Replace(docxLevelTextFormat, @"%(\d)+",
             m => TransformLevelNumber(m, main, paragraph, numberingId));
 
         return result;
+    }
+
+    private static string TransformBullet(string docxLevelTextFormat)
+    {
+        switch (docxLevelTextFormat)
+        {
+            case "-": // EWHC/QB/2018/2066
+                return "-";
+
+            case ".": // EWCA/Civ/2018/2098
+                return ".";
+
+            case "•": // EWCA/Civ/2013/923
+                return "•";
+
+            case "o": // EWCA/Civ/2013/1015
+                return "◦";
+
+            case "–": // \uf0b7 EWHC/QB/2018/2066
+                return "–"; // en dash ??
+
+            case "": // \uf0a7 EWCA/Civ/2013/11
+            case "":
+                return "•";
+
+            case "·": // EWHC/Admin/2012/2542
+            case "●": // "EWHC/Admin/2021/1249"
+            case "*": // "EWHC/Admin/2021/710"
+            case "“": // EWHC/Admin/2017/2461
+                return docxLevelTextFormat;
+        }
+
+        // UTF32 character - replace
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0xf0a0)) // EWHC/Admin/2017/2768
+        {
+            return char.ConvertFromUtf32(0x2219); // small square "bullet operator"
+        }
+
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0xf02d)) // EWHC/Patents/2008/2127
+        {
+            return char.ConvertFromUtf32(0x2013); // en dash (maybe it should be bold?)
+        }
+
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0xf0de)) // EWHC/Ch/2013/3745
+        {
+            return char.ConvertFromUtf32(0x21d2); // Rightwards Double Arrow
+        }
+
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0xad)) // "soft hyphen" EWHC/Admin/2017/1754
+        {
+            return "-";
+        }
+
+        // UTF32 character - keep original
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0xf0d8)) // EWHC/QB/2010/484
+        {
+            return docxLevelTextFormat;
+        }
+
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0x2014)) // "em dash"
+        {
+            return docxLevelTextFormat;
+        }
+
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0xf0d5)) // "right arrow?" EWCA/Civ/2004/1294
+        {
+            return docxLevelTextFormat;
+        }
+
+        // Misc bullets
+        if (string.IsNullOrEmpty(docxLevelTextFormat))
+        {
+            // EWCA/Civ/2014/312
+            logger.LogDebug("empty bullet");
+            return "";
+        }
+
+        if (string.IsNullOrWhiteSpace(docxLevelTextFormat))
+        {
+            logger.LogDebug("whitespace bullet: \"{Bullet}\"", docxLevelTextFormat);
+            return docxLevelTextFormat;
+        }
+
+        // Unsupported bullet
+        if (docxLevelTextFormat == char.ConvertFromUtf32(0xf020))
+        {
+            // [2024] EWHC 2427 (Ch)
+            logger.LogWarning("removing bullet xf020");
+            return null;
+        }
+
+        // Unknown bullet
+        logger.LogWarning("unknown bullet text: {Bullet}", docxLevelTextFormat);
+        return char.ConvertFromUtf32(0x2022); // default bullet
     }
 
     internal static string TransformLevelNumber(Match m, MainDocumentPart main, Paragraph paragraph, int numberingId)
