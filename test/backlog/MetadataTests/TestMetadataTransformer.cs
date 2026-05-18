@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Backlog.Options;
 using Backlog.Src;
 
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
 
 using TRE.Metadata;
@@ -25,17 +27,20 @@ public class TestMetadataTransformer
 {
     private readonly FakeTimeProvider fakeTimeProvider = new();
     private readonly MetadataTransformer metadataTransformer;
+    private readonly IOptions<BacklogParserOptions> options;
 
     public TestMetadataTransformer()
     {
-        var options = BacklogParserOptionsHelper.Create(autoPublish: true);
+        options = BacklogParserOptionsHelper.Create(autoPublish: true);
         metadataTransformer = new MetadataTransformer(options, fakeTimeProvider);
     }
 
-    [Fact]
-    public void CreateFullTreMetadata_SetsIngestorOptions()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void CreateFullTreMetadata_SetsIngestorOptions(bool autoPublish)
     {
-        const bool autoPublish = true;
+        options.Value.AutoPublish = autoPublish;
         const string contentHash = "123-456-789";
         const string sourceMimeType = "application/pdf";
         var responseMeta = new Api.Meta { DocumentType = "decision" };
@@ -54,6 +59,7 @@ public class TestMetadataTransformer
 
         // Assert
         Assert.Equal(autoPublish, result.Parameters.IngestorOptions.AutoPublish);
+        Assert.True(result.Parameters.IngestorOptions.ErrorOnExistingDocument);
         Assert.Equal(sourceMimeType, result.Parameters.IngestorOptions.Source.Format);
         Assert.Equal(contentHash, result.Parameters.IngestorOptions.Source.Hash);
     }
