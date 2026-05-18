@@ -19,6 +19,7 @@ namespace test.backlog.EndToEndTests;
 public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
     private const int DocIdWithJurisdiction = 70;
+    private const string Uuid = "c2d8f30f-7b43-4fdc-a54f-ac4a526fedda";
     private string? courtMetadataPath;
     private string? tempDataDir;
 
@@ -32,7 +33,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         base.Dispose(disposing);
     }
 
-    private void ConfigureTestEnvironment(string originalFileName, int? testJudgmentNumber)
+    private void ConfigureTestEnvironment(int? testJudgmentNumber)
     {
         // Create directories
         tempDataDir = Path.Combine(Path.GetTempPath(), $"FilesTest_{Guid.NewGuid()}");
@@ -45,9 +46,8 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         Directory.CreateDirectory(courtDocumentsDir);
 
         // Create files
-        const string uuid = "test-uuid-12345";
         var contents = testJudgmentNumber is not null ? DocumentHelpers.ReadDocx(testJudgmentNumber.Value) : [1,2,3,4];
-        File.WriteAllBytes(Path.Combine(courtDocumentsDir, uuid), contents);
+        File.WriteAllBytes(Path.Combine(courtDocumentsDir, Uuid), contents);
 
         // Set environment variables
         courtMetadataPath = Path.Combine(tempDataDir, "court_metadata.csv");
@@ -90,7 +90,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         const int docWithoutJurisdictionsId = 21;
         var originalFileName = $"test{docWithoutJurisdictionsId}.docx";
 
-        ConfigureTestEnvironment(originalFileName, docWithoutJurisdictionsId);
+        ConfigureTestEnvironment(docWithoutJurisdictionsId);
 
         var metadataLine = new CsvLine
         {
@@ -105,7 +105,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Jurisdictions = ["new jurisdiction"],
             WebArchiving = "my web archiving link",
             Ncn = "[1989] UKUT 1234 (LC)",
-            Uuid = "test-uuid-12345"
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -144,7 +144,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
     {
         var originalFileName = "test.pdf";
 
-        ConfigureTestEnvironment(originalFileName, null);
+        ConfigureTestEnvironment(null);
 
         var metadataLine = new CsvLine
         {
@@ -159,7 +159,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
             WebArchiving = "my web archiving link",
-            Uuid = "test-uuid-12345"
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -195,7 +195,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
     {
         var originalFileName = $"test{DocIdWithJurisdiction}.docx";
 
-        ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
+        ConfigureTestEnvironment(DocIdWithJurisdiction);
 
         // Metadata
         var metadataLine = new CsvLine
@@ -209,7 +209,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Appellants = "new appellants",
             Respondent = "new respondent",
             Jurisdictions = ["A jurisdiction which is not in the original document"],
-            Uuid = "test-uuid-12345"
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -226,7 +226,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
     {
         var originalFileName = $"test{DocIdWithJurisdiction}.docx";
 
-        ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
+        ConfigureTestEnvironment(DocIdWithJurisdiction);
 
         // Metadata
         var metadataLine = new CsvLine
@@ -240,7 +240,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights", "new jurisdiction"],
-            Uuid = "test-uuid-12345"
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -305,7 +305,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
     {
         var originalFileName = $"test{DocIdWithJurisdiction}.docx";
 
-        ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
+        ConfigureTestEnvironment(DocIdWithJurisdiction);
 
         // Metadata
         var metadataLine = new CsvLine
@@ -320,7 +320,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights"],
-            Uuid = "test-uuid-12345"
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
