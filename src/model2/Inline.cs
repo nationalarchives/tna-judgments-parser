@@ -199,23 +199,37 @@ internal class WText : IFormattedText {
             return;
         Dictionary<string, string> formattingFromParagraphStyle = DOCX.CSS.ExtractCharacterFormatting(main, paragraphStyle);
         Dictionary<string, string> formattingFromCharacterStyle = DOCX.CSS.ExtractCharacterFormatting(main, runStyle);
-        foreach(KeyValuePair<string, string> entry in formattingFromCharacterStyle) {
+        MergeParagraphStyleOntoCharacterStyle(formatting, formattingFromParagraphStyle, formattingFromCharacterStyle);
+    }
+
+    /// <summary>
+    /// Resolves disagreements between a run's character style and its
+    /// containing paragraph style into <paramref name="formatting"/>.
+    /// <para>
+    /// Legacy cascade in this codebase: paragraph style wins. That inverts
+    /// the CSS / Word order (a character style is more specific and should
+    /// win), but other properties' fixtures have come to depend on it, so
+    /// only colour properties — where the inversion produced visibly wrong
+    /// output, e.g. a black <c>IARPCChar</c> run overridden to white inside
+    /// a <c>Title</c> paragraph — follow the correct character-style-wins
+    /// rule. Everything else keeps paragraph-style-wins.
+    /// </para>
+    /// Ad-hoc inline formatting already in <paramref name="formatting"/> is
+    /// never overridden.
+    /// </summary>
+    internal static void MergeParagraphStyleOntoCharacterStyle(
+            Dictionary<string, string> formatting,
+            Dictionary<string, string> fromParagraphStyle,
+            Dictionary<string, string> fromCharacterStyle) {
+        foreach (KeyValuePair<string, string> entry in fromCharacterStyle) {
             if (formatting.ContainsKey(entry.Key))
                 continue;
-            bool existsInParagraphStyle = formattingFromParagraphStyle.TryGetValue(entry.Key, out string valueFromParagraphStyle);
-            if (!existsInParagraphStyle)
+            if (!fromParagraphStyle.TryGetValue(entry.Key, out string valueFromParagraphStyle))
                 continue;
             if (entry.Value == valueFromParagraphStyle)
                 continue;
-            // Default cascade in this codebase: paragraph style wins when it disagrees
-            // with the character style. For colour properties the opposite is correct
-            // (a character style overriding a paragraph-style default colour is exactly
-            // why authors introduce one — e.g. IARPCChar overriding Title's white text
-            // back to black). Use the character-style value for those.
-            string winner = (entry.Key == "color" || entry.Key == "background-color")
-                ? entry.Value
-                : valueFromParagraphStyle;
-            formatting.Add(entry.Key, winner);
+            bool characterStyleWins = entry.Key is "color" or "background-color";
+            formatting.Add(entry.Key, characterStyleWins ? entry.Value : valueFromParagraphStyle);
         }
     }
 
