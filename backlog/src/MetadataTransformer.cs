@@ -65,6 +65,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                 IngestorOptions = new IngestorOptions
                 {
                     AutoPublish = backlogParserOptions.Value.AutoPublish,
+                    ErrorOnExistingDocument = true,
                     Source = new SourceDocument { Format = sourceMimeType, Hash = contentHash }
                 }
             }
