@@ -29,6 +29,8 @@ This module provides a specialized entry point to the parser specifically design
 
 Please refer to the [internal documentation](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1437794305/) for details on the full process including retrieving and validating inputs, performing file conversions and what to look for when doing a dry run.
 
+Please refer to [wider bulk upload process](./bulk-upload-process.md) for more details on how bulk upload affects the rest of the system and how to ensure that it is successful.
+
 ### Pre-requisites
 
 - .NET 8 SDK
