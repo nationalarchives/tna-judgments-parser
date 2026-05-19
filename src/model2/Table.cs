@@ -60,7 +60,7 @@ class WTable : ITable, ILineable {
         if (e is BookmarkStart || e is BookmarkEnd)
             return Enumerable.Empty<WRow>();
         if (e is SdtRow sdt)
-            return sdt.SdtContentRow.Elements<TableRow>().Select(tr => new WRow(table, tr));
+            return ParseTableContents(table, sdt.SdtContentRow.ChildElements);
         throw new Exception();
     }
 
