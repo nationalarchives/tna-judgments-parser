@@ -138,15 +138,20 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             State = copy;
         }
 
+        /// <summary>
+        /// Extension point: subclasses opt out of stripping <c>class</c> /
+        /// <c>style</c> from specific elements. Default returns true for
+        /// every element (strip uniformly, matching main).
+        /// </summary>
+        protected virtual bool ShouldStripStyleAttributes(XmlElement e) => true;
+
         protected void UpdateStateAndRemoveStyleAttributes(XmlElement e)
         {
             foreach (KeyValuePair<string, string> item in GetClassProperties(e))
                 State[item.Key] = item.Value;
             foreach (KeyValuePair<string, string> item in GetStyleProperties(e))
                 State[item.Key] = item.Value;
-            // Preserve cell-level style/class on <td>/<th>: these carry semantic
-            // presentation (background colour, borders) that callers want round-tripped to HTML.
-            if (e.LocalName == "td" || e.LocalName == "th")
+            if (!ShouldStripStyleAttributes(e))
                 return;
             e.RemoveAttribute("class", "");
             e.RemoveAttribute("style", "");
