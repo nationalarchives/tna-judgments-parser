@@ -7,15 +7,12 @@ using Builder = UK.Gov.Legislation.Judgments.AkomaNtoso.Builder;
 namespace UK.Gov.Legislation.Common {
 
 /// <summary>
-/// Leg-specific AKN simplifier. Wraps inline runs that have a non-default
-/// <c>color</c> or <c>background-color</c> in a styled <c>&lt;span&gt;</c>
-/// so the visible colour band survives the simplifier's
-/// bold/italic/underline rewrites (RAG-style "Green / Amber / Red" labels
-/// in IA cover sheets, etc.).
-///
-/// Used by <see cref="BaseHelper"/> for every leg doc type. The base
-/// <see cref="Simplifier"/> handles td/th cell-style preservation for
-/// every consumer (leg + lawmaker) — leg doesn't need to override that.
+/// Leg-specific AKN simplifier. Two behaviours leg HTML pipelines need:
+/// preserve cell-level style on <c>&lt;td&gt;</c> / <c>&lt;th&gt;</c>
+/// (so cell shading survives to HTML), and wrap inline runs with a
+/// non-default <c>color</c> / <c>background-color</c> in a styled
+/// <c>&lt;span&gt;</c> (so the colour band survives the bold/italic
+/// rewrites — RAG labels in IA cover sheets).
 /// </summary>
 internal class LegSimplifier : Simplifier {
 
@@ -24,6 +21,9 @@ internal class LegSimplifier : Simplifier {
     internal static new void Simplify(XmlDocument doc) {
         new LegSimplifier(doc).VisitDocument();
     }
+
+    protected override bool ShouldStripStyleAttributes(XmlElement e) =>
+        e.LocalName != "td" && e.LocalName != "th";
 
     protected override void VisitText(XmlText text) {
         string bg = State.GetValueOrDefault("background-color");
