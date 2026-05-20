@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2025/50/impacts/2025/16/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2025/50/impacts/2025/16/data.akn" />
-          <FRBRdate date="2026-05-05" name="historic-akn-transform" />
+          <FRBRdate date="2026-05-20" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,7 +29,8 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
-        <ukm:Parser Value="1.7.1" />
+        <ukm:Parser Name="core" Value="1.8.0" />
+        <ukm:Parser Name="legislation" Value="1.0.0" />
         <dc:title>Impact Assessment for The Registrar (Identity Verification and Authorised Corporate Service Providers) Regulations 2025</dc:title>
         <dc:description>Impact Assessment for The Registrar (Identity Verification and Authorised Corporate Service Providers) Regulations 2025</dc:description>
         <dc:type>text</dc:type>

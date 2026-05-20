@@ -66,8 +66,6 @@ abstract class BaseHelper {
         if (simplify)
             LegSimplifier.Simplify(xml);
 
-        StripLeadingTabMarkers(xml);
-
         ApplyDocumentSpecificProcessing(xml);
 
         // IA consumed uk:headingDepth/headingSignal above; strip the rest.
@@ -94,27 +92,21 @@ abstract class BaseHelper {
     }
 
     /// <summary>
-    /// Drop a leading <marker name="tab"/> from each <p> when nothing real
-    /// precedes it. Word docs sometimes start a paragraph with a tab as a
-    /// hangover from a hanging-indent style — semantically meaningless but
-    /// still rendered as a stray nbsp. Tabs that appear after real content
-    /// (e.g. "1.1<tab>This...") are kept so they can do their normal
-    /// inter-token spacing job.
+    /// Drop a leading <c>&lt;marker name="tab"/&gt;</c> from each
+    /// <c>&lt;p&gt;</c> when nothing real precedes it — a hanging-indent
+    /// hangover Word leaves behind that renders as a stray nbsp.
     /// </summary>
     /// <remarks>
-    /// Excluded contexts where a leading tab is part of the rendering
-    /// convention rather than a hangover:
+    /// EM-only by call-site choice. Excluded contexts where a leading
+    /// tab is the rendering convention, not a hangover:
     /// <list type="bullet">
-    ///   <item><c>&lt;authorialNote&gt;</c> descendants — footnote marker
-    ///   separator.</item>
-    ///   <item><c>&lt;td&gt;</c> / <c>&lt;th&gt;</c> descendants —
-    ///   table-cell alignment.</item>
-    ///   <item>Descendants of a <c>&lt;paragraph&gt;</c> that has no
-    ///   <c>&lt;num&gt;</c> child — bare list items (e.g. IA bullets)
-    ///   where the leading tab IS the visual bullet indent.</item>
+    ///   <item><c>&lt;authorialNote&gt;</c> — footnote marker separator.</item>
+    ///   <item><c>&lt;td&gt;</c> / <c>&lt;th&gt;</c> — cell alignment.</item>
+    ///   <item><c>&lt;paragraph&gt;</c> with no <c>&lt;num&gt;</c> —
+    ///   bare list items where the tab is the bullet indent.</item>
     /// </list>
     /// </remarks>
-    private static void StripLeadingTabMarkers(XmlDocument xml) {
+    protected static void StripLeadingTabMarkers(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
         var paragraphs = xml.SelectNodes(

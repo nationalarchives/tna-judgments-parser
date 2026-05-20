@@ -36,26 +36,6 @@ class Builder : AkN.Builder {
         block.SetAttribute("headingSignal", UKNS, classification.Value.Signal.ToString());
     }
 
-    /// <summary>
-    /// Leg HTML output drops cosmetic table-cell styles that Word
-    /// inherits but the rendered legislation pages don't want to
-    /// surface: white / transparent backgrounds (the page background
-    /// shows through anyway), and any <c>border-*</c> Word stamped
-    /// onto individual cells (the table-level border styling is
-    /// consistent across legislation HTML). For cells with a
-    /// genuinely dark background we force <c>color: #ffffff</c> so
-    /// black text doesn't disappear against it.
-    /// </summary>
-    protected override void ApplyTableCellStyleCleanup(ICell cell, Dictionary<string, string> styles) {
-        if (styles.TryGetValue("background-color", out string bg) &&
-            (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
-            styles.Remove("background-color");
-        foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
-            styles.Remove(key);
-        if (styles.TryGetValue("background-color", out string bgValue) && AkN.Builder.IsDarkColor(bgValue) && !styles.ContainsKey("color"))
-            styles["color"] = "#ffffff";
-    }
-
     private readonly string manifestationName;
 
     private Builder(string manifestationName) {
@@ -197,9 +177,17 @@ class Builder : AkN.Builder {
         proprietary.SetAttribute("xmlns:ukm", UKM_NS);
         proprietary.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
 
-        XmlElement parser = doc.CreateElement("ukm", "Parser", UKM_NS);
-        proprietary.AppendChild(parser);
-        parser.SetAttribute("Value", AkN.Metadata.GetParserVersion());
+        // ukm:Parser is repeating with optional @Name in CLML; emit one
+        // entry per parser layer that contributed to this AKN.
+        XmlElement coreParser = doc.CreateElement("ukm", "Parser", UKM_NS);
+        proprietary.AppendChild(coreParser);
+        coreParser.SetAttribute("Name", "core");
+        coreParser.SetAttribute("Value", AkN.Metadata.GetParserVersion());
+
+        XmlElement legParser = doc.CreateElement("ukm", "Parser", UKM_NS);
+        proprietary.AppendChild(legParser);
+        legParser.SetAttribute("Name", "legislation");
+        legParser.SetAttribute("Value", LegVersion.Current);
 
         // Add DC metadata properties
         string dcTitle = BuildDcTitle(data);
