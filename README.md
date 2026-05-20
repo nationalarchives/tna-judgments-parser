@@ -5,7 +5,8 @@ This parser converts UK judgments from .docx format to XML. It is written in C# 
 
 <!-- TOC -->
 * [Judgments parser](#judgments-parser)
-  * [Making a FCL release](#making-a-fcl-release)
+  * [Release process](#release-process)
+  * [Deployment](#deployment)
   * [Using the parser](#using-the-parser)
     * [C# API](#c-api)
     * [REST API](#rest-api)
@@ -13,19 +14,25 @@ This parser converts UK judgments from .docx format to XML. It is written in C# 
   * [Tests](#tests)
 <!-- TOC -->
 
-## Making a FCL release
+## Release process
 
 1. Update the code
     - Make a branch
     - Update `version.targets` in the root of the repo with the new version number - this is used by the parser code to add `<uk:parser>x.x.x</uk:parser>` to the parsed xml outputs
     - Merge to main
-2. Create a GitHub Release
+1. Create a GitHub Release
     - Create a new Tag with the same version number as `version.targets`
     - Generate release notes
     - Publish release
-3. Wait for the next day
-    - A [workflow in da-tre-terraform-environments](https://github.com/nationalarchives/da-tre-terraform-environments/actions/workflows/parser_cd.yml) is scheduled to run each night and deploy the latest release
-    - Go to [Find Case Law](https://caselaw.nationalarchives.gov.uk/) and check that a new judgment has the new `<uk:parser>` in it
+
+## Deployment
+
+1. Wait for the next day
+    - A [workflow in da-tre-terraform-environments](https://github.com/nationalarchives/da-tre-terraform-environments/actions/workflows/parser_cd.yml) is scheduled to run each night and deploy the latest release.
+
+### Validating a deployment
+
+1. Go to [Find Case Law](https://caselaw.nationalarchives.gov.uk/) and check that a new judgment has the latest `<uk:parser>` version in it.
 
 ## Using the parser
 
