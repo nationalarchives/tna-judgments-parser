@@ -99,6 +99,7 @@ public class TestCoP {
 <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://legislation.gov.uk/akn' xmlns:ukm='http://www.legislation.gov.uk/namespaces/metadata'>
   <xsl:template match='akn:FRBRdate/@date'/>
   <xsl:template match='ukm:Parser'/>
+  <xsl:template match='text()[not(normalize-space())][following-sibling::*[1][self::ukm:Parser]]'/>
   <xsl:template match='uk:hash/text()'/>
   <xsl:template match='ukm:DocumentMainType'/>
   <xsl:template match='ukm:Department'/>

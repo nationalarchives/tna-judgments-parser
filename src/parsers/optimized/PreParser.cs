@@ -43,6 +43,15 @@ class PreParser {
 
     private ILogger Logger = Logging.Factory.CreateLogger<PreParser>();
 
+    /// <summary>
+    /// If <c>true</c>, a TOC-closing paragraph that also carries body content
+    /// is returned to the body parser instead of being dropped. Word
+    /// sometimes packs the next heading into the field-end paragraph;
+    /// the default <c>false</c> loses that content (matching the original
+    /// behaviour). Leg overrides to <c>true</c>.
+    /// </summary>
+    protected virtual bool ReprocessFieldEndWithContent => false;
+
     internal WordDocument Parse(WordprocessingDocument doc) {
         Logger.LogTrace("pre-parsing { }", doc.DocumentType.ToString());
         return new WordDocument {
@@ -106,7 +115,7 @@ class PreParser {
     }
 
     private List<BlockWithBreak> Body(MainDocumentPart main) {
-        List<MergedBlockWithBreak> unmerged = FirstPass1.X(main);
+        List<MergedBlockWithBreak> unmerged = FirstPass1.X(main, ReprocessFieldEndWithContent);
         List<BlockWithBreak> merged = Merge(unmerged)
             .Select(TrimWhitespaceAndMergeRuns)
             .Where(LineIsNotEmpty)
@@ -179,13 +188,19 @@ class PreParser {
 
     class FirstPass1 {
 
-        internal static List<MergedBlockWithBreak> X(MainDocumentPart main) => new FirstPass1(main).DoPass();
+        internal static List<MergedBlockWithBreak> X(MainDocumentPart main, bool reprocessFieldEndWithContent) =>
+            new FirstPass1(main, reprocessFieldEndWithContent).DoPass();
 
         private MainDocumentPart Main { get; init; }
 
+        private readonly bool reprocessFieldEndWithContent;
+
         private int i = 0;
 
-        private FirstPass1(MainDocumentPart main) { Main = main; }
+        private FirstPass1(MainDocumentPart main, bool reprocessFieldEndWithContent) {
+            Main = main;
+            this.reprocessFieldEndWithContent = reprocessFieldEndWithContent;
+        }
 
         private readonly ILogger Logger = Logging.Factory.CreateLogger<FirstPass1>();
 
@@ -262,14 +277,12 @@ class PreParser {
                 OpenXmlElement e = Main.Document.Body.ChildElements.ElementAt(i);
                 if (e is not Paragraph p)
                     return null;
+                i += 1;
                 if (HasAnExtraFieldEnd(p)) { // needs to be before IsSkippable
-                    // Only advance past the field-end paragraph if it has no real content;
-                    // otherwise leave i so it gets re-processed as a normal body block
-                    if (IsSkippable(p))
-                        i += 1;
+                    if (reprocessFieldEndWithContent && !IsSkippable(p))
+                        i -= 1; // see ReprocessFieldEndWithContent
                     return new TableOfContents { Contents = contents };
                 }
-                i += 1;
                 if (IsSkippable(e))
                     continue;
                 WLine line = ParseParagraph(Main, p);

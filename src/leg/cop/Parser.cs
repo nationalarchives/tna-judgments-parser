@@ -18,7 +18,7 @@ partial class Parser : BaseLegislativeDocumentParser {
     private readonly string _filename;
 
     internal static IDocument Parse(WordprocessingDocument doc, string filename = null) {
-        CaseLaw.WordDocument preParsed = new CaseLaw.PreParser().Parse(doc);
+        CaseLaw.WordDocument preParsed = new LegPreParser().Parse(doc);
         Parser instance = new Parser(doc, preParsed, filename);
         return instance.Parse();
     }

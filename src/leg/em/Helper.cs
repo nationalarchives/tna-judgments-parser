@@ -55,6 +55,7 @@ class Helper : BaseHelper {
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
+        StripLeadingTabMarkers(xml);
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         nsmgr.AddNamespace("ukm", "http://www.legislation.gov.uk/namespaces/metadata");
