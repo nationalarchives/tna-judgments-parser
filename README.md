@@ -15,22 +15,35 @@ This parser converts UK judgments from .docx format to XML. It is written in C# 
 <!-- TOC -->
 
 ## Release process
+<!-- last_review: 2026-05-20 -->
+
+### Find Case Law
+
+> [!IMPORTANT]
+> This section only covers Find Case Law. If you are trying to create a new release for another project, you should instead follow that project's release process.
 
 1. Update the code
-    - Make a branch
+    - Make a new branch for the release
     - Update `version.targets` in the root of the repo with the new version number - this is used by the parser code to add `<uk:parser>x.x.x</uk:parser>` to the parsed xml outputs
-    - Merge to main
+    - Push the branch and open a new PR against `main`
+    - Merge the PR
 1. Create a GitHub Release
-    - Create a new Tag with the same version number as `version.targets`
+    - Create a new tag on `main` with the same version number as `version.targets`
     - Generate release notes
-    - Publish release
+    - Publish the release
 
 ## Deployment
+<!-- last_review: 2026-05-20 -->
+
+### Find Case Law
+
+> [!IMPORTANT]
+> This section only covers Find Case Law. If you are trying to deploy the parser for another project, you should instead follow that project's deployment process.
 
 1. Wait for the next day
     - A [workflow in da-tre-terraform-environments](https://github.com/nationalarchives/da-tre-terraform-environments/actions/workflows/parser_cd.yml) is scheduled to run each night and deploy the latest release.
 
-### Validating a deployment
+#### Validating a deployment
 
 1. Go to [Find Case Law](https://caselaw.nationalarchives.gov.uk/) and check that a new judgment has the latest `<uk:parser>` version in it.
 
