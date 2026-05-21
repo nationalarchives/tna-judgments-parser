@@ -22,8 +22,9 @@ public static class CsvMetadataLineHelper
         FilePath = "",
         Extension = ".pdf",
         DecisionDateTime = DateTime.MinValue,
-        CaseNo = "ABC/2023/001",
-        Respondent = "The respondent"
+        CaseNo = ["ABC/2023/001"],
+        Respondent = "The respondent",
+        Uuid = "00000000-0000-0000-0000-000000000007"
     };
 
     internal static readonly CsvLine DummyLineWithClaimants = DummyLine with { Claimants = "The claimants" };

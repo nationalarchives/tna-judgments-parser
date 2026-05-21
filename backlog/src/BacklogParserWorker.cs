@@ -5,14 +5,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 using Backlog.Csv;
+using Backlog.Options;
+using Backlog.Src;
 
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-namespace Backlog.Src;
+namespace Backlog;
 
 /// <summary>
 ///     This is the main entry point to the bulk backlog parsing process
@@ -23,26 +27,29 @@ internal class BacklogParserWorker(
     BacklogFiles backlogFiles,
     CsvMetadataReader csvMetadataReader,
     Tracker tracker,
-    Bucket bucket,
-    MetadataTransformer metadataTransformer)
+    IBucket bucket,
+    MetadataTransformer metadataTransformer,
+    IOptions<BacklogParserOptions> backlogParserOptions)
 {
-    public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
+    public async Task<int> RunAsync()
     {
-        var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var skippedCsvLineIdentifiers,
-            out var csvParseErrors, out var numAllLinesInCsv);
+        var parserRunId = Guid.NewGuid();
+        var lines = csvMetadataReader.Read(out var skippedCsvLineIdentifiers, out var csvParseErrors,
+            out var numAllLinesInCsv);
         if (lines.Count == 0)
         {
             logger.LogCritical("No valid records found in the metadata file");
             return 1;
         }
 
-        if (id.HasValue)
+        var singleIdToRun = backlogParserOptions.Value.SingleIdToRun;
+        if (singleIdToRun.HasValue)
         {
             // Process only the specific ID
-            lines = lines.Where(line => line.id == id.Value.ToString()).ToList();
+            lines = lines.Where(line => line.id == singleIdToRun.ToString()).ToList();
             if (!lines.Any())
             {
-                logger.LogCritical("No valid records found for id {SuppliedId}", id.Value);
+                logger.LogCritical("No valid records found for id {SuppliedId}", singleIdToRun);
                 return 1;
             }
         }
@@ -65,22 +72,14 @@ internal class BacklogParserWorker(
                 }
 
                 logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                var bundle = GenerateBundle(line, autoPublish);
+                var bundle = GenerateBundle(line, parserRunId);
 
                 var bundleFileName = bundle.Uuid + ".tar.gz";
-                var output = Path.Combine(pathToOutputFolder, bundleFileName);
+                var output = Path.Combine(backlogParserOptions.Value.OutputFolderPath, bundleFileName);
                 logger.LogInformation("  Writing to output: {Output}", output);
                 File.WriteAllBytes(output, bundle.TarGz);
 
-                if (isDryRun)
-                {
-                    logger.LogInformation("  This is a dry run - not uploading to S3");
-                }
-                else
-                {
-                    logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                    bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
-                }
+                await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
                 tracker.MarkDone(line, bundle.Uuid);
                 successfulNewLines.Add(line);
@@ -98,7 +97,7 @@ internal class BacklogParserWorker(
             }
         }
 
-        LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
+        LogFinalStatistics(alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
             skippedCsvLineIdentifiers, numAllLinesInCsv);
 
         if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
@@ -109,25 +108,27 @@ internal class BacklogParserWorker(
         return 0;
     }
 
-    private static void LogFinalStatistics(ILogger logger, List<CsvLine> alreadyDoneLines,
-        List<CsvLine> successfulNewLines, List<(CsvLine line, Exception exception)> failedToProcessLines,
-        List<string> csvParseErrors, List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv)
+    private void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
+        List<(CsvLine line, Exception exception)> failedToProcessLines, List<string> csvParseErrors,
+        List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv)
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
-            ? $"[{string.Join(", ", skippedCsvLineIdentifiers)}]"
+            ? StringJoinFirstFive(skippedCsvLineIdentifiers, ", ")
             : string.Empty;
-
+        var successfulFileExtensionBreakdown = string.Join(", ", successfulNewLines.GroupBy(l => l.Extension).Select(g => $"{g.Count()} {g.Key}"));
+        
         logger.LogInformation("""
                               ---------------------------
                               Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
-                                - {NewLinesCount} lines were new
-                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds}
+                                - {NewLinesCount} lines were new ({SuccessfulFileExtensionBreakdown})
+                                - {MarkedToSkipLineCount} lines were marked in the csv to skip ({MarkedToSkipIds})
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
             numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
             numAllLinesInCsv,
             successfulNewLines.Count,
+            successfulFileExtensionBreakdown,
             numSkippedCsvLines, markedAsSkipIds,
             alreadyDoneLines.Count
         );
@@ -162,27 +163,32 @@ internal class BacklogParserWorker(
                     f => f.line.id);
 
             var groupedErrorDescriptions = failedIdsGroupedByErrorMessage.Select(groupOfErrors =>
-            {
-                var affectedIds = groupOfErrors.Count() <= 5
-                    ? string.Join(", ", groupOfErrors)
-                    : string.Join(", ", groupOfErrors.Take(5)) + "...";
-                return
-                    $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({affectedIds})";
-            });
-
+                $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({StringJoinFirstFive(groupOfErrors, ", ")})");
+            var failedFileExtensionBreakdown = string.Join(", ", failedToProcessLines.GroupBy(l => l.line.Extension).Select(g => $"{g.Count()} {g.Key}"));
 
             logger.LogError("""
                             ---------------------------
-                            Failed to process {FailedLineCount} lines, of which:
+                            Failed to process {FailedLineCount} lines ({FailedFileExtensionBreakdown}), of which:
                             {GroupedErrorDescriptions}
                             """,
-                failedToProcessLines.Count, string.Join(Environment.NewLine, groupedErrorDescriptions));
+                failedToProcessLines.Count,
+                failedFileExtensionBreakdown,
+                StringJoinFirstFive(groupedErrorDescriptions, Environment.NewLine)
+            );
         }
 
         if (failedToProcessLines.Count == 0 && csvParseErrors.Count == 0)
         {
             logger.LogInformation("No failed lines");
         }
+    }
+
+    private static string StringJoinFirstFive(IEnumerable<string> unenumeratedCollection, string separator)
+    {
+        var array = unenumeratedCollection as string[] ?? unenumeratedCollection.ToArray();
+        return array.Length <= 5
+            ? string.Join(separator, array)
+            : string.Join(separator, array.Take(5)) + "...";
     }
 
     private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent, bool isStub)
@@ -220,7 +226,7 @@ internal class BacklogParserWorker(
                     Extensions = new Api.Extensions
                     {
                         SourceFormat = mimeType,
-                        CaseNumbers = [csvLine.CaseNo],
+                        CaseNumbers = csvLine.CaseNo.ToList(),
                         Parties = csvLine.Parties.ToList(),
                         Categories = csvLine.Categories.ToList(),
                         WebArchivingLink = csvLine.WebArchiving
@@ -242,13 +248,9 @@ internal class BacklogParserWorker(
         return response;
     }
 
-    private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish)
+    private Bundle GenerateBundle(CsvLine csvLine, Guid parserRunId)
     {
-        var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
-            ? csvLine.Uuid
-            : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
-
-        var sourceContent = backlogFiles.ReadFile(tdrUuid);
+        var sourceContent = backlogFiles.ReadFile(csvLine.Uuid);
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
@@ -259,8 +261,8 @@ internal class BacklogParserWorker(
 
         var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(csvLine.FileName, mimeType,
-            contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, csvLine.FileName, mimeType, contentHash,
+            images, response.Meta, externalMetadataFields, !isStub);
 
         return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
     }

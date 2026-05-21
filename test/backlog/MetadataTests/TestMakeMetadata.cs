@@ -23,7 +23,7 @@ public class TestMakeMetadata
             id = "123",
             Court = "UKFTT-GRC",
             DecisionDateTime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
-            CaseNo = "ABC/2023/001",
+            CaseNo = ["ABC/2023/001"],
             Claimants = "John Smith",
             Respondent = "HMRC",
             HeadnoteSummary = "This is a test headnote summary",
@@ -32,7 +32,8 @@ public class TestMakeMetadata
             SecCategory = "Human Rights",
             SecSubcategory = "Article 8",
             FilePath = "/path/to/test-document.pdf",
-            Extension = ".pdf"
+            Extension = ".pdf",
+            Uuid = "00000000-0000-0000-0000-000000000123"
         };
 
         // Act
@@ -70,12 +71,13 @@ public class TestMakeMetadata
             FilePath = "/test/data/test.pdf",
             Court = "UKFTT-GRC",
             DecisionDateTime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
-            CaseNo = "ABC/2023/002",
+            CaseNo = ["ABC/2023/002"],
             Appellants = "Jane Doe",
             Respondent = "Home Office",
             MainCategory = "Immigration",
             MainSubcategory = "Asylum",
-            Extension = ".pdf"
+            Extension = ".pdf",
+            Uuid = "00000000-0000-0000-0000-000000000124"
         };
 
         // Act
@@ -172,7 +174,7 @@ public class TestMakeMetadata
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            CaseNo = "IA/12345/2023",
+            CaseNo = ["IA/12345/2023"],
         };
 
         // Act

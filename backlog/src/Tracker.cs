@@ -4,19 +4,22 @@ using System.IO;
 using System.Linq;
 
 using Backlog.Csv;
+using Backlog.Options;
+
+using Microsoft.Extensions.Options;
 
 namespace Backlog.Src;
 
 internal class Tracker
 {
-    private readonly string file;
+    private readonly string trackerFilePath;
 
-    internal Tracker(string file)
+    public Tracker(IOptions<BacklogParserOptions> backlogParserOptions)
     {
-        this.file = file;
-        if (!File.Exists(file))
+        trackerFilePath = backlogParserOptions.Value.TrackerFilePath;
+        if (!File.Exists(trackerFilePath))
         {
-            using var stream = File.Create(file);
+            using var stream = File.Create(trackerFilePath);
             stream.Close();
         }
     }
@@ -29,7 +32,7 @@ internal class Tracker
     internal bool WasDone(CsvLine line)
     {
         var key = MakeKey(line);
-        return File.ReadAllLines(file).Any(entry => entry.Contains(key));
+        return File.ReadAllLines(trackerFilePath).Any(entry => entry.Contains(key));
     }
 
     internal void MarkDone(CsvLine line, string uuid)
@@ -37,6 +40,6 @@ internal class Tracker
         var key = MakeKey(line);
         var timestamp = System.DateTime.Now.ToFileTime();
         var next = key + "," + uuid + "," + timestamp;
-        File.AppendAllLines(file, [next]);
+        File.AppendAllLines(trackerFilePath, [next]);
     }
 }

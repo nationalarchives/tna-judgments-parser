@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using Backlog.Options;
 using Backlog.Src;
 
 using CsvHelper;
@@ -15,17 +16,19 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Backlog.Csv;
 
-internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
+internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<BacklogParserOptions> backlogParserOptions)
 {
     private string csvName = "unknown.csv";
     private string csvHash = "unknown";
 
-    internal List<CsvLine> Read(string csvPath, out List<string> skippedCsvLineIdentifiers,
-        out List<string> csvParseErrors, out int numAllLinesInCsv)
+    internal List<CsvLine> Read(out List<string> skippedCsvLineIdentifiers, out List<string> csvParseErrors,
+        out int numAllLinesInCsv)
     {
+        var csvPath = backlogParserOptions.Value.CourtMetadataFilePath;
         csvName = Path.GetFileName(csvPath);
         csvHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
 
@@ -44,9 +47,10 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
             TrimOptions = TrimOptions.Trim | TrimOptions.InsideQuotes
         };
         using var csv = new CsvReader(textReader, config);
-
-        csv.Context.TypeConverterCache.AddConverter<BooleanSkipConverter>(new BooleanSkipConverter());
         csv.Context.RegisterClassMap(new CsvLineMap(csvName, csvHash));
+
+        //Get boolean skip converter from type converter cache once now so it can be used to skip records
+        var booleanSkipConverter = csv.Context.TypeConverterCache.GetConverter(typeof(CsvLine).GetMember(nameof(CsvLine.Skip)).Single());
 
         var records = new List<CsvLine>();
         skippedCsvLineIdentifiers = [];
@@ -65,7 +69,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 
             var successfullyRetrievedSkipField = csv.TryGetField<bool>(
                 nameof(CsvLine.Skip),
-                csv.Context.TypeConverterCache.GetConverter<BooleanSkipConverter>(),
+                booleanSkipConverter,
                 out var skipFieldValue
             );
 
@@ -158,15 +162,6 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     v => string.IsNullOrWhiteSpace(v.Field)
                         ? "Decision date must be provided"
                         : "Unsupported decision date. Ensure dates are in yyyy-MM-dd format");
-            Map(l => l.Jurisdictions)
-                .Optional()
-                .Convert(convertFromStringArgs =>
-                {
-                    // Get value
-                    convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
-                    return field?.Split(',').Select(item => item.Trim())
-                                .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
-                });
 
             Map(l => l.FullCsvLineContents)
                 .Convert(convertFromStringArgs =>

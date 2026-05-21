@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Backlog.Csv;
+using Backlog.Options;
 using Backlog.TreMetadata;
+
+using Microsoft.Extensions.Options;
 
 using TRE.Metadata;
 using TRE.Metadata.Enums;
@@ -17,11 +20,11 @@ using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
 
-internal class MetadataTransformer(TimeProvider timeProvider)
+internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
 {
-    internal FullTreMetadata CreateFullTreMetadata(string sourceFilename, string sourceMimeType,
-        string contentHash, bool autoPublish, Image[] images, Meta responseMeta,
-        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
+    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string sourceFilename, string sourceMimeType,
+        string contentHash, Image[] images, Meta responseMeta, List<IMetadataField> externalMetadataFields,
+        bool xmlContainsDocumentText)
     {
         var metadata = new FullTreMetadata
         {
@@ -46,6 +49,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
                     Extensions = responseMeta.Extensions,
                     Attachments = responseMeta.Attachments ?? [],
                     DocumentType = Enum.Parse<DocumentType>(responseMeta.DocumentType, true),
+                    ParserRunId = parserRunId,
                     ErrorMessages = [],
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile
@@ -60,7 +64,8 @@ internal class MetadataTransformer(TimeProvider timeProvider)
                 },
                 IngestorOptions = new IngestorOptions
                 {
-                    AutoPublish = autoPublish,
+                    AutoPublish = backlogParserOptions.Value.AutoPublish,
+                    ErrorOnExistingDocument = true,
                     Source = new SourceDocument { Format = sourceMimeType, Hash = contentHash }
                 }
             }
@@ -77,7 +82,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
             Jurisdictions = line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
             Date = new WNamedDate { Date = line.DecisionDateTime.ToString("yyyy-MM-dd"), Name = "decision" },
             Name = line.FirstPartyName + " v " + line.Respondent,
-            CaseNumbers = [line.CaseNo],
+            CaseNumbers = line.CaseNo.ToList(),
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
@@ -102,7 +107,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
         List<IMetadataField> metadataFields =
         [
             CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileProperties, new CsvProperties(csvLine.CsvProperties.Name, csvLine.CsvProperties.Hash, csvLine.FullCsvLineContents)),
-            CreateExternalMetadataField(MetadataFieldName.CaseNumber, csvLine.CaseNo),
+            .. CreateExternalMetadataFields(MetadataFieldName.CaseNumber, () => csvLine.CaseNo),
             .. CreateExternalMetadataFields(MetadataFieldName.Category, () => csvLine.Categories),
             CreateExternalMetadataField(MetadataFieldName.Court, csvLine.Court),
             CreateExternalMetadataField(MetadataFieldName.Date, csvLine.DecisionDateTime),

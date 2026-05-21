@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using Backlog;
 using Backlog.Csv;
-using Backlog.Src;
+using Backlog.Options;
+
+using Microsoft.Extensions.Options;
 
 using test.Mocks;
 
@@ -16,7 +19,8 @@ namespace test.backlog.MetadataTests;
 
 public class TestRead : IDisposable
 {
-    private readonly CsvMetadataReader csvMetadataReader = new(new MockLogger<CsvMetadataReader>().Object);
+    private readonly CsvMetadataReader csvMetadataReader;
+    private readonly IOptions<BacklogParserOptions> backlogParserOptions;
     private readonly string testDataDirectory;
 
     public TestRead()
@@ -24,14 +28,10 @@ public class TestRead : IDisposable
         // Create a unique temporary directory for test files (used by some tests accessing the real file system)
         testDataDirectory = Path.Combine(Path.GetTempPath(), nameof(TestRead), Guid.NewGuid().ToString());
         Directory.CreateDirectory(testDataDirectory);
-    }
-
-    private string MakeRealCsvFile(string csvContent)
-    {
-        var csvPath = Path.Combine(testDataDirectory, "metadata.csv");
-
-        File.WriteAllText(csvPath, csvContent);
-        return csvPath;
+        
+        var courtMetadataFilePath = Path.Combine(testDataDirectory, "metadata.csv");
+        backlogParserOptions = BacklogParserOptionsHelper.Create(courtMetadataFilePath: courtMetadataFilePath);
+        csvMetadataReader = new(new MockLogger<CsvMetadataReader>().Object, backlogParserOptions);
     }
 
     public void Dispose()
@@ -48,9 +48,9 @@ public class TestRead : IDisposable
     {
         using var csvStream = new StringReader(
             """
-            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
-            123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
-            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
+            id,UUID,FilePath,Extension,decision_datetime,court,claimants,respondent,skip
+            123,00000000-0000-0000-0000-000000000123, /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 ,UKUT-IAC , Smith , Secretary of State for the Home Department,
+            124,00000000-0000-0000-0000-000000000124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,UKFTT-TC,Jones,HMRC,skip me
             """
         );
 
@@ -83,8 +83,8 @@ public class TestRead : IDisposable
     {
         using var csvStream = new StringReader(
             $"""
-             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
-             123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department,{skipValue}
+             id,Uuid,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+             123,00000000-0000-0000-0000-000000000123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department,{skipValue}
              """
         );
 
@@ -147,13 +147,13 @@ public class TestRead : IDisposable
     {
         using var csvStream = new StringReader(
             """
-            id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,respondent,skip
-            123 , this_is_a_good_unskipped_line.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
-            124, missing_extension.docx  ,  ,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
-            125, missing_appellant.docx  ,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,  ,HMRC,skip me
-            126, missing_date.docx  ,.docx,  ,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
-            127, date_fails_validation.docx  ,.docx, not-a-date ,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
-            128, date_fails_conversion.docx  ,.docx, 2025-99-99 ,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
+            id,UUID,FilePath,Extension,decision_datetime,CaseNo,court,appellants,respondent,skip
+            123,00000000-0000-0000-0000-000000000001, this_is_a_good_unskipped_line.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
+            124,00000000-0000-0000-0000-000000000002, missing_extension.docx  ,  ,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
+            125,00000000-0000-0000-0000-000000000003, missing_appellant.docx  ,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,  ,HMRC,skip me
+            126,00000000-0000-0000-0000-000000000004, missing_date.docx  ,.docx,  ,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
+            127,00000000-0000-0000-0000-000000000005, date_fails_validation.docx  ,.docx, not-a-date ,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
+            128,00000000-0000-0000-0000-000000000006, date_fails_conversion.docx  ,.docx, 2025-99-99 ,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
             """
         );
 
@@ -176,7 +176,6 @@ public class TestRead : IDisposable
     [InlineData(nameof(CsvLine.FilePath))]
     [InlineData(nameof(CsvLine.Extension))]
     [InlineData(nameof(CsvLine.DecisionDateTime))]
-    [InlineData(nameof(CsvLine.CaseNo))]
     [InlineData(nameof(CsvLine.Court))]
     [InlineData("claimants")] // missing claimants/appellants has a different validation message
     [InlineData(nameof(CsvLine.Respondent))]
@@ -185,10 +184,10 @@ public class TestRead : IDisposable
     {
         var validCsvWithAllRequiredColumns =
             """
-            id,FilePath,Extension,DecisionDateTime,CaseNo,Court,claimants,Respondent,Skip
-            123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
-            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
-            125,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip
+            id,UUID,FilePath,Extension,DecisionDateTime,CaseNo,Court,claimants,Respondent,Skip
+            123,00000000-0000-0000-0000-000000000123,/test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
+            124,00000000-0000-0000-0000-000000000124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
+            125,00000000-0000-0000-0000-000000000125,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip
             """;
 
         var csvWithMissingColumn = validCsvWithAllRequiredColumns.Replace(missingColumn, "missing_column");
@@ -208,6 +207,7 @@ public class TestRead : IDisposable
     [InlineData("     ", new string[] { })]
     [InlineData(",   ,  ", new string[] { })]
     [InlineData("\"Community,Environment\"", new[] { "Community", "Environment" })]
+    [InlineData("Community;Environment", new[] { "Community", "Environment" })]
     [InlineData("\"Community, Environment,Other , Another ,\"",
         new[] { "Community", "Environment", "Other", "Another" })]
     [InlineData("\"Community, Environment,,  ,Other , Another ,\"",
@@ -219,8 +219,8 @@ public class TestRead : IDisposable
     {
         using var csvStream = new StringReader(
             $"""
-             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions,skip
-             125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,IA/2025/004,UKUT-IAC,Taylor,Home Office,{csvJurisdictions},
+             id,uuid,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions,skip
+             125,00000000-0000-0000-0000-000000000125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,IA/2025/004,UKUT-IAC,Taylor,Home Office,{csvJurisdictions},
              """
         );
 
@@ -230,15 +230,43 @@ public class TestRead : IDisposable
         Assert.Equal(expectedJurisdictions, line.Jurisdictions);
     }
 
+    [Theory]
+    [InlineData("", new string[] { })]
+    [InlineData("     ", new string[] { })]
+    [InlineData("\",   ;  \"", new string[] { })]
+    [InlineData("\"IA/2025/001,IA/2025/002\"", new[] { "IA/2025/001", "IA/2025/002" })]
+    [InlineData("IA/2025/001;IA/2025/002", new[] { "IA/2025/001", "IA/2025/002" })]
+    [InlineData("\"IA/2025/001; IA/2025/002,IA/2025/003 ; IA/2025/004 ;\"",
+        new[] { "IA/2025/001", "IA/2025/002", "IA/2025/003", "IA/2025/004" })]
+    [InlineData("\"IA/2025/001, IA/2025/002,, ; ,IA/2025/003 , IA/2025/004 ,\"",
+        new[] { "IA/2025/001", "IA/2025/002", "IA/2025/003", "IA/2025/004" })]
+    [InlineData("\"IA/2025/001\"", new[] { "IA/2025/001" })]
+    [InlineData("IA/2025/001", new[] { "IA/2025/001" })]
+    public void Read_WithCaseNos_StoresTrimmedNonEmptyCaseNos(string csvCaseNos,
+        string[] expectedCaseNos)
+    {
+        using var csvStream = new StringReader(
+            $"""
+             id,UUID,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions,skip
+             125,00000000-0000-0000-0000-000000000125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,{csvCaseNos},UKUT-IAC,Taylor,Home Office,Environment,
+             """
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
+
+        var line = Assert.Single(result);
+        Assert.Equal(expectedCaseNos, line.CaseNo);
+    }
+
     [Fact]
     public void Read_WithExtraColumns_StoresAllCsvDataInFullCsvLineContents()
     {
         using var csvStream = new StringReader(
             """
-            id,extra column,FilePath,Extension, Other extra Column,decision_datetime,CaseNo,court,claimants,respondent,skip
-            123,with data,/test/data/test-case.pdf,.pdf,   ,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department,
-            124,,/test/data/test-case2.docx,.docx,some data here,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
-            125,data here,/test/data/test-case3.docx,.docx,and data here,2025-01-17 11:00:00,IA/2025/003,UKFTT-TC,Jones,HMRC,
+            id,uuid,extra column,FilePath,Extension, Other extra Column,decision_datetime,CaseNo,court,claimants,respondent,skip
+            123,00000000-0000-0000-0000-000000000123,with data,/test/data/test-case.pdf,.pdf,   ,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department,
+            124,00000000-0000-0000-0000-000000000124,,/test/data/test-case2.docx,.docx,some data here,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
+            125,00000000-0000-0000-0000-000000000125,data here,/test/data/test-case3.docx,.docx,and data here,2025-01-17 11:00:00,IA/2025/003,UKFTT-TC,Jones,HMRC,
             """
         );
 
@@ -248,6 +276,7 @@ public class TestRead : IDisposable
             line => Assert.Equivalent(new Dictionary<string, string>
             {
                 { "id", "123" },
+                { "uuid", "00000000-0000-0000-0000-000000000123" },
                 { "extra column", "with data" },
                 { "court", "UKUT-IAC" },
                 { "FilePath", "/test/data/test-case.pdf" },
@@ -260,6 +289,7 @@ public class TestRead : IDisposable
             line => Assert.Equivalent(new Dictionary<string, string>
             {
                 { "id", "124" },
+                { "uuid", "00000000-0000-0000-0000-000000000124" },
                 { "court", "UKFTT-TC" },
                 { "FilePath", "/test/data/test-case2.docx" },
                 { "Extension", ".docx" },
@@ -272,6 +302,7 @@ public class TestRead : IDisposable
             line => Assert.Equivalent(new Dictionary<string, string>
             {
                 { "id", "125" },
+                { "uuid", "00000000-0000-0000-0000-000000000125" },
                 { "court", "UKFTT-TC" },
                 { "FilePath", "/test/data/test-case3.docx" },
                 { "Extension", ".docx" },
@@ -292,16 +323,16 @@ public class TestRead : IDisposable
         const string csvContent =
             """
             id,FilePath,Extension,DecisionDateTime,CaseNo,court,appellants,claimants,respondent,maincategory,mainsubcategory,seccategory,secsubcategory,headnotesummary,jurisdictions,ncn,webarchiving,uuid,skip
-            123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
-            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,    ,    ,    ,    ,
-            125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,,
-            123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,,
-            126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,"Community,Environment",,,,
-            127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,"Community, Environment,Other , Another ,",,,,
-            128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,,
-            129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,,
+            123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,aaa00000-0000-0000-0000-000000000123,
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,    ,    ,    ,aaa00000-0000-0000-0000-000000000124,
+            125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,aaa00000-0000-0000-0000-000000000125,
+            123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,aaa00000-0000-0000-0000-000000000126,
+            126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,"Community,Environment",,,aaa00000-0000-0000-0000-000000000127,
+            127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,"Community, Environment,Other , Another ,",,,aaa00000-0000-0000-0000-000000000128,
+            128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,aaa00000-0000-0000-0000-000000000129,
+            129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,aaa00000-0000-0000-0000-000000000130,
             130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d,n
-            131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me
+            131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,aaa00000-0000-0000-0000-000000000131,skip me
             """;
 
         // Arrange - Double check that csv input has all columns in case new ones are added
@@ -335,7 +366,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/001",
+                CaseNo = ["IA/2025/001"],
                 Jurisdictions = [],
                 Claimants = "Smith",
                 Appellants = null,
@@ -347,7 +378,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "This is a test headnote summary",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000123",
                 Skip = false
             },
             new CsvLine
@@ -357,7 +388,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case2.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/002",
+                CaseNo = ["IA/2025/002"],
                 Jurisdictions = [],
                 Claimants = null,
                 Appellants = "Jones",
@@ -369,7 +400,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Another test case",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000124",
                 Skip = false
             },
             new CsvLine
@@ -379,7 +410,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case3.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 17, 11, 00, 00, DateTimeKind.Utc),
-                CaseNo = "GRC/2025/003",
+                CaseNo = ["GRC/2025/003"],
                 Jurisdictions = [],
                 Claimants = "Williams",
                 Appellants = null,
@@ -391,7 +422,7 @@ public class TestRead : IDisposable
                 Ncn = "[2023] EWCA Civ 123 & 124",
                 WebArchiving = null,
                 HeadnoteSummary = "Benefits case",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000125",
                 Skip = false
             },
             new CsvLine
@@ -401,7 +432,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case4.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 18, 12, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/004",
+                CaseNo = ["IA/2025/004"],
                 Jurisdictions = [],
                 Claimants = null,
                 Appellants = "Brown",
@@ -413,7 +444,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Duplicate ID case",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000126",
                 Skip = false
             },
             new CsvLine
@@ -423,7 +454,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case5.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/005",
+                CaseNo = ["IA/2025/005"],
                 Jurisdictions = ["Community", "Environment"],
                 Claimants = "Taylor",
                 Appellants = null,
@@ -435,7 +466,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Multiple Jurisdictions",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000127",
                 Skip = false
             },
             new CsvLine
@@ -445,7 +476,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case6.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/006",
+                CaseNo = ["IA/2025/006"],
                 Jurisdictions = ["Community", "Environment", "Other", "Another"],
                 Claimants = "Taylor",
                 Appellants = null,
@@ -457,7 +488,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Multiple Jurisdictions with spaces",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000128",
                 Skip = false
             },
             new CsvLine
@@ -467,7 +498,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case7.docx",
                 Extension = ".docx",
                 DecisionDateTime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/007",
+                CaseNo = ["IA/2025/007"],
                 Jurisdictions = ["Environment"],
                 Claimants = "Davies",
                 Appellants = null,
@@ -479,7 +510,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "One Jurisdiction",
-                Uuid = null
+                Uuid = "aaa00000-0000-0000-0000-000000000129"
             },
             new CsvLine
             {
@@ -488,7 +519,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case8.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/008",
+                CaseNo = ["IA/2025/008"],
                 Jurisdictions = [],
                 Claimants = "Berry",
                 Appellants = null,
@@ -500,7 +531,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = "http://webarchivinglink",
                 HeadnoteSummary = "With web archiving link",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000130",
                 Skip = false
             },
             new CsvLine
@@ -510,7 +541,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case9.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/009",
+                CaseNo = ["IA/2025/009"],
                 Jurisdictions = [],
                 Claimants = "Berry",
                 Appellants = null,
@@ -537,15 +568,15 @@ public class TestRead : IDisposable
     {
         using var csvStream = new StringReader(
             """
-            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,skip
-            121,Valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,,
-            122,AlsoValid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,My category,,,,
-            123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,,
+            id,Uuid,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,skip
+            121,00000000-0000-0000-0000-000000000121,Valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,,
+            122,00000000-0000-0000-0000-000000000122,AlsoValid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,My category,,,,
+            123,00000000-0000-0000-0000-000000000123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,,
             completely invalid line
-            124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,,
-            125,MissingMainCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad main subcategory,,,
-            126,MissingSecondaryCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,,,Bad secondary subcategory,
-            999,ValidOneAtTheEnd.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,,
+            124,00000000-0000-0000-0000-000000000124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,,
+            125,00000000-0000-0000-0000-000000000125,MissingMainCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad main subcategory,,,
+            126,00000000-0000-0000-0000-000000000126,MissingSecondaryCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,,,Bad secondary subcategory,
+            999,00000000-0000-0000-0000-000000000999,ValidOneAtTheEnd.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,,
             """
         );
 
@@ -557,11 +588,11 @@ public class TestRead : IDisposable
         Assert.Equivalent(
             new List<string>
             {
-                "Line 4: Id 123 - Must have either claimants or appellants. At least one is required. [123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,,]",
-                "Line 5: Field at index '5' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [completely invalid line]",
-                "Line 6: Field at index '12' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,,]",
-                "Line 7: Id 125 - main_subcategory 'Bad main subcategory' cannot exist without main_category being defined [125,MissingMainCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad main subcategory,,,]",
-                "Line 8: Id 126 - sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category being defined [126,MissingSecondaryCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,,,Bad secondary subcategory,]"
+                "Line 4: Id 123 - Must have either claimants or appellants. At least one is required. [123,00000000-0000-0000-0000-000000000123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,,]",
+                "Line 5: Field at index '6' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [completely invalid line]",
+                "Line 6: Field at index '13' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [124,00000000-0000-0000-0000-000000000124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,,]",
+                "Line 7: Id 125 - main_subcategory 'Bad main subcategory' cannot exist without main_category being defined [125,00000000-0000-0000-0000-000000000125,MissingMainCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad main subcategory,,,]",
+                "Line 8: Id 126 - sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category being defined [126,00000000-0000-0000-0000-000000000126,MissingSecondaryCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,,,Bad secondary subcategory,]"
             },
             failedToParseLines);
     }
@@ -570,9 +601,11 @@ public class TestRead : IDisposable
     public void Read_WithMixedCaseHeaders_ParsesCorrectly()
     {
         const string csvContent =
-            @"ID,FilePath,extension,DECISION_DATETIME,CaseNo,coUrt,appellants,CLAIMANTS,respondent,MAIN_CATEGORY,main_subcategory,SEC_CATEGORY,sec_subcategory,HEADNOTE_SUMMARY,jurisdictions,NCN,webarchiving,uUiD,Skip
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,,skip me";
+            """
+            ID,FilePath,extension,DECISION_DATETIME,CaseNo,coUrt,appellants,CLAIMANTS,respondent,MAIN_CATEGORY,main_subcategory,SEC_CATEGORY,sec_subcategory,HEADNOTE_SUMMARY,jurisdictions,NCN,webarchiving,uUiD,Skip
+            123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,aaa00000-0000-0000-0000-000000000123,
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,aaa00000-0000-0000-0000-000000000124,skip me
+            """;
 
         // Arrange - set up stream reader
         using var csvStream = new StringReader(csvContent);
@@ -588,7 +621,7 @@ public class TestRead : IDisposable
                 FilePath = "/test/data/test-case.pdf",
                 Extension = ".pdf",
                 DecisionDateTime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
-                CaseNo = "IA/2025/001",
+                CaseNo = ["IA/2025/001"],
                 Jurisdictions = [],
                 Claimants = "Smith",
                 Appellants = null,
@@ -600,7 +633,7 @@ public class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "This is a test headnote summary",
-                Uuid = null,
+                Uuid = "aaa00000-0000-0000-0000-000000000123",
                 Skip = false
             }
         );
@@ -624,8 +657,8 @@ public class TestRead : IDisposable
     {
         using var csvStream = new StringReader(
             $"""
-             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
-             123,/test/data/test.pdf,.pdf,{dateString},IA/2025/001,UKUT-IAC,Smith,HMRC,
+             id,UUID,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+             123,00000000-0000-0000-0000-000000000007,/test/data/test.pdf,.pdf,{dateString},IA/2025/001,UKUT-IAC,Smith,HMRC,
              """
         );
 
@@ -652,12 +685,12 @@ public class TestRead : IDisposable
     [InlineData("    ", "\"\" failed validation with message: Decision date must be provided")]
     public void Read_WithInvalidDecisionDates_ReturnsParseError(string dateString, string expectedErrorMessage)
     {
-        var line = $"123,/test/data/test.pdf,.pdf,{dateString},IA/2025/001,UKUT-IAC,Smith,HMRC,";
+        var line = $"123,00000000-0000-0000-0000-000000000007,/test/data/test.pdf,.pdf,{dateString},IA/2025/001,UKUT-IAC,Smith,HMRC,";
         expectedErrorMessage = $"Line 2: {expectedErrorMessage} [{line}]";
 
         using var csvStream = new StringReader(
             $"""
-             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+             id,UUID,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
              {line}
              """
         );
@@ -673,12 +706,12 @@ public class TestRead : IDisposable
     public void Read_WithNonExistentFile_ThrowsFileNotFoundException()
     {
         // Arrange - Create helper with non-existent CSV path
-        var nonExistentPath = Path.Combine(testDataDirectory, "does-not-exist.csv");
+        backlogParserOptions.Value.CourtMetadataFilePath = Path.Combine(testDataDirectory, "does-not-exist.csv");
 
         // Act & Assert
         Assert.Throws<FileNotFoundException>(() =>
         {
-            _ = csvMetadataReader.Read(nonExistentPath, out _, out _, out _);
+            _ = csvMetadataReader.Read(out _, out _, out _);
         });
     }
 
@@ -686,12 +719,11 @@ public class TestRead : IDisposable
     public void Read_WithEmptyFile_ReturnsEmptyList()
     {
         // Arrange - Create empty CSV file with just headers
-        var emptyCsvPath =
-            MakeRealCsvFile(
-                "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary");
+        File.WriteAllText(backlogParserOptions.Value.CourtMetadataFilePath,
+            "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary");
 
         // Act
-        var lines = csvMetadataReader.Read(emptyCsvPath, out _, out _, out _);
+        var lines = csvMetadataReader.Read(out _, out _, out _);
 
         // Assert
         Assert.Empty(lines);
@@ -701,13 +733,15 @@ public class TestRead : IDisposable
     public void Read_FromPath_PopulatesCsvPropertiesWithNameAndHash()
     {
         // Arrange
-        const string csvContent = "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip\n" +
-                                  "123,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,";
-        var csvPath = MakeRealCsvFile(csvContent);
-        var expectedHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
+        const string csvContent = """
+                                  id,UUID,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+                                  123,00000000-0000-0000-0000-000000000007,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,
+                                  """;
+        File.WriteAllText(backlogParserOptions.Value.CourtMetadataFilePath, csvContent);
+        var expectedHash = BacklogParserWorker.Hash(File.ReadAllBytes(backlogParserOptions.Value.CourtMetadataFilePath));
 
         // Act
-        var result = csvMetadataReader.Read(csvPath, out _, out _, out _);
+        var result = csvMetadataReader.Read(out _, out _, out _);
 
         // Assert
         var line = Assert.Single(result);
@@ -719,8 +753,8 @@ public class TestRead : IDisposable
     public void Read_FromTextReader_PopulatesCsvPropertiesWithUnknown()
     {
         // Arrange
-        const string csvContent = "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip\n" +
-                                  "123,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,";
+        const string csvContent = "id,UUID,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip\n" +
+                                  "123,00000000-0000-0000-0000-000000000007,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,";
         using var reader = new StringReader(csvContent);
 
         // Act

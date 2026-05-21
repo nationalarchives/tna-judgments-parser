@@ -7,6 +7,8 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using UK.Gov.Legislation.Judgments.DOCX;
+
 namespace UK.Gov.Legislation.Judgments.Parse.Fieldss {
 
 internal class ListNum {
@@ -58,7 +60,7 @@ internal class ListNum {
             int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
             Paragraph p = first.Ancestors<Paragraph>().First();
 
-            int n = DOCX.Numbering2.CalculateN(main, p, ilvl);
+            int n = Numbering3.CalculateN(main, p, ilvl);
 
             string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, n, main);
             RunProperties rProps = first.RunProperties;
