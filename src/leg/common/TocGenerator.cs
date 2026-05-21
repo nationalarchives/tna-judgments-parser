@@ -327,16 +327,7 @@ internal static class TocGenerator {
 
     private static string TruncateHeading(string text) {
         if (string.IsNullOrEmpty(text)) return text;
-
-        text = Regex.Replace(text, @"\s+", " ").Trim();
-        if (text.Length <= 100)
-            return text;
-
-        int lastSpace = text.LastIndexOf(' ', 97);
-        if (lastSpace > 20)
-            return text.Substring(0, lastSpace) + "...";
-
-        return text.Substring(0, 97) + "...";
+        return Regex.Replace(text, @"\s+", " ").Trim();
     }
 
 }

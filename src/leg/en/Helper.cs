@@ -171,7 +171,7 @@ class Helper : BaseHelper {
         if (boldText.Length < fullText.Length - 3) return false;
         string trimmed = boldText.TrimEnd(':', '.', ' ');
         if (string.IsNullOrEmpty(trimmed)) return false;
-        headingText = trimmed.Length > 120 ? trimmed.Substring(0, 117) + "..." : trimmed;
+        headingText = trimmed;
         return true;
     }
 
@@ -196,8 +196,6 @@ class Helper : BaseHelper {
             section.SetAttribute("eId", eId);
         }
 
-        if (headingText.Length > 100)
-            headingText = headingText.Substring(0, 97) + "...";
 
         string href = !string.IsNullOrEmpty(expressionUri)
             ? $"{expressionUri}/section/{sectionNumber}"
@@ -221,8 +219,6 @@ class Helper : BaseHelper {
         string headingText = heading.InnerText?.Trim();
         if (string.IsNullOrEmpty(headingText)) return;
 
-        if (headingText.Length > 100)
-            headingText = headingText.Substring(0, 97) + "...";
 
         string href = "#" + parentEId;
         AddTocItem(xml, toc, href, headingText, "3");
@@ -252,8 +248,6 @@ class Helper : BaseHelper {
         string headingText = intro.InnerText?.Trim();
         if (string.IsNullOrEmpty(headingText)) return;
 
-        if (headingText.Length > 100)
-            headingText = headingText.Substring(0, 97) + "...";
 
         string eId = $"paragraph_{number}";
         if (!paragraph.HasAttribute("eId"))

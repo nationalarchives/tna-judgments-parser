@@ -1374,7 +1374,7 @@ class Helper : BaseHelper {
         if (boldText.Length < fullText.Length - 3) return false;
         string trimmed = boldText.TrimEnd(':', '.', ' ');
         if (string.IsNullOrEmpty(trimmed)) return false;
-        headingText = trimmed.Length > 120 ? trimmed.Substring(0, 117) + "..." : trimmed;
+        headingText = trimmed;
         return true;
     }
 
@@ -1485,14 +1485,8 @@ class Helper : BaseHelper {
     /// </summary>
     private static string TruncateHeading(string text) {
         if (string.IsNullOrEmpty(text)) return text;
-        
-        // Remove excessive whitespace
-        text = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
-        
-        if (text.Length > 100) {
-            return text.Substring(0, 97) + "...";
-        }
-        return text;
+        // Collapse whitespace; no length cap.
+        return System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
     }
 
 }
