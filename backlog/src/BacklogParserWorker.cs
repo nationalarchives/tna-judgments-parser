@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Backlog.Csv;
 using Backlog.Options;
 using Backlog.Src;
+using Backlog.Tracking;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -26,7 +27,7 @@ internal class BacklogParserWorker(
     Api.Parser parser,
     BacklogFiles backlogFiles,
     CsvMetadataReader csvMetadataReader,
-    Tracker tracker,
+    ITracker tracker,
     IBucket bucket,
     MetadataTransformer metadataTransformer,
     IOptions<BacklogParserOptions> backlogParserOptions)
@@ -34,6 +35,7 @@ internal class BacklogParserWorker(
     public async Task<int> RunAsync()
     {
         var parserRunId = Guid.NewGuid();
+        logger.LogInformation("Starting parser run {ParserRunId}", parserRunId);
         var lines = csvMetadataReader.Read(out var skippedCsvLineIdentifiers, out var csvParseErrors,
             out var numAllLinesInCsv);
         if (lines.Count == 0)
@@ -62,17 +64,21 @@ internal class BacklogParserWorker(
         {
             var line = lines[i];
 
+            Guid? sourceUuid = null;
             try
             {
-                if (tracker.WasDone(line))
+                sourceUuid = Guid.Parse(line.Uuid);
+                if (tracker.IsAlreadySentToIngester(sourceUuid.Value))
                 {
                     logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
                     alreadyDoneLines.Add(line);
                     continue;
                 }
 
+                await tracker.StartTrackingAsync(sourceUuid.Value, line, parserRunId, line.CsvProperties.Hash);
+
                 logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                var bundle = GenerateBundle(line, parserRunId);
+                var bundle = await GenerateBundleAsync(line, parserRunId);
 
                 var bundleFileName = bundle.Uuid + ".tar.gz";
                 var output = Path.Combine(backlogParserOptions.Value.OutputFolderPath, bundleFileName);
@@ -81,7 +87,7 @@ internal class BacklogParserWorker(
 
                 await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
-                tracker.MarkDone(line, bundle.Uuid);
+                await tracker.UpdateToSentToIngesterAsync(sourceUuid.Value);
                 successfulNewLines.Add(line);
 
                 logger.LogInformation("  success");
@@ -90,6 +96,8 @@ internal class BacklogParserWorker(
             {
                 logger.LogError(ex, "Error processing line {LineId}:", line.id);
                 failedToProcessLines.Add((line, ex));
+                if(sourceUuid.HasValue)
+                    await tracker.UpdateToParserFailedAsync(sourceUuid.Value, ex);
             }
             finally
             {
@@ -248,7 +256,7 @@ internal class BacklogParserWorker(
         return response;
     }
 
-    private Bundle GenerateBundle(CsvLine csvLine, Guid parserRunId)
+    private async Task<Bundle> GenerateBundleAsync(CsvLine csvLine, Guid parserRunId)
     {
         var sourceContent = backlogFiles.ReadFile(csvLine.Uuid);
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
@@ -264,6 +272,8 @@ internal class BacklogParserWorker(
         var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, csvLine.FileName, mimeType, contentHash,
             images, response.Meta, externalMetadataFields, !isStub);
 
+        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, contentHash);
+        
         return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
     }
 
