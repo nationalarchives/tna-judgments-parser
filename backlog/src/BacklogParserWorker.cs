@@ -269,12 +269,15 @@ internal class BacklogParserWorker(
 
         var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, csvLine.FileName, mimeType, contentHash,
+        var was_word_file = new []{".rtf", ".doc", ".docx"}.Contains(Path.GetExtension(csvLine.FileName));
+        var newSourceFilenameAsDocx = was_word_file ? Path.ChangeExtension(csvLine.FileName, ".docx") : csvLine.FileName;
+
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, newSourceFilenameAsDocx, csvLine.FileName, mimeType, contentHash,
             images, response.Meta, externalMetadataFields, !isStub);
 
         await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, contentHash);
         
-        return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, newSourceFilenameAsDocx, images);
     }
 
     public static string Hash(byte[] content)

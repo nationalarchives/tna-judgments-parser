@@ -22,9 +22,9 @@ namespace Backlog.Src;
 
 internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
 {
-    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string sourceFilename, string sourceMimeType,
-        string contentHash, Image[] images, Meta responseMeta, List<IMetadataField> externalMetadataFields,
-        bool xmlContainsDocumentText)
+    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string bundleSourceFilename,
+        string primarySourceFilename, string sourceMimeType, string contentHash, Image[] images, Meta responseMeta,
+        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
         var metadata = new FullTreMetadata
         {
@@ -35,7 +35,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                     Reference = Guid.NewGuid().ToString(),
                     Payload = new Payload
                     {
-                        Filename = sourceFilename,
+                        Filename = bundleSourceFilename,
                         Images = images.Select(i => i.Name).ToArray(),
                         Log = null
                     }
@@ -54,7 +54,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile
                     {
-                        Filename = sourceFilename,
+                        Filename = primarySourceFilename,
                         Mimetype = sourceMimeType,
                         Route = Route.Bulk,
                         Sha256 = contentHash,
