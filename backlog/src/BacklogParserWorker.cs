@@ -269,15 +269,20 @@ internal class BacklogParserWorker(
 
         var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var was_word_file = new []{".rtf", ".doc", ".docx"}.Contains(Path.GetExtension(csvLine.FileName));
-        var newSourceFilenameAsDocx = was_word_file ? Path.ChangeExtension(csvLine.FileName, ".docx") : csvLine.FileName;
+        // For files that don't end in docx and aren't stubs, they must have gone through
+        // the parser as a docx. Make sure their filename agrees with that.
+        var bundleSourceFilename = csvLine.FileName;
+        if (!isStub && !csvLine.FileName.EndsWith(".docx", StringComparison.InvariantCultureIgnoreCase))
+        {
+            bundleSourceFilename = csvLine.FileName + ".docx";
+        }
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, newSourceFilenameAsDocx, csvLine.FileName, mimeType, contentHash,
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, contentHash,
             images, response.Meta, externalMetadataFields, !isStub);
 
         await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, contentHash);
         
-        return Bundle.Make(response, trePipelineMetadata, sourceContent, newSourceFilenameAsDocx, images);
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
 
     public static string Hash(byte[] content)

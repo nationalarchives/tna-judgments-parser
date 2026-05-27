@@ -114,6 +114,14 @@ namespace test.backlog.EndToEndTests
             Assert.Equal(expectedXml, actualXml);
         }
 
+        private void AssertCapturedContentContainsAFileEndingWith(string capturedKey, string expectedExtension)
+        {
+            var files = ZipFileHelpers.GetListingFromZippedContent(mockS3Client.GetCapturedContent(capturedKey));
+
+            bool matchExists = files.Any(filename => filename.EndsWith(expectedExtension));
+            Assert.True(matchExists, $"No files found ending with {expectedExtension}");
+        }
+
         private string GetParserRunIdFromCapturedMetadataJson(string capturedKey)
         {
             var actualMetadataJson =
@@ -147,10 +155,10 @@ namespace test.backlog.EndToEndTests
         }
 
         [Theory]
-        [InlineData("docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", 5)]
-        [InlineData("docx", "Sultan Others", 1243)]
-        [InlineData("pdf", "Money Worries Ltd v Office of Fair Trading", 20)]
-        public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string _, string testCaseName, uint docId)
+        [InlineData(".doc.docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", 5)]
+        [InlineData(".docx", "Sultan Others", 1243)]
+        [InlineData(".pdf", "Money Worries Ltd v Office of Fair Trading", 20)]
+        public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string extension, string testCaseName, uint docId)
         {
             // Setup test environment
             ConfigureTestEnvironment(testCaseName);
@@ -177,6 +185,9 @@ namespace test.backlog.EndToEndTests
             AssertCapturedContentMatchesOutputContent(capturedKey);
             AssertCapturedContentContainsExpectedXml(capturedKey, $"test.backlog.expected_output.{testCaseName}.xml");
             AssertCapturedContentContainsExpectedMetadataJson(capturedKey, $"test.backlog.expected_output.{testCaseName}.json");
+            
+            // Assert - There is a source file and it's a type we expect
+            AssertCapturedContentContainsAFileEndingWith(capturedKey, extension);
         }
 
         [Fact]
