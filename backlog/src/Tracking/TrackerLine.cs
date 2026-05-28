@@ -12,8 +12,7 @@ internal class TrackerLine
 {
     public Guid SourceUuid { get; init; }
 
-    [Ignore]
-    public CsvLine? CsvLine { get; init; }
+    [Ignore] public CsvLine? CsvLine { get; init; }
 
     public Guid ParserRunId { get; set; }
     public TrackerStatus TrackerStatus { get; set; }
@@ -23,6 +22,5 @@ internal class TrackerLine
     public string? CsvMetadataHash { get; set; }
     public string? ErrorMessage { get; set; }
 
-    [Format("yyyy-MM-dd HH:mm:ss.fff")]
-    public DateTimeOffset TrackerLineLastUpdated { get; set; }
+    [Format("yyyy-MM-dd HH:mm:ss.fff")] public DateTimeOffset TrackerLineLastUpdated { get; set; }
 }

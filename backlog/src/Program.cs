@@ -34,7 +34,8 @@ public class Program
         SplitFilesByExtension.SetAction(validatedCommandInputs =>
         {
             var originalPath = validatedCommandInputs.GetValue(SplitFilesOriginalPathArgument)!; // Argument is required
-            var destinationPath = validatedCommandInputs.GetValue(SplitFilesDestinationPathOption)!; // Option is required
+            var destinationPath =
+                validatedCommandInputs.GetValue(SplitFilesDestinationPathOption)!; // Option is required
 
             var services = new ServiceCollection();
             services.AddLogging(loggingBuilder => { loggingBuilder.AddConsole(); });
@@ -98,13 +99,7 @@ public class Program
 
     private static readonly RootCommand RootCommand = new("Backlog parser used to bulk parse imported files")
     {
-        Options =
-        {
-            DryRunOption,
-            AutoPublishOption,
-            FileIdOption
-        },
-        Subcommands = { SplitFilesByExtension }
+        Options = { DryRunOption, AutoPublishOption, FileIdOption }, Subcommands = { SplitFilesByExtension }
     };
 
     #endregion
@@ -173,27 +168,27 @@ public class Program
         builder.Configuration.AddDotNetEnv();
 
         builder.Services.AddOptions<BacklogParserOptions>()
-               .Bind(builder.Configuration.GetSection(BacklogParserOptions.SectionName))
-               .Configure(options =>
-               {
-                   options.IsDryRun = isDryRun;
-                   options.SingleIdToRun = id;
-                   options.AutoPublish = autoPublish;
-               })
-               .Services.AddSingleton<IValidateOptions<BacklogParserOptions>, BacklogParserOptionsValidation>();
+            .Bind(builder.Configuration.GetSection(BacklogParserOptions.SectionName))
+            .Configure(options =>
+            {
+                options.IsDryRun = isDryRun;
+                options.SingleIdToRun = id;
+                options.AutoPublish = autoPublish;
+            })
+            .Services.AddSingleton<IValidateOptions<BacklogParserOptions>, BacklogParserOptionsValidation>();
 
         // We need access to the DataFolderPath right now to configure where the log file goes, but we can't get to our
         // bound options object until after the full service configuration has occurred. This means we need to grab the
         // DataFolderPath value directly, bypassing the options setup
         var dataFolderPath = builder.Configuration.GetSection(BacklogParserOptions.SectionName)
-                                    .GetValue<string>(nameof(BacklogParserOptions.DataFolderPath))!;
+            .GetValue<string>(nameof(BacklogParserOptions.DataFolderPath))!;
 
         builder.Services.AddLogging(loggingBuilder =>
         {
             loggingBuilder.AddConsole()
-                          .AddFile(Path.Combine(dataFolderPath, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt"),
-                              outputTemplate:
-                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
+                .AddFile(Path.Combine(dataFolderPath, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt"),
+                    outputTemplate:
+                    "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
         });
         ConfigureDependencyInjection(builder.Services, isDryRun);
 
@@ -212,7 +207,9 @@ public class Program
 
     internal static void ConfigureDependencyInjection(IServiceCollection services, bool isDryRun = false)
     {
-        services.AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator, UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
+        services
+            .AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
+                UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddScoped<Parser>();
         services.AddScoped<BacklogParserWorker>();
         services.AddScoped<CsvMetadataReader>();

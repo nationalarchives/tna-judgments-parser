@@ -50,7 +50,8 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
         csv.Context.RegisterClassMap(new CsvLineMap(csvName, csvHash));
 
         //Get boolean skip converter from type converter cache once now so it can be used to skip records
-        var booleanSkipConverter = csv.Context.TypeConverterCache.GetConverter(typeof(CsvLine).GetMember(nameof(CsvLine.Skip)).Single());
+        var booleanSkipConverter =
+            csv.Context.TypeConverterCache.GetConverter(typeof(CsvLine).GetMember(nameof(CsvLine.Skip)).Single());
 
         var records = new List<CsvLine>();
         skippedCsvLineIdentifiers = [];
@@ -86,13 +87,15 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
             switch (processCsvRecordResult)
             {
                 case { ErrorMessage: { } errorMessage, Record: null }:
-                    csvParseErrors.Add($"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
+                    csvParseErrors.Add(
+                        $"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
                     break;
                 case { Record: { } record, ErrorMessage: null }:
                     records.Add(record);
                     break;
                 default:
-                    throw new NotSupportedException("ProcessCsvRecord always returns either a record or an error message");
+                    throw new NotSupportedException(
+                        "ProcessCsvRecord always returns either a record or an error message");
             }
         }
 
@@ -114,7 +117,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
             }
 
             return (null, string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
-                                                             .Select(r => r.ErrorMessage)));
+                .Select(r => r.ErrorMessage)));
         }
         catch (FieldValidationException ex) //created by failed `Validate`s in `CsvLineMap`
         {

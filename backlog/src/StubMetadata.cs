@@ -50,7 +50,7 @@ namespace Backlog.Src
         public string SourceFormat { get; init; }
 
         public List<ICategory> Categories { get; init; } = [];
-        
+
         public string WebArchivingLink { get; init; }
     }
 }

@@ -30,16 +30,18 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
         {
             Parameters = new Parameters
             {
-                TRE = new Tre
-                {
-                    Reference = Guid.NewGuid().ToString(),
-                    Payload = new Payload
+                TRE =
+                    new Tre
                     {
-                        Filename = bundleSourceFilename,
-                        Images = images.Select(i => i.Name).ToArray(),
-                        Log = null
-                    }
-                },
+                        Reference = Guid.NewGuid().ToString(),
+                        Payload =
+                            new Payload
+                            {
+                                Filename = bundleSourceFilename,
+                                Images = images.Select(i => i.Name).ToArray(),
+                                Log = null
+                            }
+                    },
                 PARSER = new ParserProcessMetadata
                 {
                     Court = responseMeta.Court,
@@ -52,14 +54,15 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                     ParserRunId = parserRunId,
                     ErrorMessages = [],
                     MetadataFields = externalMetadataFields,
-                    PrimarySource = new PrimarySourceFile
-                    {
-                        Filename = primarySourceFilename,
-                        Mimetype = sourceMimeType,
-                        Route = Route.Bulk,
-                        Sha256 = contentHash,
-                        RouteDateTime = timeProvider.GetUtcNow().UtcDateTime
-                    },
+                    PrimarySource =
+                        new PrimarySourceFile
+                        {
+                            Filename = primarySourceFilename,
+                            Mimetype = sourceMimeType,
+                            Route = Route.Bulk,
+                            Sha256 = contentHash,
+                            RouteDateTime = timeProvider.GetUtcNow().UtcDateTime
+                        },
                     XmlContainsDocumentText = xmlContainsDocumentText
                 },
                 IngestorOptions = new IngestorOptions
@@ -79,7 +82,8 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
         {
             Type = JudgmentType.Decision,
             Court = Courts.GetByCode(line.Court),
-            Jurisdictions = line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
+            Jurisdictions =
+                line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
             Date = new WNamedDate { Date = line.DecisionDateTime.ToString("yyyy-MM-dd"), Name = "decision" },
             Name = line.FirstPartyName + " v " + line.Respondent,
             CaseNumbers = line.CaseNo.ToList(),
@@ -106,7 +110,8 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
     {
         List<IMetadataField> metadataFields =
         [
-            CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileProperties, new CsvProperties(csvLine.CsvProperties.Name, csvLine.CsvProperties.Hash, csvLine.FullCsvLineContents)),
+            CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileProperties,
+                new CsvProperties(csvLine.CsvProperties.Name, csvLine.CsvProperties.Hash, csvLine.FullCsvLineContents)),
             .. CreateExternalMetadataFields(MetadataFieldName.CaseNumber, () => csvLine.CaseNo),
             .. CreateExternalMetadataFields(MetadataFieldName.Category, () => csvLine.Categories),
             CreateExternalMetadataField(MetadataFieldName.Court, csvLine.Court),
