@@ -74,7 +74,7 @@ namespace test.backlog.EndToEndTests
             // Ensure court document directory exists
             var courtDocumentsDir = Path.Combine(dataDir, "court_documents");
             Directory.CreateDirectory(courtDocumentsDir); //creates the folder if it doesn't exist
-            
+
             // Create the output directory - input directories should already exist with test data
             outputDir = Path.Combine(dataDir, "output");
             Directory.CreateDirectory(outputDir);
@@ -103,7 +103,7 @@ namespace test.backlog.EndToEndTests
         private void AssertCapturedContentContainsExpectedXml(string capturedKey, string expectedXmlResourceName)
         {
             var actualXml =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.xml");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("judgment.xml");
             var expectedXml = DocumentHelpers.ReadXml(expectedXmlResourceName);
 
             Assert.Equal(ExpectedParserVersion, ExtractParserVersion(actualXml));
@@ -114,10 +114,20 @@ namespace test.backlog.EndToEndTests
             Assert.Equal(expectedXml, actualXml);
         }
 
+        private void AssertCapturedContentContainsExpectedSourceFile(string capturedKey, string bundleSourceName,
+            string testFileResourceName)
+        {
+            var actualFileContents = mockS3Client.GetCapturedContent(capturedKey)
+                                                 .GetFileFromZippedContentAsBytes(bundleSourceName);
+            var expectedContents = DocumentHelpers.GetEmbeddedResourceAsBytes(testFileResourceName);
+
+            Assert.Equal(expectedContents, actualFileContents);
+        }
+
         private string GetParserRunIdFromCapturedMetadataJson(string capturedKey)
         {
             var actualMetadataJson =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("bulk-metadata.json");
 
             return Regex.Match(actualMetadataJson, $"\"parser_run_id\":\"({GuidRegex()})\"").Groups[1].Value;
         }
@@ -126,7 +136,7 @@ namespace test.backlog.EndToEndTests
             string expectedMetadataJsonResourceName)
         {
             var actualMetadataJson =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("bulk-metadata.json");
             var expectedMetadataJson = DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName);
 
             // Remove non-deterministic GUIDs
@@ -147,10 +157,12 @@ namespace test.backlog.EndToEndTests
         }
 
         [Theory]
-        [InlineData("docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", 5)]
-        [InlineData("docx", "Sultan Others", 1243)]
-        [InlineData("pdf", "Money Worries Ltd v Office of Fair Trading", 20)]
-        public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string _, string testCaseName, uint docId)
+        [InlineData("2002-010.doc.docx", "test.backlog.test_data.Altaf_Ebrahim_t_a_Ebrahim___Co_v_OISC.court_documents.e14fb247-5d9b-42b8-9238-52ae3bd8345b.docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", 5)]
+        [InlineData("D 2011 306 Sultan  Others.docx", "test.backlog.test_data.Sultan_Others.court_documents.3cf61114-2d77-4e7a-aba0-6891faaf9d39.docx", "Sultan Others", 1243)]
+        [InlineData("CCA20120008_20130118_order_appeal_discontinued.pdf", "test.backlog.test_data.Money_Worries_Ltd_v_Office_of_Fair_Trading.court_documents.ac4e30ac-416c-494d-8a76-a0dee0ca93bc", "Money Worries Ltd v Office of Fair Trading", 20)]
+        public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string fileName, string resourceName,
+            string testCaseName,
+            uint docId)
         {
             // Setup test environment
             ConfigureTestEnvironment(testCaseName);
@@ -175,8 +187,10 @@ namespace test.backlog.EndToEndTests
 
             // Assert - Check output files are as expected
             AssertCapturedContentMatchesOutputContent(capturedKey);
+            AssertCapturedContentContainsExpectedSourceFile(capturedKey, fileName, resourceName);
             AssertCapturedContentContainsExpectedXml(capturedKey, $"test.backlog.expected_output.{testCaseName}.xml");
-            AssertCapturedContentContainsExpectedMetadataJson(capturedKey, $"test.backlog.expected_output.{testCaseName}.json");
+            AssertCapturedContentContainsExpectedMetadataJson(capturedKey,
+                $"test.backlog.expected_output.{testCaseName}.json");
         }
 
         [Fact]
@@ -200,7 +214,7 @@ namespace test.backlog.EndToEndTests
                 Assert.Contains(GetUuidFromKey(key), File.ReadAllText(trackerPath));
                 capturedParserRunIds.Add(GetParserRunIdFromCapturedMetadataJson(key));
             }
-            
+
             //Ensure that the parser run ids with each document is the same
             Assert.Single(capturedParserRunIds.Distinct());
         }
@@ -228,7 +242,7 @@ namespace test.backlog.EndToEndTests
             // Should process fewer items than total (since one was already done)
             // The exact count depends on test data - we'll verify this doesn't process ALL items
             var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
-           
+
             // Should have the header plus original entry plus new successful entries
             Assert.Collection(trackerLines, 
                 line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
@@ -267,7 +281,6 @@ namespace test.backlog.EndToEndTests
                 line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
                 line => Assert.True(line.StartsWith("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
             );
-
         }
 
         [Fact]
@@ -289,7 +302,7 @@ namespace test.backlog.EndToEndTests
         {
             ConfigureTestEnvironment("Sultan Others");
             SetPathEnvironmentVariables("not/a/data/directory", "", "not/a/courtmetadata.csv");
-            
+
             // Act
             var exitCode = Backlog.Program.Main();
 
@@ -337,7 +350,7 @@ namespace test.backlog.EndToEndTests
 
             var capturedKey = mockS3Client.CapturedKeys.Single();
             var metadataJson =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("bulk-metadata.json");
             var jsonNode = JsonNode.Parse(metadataJson);
             var autoPublish = jsonNode!["parameters"]!["INGESTER_OPTIONS"]!["auto_publish"]!.GetValue<bool>();
             Assert.Equal(expectedAutoPublish, autoPublish);

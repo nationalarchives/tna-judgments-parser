@@ -293,7 +293,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
     private XmlDocument GetXmlDocumentFromS3()
     {
         var key = mockS3Client.CapturedKeys.Single();
-        var actualXml = ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(key), @"\.xml$");
+        var actualXml = mockS3Client.GetCapturedContent(key).GetFileFromZippedContentAsString("judgment.xml");
         PrintToOutputWithNumberedLines(actualXml);
         var doc = new XmlDocument();
         doc.LoadXml(actualXml);

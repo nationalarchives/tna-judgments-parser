@@ -49,6 +49,7 @@ public class TestMetadataTransformer
         var result = metadataTransformer.CreateFullTreMetadata(
             Guid.NewGuid(),
             "test.pdf",
+            "test.pdf",
             sourceMimeType,
             contentHash,
             [],
@@ -102,7 +103,11 @@ public class TestMetadataTransformer
 
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,"test.docx", "application/pdf", "1234-456-789",
+            parserRunId,
+            "test.doc.docx",
+            "test.doc",
+            "application/pdf",
+            "1234-456-789",
             [],
             responseMeta,
             externalMetadataFields,
@@ -124,7 +129,7 @@ public class TestMetadataTransformer
         Assert.Equal(externalMetadataFields, result.Parameters.PARSER.MetadataFields);
         Assert.Equal(xmlContainsDocumentText, result.Parameters.PARSER.XmlContainsDocumentText);
 
-        Assert.Equal("test.docx", result.Parameters.PARSER.PrimarySource.Filename);
+        Assert.Equal("test.doc", result.Parameters.PARSER.PrimarySource.Filename);
         Assert.Equal("application/pdf", result.Parameters.PARSER.PrimarySource.Mimetype);
         Assert.Equal(Route.Bulk, result.Parameters.PARSER.PrimarySource.Route);
         Assert.Equal("1234-456-789", result.Parameters.PARSER.PrimarySource.Sha256);
@@ -145,6 +150,7 @@ public class TestMetadataTransformer
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
             Guid.NewGuid(),
+            sourceFilename,
             sourceFilename,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -167,7 +173,8 @@ public class TestMetadataTransformer
 
         var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
             parserRunId,
-            "test-file.docx",
+            "test-file.doc.docx",
+            "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
             [],
@@ -177,7 +184,8 @@ public class TestMetadataTransformer
         );
         var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
             parserRunId,
-            "test-file.docx",
+            "test-file.doc.docx",
+            "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
             [],
