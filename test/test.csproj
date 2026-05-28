@@ -43,6 +43,7 @@
 
     <EmbeddedResource Include="./backlog/expected-output/*.json" />
     <EmbeddedResource Include="./backlog/expected-output/*.xml" />
+    <EmbeddedResource Include="./backlog/test-data/*/court_documents/*"/>
   </ItemGroup>
 
   <ItemGroup>

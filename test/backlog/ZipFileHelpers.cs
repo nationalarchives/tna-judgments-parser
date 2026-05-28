@@ -1,53 +1,51 @@
 #nullable enable
 
+using System;
+using System.Collections.Generic;
 using System.Formats.Tar;
 using System.IO;
 using System.IO.Compression;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-
-using Xunit;
+using System.Text;
 
 namespace test.backlog;
 
 public static class ZipFileHelpers
 {
-
-    public static List<string> GetListingFromZippedContent(byte[] content)
+    public static byte[] GetFileFromZippedContentAsBytes(this byte[] zipFileContent, string fileName)
     {
-        using MemoryStream memoryStream = new(content);
-        using GZipStream gz = new(memoryStream, CompressionMode.Decompress);
-        using var tarReader = new TarReader(gz, true);
+        using MemoryStream gZipMemoryStream = new(zipFileContent);
+        using GZipStream decompressedGZipStream = new(gZipMemoryStream, CompressionMode.Decompress);
+        using TarReader tarReader = new(decompressedGZipStream, true);
 
-        List<string> listing = new List<string>();
-
+        var filesFound = new List<string>();
         while (tarReader.GetNextEntry() is { } entry)
         {
-            listing.Add(entry.Name);
-        }
-
-        return listing;
-    }
-
-    public static string GetFileFromZippedContent(byte[] content, string fileRegexPattern)
-    {
-        using MemoryStream memoryStream = new(content);
-        using GZipStream gz = new(memoryStream, CompressionMode.Decompress);
-        using var tarReader = new TarReader(gz, true);
-
-        while (tarReader.GetNextEntry() is { } entry)
-        {
-            if (Regex.IsMatch(entry.Name, fileRegexPattern))
+            // Tar file names always start with a random GUID - e.g. 3ce8efd6-7524-4ab9-9686-3a0dbd3e5e8e/CCA20120008_20130118_order_appeal_discontinued.pdf
+            // Remove this prefix because it's non-deterministic
+            var cleansedTarFileEntryName = entry.Name[(entry.Name.IndexOf('/') + 1) ..];
+            if (cleansedTarFileEntryName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase))
             {
                 var entryDataStream = entry.DataStream;
-                Assert.True(entryDataStream is not null, $"File found matching {fileRegexPattern} but it had no data");
+                if (entryDataStream is null)
+                {
+                    throw new FileNotFoundException($"File {entry.Name} found but it had no data");
+                }
 
-                using var streamReader = new StreamReader(entryDataStream);
-                return streamReader.ReadToEnd();
+                using var fileMemoryStream = new MemoryStream();
+                entryDataStream.CopyTo(fileMemoryStream);
+                return fileMemoryStream.ToArray();
             }
+
+            filesFound.Add(cleansedTarFileEntryName);
         }
 
-        Assert.Fail($"Could not find file in content matching {fileRegexPattern}");
-        return null;
+        throw new FileNotFoundException($"Could not find file \"{fileName}\" in zip file: [{string.Join(", ", filesFound)}]");
+    }
+
+    public static string GetFileFromZippedContentAsString(this byte[] content, string fileName)
+    {
+        var fileContentBytes = content.GetFileFromZippedContentAsBytes(fileName);
+
+        return Encoding.UTF8.GetString(fileContentBytes);
     }
 }
