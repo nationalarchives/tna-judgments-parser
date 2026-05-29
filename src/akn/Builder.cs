@@ -770,14 +770,14 @@ abstract class Builder {
         blocks(authorialNote, fn.Content);
     }
 
-    protected virtual void AddImageRef(XmlElement parent, IImageRef model) {
+    private void AddImageRef(XmlElement parent, IImageRef model) {
         XmlElement img = doc.CreateElement("img", ns);
         img.SetAttribute("src", model.Src);
         if (model.Style is not null)
             img.SetAttribute("style", model.Style);
         parent.AppendChild(img);
     }
-    protected virtual void AddExternalImage(XmlElement parent, IExternalImage model) {
+    private void AddExternalImage(XmlElement parent, IExternalImage model) {
         XmlElement img = doc.CreateElement("img", ns);
         img.SetAttribute("src", model.URL);
         parent.AppendChild(img);
@@ -819,7 +819,7 @@ abstract class Builder {
             x.SetAttribute("title", model.ScreenTip);
     }
 
-    protected virtual void AddMath(XmlElement parent, IMath model) {
+    private void AddMath(XmlElement parent, IMath model) {
         XmlElement subFlow = CreateAndAppend("subFlow", parent);
         subFlow.SetAttribute("name", "math");
         XmlElement foreign = CreateAndAppend("foreign", subFlow);
@@ -832,7 +832,7 @@ abstract class Builder {
         parent.AppendChild(br);
     }
 
-    protected virtual void AddTab(XmlElement parent) {
+    private void AddTab(XmlElement parent) {
         XmlElement tab = doc.CreateElement("marker", ns);
         tab.SetAttribute("name", "tab");
         // tab.SetAttribute("style", "display:inline-block");
