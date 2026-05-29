@@ -46,12 +46,11 @@ public static class RendererFactory {
     private static IDrawingRenderer BuildLocalOrNull() {
         string sofficePath = Environment.GetEnvironmentVariable("SOFFICE_PATH");
         if (string.IsNullOrWhiteSpace(sofficePath)) {
-            sofficePath = OperatingSystem.IsWindows()
-                ? @"C:\Program Files\LibreOffice\program\soffice.exe"
-                : "/usr/bin/soffice";
+            logger.LogInformation("renderer=null (SOFFICE_PATH not set)");
+            return new NullRenderer();
         }
         if (!System.IO.File.Exists(sofficePath)) {
-            logger.LogInformation("renderer=null (soffice not installed at {Path})", sofficePath);
+            logger.LogInformation("renderer=null (soffice not found at {Path})", sofficePath);
             return new NullRenderer();
         }
         logger.LogInformation("renderer=local soffice={Path}", sofficePath);

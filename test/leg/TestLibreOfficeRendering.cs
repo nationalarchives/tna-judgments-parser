@@ -11,12 +11,13 @@ namespace UK.Gov.Legislation.Test {
 
 public class TestLibreOfficeRendering {
 
-    private const string SofficePath = @"C:\Program Files\LibreOffice\program\soffice.exe";
+    // Opt-in: set LEG_SOFFICE_PATH to a real LibreOffice to exercise rendering.
+    private static readonly string SofficePath = Environment.GetEnvironmentVariable("LEG_SOFFICE_PATH");
 
     [Fact]
     public void LocalSubprocessRenderer_ProducesImageForKnownDrawing() {
-        if (!File.Exists(SofficePath))
-            Assert.Skip($"LibreOffice not installed at {SofficePath}");
+        if (string.IsNullOrEmpty(SofficePath) || !File.Exists(SofficePath))
+            Assert.Skip("LibreOffice not available; set LEG_SOFFICE_PATH to run this test.");
 
         string projectRoot = Path.GetFullPath(Path.Combine(
             System.AppDomain.CurrentDomain.BaseDirectory,

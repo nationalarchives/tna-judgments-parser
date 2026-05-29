@@ -14,12 +14,12 @@ namespace UK.Gov.Legislation {
 /// shells out to the Saxon JAR that ships with Oxygen XML Editor — the same engine the
 /// repo's existing manual workflow already uses.
 ///
-/// Set <c>OXYGEN_HOME</c> to override the default Oxygen install location; on Windows
-/// the default is "C:\Program Files\Oxygen XML Editor 27".
+/// Set <c>OXYGEN_HOME</c> to your Oxygen XML Editor install directory. If it is not
+/// set, HtmlBuilder reports unavailable and HTML rendering is skipped (no path is
+/// hardcoded).
 /// </summary>
 public static class HtmlBuilder {
 
-    private const string DefaultOxygenHomeWindows = @"C:\Program Files\Oxygen XML Editor 27";
     private const string SaxonMainClass = "net.sf.saxon.Transform";
 
     /// <summary>
@@ -81,10 +81,8 @@ public static class HtmlBuilder {
         }
     }
 
-    private static string ResolveOxygenHome() {
-        string fromEnv = Environment.GetEnvironmentVariable("OXYGEN_HOME");
-        return !string.IsNullOrEmpty(fromEnv) ? fromEnv : DefaultOxygenHomeWindows;
-    }
+    private static string ResolveOxygenHome() =>
+        Environment.GetEnvironmentVariable("OXYGEN_HOME") ?? "";
 
     /// <summary>
     /// Returns true if HtmlBuilder can run on this machine (Oxygen-bundled Saxon is reachable).
