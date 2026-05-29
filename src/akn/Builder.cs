@@ -331,13 +331,7 @@ abstract class Builder {
                 if (cell.ColSpan is not null)
                     td.SetAttribute("colspan", cell.ColSpan.ToString());
                 Dictionary<string, string> styles = cell.GetCSSStyles();
-                if (styles.TryGetValue("background-color", out string bg) &&
-                    (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
-                    styles.Remove("background-color");
-                foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
-                    styles.Remove(key);
-                if (styles.TryGetValue("background-color", out string bgValue) && IsDarkColor(bgValue) && !styles.ContainsKey("color"))
-                    styles["color"] = "#ffffff";
+                ApplyTableCellStyleCleanup(cell, styles);
                 if (styles.Any())
                     td.SetAttribute("style", CSS.SerializeInline(styles));
                 tr.AppendChild(td);
@@ -359,21 +353,6 @@ abstract class Builder {
         }
     }
 
-    internal static bool IsDarkColor(string color) {
-        if (string.IsNullOrEmpty(color))
-            return false;
-        string hex = color.StartsWith("#") ? color.Substring(1) : color;
-        if (hex.Length == 3)
-            hex = $"{hex[0]}{hex[0]}{hex[1]}{hex[1]}{hex[2]}{hex[2]}";
-        if (hex.Length != 6 || !int.TryParse(hex, System.Globalization.NumberStyles.HexNumber, null, out int rgb))
-            return false;
-        int r = (rgb >> 16) & 0xFF;
-        int g = (rgb >> 8) & 0xFF;
-        int b = rgb & 0xFF;
-        // ITU-R BT.601 luma; below ~128 is "dark enough" that black text would not be legible.
-        return (r * 0.299 + g * 0.587 + b * 0.114) < 128;
-    }
-
     private string ContainingParagraphStyle;
 
     /// <summary>
@@ -382,6 +361,14 @@ abstract class Builder {
     /// has been set and before content is appended. Default no-op.
     /// </summary>
     protected virtual void DecorateBlockElement(XmlElement block, ILine line) { }
+
+    /// <summary>
+    /// Extension point: subclasses may mutate a table cell's serialised
+    /// CSS styles before they are written to the <c>td</c>/<c>th</c>.
+    /// Default no-op — the base builder emits cell styles unchanged, as
+    /// on main.
+    /// </summary>
+    protected virtual void ApplyTableCellStyleCleanup(ICell cell, Dictionary<string, string> styles) { }
 
     protected virtual XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
