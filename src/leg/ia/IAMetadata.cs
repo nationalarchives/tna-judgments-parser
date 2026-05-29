@@ -21,7 +21,6 @@ class IAMetadata : DocumentMetadata {
     public string DocumentMainType { get; init; }
     public string Department { get; init; }
     public string IADate { get; init; }
-    public string PDFDate { get; init; }
 
     // Year and number values (for explicit metadata in proprietary section)
     public int? UkiaYear { get; init; }
@@ -78,7 +77,6 @@ class IAMetadata : DocumentMetadata {
             DocumentMainType = mappingRecord?.DocumentMainType,
             Department = mappingRecord?.Department,
             IADate = mappingRecord?.IADate,
-            PDFDate = mappingRecord?.PDFDate,
             LegislationClass = mappingRecord?.LegislationClass,
             // Year and number values
             UkiaYear = mappingRecord?.UkiaYear,

@@ -15,7 +15,6 @@ internal class IAMappingRecord {
     public string DocumentMainType { get; init; }
     public string Department { get; init; }
     public string ModifiedDate { get; init; }
-    public string PDFDate { get; init; }
     public string LegislationUri { get; init; }
     public string LegislationClass { get; init; }
     public int? LegislationYear { get; init; }

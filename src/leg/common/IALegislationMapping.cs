@@ -44,7 +44,6 @@ internal static partial class IALegislationMapping {
             DocumentMainType = record.DocumentType,
             Department = record.Department,
             ModifiedDate = record.ModifiedDate,
-            PDFDate = record.PdfDate,
             LegislationUri = record.LegislationUri,
             LegislationClass = record.LegislationClass,
             LegislationYear = record.LegislationYear,
