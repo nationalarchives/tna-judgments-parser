@@ -34,20 +34,20 @@ public abstract class BaseEndToEndTests : IDisposable
 
         // Clear lingering overrides from previous tests (overrides are in a static context)
         Environment.SetEnvironmentVariable("IS_TEST", "true");
-        Backlog.Src.Program.DependencyInjectionOverrides.Clear();
+        Backlog.Program.DependencyInjectionOverrides.Clear();
         
         // Configure S3 client
         Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object, true));
+        Backlog.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object, true));
 
         // Control time
-        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(TimeProvider), fakeTimeProvider, true));
+        Backlog.Program.DependencyInjectionOverrides.Add((typeof(TimeProvider), fakeTimeProvider, true));
 
         // Mock logger
         var mockLoggerProvider = new Mock<ILoggerProvider>();
         mockLoggerProvider.Setup(x => x.CreateLogger(It.IsAny<string>())).Returns(() => ConsolidatedLogger.Object);
 
-        Backlog.Src.Program.DependencyInjectionOverrides.Add(
+        Backlog.Program.DependencyInjectionOverrides.Add(
             (typeof(ILoggerProvider), mockLoggerProvider.Object, false));
     }
 
@@ -59,7 +59,7 @@ public abstract class BaseEndToEndTests : IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        Backlog.Src.Program.DependencyInjectionOverrides.Clear();
+        Backlog.Program.DependencyInjectionOverrides.Clear();
         CleanEnvironmentVariables();
     }
 
@@ -73,16 +73,14 @@ public abstract class BaseEndToEndTests : IDisposable
 
 
         // Clean up environment variables
-        Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
-        Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
-        Environment.SetEnvironmentVariable("TRACKER_PATH", null);
-        Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
+        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", null);
+        Environment.SetEnvironmentVariable("BacklogParser__DataFolderPath", null);
+        Environment.SetEnvironmentVariable("BacklogParser__TrackerFilePath", null);
+        Environment.SetEnvironmentVariable("BacklogParser__OutputFolderPath", null);
 
         Environment.SetEnvironmentVariable("IS_TEST", null);
         Environment.SetEnvironmentVariable("AWS_REGION", null);
 
-        Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", null);
-        Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", null);
     }
 
     protected static void SetPathEnvironmentVariables(string dataDir, string? outputPath = null,
@@ -92,11 +90,12 @@ public abstract class BaseEndToEndTests : IDisposable
         courtMetadataPath ??= Path.Combine(dataDir, "court_metadata.csv");
         trackerPath ??= Path.Combine(dataDir, "uploaded-production.csv");
 
-        Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
-        Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
-        Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
-        Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
+        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", courtMetadataPath);
+        Environment.SetEnvironmentVariable("BacklogParser__DataFolderPath", dataDir);
+        Environment.SetEnvironmentVariable("BacklogParser__TrackerFilePath", trackerPath);
+        Environment.SetEnvironmentVariable("BacklogParser__OutputFolderPath", outputPath);
     }
+
 
     protected static void AssertProgramExitedSuccessfully(int exitCode)
     {

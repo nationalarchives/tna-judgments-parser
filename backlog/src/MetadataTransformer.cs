@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Backlog.Csv;
+using Backlog.Options;
 using Backlog.TreMetadata;
+
+using Microsoft.Extensions.Options;
 
 using TRE.Metadata;
 using TRE.Metadata.Enums;
@@ -17,10 +20,10 @@ using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
 
-internal class MetadataTransformer(TimeProvider timeProvider)
+internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
 {
-    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string sourceFilename, string sourceMimeType,
-        string contentHash, bool autoPublish, Image[] images, Meta responseMeta,
+    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string bundleSourceFilename,
+        string primarySourceFilename, string sourceMimeType, string contentHash, Image[] images, Meta responseMeta,
         List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
         var metadata = new FullTreMetadata
@@ -32,7 +35,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
                     Reference = Guid.NewGuid().ToString(),
                     Payload = new Payload
                     {
-                        Filename = sourceFilename,
+                        Filename = bundleSourceFilename,
                         Images = images.Select(i => i.Name).ToArray(),
                         Log = null
                     }
@@ -51,7 +54,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile
                     {
-                        Filename = sourceFilename,
+                        Filename = primarySourceFilename,
                         Mimetype = sourceMimeType,
                         Route = Route.Bulk,
                         Sha256 = contentHash,
@@ -61,7 +64,8 @@ internal class MetadataTransformer(TimeProvider timeProvider)
                 },
                 IngestorOptions = new IngestorOptions
                 {
-                    AutoPublish = autoPublish,
+                    AutoPublish = backlogParserOptions.Value.AutoPublish,
+                    ErrorOnExistingDocument = true,
                     Source = new SourceDocument { Format = sourceMimeType, Hash = contentHash }
                 }
             }

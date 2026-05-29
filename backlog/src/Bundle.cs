@@ -22,7 +22,7 @@ namespace Backlog.Src
         internal byte[] TarGz { get; init; }
 
         internal static Bundle Make(Response response, FullTreMetadata fullTreMetadata, byte[] sourceContent,
-            string sourceFilename, IEnumerable<Image> images)
+            string bundleSourceFilename, IEnumerable<Image> images)
         {
             var treReference = fullTreMetadata.Parameters.TRE.Reference;
 
@@ -30,7 +30,7 @@ namespace Backlog.Src
             var gz = new GZipOutputStream(memStream);
             var tar = new TarOutputStream(gz, Encoding.UTF8);
 
-            Write(sourceContent, $"{treReference}/{sourceFilename}", tar);
+            Write(sourceContent, $"{treReference}/{bundleSourceFilename}", tar);
             WriteXml(response.Xml, $"{treReference}/{fullTreMetadata.Parameters.TRE.Payload.Xml}", tar);
             WriteMetadata(fullTreMetadata, $"{treReference}/{fullTreMetadata.Parameters.TRE.Payload.Metadata}", tar);
 
