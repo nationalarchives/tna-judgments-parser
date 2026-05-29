@@ -74,7 +74,7 @@ namespace test.backlog.EndToEndTests
             // Ensure court document directory exists
             var courtDocumentsDir = Path.Combine(dataDir, "court_documents");
             Directory.CreateDirectory(courtDocumentsDir); //creates the folder if it doesn't exist
-            
+
             // Create the output directory - input directories should already exist with test data
             outputDir = Path.Combine(dataDir, "output");
             Directory.CreateDirectory(outputDir);
@@ -103,7 +103,7 @@ namespace test.backlog.EndToEndTests
         private void AssertCapturedContentContainsExpectedXml(string capturedKey, string expectedXmlResourceName)
         {
             var actualXml =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.xml");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("judgment.xml");
             var expectedXml = DocumentHelpers.ReadXml(expectedXmlResourceName);
 
             Assert.Equal(ExpectedParserVersion, ExtractParserVersion(actualXml));
@@ -114,10 +114,20 @@ namespace test.backlog.EndToEndTests
             Assert.Equal(expectedXml, actualXml);
         }
 
+        private void AssertCapturedContentContainsExpectedSourceFile(string capturedKey, string bundleSourceName,
+            string testFileResourceName)
+        {
+            var actualFileContents = mockS3Client.GetCapturedContent(capturedKey)
+                                                 .GetFileFromZippedContentAsBytes(bundleSourceName);
+            var expectedContents = DocumentHelpers.GetEmbeddedResourceAsBytes(testFileResourceName);
+
+            Assert.Equal(expectedContents, actualFileContents);
+        }
+
         private string GetParserRunIdFromCapturedMetadataJson(string capturedKey)
         {
             var actualMetadataJson =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("bulk-metadata.json");
 
             return Regex.Match(actualMetadataJson, $"\"parser_run_id\":\"({GuidRegex()})\"").Groups[1].Value;
         }
@@ -126,7 +136,7 @@ namespace test.backlog.EndToEndTests
             string expectedMetadataJsonResourceName)
         {
             var actualMetadataJson =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("bulk-metadata.json");
             var expectedMetadataJson = DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName);
 
             // Remove non-deterministic GUIDs
@@ -147,21 +157,21 @@ namespace test.backlog.EndToEndTests
         }
 
         [Theory]
-        [InlineData("docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", "JudgmentFiles\\", "data/HMCTS_Judgment_Files/", 5)]
-        [InlineData("docx", "Sultan Others", "", "", 1243)]
-        [InlineData("pdf", "Money Worries Ltd v Office of Fair Trading", "Documents\\", "data/Consumer Credit Appeals/Documents/", 20)]
-        public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string _, string testCaseName, string judgmentFilePath, string hmctsFilesPath, uint docId)
+        [InlineData("2002-010.doc.docx", "test.backlog.test_data.Altaf_Ebrahim_t_a_Ebrahim___Co_v_OISC.court_documents.e14fb247-5d9b-42b8-9238-52ae3bd8345b.docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", 5)]
+        [InlineData("D 2011 306 Sultan  Others.docx", "test.backlog.test_data.Sultan_Others.court_documents.3cf61114-2d77-4e7a-aba0-6891faaf9d39.docx", "Sultan Others", 1243)]
+        [InlineData("CCA20120008_20130118_order_appeal_discontinued.pdf", "test.backlog.test_data.Money_Worries_Ltd_v_Office_of_Fair_Trading.court_documents.ac4e30ac-416c-494d-8a76-a0dee0ca93bc", "Money Worries Ltd v Office of Fair Trading", 20)]
+        public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string fileName, string resourceName,
+            string testCaseName,
+            uint docId)
         {
             // Setup test environment
             ConfigureTestEnvironment(testCaseName);
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentFilePath);
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", hmctsFilesPath);
             // This time is the "now" that is used in the "expected metadata" JSON fixture
             var expectedTime = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
             fakeTimeProvider.AdjustTime(expectedTime);
 
             // Act
-            var exitCode = Backlog.Src.Program.Main("--id", docId.ToString(), "--auto-publish");
+            var exitCode = Backlog.Program.Main("--id", docId.ToString(), "--auto-publish");
 
             // Assert - Program exited successfully
             AssertProgramExitedSuccessfully(exitCode);
@@ -177,8 +187,10 @@ namespace test.backlog.EndToEndTests
 
             // Assert - Check output files are as expected
             AssertCapturedContentMatchesOutputContent(capturedKey);
+            AssertCapturedContentContainsExpectedSourceFile(capturedKey, fileName, resourceName);
             AssertCapturedContentContainsExpectedXml(capturedKey, $"test.backlog.expected_output.{testCaseName}.xml");
-            AssertCapturedContentContainsExpectedMetadataJson(capturedKey, $"test.backlog.expected_output.{testCaseName}.json");
+            AssertCapturedContentContainsExpectedMetadataJson(capturedKey,
+                $"test.backlog.expected_output.{testCaseName}.json");
         }
 
         [Fact]
@@ -186,11 +198,9 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment for multi-line CSV test
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
 
             // Act - Run without --id to process full CSV
-            var exitCode = Backlog.Src.Program.Main();
+            var exitCode = Backlog.Program.Main();
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
@@ -204,7 +214,7 @@ namespace test.backlog.EndToEndTests
                 Assert.Contains(GetUuidFromKey(key), File.ReadAllText(trackerPath));
                 capturedParserRunIds.Add(GetParserRunIdFromCapturedMetadataJson(key));
             }
-            
+
             //Ensure that the parser run ids with each document is the same
             Assert.Single(capturedParserRunIds.Distinct());
         }
@@ -214,27 +224,33 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
 
             // Pre-populate tracker to mark first item as already processed
-            await File.WriteAllTextAsync(trackerPath, "100/JudgmentFiles\\j100\\test1.doc,some-uuid-1,132345678901234567\n",
+            await File.WriteAllTextAsync(trackerPath, """
+                                                      SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated
+                                                      11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
+                                                      22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
+                                                      """,
                 TestContext.Current.CancellationToken);
 
             // Act
-            var exitCode = Backlog.Src.Program.Main();
+            var exitCode = Backlog.Program.Main();
 
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
             // Should process fewer items than total (since one was already done)
             // The exact count depends on test data - we'll verify this doesn't process ALL items
-            var trackerContent = await File.ReadAllTextAsync(trackerPath, TestContext.Current.CancellationToken);
-            var trackerLines = trackerContent.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
 
-            // Should have the original entry plus new entries
-            Assert.True(trackerLines.Length > 1, "Tracker should have original entry plus new entries");
-            Assert.True(trackerLines[0].Contains("some-uuid-1"), "First line should be the pre-existing entry");
+            // Should have the header plus original entry plus new successful entries
+            Assert.Collection(trackerLines, 
+                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
+                line => Assert.True(line == "11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
+                line => Assert.True(line == "22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
+                line => Assert.True(line.StartsWith("22222222-2222-2222-2222-222222222222") && line.Contains("SentToIngester"), "This line should have been retried"),
+                line => Assert.True(line.StartsWith("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
+                );
 
             // Log file should mention skips
             ConsolidatedLogger.VerifyLog("Skipping line 5 because it was marked to skip in the csv", LogLevel.Information)
@@ -253,18 +269,18 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
 
             // Act
-            var exitCode = Backlog.Src.Program.Main("--id", "102");
+            var exitCode = Backlog.Program.Main("--id", "102");
 
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
             var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
-            var singleLine = Assert.Single(trackerLines);
-            Assert.StartsWith("102/JudgmentFiles\\j102\\test3.pdf,", singleLine);
+            Assert.Collection(trackerLines, 
+                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
+                line => Assert.True(line.StartsWith("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
+            );
         }
 
         [Fact]
@@ -274,7 +290,7 @@ namespace test.backlog.EndToEndTests
             ConfigureTestEnvironment("EmptyCSVTest");
 
             // Act
-            var exitCode = Backlog.Src.Program.Main();
+            var exitCode = Backlog.Program.Main();
 
             // Assert
             Assert.Equal(1, exitCode);
@@ -282,10 +298,23 @@ namespace test.backlog.EndToEndTests
         }
 
         [Fact]
+        public void ProcessBacklogJudgment_WithInvalidConfiguration_ReturnsError()
+        {
+            ConfigureTestEnvironment("Sultan Others");
+            SetPathEnvironmentVariables("not/a/data/directory", "", "not/a/courtmetadata.csv");
+
+            // Act
+            var exitCode = Backlog.Program.Main();
+
+            // Assert
+            Assert.Equal(1, exitCode);
+        }
+
+        [Fact]
         public void ProcessBacklogJudgment_WithInvalidIdArgument_ReturnsError()
         {
             // Act
-            var exitCode = Backlog.Src.Program.Main("--id", "invalid");
+            var exitCode = Backlog.Program.Main("--id", "invalid");
 
             // Assert
             Assert.Equal(1, exitCode);
@@ -295,7 +324,7 @@ namespace test.backlog.EndToEndTests
         public void ProcessBacklogJudgment_WithInvalidArguments_ReturnsError()
         {
             // Act
-            var exitCode = Backlog.Src.Program.Main("--unknown-arg");
+            var exitCode = Backlog.Program.Main("--unknown-arg");
 
             // Assert
             Assert.Equal(1, exitCode);
@@ -310,20 +339,18 @@ namespace test.backlog.EndToEndTests
         {
             // Setup test environment
             ConfigureTestEnvironment("Money Worries Ltd v Office of Fair Trading");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "Documents\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/Consumer Credit Appeals/Documents/");
             fakeTimeProvider.AdjustTime(new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero));
 
             // Act
             var args = new[] { "--id", "20" }.Concat(extraArgs).ToArray();
-            var exitCode = Backlog.Src.Program.Main(args);
+            var exitCode = Backlog.Program.Main(args);
 
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
             var capturedKey = mockS3Client.CapturedKeys.Single();
             var metadataJson =
-                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+                mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("bulk-metadata.json");
             var jsonNode = JsonNode.Parse(metadataJson);
             var autoPublish = jsonNode!["parameters"]!["INGESTER_OPTIONS"]!["auto_publish"]!.GetValue<bool>();
             Assert.Equal(expectedAutoPublish, autoPublish);

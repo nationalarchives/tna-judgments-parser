@@ -34,6 +34,11 @@ public static class DocumentHelpers
 
     public static byte[] ReadDocx(string resource)
     {
+        return GetEmbeddedResourceAsBytes(resource);
+    }
+    
+    public static byte[] GetEmbeddedResourceAsBytes(string resource)
+    {
         using var stream = GetManifestResourceStream(resource);
         using StreamReader reader = new(stream);
         MemoryStream ms = new();

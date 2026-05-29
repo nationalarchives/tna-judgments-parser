@@ -24,7 +24,7 @@ public partial class MockS3Client : Mock<IAmazonS3>, IDisposable
 
     public MockS3Client()
     {
-        Environment.SetEnvironmentVariable("BUCKET_NAME", TestBucket);
+        Environment.SetEnvironmentVariable("BacklogParser__BucketName", TestBucket);
 
         Setup(x => x.PutObjectAsync(
                 It.Is<PutObjectRequest>(req =>
@@ -53,7 +53,7 @@ public partial class MockS3Client : Mock<IAmazonS3>, IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        Environment.SetEnvironmentVariable("BUCKET_NAME", null);
+        Environment.SetEnvironmentVariable("BacklogParser__BucketName", null);
     }
 
     public void AssertNumberOfUploads(int expectedNumberOfUploads)

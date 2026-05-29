@@ -5,14 +5,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 using Backlog.Csv;
+using Backlog.Options;
+using Backlog.Src;
+using Backlog.Tracking;
 
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-namespace Backlog.Src;
+namespace Backlog;
 
 /// <summary>
 ///     This is the main entry point to the bulk backlog parsing process
@@ -22,28 +27,31 @@ internal class BacklogParserWorker(
     Api.Parser parser,
     BacklogFiles backlogFiles,
     CsvMetadataReader csvMetadataReader,
-    Tracker tracker,
-    Bucket bucket,
-    MetadataTransformer metadataTransformer)
+    ITracker tracker,
+    IBucket bucket,
+    MetadataTransformer metadataTransformer,
+    IOptions<BacklogParserOptions> backlogParserOptions)
 {
-    public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
+    public async Task<int> RunAsync()
     {
         var parserRunId = Guid.NewGuid();
-        var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var skippedCsvLineIdentifiers,
-            out var csvParseErrors, out var numAllLinesInCsv);
+        logger.LogInformation("Starting parser run {ParserRunId}", parserRunId);
+        var lines = csvMetadataReader.Read(out var skippedCsvLineIdentifiers, out var csvParseErrors,
+            out var numAllLinesInCsv);
         if (lines.Count == 0)
         {
             logger.LogCritical("No valid records found in the metadata file");
             return 1;
         }
 
-        if (id.HasValue)
+        var singleIdToRun = backlogParserOptions.Value.SingleIdToRun;
+        if (singleIdToRun.HasValue)
         {
             // Process only the specific ID
-            lines = lines.Where(line => line.id == id.Value.ToString()).ToList();
+            lines = lines.Where(line => line.id == singleIdToRun.ToString()).ToList();
             if (!lines.Any())
             {
-                logger.LogCritical("No valid records found for id {SuppliedId}", id.Value);
+                logger.LogCritical("No valid records found for id {SuppliedId}", singleIdToRun);
                 return 1;
             }
         }
@@ -56,34 +64,30 @@ internal class BacklogParserWorker(
         {
             var line = lines[i];
 
+            Guid? sourceUuid = null;
             try
             {
-                if (tracker.WasDone(line))
+                sourceUuid = Guid.Parse(line.Uuid);
+                if (tracker.IsAlreadySentToIngester(sourceUuid.Value))
                 {
                     logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
                     alreadyDoneLines.Add(line);
                     continue;
                 }
 
+                await tracker.StartTrackingAsync(sourceUuid.Value, line, parserRunId, line.CsvProperties.Hash);
+
                 logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                var bundle = GenerateBundle(line, autoPublish, parserRunId);
+                var bundle = await GenerateBundleAsync(line, parserRunId);
 
                 var bundleFileName = bundle.Uuid + ".tar.gz";
-                var output = Path.Combine(pathToOutputFolder, bundleFileName);
+                var output = Path.Combine(backlogParserOptions.Value.OutputFolderPath, bundleFileName);
                 logger.LogInformation("  Writing to output: {Output}", output);
                 File.WriteAllBytes(output, bundle.TarGz);
 
-                if (isDryRun)
-                {
-                    logger.LogInformation("  This is a dry run - not uploading to S3");
-                }
-                else
-                {
-                    logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                    bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
-                }
+                await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
-                tracker.MarkDone(line, bundle.Uuid);
+                await tracker.UpdateToSentToIngesterAsync(sourceUuid.Value);
                 successfulNewLines.Add(line);
 
                 logger.LogInformation("  success");
@@ -92,6 +96,8 @@ internal class BacklogParserWorker(
             {
                 logger.LogError(ex, "Error processing line {LineId}:", line.id);
                 failedToProcessLines.Add((line, ex));
+                if(sourceUuid.HasValue)
+                    await tracker.UpdateToParserFailedAsync(sourceUuid.Value, ex);
             }
             finally
             {
@@ -99,7 +105,7 @@ internal class BacklogParserWorker(
             }
         }
 
-        LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
+        LogFinalStatistics(alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
             skippedCsvLineIdentifiers, numAllLinesInCsv);
 
         if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
@@ -110,9 +116,9 @@ internal class BacklogParserWorker(
         return 0;
     }
 
-    private static void LogFinalStatistics(ILogger logger, List<CsvLine> alreadyDoneLines,
-        List<CsvLine> successfulNewLines, List<(CsvLine line, Exception exception)> failedToProcessLines,
-        List<string> csvParseErrors, List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv)
+    private void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
+        List<(CsvLine line, Exception exception)> failedToProcessLines, List<string> csvParseErrors,
+        List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv)
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
@@ -250,13 +256,9 @@ internal class BacklogParserWorker(
         return response;
     }
 
-    private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish, Guid parserRunId)
+    private async Task<Bundle> GenerateBundleAsync(CsvLine csvLine, Guid parserRunId)
     {
-        var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
-            ? csvLine.Uuid
-            : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
-
-        var sourceContent = backlogFiles.ReadFile(tdrUuid);
+        var sourceContent = backlogFiles.ReadFile(csvLine.Uuid);
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
@@ -267,9 +269,20 @@ internal class BacklogParserWorker(
 
         var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, csvLine.FileName, mimeType, contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
+        // For files that don't end in docx and aren't stubs, they must have gone through
+        // the parser as a docx. Make sure their filename agrees with that.
+        var bundleSourceFilename = csvLine.FileName;
+        if (!isStub && !csvLine.FileName.EndsWith(".docx", StringComparison.InvariantCultureIgnoreCase))
+        {
+            bundleSourceFilename = csvLine.FileName + ".docx";
+        }
 
-        return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, contentHash,
+            images, response.Meta, externalMetadataFields, !isStub);
+
+        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, contentHash);
+        
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
 
     public static string Hash(byte[] content)

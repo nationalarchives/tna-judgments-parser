@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Backlog.Options;
 using Backlog.Src;
 
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
 
 using TRE.Metadata;
@@ -25,16 +27,20 @@ public class TestMetadataTransformer
 {
     private readonly FakeTimeProvider fakeTimeProvider = new();
     private readonly MetadataTransformer metadataTransformer;
+    private readonly IOptions<BacklogParserOptions> options;
 
     public TestMetadataTransformer()
     {
-        metadataTransformer = new MetadataTransformer(fakeTimeProvider);
+        options = BacklogParserOptionsHelper.Create(autoPublish: true);
+        metadataTransformer = new MetadataTransformer(options, fakeTimeProvider);
     }
 
-    [Fact]
-    public void CreateFullTreMetadata_SetsIngestorOptions()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void CreateFullTreMetadata_SetsIngestorOptions(bool autoPublish)
     {
-        const bool autoPublish = true;
+        options.Value.AutoPublish = autoPublish;
         const string contentHash = "123-456-789";
         const string sourceMimeType = "application/pdf";
         var responseMeta = new Api.Meta { DocumentType = "decision" };
@@ -43,9 +49,9 @@ public class TestMetadataTransformer
         var result = metadataTransformer.CreateFullTreMetadata(
             Guid.NewGuid(),
             "test.pdf",
+            "test.pdf",
             sourceMimeType,
             contentHash,
-            autoPublish,
             [],
             responseMeta,
             [],
@@ -54,6 +60,7 @@ public class TestMetadataTransformer
 
         // Assert
         Assert.Equal(autoPublish, result.Parameters.IngestorOptions.AutoPublish);
+        Assert.True(result.Parameters.IngestorOptions.ErrorOnExistingDocument);
         Assert.Equal(sourceMimeType, result.Parameters.IngestorOptions.Source.Format);
         Assert.Equal(contentHash, result.Parameters.IngestorOptions.Source.Hash);
     }
@@ -97,10 +104,10 @@ public class TestMetadataTransformer
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
             parserRunId,
-            "test.docx",
+            "test.doc.docx",
+            "test.doc",
             "application/pdf",
             "1234-456-789",
-            true,
             [],
             responseMeta,
             externalMetadataFields,
@@ -122,7 +129,7 @@ public class TestMetadataTransformer
         Assert.Equal(externalMetadataFields, result.Parameters.PARSER.MetadataFields);
         Assert.Equal(xmlContainsDocumentText, result.Parameters.PARSER.XmlContainsDocumentText);
 
-        Assert.Equal("test.docx", result.Parameters.PARSER.PrimarySource.Filename);
+        Assert.Equal("test.doc", result.Parameters.PARSER.PrimarySource.Filename);
         Assert.Equal("application/pdf", result.Parameters.PARSER.PrimarySource.Mimetype);
         Assert.Equal(Route.Bulk, result.Parameters.PARSER.PrimarySource.Route);
         Assert.Equal("1234-456-789", result.Parameters.PARSER.PrimarySource.Sha256);
@@ -144,9 +151,9 @@ public class TestMetadataTransformer
         var result = metadataTransformer.CreateFullTreMetadata(
             Guid.NewGuid(),
             sourceFilename,
+            sourceFilename,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
-            false,
             images,
             new Api.Meta { DocumentType = "decision" },
             [],
@@ -166,10 +173,10 @@ public class TestMetadataTransformer
 
         var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
             parserRunId,
-            "test-file.docx",
+            "test-file.doc.docx",
+            "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
-            false,
             [],
             new Api.Meta { DocumentType = "decision" },
             [],
@@ -177,10 +184,10 @@ public class TestMetadataTransformer
         );
         var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
             parserRunId,
-            "test-file.docx",
+            "test-file.doc.docx",
+            "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
-            false,
             [],
             new Api.Meta { DocumentType = "decision" },
             [],

@@ -19,7 +19,7 @@ namespace test.backlog.EndToEndTests;
 public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
     private const int DocIdWithJurisdiction = 70;
-    private const string JudgmentsFilePath = @"JudgmentFiles\";
+    private const string Uuid = "c2d8f30f-7b43-4fdc-a54f-ac4a526fedda";
     private string? courtMetadataPath;
     private string? tempDataDir;
 
@@ -33,7 +33,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         base.Dispose(disposing);
     }
 
-    private void ConfigureTestEnvironment(string originalFileName, int? testJudgmentNumber)
+    private void ConfigureTestEnvironment(int? testJudgmentNumber)
     {
         // Create directories
         tempDataDir = Path.Combine(Path.GetTempPath(), $"FilesTest_{Guid.NewGuid()}");
@@ -45,14 +45,9 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         var courtDocumentsDir = Path.Combine(tempDataDir, "court_documents");
         Directory.CreateDirectory(courtDocumentsDir);
 
-        var tdrMetadataDir = Path.Combine(tempDataDir, "tdr_metadata");
-        Directory.CreateDirectory(tdrMetadataDir);
-
         // Create files
-        const string uuid = "test-uuid-12345";
         var contents = testJudgmentNumber is not null ? DocumentHelpers.ReadDocx(testJudgmentNumber.Value) : [1,2,3,4];
-        File.WriteAllBytes(Path.Combine(courtDocumentsDir, uuid), contents);
-        WriteTransferMetaDataCsv(uuid, tdrMetadataDir, originalFileName);
+        File.WriteAllBytes(Path.Combine(courtDocumentsDir, Uuid), contents);
 
         // Set environment variables
         courtMetadataPath = Path.Combine(tempDataDir, "court_metadata.csv");
@@ -61,23 +56,10 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         SetPathEnvironmentVariables(tempDataDir, outputPath, courtMetadataPath, trackerPath);
     }
 
-    private static void WriteTransferMetaDataCsv(string uuid, string tdrMetadataDir, string originalFileName)
-    {
-        const string hmctsFilePath = "data/HMCTS_Judgment_Files/";
-        Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", hmctsFilePath);
-        var transferMetadataContent =
-            $@"file_reference,file_name,file_type,file_size,clientside_original_filepath,rights_copyright,legal_status,held_by,date_last_modified,closure_type,closure_start_date,closure_period,foi_exemption_code,foi_exemption_asserted,title_closed,title_alternate,description,description_closed,description_alternate,language,end_date,file_name_translation,original_filepath,parent_reference,former_reference_department,UUID
-TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyright,Public Record(s),""The National Archives, Kew"",2023-01-01T00:00:00,Open,,,,,false,,,false,,English,,,,,,{uuid}";
-        var transferMetadataPath = Path.Combine(tdrMetadataDir, "file-metadata.csv");
-        File.WriteAllText(transferMetadataPath, transferMetadataContent);
-    }
-
     private void WriteCourtMetadataCsv(params CsvLine[] metadataLines)
     {
-        Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", JudgmentsFilePath);
-
         var headerLine =
-            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving,skip,NCN";
+            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving,skip,NCN,UUID";
         var csvMetadataLines = new List<string> { headerLine };
         csvMetadataLines.AddRange(metadataLines.Select(metadataLine =>
         {
@@ -93,7 +75,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                 caseNumbers = $"\"{caseNumbers}\"";
             }
 
-            return $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.DecisionDateTime:yyyy-MM-dd},{caseNumbers},{metadataLine.Court},{metadataLine.Appellants},{metadataLine.Claimants},{metadataLine.Respondent},{jurisdictions},{metadataLine.WebArchiving},{(metadataLine.Skip ? "skip" : "")},{metadataLine.Ncn}";
+            return $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.DecisionDateTime:yyyy-MM-dd},{caseNumbers},{metadataLine.Court},{metadataLine.Appellants},{metadataLine.Claimants},{metadataLine.Respondent},{jurisdictions},{metadataLine.WebArchiving},{(metadataLine.Skip ? "skip" : "")},{metadataLine.Ncn},{metadataLine.Uuid}";
         }));
 
         var metadataPath = courtMetadataPath ??
@@ -108,12 +90,12 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         const int docWithoutJurisdictionsId = 21;
         var originalFileName = $"test{docWithoutJurisdictionsId}.docx";
 
-        ConfigureTestEnvironment(originalFileName, docWithoutJurisdictionsId);
+        ConfigureTestEnvironment(docWithoutJurisdictionsId);
 
         var metadataLine = new CsvLine
         {
             id = docWithoutJurisdictionsId.ToString(),
-            FilePath = $"{JudgmentsFilePath}{originalFileName}",
+            FilePath = originalFileName,
             Extension = ".docx",
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["new case number"],
@@ -122,12 +104,13 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
             WebArchiving = "my web archiving link",
-            Ncn = "[1989] UKUT 1234 (LC)"
+            Ncn = "[1989] UKUT 1234 (LC)",
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -161,12 +144,12 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     {
         var originalFileName = "test.pdf";
 
-        ConfigureTestEnvironment(originalFileName, null);
+        ConfigureTestEnvironment(null);
 
         var metadataLine = new CsvLine
         {
             id = "42",
-            FilePath = $"{JudgmentsFilePath}{originalFileName}",
+            FilePath = originalFileName,
             Extension = ".pdf",
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["new case number"],
@@ -175,12 +158,13 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             Claimants = "new claimants",
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
-            WebArchiving = "my web archiving link"
+            WebArchiving = "my web archiving link",
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -211,25 +195,26 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     {
         var originalFileName = $"test{DocIdWithJurisdiction}.docx";
 
-        ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
+        ConfigureTestEnvironment(DocIdWithJurisdiction);
 
         // Metadata
         var metadataLine = new CsvLine
         {
             id = DocIdWithJurisdiction.ToString(),
-            FilePath = $"{JudgmentsFilePath}{originalFileName}",
+            FilePath = originalFileName,
             Extension = ".docx",
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["new case number"],
             Court = "UKFTT-GRC",
             Appellants = "new appellants",
             Respondent = "new respondent",
-            Jurisdictions = ["A jurisdiction which is not in the original document"]
+            Jurisdictions = ["A jurisdiction which is not in the original document"],
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         //Assert
         Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
@@ -241,25 +226,26 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     {
         var originalFileName = $"test{DocIdWithJurisdiction}.docx";
 
-        ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
+        ConfigureTestEnvironment(DocIdWithJurisdiction);
 
         // Metadata
         var metadataLine = new CsvLine
         {
             id = DocIdWithJurisdiction.ToString(),
-            FilePath = $"{JudgmentsFilePath}{originalFileName}",
+            FilePath = originalFileName,
             Extension = ".docx",
             DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["EA/2023/0132"],
             Court = "UKFTT-GRC",
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
-            Jurisdictions = ["InformationRights", "new jurisdiction"]
+            Jurisdictions = ["InformationRights", "new jurisdiction"],
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         // Assert program finished successfully
         AssertProgramExitedSuccessfully(exitCode);
@@ -307,7 +293,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     private XmlDocument GetXmlDocumentFromS3()
     {
         var key = mockS3Client.CapturedKeys.Single();
-        var actualXml = ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(key), @"\.xml$");
+        var actualXml = mockS3Client.GetCapturedContent(key).GetFileFromZippedContentAsString("judgment.xml");
         PrintToOutputWithNumberedLines(actualXml);
         var doc = new XmlDocument();
         doc.LoadXml(actualXml);
@@ -319,13 +305,13 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     {
         var originalFileName = $"test{DocIdWithJurisdiction}.docx";
 
-        ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
+        ConfigureTestEnvironment(DocIdWithJurisdiction);
 
         // Metadata
         var metadataLine = new CsvLine
         {
             id = DocIdWithJurisdiction.ToString(),
-            FilePath = $"{JudgmentsFilePath}{originalFileName}",
+            FilePath = originalFileName,
             Extension = ".docx",
             DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["EA/2023/0132"],
@@ -333,12 +319,13 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             Court = "UKFTT-GRC",
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
-            Jurisdictions = ["InformationRights"]
+            Jurisdictions = ["InformationRights"],
+            Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Src.Program.Main([]);
+        var exitCode = Backlog.Program.Main([]);
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
