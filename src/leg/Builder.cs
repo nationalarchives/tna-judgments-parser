@@ -36,6 +36,40 @@ class Builder : AkN.Builder {
         block.SetAttribute("headingSignal", UKNS, classification.Value.Signal.ToString());
     }
 
+    /// <summary>
+    /// Leg HTML output drops cosmetic table-cell styles Word inherits but
+    /// the rendered legislation pages don't want: white / transparent
+    /// backgrounds (the page background shows through), and per-cell
+    /// <c>border-*</c> (the table-class CSS supplies borders consistently).
+    /// For genuinely dark cell backgrounds we force <c>color:#ffffff</c> so
+    /// black text stays legible. Leg-only — judgment/lawmaker keep main's
+    /// table-cell output.
+    /// </summary>
+    protected override void ApplyTableCellStyleCleanup(ICell cell, Dictionary<string, string> styles) {
+        if (styles.TryGetValue("background-color", out string bg) &&
+            (bg == "initial" || bg == "transparent" || bg == "#ffffff" || bg == "#FFFFFF" || bg == "white"))
+            styles.Remove("background-color");
+        foreach (var key in styles.Keys.Where(k => k.StartsWith("border")).ToList())
+            styles.Remove(key);
+        if (styles.TryGetValue("background-color", out string bgValue) && IsDarkColor(bgValue) && !styles.ContainsKey("color"))
+            styles["color"] = "#ffffff";
+    }
+
+    /// <summary>BT.601 luma; below ~128 is dark enough that black text would not be legible.</summary>
+    private static bool IsDarkColor(string color) {
+        if (string.IsNullOrEmpty(color))
+            return false;
+        string hex = color.StartsWith("#") ? color.Substring(1) : color;
+        if (hex.Length == 3)
+            hex = $"{hex[0]}{hex[0]}{hex[1]}{hex[1]}{hex[2]}{hex[2]}";
+        if (hex.Length != 6 || !int.TryParse(hex, System.Globalization.NumberStyles.HexNumber, null, out int rgb))
+            return false;
+        int r = (rgb >> 16) & 0xFF;
+        int g = (rgb >> 8) & 0xFF;
+        int b = rgb & 0xFF;
+        return (r * 0.299 + g * 0.587 + b * 0.114) < 128;
+    }
+
     private readonly string manifestationName;
 
     private Builder(string manifestationName) {
