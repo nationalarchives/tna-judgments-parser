@@ -70,7 +70,9 @@ internal static class DocxLastModified {
     }
 
     private static DateTime? ReadModifiedFromCoreXml(Stream stream) {
-        var xml = new XmlDocument();
+        // XmlResolver null disables external entity / DTD resolution (XXE hardening).
+        // It is the default on .NET 8 but set explicitly to make intent clear.
+        var xml = new XmlDocument { XmlResolver = null };
         try {
             xml.Load(stream);
         } catch (XmlException) {
