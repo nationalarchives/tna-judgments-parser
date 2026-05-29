@@ -135,21 +135,6 @@ internal static class TocGenerator {
         return added;
     }
 
-    private delegate void TocEmitter(XmlElement element, int tocNumber);
-
-    private static int WalkAndEmit(XmlDocument xml, XmlElement toc, string xpath, XmlNamespaceManager nsmgr, ref int tocNumber, TocEmitter emit) {
-        var nodes = xml.SelectNodes(xpath, nsmgr);
-        if (nodes == null) return 0;
-        int added = 0;
-        foreach (XmlElement element in nodes) {
-            int before = toc.ChildNodes.Count;
-            emit(element, tocNumber);
-            if (toc.ChildNodes.Count > before) added++;
-            tocNumber++;
-        }
-        return added;
-    }
-
     private static int PopulateFromAttachments(XmlDocument xml, XmlElement toc, string expressionUri, XmlNamespaceManager nsmgr) {
         var annexBodies = xml.SelectNodes("//akn:attachments/akn:attachment/akn:doc/akn:mainBody", nsmgr);
         if (annexBodies == null || annexBodies.Count == 0) return 0;
