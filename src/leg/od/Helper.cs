@@ -17,11 +17,11 @@ class Helper : BaseHelper {
 
     private Helper() : base(LegislativeDocumentConfig.ForOtherDocuments()) { }
 
-    public static new IXmlDocument Parse(Stream docx, bool simplify = true) {
+    public static IXmlDocument Parse(Stream docx, bool simplify = true) {
         return Parse(docx, null, simplify);
     }
 
-    public static new IXmlDocument Parse(byte[] docx, bool simplify = true) {
+    public static IXmlDocument Parse(byte[] docx, bool simplify = true) {
         return Parse(docx, null, simplify);
     }
 
