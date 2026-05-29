@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +10,6 @@ using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace Backlog.Src
 {
-
     internal class Stub
     {
         internal static Stub Make(StubMetadata data)
@@ -38,6 +36,7 @@ namespace Backlog.Src
             parent.AppendChild(e);
             return e;
         }
+
         private Stub(StubMetadata data)
         {
             Data = data;
@@ -125,7 +124,8 @@ namespace Backlog.Src
             lifecycle.SetAttribute("source", "#");
             XmlElement eventRef = CreateAndAppend("eventRef", lifecycle);
             eventRef.SetAttribute("date", Data.Date.Date);
-            eventRef.SetAttribute("refersTo", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
+            eventRef.SetAttribute("refersTo",
+                "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
             eventRef.SetAttribute("source", "#");
         }
 
@@ -144,6 +144,7 @@ namespace Backlog.Src
                 tldOrg.SetAttribute("href", Data.Court.URL);
                 tldOrg.SetAttribute("showAs", Data.Court.Name);
             }
+
             XmlElement tlcEvent = CreateAndAppend("TLCEvent", references);
             tlcEvent.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
             tlcEvent.SetAttribute("href", "#");
@@ -168,7 +169,7 @@ namespace Backlog.Src
                 proprietary.AppendChild(jurisdictionNode);
                 jurisdictionNode.AppendChild(Document.CreateTextNode(jurisdiction.ShortName));
             }
-            
+
             XmlElement year = CreateAndAppendUK("year", proprietary);
             proprietary.AppendChild(year);
             year.AppendChild(Document.CreateTextNode(Data.Date.Date[..4]));
@@ -177,8 +178,8 @@ namespace Backlog.Src
                 XmlElement number = CreateAndAppendUK("caseNumber", proprietary);
                 proprietary.AppendChild(number);
                 number.AppendChild(Document.CreateTextNode(caseNo));
-
             }
+
             foreach (UK.Gov.NationalArchives.CaseLaw.Model.Party pty in Data.Parties)
             {
                 XmlElement party = CreateAndAppendUK("party", proprietary);
@@ -186,32 +187,38 @@ namespace Backlog.Src
                 party.SetAttribute("role", pty.Role.ShowAs());
                 party.AppendChild(Document.CreateTextNode(pty.Name));
             }
+
             foreach (var cat in Data.Categories)
             {
                 AddCategory(proprietary, cat);
             }
+
             if (!string.IsNullOrWhiteSpace(Data.Cite))
             {
                 XmlElement cite = CreateAndAppendUK("cite", proprietary);
                 proprietary.AppendChild(cite);
                 cite.AppendChild(Document.CreateTextNode(Data.Cite));
             }
+
             if (!string.IsNullOrWhiteSpace(Data.WebArchivingLink))
             {
                 XmlElement webarchivingNode = CreateAndAppendUK("webarchiving", proprietary);
                 proprietary.AppendChild(webarchivingNode);
                 webarchivingNode.AppendChild(Document.CreateTextNode(Data.WebArchivingLink));
             }
+
             XmlElement sourceFormat = CreateAndAppendUK("sourceFormat", proprietary);
             proprietary.AppendChild(sourceFormat);
             sourceFormat.AppendChild(Document.CreateTextNode(Data.SourceFormat));
 
             XmlElement parser = CreateAndAppendUK("parser", proprietary);
             proprietary.AppendChild(parser);
-            parser.AppendChild(Document.CreateTextNode(UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion()));
+            parser.AppendChild(
+                Document.CreateTextNode(UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion()));
         }
 
-        internal static XmlElement AddProprietaryField(XmlElement proprietary, string name, string value) {
+        internal static XmlElement AddProprietaryField(XmlElement proprietary, string name, string value)
+        {
             XmlElement proprietaryField = proprietary.OwnerDocument.CreateElement("uk", name, UKNS);
             proprietary.AppendChild(proprietaryField);
             var text = proprietary.OwnerDocument.CreateTextNode(value);
@@ -219,7 +226,8 @@ namespace Backlog.Src
             return proprietaryField;
         }
 
-        internal static void AddCategory(XmlElement proprietary, ICategory value) {
+        internal static void AddCategory(XmlElement proprietary, ICategory value)
+        {
             var proprietaryWithCategory = AddProprietaryField(proprietary, "category", value.Name);
             if (value.Parent is not null)
                 proprietaryWithCategory.SetAttribute("parent", value.Parent);
@@ -246,12 +254,11 @@ namespace Backlog.Src
             Serializer.Serialize(Document, stream);
         }
 
-        public string Serialize() {
-            using MemoryStream stream = new ();
+        public string Serialize()
+        {
+            using MemoryStream stream = new();
             Serialize(stream);
             return System.Text.Encoding.UTF8.GetString(stream.ToArray());
         }
-
     }
-
 }

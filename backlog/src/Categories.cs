@@ -1,12 +1,11 @@
-
 using System.Collections.Generic;
 
 namespace Backlog.Src
 {
-
     class Categories
     {
-        private static readonly Dictionary<int, (string Subcategory, string Category)> _ = new() {
+        private static readonly Dictionary<int, (string Subcategory, string Category)> _ = new()
+        {
             { 1, ("Refusal to register", "Appeals") },
             { 2, ("Withdrawal of exemption", "Appeals") },
             { 3, ("Limited registration", "Appeals") },
@@ -23,7 +22,5 @@ namespace Backlog.Src
         {
             return _[code];
         }
-
     }
-
 }

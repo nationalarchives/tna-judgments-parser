@@ -22,17 +22,13 @@ internal record CsvLine
     public (string Name, string Hash) CsvProperties { get; set; }
     public Dictionary<string, string> FullCsvLineContents { get; set; } = [];
 
-    [Required(AllowEmptyStrings = false)]
-    public required string id { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string id { get; set; }
 
-    [Required(AllowEmptyStrings = false)]
-    public required string Court { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string Court { get; set; }
 
-    [Required(AllowEmptyStrings = false)]
-    public required string FilePath { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string FilePath { get; set; }
 
-    [Required(AllowEmptyStrings = false)]
-    public required string Extension { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string Extension { get; set; }
 
     public required DateTime DecisionDateTime { get; set; }
 
@@ -44,38 +40,27 @@ internal record CsvLine
     [TypeConverter(typeof(DelimitedArrayConverter))]
     public string[] Jurisdictions { get; set; } = [];
 
-    [Optional]
-    public string? Claimants { get; set; }
+    [Optional] public string? Claimants { get; set; }
 
-    [Optional]
-    public string? Appellants { get; set; }
+    [Optional] public string? Appellants { get; set; }
 
-    [Required(AllowEmptyStrings = false)]
-    public required string Respondent { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string Respondent { get; set; }
 
-    [Optional]
-    public string? MainCategory { get; set; }
+    [Optional] public string? MainCategory { get; set; }
 
-    [Optional]
-    public string? MainSubcategory { get; set; }
+    [Optional] public string? MainSubcategory { get; set; }
 
-    [Optional]
-    public string? SecCategory { get; set; }
+    [Optional] public string? SecCategory { get; set; }
 
-    [Optional]
-    public string? SecSubcategory { get; set; }
+    [Optional] public string? SecSubcategory { get; set; }
 
-    [Optional]
-    public string? Ncn { get; set; }
+    [Optional] public string? Ncn { get; set; }
 
-    [Optional]
-    public string? HeadnoteSummary { get; set; }
+    [Optional] public string? HeadnoteSummary { get; set; }
 
-    [Optional]
-    public string? WebArchiving { get; set; }
+    [Optional] public string? WebArchiving { get; set; }
 
-    [Required(AllowEmptyStrings = false)]
-    public required string Uuid { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string Uuid { get; set; }
 
     [Default(false)]
     [TypeConverter(typeof(BooleanSkipConverter))]

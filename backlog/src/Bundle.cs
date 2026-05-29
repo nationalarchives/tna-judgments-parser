@@ -44,11 +44,7 @@ namespace Backlog.Src
 
             var tarGz = memStream.ToArray();
 
-            return new Bundle
-            {
-                Uuid = treReference,
-                TarGz = tarGz
-            };
+            return new Bundle { Uuid = treReference, TarGz = tarGz };
         }
 
         private static void WriteXml(string xml, string name, TarOutputStream tar)

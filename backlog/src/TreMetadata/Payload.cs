@@ -4,7 +4,6 @@ namespace Backlog.TreMetadata;
 
 internal class Payload
 {
-
     public required string Filename { get; init; }
 
     public string Xml { get; init; } = "judgment.xml";
@@ -14,5 +13,4 @@ internal class Payload
     public string[] Images { get; init; } = [];
 
     public string? Log { get; init; } = "parser.log";
-
 }

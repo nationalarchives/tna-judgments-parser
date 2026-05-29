@@ -96,7 +96,7 @@ internal class BacklogParserWorker(
             {
                 logger.LogError(ex, "Error processing line {LineId}:", line.id);
                 failedToProcessLines.Add((line, ex));
-                if(sourceUuid.HasValue)
+                if (sourceUuid.HasValue)
                     await tracker.UpdateToParserFailedAsync(sourceUuid.Value, ex);
             }
             finally
@@ -124,8 +124,9 @@ internal class BacklogParserWorker(
         var markedAsSkipIds = numSkippedCsvLines > 0
             ? StringJoinFirstFive(skippedCsvLineIdentifiers, ", ")
             : string.Empty;
-        var successfulFileExtensionBreakdown = string.Join(", ", successfulNewLines.GroupBy(l => l.Extension).Select(g => $"{g.Count()} {g.Key}"));
-        
+        var successfulFileExtensionBreakdown = string.Join(", ",
+            successfulNewLines.GroupBy(l => l.Extension).Select(g => $"{g.Count()} {g.Key}"));
+
         logger.LogInformation("""
                               ---------------------------
                               Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
@@ -172,7 +173,8 @@ internal class BacklogParserWorker(
 
             var groupedErrorDescriptions = failedIdsGroupedByErrorMessage.Select(groupOfErrors =>
                 $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({StringJoinFirstFive(groupOfErrors, ", ")})");
-            var failedFileExtensionBreakdown = string.Join(", ", failedToProcessLines.GroupBy(l => l.line.Extension).Select(g => $"{g.Count()} {g.Key}"));
+            var failedFileExtensionBreakdown = string.Join(", ",
+                failedToProcessLines.GroupBy(l => l.line.Extension).Select(g => $"{g.Count()} {g.Key}"));
 
             logger.LogError("""
                             ---------------------------
@@ -277,11 +279,13 @@ internal class BacklogParserWorker(
             bundleSourceFilename = csvLine.FileName + ".docx";
         }
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, contentHash,
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename,
+            csvLine.FileName, mimeType, contentHash,
             images, response.Meta, externalMetadataFields, !isStub);
 
-        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, contentHash);
-        
+        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference,
+            response.Meta.Cite, contentHash);
+
         return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
 
