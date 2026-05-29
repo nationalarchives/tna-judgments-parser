@@ -93,7 +93,6 @@ public class TestIA {
   <xsl:template match='ukm:Date'/>
   <xsl:template match='ukm:Year'/>
   <xsl:template match='ukm:Number'/>
-  <xsl:template match='ukm:PdfDate'/>
   <xsl:template match='ukm:LegislationClass'/>
   <xsl:template match='@*|node()'>
     <xsl:copy>

@@ -108,8 +108,7 @@ internal static class AssociatedDocumentMapping {
                 LegislationYear = legYear,
                 LegislationNumber = legNumber,
                 LegislationTitle = Unquote(parts[14]?.Trim() ?? ""),
-                DocumentStage = parts.Length > 15 ? Unquote(parts[15]?.Trim() ?? "") : "",
-                PdfDate = parts.Length > 16 ? Unquote(parts[16]?.Trim() ?? "") : ""
+                DocumentStage = parts.Length > 15 ? Unquote(parts[15]?.Trim() ?? "") : ""
             };
         }
 
@@ -200,7 +199,6 @@ internal class AssociatedDocumentRecord {
     public string LegislationNumber { get; init; }
     public string LegislationTitle { get; init; }
     public string DocumentStage { get; init; }
-    public string PdfDate { get; init; }
 }
 
 }

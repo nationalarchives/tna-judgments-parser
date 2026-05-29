@@ -320,12 +320,6 @@ class Builder : AkN.Builder {
                 date.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
             }
 
-            if (!string.IsNullOrEmpty(iaMetadata.PDFDate)) {
-                XmlElement pdfDate = doc.CreateElement("ukm", "PdfDate", UKM_NS);
-                proprietary.AppendChild(pdfDate);
-                pdfDate.SetAttribute("Value", iaMetadata.PDFDate);
-            }
-
             if (iaMetadata.UkiaYear.HasValue) {
                 XmlElement year = doc.CreateElement("ukm", "Year", UKM_NS);
                 proprietary.AppendChild(year);
