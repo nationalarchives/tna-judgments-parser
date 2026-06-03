@@ -264,7 +264,7 @@ internal class BacklogParserWorker(
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
         var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
 
-        var contentHash = Hash(sourceContent);
+        var sourceHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
 
         var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
@@ -277,10 +277,10 @@ internal class BacklogParserWorker(
             bundleSourceFilename = csvLine.FileName + ".docx";
         }
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, contentHash,
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, sourceHash,
             images, response.Meta, externalMetadataFields, !isStub);
 
-        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, contentHash);
+        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash);
         
         return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
