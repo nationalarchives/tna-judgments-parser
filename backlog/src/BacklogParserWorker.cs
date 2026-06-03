@@ -287,6 +287,7 @@ internal class BacklogParserWorker(
 
     public static string Hash(byte[] content)
     {
+        // This is the hash of the source document
         var hash = SHA256.HashData(content);
         return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
     }

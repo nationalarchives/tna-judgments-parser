@@ -815,7 +815,7 @@ abstract class Builder {
     }
 
     protected static void AddHash(XmlDocument akn, string ns) {
-        string value = SHA256.Hash(akn);
+        string value = ContentHash.CalculateContentHash(akn);
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary", nsmgr);

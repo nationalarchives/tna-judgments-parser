@@ -1,6 +1,6 @@
 
 using System.IO;
-using Crypto = System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -8,7 +8,7 @@ using System.Xml.Xsl;
 
 namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
 
-public class SHA256 {
+public class ContentHash {
 
     private static string xslt = @"<?xml version='1.0'?>
     <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' version='1.0'>
@@ -28,10 +28,10 @@ public class SHA256 {
         return textWriter.ToString();
     }
 
-    internal static string Hash(XmlDocument akn) {
+    internal static string CalculateContentHash(XmlDocument akn) {
         string text = RemoveMetadata(akn);
         text = Regex.Replace(text, @"\s", "").Normalize();
-        byte[] hash = Crypto.SHA256.HashData(Encoding.UTF8.GetBytes(text));
+        byte[] hash = SHA256.HashData(Encoding.UTF8.GetBytes(text));
         return System.BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
     }
 
