@@ -160,9 +160,9 @@ namespace test.backlog.EndToEndTests
         [InlineData("2002-010.doc.docx", "test.backlog.test_data.Altaf_Ebrahim_t_a_Ebrahim___Co_v_OISC.court_documents.e14fb247-5d9b-42b8-9238-52ae3bd8345b.docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", 5)]
         [InlineData("D 2011 306 Sultan  Others.docx", "test.backlog.test_data.Sultan_Others.court_documents.3cf61114-2d77-4e7a-aba0-6891faaf9d39.docx", "Sultan Others", 1243)]
         [InlineData("CCA20120008_20130118_order_appeal_discontinued.pdf", "test.backlog.test_data.Money_Worries_Ltd_v_Office_of_Fair_Trading.court_documents.ac4e30ac-416c-494d-8a76-a0dee0ca93bc", "Money Worries Ltd v Office of Fair Trading", 20)]
+        [InlineData("original, document, name.docx", "test.backlog.test_data.DocxWithNcn.court_documents.f89b65cc-6709-4a2f-bc34-a2e21372dea6.docx", "DocxWithNcn", 42)]
         public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string fileName, string resourceName,
-            string testCaseName,
-            uint docId)
+            string testCaseName, uint docId)
         {
             // Setup test environment
             ConfigureTestEnvironment(testCaseName);
