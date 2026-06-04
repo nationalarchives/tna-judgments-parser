@@ -154,7 +154,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["new case number"],
             Court = "UKUT-LC",
-            Ncn = "new ncn",
+            Ncn = "[1989] UKUT 001234 (LC)",
             Claimants = "new claimants",
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
@@ -164,7 +164,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -175,7 +175,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         doc.HasSingleNodeWithName("proprietary")
            .Which().HasChildrenMatching(
                child => child.Should().Match("uk:court", "UKUT-LC"),
-               child => child.Should().Match("uk:cite", "new ncn"),
+               child => child.Should().Match("uk:cite", "[1989] UKUT 1234 (LC)"),
                child => child.Should().Match("uk:caseNumber", "new case number"),
                child => child.Should().Match("uk:party", "new claimants", ("role", "Claimant")),
                child => child.Should().Match("uk:party", "new respondent", ("role", "Respondent")),

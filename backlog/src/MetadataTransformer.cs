@@ -86,7 +86,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
-            Cite = line.Ncn,
+            Cite = line.CleanedNcn,
             WebArchivingLink = line.WebArchiving
         };
         return meta;
