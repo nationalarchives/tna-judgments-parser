@@ -313,13 +313,13 @@ public class TestMetadataTransformer
     }
 
     [Fact]
-    public void CsvLineToMetadataFields_Ncn_IsIncludedWhenPresent()
+    public void CsvLineToMetadataFields_Ncn_IncludesCleanedNcnWhenPresent()
     {
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "NCN123" };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2025] UKUT 0027 (LC)" };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        AssertHasSingleMetadataFieldWithValue("NCN123", MetadataFieldName.Ncn, fields);
+        AssertHasSingleMetadataFieldWithValue("[2025] UKUT 27 (LC)", MetadataFieldName.Ncn, fields);
     }
 
     [Fact]
