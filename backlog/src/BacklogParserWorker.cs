@@ -226,7 +226,7 @@ internal class BacklogParserWorker(
                 Meta = new Api.Meta
                 {
                     DocumentType = "decision",
-                    Cite = csvLine.Ncn,
+                    Cite = csvLine.CleanedNcn,
                     Court = csvLine.Court,
                     Date = csvLine.DecisionDateTime.ToString("yyyy-MM-dd"),
                     Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,

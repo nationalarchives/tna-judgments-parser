@@ -104,7 +104,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
             WebArchiving = "my web archiving link",
-            Ncn = "[1989] UKUT 1234 (LC)",
+            Ncn = "[1989] UKUT 001234 (LC)",
             Uuid = Uuid
         };
         WriteCourtMetadataCsv(metadataLine);
@@ -154,7 +154,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["new case number"],
             Court = "UKUT-LC",
-            Ncn = "new ncn",
+            Ncn = "[1989] UKUT 001234 (LC)",
             Claimants = "new claimants",
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
@@ -164,7 +164,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -175,7 +175,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         doc.HasSingleNodeWithName("proprietary")
            .Which().HasChildrenMatching(
                child => child.Should().Match("uk:court", "UKUT-LC"),
-               child => child.Should().Match("uk:cite", "new ncn"),
+               child => child.Should().Match("uk:cite", "[1989] UKUT 1234 (LC)"),
                child => child.Should().Match("uk:caseNumber", "new case number"),
                child => child.Should().Match("uk:party", "new claimants", ("role", "Claimant")),
                child => child.Should().Match("uk:party", "new respondent", ("role", "Respondent")),
@@ -315,7 +315,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Extension = ".docx",
             DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["EA/2023/0132"],
-            Ncn = "[2023] UKFTT 916 (GRC)",
+            Ncn = "[2023] UKFTT 00916 (GRC)",
             Court = "UKFTT-GRC",
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
@@ -325,7 +325,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = Backlog.Program.Main();
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -375,6 +375,9 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
                                ("shortForm", "InformationRights"))
            );
 
+        doc.HasSingleNodeWithName("neutralCitation")
+           .Which().Should().HaveValue("[2023] UKFTT 00916 (GRC)");
+        
         doc.HasSingleNodeWithName("docJurisdiction")
            .Which().Should().HaveValueMatching("Information Rights")
            .And().Attributes.ThatMatch(

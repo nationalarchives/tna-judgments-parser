@@ -86,7 +86,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
-            Cite = line.Ncn,
+            Cite = line.CleanedNcn,
             WebArchivingLink = line.WebArchiving
         };
         return meta;
@@ -117,7 +117,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
 
         if (csvLine.Ncn is not null)
         {
-            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.Ncn, csvLine.Ncn));
+            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.Ncn, csvLine.CleanedNcn));
         }
 
         if (csvLine.HeadnoteSummary is not null)
