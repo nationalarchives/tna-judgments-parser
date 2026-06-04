@@ -10,6 +10,25 @@ namespace test.backlog.MetadataTests;
 
 public class TestCsvLine
 {
+    [Theory]
+    [InlineData(null, null)]
+    [InlineData("[2025] UKUT 2 (LC)", "[2025] UKUT 2 (LC)")]
+    [InlineData("[2025] UKUT 0002 (LC)", "[2025] UKUT 2 (LC)")]
+    [InlineData("[2025] UKUT 27 (LC)", "[2025] UKUT 27 (LC)")]
+    [InlineData("[2025] UKUT 0027 (LC)", "[2025] UKUT 27 (LC)")]
+    [InlineData("[2025] UKUT 0207 (LC)", "[2025] UKUT 207 (LC)")]
+    [InlineData("[2025] UKUT 0270 (LC)", "[2025] UKUT 270 (LC)")]
+    [InlineData("[2025] UKUT 2070 (LC)", "[2025] UKUT 2070 (LC)")]
+    [InlineData("[2025] EWCR 3", "[2025] EWCR 3")]
+    [InlineData("[2025] EWCR 0003", "[2025] EWCR 3")]
+    [InlineData("[2025] EWCR 0030", "[2025] EWCR 30")]
+    [InlineData("[2014] EWHC 1195 (Mercantile)", "[2014] EWHC 1195 (Mercantile)")]
+    public void CleanedNcn_StripsLeadingZeros(string? originalNcn, string? cleanedNcn)
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = originalNcn };
+
+        Assert.Equal(cleanedNcn, csvLine.CleanedNcn);
+    }
 
     [Fact]
     public void FirstPartyName_WithClaimants_ReturnsClaimants()
