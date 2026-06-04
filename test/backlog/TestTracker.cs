@@ -11,6 +11,8 @@ using Backlog.Tracking;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
 
+using test.Mocks;
+
 using Xunit;
 
 namespace test.backlog;
@@ -24,6 +26,7 @@ public class TestTracker
 
     private readonly FakeTimeProvider fakeTimeProvider = new();
     private readonly MockFileSystem mockFileSystem = new();
+    private readonly MockLogger<Tracker> mockLogger = new();
 
     private readonly IOptions<BacklogParserOptions> options =
         BacklogParserOptionsHelper.Create(trackerFilePath: TrackerFilePath);
@@ -33,7 +36,7 @@ public class TestTracker
         var fullTrackerContents = string.Join(Environment.NewLine, trackerDataLines.Prepend(TrackerCsvHeader));
 
         mockFileSystem.AddFile(TrackerFilePath, new MockFileData(fullTrackerContents));
-        return new Tracker(options, mockFileSystem, fakeTimeProvider);
+        return new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
     }
 
     [Fact]
