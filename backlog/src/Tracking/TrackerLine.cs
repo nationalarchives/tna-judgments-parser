@@ -25,4 +25,8 @@ internal class TrackerLine
 
     [Format("yyyy-MM-dd HH:mm:ss.fff")]
     public DateTimeOffset TrackerLineLastUpdated { get; set; }
+    public string? FileExtension {get; set; }
+    public string? OriginalFileName { get; set; }
+    public string? Court { get; set;}
+    public string? CaseName { get; set; }
 }

@@ -19,7 +19,7 @@ public static class CsvMetadataLineHelper
     {
         id = "007",
         Court = "UKFTT-GRC",
-        FilePath = "",
+        FilePath = "/some/long/path/example.pdf",
         Extension = ".pdf",
         DecisionDateTime = DateTime.MinValue,
         CaseNo = ["ABC/2023/001"],

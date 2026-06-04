@@ -227,9 +227,9 @@ namespace test.backlog.EndToEndTests
 
             // Pre-populate tracker to mark first item as already processed
             await File.WriteAllTextAsync(trackerPath, """
-                                                      SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated
-                                                      11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
-                                                      22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
+                                                      SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated,FileExtension,OriginalFileName,Court,CaseName
+                                                      11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000,docx,old_file.docx,UKSC,V v V
+                                                      22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000,docx,old_file2.docx,UKSC,V v V
                                                       """,
                 TestContext.Current.CancellationToken);
 
@@ -245,9 +245,9 @@ namespace test.backlog.EndToEndTests
 
             // Should have the header plus original entry plus new successful entries
             Assert.Collection(trackerLines, 
-                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
-                line => Assert.True(line == "11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
-                line => Assert.True(line == "22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
+                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated,FileExtension,OriginalFileName,Court,CaseName", $"First line should be the header but was {line}"),
+                line => Assert.True(line == "11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000,docx,old_file.docx,UKSC,V v V", "This line from an old run should stay"),
+                line => Assert.True(line == "22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000,docx,old_file2.docx,UKSC,V v V", "This line from an old run should stay"),
                 line => Assert.True(line.StartsWith("22222222-2222-2222-2222-222222222222") && line.Contains("SentToIngester"), "This line should have been retried"),
                 line => Assert.True(line.StartsWith("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
                 );
@@ -278,7 +278,7 @@ namespace test.backlog.EndToEndTests
 
             var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
             Assert.Collection(trackerLines, 
-                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
+                line => Assert.True(line == "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated,FileExtension,OriginalFileName,Court,CaseName", "First line should be the header"),
                 line => Assert.True(line.StartsWith("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
             );
         }

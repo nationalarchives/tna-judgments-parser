@@ -280,7 +280,7 @@ internal class BacklogParserWorker(
         var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, sourceHash,
             images, response.Meta, externalMetadataFields, !isStub);
 
-        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash);
+        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash, response.Meta.Name);
         
         return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
