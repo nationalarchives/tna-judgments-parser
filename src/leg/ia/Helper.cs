@@ -63,6 +63,7 @@ class Helper : BaseHelper {
         TransformContentSections(xml);
         PromoteCoverSheetToSections(xml);
         BuildSubSectionsFromHeadingDepth(xml);
+        BuildAnnexTier(xml);
         RenumberTopLevelMainBodySections(xml);
         RemoveEmptyHeadings(xml);
         ReplaceThWithTd(xml);
@@ -718,6 +719,99 @@ class Helper : BaseHelper {
         return text.Length > 200 ? text.Substring(0, 200) : text;
     }
 
+    /// Promote each annex (an attached <doc name="annex"> of flat bold-heading
+    /// paragraphs) into an addressable <hcontainer name="annex"> of <section>s
+    /// in the main body, so the TOC links to /annex/{N}/section/{M} paths. The
+    /// publisher resolves hierarchical paths, not eId fragments, and an IA annex
+    /// is a distinct appendix tier (the analogue of a Schedule), not body
+    /// sections, so it must not be flattened into /section/N.
+    private static void BuildAnnexTier(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr) as XmlElement;
+        if (mainBody is null) return;
+        var attachments = xml.SelectSingleNode("//akn:attachments", nsmgr) as XmlElement;
+        if (attachments is null) return;
+
+        var annexDocs = attachments.SelectNodes("akn:attachment/akn:doc[@name='annex']", nsmgr)
+            .Cast<XmlElement>().ToList();
+        if (annexDocs.Count == 0) return;
+
+        int annexIndex = 0;
+        foreach (var annexDoc in annexDocs) {
+            annexIndex++;
+            var annexBody = annexDoc.SelectSingleNode("akn:mainBody", nsmgr) as XmlElement;
+            if (annexBody is null) continue;
+
+            var blocks = annexBody.ChildNodes.Cast<XmlNode>().OfType<XmlElement>().ToList();
+
+            // Group flat blocks by bold-heading paragraph (excluding figure/table
+            // captions, which are content). Content before the first heading is
+            // "leading" (typically just the annex's own title).
+            var leading = new List<XmlElement>();
+            var groups = new List<(string heading, List<XmlElement> body)>();
+            string currentHeading = null;
+            var currentBody = new List<XmlElement>();
+            foreach (var b in blocks) {
+                if (IsFlatBoldHeadingParagraph(b, nsmgr, out string h) && !IsFigureOrTableCaption(h)) {
+                    if (currentHeading != null) groups.Add((currentHeading, currentBody));
+                    currentHeading = h;
+                    currentBody = new List<XmlElement>();
+                } else {
+                    (currentHeading == null ? leading : currentBody).Add(b);
+                }
+            }
+            if (currentHeading != null) groups.Add((currentHeading, currentBody));
+
+            // The annex's own title is the first leading bold paragraph (e.g.
+            // "Appendix A: ..."), too long to be a section heading; use it as the
+            // container heading. Any other leading content opens an intro section.
+            string annexTitle = null;
+            var leadingTitle = leading.FirstOrDefault(e =>
+                e.LocalName == "p" && e.SelectSingleNode("akn:b", nsmgr) != null);
+            if (leadingTitle != null) {
+                annexTitle = leadingTitle.InnerText?.Trim();
+                leading.Remove(leadingTitle);
+            }
+            if (string.IsNullOrWhiteSpace(annexTitle))
+                annexTitle = annexDocs.Count > 1 ? $"Annex {annexIndex}" : "Annex";
+
+            var hc = xml.CreateElement("hcontainer", AKN_NAMESPACE);
+            hc.SetAttribute("name", "annex");
+            hc.SetAttribute("eId", $"annex_{annexIndex}");
+            var hcHeading = xml.CreateElement("heading", AKN_NAMESPACE);
+            hcHeading.InnerText = annexTitle;
+            hc.AppendChild(hcHeading);
+
+            int sectionIndex = 0;
+            void AppendSection(string heading, List<XmlElement> body) {
+                sectionIndex++;
+                var sec = xml.CreateElement("section", AKN_NAMESPACE);
+                sec.SetAttribute("eId", $"annex_{annexIndex}__sec_{sectionIndex}");
+                if (!string.IsNullOrWhiteSpace(heading)) {
+                    var hEl = xml.CreateElement("heading", AKN_NAMESPACE);
+                    hEl.InnerText = heading;
+                    sec.AppendChild(hEl);
+                }
+                // Wrap loose blocks in paragraph/content (a section cannot hold p/
+                // table/blockContainer directly); same builder the body sections use.
+                AppendBodyToSection(xml, sec, body);
+                hc.AppendChild(sec);
+            }
+
+            if (leading.Count > 0) AppendSection(null, leading);
+            foreach (var (heading, body) in groups) AppendSection(heading, body);
+
+            mainBody.AppendChild(hc);
+            logger.LogInformation("Built annex {Index} ({Title}) with {Count} sections",
+                annexIndex, annexTitle, sectionIndex);
+        }
+
+        attachments.ParentNode?.RemoveChild(attachments);
+    }
+
     // Renumber top-level sections sequentially so /section/N URLs stay
     // contiguous after promotions. Starts from whatever number the first
     // existing section has (typically 2 — section_1 is reserved for the
@@ -1272,6 +1366,7 @@ class Helper : BaseHelper {
         if (hcontainers != null && hcontainers.Count > 0) {
             foreach (XmlElement hcontainer in hcontainers) {
                 var name = hcontainer.GetAttribute("name");
+                if (name == "annex") continue;  // annex tier handled below as /annex/N/section/M
                 var eId = hcontainer.GetAttribute("eId");
                 
                 // For hcontainers, prioritize the name attribute over content extraction
@@ -1332,24 +1427,20 @@ class Helper : BaseHelper {
             }
         }
 
-        var annexBodies = xml.SelectNodes("//akn:attachments/akn:attachment/akn:doc/akn:mainBody", nsmgr);
-        if (annexBodies != null) {
-            int annexIndex = 0;
-            foreach (XmlNode annexBody in annexBodies) {
-                annexIndex++;
-                foreach (XmlNode child in annexBody.ChildNodes) {
-                    if (child is not XmlElement el) continue;
-                    if (el.LocalName != "p" || el.NamespaceURI != AKN_NAMESPACE) continue;
-                    if (!IsFlatBoldHeadingParagraph(el, nsmgr, out string headingText)) continue;
-
-                    string eId = el.GetAttribute("eId");
-                    if (string.IsNullOrEmpty(eId)) {
-                        eId = $"annex_{annexIndex}_p_{tocNumber}";
-                        el.SetAttribute("eId", eId);
-                    }
+        // Annex tier: each <hcontainer name="annex"> contributes
+        // /annex/{N}/section/{M} entries (hierarchical paths, never fragments).
+        var annexContainers = xml.SelectNodes("//akn:mainBody/akn:hcontainer[@name='annex']", nsmgr);
+        if (annexContainers != null) {
+            int annexNo = 0;
+            foreach (XmlElement annex in annexContainers) {
+                annexNo++;
+                int secNo = 0;
+                foreach (XmlElement sec in annex.SelectNodes("akn:section", nsmgr)) {
+                    secNo++;
+                    string headingText = ExtractHeadingForToc(sec, nsmgr);
                     string href = !string.IsNullOrEmpty(expressionUri)
-                        ? $"{expressionUri}#{eId}"
-                        : "#" + eId;
+                        ? $"{expressionUri}/annex/{annexNo}/section/{secNo}"
+                        : "#" + sec.GetAttribute("eId");
                     AddTocItem(xml, toc, href, tocNumber, headingText);
                     tocNumber++;
                 }
