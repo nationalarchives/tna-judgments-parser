@@ -20,7 +20,7 @@ public class TestTracker
     private const string TrackerFilePath = "/tracker.csv";
 
     private const string TrackerCsvHeader =
-        "SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated,FileExtension,OriginalFileName,Court,CaseName";
+        "Court,FileExtension,SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,CaseName,OriginalFileName,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated";
 
     private readonly FakeTimeProvider fakeTimeProvider = new();
     private readonly MockFileSystem mockFileSystem = new();
@@ -63,7 +63,7 @@ public class TestTracker
     {
         var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
         var tracker = CreateTracker(
-            $"{sourceUuid},00000000-0000-0000-0000-000000000099,{previousTrackerStatus},ref1,ncn1,hash1,metahash1,,2025-06-15 10:30:00.000,docx,word.docx,UKSC,V v V");
+            $"UKSC,docx,{sourceUuid},00000000-0000-0000-0000-000000000099,{previousTrackerStatus},ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000");
 
         Assert.Equal(expectedResult, tracker.IsAlreadySentToIngester(sourceUuid));
     }
@@ -73,8 +73,8 @@ public class TestTracker
     {
         var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
         var tracker = CreateTracker(
-            $"{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,hash1,metahash1,,2025-06-14 10:30:00.000,docx,word.docx,UKSC,V v V",
-            $"{sourceUuid},20000000-0000-0000-0000-000000000099,SentToIngester,ref1,ncn1,hash1,metahash1,,2025-06-15 10:30:00.000,docx,word.docx,UKSC,V v V"
+            $"UKSC,docx,{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-14 10:30:00.000",
+            $"UKSC,docx,{sourceUuid},20000000-0000-0000-0000-000000000099,SentToIngester,ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000"
         );
 
         Assert.True(tracker.IsAlreadySentToIngester(sourceUuid));
@@ -84,7 +84,7 @@ public class TestTracker
     public void IsAlreadySentToIngester_WhenDifferentUuidWasSent_ReturnsFalse()
     {
         var tracker = CreateTracker(
-            $"99999999-9999-9999-9999-999999999999,00000000-0000-0000-0000-000000000099,{TrackerStatus.SentToIngester},ref1,ncn1,hash1,metahash1,,2025-06-15 10:30:00.000,docx,word.docx,UKSC,");
+            $"UKSC,docx,99999999-9999-9999-9999-999999999999,00000000-0000-0000-0000-000000000099,{TrackerStatus.SentToIngester},ref1,ncn1,,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000");
 
         Assert.False(tracker.IsAlreadySentToIngester(Guid.Parse("00000000-0000-0000-0000-000000000001")));
     }
@@ -104,7 +104,7 @@ public class TestTracker
             await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
         Assert.Equal([
             TrackerCsvHeader,
-            $"{sourceUuid},{parserRunId},Started,,,,my-metadata-hash,,2025-06-15 10:30:00.000,.pdf,/some/long/path/example.pdf,UKFTT-GRC,"
+            $"UKFTT-GRC,.pdf,{sourceUuid},{parserRunId},Started,,,,/some/long/path/example.pdf,,my-metadata-hash,,2025-06-15 10:30:00.000"
         ], trackerLines);
     }
 
@@ -138,7 +138,7 @@ public class TestTracker
             await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
         Assert.Equal([
                 TrackerCsvHeader,
-                $"{sourceUuid},{parserRunId},Parsed,{treReference},{ncn ?? ""},{documentContentHash},{csvMetadataHash},,2025-06-15 10:31:00.000,.pdf,/some/long/path/example.pdf,UKFTT-GRC,Case Name"
+                $"UKFTT-GRC,.pdf,{sourceUuid},{parserRunId},Parsed,{treReference},{ncn ?? ""},{caseName},/some/long/path/example.pdf,{documentContentHash},{csvMetadataHash},,2025-06-15 10:31:00.000"
             ],
             trackerLines);
     }
@@ -169,7 +169,7 @@ public class TestTracker
             await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
         Assert.Equal([
                 TrackerCsvHeader,
-                $"{sourceUuid},{parserRunId},ParserFailed,,,,{csvMetadataHash},Something went wrong,2025-06-15 10:31:00.000,.pdf,/some/long/path/example.pdf,UKFTT-GRC,"
+                $"UKFTT-GRC,.pdf,{sourceUuid},{parserRunId},ParserFailed,,,,/some/long/path/example.pdf,,{csvMetadataHash},Something went wrong,2025-06-15 10:31:00.000"
             ],
             trackerLines);
     }
@@ -208,7 +208,7 @@ public class TestTracker
 
         Assert.Equal([
                 TrackerCsvHeader,
-                $"{sourceUuid},{parserRunId},SentToIngester,{treReference},{ncn},{documentContentHash},{csvMetadataHash},,2025-06-15 10:32:00.000,.pdf,/some/long/path/example.pdf,UKFTT-GRC,Case Name"
+                $"UKFTT-GRC,.pdf,{sourceUuid},{parserRunId},SentToIngester,{treReference},{ncn},{caseName},/some/long/path/example.pdf,{documentContentHash},{csvMetadataHash},,2025-06-15 10:32:00.000"
             ],
             trackerLines);
     }
@@ -229,9 +229,9 @@ public class TestTracker
         // Arrange
         string[] oldTrackerLines =
         [
-            "e169cd7c-6fe0-446d-91d2-9e4de2829b38,10000000-0000-0000-0000-000000000099,SentToIngester,ref1,ncn1,hash1,metahash1,,2025-06-14 09:30:00.000,docx,word.docx,UKSC,Case Name",
-            $"{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,hash1,metahash1,,2025-06-14 10:30:00.000,docx,word.docx,UKSC,Case Name",
-            $"{sourceUuid},20000000-0000-0000-0000-000000000099,Parsed,ref1,ncn1,hash1,metahash1,,2025-06-15 10:30:00.000,docx,word.docx,UKSC,Case Name"
+            "UKSC,docx,e169cd7c-6fe0-446d-91d2-9e4de2829b38,10000000-0000-0000-0000-000000000099,SentToIngester,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-14 09:30:00.000",
+            $"UKSC,docx,{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-14 10:30:00.000",
+            $"UKSC,docx,{sourceUuid},20000000-0000-0000-0000-000000000099,Parsed,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000"
         ];
         var tracker = CreateTracker(oldTrackerLines);
         fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 32, 0, TimeSpan.Zero));
@@ -249,7 +249,7 @@ public class TestTracker
         Assert.Equal([
                 TrackerCsvHeader,
                 .. oldTrackerLines,
-                $"{sourceUuid},{parserRunId},SentToIngester,{treReference},{ncn},{documentContentHash},{csvMetadataHash},,2025-06-15 10:32:00.000,.pdf,/some/long/path/example.pdf,UKFTT-GRC,Case Name"
+                $"UKFTT-GRC,.pdf,{sourceUuid},{parserRunId},SentToIngester,{treReference},{ncn},{caseName},/some/long/path/example.pdf,{documentContentHash},{csvMetadataHash},,2025-06-15 10:32:00.000"
             ],
             trackerLines);
     }
